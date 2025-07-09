@@ -26,11 +26,12 @@ dependencies:
   collection: ">=1.15.0 <2.0.0"
 
 dev_dependencies:
-  lints: ^6.0.0
+  lints: ^5.0.0
 
-#dependency_overrides:
-#  openapi_base:
-#    path: ../openapi_base
+dependency_overrides:
+  openapi_base:
+    path: ../openapi_base
+
 #  open_api_forked:
 #    path: ../../deps/open-api-dart
 #  codable_forked:
