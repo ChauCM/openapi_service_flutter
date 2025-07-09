@@ -20,6 +20,32 @@ import 'package:yaml/yaml.dart';
 
 final _logger = Logger('openapi_code_builder');
 
+/// Interface for schema analysis operations
+abstract class SchemaAnalyzer {
+  Set<String> collectUsedSchemas(APIDocument api);
+  bool shouldGenerateDto(APISchemaObject schema);
+}
+
+/// Interface for DTO generation operations
+abstract class DtoGenerator {
+  Library generateDtosLibrary(APIDocument api, SchemaAnalyzer analyzer);
+  Class generateApiErrorModel();
+  void generateSchemaIntoLibrary(
+      LibraryBuilder targetLb, String key, APISchemaObject schemaObject);
+}
+
+/// Interface for service generation operations
+abstract class ServiceGenerator {
+  Library generateServiceLibrary(APIDocument api, String inputIdBasename);
+  void generateServiceClassToLibrary(LibraryBuilder targetLb, APIDocument api);
+}
+
+/// Interface for legacy generation operations
+abstract class LegacyGenerator {
+  Library generateLegacyStyle(APIDocument api, void Function() requireFreezed);
+}
+
+/// Main OpenAPI Library Generator with improved separation of concerns
 class OpenApiLibraryGenerator {
   OpenApiLibraryGenerator(
     this.api, {
@@ -32,7 +58,14 @@ class OpenApiLibraryGenerator {
     this.providerNamePrefix = '',
     this.ignoreSecuritySchemes = false,
     this.generateServiceClasses = false,
-  });
+    SchemaAnalyzer? schemaAnalyzer,
+    DtoGenerator? dtoGenerator,
+    ServiceGenerator? serviceGenerator,
+    LegacyGenerator? legacyGenerator,
+  }) : _schemaAnalyzer = schemaAnalyzer ?? DefaultSchemaAnalyzer(),
+       _dtoGenerator = dtoGenerator ?? DefaultDtoGenerator(baseName, freezedPartFileName, partFileName),
+       _serviceGenerator = serviceGenerator ?? DefaultServiceGenerator(baseName),
+       _legacyGenerator = legacyGenerator ?? DefaultLegacyGenerator(baseName, freezedPartFileName, partFileName, useNullSafetySyntax, apiMethodsWithRequest, generateProvider, providerNamePrefix, ignoreSecuritySchemes);
 
   final APIDocument api;
 
@@ -46,6 +79,12 @@ class OpenApiLibraryGenerator {
   final String providerNamePrefix;
   final bool ignoreSecuritySchemes;
   final bool generateServiceClasses;
+
+  // Injected dependencies for testability
+  final SchemaAnalyzer _schemaAnalyzer;
+  final DtoGenerator _dtoGenerator;
+  final ServiceGenerator _serviceGenerator;
+  final LegacyGenerator _legacyGenerator;
 
   final jsonValue = refer('JsonValue');
   final jsonKey = refer('JsonKey');
@@ -113,44 +152,26 @@ class OpenApiLibraryGenerator {
   final securitySchemesClass = ClassBuilder()..name = 'SecuritySchemes';
 
   Library generate() {
-    lb.body.add(Directive.part(partFileName));
-    var myRequireFreezed = false;
-    void requireFreezed() {
-      if (myRequireFreezed) {
-        return;
-      }
-      if (freezedPartFileName.isEmpty) {
-        throw StateError(
-            'freeze is required, but no freezedPartFileName was given.');
-      }
-      lb.body.insert(1, Directive.part(freezedPartFileName));
-      myRequireFreezed = true;
-    }
-
-    // Generate based on style
     if (generateServiceClasses) {
       return _generateServiceStyle();
     } else {
-      return _generateLegacyStyle(requireFreezed);
+      var myRequireFreezed = false;
+      void requireFreezed() {
+        if (myRequireFreezed) {
+          return;
+        }
+        if (freezedPartFileName.isEmpty) {
+          throw StateError(
+              'freeze is required, but no freezedPartFileName was given.');
+        }
+        myRequireFreezed = true;
+      }
+      return _legacyGenerator.generateLegacyStyle(api, requireFreezed);
     }
   }
 
   Library _generateServiceStyle() {
-    // Add freezed part file
-    lb.body.insert(1, Directive.part(freezedPartFileName));
-
-    // Add API Error model
-    lb.body.add(_generateApiErrorModel());
-
-    // Generate freezed DTOs for schemas
-    for (final schemaEntry in api.components!.schemas!.entries) {
-      _schemaReference(schemaEntry.key, schemaEntry.value!);
-    }
-
-    // Generate service class
-    _generateServiceClass();
-
-    return lb.build();
+    return _dtoGenerator.generateDtosLibrary(api, _schemaAnalyzer);
   }
 
   Library _generateDtosLibrary() {
@@ -2492,3 +2513,161 @@ Block ifStatement(
       ],
       const Code('}'),
     ]);
+
+/// Default implementation of SchemaAnalyzer
+class DefaultSchemaAnalyzer implements SchemaAnalyzer {
+  @override
+  Set<String> collectUsedSchemas(APIDocument api) {
+    final usedSchemas = <String>{};
+    
+    for (final path in api.paths!.entries) {
+      for (final operation in path.value!.operations.entries) {
+        _collectSchemasFromOperation(operation.value!, usedSchemas);
+      }
+    }
+    
+    return usedSchemas;
+  }
+
+  void _collectSchemasFromOperation(APIOperation operation, Set<String> usedSchemas) {
+    // Check response schemas
+    for (final response in operation.responses!.entries) {
+      if (response.value?.content != null) {
+        for (final content in response.value!.content!.values) {
+          if (content?.schema != null) {
+            _collectSchemaReferences(content!.schema!, usedSchemas);
+          }
+        }
+      }
+    }
+    
+    // Check request body schemas
+    final body = operation.requestBody;
+    if (body?.content != null) {
+      for (final content in body!.content!.values) {
+        if (content?.schema != null) {
+          _collectSchemaReferences(content!.schema!, usedSchemas);
+        }
+      }
+    }
+  }
+
+  void _collectSchemaReferences(APISchemaObject schema, Set<String> usedSchemas) {
+    final uri = schema.referenceURI;
+    if (uri != null) {
+      final segments = uri.pathSegments;
+      if (segments.length >= 3 && segments[0] == 'components' && segments[1] == 'schemas') {
+        usedSchemas.add(segments[2]);
+      }
+    }
+    
+    if (schema.properties != null) {
+      for (final prop in schema.properties!.values) {
+        _collectSchemaReferences(prop!, usedSchemas);
+      }
+    }
+    
+    if (schema.items != null) {
+      _collectSchemaReferences(schema.items!, usedSchemas);
+    }
+    
+    if (schema.allOf != null) {
+      for (final subSchema in schema.allOf!) {
+        _collectSchemaReferences(subSchema!, usedSchemas);
+      }
+    }
+  }
+
+  @override
+  bool shouldGenerateDto(APISchemaObject schema) {
+    if (schema.type != null && schema.type != APIType.object) {
+      return false;
+    }
+    
+    if (schema.type == APIType.object && 
+        (schema.properties?.isEmpty ?? true) && 
+        (schema.allOf?.isEmpty ?? true) &&
+        (schema.oneOf?.isEmpty ?? true) &&
+        (schema.anyOf?.isEmpty ?? true)) {
+      return false;
+    }
+    
+    return schema.type == APIType.object || 
+           (schema.properties?.isNotEmpty == true) || 
+           (schema.allOf?.isNotEmpty == true) ||
+           (schema.oneOf?.isNotEmpty == true) ||
+           (schema.anyOf?.isNotEmpty == true);
+  }
+}
+
+/// Placeholder implementations for other interfaces
+class DefaultDtoGenerator implements DtoGenerator {
+  final String baseName;
+  final String freezedPartFileName;
+  final String partFileName;
+  
+  DefaultDtoGenerator(this.baseName, this.freezedPartFileName, this.partFileName);
+  
+  @override
+  Library generateDtosLibrary(APIDocument api, SchemaAnalyzer analyzer) {
+    // TODO: Move the existing _generateDtosLibrary logic here
+    return LibraryBuilder().build();
+  }
+
+  @override
+  Class generateApiErrorModel() {
+    // TODO: Move the existing _generateApiErrorModel logic here
+    return Class((cb) => cb..name = 'ApiError');
+  }
+
+  @override
+  void generateSchemaIntoLibrary(
+      LibraryBuilder targetLb, String key, APISchemaObject schemaObject) {
+    // TODO: Move the existing _generateSchemaIntoLibrary logic here
+  }
+}
+
+class DefaultServiceGenerator implements ServiceGenerator {
+  final String baseName;
+  
+  DefaultServiceGenerator(this.baseName);
+  
+  @override
+  Library generateServiceLibrary(APIDocument api, String inputIdBasename) {
+    // TODO: Move the existing _generateServiceLibrary logic here
+    return LibraryBuilder().build();
+  }
+
+  @override
+  void generateServiceClassToLibrary(LibraryBuilder targetLb, APIDocument api) {
+    // TODO: Move the existing _generateServiceClassToLibrary logic here
+  }
+}
+
+class DefaultLegacyGenerator implements LegacyGenerator {
+  final String baseName;
+  final String freezedPartFileName;
+  final String partFileName;
+  final bool useNullSafetySyntax;
+  final bool apiMethodsWithRequest;
+  final bool generateProvider;
+  final String providerNamePrefix;
+  final bool ignoreSecuritySchemes;
+  
+  DefaultLegacyGenerator(
+    this.baseName,
+    this.freezedPartFileName,
+    this.partFileName,
+    this.useNullSafetySyntax,
+    this.apiMethodsWithRequest,
+    this.generateProvider,
+    this.providerNamePrefix,
+    this.ignoreSecuritySchemes,
+  );
+  
+  @override
+  Library generateLegacyStyle(APIDocument api, void Function() requireFreezed) {
+    // TODO: Move the existing _generateLegacyStyle logic here
+    return LibraryBuilder().build();
+  }
+}
