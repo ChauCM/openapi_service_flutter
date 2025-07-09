@@ -6,45 +6,48 @@ part of 'petstore.openapi.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Order _$OrderFromJson(Map<String, dynamic> json) => Order(
+_$OrderDtoImpl _$$OrderDtoImplFromJson(Map<String, dynamic> json) =>
+    _$OrderDtoImpl(
       id: (json['id'] as num?)?.toInt(),
       petId: (json['petId'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
       shipDate: json['shipDate'] == null
           ? null
           : DateTime.parse(json['shipDate'] as String),
-      status: $enumDecodeNullable(_$OrderStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(_$OrderDtoStatusDtoEnumMap, json['status']),
       complete: json['complete'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.petId case final value?) 'petId': value,
-      if (instance.quantity case final value?) 'quantity': value,
-      if (instance.shipDate?.toIso8601String() case final value?)
-        'shipDate': value,
-      if (_$OrderStatusEnumMap[instance.status] case final value?)
-        'status': value,
+Map<String, dynamic> _$$OrderDtoImplToJson(_$OrderDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'petId': instance.petId,
+      'quantity': instance.quantity,
+      'shipDate': instance.shipDate?.toIso8601String(),
+      'status': _$OrderDtoStatusDtoEnumMap[instance.status],
       'complete': instance.complete,
     };
 
-const _$OrderStatusEnumMap = {
-  OrderStatus.placed: 'placed',
-  OrderStatus.approved: 'approved',
-  OrderStatus.delivered: 'delivered',
+const _$OrderDtoStatusDtoEnumMap = {
+  OrderDtoStatusDto.placed: 'placed',
+  OrderDtoStatusDto.approved: 'approved',
+  OrderDtoStatusDto.delivered: 'delivered',
 };
 
-Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
+_$CategoryDtoImpl _$$CategoryDtoImplFromJson(Map<String, dynamic> json) =>
+    _$CategoryDtoImpl(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.name case final value?) 'name': value,
+Map<String, dynamic> _$$CategoryDtoImplToJson(_$CategoryDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
     };
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
+_$UserDtoImpl _$$UserDtoImplFromJson(Map<String, dynamic> json) =>
+    _$UserDtoImpl(
       id: (json['id'] as num?)?.toInt(),
       username: json['username'] as String?,
       firstName: json['firstName'] as String?,
@@ -55,88 +58,92 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       userStatus: (json['userStatus'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.username case final value?) 'username': value,
-      if (instance.firstName case final value?) 'firstName': value,
-      if (instance.lastName case final value?) 'lastName': value,
-      if (instance.email case final value?) 'email': value,
-      if (instance.password case final value?) 'password': value,
-      if (instance.phone case final value?) 'phone': value,
-      if (instance.userStatus case final value?) 'userStatus': value,
+Map<String, dynamic> _$$UserDtoImplToJson(_$UserDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'username': instance.username,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'email': instance.email,
+      'password': instance.password,
+      'phone': instance.phone,
+      'userStatus': instance.userStatus,
     };
 
-Tag _$TagFromJson(Map<String, dynamic> json) => Tag(
+_$TagDtoImpl _$$TagDtoImplFromJson(Map<String, dynamic> json) => _$TagDtoImpl(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$TagToJson(Tag instance) => <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.name case final value?) 'name': value,
+Map<String, dynamic> _$$TagDtoImplToJson(_$TagDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
     };
 
-Pet _$PetFromJson(Map<String, dynamic> json) => Pet(
+_$PetDtoImpl _$$PetDtoImplFromJson(Map<String, dynamic> json) => _$PetDtoImpl(
       id: (json['id'] as num?)?.toInt(),
       category: json['category'] == null
           ? null
-          : Category.fromJson(json['category'] as Map<String, dynamic>),
+          : CategoryDto.fromJson(json['category'] as Map<String, dynamic>),
       name: json['name'] as String,
       photoUrls:
           (json['photoUrls'] as List<dynamic>).map((e) => e as String).toList(),
       tags: (json['tags'] as List<dynamic>?)
-          ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => TagDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: $enumDecodeNullable(_$PetStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(_$PetDtoStatusDtoEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$PetToJson(Pet instance) => <String, dynamic>{
-      if (instance.id case final value?) 'id': value,
-      if (instance.category case final value?) 'category': value,
+Map<String, dynamic> _$$PetDtoImplToJson(_$PetDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'category': instance.category,
       'name': instance.name,
       'photoUrls': instance.photoUrls,
-      if (instance.tags case final value?) 'tags': value,
-      if (_$PetStatusEnumMap[instance.status] case final value?)
-        'status': value,
+      'tags': instance.tags,
+      'status': _$PetDtoStatusDtoEnumMap[instance.status],
     };
 
-const _$PetStatusEnumMap = {
-  PetStatus.available: 'available',
-  PetStatus.pending: 'pending',
-  PetStatus.sold: 'sold',
+const _$PetDtoStatusDtoEnumMap = {
+  PetDtoStatusDto.available: 'available',
+  PetDtoStatusDto.pending: 'pending',
+  PetDtoStatusDto.sold: 'sold',
 };
 
-ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) => ApiResponse(
+_$ApiResponseDtoImpl _$$ApiResponseDtoImplFromJson(Map<String, dynamic> json) =>
+    _$ApiResponseDtoImpl(
       code: (json['code'] as num?)?.toInt(),
       type: json['type'] as String?,
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$ApiResponseToJson(ApiResponse instance) =>
+Map<String, dynamic> _$$ApiResponseDtoImplToJson(
+        _$ApiResponseDtoImpl instance) =>
     <String, dynamic>{
-      if (instance.code case final value?) 'code': value,
-      if (instance.type case final value?) 'type': value,
-      if (instance.message case final value?) 'message': value,
+      'code': instance.code,
+      'type': instance.type,
+      'message': instance.message,
     };
 
-UpdatePetWithFormSchema _$UpdatePetWithFormSchemaFromJson(
+_$UpdatePetWithFormRequestDtoImpl _$$UpdatePetWithFormRequestDtoImplFromJson(
         Map<String, dynamic> json) =>
-    UpdatePetWithFormSchema(
+    _$UpdatePetWithFormRequestDtoImpl(
       name: json['name'] as String?,
       status: json['status'] as String?,
     );
 
-Map<String, dynamic> _$UpdatePetWithFormSchemaToJson(
-        UpdatePetWithFormSchema instance) =>
+Map<String, dynamic> _$$UpdatePetWithFormRequestDtoImplToJson(
+        _$UpdatePetWithFormRequestDtoImpl instance) =>
     <String, dynamic>{
-      if (instance.name case final value?) 'name': value,
-      if (instance.status case final value?) 'status': value,
+      'name': instance.name,
+      'status': instance.status,
     };
 
-GetInventoryResponseBody200 _$GetInventoryResponseBody200FromJson(
+_$GetInventoryResponseDtoImpl _$$GetInventoryResponseDtoImplFromJson(
         Map<String, dynamic> json) =>
-    GetInventoryResponseBody200();
+    _$GetInventoryResponseDtoImpl();
 
-Map<String, dynamic> _$GetInventoryResponseBody200ToJson(
-        GetInventoryResponseBody200 instance) =>
+Map<String, dynamic> _$$GetInventoryResponseDtoImplToJson(
+        _$GetInventoryResponseDtoImpl instance) =>
     <String, dynamic>{};

@@ -6,112 +6,93 @@ part of 'testapi.openapi.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) =>
-    RegisterRequest(
+_$RegisterRequestDtoImpl _$$RegisterRequestDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RegisterRequestDtoImpl(
       email: json['email'] as String,
     );
 
-Map<String, dynamic> _$RegisterRequestToJson(RegisterRequest instance) =>
+Map<String, dynamic> _$$RegisterRequestDtoImplToJson(
+        _$RegisterRequestDtoImpl instance) =>
     <String, dynamic>{
       'email': instance.email,
     };
 
-HelloRequest _$HelloRequestFromJson(Map<String, dynamic> json) => HelloRequest(
+_$HelloRequestDtoImpl _$$HelloRequestDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$HelloRequestDtoImpl(
       salutation: json['salutation'] as String?,
     );
 
-Map<String, dynamic> _$HelloRequestToJson(HelloRequest instance) =>
+Map<String, dynamic> _$$HelloRequestDtoImplToJson(
+        _$HelloRequestDtoImpl instance) =>
     <String, dynamic>{
-      if (instance.salutation case final value?) 'salutation': value,
+      'salutation': instance.salutation,
     };
 
-HelloResponse _$HelloResponseFromJson(Map<String, dynamic> json) =>
-    HelloResponse(
+_$HelloResponseDtoImpl _$$HelloResponseDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$HelloResponseDtoImpl(
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$HelloResponseToJson(HelloResponse instance) =>
+Map<String, dynamic> _$$HelloResponseDtoImplToJson(
+        _$HelloResponseDtoImpl instance) =>
     <String, dynamic>{
-      if (instance.message case final value?) 'message': value,
+      'message': instance.message,
     };
 
-InheritanceBase _$InheritanceBaseFromJson(Map<String, dynamic> json) =>
-    InheritanceBase(
+_$InheritanceBaseDtoImpl _$$InheritanceBaseDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$InheritanceBaseDtoImpl(
       test1: json['test1'] as String?,
     );
 
-Map<String, dynamic> _$InheritanceBaseToJson(InheritanceBase instance) =>
+Map<String, dynamic> _$$InheritanceBaseDtoImplToJson(
+        _$InheritanceBaseDtoImpl instance) =>
     <String, dynamic>{
-      if (instance.test1 case final value?) 'test1': value,
+      'test1': instance.test1,
     };
 
-InheritanceChildBase _$InheritanceChildBaseFromJson(
+_$InheritanceChildDtoImpl _$$InheritanceChildDtoImplFromJson(
         Map<String, dynamic> json) =>
-    InheritanceChildBase(
-      test2: json['test2'] as String?,
-    );
+    _$InheritanceChildDtoImpl();
 
-Map<String, dynamic> _$InheritanceChildBaseToJson(
-        InheritanceChildBase instance) =>
-    <String, dynamic>{
-      if (instance.test2 case final value?) 'test2': value,
-    };
-
-InheritanceChild _$InheritanceChildFromJson(Map<String, dynamic> json) =>
-    InheritanceChild(
-      test2: json['test2'] as String?,
-      test1: json['test1'] as String?,
-    );
-
-Map<String, dynamic> _$InheritanceChildToJson(InheritanceChild instance) =>
-    <String, dynamic>{
-      if (instance.test2 case final value?) 'test2': value,
-      if (instance.test1 case final value?) 'test1': value,
-    };
-
-RecursiveObject _$RecursiveObjectFromJson(Map<String, dynamic> json) =>
-    RecursiveObject(
-      parent: json['parent'] == null
-          ? null
-          : RecursiveObject.fromJson(json['parent'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$RecursiveObjectToJson(RecursiveObject instance) =>
-    <String, dynamic>{
-      if (instance.parent case final value?) 'parent': value,
-    };
-
-TypedAdditionalPropertiesAddProp _$TypedAdditionalPropertiesAddPropFromJson(
-        Map<String, dynamic> json) =>
-    TypedAdditionalPropertiesAddProp(
-      foo: (json['foo'] as num?)?.toInt(),
-      bar: json['bar'] as num?,
-    );
-
-Map<String, dynamic> _$TypedAdditionalPropertiesAddPropToJson(
-        TypedAdditionalPropertiesAddProp instance) =>
-    <String, dynamic>{
-      if (instance.foo case final value?) 'foo': value,
-      if (instance.bar case final value?) 'bar': value,
-    };
-
-TypedAdditionalProperties _$TypedAdditionalPropertiesFromJson(
-        Map<String, dynamic> json) =>
-    TypedAdditionalProperties();
-
-Map<String, dynamic> _$TypedAdditionalPropertiesToJson(
-        TypedAdditionalProperties instance) =>
+Map<String, dynamic> _$$InheritanceChildDtoImplToJson(
+        _$InheritanceChildDtoImpl instance) =>
     <String, dynamic>{};
 
-UuidExampleMessageIdGetResponseBody200
-    _$UuidExampleMessageIdGetResponseBody200FromJson(
+_$RecursiveObjectDtoImpl _$$RecursiveObjectDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RecursiveObjectDtoImpl(
+      parent: json['parent'] == null
+          ? null
+          : RecursiveObjectDto.fromJson(json['parent'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$RecursiveObjectDtoImplToJson(
+        _$RecursiveObjectDtoImpl instance) =>
+    <String, dynamic>{
+      'parent': instance.parent,
+    };
+
+_$TypedAdditionalPropertiesDtoImpl _$$TypedAdditionalPropertiesDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TypedAdditionalPropertiesDtoImpl();
+
+Map<String, dynamic> _$$TypedAdditionalPropertiesDtoImplToJson(
+        _$TypedAdditionalPropertiesDtoImpl instance) =>
+    <String, dynamic>{};
+
+_$UuidExampleMessageIdGetResponseDtoImpl
+    _$$UuidExampleMessageIdGetResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
-        UuidExampleMessageIdGetResponseBody200(
+        _$UuidExampleMessageIdGetResponseDtoImpl(
           id: const ApiUuidJsonConverter().fromJson(json['id'] as String),
         );
 
-Map<String, dynamic> _$UuidExampleMessageIdGetResponseBody200ToJson(
-        UuidExampleMessageIdGetResponseBody200 instance) =>
+Map<String, dynamic> _$$UuidExampleMessageIdGetResponseDtoImplToJson(
+        _$UuidExampleMessageIdGetResponseDtoImpl instance) =>
     <String, dynamic>{
       'id': const ApiUuidJsonConverter().toJson(instance.id),
     };

@@ -9,6 +9,8 @@ class CustomAllocator implements Allocator {
     // https://github.com/google/json_serializable.dart/issues/1115
     'package:json_annotation/json_annotation.dart',
     'package:freezed_annotation/freezed_annotation.dart',
+    'package:dio/dio.dart',
+    'package:dartz/dartz.dart',
   ];
 
   final _imports = <String, int>{};
