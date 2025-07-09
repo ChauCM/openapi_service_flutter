@@ -133,7 +133,6 @@ class OpenApiLibraryGenerator {
 
   final lb = LibraryBuilder();
   final securitySchemesClass = ClassBuilder()..name = 'SecuritySchemes';
-  final List<Expression?> routerConfig = <Expression>[];
 
   Library generate() {
     lb.body.add(Directive.part(partFileName));
@@ -160,7 +159,7 @@ class OpenApiLibraryGenerator {
       }
     }
 
-    // Create path configs
+    // Create client interface
     final clientInterface = ClassBuilder()
       ..name = '${baseName}Client'
       ..implements.add(_openApiClient)
@@ -210,13 +209,12 @@ class OpenApiLibraryGenerator {
       ..body = refer(clientClass.name!)
           .newInstanceNamed('_', fields.map((f) => refer(f.key)))
           .code));
+    // Generate client methods only - no server implementation needed
     final c = Class((cb) {
       cb.name = baseName;
-      cb.implements.add(_openApiEndpoint);
-//      cb.types.add(TypeReference((b) => b
-//        ..symbol = 'T'
-//        ..bound = _openApiRequest));
       cb.abstract = true;
+      // Client-only implementation - no server interface needed
+
       for (final path in api.paths!.entries) {
         for (final operation in path.value!.operations.entries) {
           final pathName = path.key
@@ -594,138 +592,62 @@ class OpenApiLibraryGenerator {
           ];
           final clientCodeRequest = refer('request');
 
-          cb.methods.add(Method((mb) {
-            mb
-              ..name = operationName
-              ..addDartDoc(operation.value!.summary)
-              ..addDartDoc(operation.value!.description)
-              ..docs.add('/// ${operation.key}: ${path.key}')
-              ..returns =
-                  _referType('Future', generics: [refer(responseClass.name!)]);
+          // Generate client parameters
+          final allParameters = [
+            ...?path.value!.parameters,
+            ...?operation.value!.parameters
+          ];
+          for (final param in allParameters) {
+            final paramType = _toDartType(operationName, param!.schema!);
+            final paramNameCamelCase = param.name!.camelCase;
+            if (param.description != null) {
+              clientMethod.docs
+                  .add('/// * [$paramNameCamelCase]: ${param.description}');
+            }
+            final p = Parameter((pb) => pb
+              ..name = paramNameCamelCase
+              ..type = paramType.asNullable(!param.isRequired)
+              ..asRequired(this, param.isRequired)
+              ..named = true);
+            clientMethod.optionalParameters.add(p);
+            clientDataConstructor.optionalParameters.add(p.rebuild((pb) => pb));
 
-            final routerParams = <Expression>[];
-            final routerParamsNamed = <String, Expression>{};
+            final paramLocation = ArgumentError.checkNotNull(param.location);
+            final paramName = ArgumentError.checkNotNull(param.name);
+            clientCode.add(_writeToRequest(
+              clientCodeRequest,
+              paramLocation,
+              paramName,
+              _encodeParameter(
+                schema: param.schema,
+                type: paramType,
+                expression: refer(paramNameCamelCase),
+                isRequired: param.isRequired,
+              ),
+            ).statement);
+          }
 
-            if (apiMethodsWithRequest) {
-              mb.requiredParameters.add(Parameter((pb) => pb
-                ..name = 'request'
-                ..type = _openApiRequest));
-              routerParams.add(refer('request'));
+          // Generate request body handling
+          final body = operation.value!.requestBody;
+          if (body != null && body.content!.isNotEmpty) {
+            final entry = body.content!.entries.first;
+
+            if (body.content!.length > 1) {
+              _logger.warning('Right now we only support one request body, '
+                  'but found: ${body.content!.keys}, only using $entry');
             }
 
-            // ignore: avoid_function_literals_in_foreach_calls
-            final allParameters = [
-              ...?path.value!.parameters,
-              ...?operation.value!.parameters
-            ];
-            for (final param in allParameters) {
-              final paramType = _toDartType(operationName, param!.schema!);
-              final paramNameCamelCase = param.name!.camelCase;
-              if (param.description != null) {
-                clientMethod.docs
-                    .add('/// * [$paramNameCamelCase]: ${param.description}');
-              }
-              final p = Parameter((pb) => pb
-                ..name = paramNameCamelCase
-                ..type = paramType.asNullable(!param.isRequired)
-                ..asRequired(this, param.isRequired)
-                ..named = true);
-              mb.optionalParameters.add(p);
-              clientMethod.optionalParameters.add(p);
-              clientDataConstructor.optionalParameters.add(p.rebuild((pb) => pb
-                  // ..toThis = true
-                  ));
-              // clientDataClass.fields.add(Field((fb) => fb
-              //   ..name = paramNameCamelCase
-              //   ..modifier = FieldModifier.final$
-              //   ..type = paramType.asNullable(!param.isRequired)));
-
-              Expression decodeParameter(Expression? expression) {
-                return refer(param.isRequired ? 'paramRequired' : 'paramOpt')(
-                    [],
-                    {
-                      'name': literalString(param.name!),
-                      'value': expression!,
-                      'decode': Method((mb) => mb
-                        ..lambda = true
-                        ..requiredParameters
-                            .add(Parameter((pb) => pb..name = 'value'))
-                        ..body = _decodeParameterFrom(
-                          parentName: operationName,
-                          schema: param.schema,
-                          type: paramType,
-                          expression: refer('value'),
-                        ).code).closure,
-                    });
-              }
-
-              final paramLocation = ArgumentError.checkNotNull(param.location);
-              final paramName = ArgumentError.checkNotNull(param.name);
-              routerParamsNamed[paramNameCamelCase] =
-                  decodeParameter(_readFromRequest(paramLocation, paramName));
-              clientCode.add(_writeToRequest(
-                clientCodeRequest,
-                paramLocation,
-                paramName,
-                _encodeParameter(
-                  schema: param.schema,
-                  type: paramType,
-                  expression: refer(paramNameCamelCase),
-                  isRequired: param.isRequired,
-                ),
-              ).statement);
-            }
-            final urlResolverMethod = clientMethod.build().toBuilder()
-              ..returns = _openApiClientRequest
-              ..modifier = null
-              ..body =
-                  Block.of(clientCode + [clientCodeRequest.returned.statement]);
-            urlResolveClass.methods.add(urlResolverMethod.build());
-
-            final body = operation.value!.requestBody;
-            if (body != null && body.content!.isNotEmpty) {
-              final entry = body.content!.entries.first;
-
-              if (body.content!.length > 1) {
-                _logger.warning('Right now we only support one request body, '
-                    'but found: ${body.content!.keys}, only using $entry');
-              }
-
-              Map.fromEntries([entry]).forEach((key, reqBody) {
-                final contentType = OpenApiContentType.parse(key);
-//                final ct = OpenApiContentType.allKnown
-//                    .firstWhere((element) => element.matches(contentType));
-                _createRequestBody(
-                  contentType,
-                  reqBody!,
-                  operationName,
-                  mb,
-                  routerParams,
-                  clientMethod,
-                  clientCode,
-                );
-              });
-            }
-
-            _routerConfig(
-              path.key,
-              operation.key,
-              refer('impl').property('invoke')([
-                refer('request'),
-                Method((m) => m
-                  ..requiredParameters.add(Parameter((pb) => pb
-                    ..type = refer(baseName)
-                    ..name = 'impl'))
-                  ..lambda = true
-                  ..body = refer('impl')
-                      .property(operationName)(routerParams, routerParamsNamed)
-//                        .returned
-                      .code
-                  ..modifier = MethodModifier.async).closure
-              ]),
-              operation.value!.security ?? api.security,
-            ); //.property(operationName)(parameters));
-          }));
+            Map.fromEntries([entry]).forEach((key, reqBody) {
+              final contentType = OpenApiContentType.parse(key);
+              _createRequestBodyClient(
+                contentType,
+                reqBody!,
+                operationName,
+                clientMethod,
+                clientCode,
+              );
+            });
+          }
 
           clientCode.add(refer('sendRequest')(
                   [refer('request'), literalMap(clientResponseParse)])
@@ -813,24 +735,7 @@ class OpenApiLibraryGenerator {
     lb.body.add(clientClass.build());
     lb.body.add(urlResolveClass.build());
 
-    lb.body.add(Class((cb) {
-      cb.name = '${baseName}Router';
-      cb.constructors.add(Constructor((cb) => cb
-        ..requiredParameters.add(Parameter((pb) => pb
-          ..name = 'impl'
-          ..toThis = true))));
-      cb.extend = refer(
-          'OpenApiServerRouterBase', 'package:openapi_base/openapi_base.dart');
-      cb.fields.add(Field((fb) => fb
-        ..name = 'impl'
-        ..type = _endpointProvider.addGenerics(refer(c.name))
-        ..modifier = FieldModifier.final$));
-      cb.methods.add(Method((mb) => mb
-        ..name = 'configure'
-        ..annotations.add(_override)
-        ..returns = refer('void')
-        ..body = Block.of(routerConfig.map((e) => e!.statement))));
-    }));
+    // Server router generation removed - client-only code generation
     lb.body.add(securitySchemesClass.build());
 
 //       api.paths.map((key, value) => MapEntry(key, refer('ApiPathConfig').newInstance([value.])))
@@ -872,6 +777,60 @@ class OpenApiLibraryGenerator {
             .property('addCookieParameter')([literalString(name), value]);
     }
     // throw StateError('Invalid location: $location');
+  }
+
+  void _createRequestBodyClient(
+      OpenApiContentType contentType,
+      APIMediaType reqBody,
+      String operationName,
+      MethodBuilder clientMethod,
+      List<Code> clientCode) {
+    _logger.finer('reqBody.schema: ${reqBody.schema}');
+
+    void addRequestBody(Reference bodyType, Expression encodeBody) {
+      clientMethod.addDartDoc(reqBody.schema!.description, prefix: '[body]:');
+      clientMethod.requiredParameters.add(Parameter((pb) => pb
+        ..name = 'body'
+        ..type = bodyType));
+
+      clientCode.add(
+        refer('request').property('setBody')([encodeBody]).statement,
+      );
+    }
+
+    clientCode.add(refer('request')
+        .property('setHeader')([
+          literalString(OpenApiHttpHeaders.contentType),
+          literalString(contentType.toString())
+        ])
+        .statement);
+
+    if (contentType.matches(OpenApiContentType.textPlain)) {
+      addRequestBody(
+        _typeString,
+        _openApiClientRequestBodyText.newInstance([refer('body')]),
+      );
+    } else if (contentType.matches(OpenApiContentType.octetStream)) {
+      addRequestBody(
+        _toDartType(operationName, reqBody.schema!),
+        _openApiClientRequestBodyBinary.newInstance([refer('body')]),
+      );
+    } else {
+      final schema = reqBody.schema!;
+      final reference =
+          _toDartType('${operationName.pascalCase}Schema', schema);
+
+      final bodyIsObject = schema.type == null || schema.type == APIType.object;
+      final jsonReference = switch (bodyIsObject) {
+        true => refer('body').property('toJson')([]),
+        false => refer('body'),
+      };
+
+      addRequestBody(
+        reference,
+        _openApiClientRequestBodyJson.newInstance([jsonReference]),
+      );
+    }
   }
 
   void _createRequestBody(
@@ -957,27 +916,7 @@ class OpenApiLibraryGenerator {
     }
   }
 
-  void _routerConfig(String path, String operation, Expression? handler,
-      List<APISecurityRequirement?>? security) {
-    _logger.fine('RouteConfig for $path - security: $security');
-    routerConfig.add(refer('addRoute')(
-      [
-        literalString(path),
-        literalString(operation),
-        Method((mb) => mb
-          ..modifier = MethodModifier.async
-          ..requiredParameters.add(Parameter((pb) => pb
-            ..name = 'request'
-            ..type = _openApiRequest))
-          ..body = Block.of([
-            handler!.awaited.returned.statement,
-          ])).closure,
-      ],
-      {
-        'security': _operationSecurityRequirements(security),
-      },
-    ));
-  }
+  // Server router configuration removed - client-only
 
   LiteralListExpression _operationSecurityRequirements(
       List<APISecurityRequirement?>? security) {
