@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'petstore.openapi.dart';
+part of 'pet_store.openapi.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

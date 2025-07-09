@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:logging/logging.dart';
 import 'package:logging_appenders/logging_appenders.dart';
-import 'package:openapi_code_builder_example/service/testapi.openapi.dart';
+import 'package:openapi_code_builder_example/service/test_api.openapi.dart';
 
 final _logger = Logger('example_client');
 
@@ -19,10 +19,10 @@ Future<void> main() async {
 
   try {
     // Example: Call GET /hello/{name}
-    final response = await client.helloNameGet(salutation: 'Hello');
+    final _ = await client.helloNameGet(salutation: 'Hello');
 
     // Example: Call POST /user/register
-    final registerResponse = await client.userRegisterPost(
+    final __ = await client.userRegisterPost(
       RegisterRequestDto(email: 'user@example.com'),
     );
   } catch (e) {

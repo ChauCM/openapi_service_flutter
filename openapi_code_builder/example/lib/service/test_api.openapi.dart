@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: prefer_initializing_formals, library_private_types_in_public_api, annotate_overrides
+// ignore_for_file: unused_element, unnecessary_import
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:openapi_base/openapi_base.dart';
-part 'testapi.openapi.g.dart';
-part 'testapi.openapi.freezed.dart';
+part 'test_api.openapi.g.dart';
+part 'test_api.openapi.freezed.dart';
 
 @freezed
 class ApiError with _$ApiError {
@@ -94,7 +94,7 @@ sealed class UuidExampleMessageIdGetResponseDto
 }
 
 class TestApiService {
-  TestApiService(Dio this._dio) {
+  TestApiService(this._dio) {
     _dio.options.baseUrl = baseUrl;
     _dio.options.connectTimeout = Duration(seconds: 10);
     _dio.options.receiveTimeout = Duration(seconds: 10);
@@ -109,11 +109,11 @@ class TestApiService {
   Future<Either<ApiError, void>> userRegisterPost(
       RegisterRequestDto body) async {
     try {
-      final response = await _dio.post(
+      final _ = await _dio.post(
         '/user/register',
         data: body.toJson(),
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -182,11 +182,11 @@ class TestApiService {
   /// put: /hello/integer
   Future<Either<ApiError, void>> helloIntegerPut(int body) async {
     try {
-      final response = await _dio.put(
+      final _ = await _dio.put(
         '/hello/integer',
         data: body,
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -197,18 +197,15 @@ class TestApiService {
       final response = error.response;
       final statusCode = response?.statusCode;
 
-// Try to extract message from response
       var message = 'An error occurred';
-      if (response?.data != null) {
+      if (response?.data case final data?) {
         try {
-          final data = response?.data;
           if (data is Map<String, dynamic>) {
             message = data['message'];
           }
         } catch (_) {}
       }
 
-// Use Dio's error message as fallback
       message = error.message ?? 'An error occurred';
       return ApiError(
         message: message,
@@ -217,7 +214,6 @@ class TestApiService {
       );
     }
 
-// Handle JSON parsing errors and other exceptions
     return ApiError(
       message: error.toString(),
       type: 'parse_error',
