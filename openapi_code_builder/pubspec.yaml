@@ -1,5 +1,5 @@
 name: openapi_code_builder
-description: Generate Dtos, client and server scaffolds for openapi specs.
+description: Generate type-safe Dart client libraries from OpenAPI specifications for Flutter apps.
 version: 1.6.0+2
 homepage: https://github.com/hpoul/openapi_dart/tree/master/packages/openapi_code_builder
 

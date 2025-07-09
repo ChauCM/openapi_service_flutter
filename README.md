@@ -1,59 +1,48 @@
-# Dart OpenApi Code Generator
+# OpenAPI Dart Client Generator
 
-`openapi_code_builder` generates server stubs and client libraries for open api schema yaml files.
+Generate type-safe Dart client libraries from OpenAPI 3.0 YAML specifications.
 
-This is a `build_runner` library meant to be included in the
-`dev_dependencies` of your project to allow generating of
-dart source files for client and server stubs for
-OpenAPI 3.0 schema files (Only yaml is supported right now).
-
-See [directory for an example usage](example/).
-
-You can also [try out the code generator
-right inside your browser](https://hpoul.github.io/openapi_dart/): https://hpoul.github.io/openapi_dart/
-
-![Flutter Screenshot](_docs/screenshot.png)
-
-# Real world example
-
-See the backend for [AuthPass](https://authpass.app/) which uses auto generated
-openapi basically as http server. [Yaml file available on github](https://github.com/authpass/authpass-cloud/blob/master/packages/authpass_cloud_shared/lib/src/api/authpass_cloud.openapi.yaml).
+This `build_runner` package automatically generates type-safe Dart client code from your OpenAPI schema files, including:
+- Client libraries for API consumption
+- Data models with JSON serialization
+- Type-safe request/response handling
 
 # Usage
 
 1. Update `pubspec.yaml`:
    ```yaml
-    dependencies:
-      json_annotation: ^3.0.1
-      openapi_base: any
+   dependencies:
+     json_annotation: ^4.0.0
+     openapi_base: ^2.0.0
 
-    dev_dependencies:
-      openapi_code_builder: any
-      json_serializable: ^3.3.0
-      build_runner: ^1.10.0
+   dev_dependencies:
+     openapi_code_builder: ^1.6.0
+     json_serializable: ^6.0.0
+     build_runner: ^2.0.0
    ```
-2. Create your schema file into your `lib` folder
-   with the extension `.openapi.yaml`
-3. Optional: Add the base name to your schema
+2. Create your OpenAPI schema file in your `lib` folder with `.openapi.yaml` extension
+3. Add the Dart API name to your schema:
    ```yaml
    openapi: 3.0.0
    info:
      x-dart-name: MyApiName
    ```
-4. Run the build_runner:
+4. Generate the code:
    ```shell
-   (flutter) pub run build_runner build --delete-conflicting-outputs
+   dart run build_runner build --delete-conflicting-outputs
    ```
-5. Implement the server and client. (see below)
+5. Use the generated client code
 
 
-# Example schema
+# Example
+
+## OpenAPI Schema (`lib/service/testapi.openapi.yaml`)
 
 ```yaml
 openapi: 3.0.0
 info:
   version: 0.1.0
-  title: Example API
+  title: Test API
   x-dart-name: TestApi
 
 paths:
@@ -73,75 +62,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HelloResponse'
+
 components:
   schemas:
     HelloResponse:
       properties:
         message:
           type: string
-          description: 'The Hello World greeting ;-)'
-
+          description: 'The Hello World greeting'
 ```
 
-# Implement Server
+## Generated Client Usage
 
 ```dart
-class TestApiImpl extends TestApi {
-  @override
-  Future<HelloNameGetResponse> helloNameGet({String name}) async {
-    _logger.info('Saying hi to $name');
-    return HelloNameGetResponse.response200(
-        HelloResponse(message: 'Hello $name'));
-  }
-}
+final requestSender = HttpRequestSender();
+final client = TestApiClient(
+    Uri.parse('http://localhost:8000'),
+    requestSender);
+
+final response = await client.helloNameGet(name: 'World');
+response.map(
+  on200: (response) => print('Success: ${response.body.message}'),
+);
+
+requestSender.dispose();
 ```
 
-## Create a server and bind it to a port
+## Example Project
 
-```dart
-Future<void> main() async {
-  PrintAppender.setupLogging();
-  _logger.fine('Starting Server ...');
-  final server = OpenApiShelfServer(
-    TestApiRouter(ApiEndpointProvider.static(TestApiImpl())),
-  );
-  server.startServer();
-}
-```
+See the complete example in the `openapi_code_builder/example` folder which includes:
+- Test API and Pet Store OpenAPI specifications  
+- Generated client code
+- Usage examples for client implementation
 
-# Implement Client
-
-```dart
-Future<void> main() async {
-  final requestSender = HttpRequestSender();
-  final client = TestApiClient(
-      Uri.parse('http://localhost:8000'),
-      requestSender);
-  final blubb = await client.helloNameGet(name: 'Blubb');
-  blubb.map(
-    on200: (response) => _logger.info('Success: ****${response.body.message}'),
-  );
-  _logger.info('Response: $blubb');
-  requestSender.dispose();
-}
-```
-
-# Try it out
-
-Run in `openapi_dart/packages/openapi_code_builder/example`
-
-## Server
-
+Run the client example:
 ```shell
-dart run bin/example_server.dart
+cd openapi_code_builder/example
+dart run usage/example_client.dart  # Run client
 ```
-
-![](_docs/screenshot_server.png)
-
-## Client
-
-```shell
-dart run bin/example_client.dart
-```
-
-![](_docs/screenshot_client.png)
