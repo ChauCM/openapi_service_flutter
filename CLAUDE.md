@@ -51,24 +51,39 @@ flutter run -d web-server --web-port 8080
 ### Key Components
 
 **OpenAPI Code Builder (`openapi_code_builder/`):**
-- `OpenApiLibraryGenerator` - Main code generation engine
+- `OpenApiLibraryGenerator` - Main code generation engine that supports two generation styles:
+  - Legacy style: Generates traditional client classes with response mapping
+  - Service style: Generates modern Dart client code using Dio, Freezed, and Dartz for error handling
 - `CustomAllocator` - Manages code generation imports and references
+- `OpenApiCodeBuilder` - Builder class that integrates with `build_runner`
 - Uses `code_builder` package for AST generation and `dart_style` for formatting
 
 **OpenAPI Base (`openapi_base/`):**
 - `OpenApiClientBase` - Base class for generated clients
 - Request/response abstractions and serialization utilities
+- HTTP headers, content types, and UUID handling utilities
 
 **Generated Code Structure:**
-- Client classes extend base client with typed methods
-- Response classes use sealed class pattern with `map()` methods
-- Data models use `json_annotation` for serialization
+- **Legacy Style**: Client classes extend base client with typed methods, response classes use sealed class pattern with `map()` methods
+- **Service Style**: Service classes use Dio for HTTP requests, Freezed for DTOs, and Dartz Either for error handling
+- Data models use `json_annotation` for serialization and support inheritance via `allOf`
+- Enum support with proper serialization annotations
 
 ### Build System Integration
 - Uses `build_runner` with custom builder configuration in `build.yaml`
 - Automatically triggers on `.openapi.yaml` file changes
 - Integrates with `json_serializable` and `freezed` for data class generation
-- Runs before other code generators in the build pipeline
+- Runs before other code generators in the build pipeline (`runs_before: ['freezed|freezed', 'json_serializable|json_serializable']`)
+
+### Code Generation Modes
+The generator supports two architectural styles configured via `generateServiceClasses` flag:
+
+1. **Legacy Style** (default): Traditional OpenAPI client with response mapping
+2. **Service Style**: Modern Dart approach with:
+   - Dio for HTTP client
+   - Freezed for immutable DTOs
+   - Dartz Either for functional error handling
+   - ApiError model for structured error responses
 
 ## Working with OpenAPI Specs
 
@@ -93,8 +108,8 @@ dependency_overrides:
 ## Testing Generated Code
 
 The `openapi_code_builder/example/` contains working examples:
-- `lib/service/testapi.openapi.yaml` - Simple Hello World API
-- `lib/service/petstore.openapi.yaml` - More complex Pet Store API
-- `usage/example_client.dart` - Client usage example
+- `lib/service/test_api.openapi.yaml` - Simple Hello World API with various parameter types
+- `lib/service/pet_store.openapi.yaml` - More complex Pet Store API
+- `usage/example_client.dart` - Client usage example showing service-style generation
 
 Run the client example to test the code generation pipeline.
