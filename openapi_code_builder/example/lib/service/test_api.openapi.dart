@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element, unnecessary_import
+// ignore_for_file: unused_element, unnecessary_import, unused_import
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';

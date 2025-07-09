@@ -1948,7 +1948,7 @@ class OpenApiCodeBuilderUtils {
     final libraryOutput = DartFormatter(
       languageVersion: Version(3, 2, 0),
     ).format('// GENERATED CODE - DO NOT MODIFY BY HAND\n\n\n'
-        '// ignore_for_file: unused_element, unused_import\n\n'
+        '// ignore_for_file: unused_element, unnecessary_import, unused_import\n\n'
         '${library.accept(emitter)}\n\n'
         'T _throwStateError<T>(String message) => throw StateError(message);\n\n');
     return libraryOutput;
