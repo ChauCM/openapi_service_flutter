@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'testapi.openapi.dart';
+part of 'test_api.openapi.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

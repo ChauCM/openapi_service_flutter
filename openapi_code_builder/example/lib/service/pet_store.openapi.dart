@@ -1,8 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: prefer_initializing_formals, library_private_types_in_public_api, annotate_overrides
+// ignore_for_file: unused_element, unnecessary_import
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:typed_data' as _i1;
 
 import 'package:dartz/dartz.dart';
@@ -10,8 +9,8 @@ import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:openapi_base/openapi_base.dart';
-part 'petstore.openapi.g.dart';
-part 'petstore.openapi.freezed.dart';
+part 'pet_store.openapi.g.dart';
+part 'pet_store.openapi.freezed.dart';
 
 @freezed
 class ApiError with _$ApiError {
@@ -183,8 +182,8 @@ sealed class GetInventoryResponseDto with _$GetInventoryResponseDto {
       _$GetInventoryResponseDtoFromJson(json);
 }
 
-class PetstoreService {
-  PetstoreService(Dio this._dio) {
+class PetStoreService {
+  PetStoreService(this._dio) {
     _dio.options.baseUrl = baseUrl;
     _dio.options.connectTimeout = Duration(seconds: 10);
     _dio.options.receiveTimeout = Duration(seconds: 10);
@@ -198,11 +197,11 @@ class PetstoreService {
   /// put: /pet
   Future<Either<ApiError, void>> updatePet(PetDto body) async {
     try {
-      final response = await _dio.put(
+      final _ = await _dio.put(
         '/pet',
         data: body.toJson(),
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -212,11 +211,11 @@ class PetstoreService {
   /// post: /pet
   Future<Either<ApiError, void>> addPet(PetDto body) async {
     try {
-      final response = await _dio.post(
+      final _ = await _dio.post(
         '/pet',
         data: body.toJson(),
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -229,7 +228,7 @@ class PetstoreService {
       {required List<FindPetsByStatusDto> status}) async {
     try {
       final queryParams = <String, dynamic>{};
-      if (status != null) queryParams['status'] = status;
+      queryParams['status'] = status;
 
       final response = await _dio.get(
         '/pet/findByStatus',
@@ -250,7 +249,7 @@ class PetstoreService {
       {required List<String> tags}) async {
     try {
       final queryParams = <String, dynamic>{};
-      if (tags != null) queryParams['tags'] = tags;
+      queryParams['tags'] = tags;
 
       final response = await _dio.get(
         '/pet/findByTags',
@@ -284,11 +283,11 @@ class PetstoreService {
     required int petId,
   }) async {
     try {
-      final response = await _dio.post(
+      final _ = await _dio.post(
         '/pet/$petId',
         data: body.toJson(),
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -301,8 +300,8 @@ class PetstoreService {
     required int petId,
   }) async {
     try {
-      final response = await _dio.delete('/pet/$petId');
-      return Right(true);
+      final _ = await _dio.delete('/pet/$petId');
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -373,8 +372,8 @@ class PetstoreService {
   /// delete: /store/order/{orderId}
   Future<Either<ApiError, void>> deleteOrder({required int orderId}) async {
     try {
-      final response = await _dio.delete('/store/order/$orderId');
-      return Right(true);
+      final _ = await _dio.delete('/store/order/$orderId');
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -385,11 +384,11 @@ class PetstoreService {
   /// post: /user
   Future<Either<ApiError, void>> createUser(UserDto body) async {
     try {
-      final response = await _dio.post(
+      final _ = await _dio.post(
         '/user',
         data: body.toJson(),
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -400,11 +399,11 @@ class PetstoreService {
   Future<Either<ApiError, void>> createUsersWithArrayInput(
       List<UserDto> body) async {
     try {
-      final response = await _dio.post(
+      final _ = await _dio.post(
         '/user/createWithArray',
         data: body,
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -415,11 +414,11 @@ class PetstoreService {
   Future<Either<ApiError, void>> createUsersWithListInput(
       List<UserDto> body) async {
     try {
-      final response = await _dio.post(
+      final _ = await _dio.post(
         '/user/createWithList',
         data: body,
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -433,8 +432,8 @@ class PetstoreService {
   }) async {
     try {
       final queryParams = <String, dynamic>{};
-      if (username != null) queryParams['username'] = username;
-      if (password != null) queryParams['password'] = password;
+      queryParams['username'] = username;
+      queryParams['password'] = password;
 
       final response = await _dio.get(
         '/user/login',
@@ -451,8 +450,8 @@ class PetstoreService {
   /// get: /user/logout
   Future<Either<ApiError, void>> logoutUser() async {
     try {
-      final response = await _dio.get('/user/logout');
-      return Right(true);
+      final _ = await _dio.get('/user/logout');
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -479,11 +478,11 @@ class PetstoreService {
     required String username,
   }) async {
     try {
-      final response = await _dio.put(
+      final _ = await _dio.put(
         '/user/$username',
         data: body.toJson(),
       );
-      return Right(true);
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -494,8 +493,8 @@ class PetstoreService {
   /// delete: /user/{username}
   Future<Either<ApiError, void>> deleteUser({required String username}) async {
     try {
-      final response = await _dio.delete('/user/$username');
-      return Right(true);
+      final _ = await _dio.delete('/user/$username');
+      return const Right(null);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -506,18 +505,15 @@ class PetstoreService {
       final response = error.response;
       final statusCode = response?.statusCode;
 
-// Try to extract message from response
       var message = 'An error occurred';
-      if (response?.data != null) {
+      if (response?.data case final data?) {
         try {
-          final data = response?.data;
           if (data is Map<String, dynamic>) {
             message = data['message'];
           }
         } catch (_) {}
       }
 
-// Use Dio's error message as fallback
       message = error.message ?? 'An error occurred';
       return ApiError(
         message: message,
@@ -526,7 +522,6 @@ class PetstoreService {
       );
     }
 
-// Handle JSON parsing errors and other exceptions
     return ApiError(
       message: error.toString(),
       type: 'parse_error',

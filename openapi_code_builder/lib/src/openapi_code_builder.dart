@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -45,73 +47,40 @@ class OpenApiLibraryGenerator {
   final bool ignoreSecuritySchemes;
   final bool generateServiceClasses;
 
-  final jsonSerializable =
-      refer('JsonSerializable', 'package:json_annotation/json_annotation.dart');
-  final jsonValue =
-      refer('JsonValue', 'package:json_annotation/json_annotation.dart');
-  final jsonKey =
-      refer('JsonKey', 'package:json_annotation/json_annotation.dart');
-  final _openApiContent =
-      refer('OpenApiContent', 'package:openapi_base/openapi_base.dart');
-  final _openApiRequest =
-      refer('OpenApiRequest', 'package:openapi_base/openapi_base.dart');
-  final _openApiResponse =
-      refer('OpenApiResponse', 'package:openapi_base/openapi_base.dart');
-  final _openApiResponseBodyJson = refer(
-      'OpenApiResponseBodyJson', 'package:openapi_base/openapi_base.dart');
-  final _openApiResponseBodyString = refer(
-      'OpenApiResponseBodyString', 'package:openapi_base/openapi_base.dart');
-  final _openApiResponseBodyBinary = refer(
-      'OpenApiResponseBodyBinary', 'package:openapi_base/openapi_base.dart');
-  final _openApiEndpoint =
-      refer('ApiEndpoint', 'package:openapi_base/openapi_base.dart');
-  final _endpointProvider =
-      refer('ApiEndpointProvider', 'package:openapi_base/openapi_base.dart');
-  final _openApiUrlEncodeMixin =
-      refer('OpenApiUrlEncodeMixin', 'package:openapi_base/openapi_base.dart');
-  final _openApiClient =
-      refer('OpenApiClient', 'package:openapi_base/openapi_base.dart');
-  final _openApiClientBase =
-      refer('OpenApiClientBase', 'package:openapi_base/openapi_base.dart');
-  final _hasSuccessResponse =
-      refer('HasSuccessResponse', 'package:openapi_base/openapi_base.dart');
+  final jsonValue = refer('JsonValue');
+  final jsonKey = refer('JsonKey');
+  final _openApiContent = refer('OpenApiContent');
+  final _openApiRequest = refer('OpenApiRequest');
+  final _openApiResponse = refer('OpenApiResponse');
+  final _openApiResponseBodyJson = refer('OpenApiResponseBodyJson');
+  final _openApiResponseBodyString = refer('OpenApiResponseBodyString');
+  final _openApiResponseBodyBinary = refer('OpenApiResponseBodyBinary');
+  final _openApiEndpoint = refer('ApiEndpoint');
+  final _endpointProvider = refer('ApiEndpointProvider');
+  final _openApiUrlEncodeMixin = refer('OpenApiUrlEncodeMixin');
+  final _openApiClient = refer('OpenApiClient');
+  final _openApiClientBase = refer('OpenApiClientBase');
+  final _hasSuccessResponse = refer('HasSuccessResponse');
 
-//  final _openApiHttpHeaders =
-//      refer('OpenApiHttpHeaders', 'package:openapi_base/openapi_base.dart');
-  final _openApiClientRequestBodyJson = refer(
-      'OpenApiClientRequestBodyJson', 'package:openapi_base/openapi_base.dart');
-  final _openApiClientRequestBodyText = refer(
-      'OpenApiClientRequestBodyText', 'package:openapi_base/openapi_base.dart');
-  final _openApiClientRequestBodyBinary = refer(
-      'OpenApiClientRequestBodyBinary',
-      'package:openapi_base/openapi_base.dart');
-  final _openApiClientRequest =
-      refer('OpenApiClientRequest', 'package:openapi_base/openapi_base.dart');
-  final _openApiClientResponse =
-      refer('OpenApiClientResponse', 'package:openapi_base/openapi_base.dart');
-  final _openApiRequestSender =
-      refer('OpenApiRequestSender', 'package:openapi_base/openapi_base.dart');
-  final _responseMapType =
-      refer('ResponseMap', 'package:openapi_base/openapi_base.dart');
-  final _securityRequirement =
-      refer('SecurityRequirement', 'package:openapi_base/openapi_base.dart');
-  final _securityRequirementScheme = refer(
-      'SecurityRequirementScheme', 'package:openapi_base/openapi_base.dart');
-  final _securitySchemeHttp =
-      refer('SecuritySchemeHttp', 'package:openapi_base/openapi_base.dart');
-  final _securitySchemeHttpScheme = refer(
-      'SecuritySchemeHttpScheme', 'package:openapi_base/openapi_base.dart');
-  final _securitySchemeApiKey =
-      refer('SecuritySchemeApiKey', 'package:openapi_base/openapi_base.dart');
-  final _openApiContentType =
-      refer('OpenApiContentType', 'package:openapi_base/openapi_base.dart');
+  final _openApiClientRequestBodyJson = refer('OpenApiClientRequestBodyJson');
+  final _openApiClientRequestBodyText = refer('OpenApiClientRequestBodyText');
+  final _openApiClientRequestBodyBinary =
+      refer('OpenApiClientRequestBodyBinary');
+  final _openApiClientRequest = refer('OpenApiClientRequest');
+  final _openApiClientResponse = refer('OpenApiClientResponse');
+  final _openApiRequestSender = refer('OpenApiRequestSender');
+  final _responseMapType = refer('ResponseMap');
+  final _securityRequirement = refer('SecurityRequirement');
+  final _securityRequirementScheme = refer('SecurityRequirementScheme');
+  final _securitySchemeHttp = refer('SecuritySchemeHttp');
+  final _securitySchemeHttpScheme = refer('SecuritySchemeHttpScheme');
+  final _securitySchemeApiKey = refer('SecuritySchemeApiKey');
+  final _openApiContentType = refer('OpenApiContentType');
   final _openApiContentTypeNullable =
-      (refer('OpenApiContentType', 'package:openapi_base/openapi_base.dart')
-              .type as TypeReference)
+      (refer('OpenApiContentType').type as TypeReference)
           .rebuild((b) => b.isNullable = true);
-  final _apiUuid = refer('ApiUuid', 'package:openapi_base/openapi_base.dart');
-  final _apiUuidJsonConverter =
-      refer('ApiUuidJsonConverter', 'package:openapi_base/openapi_base.dart');
+  final _apiUuid = refer('ApiUuid');
+  final _apiUuidJsonConverter = refer('ApiUuidJsonConverter');
   final _freezed =
       refer('freezed', 'package:freezed_annotation/freezed_annotation.dart');
   final _provider = refer('Provider', 'package:riverpod/riverpod.dart');
@@ -348,7 +317,6 @@ class OpenApiLibraryGenerator {
                         [literalString(responseContentType.toString())]).code;
                 final responseSchema = content.schema!;
                 if (responseSchema.type == APIType.string) {
-                  // TODO add server side support for string types.
                   bodyType =
                       _toDartType('${responseClass.name}Body', responseSchema);
                   cb.initializers
@@ -375,10 +343,6 @@ class OpenApiLibraryGenerator {
                     ..name = 'body'
                     ..type = bodyType
                     ..toThis = true));
-                  // TODO add server side support for arrays.
-                  // cb.initializers.add(refer('bodyJson')
-                  //     .assign(refer('body').property('toJson')([]))
-                  //     .code);
                   cb.initializers
                       .add(refer('bodyJson').assign(literalMap({})).code);
                   clientResponseParseParams.add(refer('response')
@@ -821,7 +785,6 @@ class OpenApiLibraryGenerator {
     serviceClass.constructors.add(Constructor((cb) => cb
       ..requiredParameters.add(Parameter((pb) => pb
         ..name = '_dio'
-        ..type = _dio
         ..toThis = true))
       ..body = Block.of([
         refer('_dio')
@@ -955,8 +918,10 @@ class OpenApiLibraryGenerator {
                 .statement,
             ...queryParams.map((p) {
               final paramName = p!.name!.camelCase;
-              return Code(
-                  'if ($paramName != null) queryParams[\'${p.name}\'] = $paramName;');
+              final isRequired = p.isRequired;
+              return Code(isRequired
+                  ? 'queryParams[\'${p.name}\'] = $paramName;'
+                  : 'if ($paramName != null) queryParams[\'${p.name}\'] = $paramName;');
             }),
             const Code(''),
           ];
@@ -965,7 +930,7 @@ class OpenApiLibraryGenerator {
       }(),
 
       // Make the HTTP request
-      _generateHttpCall(httpMethod, path, operation, allParameters),
+      _generateHttpCall(httpMethod, path, operation, allParameters, returnType),
 
       // Parse response
       if (returnType != _void) ...[
@@ -1043,7 +1008,7 @@ class OpenApiLibraryGenerator {
           ];
         }(),
       ] else ...[
-        _right([literalTrue]).returned.statement,
+        const Code('return const Right(null);'),
       ],
 
       const Code('} catch (e) {'),
@@ -1062,6 +1027,7 @@ class OpenApiLibraryGenerator {
     String path,
     APIOperation operation,
     List<APIParameter?> parameters,
+    Reference returnType,
   ) {
     final pathParams =
         parameters.where((p) => p!.location == APIParameterLocation.path);
@@ -1096,7 +1062,9 @@ class OpenApiLibraryGenerator {
       }
     }
 
-    return declareFinal('response')
+    // Use '_' for void return types, 'response' for others
+    final variableName = returnType == _void ? '_' : 'response';
+    return declareFinal(variableName)
         .assign(refer('_dio')
             .property(httpMethod.toLowerCase())
             ([literalString(actualPath)], requestArgs)
@@ -1120,26 +1088,19 @@ class OpenApiLibraryGenerator {
             .assign(refer('response').nullSafeProperty('statusCode'))
             .statement,
         const Code(''),
-        const Code('// Try to extract message from response'),
         declareVar('message')
             .assign(literalString('An error occurred'))
             .statement,
-        const Code('if (response?.data != null) {'),
+        const Code('if (response?.data case final data?) {'),
         const Code('try {'),
-        declareFinal('data')
-            .assign(refer('response').nullSafeProperty('data'))
-            .statement,
         const Code('if (data is Map<String, dynamic>) {'),
         refer('message')
-            .assign(refer('data').index(literalString('message')) ??
-                refer('data').index(literalString('error')) ??
-                refer('message'))
+            .assign(refer('data').index(literalString('message')))
             .statement,
         const Code('}'),
         const Code('} catch (_) {}'),
         const Code('}'),
         const Code(''),
-        const Code('// Use Dio\'s error message as fallback'),
         const Code('message = error.message ?? \'An error occurred\';'),
         refer('ApiError')
             .call([], {
@@ -1151,7 +1112,6 @@ class OpenApiLibraryGenerator {
             .statement,
         const Code('}'),
         const Code(''),
-        const Code('// Handle JSON parsing errors and other exceptions'),
         refer('ApiError')
             .call([], {
               'message': refer('error').property('toString')([]),
@@ -1249,89 +1209,6 @@ class OpenApiLibraryGenerator {
       addRequestBody(
         reference,
         _openApiClientRequestBodyJson.newInstance([jsonReference]),
-      );
-    }
-  }
-
-  void _createRequestBody(
-      OpenApiContentType contentType,
-      APIMediaType reqBody,
-      String operationName,
-      MethodBuilder mb,
-      List<Expression?> routerParams,
-      MethodBuilder clientMethod,
-      List<Code> clientCode) {
-    _logger.finer('reqBody.schema: ${reqBody.schema}');
-
-    void addRequestBody(
-        Reference bodyType, Expression encodeBody, Expression? decodeBody) {
-      mb.addDartDoc(reqBody.schema!.description, prefix: '[body]:');
-      mb.requiredParameters.add(
-        Parameter((pb) => pb
-          ..name = 'body'
-          ..type = bodyType),
-      );
-      clientMethod.addDartDoc(reqBody.schema!.description, prefix: '[body]:');
-      clientMethod.requiredParameters.add(Parameter((pb) => pb
-        ..name = 'body'
-        ..type = bodyType));
-
-      clientCode.add(
-        refer('request').property('setBody')([encodeBody]).statement,
-      );
-      routerParams.add(decodeBody);
-    }
-
-    clientCode.add(refer('request')
-        .property('setHeader')([
-          literalString(OpenApiHttpHeaders.contentType),
-          literalString(contentType.toString())
-        ])
-        .statement);
-
-    if (contentType.matches(OpenApiContentType.textPlain)) {
-      addRequestBody(
-        _typeString,
-        _openApiClientRequestBodyText.newInstance([refer('body')]),
-        refer('request').property('readBodyString')([]).awaited,
-      );
-    } else if (contentType.matches(OpenApiContentType.octetStream)) {
-      addRequestBody(
-        _toDartType(operationName, reqBody.schema!),
-        _openApiClientRequestBodyBinary.newInstance([refer('body')]),
-        refer('request').property('readBodyBytes')([]).awaited,
-      );
-    } else {
-      // final reference = _schemaReference(
-      //     '${operationName.pascalCase}Schema', reqBody.schema!);
-      final schema = reqBody.schema!;
-      final reference =
-          _toDartType('${operationName.pascalCase}Schema', schema);
-
-      final bodyIsObject = schema.type == null || schema.type == APIType.object;
-
-      final readJsonBodyMethodName =
-          bodyIsObject ? 'readJsonBody' : 'readJsonBodyDynamic';
-      final mapExpression = contentType.matches(OpenApiContentType.json)
-          ? refer('request').property(readJsonBodyMethodName)([]).awaited
-          : (contentType.matches(OpenApiContentType.urlencoded)
-              ? refer('request').property('readUrlEncodedBodyFlat')([]).awaited
-              : literalConstMap({}, refer('String'), refer('dynamic')));
-      final jsonReference = switch (bodyIsObject) {
-        true => refer('body').property('toJson')([]),
-        false => refer('body'),
-      };
-      final decodeExpression = switch (bodyIsObject) {
-        true => reference.property('fromJson')(
-            [mapExpression],
-          ),
-        false => mapExpression.asA(reference),
-      };
-
-      addRequestBody(
-        reference,
-        _openApiClientRequestBodyJson.newInstance([jsonReference]),
-        decodeExpression,
       );
     }
   }
@@ -1437,7 +1314,6 @@ class OpenApiLibraryGenerator {
               _toDartType('$className${entry.key.pascalCase}', entry.value!);
           final hasDefaultValue = entry.value!.defaultValue != null;
           final isRequired = required.contains(entry.key);
-          final isNullable = entry.value!.isNullable ?? false;
 
           return Parameter((pb) {
             pb
@@ -1612,10 +1488,8 @@ class OpenApiLibraryGenerator {
         }
       }
       cb
-        ..annotations.add(jsonSerializable([]))
         ..annotations.add(_apiUuidJsonConverter([]))
         ..name = className
-        ..implements.add(_openApiContent)
         ..implements.addAll(implements)
         ..docs.addDartDoc(obj.description)
         ..constructors.add(
@@ -1906,89 +1780,6 @@ class OpenApiLibraryGenerator {
     return asString;
   }
 
-  Expression _decodeParameterFrom({
-    required String parentName,
-    required APISchemaObject? schema,
-    required Reference type,
-    required Expression expression,
-  }) {
-    if (schema == null) {
-      throw ArgumentError('schema must not be null');
-    }
-    final schemaType =
-        ArgumentError.checkNotNull(schema.type, 'param.schema.type');
-    switch (schemaType) {
-      case APIType.string:
-        final asString = refer('paramToString')([expression]);
-        return _decodeStringType(
-            schema: schema, asString: asString, type: type);
-      case APIType.number:
-        return refer('paramToNum')([expression]);
-      case APIType.integer:
-        return refer('paramToInt')([expression]);
-      case APIType.boolean:
-        return refer('paramToBool')([expression]);
-      case APIType.array:
-        // if (![APIType.string, APIType.number, APIType.integer, APIType.]
-        //     .contains(schema.items!.type)) {
-        //   throw ArgumentError(
-        //       'Unsupported array item type ${schema.items?.type}');
-        // }
-        if (schema.items!.enumerated != null &&
-            schema.items!.enumerated!.isNotEmpty) {
-          final paramEnumType = (type as TypeReference).types.first;
-          return expression
-              .property('map')([
-                Method(
-                  (mb) => mb
-                    ..lambda = true
-                    ..requiredParameters.add(Parameter((pb) => pb..name = 'e'))
-                    ..body = refer('${paramEnumType.symbol!}Ext')
-                        .property('fromName')([refer('e')])
-                        .code,
-                ).closure
-              ])
-              .property('toList')([]);
-        } else if (schema.items case final itemSchema?) {
-          checkState(itemSchema.type == APIType.string);
-          if (itemSchema.enumerated != null &&
-              itemSchema.enumerated!.isNotEmpty) {
-            return expression.property('map')([
-              Method(
-                (mb) => mb
-                  ..lambda = true
-                  ..requiredParameters.add(Parameter((pb) => pb..name = 'e'))
-                  ..body = refer('e').property('name').code,
-              ).closure
-            ]);
-          }
-          return expression;
-          // final itemType = _toDartType('${parentName}ListItem', itemSchema);
-          // return expression
-          //     .property('map')([
-          //       Method(
-          //         (mb) => mb
-          //           ..lambda = true
-          //           ..requiredParameters.add(Parameter((pb) => pb..name = 'e'))
-          //           ..body = _decodeParameterFrom(
-          //                   parentName: '${parentName}ListItem',
-          //                   schema: itemSchema,
-          //                   type: itemType,
-          //                   expression: refer('e'))
-          //               .code,
-          //       ).closure
-          //     ])
-          //     .property('toList')([]);
-        }
-        return expression;
-      case APIType.object:
-        return type.property('fromJson')([expression]);
-      // return expression;
-      // default:
-      //   throw StateError('Invalid schema type $schemaType');
-    }
-  }
-
   Expression _encodeParameter({
     APISchemaObject? schema,
     required Reference type,
@@ -2157,7 +1948,7 @@ class OpenApiCodeBuilderUtils {
     final libraryOutput = DartFormatter(
       languageVersion: Version(3, 2, 0),
     ).format('// GENERATED CODE - DO NOT MODIFY BY HAND\n\n\n'
-        '// ignore_for_file: prefer_initializing_formals, library_private_types_in_public_api, annotate_overrides\n\n'
+        '// ignore_for_file: unused_element, unused_import\n\n'
         '${library.accept(emitter)}\n\n'
         'T _throwStateError<T>(String message) => throw StateError(message);\n\n');
     return libraryOutput;
