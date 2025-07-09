@@ -153,6 +153,362 @@ class OpenApiLibraryGenerator {
     return lb.build();
   }
 
+  Library _generateDtosLibrary() {
+    final dtosLb = LibraryBuilder();
+
+    // Add both part directives for Freezed and JSON serialization
+    dtosLb.body.add(Directive.part(freezedPartFileName));
+    dtosLb.body.add(Directive.part(partFileName));
+
+    // Add API Error model
+    dtosLb.body.add(_generateApiErrorModel());
+
+    // Track which schemas are actually used by endpoints
+    final usedSchemas = <String>{};
+    
+    // First pass: collect all schema references from endpoints
+    for (final path in api.paths!.entries) {
+      for (final operation in path.value!.operations.entries) {
+        // Check response schemas
+        for (final response in operation.value!.responses!.entries) {
+          if (response.value?.content != null) {
+            for (final content in response.value!.content!.values) {
+              if (content?.schema != null) {
+                _collectSchemaReferences(content!.schema!, usedSchemas);
+              }
+            }
+          }
+        }
+        
+        // Check request body schemas
+        final body = operation.value!.requestBody;
+        if (body?.content != null) {
+          for (final content in body!.content!.values) {
+            if (content?.schema != null) {
+              _collectSchemaReferences(content!.schema!, usedSchemas);
+            }
+          }
+        }
+        
+        // Check parameter schemas
+        final allParameters = [
+          ...?path.value!.parameters,
+          ...?operation.value!.parameters
+        ];
+        for (final param in allParameters) {
+          if (param?.schema != null) {
+            _collectSchemaReferences(param!.schema!, usedSchemas);
+          }
+        }
+      }
+    }
+    
+    // Generate DTOs only for used schemas (either used directly by endpoints or enums)
+    for (final schemaEntry in api.components!.schemas!.entries) {
+      final schema = schemaEntry.value!;
+      final isUsed = usedSchemas.contains(schemaEntry.key);
+      final isEnum = schema.enumerated?.isNotEmpty == true;
+      final shouldGenerate = _shouldGenerateDto(schema);
+      
+      // Generate if: (used by endpoints OR is an enum) AND should generate DTO
+      if ((isUsed || isEnum) && shouldGenerate) {
+        _generateSchemaIntoLibrary(dtosLb, schemaEntry.key, schema);
+      }
+    }
+
+    // Generate DTOs from API operations (responses, parameters, and request bodies)
+    for (final path in api.paths!.entries) {
+      for (final operation in path.value!.operations.entries) {
+        final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
+        final operationName = operation.value!.id?.camelCase ??
+            '$pathName${operation.key.pascalCase}';
+
+        // Generate response DTOs (only for non-trivial schemas)
+        final successResponse = operation.value!.responses!.entries.firstWhere(
+            (e) => e.key.startsWith('2'),
+            orElse: () => MapEntry(
+                '200', operation.value!.responses!.entries.first.value));
+
+        if (successResponse.value?.content != null &&
+            successResponse.value!.content!.isNotEmpty) {
+          final content = successResponse.value!.content!.values.first;
+          if (content?.schema != null) {
+            final schema = content!.schema!;
+            // Only generate response DTOs for complex schemas with actual properties
+            if (_shouldGenerateDto(schema)) {
+              final responseTypeName = '${operationName}Response';
+              _generateSchemaIntoLibrary(dtosLb, responseTypeName, schema);
+            }
+          }
+        }
+
+        // Generate parameter DTOs for enums
+        final allParameters = [
+          ...?path.value!.parameters,
+          ...?operation.value!.parameters
+        ];
+        for (final param in allParameters) {
+          // Handle direct enum parameters
+          if (param!.schema?.enumerated != null &&
+              param.schema!.enumerated!.isNotEmpty) {
+            final paramTypeName = '$operationName${param.name!.pascalCase}';
+            _generateSchemaIntoLibrary(dtosLb, paramTypeName, param.schema!);
+          }
+          // Handle array parameters with enum items
+          else if (param.schema?.type == APIType.array &&
+              param.schema!.items?.enumerated != null &&
+              param.schema!.items!.enumerated!.isNotEmpty) {
+            final paramTypeName = '$operationName${param.name!.pascalCase}';
+            _generateSchemaIntoLibrary(
+                dtosLb, paramTypeName, param.schema!.items!);
+          }
+        }
+
+        // Generate request body DTOs (only for non-trivial schemas)
+        final body = operation.value!.requestBody;
+        if (body != null && body.content!.isNotEmpty) {
+          final content = body.content!.values.first;
+          if (content?.schema != null) {
+            final schema = content!.schema!;
+            // Only generate request DTOs for complex schemas with actual properties
+            if (_shouldGenerateDto(schema)) {
+              final requestTypeName = '${operationName}Request';
+              _generateSchemaIntoLibrary(dtosLb, requestTypeName, schema);
+            }
+          }
+        }
+      }
+    }
+
+    return dtosLb.build();
+  }
+
+  void _collectSchemaReferences(APISchemaObject schema, Set<String> usedSchemas) {
+    // Add reference if this schema points to a component
+    final uri = schema.referenceURI;
+    if (uri != null) {
+      final segments = uri.pathSegments;
+      if (segments.length >= 3 && segments[0] == 'components' && segments[1] == 'schemas') {
+        usedSchemas.add(segments[2]);
+      }
+    }
+    
+    // Recursively check nested schemas
+    if (schema.properties != null) {
+      for (final prop in schema.properties!.values) {
+        _collectSchemaReferences(prop!, usedSchemas);
+      }
+    }
+    
+    if (schema.items != null) {
+      _collectSchemaReferences(schema.items!, usedSchemas);
+    }
+    
+    if (schema.allOf != null) {
+      for (final subSchema in schema.allOf!) {
+        _collectSchemaReferences(subSchema!, usedSchemas);
+      }
+    }
+    
+    if (schema.oneOf != null) {
+      for (final subSchema in schema.oneOf!) {
+        _collectSchemaReferences(subSchema!, usedSchemas);
+      }
+    }
+    
+    if (schema.anyOf != null) {
+      for (final subSchema in schema.anyOf!) {
+        _collectSchemaReferences(subSchema!, usedSchemas);
+      }
+    }
+    
+    if (schema.additionalPropertySchema != null) {
+      _collectSchemaReferences(schema.additionalPropertySchema!, usedSchemas);
+    }
+  }
+
+  bool _shouldGenerateDto(APISchemaObject schema) {
+    // Don't generate DTOs for simple types (string, number, boolean, etc.)
+    if (schema.type != null && schema.type != APIType.object) {
+      return false;
+    }
+    
+    // Don't generate DTOs for empty objects without properties or composition
+    if (schema.type == APIType.object && 
+        (schema.properties?.isEmpty ?? true) && 
+        (schema.allOf?.isEmpty ?? true) &&
+        (schema.oneOf?.isEmpty ?? true) &&
+        (schema.anyOf?.isEmpty ?? true)) {
+      return false;
+    }
+    
+    // Generate DTOs for objects with properties or composition
+    return schema.type == APIType.object || 
+           (schema.properties?.isNotEmpty == true) || 
+           (schema.allOf?.isNotEmpty == true) ||
+           (schema.oneOf?.isNotEmpty == true) ||
+           (schema.anyOf?.isNotEmpty == true);
+  }
+
+  void _generateSchemaIntoLibrary(
+      LibraryBuilder targetLb, String key, APISchemaObject schemaObject) {
+    final componentName = _classNameForComponent(key);
+
+    // Handle enums
+    if (schemaObject.enumerated?.isNotEmpty == true) {
+      final enumSpec = EnumSpec(
+        name: componentName,
+        values: schemaObject.enumerated!
+            .map((dynamic e) => EnumValueSpec(
+                  annotations: [
+                    jsonValue([literalString(e.toString())])
+                  ],
+                  name: e.toString(),
+                ))
+            .toList(),
+      );
+      targetLb.body.add(enumSpec);
+
+      // Store reference for later use
+      createdEnums[componentName] = refer(componentName);
+    } else {
+      // Handle regular schema classes
+      final schemaClass =
+          _createFreezedSchemaClass(componentName, schemaObject);
+      targetLb.body.add(schemaClass);
+
+      // Store reference for later use
+      createdSchema[schemaObject] = refer(componentName);
+
+      // Check for inline enums in properties and generate them
+      if (schemaObject.properties != null) {
+        for (final propEntry in schemaObject.properties!.entries) {
+          final propSchema = propEntry.value!;
+          if (propSchema.enumerated != null &&
+              propSchema.enumerated!.isNotEmpty) {
+            final enumName = '${componentName}${propEntry.key.pascalCase}Dto';
+            final enumSpec = EnumSpec(
+              name: enumName,
+              values: propSchema.enumerated!
+                  .map((dynamic e) => EnumValueSpec(
+                        annotations: [
+                          jsonValue([literalString(e.toString())])
+                        ],
+                        name: e.toString(),
+                      ))
+                  .toList(),
+            );
+            targetLb.body.add(enumSpec);
+
+            // Store reference for later use
+            createdEnums[enumName] = refer(enumName);
+          }
+        }
+      }
+    }
+  }
+
+  Library _generateServiceLibrary(String inputIdBasename) {
+    final serviceLb = LibraryBuilder();
+
+    // Add import for DTOs first
+    final dtosFileName = '${inputIdBasename}.openapi.dtos.dart';
+    serviceLb.body.add(Directive.import(dtosFileName));
+
+    // Service files don't need .g.dart part directive since they don't use JSON serialization
+
+    // Generate service class directly to serviceLb
+    _generateServiceClassToLibrary(serviceLb);
+
+    return serviceLb.build();
+  }
+
+  void _generateServiceClassToLibrary(LibraryBuilder targetLb) {
+    final serviceClass = ClassBuilder()..name = '${baseName}Service';
+
+    // Add static baseUrl constant
+    serviceClass.fields.add(Field((fb) => fb
+      ..name = 'baseUrl'
+      ..type = refer('String')
+      ..static = true
+      ..modifier = FieldModifier.constant
+      ..assignment = literalString('https://api.example.com').code));
+
+    // Constructor with Dio
+    serviceClass.constructors.add(Constructor((cb) => cb
+      ..requiredParameters.add(Parameter((pb) => pb
+        ..name = '_dio'
+        ..toThis = true))
+      ..body = Block.of([
+        refer('_dio')
+            .property('options')
+            .property('baseUrl')
+            .assign(refer('baseUrl'))
+            .statement,
+        refer('_dio')
+            .property('options')
+            .property('connectTimeout')
+            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
+            .statement,
+        refer('_dio')
+            .property('options')
+            .property('receiveTimeout')
+            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
+            .statement,
+      ])));
+
+    // Add _dio field
+    serviceClass.fields.add(Field((fb) => fb
+      ..name = '_dio'
+      ..type = _dio
+      ..modifier = FieldModifier.final$));
+
+    // Generate service methods for each API operation
+    for (final path in api.paths!.entries) {
+      for (final operation in path.value!.operations.entries) {
+        final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
+        final operationName = operation.value!.id?.camelCase ??
+            '$pathName${operation.key.pascalCase}';
+
+        // Determine response DTO type
+        Reference? successResponseType;
+        final successResponse = operation.value!.responses!.entries.firstWhere(
+            (e) => e.key.startsWith('2'),
+            orElse: () => MapEntry(
+                '200', operation.value!.responses!.entries.first.value));
+
+        if (successResponse.value?.content != null &&
+            successResponse.value!.content!.isNotEmpty) {
+          final content = successResponse.value!.content!.values.first;
+          if (content?.schema != null) {
+            final schema = content!.schema!;
+            // Only use specific DTO type if we generated one for this schema
+            if (_shouldGenerateDto(schema)) {
+              successResponseType = refer('${operationName.pascalCase}ResponseDto');
+            } else {
+              successResponseType = _toDartType('${operationName}Response', schema);
+            }
+          }
+        }
+
+        // Generate method
+        final method = _generateServiceMethod(
+          operationName,
+          operation.key,
+          path.key,
+          operation.value!,
+          successResponseType ?? _void,
+        );
+        serviceClass.methods.add(method);
+      }
+    }
+
+    // Add error handling method
+    serviceClass.methods.add(_generateHandleErrorMethod());
+
+    targetLb.body.add(serviceClass.build());
+  }
+
   Library _generateLegacyStyle(void Function() requireFreezed) {
     // create class for each schema..
     for (final schemaEntry in api.components!.schemas!.entries) {
@@ -766,89 +1122,21 @@ class OpenApiLibraryGenerator {
               ..type = refer('String').asNullable(true)
               ..named = true),
           ])
-          ..redirect = refer('_ApiError')));
+          ..redirect = refer('_ApiError')))
+        ..constructors.add(Constructor((ccb) => ccb
+          ..factory = true
+          ..name = 'fromJson'
+          ..requiredParameters.add(Parameter((pb) => pb
+            ..name = 'json'
+            ..type = _referType('Map',
+                generics: [refer('String'), refer('dynamic')])))
+          ..lambda = true
+          ..body = refer('_\$ApiErrorFromJson')([refer('json')]).code));
     });
   }
 
   void _generateServiceClass() {
-    final serviceClass = ClassBuilder()..name = '${baseName}Service';
-
-    // Add static baseUrl constant
-    serviceClass.fields.add(Field((fb) => fb
-      ..name = 'baseUrl'
-      ..type = refer('String')
-      ..static = true
-      ..modifier = FieldModifier.constant
-      ..assignment = literalString('https://api.example.com').code));
-
-    // Constructor with Dio
-    serviceClass.constructors.add(Constructor((cb) => cb
-      ..requiredParameters.add(Parameter((pb) => pb
-        ..name = '_dio'
-        ..toThis = true))
-      ..body = Block.of([
-        refer('_dio')
-            .property('options')
-            .property('baseUrl')
-            .assign(refer('baseUrl'))
-            .statement,
-        refer('_dio')
-            .property('options')
-            .property('connectTimeout')
-            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
-            .statement,
-        refer('_dio')
-            .property('options')
-            .property('receiveTimeout')
-            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
-            .statement,
-      ])));
-
-    // Add _dio field
-    serviceClass.fields.add(Field((fb) => fb
-      ..name = '_dio'
-      ..type = _dio
-      ..modifier = FieldModifier.final$));
-
-    // Generate service methods for each API operation
-    for (final path in api.paths!.entries) {
-      for (final operation in path.value!.operations.entries) {
-        final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
-        final operationName = operation.value!.id?.camelCase ??
-            '$pathName${operation.key.pascalCase}';
-
-        // Determine response DTO type
-        Reference? successResponseType;
-        final successResponse = operation.value!.responses!.entries.firstWhere(
-            (e) => e.key.startsWith('2'),
-            orElse: () => MapEntry(
-                '200', operation.value!.responses!.entries.first.value));
-
-        if (successResponse.value?.content != null &&
-            successResponse.value!.content!.isNotEmpty) {
-          final content = successResponse.value!.content!.values.first;
-          if (content?.schema != null) {
-            successResponseType =
-                _toDartType('${operationName}Response', content!.schema!);
-          }
-        }
-
-        // Generate method
-        final method = _generateServiceMethod(
-          operationName,
-          operation.key,
-          path.key,
-          operation.value!,
-          successResponseType ?? _void,
-        );
-        serviceClass.methods.add(method);
-      }
-    }
-
-    // Add error handling method
-    serviceClass.methods.add(_generateHandleErrorMethod());
-
-    lb.body.add(serviceClass.build());
+    _generateServiceClassToLibrary(lb);
   }
 
   Method _generateServiceMethod(
@@ -880,7 +1168,21 @@ class OpenApiLibraryGenerator {
     ];
 
     for (final param in allParameters) {
-      final paramType = _toDartType(operationName, param!.schema!);
+      Reference paramType;
+      // Use correct parameter DTO naming for enums
+      if (param!.schema?.enumerated != null &&
+          param.schema!.enumerated!.isNotEmpty) {
+        paramType =
+            refer('${operationName.pascalCase}${param.name!.pascalCase}Dto');
+      } else if (param.schema?.type == APIType.array &&
+          param.schema!.items?.enumerated != null &&
+          param.schema!.items!.enumerated!.isNotEmpty) {
+        paramType = _referType('List', generics: [
+          refer('${operationName.pascalCase}${param.name!.pascalCase}Dto')
+        ]);
+      } else {
+        paramType = _toDartType(operationName, param.schema!);
+      }
       final paramNameCamelCase = param.name!.camelCase;
 
       method.optionalParameters.add(Parameter((pb) => pb
@@ -895,8 +1197,14 @@ class OpenApiLibraryGenerator {
     if (body != null && body.content!.isNotEmpty) {
       final content = body.content!.values.first;
       if (content?.schema != null) {
-        final bodyType =
-            _toDartType('${operationName}Request', content!.schema!);
+        final schema = content!.schema!;
+        Reference bodyType;
+        // Only use specific DTO type if we generated one for this schema
+        if (_shouldGenerateDto(schema)) {
+          bodyType = refer('${operationName.pascalCase}RequestDto');
+        } else {
+          bodyType = _toDartType('${operationName}Request', schema);
+        }
 
         method.requiredParameters.add(Parameter((pb) => pb
           ..name = 'body'
@@ -987,14 +1295,25 @@ class OpenApiLibraryGenerator {
                       .statement,
                 ];
               } else {
-                // Object type
-                return [
-                  declareFinal('result')
-                      .assign(refer(returnType.symbol!).property('fromJson')(
-                          [refer('response').property('data')]))
-                      .statement,
-                  _right([refer('result')]).returned.statement,
-                ];
+                // Object type - check if it's a Map type
+                if (returnType.symbol?.startsWith('Map') == true) {
+                  // Handle Map types - just cast response.data
+                  return [
+                    declareFinal('result')
+                        .assign(refer('response').property('data').asA(returnType))
+                        .statement,
+                    _right([refer('result')]).returned.statement,
+                  ];
+                } else {
+                  // Regular DTO type
+                  return [
+                    declareFinal('result')
+                        .assign(refer(returnType.symbol!).property('fromJson')(
+                            [refer('response').property('data')]))
+                        .statement,
+                    _right([refer('result')]).returned.statement,
+                  ];
+                }
               }
             }
           }
@@ -1661,8 +1980,20 @@ class OpenApiLibraryGenerator {
         final type = _toDartType(parent, schema.items!);
         return _referType('List', generics: [type]);
       case APIType.object:
-        return _schemaReference(parent, schema);
-//        return refer('dynamic');
+        // Handle object type with additionalProperties but no properties
+        if ((schema.properties?.isEmpty ?? true) && 
+            schema.additionalPropertySchema != null) {
+          // This is a map-like object with additionalProperties
+          final valueType = _toDartType('${parent}Value', schema.additionalPropertySchema!);
+          return _referType('Map', generics: [_typeString, valueType]);
+        } else if ((schema.properties?.isEmpty ?? true) && 
+                   schema.additionalPropertyPolicy == APISchemaAdditionalPropertyPolicy.freeForm) {
+          // This is a free-form object (Map<String, dynamic>)
+          return _referType('Map', generics: [_typeString, refer('dynamic')]);
+        } else {
+          // This is a regular object schema that should have a DTO
+          return _schemaReference(parent, schema);
+        }
     }
     // throw StateError(
     //     'Invalid type ${schema.type} - $schema - ${schema.referenceURI}');
@@ -1975,9 +2306,6 @@ class OpenApiCodeBuilder extends Builder {
   @override
   FutureOr<void> build(BuildStep buildStep) async {
     final inputId = buildStep.inputId;
-//    final outputId = AssetId.resolve('./generated/${inputId.pathSegments.last}',
-//            from: inputId)
-//        .changeExtension('.dart');
     final outputId = inputId.changeExtension('.dart');
     final source = await buildStep.readAsString(inputId);
     checkArgument(inputId.pathSegments.last.endsWith('.openapi.yaml'));
@@ -1989,7 +2317,7 @@ class OpenApiCodeBuilder extends Builder {
     final baseName = api.info!.extensions['x-dart-name'] as String? ??
         inputIdBasename.pascalCase;
 
-    final l = OpenApiLibraryGenerator(
+    final generator = OpenApiLibraryGenerator(
       api,
       baseName: baseName,
       partFileName: outputId.changeExtension('.g.dart').pathSegments.last,
@@ -2000,21 +2328,76 @@ class OpenApiCodeBuilder extends Builder {
       providerNamePrefix: providerNamePrefix,
       ignoreSecuritySchemes: ignoreSecuritySchemes,
       generateServiceClasses: generateServiceClasses,
-    ).generate();
-
-    final libraryOutput = OpenApiCodeBuilderUtils.formatLibrary(
-      l,
-      orderDirectives: true,
-      useNullSafetySyntax: useNullSafetySyntax,
     );
-//    print(DartFormatter().format('${l.accept(emitter)}'));
-//    print('inputId: $inputId / outputId: $outputId');
-    await buildStep.writeAsString(outputId, libraryOutput);
+
+    if (generateServiceClasses) {
+      // Create separate generators for DTOs and Service with correct part file names
+      final dtosGenerator = OpenApiLibraryGenerator(
+        api,
+        baseName: baseName,
+        partFileName: inputId.changeExtension('.dtos.g.dart').pathSegments.last,
+        freezedPartFileName:
+            inputId.changeExtension('.dtos.freezed.dart').pathSegments.last,
+        useNullSafetySyntax: useNullSafetySyntax,
+        generateProvider: generateProvider,
+        providerNamePrefix: providerNamePrefix,
+        ignoreSecuritySchemes: ignoreSecuritySchemes,
+        generateServiceClasses: generateServiceClasses,
+      );
+
+      final serviceGenerator = OpenApiLibraryGenerator(
+        api,
+        baseName: baseName,
+        partFileName:
+            inputId.changeExtension('.service.g.dart').pathSegments.last,
+        freezedPartFileName:
+            inputId.changeExtension('.service.freezed.dart').pathSegments.last,
+        useNullSafetySyntax: useNullSafetySyntax,
+        generateProvider: generateProvider,
+        providerNamePrefix: providerNamePrefix,
+        ignoreSecuritySchemes: ignoreSecuritySchemes,
+        generateServiceClasses: generateServiceClasses,
+      );
+
+      // Generate DTOs library
+      final dtosLibrary = dtosGenerator._generateDtosLibrary();
+      final dtosOutput = OpenApiCodeBuilderUtils.formatLibrary(
+        dtosLibrary,
+        orderDirectives: true,
+        useNullSafetySyntax: useNullSafetySyntax,
+      );
+      final dtosOutputId = inputId.changeExtension('.dtos.dart');
+      await buildStep.writeAsString(dtosOutputId, dtosOutput);
+
+      // Generate Service library
+      final serviceLibrary =
+          serviceGenerator._generateServiceLibrary(inputIdBasename);
+      final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
+        serviceLibrary,
+        orderDirectives: true,
+        useNullSafetySyntax: useNullSafetySyntax,
+      );
+      final serviceOutputId = inputId.changeExtension('.service.dart');
+      await buildStep.writeAsString(serviceOutputId, serviceOutput);
+
+      // Don't generate the combined .openapi.dart file when splitting
+    } else {
+      // Generate single library (legacy mode)
+      final l = generator.generate();
+      final libraryOutput = OpenApiCodeBuilderUtils.formatLibrary(
+        l,
+        orderDirectives: true,
+        useNullSafetySyntax: useNullSafetySyntax,
+      );
+      await buildStep.writeAsString(outputId, libraryOutput);
+    }
   }
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        '.openapi.yaml': ['.openapi.dart']
+        '.openapi.yaml': generateServiceClasses
+            ? ['.openapi.dtos.dart', '.openapi.service.dart']
+            : ['.openapi.dart']
       };
 }
 
