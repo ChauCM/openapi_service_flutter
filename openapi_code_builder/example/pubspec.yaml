@@ -25,5 +25,3 @@ dev_dependencies:
 dependency_overrides:
   openapi_base:
     path: ../../openapi_base
-  open_api_forked:
-    path: ../../../deps/open-api-dart
