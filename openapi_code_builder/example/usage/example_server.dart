@@ -1,7 +1,7 @@
 import 'package:logging/logging.dart';
 import 'package:logging_appenders/logging_appenders.dart';
 import 'package:openapi_base/openapi_base.dart';
-import 'package:openapi_code_builder_example/src/api/testapi.openapi.dart';
+import 'package:openapi_code_builder_example/service/testapi.openapi.dart';
 
 final _logger = Logger('example_server');
 
