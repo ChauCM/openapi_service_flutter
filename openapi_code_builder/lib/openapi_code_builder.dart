@@ -12,5 +12,7 @@ Builder openapiCodeBuilder(BuilderOptions options) {
     providerNamePrefix: options.config['providerNamePrefix'] as String? ?? '',
     ignoreSecuritySchemes:
         options.config['ignoreSecuritySchemes'] as bool? ?? false,
+    generateServiceClasses:
+        options.config['generateServiceClasses'] as bool? ?? false,
   );
 }

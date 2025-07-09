@@ -29,6 +29,7 @@ class OpenApiLibraryGenerator {
     this.generateProvider = false,
     this.providerNamePrefix = '',
     this.ignoreSecuritySchemes = false,
+    this.generateServiceClasses = false,
   });
 
   final APIDocument api;
@@ -42,6 +43,7 @@ class OpenApiLibraryGenerator {
   final bool generateProvider;
   final String providerNamePrefix;
   final bool ignoreSecuritySchemes;
+  final bool generateServiceClasses;
 
   final jsonSerializable =
       refer('JsonSerializable', 'package:json_annotation/json_annotation.dart');
@@ -115,6 +117,13 @@ class OpenApiLibraryGenerator {
   final _provider = refer('Provider', 'package:riverpod/riverpod.dart');
   final _streamProvider =
       refer('StreamProvider', 'package:riverpod/riverpod.dart');
+  final _dio = refer('Dio', 'package:dio/dio.dart');
+  final _dioException = refer('DioException', 'package:dio/dio.dart');
+  final _dioExceptionType = refer('DioExceptionType', 'package:dio/dio.dart');
+  final _dioResponse = refer('Response', 'package:dio/dio.dart');
+  final _either = refer('Either', 'package:dartz/dartz.dart');
+  final _left = refer('Left', 'package:dartz/dartz.dart');
+  final _right = refer('Right', 'package:dartz/dartz.dart');
   final _required = refer('required', 'package:meta/meta.dart');
   final _override = refer('override');
   final _void = refer('void');
@@ -149,6 +158,33 @@ class OpenApiLibraryGenerator {
       myRequireFreezed = true;
     }
 
+    // Generate based on style
+    if (generateServiceClasses) {
+      return _generateServiceStyle();
+    } else {
+      return _generateLegacyStyle(requireFreezed);
+    }
+  }
+
+  Library _generateServiceStyle() {
+    // Add freezed part file
+    lb.body.insert(1, Directive.part(freezedPartFileName));
+
+    // Add API Error model
+    lb.body.add(_generateApiErrorModel());
+
+    // Generate freezed DTOs for schemas
+    for (final schemaEntry in api.components!.schemas!.entries) {
+      _schemaReference(schemaEntry.key, schemaEntry.value!);
+    }
+
+    // Generate service class
+    _generateServiceClass();
+
+    return lb.build();
+  }
+
+  Library _generateLegacyStyle(void Function() requireFreezed) {
     // create class for each schema..
     for (final schemaEntry in api.components!.schemas!.entries) {
       _schemaReference(schemaEntry.key, schemaEntry.value!);
@@ -742,6 +778,390 @@ class OpenApiLibraryGenerator {
     return lb.build();
   }
 
+  Class _generateApiErrorModel() {
+    return Class((cb) {
+      cb
+        ..name = 'ApiError'
+        ..annotations.add(_freezed)
+        ..mixins.add(refer('_\$ApiError'))
+        ..constructors.add(Constructor((ccb) => ccb
+          ..factory = true
+          ..constant = true
+          ..optionalParameters.addAll([
+            Parameter((pb) => pb
+              ..name = 'message'
+              ..type = refer('String')
+              ..asRequired(this, true)
+              ..named = true),
+            Parameter((pb) => pb
+              ..name = 'statusCode'
+              ..type = refer('int').asNullable(true)
+              ..named = true),
+            Parameter((pb) => pb
+              ..name = 'type'
+              ..type = refer('String').asNullable(true)
+              ..named = true),
+          ])
+          ..redirect = refer('_ApiError')));
+    });
+  }
+
+  void _generateServiceClass() {
+    final serviceClass = ClassBuilder()..name = '${baseName}Service';
+
+    // Add static baseUrl constant
+    serviceClass.fields.add(Field((fb) => fb
+      ..name = 'baseUrl'
+      ..type = refer('String')
+      ..static = true
+      ..modifier = FieldModifier.constant
+      ..assignment = literalString('https://api.example.com').code));
+
+    // Constructor with Dio
+    serviceClass.constructors.add(Constructor((cb) => cb
+      ..requiredParameters.add(Parameter((pb) => pb
+        ..name = '_dio'
+        ..type = _dio
+        ..toThis = true))
+      ..body = Block.of([
+        refer('_dio')
+            .property('options')
+            .property('baseUrl')
+            .assign(refer('baseUrl'))
+            .statement,
+        refer('_dio')
+            .property('options')
+            .property('connectTimeout')
+            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
+            .statement,
+        refer('_dio')
+            .property('options')
+            .property('receiveTimeout')
+            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
+            .statement,
+      ])));
+
+    // Add _dio field
+    serviceClass.fields.add(Field((fb) => fb
+      ..name = '_dio'
+      ..type = _dio
+      ..modifier = FieldModifier.final$));
+
+    // Generate service methods for each API operation
+    for (final path in api.paths!.entries) {
+      for (final operation in path.value!.operations.entries) {
+        final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
+        final operationName = operation.value!.id?.camelCase ??
+            '$pathName${operation.key.pascalCase}';
+
+        // Determine response DTO type
+        Reference? successResponseType;
+        final successResponse = operation.value!.responses!.entries.firstWhere(
+            (e) => e.key.startsWith('2'),
+            orElse: () => MapEntry(
+                '200', operation.value!.responses!.entries.first.value));
+
+        if (successResponse.value?.content != null &&
+            successResponse.value!.content!.isNotEmpty) {
+          final content = successResponse.value!.content!.values.first;
+          if (content?.schema != null) {
+            successResponseType =
+                _toDartType('${operationName}Response', content!.schema!);
+          }
+        }
+
+        // Generate method
+        final method = _generateServiceMethod(
+          operationName,
+          operation.key,
+          path.key,
+          operation.value!,
+          successResponseType ?? _void,
+        );
+        serviceClass.methods.add(method);
+      }
+    }
+
+    // Add error handling method
+    serviceClass.methods.add(_generateHandleErrorMethod());
+
+    lb.body.add(serviceClass.build());
+  }
+
+  Method _generateServiceMethod(
+    String operationName,
+    String httpMethod,
+    String path,
+    APIOperation operation,
+    Reference returnType,
+  ) {
+    final method = MethodBuilder()
+      ..name = operationName
+      ..modifier = MethodModifier.async
+      ..returns = _referType('Future', generics: [
+        _either.addGenerics(refer('ApiError')).addGenerics(returnType)
+      ]);
+
+    // Add method documentation
+    if (operation.summary != null) {
+      method.docs.add('/// ${operation.summary}');
+    }
+    if (operation.description != null) {
+      method.docs.add('/// ${operation.description}');
+    }
+    method.docs.add('/// $httpMethod: $path');
+
+    // Add parameters
+    final allParameters = [
+      ...?operation.parameters,
+    ];
+
+    for (final param in allParameters) {
+      final paramType = _toDartType(operationName, param!.schema!);
+      final paramNameCamelCase = param.name!.camelCase;
+
+      method.optionalParameters.add(Parameter((pb) => pb
+        ..name = paramNameCamelCase
+        ..type = paramType.asNullable(!param.isRequired)
+        ..asRequired(this, param.isRequired)
+        ..named = true));
+    }
+
+    // Add request body parameter
+    final body = operation.requestBody;
+    if (body != null && body.content!.isNotEmpty) {
+      final content = body.content!.values.first;
+      if (content?.schema != null) {
+        final bodyType =
+            _toDartType('${operationName}Request', content!.schema!);
+
+        method.requiredParameters.add(Parameter((pb) => pb
+          ..name = 'body'
+          ..type = bodyType));
+      }
+    }
+
+    // Generate method body
+    final methodBody = <Code>[
+      const Code('try {'),
+      // Build query parameters if any exist
+      ...() {
+        final queryParams = allParameters
+            .where((p) => p!.location == APIParameterLocation.query);
+        if (queryParams.isNotEmpty) {
+          return [
+            declareFinal('queryParams')
+                .assign(literalMap({}, refer('String'), refer('dynamic')))
+                .statement,
+            ...queryParams.map((p) {
+              final paramName = p!.name!.camelCase;
+              return Code(
+                  'if ($paramName != null) queryParams[\'${p.name}\'] = $paramName;');
+            }),
+            const Code(''),
+          ];
+        }
+        return <Code>[];
+      }(),
+
+      // Make the HTTP request
+      _generateHttpCall(httpMethod, path, operation, allParameters),
+
+      // Parse response
+      if (returnType != _void) ...[
+        ...() {
+          final successResponse = operation.responses!.entries.firstWhere(
+              (e) => e.key.startsWith('2'),
+              orElse: () =>
+                  MapEntry('200', operation.responses!.entries.first.value));
+
+          if (successResponse.value?.content != null &&
+              successResponse.value!.content!.isNotEmpty) {
+            final content = successResponse.value!.content!.values.first;
+            if (content?.schema != null) {
+              final schema = content!.schema!;
+
+              if (schema.type == APIType.string) {
+                return [
+                  declareFinal('result')
+                      .assign(
+                          refer('response').property('data').asA(returnType))
+                      .statement,
+                  _right([refer('result')]).returned.statement,
+                ];
+              } else if (schema.type == APIType.array) {
+                return [
+                  declareFinal('result')
+                      .assign(refer('response').property('data').asA(
+                          _referType('List', generics: [refer('dynamic')])))
+                      .statement,
+                  declareFinal('mappedResult')
+                      .assign(refer('result')
+                          .property('map')([
+                            Method((mb) => mb
+                              ..lambda = true
+                              ..requiredParameters
+                                  .add(Parameter((pb) => pb..name = 'item'))
+                              ..body = returnType.symbol!.startsWith('List<')
+                                  ? refer(returnType.symbol!.substring(
+                                          5, returnType.symbol!.length - 1))
+                                      .property('fromJson')([
+                                        refer('item').asA(_referType('Map',
+                                            generics: [
+                                              refer('String'),
+                                              refer('dynamic')
+                                            ]))
+                                      ])
+                                      .code
+                                  : refer('item').code).closure
+                          ])
+                          .property('toList')([]))
+                      .statement,
+                  _right([refer('mappedResult').asA(returnType)])
+                      .returned
+                      .statement,
+                ];
+              } else {
+                // Object type
+                return [
+                  declareFinal('result')
+                      .assign(refer(returnType.symbol!).property('fromJson')(
+                          [refer('response').property('data')]))
+                      .statement,
+                  _right([refer('result')]).returned.statement,
+                ];
+              }
+            }
+          }
+
+          // Default case - just return the response data
+          return [
+            declareFinal('result')
+                .assign(refer('response').property('data').asA(returnType))
+                .statement,
+            _right([refer('result')]).returned.statement,
+          ];
+        }(),
+      ] else ...[
+        _right([literalTrue]).returned.statement,
+      ],
+
+      const Code('} catch (e) {'),
+      _left([
+        refer('_handleError')([refer('e')])
+      ]).returned.statement,
+      const Code('}'),
+    ];
+
+    method.body = Block.of(methodBody);
+    return method.build();
+  }
+
+  Code _generateHttpCall(
+    String httpMethod,
+    String path,
+    APIOperation operation,
+    List<APIParameter?> parameters,
+  ) {
+    final pathParams =
+        parameters.where((p) => p!.location == APIParameterLocation.path);
+    var actualPath = path;
+
+    // Replace path parameters
+    for (final param in pathParams) {
+      actualPath = actualPath.replaceAll(
+          '{${param!.name}}', '\$${param.name!.camelCase}');
+    }
+
+    final requestArgs = <String, Expression>{};
+
+    // Add query parameters
+    final queryParams =
+        parameters.where((p) => p!.location == APIParameterLocation.query);
+    if (queryParams.isNotEmpty) {
+      requestArgs['queryParameters'] = refer('queryParams');
+    }
+
+    // Add request body
+    if (operation.requestBody != null) {
+      final content = operation.requestBody!.content!.values.first;
+      if (content?.schema != null) {
+        final schema = content!.schema!;
+        final isObject = schema.type == null || schema.type == APIType.object;
+        if (isObject) {
+          requestArgs['data'] = refer('body').property('toJson')([]);
+        } else {
+          requestArgs['data'] = refer('body');
+        }
+      }
+    }
+
+    return declareFinal('response')
+        .assign(refer('_dio')
+            .property(httpMethod.toLowerCase())
+            ([literalString(actualPath)], requestArgs)
+            .awaited)
+        .statement;
+  }
+
+  Method _generateHandleErrorMethod() {
+    return Method((mb) => mb
+      ..name = '_handleError'
+      ..returns = refer('ApiError')
+      ..requiredParameters.add(Parameter((pb) => pb
+        ..name = 'error'
+        ..type = refer('dynamic')))
+      ..body = Block.of([
+        const Code('if (error is DioException) {'),
+        declareFinal('response')
+            .assign(refer('error').property('response'))
+            .statement,
+        declareFinal('statusCode')
+            .assign(refer('response').nullSafeProperty('statusCode'))
+            .statement,
+        const Code(''),
+        const Code('// Try to extract message from response'),
+        declareVar('message')
+            .assign(literalString('An error occurred'))
+            .statement,
+        const Code('if (response?.data != null) {'),
+        const Code('try {'),
+        declareFinal('data')
+            .assign(refer('response').nullSafeProperty('data'))
+            .statement,
+        const Code('if (data is Map<String, dynamic>) {'),
+        refer('message')
+            .assign(refer('data').index(literalString('message')) ??
+                refer('data').index(literalString('error')) ??
+                refer('message'))
+            .statement,
+        const Code('}'),
+        const Code('} catch (_) {}'),
+        const Code('}'),
+        const Code(''),
+        const Code('// Use Dio\'s error message as fallback'),
+        const Code('message = error.message ?? \'An error occurred\';'),
+        refer('ApiError')
+            .call([], {
+              'message': refer('message'),
+              'statusCode': refer('statusCode'),
+              'type': refer('error').property('type').property('name'),
+            })
+            .returned
+            .statement,
+        const Code('}'),
+        const Code(''),
+        const Code('// Handle JSON parsing errors and other exceptions'),
+        refer('ApiError')
+            .call([], {
+              'message': refer('error').property('toString')([]),
+              'type': literalString('parse_error'),
+            })
+            .returned
+            .statement,
+      ]));
+  }
+
   Expression _readFromRequest(APIParameterLocation location, String name) {
     switch (location) {
       case APIParameterLocation.query:
@@ -942,7 +1362,7 @@ class OpenApiLibraryGenerator {
   }
 
   String _classNameForComponent(String componentName) {
-    return componentName.pascalCase;
+    return '${componentName.pascalCase}Dto';
   }
 
   String? _componentNameFromReferenceUri(Uri? referenceUri) {
@@ -990,6 +1410,78 @@ class OpenApiLibraryGenerator {
   }
 
   Class _createSchemaClass(String className, APISchemaObject obj) {
+    if (generateServiceClasses) {
+      return _createFreezedSchemaClass(className, obj);
+    }
+    return _createLegacySchemaClass(className, obj);
+  }
+
+  Class _createFreezedSchemaClass(String className, APISchemaObject obj) {
+    final properties = obj.properties ?? {};
+    final required = obj.required ?? [];
+
+    return Class((cb) {
+      cb
+        ..name = className
+        ..sealed = true
+        ..annotations.add(_freezed)
+        ..mixins.add(refer('_\$$className'))
+        ..docs.addDartDoc(obj.description);
+
+      // Add factory constructor
+      final constructor = Constructor((ccb) => ccb
+        ..factory = true
+        ..optionalParameters.addAll(properties.entries.map((entry) {
+          final fieldName = entry.key.camelCase;
+          final fieldType =
+              _toDartType('$className${entry.key.pascalCase}', entry.value!);
+          final hasDefaultValue = entry.value!.defaultValue != null;
+          final isRequired = required.contains(entry.key);
+          final isNullable = entry.value!.isNullable ?? false;
+
+          return Parameter((pb) {
+            pb
+              ..name = fieldName
+              ..type = fieldType.asNullable(!isRequired && !hasDefaultValue)
+              ..asRequired(this, isRequired)
+              ..named = true;
+
+            // Add JsonKey annotation
+            pb.annotations.add(jsonKey([], {
+              'name': literalString(entry.key),
+            }));
+
+            // Add @Default annotation if needed
+            if (hasDefaultValue && !isRequired) {
+              pb.annotations.add(refer('Default',
+                      'package:freezed_annotation/freezed_annotation.dart')
+                  .call([literal(entry.value!.defaultValue)]));
+            }
+
+            // Add ApiUuid converter if needed
+            if (fieldType == _apiUuid) {
+              pb.annotations.add(_apiUuidJsonConverter([]));
+            }
+          });
+        }))
+        ..redirect = refer('_$className'));
+
+      cb.constructors.add(constructor);
+
+      // Add fromJson factory constructor
+      cb.constructors.add(Constructor((ccb) => ccb
+        ..factory = true
+        ..name = 'fromJson'
+        ..requiredParameters.add(Parameter((pb) => pb
+          ..name = 'json'
+          ..type =
+              _referType('Map', generics: [refer('String'), refer('dynamic')])))
+        ..lambda = true
+        ..body = refer('_\$${className}FromJson')([refer('json')]).code));
+    });
+  }
+
+  Class _createLegacySchemaClass(String className, APISchemaObject obj) {
     var properties = obj.properties ?? {};
     final override = <String>{};
     final required = obj.required ?? [];
@@ -1044,9 +1536,6 @@ class OpenApiLibraryGenerator {
             ..addDartDoc(e.description)
             ..annotations.add(jsonKey([], {
               'name': literalString(key),
-              if (!(e.isNullable ?? false)) ...{
-                'includeIfNull': literalFalse,
-              }
             }))
             ..annotations.addAll(override.contains(key) ? [_override] : [])
             ..name = key.camelCase
@@ -1682,6 +2171,7 @@ class OpenApiCodeBuilder extends Builder {
     this.generateProvider = false,
     this.providerNamePrefix = '',
     this.ignoreSecuritySchemes = false,
+    this.generateServiceClasses = false,
   });
 
   final bool generateProvider;
@@ -1689,6 +2179,7 @@ class OpenApiCodeBuilder extends Builder {
   final bool useNullSafetySyntax;
   final String providerNamePrefix;
   final bool ignoreSecuritySchemes;
+  final bool generateServiceClasses;
 
   @override
   FutureOr<void> build(BuildStep buildStep) async {
@@ -1717,6 +2208,7 @@ class OpenApiCodeBuilder extends Builder {
       generateProvider: generateProvider,
       providerNamePrefix: providerNamePrefix,
       ignoreSecuritySchemes: ignoreSecuritySchemes,
+      generateServiceClasses: generateServiceClasses,
     ).generate();
 
     final libraryOutput = OpenApiCodeBuilderUtils.formatLibrary(

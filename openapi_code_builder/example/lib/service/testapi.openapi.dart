@@ -2,854 +2,227 @@
 
 // ignore_for_file: prefer_initializing_formals, library_private_types_in_public_api, annotate_overrides
 
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:openapi_base/openapi_base.dart';
 part 'testapi.openapi.g.dart';
+part 'testapi.openapi.freezed.dart';
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class RegisterRequest implements OpenApiContent {
-  const RegisterRequest({required this.email});
-
-  factory RegisterRequest.fromJson(Map<String, dynamic> jsonMap) =>
-      _$RegisterRequestFromJson(jsonMap);
-
-  /// Email address for the current user.
-  @JsonKey(
-    name: 'email',
-    includeIfNull: false,
-  )
-  final String email;
-
-  Map<String, dynamic> toJson() => _$RegisterRequestToJson(this);
-
-  @override
-  String toString() => toJson().toString();
+@freezed
+class ApiError with _$ApiError {
+  const factory ApiError({
+    required String message,
+    int? statusCode,
+    String? type,
+  }) = _ApiError;
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class HelloRequest implements OpenApiContent {
-  const HelloRequest({this.salutation});
+@freezed
+sealed class RegisterRequestDto with _$RegisterRequestDto {
+  factory RegisterRequestDto({@JsonKey(name: 'email') required String email}) =
+      _RegisterRequestDto;
 
-  factory HelloRequest.fromJson(Map<String, dynamic> jsonMap) =>
-      _$HelloRequestFromJson(jsonMap);
-
-  /// Salutation used for greetings.
-  @JsonKey(
-    name: 'salutation',
-    includeIfNull: false,
-  )
-  final String? salutation;
-
-  Map<String, dynamic> toJson() => _$HelloRequestToJson(this);
-
-  @override
-  String toString() => toJson().toString();
+  factory RegisterRequestDto.fromJson(Map<String, dynamic> json) =>
+      _$RegisterRequestDtoFromJson(json);
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class HelloResponse implements OpenApiContent {
-  const HelloResponse({this.message});
+@freezed
+sealed class HelloRequestDto with _$HelloRequestDto {
+  factory HelloRequestDto({@JsonKey(name: 'salutation') String? salutation}) =
+      _HelloRequestDto;
 
-  factory HelloResponse.fromJson(Map<String, dynamic> jsonMap) =>
-      _$HelloResponseFromJson(jsonMap);
-
-  /// The Hello World greeting ;-)
-  @JsonKey(
-    name: 'message',
-    includeIfNull: false,
-  )
-  final String? message;
-
-  Map<String, dynamic> toJson() => _$HelloResponseToJson(this);
-
-  @override
-  String toString() => toJson().toString();
+  factory HelloRequestDto.fromJson(Map<String, dynamic> json) =>
+      _$HelloRequestDtoFromJson(json);
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class InheritanceBase implements OpenApiContent {
-  InheritanceBase({this.test1});
+@freezed
+sealed class HelloResponseDto with _$HelloResponseDto {
+  factory HelloResponseDto({@JsonKey(name: 'message') String? message}) =
+      _HelloResponseDto;
 
-  factory InheritanceBase.fromJson(Map<String, dynamic> jsonMap) =>
-      _$InheritanceBaseFromJson(jsonMap)
-        .._additionalProperties.addEntries(jsonMap.entries
-            .where((e) => !const <String>{'test1'}.contains(e.key)));
-
-  @JsonKey(
-    name: 'test1',
-    includeIfNull: false,
-  )
-  final String? test1;
-
-  final Map<String, Object?> _additionalProperties = <String, Object?>{};
-
-  Map<String, dynamic> toJson() =>
-      Map.from(_additionalProperties)..addAll(_$InheritanceBaseToJson(this));
-
-  @override
-  String toString() => toJson().toString();
-
-  Map<String, Object?> get additionalProperties => _additionalProperties;
-
-  void operator []=(
-    String key,
-    Object? value,
-  ) =>
-      _additionalProperties[key] = value;
-
-  Object? operator [](String key) => _additionalProperties[key];
+  factory HelloResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$HelloResponseDtoFromJson(json);
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class InheritanceChildBase implements OpenApiContent {
-  const InheritanceChildBase({this.test2});
+@freezed
+sealed class InheritanceBaseDto with _$InheritanceBaseDto {
+  factory InheritanceBaseDto({@JsonKey(name: 'test1') String? test1}) =
+      _InheritanceBaseDto;
 
-  factory InheritanceChildBase.fromJson(Map<String, dynamic> jsonMap) =>
-      _$InheritanceChildBaseFromJson(jsonMap);
-
-  @JsonKey(
-    name: 'test2',
-    includeIfNull: false,
-  )
-  final String? test2;
-
-  Map<String, dynamic> toJson() => _$InheritanceChildBaseToJson(this);
-
-  @override
-  String toString() => toJson().toString();
+  factory InheritanceBaseDto.fromJson(Map<String, dynamic> json) =>
+      _$InheritanceBaseDtoFromJson(json);
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class InheritanceChild
-    implements OpenApiContent, InheritanceBase, InheritanceChildBase {
-  InheritanceChild({
-    this.test2,
-    this.test1,
-  });
+@freezed
+sealed class InheritanceChildDto with _$InheritanceChildDto {
+  factory InheritanceChildDto() = _InheritanceChildDto;
 
-  factory InheritanceChild.fromJson(Map<String, dynamic> jsonMap) =>
-      _$InheritanceChildFromJson(jsonMap)
-        .._additionalProperties
-            .addEntries(jsonMap.entries.where((e) => !const <String>{
-                  'test2',
-                  'test1',
-                }.contains(e.key)));
-
-  @JsonKey(
-    name: 'test2',
-    includeIfNull: false,
-  )
-  @override
-  final String? test2;
-
-  @JsonKey(
-    name: 'test1',
-    includeIfNull: false,
-  )
-  @override
-  final String? test1;
-
-  final Map<String, Object?> _additionalProperties = <String, Object?>{};
-
-  @override
-  Map<String, dynamic> toJson() =>
-      Map.from(_additionalProperties)..addAll(_$InheritanceChildToJson(this));
-
-  @override
-  String toString() => toJson().toString();
-
-  Map<String, Object?> get additionalProperties => _additionalProperties;
-
-  void operator []=(
-    String key,
-    Object? value,
-  ) =>
-      _additionalProperties[key] = value;
-
-  Object? operator [](String key) => _additionalProperties[key];
+  factory InheritanceChildDto.fromJson(Map<String, dynamic> json) =>
+      _$InheritanceChildDtoFromJson(json);
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class RecursiveObject implements OpenApiContent {
-  const RecursiveObject({this.parent});
+@freezed
+sealed class RecursiveObjectDto with _$RecursiveObjectDto {
+  factory RecursiveObjectDto(
+          {@JsonKey(name: 'parent') RecursiveObjectDto? parent}) =
+      _RecursiveObjectDto;
 
-  factory RecursiveObject.fromJson(Map<String, dynamic> jsonMap) =>
-      _$RecursiveObjectFromJson(jsonMap);
-
-  @JsonKey(
-    name: 'parent',
-    includeIfNull: false,
-  )
-  final RecursiveObject? parent;
-
-  Map<String, dynamic> toJson() => _$RecursiveObjectToJson(this);
-
-  @override
-  String toString() => toJson().toString();
+  factory RecursiveObjectDto.fromJson(Map<String, dynamic> json) =>
+      _$RecursiveObjectDtoFromJson(json);
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class TypedAdditionalPropertiesAddProp implements OpenApiContent {
-  const TypedAdditionalPropertiesAddProp({
-    this.foo,
-    this.bar,
-  });
+@freezed
+sealed class TypedAdditionalPropertiesDto with _$TypedAdditionalPropertiesDto {
+  factory TypedAdditionalPropertiesDto() = _TypedAdditionalPropertiesDto;
 
-  factory TypedAdditionalPropertiesAddProp.fromJson(
-          Map<String, dynamic> jsonMap) =>
-      _$TypedAdditionalPropertiesAddPropFromJson(jsonMap);
-
-  @JsonKey(
-    name: 'foo',
-    includeIfNull: false,
-  )
-  final int? foo;
-
-  @JsonKey(
-    name: 'bar',
-    includeIfNull: false,
-  )
-  final num? bar;
-
-  Map<String, dynamic> toJson() =>
-      _$TypedAdditionalPropertiesAddPropToJson(this);
-
-  @override
-  String toString() => toJson().toString();
+  factory TypedAdditionalPropertiesDto.fromJson(Map<String, dynamic> json) =>
+      _$TypedAdditionalPropertiesDtoFromJson(json);
 }
 
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class TypedAdditionalProperties implements OpenApiContent {
-  TypedAdditionalProperties();
+@freezed
+sealed class UuidExampleMessageIdGetResponseDto
+    with _$UuidExampleMessageIdGetResponseDto {
+  factory UuidExampleMessageIdGetResponseDto(
+          {@JsonKey(name: 'id') @ApiUuidJsonConverter() required ApiUuid id}) =
+      _UuidExampleMessageIdGetResponseDto;
 
-  factory TypedAdditionalProperties.fromJson(Map<String, dynamic> jsonMap) =>
-      _$TypedAdditionalPropertiesFromJson(jsonMap)
-        .._additionalProperties.addEntries(jsonMap.entries
-            .where((e) => !const <String>{}.contains(e.key))
-            .map((e) => MapEntry(
-                  e.key,
-                  (e.value as Iterable<dynamic>)
-                      .map((e) => TypedAdditionalPropertiesAddProp.fromJson(e))
-                      .toList(),
-                )));
-
-  final Map<String, List<TypedAdditionalPropertiesAddProp>>
-      _additionalProperties =
-      <String, List<TypedAdditionalPropertiesAddProp>>{};
-
-  Map<String, dynamic> toJson() => Map.from(_additionalProperties)
-    ..addAll(_$TypedAdditionalPropertiesToJson(this));
-
-  @override
-  String toString() => toJson().toString();
-
-  Map<String, List<TypedAdditionalPropertiesAddProp>>
-      get additionalProperties => _additionalProperties;
-
-  void operator []=(
-    String key,
-    List<TypedAdditionalPropertiesAddProp> value,
-  ) =>
-      _additionalProperties[key] = value;
-
-  List<TypedAdditionalPropertiesAddProp>? operator [](String key) =>
-      _additionalProperties[key];
+  factory UuidExampleMessageIdGetResponseDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$UuidExampleMessageIdGetResponseDtoFromJson(json);
 }
 
-class UserRegisterPostResponse200 extends UserRegisterPostResponse {
-  /// OK
-  UserRegisterPostResponse200.response200() : status = 200;
-
-  @override
-  final int status;
-
-  @override
-  final OpenApiContentType? contentType = null;
-
-  @override
-  Map<String, Object?> propertiesToString() => {
-        'status': status,
-        'contentType': contentType,
-      };
-}
-
-sealed class UserRegisterPostResponse extends OpenApiResponse
-    implements HasSuccessResponse<void> {
-  UserRegisterPostResponse();
-
-  /// OK
-  factory UserRegisterPostResponse.response200() =>
-      UserRegisterPostResponse200.response200();
-
-  R map<R>({
-    required ResponseMap<UserRegisterPostResponse200, R> on200,
-    ResponseMap<UserRegisterPostResponse, R>? onElse,
-  }) {
-    if (this is UserRegisterPostResponse200) {
-      return on200((this as UserRegisterPostResponse200));
-    } else if (onElse != null) {
-      return onElse(this);
-    } else {
-      throw StateError('Invalid instance of type $this');
-    }
+class TestApiService {
+  TestApiService(Dio this._dio) {
+    _dio.options.baseUrl = baseUrl;
+    _dio.options.connectTimeout = Duration(seconds: 10);
+    _dio.options.receiveTimeout = Duration(seconds: 10);
   }
 
-  /// status 200:  OK
-  @override
-  void requireSuccess() {
-    if (this is UserRegisterPostResponse200) {
-      return;
-    } else {
-      throw StateError('Expected success response, but got $this');
-    }
-  }
-}
+  static const String baseUrl = 'https://api.example.com';
 
-class HelloNameHtmlGetResponse200 extends HelloNameHtmlGetResponse
-    implements OpenApiResponseBodyString {
-  /// OK
-  HelloNameHtmlGetResponse200.response200(this.body) : status = 200;
+  final Dio _dio;
 
-  @override
-  final int status;
-
-  @override
-  final String body;
-
-  @override
-  final OpenApiContentType contentType = OpenApiContentType.parse('text/html');
-
-  @override
-  Map<String, Object?> propertiesToString() => {
-        'status': status,
-        'body': body,
-        'contentType': contentType,
-      };
-}
-
-sealed class HelloNameHtmlGetResponse extends OpenApiResponse
-    implements HasSuccessResponse<String> {
-  HelloNameHtmlGetResponse();
-
-  /// OK
-  factory HelloNameHtmlGetResponse.response200(String body) =>
-      HelloNameHtmlGetResponse200.response200(body);
-
-  R map<R>({
-    required ResponseMap<HelloNameHtmlGetResponse200, R> on200,
-    ResponseMap<HelloNameHtmlGetResponse, R>? onElse,
-  }) {
-    if (this is HelloNameHtmlGetResponse200) {
-      return on200((this as HelloNameHtmlGetResponse200));
-    } else if (onElse != null) {
-      return onElse(this);
-    } else {
-      throw StateError('Invalid instance of type $this');
-    }
-  }
-
-  /// status 200:  OK
-  @override
-  String requireSuccess() {
-    if (this is HelloNameHtmlGetResponse200) {
-      return (this as HelloNameHtmlGetResponse200).body;
-    } else {
-      throw StateError('Expected success response, but got $this');
-    }
-  }
-}
-
-class HelloNameGetResponse200 extends HelloNameGetResponse
-    implements OpenApiResponseBodyJson {
-  /// OK
-  HelloNameGetResponse200.response200(this.body)
-      : status = 200,
-        bodyJson = body.toJson();
-
-  @override
-  final int status;
-
-  final HelloResponse body;
-
-  @override
-  final Map<String, dynamic> bodyJson;
-
-  @override
-  final OpenApiContentType contentType =
-      OpenApiContentType.parse('application/json');
-
-  @override
-  Map<String, Object?> propertiesToString() => {
-        'status': status,
-        'body': body,
-        'bodyJson': bodyJson,
-        'contentType': contentType,
-      };
-}
-
-sealed class HelloNameGetResponse extends OpenApiResponse
-    implements HasSuccessResponse<HelloResponse> {
-  HelloNameGetResponse();
-
-  /// OK
-  factory HelloNameGetResponse.response200(HelloResponse body) =>
-      HelloNameGetResponse200.response200(body);
-
-  R map<R>({
-    required ResponseMap<HelloNameGetResponse200, R> on200,
-    ResponseMap<HelloNameGetResponse, R>? onElse,
-  }) {
-    if (this is HelloNameGetResponse200) {
-      return on200((this as HelloNameGetResponse200));
-    } else if (onElse != null) {
-      return onElse(this);
-    } else {
-      throw StateError('Invalid instance of type $this');
-    }
-  }
-
-  /// status 200:  OK
-  @override
-  HelloResponse requireSuccess() {
-    if (this is HelloNameGetResponse200) {
-      return (this as HelloNameGetResponse200).body;
-    } else {
-      throw StateError('Expected success response, but got $this');
-    }
-  }
-}
-
-class HelloNamePutResponse200 extends HelloNamePutResponse
-    implements OpenApiResponseBodyJson {
-  /// OK
-  HelloNamePutResponse200.response200(this.body)
-      : status = 200,
-        bodyJson = body.toJson();
-
-  @override
-  final int status;
-
-  final HelloResponse body;
-
-  @override
-  final Map<String, dynamic> bodyJson;
-
-  @override
-  final OpenApiContentType contentType =
-      OpenApiContentType.parse('application/json');
-
-  @override
-  Map<String, Object?> propertiesToString() => {
-        'status': status,
-        'body': body,
-        'bodyJson': bodyJson,
-        'contentType': contentType,
-      };
-}
-
-sealed class HelloNamePutResponse extends OpenApiResponse
-    implements HasSuccessResponse<HelloResponse> {
-  HelloNamePutResponse();
-
-  /// OK
-  factory HelloNamePutResponse.response200(HelloResponse body) =>
-      HelloNamePutResponse200.response200(body);
-
-  R map<R>({
-    required ResponseMap<HelloNamePutResponse200, R> on200,
-    ResponseMap<HelloNamePutResponse, R>? onElse,
-  }) {
-    if (this is HelloNamePutResponse200) {
-      return on200((this as HelloNamePutResponse200));
-    } else if (onElse != null) {
-      return onElse(this);
-    } else {
-      throw StateError('Invalid instance of type $this');
-    }
-  }
-
-  /// status 200:  OK
-  @override
-  HelloResponse requireSuccess() {
-    if (this is HelloNamePutResponse200) {
-      return (this as HelloNamePutResponse200).body;
-    } else {
-      throw StateError('Expected success response, but got $this');
-    }
-  }
-}
-
-@JsonSerializable()
-@ApiUuidJsonConverter()
-class UuidExampleMessageIdGetResponseBody200 implements OpenApiContent {
-  const UuidExampleMessageIdGetResponseBody200({required this.id});
-
-  factory UuidExampleMessageIdGetResponseBody200.fromJson(
-          Map<String, dynamic> jsonMap) =>
-      _$UuidExampleMessageIdGetResponseBody200FromJson(jsonMap);
-
-  @JsonKey(
-    name: 'id',
-    includeIfNull: false,
-  )
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
-
-  Map<String, dynamic> toJson() =>
-      _$UuidExampleMessageIdGetResponseBody200ToJson(this);
-
-  @override
-  String toString() => toJson().toString();
-}
-
-class UuidExampleMessageIdGetResponse200 extends UuidExampleMessageIdGetResponse
-    implements OpenApiResponseBodyJson {
-  /// OK
-  UuidExampleMessageIdGetResponse200.response200(this.body)
-      : status = 200,
-        bodyJson = body.toJson();
-
-  @override
-  final int status;
-
-  final UuidExampleMessageIdGetResponseBody200 body;
-
-  @override
-  final Map<String, dynamic> bodyJson;
-
-  @override
-  final OpenApiContentType contentType =
-      OpenApiContentType.parse('application/json');
-
-  @override
-  Map<String, Object?> propertiesToString() => {
-        'status': status,
-        'body': body,
-        'bodyJson': bodyJson,
-        'contentType': contentType,
-      };
-}
-
-sealed class UuidExampleMessageIdGetResponse extends OpenApiResponse
-    implements HasSuccessResponse<UuidExampleMessageIdGetResponseBody200> {
-  UuidExampleMessageIdGetResponse();
-
-  /// OK
-  factory UuidExampleMessageIdGetResponse.response200(
-          UuidExampleMessageIdGetResponseBody200 body) =>
-      UuidExampleMessageIdGetResponse200.response200(body);
-
-  R map<R>({
-    required ResponseMap<UuidExampleMessageIdGetResponse200, R> on200,
-    ResponseMap<UuidExampleMessageIdGetResponse, R>? onElse,
-  }) {
-    if (this is UuidExampleMessageIdGetResponse200) {
-      return on200((this as UuidExampleMessageIdGetResponse200));
-    } else if (onElse != null) {
-      return onElse(this);
-    } else {
-      throw StateError('Invalid instance of type $this');
-    }
-  }
-
-  /// status 200:  OK
-  @override
-  UuidExampleMessageIdGetResponseBody200 requireSuccess() {
-    if (this is UuidExampleMessageIdGetResponse200) {
-      return (this as UuidExampleMessageIdGetResponse200).body;
-    } else {
-      throw StateError('Expected success response, but got $this');
-    }
-  }
-}
-
-class HelloIntegerPutResponse200 extends HelloIntegerPutResponse {
-  /// OK
-  HelloIntegerPutResponse200.response200() : status = 200;
-
-  @override
-  final int status;
-
-  @override
-  final OpenApiContentType? contentType = null;
-
-  @override
-  Map<String, Object?> propertiesToString() => {
-        'status': status,
-        'contentType': contentType,
-      };
-}
-
-sealed class HelloIntegerPutResponse extends OpenApiResponse
-    implements HasSuccessResponse<void> {
-  HelloIntegerPutResponse();
-
-  /// OK
-  factory HelloIntegerPutResponse.response200() =>
-      HelloIntegerPutResponse200.response200();
-
-  R map<R>({
-    required ResponseMap<HelloIntegerPutResponse200, R> on200,
-    ResponseMap<HelloIntegerPutResponse, R>? onElse,
-  }) {
-    if (this is HelloIntegerPutResponse200) {
-      return on200((this as HelloIntegerPutResponse200));
-    } else if (onElse != null) {
-      return onElse(this);
-    } else {
-      throw StateError('Invalid instance of type $this');
-    }
-  }
-
-  /// status 200:  OK
-  @override
-  void requireSuccess() {
-    if (this is HelloIntegerPutResponse200) {
-      return;
-    } else {
-      throw StateError('Expected success response, but got $this');
-    }
-  }
-}
-
-abstract class TestApi {}
-
-abstract class TestApiClient implements OpenApiClient {
-  factory TestApiClient(
-    Uri baseUri,
-    OpenApiRequestSender requestSender,
-  ) =>
-      _TestApiClientImpl._(
-        baseUri,
-        requestSender,
+  /// Create new user
+  /// post: /user/register
+  Future<Either<ApiError, void>> userRegisterPost(
+      RegisterRequestDto body) async {
+    try {
+      final response = await _dio.post(
+        '/user/register',
+        data: body.toJson(),
       );
-
-  /// Create new user
-  /// post: /user/register
-  ///
-  Future<UserRegisterPostResponse> userRegisterPost(RegisterRequest body);
-
-  /// Say Hello World to {name} with a nice html page.
-  /// get: /hello/{name}/html
-  ///
-  Future<HelloNameHtmlGetResponse> helloNameHtmlGet({required String name});
-
-  /// Say Hello World to {name}
-  /// get: /hello/{name}
-  ///
-  /// * [salutation]: Optional salutation
-  Future<HelloNameGetResponse> helloNameGet({
-    required String name,
-    String? salutation,
-  });
-
-  /// Say Hello World to {name} with some parameters
-  /// put: /hello/{name}
-  ///
-  Future<HelloNamePutResponse> helloNamePut(
-    HelloRequest body, {
-    required String name,
-  });
-
-  /// details of uuid.
-  /// get: /uuidExample/{messageId}
-  ///
-  Future<UuidExampleMessageIdGetResponse> uuidExampleMessageIdGet(
-      {required ApiUuid messageId});
-
-  /// put: /hello/integer
-  ///
-  Future<HelloIntegerPutResponse> helloIntegerPut(int body);
-}
-
-class _TestApiClientImpl extends OpenApiClientBase implements TestApiClient {
-  _TestApiClientImpl._(
-    this.baseUri,
-    this.requestSender,
-  );
-
-  @override
-  final Uri baseUri;
-
-  @override
-  final OpenApiRequestSender requestSender;
-
-  /// Create new user
-  /// post: /user/register
-  ///
-  @override
-  Future<UserRegisterPostResponse> userRegisterPost(
-      RegisterRequest body) async {
-    final request = OpenApiClientRequest(
-      'post',
-      '/user/register',
-      [],
-    );
-    request.setHeader(
-      'content-type',
-      'application/json',
-    );
-    request.setBody(OpenApiClientRequestBodyJson(body.toJson()));
-    return await sendRequest(
-      request,
-      {
-        '200': (OpenApiClientResponse response) async =>
-            UserRegisterPostResponse200.response200()
-      },
-    );
+      return Right(true);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
   }
 
   /// Say Hello World to {name} with a nice html page.
   /// get: /hello/{name}/html
-  ///
-  @override
-  Future<HelloNameHtmlGetResponse> helloNameHtmlGet(
-      {required String name}) async {
-    final request = OpenApiClientRequest(
-      'get',
-      '/hello/{name}/html',
-      [],
-    );
-    request.addPathParameter(
-      'name',
-      encodeString(name),
-    );
-    return await sendRequest(
-      request,
-      {
-        '200': (OpenApiClientResponse response) async =>
-            HelloNameHtmlGetResponse200.response200(
-                await response.responseBodyString())
-      },
-    );
+  Future<Either<ApiError, String>> helloNameHtmlGet() async {
+    try {
+      final response = await _dio.get('/hello/{name}/html');
+      final result = (response.data as String);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
   }
 
   /// Say Hello World to {name}
   /// get: /hello/{name}
-  ///
-  /// * [salutation]: Optional salutation
-  @override
-  Future<HelloNameGetResponse> helloNameGet({
-    required String name,
-    String? salutation,
-  }) async {
-    final request = OpenApiClientRequest(
-      'get',
-      '/hello/{name}',
-      [],
-    );
-    request.addPathParameter(
-      'name',
-      encodeString(name),
-    );
-    request.addQueryParameter(
-      'salutation',
-      encodeString(salutation),
-    );
-    return await sendRequest(
-      request,
-      {
-        '200': (OpenApiClientResponse response) async =>
-            HelloNameGetResponse200.response200(
-                HelloResponse.fromJson(await response.responseBodyJson()))
-      },
-    );
+  Future<Either<ApiError, HelloResponseDto>> helloNameGet(
+      {String? salutation}) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (salutation != null) queryParams['salutation'] = salutation;
+
+      final response = await _dio.get(
+        '/hello/{name}',
+        queryParameters: queryParams,
+      );
+      final result = HelloResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
   }
 
   /// Say Hello World to {name} with some parameters
   /// put: /hello/{name}
-  ///
-  @override
-  Future<HelloNamePutResponse> helloNamePut(
-    HelloRequest body, {
-    required String name,
-  }) async {
-    final request = OpenApiClientRequest(
-      'put',
-      '/hello/{name}',
-      [],
-    );
-    request.addPathParameter(
-      'name',
-      encodeString(name),
-    );
-    request.setHeader(
-      'content-type',
-      'application/json',
-    );
-    request.setBody(OpenApiClientRequestBodyJson(body.toJson()));
-    return await sendRequest(
-      request,
-      {
-        '200': (OpenApiClientResponse response) async =>
-            HelloNamePutResponse200.response200(
-                HelloResponse.fromJson(await response.responseBodyJson()))
-      },
-    );
+  Future<Either<ApiError, HelloResponseDto>> helloNamePut(
+      HelloRequestDto body) async {
+    try {
+      final response = await _dio.put(
+        '/hello/{name}',
+        data: body.toJson(),
+      );
+      final result = HelloResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
   }
 
   /// details of uuid.
   /// get: /uuidExample/{messageId}
-  ///
-  @override
-  Future<UuidExampleMessageIdGetResponse> uuidExampleMessageIdGet(
-      {required ApiUuid messageId}) async {
-    final request = OpenApiClientRequest(
-      'get',
-      '/uuidExample/{messageId}',
-      [],
-    );
-    request.addPathParameter(
-      'messageId',
-      encodeString(messageId.encodeToString()),
-    );
-    return await sendRequest(
-      request,
-      {
-        '200': (OpenApiClientResponse response) async =>
-            UuidExampleMessageIdGetResponse200.response200(
-                UuidExampleMessageIdGetResponseBody200.fromJson(
-                    await response.responseBodyJson()))
-      },
-    );
+  Future<Either<ApiError, UuidExampleMessageIdGetResponseDto>>
+      uuidExampleMessageIdGet() async {
+    try {
+      final response = await _dio.get('/uuidExample/{messageId}');
+      final result = UuidExampleMessageIdGetResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
   }
 
   /// put: /hello/integer
-  ///
-  @override
-  Future<HelloIntegerPutResponse> helloIntegerPut(int body) async {
-    final request = OpenApiClientRequest(
-      'put',
-      '/hello/integer',
-      [],
-    );
-    request.setHeader(
-      'content-type',
-      'application/json',
-    );
-    request.setBody(OpenApiClientRequestBodyJson(body));
-    return await sendRequest(
-      request,
-      {
-        '200': (OpenApiClientResponse response) async =>
-            HelloIntegerPutResponse200.response200()
-      },
+  Future<Either<ApiError, void>> helloIntegerPut(int body) async {
+    try {
+      final response = await _dio.put(
+        '/hello/integer',
+        data: body,
+      );
+      return Right(true);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
+  ApiError _handleError(dynamic error) {
+    if (error is DioException) {
+      final response = error.response;
+      final statusCode = response?.statusCode;
+
+// Try to extract message from response
+      var message = 'An error occurred';
+      if (response?.data != null) {
+        try {
+          final data = response?.data;
+          if (data is Map<String, dynamic>) {
+            message = data['message'];
+          }
+        } catch (_) {}
+      }
+
+// Use Dio's error message as fallback
+      message = error.message ?? 'An error occurred';
+      return ApiError(
+        message: message,
+        statusCode: statusCode,
+        type: error.type.name,
+      );
+    }
+
+// Handle JSON parsing errors and other exceptions
+    return ApiError(
+      message: error.toString(),
+      type: 'parse_error',
     );
   }
 }
-
-class TestApiUrlResolve with OpenApiUrlEncodeMixin {}
-
-class SecuritySchemes {}
 
 T _throwStateError<T>(String message) => throw StateError(message);
