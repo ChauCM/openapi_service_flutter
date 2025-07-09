@@ -46,7 +46,9 @@ flutter run -d web-server --web-port 8080
 ### Code Generation Flow
 1. **Input**: OpenAPI 3.0 YAML files with `.openapi.yaml` extension in `lib/` folders
 2. **Processing**: `OpenApiLibraryGenerator` in `openapi_code_builder/src/` parses YAML and generates Dart code
-3. **Output**: Generated `.openapi.dart` files containing client libraries and data models
+3. **Output**: When `generateServiceClasses: true` is configured, generates two separate files:
+   - `*.openapi.dtos.dart` - Data Transfer Objects with Freezed and JSON serialization
+   - `*.openapi.service.dart` - Service classes with Dio HTTP client and functional error handling
 
 ### Key Components
 
@@ -64,10 +66,12 @@ flutter run -d web-server --web-port 8080
 - HTTP headers, content types, and UUID handling utilities
 
 **Generated Code Structure:**
-- **Legacy Style**: Client classes extend base client with typed methods, response classes use sealed class pattern with `map()` methods
-- **Service Style**: Service classes use Dio for HTTP requests, Freezed for DTOs, and Dartz Either for error handling
-- Data models use `json_annotation` for serialization and support inheritance via `allOf`
-- Enum support with proper serialization annotations
+- **Legacy Style**: Single `.openapi.dart` file with client classes extending base client, response classes use sealed class pattern with `map()` methods
+- **Service Style** (Recommended): Dual-file generation with:
+  - **DTOs file**: Freezed-based immutable classes with `json_annotation` serialization, enum support, inheritance via `allOf`
+  - **Service file**: Dio-based HTTP client with `Either<ApiError, T>` return types for functional error handling
+- **Smart DTO Generation**: Only generates DTOs for schemas actually used by endpoints, filters out empty/unused schemas automatically
+- **Type-Safe Maps**: Handles OpenAPI `additionalProperties` as `Map<String, T>` instead of generating unnecessary DTOs
 
 ### Build System Integration
 - Uses `build_runner` with custom builder configuration in `build.yaml`
@@ -88,7 +92,13 @@ The generator supports two architectural styles configured via `generateServiceC
 ## Working with OpenAPI Specs
 
 ### File Naming Convention
-Place OpenAPI specs in `lib/` folders with `.openapi.yaml` extension. The generator will create corresponding `.openapi.dart` files.
+Place OpenAPI specs in `lib/` folders with `.openapi.yaml` extension. 
+
+**File Generation:**
+- **Legacy mode**: Creates single `*.openapi.dart` file
+- **Service mode** (`generateServiceClasses: true`): Creates two files:
+  - `*.openapi.dtos.dart` - Data Transfer Objects
+  - `*.openapi.service.dart` - Service classes
 
 ### Required Schema Configuration
 ```yaml
@@ -112,4 +122,15 @@ The `openapi_code_builder/example/` contains working examples:
 - `lib/service/pet_store.openapi.yaml` - More complex Pet Store API
 - `usage/example_client.dart` - Client usage example showing service-style generation
 
-Run the client example to test the code generation pipeline.
+The example demonstrates:
+- Dual-file generation (DTOs + Service)
+- Functional error handling with `Either<ApiError, T>`
+- Smart DTO filtering (unused schemas like `TypedAdditionalProperties` are automatically excluded)
+- Map handling for `additionalProperties` schemas (e.g., inventory endpoint returns `Map<String, int>`)
+
+Run the client example to test the code generation pipeline:
+```bash
+cd openapi_code_builder/example
+dart run build_runner build --delete-conflicting-outputs
+dart run usage/example_client.dart
+```
