@@ -1,10 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'test_api.openapi.dart';
+part of 'test_api.openapi.dtos.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
+
+_$ApiErrorImpl _$$ApiErrorImplFromJson(Map<String, dynamic> json) =>
+    _$ApiErrorImpl(
+      message: json['message'] as String,
+      statusCode: (json['statusCode'] as num?)?.toInt(),
+      type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$ApiErrorImplToJson(_$ApiErrorImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+      'statusCode': instance.statusCode,
+      'type': instance.type,
+    };
 
 _$RegisterRequestDtoImpl _$$RegisterRequestDtoImplFromJson(
         Map<String, dynamic> json) =>
@@ -42,47 +56,53 @@ Map<String, dynamic> _$$HelloResponseDtoImplToJson(
       'message': instance.message,
     };
 
-_$InheritanceBaseDtoImpl _$$InheritanceBaseDtoImplFromJson(
+_$UserRegisterPostRequestDtoImpl _$$UserRegisterPostRequestDtoImplFromJson(
         Map<String, dynamic> json) =>
-    _$InheritanceBaseDtoImpl(
-      test1: json['test1'] as String?,
+    _$UserRegisterPostRequestDtoImpl(
+      email: json['email'] as String,
     );
 
-Map<String, dynamic> _$$InheritanceBaseDtoImplToJson(
-        _$InheritanceBaseDtoImpl instance) =>
+Map<String, dynamic> _$$UserRegisterPostRequestDtoImplToJson(
+        _$UserRegisterPostRequestDtoImpl instance) =>
     <String, dynamic>{
-      'test1': instance.test1,
+      'email': instance.email,
     };
 
-_$InheritanceChildDtoImpl _$$InheritanceChildDtoImplFromJson(
+_$HelloNameGetResponseDtoImpl _$$HelloNameGetResponseDtoImplFromJson(
         Map<String, dynamic> json) =>
-    _$InheritanceChildDtoImpl();
-
-Map<String, dynamic> _$$InheritanceChildDtoImplToJson(
-        _$InheritanceChildDtoImpl instance) =>
-    <String, dynamic>{};
-
-_$RecursiveObjectDtoImpl _$$RecursiveObjectDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$RecursiveObjectDtoImpl(
-      parent: json['parent'] == null
-          ? null
-          : RecursiveObjectDto.fromJson(json['parent'] as Map<String, dynamic>),
+    _$HelloNameGetResponseDtoImpl(
+      message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$RecursiveObjectDtoImplToJson(
-        _$RecursiveObjectDtoImpl instance) =>
+Map<String, dynamic> _$$HelloNameGetResponseDtoImplToJson(
+        _$HelloNameGetResponseDtoImpl instance) =>
     <String, dynamic>{
-      'parent': instance.parent,
+      'message': instance.message,
     };
 
-_$TypedAdditionalPropertiesDtoImpl _$$TypedAdditionalPropertiesDtoImplFromJson(
+_$HelloNamePutResponseDtoImpl _$$HelloNamePutResponseDtoImplFromJson(
         Map<String, dynamic> json) =>
-    _$TypedAdditionalPropertiesDtoImpl();
+    _$HelloNamePutResponseDtoImpl(
+      message: json['message'] as String?,
+    );
 
-Map<String, dynamic> _$$TypedAdditionalPropertiesDtoImplToJson(
-        _$TypedAdditionalPropertiesDtoImpl instance) =>
-    <String, dynamic>{};
+Map<String, dynamic> _$$HelloNamePutResponseDtoImplToJson(
+        _$HelloNamePutResponseDtoImpl instance) =>
+    <String, dynamic>{
+      'message': instance.message,
+    };
+
+_$HelloNamePutRequestDtoImpl _$$HelloNamePutRequestDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$HelloNamePutRequestDtoImpl(
+      salutation: json['salutation'] as String?,
+    );
+
+Map<String, dynamic> _$$HelloNamePutRequestDtoImplToJson(
+        _$HelloNamePutRequestDtoImpl instance) =>
+    <String, dynamic>{
+      'salutation': instance.salutation,
+    };
 
 _$UuidExampleMessageIdGetResponseDtoImpl
     _$$UuidExampleMessageIdGetResponseDtoImplFromJson(

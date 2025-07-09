@@ -7,91 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:openapi_base/openapi_base.dart';
-part 'test_api.openapi.g.dart';
-part 'test_api.openapi.freezed.dart';
-
-@freezed
-class ApiError with _$ApiError {
-  const factory ApiError({
-    required String message,
-    int? statusCode,
-    String? type,
-  }) = _ApiError;
-}
-
-@freezed
-sealed class RegisterRequestDto with _$RegisterRequestDto {
-  factory RegisterRequestDto({@JsonKey(name: 'email') required String email}) =
-      _RegisterRequestDto;
-
-  factory RegisterRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$RegisterRequestDtoFromJson(json);
-}
-
-@freezed
-sealed class HelloRequestDto with _$HelloRequestDto {
-  factory HelloRequestDto({@JsonKey(name: 'salutation') String? salutation}) =
-      _HelloRequestDto;
-
-  factory HelloRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$HelloRequestDtoFromJson(json);
-}
-
-@freezed
-sealed class HelloResponseDto with _$HelloResponseDto {
-  factory HelloResponseDto({@JsonKey(name: 'message') String? message}) =
-      _HelloResponseDto;
-
-  factory HelloResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$HelloResponseDtoFromJson(json);
-}
-
-@freezed
-sealed class InheritanceBaseDto with _$InheritanceBaseDto {
-  factory InheritanceBaseDto({@JsonKey(name: 'test1') String? test1}) =
-      _InheritanceBaseDto;
-
-  factory InheritanceBaseDto.fromJson(Map<String, dynamic> json) =>
-      _$InheritanceBaseDtoFromJson(json);
-}
-
-@freezed
-sealed class InheritanceChildDto with _$InheritanceChildDto {
-  factory InheritanceChildDto() = _InheritanceChildDto;
-
-  factory InheritanceChildDto.fromJson(Map<String, dynamic> json) =>
-      _$InheritanceChildDtoFromJson(json);
-}
-
-@freezed
-sealed class RecursiveObjectDto with _$RecursiveObjectDto {
-  factory RecursiveObjectDto(
-          {@JsonKey(name: 'parent') RecursiveObjectDto? parent}) =
-      _RecursiveObjectDto;
-
-  factory RecursiveObjectDto.fromJson(Map<String, dynamic> json) =>
-      _$RecursiveObjectDtoFromJson(json);
-}
-
-@freezed
-sealed class TypedAdditionalPropertiesDto with _$TypedAdditionalPropertiesDto {
-  factory TypedAdditionalPropertiesDto() = _TypedAdditionalPropertiesDto;
-
-  factory TypedAdditionalPropertiesDto.fromJson(Map<String, dynamic> json) =>
-      _$TypedAdditionalPropertiesDtoFromJson(json);
-}
-
-@freezed
-sealed class UuidExampleMessageIdGetResponseDto
-    with _$UuidExampleMessageIdGetResponseDto {
-  factory UuidExampleMessageIdGetResponseDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() required ApiUuid id}) =
-      _UuidExampleMessageIdGetResponseDto;
-
-  factory UuidExampleMessageIdGetResponseDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$UuidExampleMessageIdGetResponseDtoFromJson(json);
-}
+import 'test_api.openapi.dtos.dart';
 
 class TestApiService {
   TestApiService(this._dio) {
@@ -107,7 +23,7 @@ class TestApiService {
   /// Create new user
   /// post: /user/register
   Future<Either<ApiError, void>> userRegisterPost(
-      RegisterRequestDto body) async {
+      UserRegisterPostRequestDto body) async {
     try {
       final _ = await _dio.post(
         '/user/register',
@@ -133,7 +49,7 @@ class TestApiService {
 
   /// Say Hello World to {name}
   /// get: /hello/{name}
-  Future<Either<ApiError, HelloResponseDto>> helloNameGet(
+  Future<Either<ApiError, HelloNameGetResponseDto>> helloNameGet(
       {String? salutation}) async {
     try {
       final queryParams = <String, dynamic>{};
@@ -143,7 +59,7 @@ class TestApiService {
         '/hello/{name}',
         queryParameters: queryParams,
       );
-      final result = HelloResponseDto.fromJson(response.data);
+      final result = HelloNameGetResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -152,14 +68,14 @@ class TestApiService {
 
   /// Say Hello World to {name} with some parameters
   /// put: /hello/{name}
-  Future<Either<ApiError, HelloResponseDto>> helloNamePut(
-      HelloRequestDto body) async {
+  Future<Either<ApiError, HelloNamePutResponseDto>> helloNamePut(
+      HelloNamePutRequestDto body) async {
     try {
       final response = await _dio.put(
         '/hello/{name}',
         data: body.toJson(),
       );
-      final result = HelloResponseDto.fromJson(response.data);
+      final result = HelloNamePutResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));

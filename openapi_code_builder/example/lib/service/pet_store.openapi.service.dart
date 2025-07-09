@@ -10,178 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:openapi_base/openapi_base.dart';
-part 'pet_store.openapi.g.dart';
-part 'pet_store.openapi.freezed.dart';
-
-@freezed
-class ApiError with _$ApiError {
-  const factory ApiError({
-    required String message,
-    int? statusCode,
-    String? type,
-  }) = _ApiError;
-}
-
-enum OrderDtoStatusDto {
-  @JsonValue('placed')
-  placed,
-  @JsonValue('approved')
-  approved,
-  @JsonValue('delivered')
-  delivered,
-}
-
-extension OrderDtoStatusDtoExt on OrderDtoStatusDto {
-  static final Map<String, OrderDtoStatusDto> _names = {
-    'placed': OrderDtoStatusDto.placed,
-    'approved': OrderDtoStatusDto.approved,
-    'delivered': OrderDtoStatusDto.delivered,
-  };
-  static OrderDtoStatusDto fromName(String name) =>
-      _names[name] ??
-      _throwStateError('Invalid enum name: $name for OrderDtoStatusDto');
-  String get name => toString().substring(18);
-}
-
-@freezed
-sealed class OrderDto with _$OrderDto {
-  factory OrderDto({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'petId') int? petId,
-    @JsonKey(name: 'quantity') int? quantity,
-    @JsonKey(name: 'shipDate') DateTime? shipDate,
-    @JsonKey(name: 'status') OrderDtoStatusDto? status,
-    @JsonKey(name: 'complete') @Default(false) bool complete,
-  }) = _OrderDto;
-
-  factory OrderDto.fromJson(Map<String, dynamic> json) =>
-      _$OrderDtoFromJson(json);
-}
-
-@freezed
-sealed class CategoryDto with _$CategoryDto {
-  factory CategoryDto({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'name') String? name,
-  }) = _CategoryDto;
-
-  factory CategoryDto.fromJson(Map<String, dynamic> json) =>
-      _$CategoryDtoFromJson(json);
-}
-
-@freezed
-sealed class UserDto with _$UserDto {
-  factory UserDto({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'username') String? username,
-    @JsonKey(name: 'firstName') String? firstName,
-    @JsonKey(name: 'lastName') String? lastName,
-    @JsonKey(name: 'email') String? email,
-    @JsonKey(name: 'password') String? password,
-    @JsonKey(name: 'phone') String? phone,
-    @JsonKey(name: 'userStatus') int? userStatus,
-  }) = _UserDto;
-
-  factory UserDto.fromJson(Map<String, dynamic> json) =>
-      _$UserDtoFromJson(json);
-}
-
-@freezed
-sealed class TagDto with _$TagDto {
-  factory TagDto({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'name') String? name,
-  }) = _TagDto;
-
-  factory TagDto.fromJson(Map<String, dynamic> json) => _$TagDtoFromJson(json);
-}
-
-enum PetDtoStatusDto {
-  @JsonValue('available')
-  available,
-  @JsonValue('pending')
-  pending,
-  @JsonValue('sold')
-  sold,
-}
-
-extension PetDtoStatusDtoExt on PetDtoStatusDto {
-  static final Map<String, PetDtoStatusDto> _names = {
-    'available': PetDtoStatusDto.available,
-    'pending': PetDtoStatusDto.pending,
-    'sold': PetDtoStatusDto.sold,
-  };
-  static PetDtoStatusDto fromName(String name) =>
-      _names[name] ??
-      _throwStateError('Invalid enum name: $name for PetDtoStatusDto');
-  String get name => toString().substring(16);
-}
-
-@freezed
-sealed class PetDto with _$PetDto {
-  factory PetDto({
-    @JsonKey(name: 'id') int? id,
-    @JsonKey(name: 'category') CategoryDto? category,
-    @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'photoUrls') required List<String> photoUrls,
-    @JsonKey(name: 'tags') List<TagDto>? tags,
-    @JsonKey(name: 'status') PetDtoStatusDto? status,
-  }) = _PetDto;
-
-  factory PetDto.fromJson(Map<String, dynamic> json) => _$PetDtoFromJson(json);
-}
-
-@freezed
-sealed class ApiResponseDto with _$ApiResponseDto {
-  factory ApiResponseDto({
-    @JsonKey(name: 'code') int? code,
-    @JsonKey(name: 'type') String? type,
-    @JsonKey(name: 'message') String? message,
-  }) = _ApiResponseDto;
-
-  factory ApiResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiResponseDtoFromJson(json);
-}
-
-enum FindPetsByStatusDto {
-  @JsonValue('available')
-  available,
-  @JsonValue('pending')
-  pending,
-  @JsonValue('sold')
-  sold,
-}
-
-extension FindPetsByStatusDtoExt on FindPetsByStatusDto {
-  static final Map<String, FindPetsByStatusDto> _names = {
-    'available': FindPetsByStatusDto.available,
-    'pending': FindPetsByStatusDto.pending,
-    'sold': FindPetsByStatusDto.sold,
-  };
-  static FindPetsByStatusDto fromName(String name) =>
-      _names[name] ??
-      _throwStateError('Invalid enum name: $name for FindPetsByStatusDto');
-  String get name => toString().substring(20);
-}
-
-@freezed
-sealed class UpdatePetWithFormRequestDto with _$UpdatePetWithFormRequestDto {
-  factory UpdatePetWithFormRequestDto({
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'status') String? status,
-  }) = _UpdatePetWithFormRequestDto;
-
-  factory UpdatePetWithFormRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$UpdatePetWithFormRequestDtoFromJson(json);
-}
-
-@freezed
-sealed class GetInventoryResponseDto with _$GetInventoryResponseDto {
-  factory GetInventoryResponseDto() = _GetInventoryResponseDto;
-
-  factory GetInventoryResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$GetInventoryResponseDtoFromJson(json);
-}
+import 'pet_store.openapi.dtos.dart';
 
 class PetStoreService {
   PetStoreService(this._dio) {
@@ -196,7 +25,7 @@ class PetStoreService {
 
   /// Update an existing pet
   /// put: /pet
-  Future<Either<ApiError, void>> updatePet(PetDto body) async {
+  Future<Either<ApiError, void>> updatePet(UpdatePetRequestDto body) async {
     try {
       final _ = await _dio.put(
         '/pet',
@@ -210,7 +39,7 @@ class PetStoreService {
 
   /// Add a new pet to the store
   /// post: /pet
-  Future<Either<ApiError, void>> addPet(PetDto body) async {
+  Future<Either<ApiError, void>> addPet(AddPetRequestDto body) async {
     try {
       final _ = await _dio.post(
         '/pet',
@@ -226,7 +55,7 @@ class PetStoreService {
   /// Multiple status values can be provided with comma separated strings
   /// get: /pet/findByStatus
   Future<Either<ApiError, List<PetDto>>> findPetsByStatus(
-      {required List<FindPetsByStatusDto> status}) async {
+      {required List<FindPetsByStatusStatusDto> status}) async {
     try {
       final queryParams = <String, dynamic>{};
       queryParams['status'] = status;
@@ -267,10 +96,11 @@ class PetStoreService {
   /// Find pet by ID
   /// Returns a single pet
   /// get: /pet/{petId}
-  Future<Either<ApiError, PetDto>> getPetById({required int petId}) async {
+  Future<Either<ApiError, GetPetByIdResponseDto>> getPetById(
+      {required int petId}) async {
     try {
       final response = await _dio.get('/pet/$petId');
-      final result = PetDto.fromJson(response.data);
+      final result = GetPetByIdResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -310,7 +140,7 @@ class PetStoreService {
 
   /// uploads an image
   /// post: /pet/{petId}/uploadImage
-  Future<Either<ApiError, ApiResponseDto>> uploadFile(
+  Future<Either<ApiError, UploadFileResponseDto>> uploadFile(
     _i1.Uint8List body, {
     required int petId,
   }) async {
@@ -319,7 +149,7 @@ class PetStoreService {
         '/pet/$petId/uploadImage',
         data: body,
       );
-      final result = ApiResponseDto.fromJson(response.data);
+      final result = UploadFileResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -329,10 +159,10 @@ class PetStoreService {
   /// Returns pet inventories by status
   /// Returns a map of status codes to quantities
   /// get: /store/inventory
-  Future<Either<ApiError, GetInventoryResponseDto>> getInventory() async {
+  Future<Either<ApiError, Map<String, int>>> getInventory() async {
     try {
       final response = await _dio.get('/store/inventory');
-      final result = GetInventoryResponseDto.fromJson(response.data);
+      final result = (response.data as Map<String, int>);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -341,13 +171,14 @@ class PetStoreService {
 
   /// Place an order for a pet
   /// post: /store/order
-  Future<Either<ApiError, OrderDto>> placeOrder(OrderDto body) async {
+  Future<Either<ApiError, PlaceOrderResponseDto>> placeOrder(
+      PlaceOrderRequestDto body) async {
     try {
       final response = await _dio.post(
         '/store/order',
         data: body.toJson(),
       );
-      final result = OrderDto.fromJson(response.data);
+      final result = PlaceOrderResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -357,11 +188,11 @@ class PetStoreService {
   /// Find purchase order by ID
   /// For valid response try integer IDs with value >= 1 and <= 10.\ \ Other values will generated exceptions
   /// get: /store/order/{orderId}
-  Future<Either<ApiError, OrderDto>> getOrderById(
+  Future<Either<ApiError, GetOrderByIdResponseDto>> getOrderById(
       {required int orderId}) async {
     try {
       final response = await _dio.get('/store/order/$orderId');
-      final result = OrderDto.fromJson(response.data);
+      final result = GetOrderByIdResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -383,7 +214,7 @@ class PetStoreService {
   /// Create user
   /// This can only be done by the logged in user.
   /// post: /user
-  Future<Either<ApiError, void>> createUser(UserDto body) async {
+  Future<Either<ApiError, void>> createUser(CreateUserRequestDto body) async {
     try {
       final _ = await _dio.post(
         '/user',
@@ -460,11 +291,11 @@ class PetStoreService {
 
   /// Get user by user name
   /// get: /user/{username}
-  Future<Either<ApiError, UserDto>> getUserByName(
+  Future<Either<ApiError, GetUserByNameResponseDto>> getUserByName(
       {required String username}) async {
     try {
       final response = await _dio.get('/user/$username');
-      final result = UserDto.fromJson(response.data);
+      final result = GetUserByNameResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -475,7 +306,7 @@ class PetStoreService {
   /// This can only be done by the logged in user.
   /// put: /user/{username}
   Future<Either<ApiError, void>> updateUser(
-    UserDto body, {
+    UpdateUserRequestDto body, {
     required String username,
   }) async {
     try {

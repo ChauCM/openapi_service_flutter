@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'test_api.openapi.dart';
+part of 'test_api.openapi.dtos.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,11 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+ApiError _$ApiErrorFromJson(Map<String, dynamic> json) {
+  return _ApiError.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ApiError {
   String get message => throw _privateConstructorUsedError;
   int? get statusCode => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
+
+  /// Serializes this ApiError to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of ApiError
   /// with the given fields replaced by the non-null parameter values.
@@ -117,9 +124,12 @@ class __$$ApiErrorImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ApiErrorImpl implements _ApiError {
   const _$ApiErrorImpl({required this.message, this.statusCode, this.type});
+
+  factory _$ApiErrorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ApiErrorImplFromJson(json);
 
   @override
   final String message;
@@ -144,6 +154,7 @@ class _$ApiErrorImpl implements _ApiError {
             (identical(other.type, type) || other.type == type));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, message, statusCode, type);
 
@@ -154,6 +165,13 @@ class _$ApiErrorImpl implements _ApiError {
   @pragma('vm:prefer-inline')
   _$$ApiErrorImplCopyWith<_$ApiErrorImpl> get copyWith =>
       __$$ApiErrorImplCopyWithImpl<_$ApiErrorImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ApiErrorImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ApiError implements ApiError {
@@ -161,6 +179,9 @@ abstract class _ApiError implements ApiError {
       {required final String message,
       final int? statusCode,
       final String? type}) = _$ApiErrorImpl;
+
+  factory _ApiError.fromJson(Map<String, dynamic> json) =
+      _$ApiErrorImpl.fromJson;
 
   @override
   String get message;
@@ -642,520 +663,649 @@ abstract class _HelloResponseDto implements HelloResponseDto {
       throw _privateConstructorUsedError;
 }
 
-InheritanceBaseDto _$InheritanceBaseDtoFromJson(Map<String, dynamic> json) {
-  return _InheritanceBaseDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$InheritanceBaseDto {
-  @JsonKey(name: 'test1')
-  String? get test1 => throw _privateConstructorUsedError;
-
-  /// Serializes this InheritanceBaseDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of InheritanceBaseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $InheritanceBaseDtoCopyWith<InheritanceBaseDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $InheritanceBaseDtoCopyWith<$Res> {
-  factory $InheritanceBaseDtoCopyWith(
-          InheritanceBaseDto value, $Res Function(InheritanceBaseDto) then) =
-      _$InheritanceBaseDtoCopyWithImpl<$Res, InheritanceBaseDto>;
-  @useResult
-  $Res call({@JsonKey(name: 'test1') String? test1});
-}
-
-/// @nodoc
-class _$InheritanceBaseDtoCopyWithImpl<$Res, $Val extends InheritanceBaseDto>
-    implements $InheritanceBaseDtoCopyWith<$Res> {
-  _$InheritanceBaseDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of InheritanceBaseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? test1 = freezed,
-  }) {
-    return _then(_value.copyWith(
-      test1: freezed == test1
-          ? _value.test1
-          : test1 // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$InheritanceBaseDtoImplCopyWith<$Res>
-    implements $InheritanceBaseDtoCopyWith<$Res> {
-  factory _$$InheritanceBaseDtoImplCopyWith(_$InheritanceBaseDtoImpl value,
-          $Res Function(_$InheritanceBaseDtoImpl) then) =
-      __$$InheritanceBaseDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'test1') String? test1});
-}
-
-/// @nodoc
-class __$$InheritanceBaseDtoImplCopyWithImpl<$Res>
-    extends _$InheritanceBaseDtoCopyWithImpl<$Res, _$InheritanceBaseDtoImpl>
-    implements _$$InheritanceBaseDtoImplCopyWith<$Res> {
-  __$$InheritanceBaseDtoImplCopyWithImpl(_$InheritanceBaseDtoImpl _value,
-      $Res Function(_$InheritanceBaseDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InheritanceBaseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? test1 = freezed,
-  }) {
-    return _then(_$InheritanceBaseDtoImpl(
-      test1: freezed == test1
-          ? _value.test1
-          : test1 // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$InheritanceBaseDtoImpl implements _InheritanceBaseDto {
-  _$InheritanceBaseDtoImpl({@JsonKey(name: 'test1') this.test1});
-
-  factory _$InheritanceBaseDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InheritanceBaseDtoImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'test1')
-  final String? test1;
-
-  @override
-  String toString() {
-    return 'InheritanceBaseDto(test1: $test1)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InheritanceBaseDtoImpl &&
-            (identical(other.test1, test1) || other.test1 == test1));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, test1);
-
-  /// Create a copy of InheritanceBaseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InheritanceBaseDtoImplCopyWith<_$InheritanceBaseDtoImpl> get copyWith =>
-      __$$InheritanceBaseDtoImplCopyWithImpl<_$InheritanceBaseDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InheritanceBaseDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _InheritanceBaseDto implements InheritanceBaseDto {
-  factory _InheritanceBaseDto({@JsonKey(name: 'test1') final String? test1}) =
-      _$InheritanceBaseDtoImpl;
-
-  factory _InheritanceBaseDto.fromJson(Map<String, dynamic> json) =
-      _$InheritanceBaseDtoImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'test1')
-  String? get test1;
-
-  /// Create a copy of InheritanceBaseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InheritanceBaseDtoImplCopyWith<_$InheritanceBaseDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-InheritanceChildDto _$InheritanceChildDtoFromJson(Map<String, dynamic> json) {
-  return _InheritanceChildDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$InheritanceChildDto {
-  /// Serializes this InheritanceChildDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $InheritanceChildDtoCopyWith<$Res> {
-  factory $InheritanceChildDtoCopyWith(
-          InheritanceChildDto value, $Res Function(InheritanceChildDto) then) =
-      _$InheritanceChildDtoCopyWithImpl<$Res, InheritanceChildDto>;
-}
-
-/// @nodoc
-class _$InheritanceChildDtoCopyWithImpl<$Res, $Val extends InheritanceChildDto>
-    implements $InheritanceChildDtoCopyWith<$Res> {
-  _$InheritanceChildDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of InheritanceChildDto
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$InheritanceChildDtoImplCopyWith<$Res> {
-  factory _$$InheritanceChildDtoImplCopyWith(_$InheritanceChildDtoImpl value,
-          $Res Function(_$InheritanceChildDtoImpl) then) =
-      __$$InheritanceChildDtoImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InheritanceChildDtoImplCopyWithImpl<$Res>
-    extends _$InheritanceChildDtoCopyWithImpl<$Res, _$InheritanceChildDtoImpl>
-    implements _$$InheritanceChildDtoImplCopyWith<$Res> {
-  __$$InheritanceChildDtoImplCopyWithImpl(_$InheritanceChildDtoImpl _value,
-      $Res Function(_$InheritanceChildDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of InheritanceChildDto
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$InheritanceChildDtoImpl implements _InheritanceChildDto {
-  _$InheritanceChildDtoImpl();
-
-  factory _$InheritanceChildDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InheritanceChildDtoImplFromJson(json);
-
-  @override
-  String toString() {
-    return 'InheritanceChildDto()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InheritanceChildDtoImpl);
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$InheritanceChildDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _InheritanceChildDto implements InheritanceChildDto {
-  factory _InheritanceChildDto() = _$InheritanceChildDtoImpl;
-
-  factory _InheritanceChildDto.fromJson(Map<String, dynamic> json) =
-      _$InheritanceChildDtoImpl.fromJson;
-}
-
-RecursiveObjectDto _$RecursiveObjectDtoFromJson(Map<String, dynamic> json) {
-  return _RecursiveObjectDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$RecursiveObjectDto {
-  @JsonKey(name: 'parent')
-  RecursiveObjectDto? get parent => throw _privateConstructorUsedError;
-
-  /// Serializes this RecursiveObjectDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RecursiveObjectDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $RecursiveObjectDtoCopyWith<RecursiveObjectDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RecursiveObjectDtoCopyWith<$Res> {
-  factory $RecursiveObjectDtoCopyWith(
-          RecursiveObjectDto value, $Res Function(RecursiveObjectDto) then) =
-      _$RecursiveObjectDtoCopyWithImpl<$Res, RecursiveObjectDto>;
-  @useResult
-  $Res call({@JsonKey(name: 'parent') RecursiveObjectDto? parent});
-
-  $RecursiveObjectDtoCopyWith<$Res>? get parent;
-}
-
-/// @nodoc
-class _$RecursiveObjectDtoCopyWithImpl<$Res, $Val extends RecursiveObjectDto>
-    implements $RecursiveObjectDtoCopyWith<$Res> {
-  _$RecursiveObjectDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of RecursiveObjectDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? parent = freezed,
-  }) {
-    return _then(_value.copyWith(
-      parent: freezed == parent
-          ? _value.parent
-          : parent // ignore: cast_nullable_to_non_nullable
-              as RecursiveObjectDto?,
-    ) as $Val);
-  }
-
-  /// Create a copy of RecursiveObjectDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RecursiveObjectDtoCopyWith<$Res>? get parent {
-    if (_value.parent == null) {
-      return null;
-    }
-
-    return $RecursiveObjectDtoCopyWith<$Res>(_value.parent!, (value) {
-      return _then(_value.copyWith(parent: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$RecursiveObjectDtoImplCopyWith<$Res>
-    implements $RecursiveObjectDtoCopyWith<$Res> {
-  factory _$$RecursiveObjectDtoImplCopyWith(_$RecursiveObjectDtoImpl value,
-          $Res Function(_$RecursiveObjectDtoImpl) then) =
-      __$$RecursiveObjectDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'parent') RecursiveObjectDto? parent});
-
-  @override
-  $RecursiveObjectDtoCopyWith<$Res>? get parent;
-}
-
-/// @nodoc
-class __$$RecursiveObjectDtoImplCopyWithImpl<$Res>
-    extends _$RecursiveObjectDtoCopyWithImpl<$Res, _$RecursiveObjectDtoImpl>
-    implements _$$RecursiveObjectDtoImplCopyWith<$Res> {
-  __$$RecursiveObjectDtoImplCopyWithImpl(_$RecursiveObjectDtoImpl _value,
-      $Res Function(_$RecursiveObjectDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of RecursiveObjectDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? parent = freezed,
-  }) {
-    return _then(_$RecursiveObjectDtoImpl(
-      parent: freezed == parent
-          ? _value.parent
-          : parent // ignore: cast_nullable_to_non_nullable
-              as RecursiveObjectDto?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$RecursiveObjectDtoImpl implements _RecursiveObjectDto {
-  _$RecursiveObjectDtoImpl({@JsonKey(name: 'parent') this.parent});
-
-  factory _$RecursiveObjectDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RecursiveObjectDtoImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'parent')
-  final RecursiveObjectDto? parent;
-
-  @override
-  String toString() {
-    return 'RecursiveObjectDto(parent: $parent)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RecursiveObjectDtoImpl &&
-            (identical(other.parent, parent) || other.parent == parent));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, parent);
-
-  /// Create a copy of RecursiveObjectDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RecursiveObjectDtoImplCopyWith<_$RecursiveObjectDtoImpl> get copyWith =>
-      __$$RecursiveObjectDtoImplCopyWithImpl<_$RecursiveObjectDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$RecursiveObjectDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _RecursiveObjectDto implements RecursiveObjectDto {
-  factory _RecursiveObjectDto(
-          {@JsonKey(name: 'parent') final RecursiveObjectDto? parent}) =
-      _$RecursiveObjectDtoImpl;
-
-  factory _RecursiveObjectDto.fromJson(Map<String, dynamic> json) =
-      _$RecursiveObjectDtoImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'parent')
-  RecursiveObjectDto? get parent;
-
-  /// Create a copy of RecursiveObjectDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RecursiveObjectDtoImplCopyWith<_$RecursiveObjectDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-TypedAdditionalPropertiesDto _$TypedAdditionalPropertiesDtoFromJson(
+UserRegisterPostRequestDto _$UserRegisterPostRequestDtoFromJson(
     Map<String, dynamic> json) {
-  return _TypedAdditionalPropertiesDto.fromJson(json);
+  return _UserRegisterPostRequestDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TypedAdditionalPropertiesDto {
-  /// Serializes this TypedAdditionalPropertiesDto to a JSON map.
+mixin _$UserRegisterPostRequestDto {
+  @JsonKey(name: 'email')
+  String get email => throw _privateConstructorUsedError;
+
+  /// Serializes this UserRegisterPostRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of UserRegisterPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UserRegisterPostRequestDtoCopyWith<UserRegisterPostRequestDto>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TypedAdditionalPropertiesDtoCopyWith<$Res> {
-  factory $TypedAdditionalPropertiesDtoCopyWith(
-          TypedAdditionalPropertiesDto value,
-          $Res Function(TypedAdditionalPropertiesDto) then) =
-      _$TypedAdditionalPropertiesDtoCopyWithImpl<$Res,
-          TypedAdditionalPropertiesDto>;
+abstract class $UserRegisterPostRequestDtoCopyWith<$Res> {
+  factory $UserRegisterPostRequestDtoCopyWith(UserRegisterPostRequestDto value,
+          $Res Function(UserRegisterPostRequestDto) then) =
+      _$UserRegisterPostRequestDtoCopyWithImpl<$Res,
+          UserRegisterPostRequestDto>;
+  @useResult
+  $Res call({@JsonKey(name: 'email') String email});
 }
 
 /// @nodoc
-class _$TypedAdditionalPropertiesDtoCopyWithImpl<$Res,
-        $Val extends TypedAdditionalPropertiesDto>
-    implements $TypedAdditionalPropertiesDtoCopyWith<$Res> {
-  _$TypedAdditionalPropertiesDtoCopyWithImpl(this._value, this._then);
+class _$UserRegisterPostRequestDtoCopyWithImpl<$Res,
+        $Val extends UserRegisterPostRequestDto>
+    implements $UserRegisterPostRequestDtoCopyWith<$Res> {
+  _$UserRegisterPostRequestDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TypedAdditionalPropertiesDto
+  /// Create a copy of UserRegisterPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$TypedAdditionalPropertiesDtoImplCopyWith<$Res> {
-  factory _$$TypedAdditionalPropertiesDtoImplCopyWith(
-          _$TypedAdditionalPropertiesDtoImpl value,
-          $Res Function(_$TypedAdditionalPropertiesDtoImpl) then) =
-      __$$TypedAdditionalPropertiesDtoImplCopyWithImpl<$Res>;
+abstract class _$$UserRegisterPostRequestDtoImplCopyWith<$Res>
+    implements $UserRegisterPostRequestDtoCopyWith<$Res> {
+  factory _$$UserRegisterPostRequestDtoImplCopyWith(
+          _$UserRegisterPostRequestDtoImpl value,
+          $Res Function(_$UserRegisterPostRequestDtoImpl) then) =
+      __$$UserRegisterPostRequestDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'email') String email});
 }
 
 /// @nodoc
-class __$$TypedAdditionalPropertiesDtoImplCopyWithImpl<$Res>
-    extends _$TypedAdditionalPropertiesDtoCopyWithImpl<$Res,
-        _$TypedAdditionalPropertiesDtoImpl>
-    implements _$$TypedAdditionalPropertiesDtoImplCopyWith<$Res> {
-  __$$TypedAdditionalPropertiesDtoImplCopyWithImpl(
-      _$TypedAdditionalPropertiesDtoImpl _value,
-      $Res Function(_$TypedAdditionalPropertiesDtoImpl) _then)
+class __$$UserRegisterPostRequestDtoImplCopyWithImpl<$Res>
+    extends _$UserRegisterPostRequestDtoCopyWithImpl<$Res,
+        _$UserRegisterPostRequestDtoImpl>
+    implements _$$UserRegisterPostRequestDtoImplCopyWith<$Res> {
+  __$$UserRegisterPostRequestDtoImplCopyWithImpl(
+      _$UserRegisterPostRequestDtoImpl _value,
+      $Res Function(_$UserRegisterPostRequestDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TypedAdditionalPropertiesDto
+  /// Create a copy of UserRegisterPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$UserRegisterPostRequestDtoImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$TypedAdditionalPropertiesDtoImpl
-    implements _TypedAdditionalPropertiesDto {
-  _$TypedAdditionalPropertiesDtoImpl();
+class _$UserRegisterPostRequestDtoImpl implements _UserRegisterPostRequestDto {
+  _$UserRegisterPostRequestDtoImpl(
+      {@JsonKey(name: 'email') required this.email});
 
-  factory _$TypedAdditionalPropertiesDtoImpl.fromJson(
+  factory _$UserRegisterPostRequestDtoImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$TypedAdditionalPropertiesDtoImplFromJson(json);
+      _$$UserRegisterPostRequestDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'email')
+  final String email;
 
   @override
   String toString() {
-    return 'TypedAdditionalPropertiesDto()';
+    return 'UserRegisterPostRequestDto(email: $email)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TypedAdditionalPropertiesDtoImpl);
+            other is _$UserRegisterPostRequestDtoImpl &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, email);
+
+  /// Create a copy of UserRegisterPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserRegisterPostRequestDtoImplCopyWith<_$UserRegisterPostRequestDtoImpl>
+      get copyWith => __$$UserRegisterPostRequestDtoImplCopyWithImpl<
+          _$UserRegisterPostRequestDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TypedAdditionalPropertiesDtoImplToJson(
+    return _$$UserRegisterPostRequestDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _TypedAdditionalPropertiesDto
-    implements TypedAdditionalPropertiesDto {
-  factory _TypedAdditionalPropertiesDto() = _$TypedAdditionalPropertiesDtoImpl;
+abstract class _UserRegisterPostRequestDto
+    implements UserRegisterPostRequestDto {
+  factory _UserRegisterPostRequestDto(
+          {@JsonKey(name: 'email') required final String email}) =
+      _$UserRegisterPostRequestDtoImpl;
 
-  factory _TypedAdditionalPropertiesDto.fromJson(Map<String, dynamic> json) =
-      _$TypedAdditionalPropertiesDtoImpl.fromJson;
+  factory _UserRegisterPostRequestDto.fromJson(Map<String, dynamic> json) =
+      _$UserRegisterPostRequestDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'email')
+  String get email;
+
+  /// Create a copy of UserRegisterPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserRegisterPostRequestDtoImplCopyWith<_$UserRegisterPostRequestDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+HelloNameGetResponseDto _$HelloNameGetResponseDtoFromJson(
+    Map<String, dynamic> json) {
+  return _HelloNameGetResponseDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$HelloNameGetResponseDto {
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+
+  /// Serializes this HelloNameGetResponseDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of HelloNameGetResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HelloNameGetResponseDtoCopyWith<HelloNameGetResponseDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HelloNameGetResponseDtoCopyWith<$Res> {
+  factory $HelloNameGetResponseDtoCopyWith(HelloNameGetResponseDto value,
+          $Res Function(HelloNameGetResponseDto) then) =
+      _$HelloNameGetResponseDtoCopyWithImpl<$Res, HelloNameGetResponseDto>;
+  @useResult
+  $Res call({@JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class _$HelloNameGetResponseDtoCopyWithImpl<$Res,
+        $Val extends HelloNameGetResponseDto>
+    implements $HelloNameGetResponseDtoCopyWith<$Res> {
+  _$HelloNameGetResponseDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of HelloNameGetResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HelloNameGetResponseDtoImplCopyWith<$Res>
+    implements $HelloNameGetResponseDtoCopyWith<$Res> {
+  factory _$$HelloNameGetResponseDtoImplCopyWith(
+          _$HelloNameGetResponseDtoImpl value,
+          $Res Function(_$HelloNameGetResponseDtoImpl) then) =
+      __$$HelloNameGetResponseDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class __$$HelloNameGetResponseDtoImplCopyWithImpl<$Res>
+    extends _$HelloNameGetResponseDtoCopyWithImpl<$Res,
+        _$HelloNameGetResponseDtoImpl>
+    implements _$$HelloNameGetResponseDtoImplCopyWith<$Res> {
+  __$$HelloNameGetResponseDtoImplCopyWithImpl(
+      _$HelloNameGetResponseDtoImpl _value,
+      $Res Function(_$HelloNameGetResponseDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HelloNameGetResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$HelloNameGetResponseDtoImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$HelloNameGetResponseDtoImpl implements _HelloNameGetResponseDto {
+  _$HelloNameGetResponseDtoImpl({@JsonKey(name: 'message') this.message});
+
+  factory _$HelloNameGetResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloNameGetResponseDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  @override
+  String toString() {
+    return 'HelloNameGetResponseDto(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HelloNameGetResponseDtoImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of HelloNameGetResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HelloNameGetResponseDtoImplCopyWith<_$HelloNameGetResponseDtoImpl>
+      get copyWith => __$$HelloNameGetResponseDtoImplCopyWithImpl<
+          _$HelloNameGetResponseDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HelloNameGetResponseDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _HelloNameGetResponseDto implements HelloNameGetResponseDto {
+  factory _HelloNameGetResponseDto(
+          {@JsonKey(name: 'message') final String? message}) =
+      _$HelloNameGetResponseDtoImpl;
+
+  factory _HelloNameGetResponseDto.fromJson(Map<String, dynamic> json) =
+      _$HelloNameGetResponseDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'message')
+  String? get message;
+
+  /// Create a copy of HelloNameGetResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HelloNameGetResponseDtoImplCopyWith<_$HelloNameGetResponseDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+HelloNamePutResponseDto _$HelloNamePutResponseDtoFromJson(
+    Map<String, dynamic> json) {
+  return _HelloNamePutResponseDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$HelloNamePutResponseDto {
+  @JsonKey(name: 'message')
+  String? get message => throw _privateConstructorUsedError;
+
+  /// Serializes this HelloNamePutResponseDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of HelloNamePutResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HelloNamePutResponseDtoCopyWith<HelloNamePutResponseDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HelloNamePutResponseDtoCopyWith<$Res> {
+  factory $HelloNamePutResponseDtoCopyWith(HelloNamePutResponseDto value,
+          $Res Function(HelloNamePutResponseDto) then) =
+      _$HelloNamePutResponseDtoCopyWithImpl<$Res, HelloNamePutResponseDto>;
+  @useResult
+  $Res call({@JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class _$HelloNamePutResponseDtoCopyWithImpl<$Res,
+        $Val extends HelloNamePutResponseDto>
+    implements $HelloNamePutResponseDtoCopyWith<$Res> {
+  _$HelloNamePutResponseDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of HelloNamePutResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HelloNamePutResponseDtoImplCopyWith<$Res>
+    implements $HelloNamePutResponseDtoCopyWith<$Res> {
+  factory _$$HelloNamePutResponseDtoImplCopyWith(
+          _$HelloNamePutResponseDtoImpl value,
+          $Res Function(_$HelloNamePutResponseDtoImpl) then) =
+      __$$HelloNamePutResponseDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class __$$HelloNamePutResponseDtoImplCopyWithImpl<$Res>
+    extends _$HelloNamePutResponseDtoCopyWithImpl<$Res,
+        _$HelloNamePutResponseDtoImpl>
+    implements _$$HelloNamePutResponseDtoImplCopyWith<$Res> {
+  __$$HelloNamePutResponseDtoImplCopyWithImpl(
+      _$HelloNamePutResponseDtoImpl _value,
+      $Res Function(_$HelloNamePutResponseDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HelloNamePutResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$HelloNamePutResponseDtoImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$HelloNamePutResponseDtoImpl implements _HelloNamePutResponseDto {
+  _$HelloNamePutResponseDtoImpl({@JsonKey(name: 'message') this.message});
+
+  factory _$HelloNamePutResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloNamePutResponseDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  @override
+  String toString() {
+    return 'HelloNamePutResponseDto(message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HelloNamePutResponseDtoImpl &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of HelloNamePutResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HelloNamePutResponseDtoImplCopyWith<_$HelloNamePutResponseDtoImpl>
+      get copyWith => __$$HelloNamePutResponseDtoImplCopyWithImpl<
+          _$HelloNamePutResponseDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HelloNamePutResponseDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _HelloNamePutResponseDto implements HelloNamePutResponseDto {
+  factory _HelloNamePutResponseDto(
+          {@JsonKey(name: 'message') final String? message}) =
+      _$HelloNamePutResponseDtoImpl;
+
+  factory _HelloNamePutResponseDto.fromJson(Map<String, dynamic> json) =
+      _$HelloNamePutResponseDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'message')
+  String? get message;
+
+  /// Create a copy of HelloNamePutResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HelloNamePutResponseDtoImplCopyWith<_$HelloNamePutResponseDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+HelloNamePutRequestDto _$HelloNamePutRequestDtoFromJson(
+    Map<String, dynamic> json) {
+  return _HelloNamePutRequestDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$HelloNamePutRequestDto {
+  @JsonKey(name: 'salutation')
+  String? get salutation => throw _privateConstructorUsedError;
+
+  /// Serializes this HelloNamePutRequestDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of HelloNamePutRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HelloNamePutRequestDtoCopyWith<HelloNamePutRequestDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HelloNamePutRequestDtoCopyWith<$Res> {
+  factory $HelloNamePutRequestDtoCopyWith(HelloNamePutRequestDto value,
+          $Res Function(HelloNamePutRequestDto) then) =
+      _$HelloNamePutRequestDtoCopyWithImpl<$Res, HelloNamePutRequestDto>;
+  @useResult
+  $Res call({@JsonKey(name: 'salutation') String? salutation});
+}
+
+/// @nodoc
+class _$HelloNamePutRequestDtoCopyWithImpl<$Res,
+        $Val extends HelloNamePutRequestDto>
+    implements $HelloNamePutRequestDtoCopyWith<$Res> {
+  _$HelloNamePutRequestDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of HelloNamePutRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? salutation = freezed,
+  }) {
+    return _then(_value.copyWith(
+      salutation: freezed == salutation
+          ? _value.salutation
+          : salutation // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HelloNamePutRequestDtoImplCopyWith<$Res>
+    implements $HelloNamePutRequestDtoCopyWith<$Res> {
+  factory _$$HelloNamePutRequestDtoImplCopyWith(
+          _$HelloNamePutRequestDtoImpl value,
+          $Res Function(_$HelloNamePutRequestDtoImpl) then) =
+      __$$HelloNamePutRequestDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'salutation') String? salutation});
+}
+
+/// @nodoc
+class __$$HelloNamePutRequestDtoImplCopyWithImpl<$Res>
+    extends _$HelloNamePutRequestDtoCopyWithImpl<$Res,
+        _$HelloNamePutRequestDtoImpl>
+    implements _$$HelloNamePutRequestDtoImplCopyWith<$Res> {
+  __$$HelloNamePutRequestDtoImplCopyWithImpl(
+      _$HelloNamePutRequestDtoImpl _value,
+      $Res Function(_$HelloNamePutRequestDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HelloNamePutRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? salutation = freezed,
+  }) {
+    return _then(_$HelloNamePutRequestDtoImpl(
+      salutation: freezed == salutation
+          ? _value.salutation
+          : salutation // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$HelloNamePutRequestDtoImpl implements _HelloNamePutRequestDto {
+  _$HelloNamePutRequestDtoImpl({@JsonKey(name: 'salutation') this.salutation});
+
+  factory _$HelloNamePutRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HelloNamePutRequestDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'salutation')
+  final String? salutation;
+
+  @override
+  String toString() {
+    return 'HelloNamePutRequestDto(salutation: $salutation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HelloNamePutRequestDtoImpl &&
+            (identical(other.salutation, salutation) ||
+                other.salutation == salutation));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, salutation);
+
+  /// Create a copy of HelloNamePutRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HelloNamePutRequestDtoImplCopyWith<_$HelloNamePutRequestDtoImpl>
+      get copyWith => __$$HelloNamePutRequestDtoImplCopyWithImpl<
+          _$HelloNamePutRequestDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HelloNamePutRequestDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _HelloNamePutRequestDto implements HelloNamePutRequestDto {
+  factory _HelloNamePutRequestDto(
+          {@JsonKey(name: 'salutation') final String? salutation}) =
+      _$HelloNamePutRequestDtoImpl;
+
+  factory _HelloNamePutRequestDto.fromJson(Map<String, dynamic> json) =
+      _$HelloNamePutRequestDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'salutation')
+  String? get salutation;
+
+  /// Create a copy of HelloNamePutRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HelloNamePutRequestDtoImplCopyWith<_$HelloNamePutRequestDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 UuidExampleMessageIdGetResponseDto _$UuidExampleMessageIdGetResponseDtoFromJson(

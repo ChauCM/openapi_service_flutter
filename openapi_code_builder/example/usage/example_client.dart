@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:logging/logging.dart';
 import 'package:logging_appenders/logging_appenders.dart';
-import 'package:openapi_code_builder_example/service/test_api.openapi.dart';
+import 'package:openapi_code_builder_example/service/test_api.openapi.dtos.dart';
+import 'package:openapi_code_builder_example/service/test_api.openapi.service.dart';
 
 final _logger = Logger('example_client');
 
@@ -23,7 +24,7 @@ Future<void> main() async {
 
     // Example: Call POST /user/register
     final __ = await client.userRegisterPost(
-      RegisterRequestDto(email: 'user@example.com'),
+      UserRegisterPostRequestDto(email: 'user@example.com'),
     );
   } catch (e) {
     _logger.severe('API call failed: $e');
