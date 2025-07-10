@@ -198,51 +198,51 @@ abstract class _ApiError implements ApiError {
       throw _privateConstructorUsedError;
 }
 
-AccountDtoDto _$AccountDtoDtoFromJson(Map<String, dynamic> json) {
-  return _AccountDtoDto.fromJson(json);
+AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) {
+  return _AccountDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AccountDtoDto {
+mixin _$AccountDto {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile => throw _privateConstructorUsedError;
+  ProfileDto get profile => throw _privateConstructorUsedError;
 
-  /// Serializes this AccountDtoDto to a JSON map.
+  /// Serializes this AccountDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of AccountDtoDto
+  /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $AccountDtoDtoCopyWith<AccountDtoDto> get copyWith =>
+  $AccountDtoCopyWith<AccountDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccountDtoDtoCopyWith<$Res> {
-  factory $AccountDtoDtoCopyWith(
-          AccountDtoDto value, $Res Function(AccountDtoDto) then) =
-      _$AccountDtoDtoCopyWithImpl<$Res, AccountDtoDto>;
+abstract class $AccountDtoCopyWith<$Res> {
+  factory $AccountDtoCopyWith(
+          AccountDto value, $Res Function(AccountDto) then) =
+      _$AccountDtoCopyWithImpl<$Res, AccountDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
-class _$AccountDtoDtoCopyWithImpl<$Res, $Val extends AccountDtoDto>
-    implements $AccountDtoDtoCopyWith<$Res> {
-  _$AccountDtoDtoCopyWithImpl(this._value, this._then);
+class _$AccountDtoCopyWithImpl<$Res, $Val extends AccountDto>
+    implements $AccountDtoCopyWith<$Res> {
+  _$AccountDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AccountDtoDto
+  /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -258,46 +258,46 @@ class _$AccountDtoDtoCopyWithImpl<$Res, $Val extends AccountDtoDto>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ) as $Val);
   }
 
-  /// Create a copy of AccountDtoDto
+  /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileDtoDtoCopyWith<$Res> get profile {
-    return $ProfileDtoDtoCopyWith<$Res>(_value.profile, (value) {
+  $ProfileDtoCopyWith<$Res> get profile {
+    return $ProfileDtoCopyWith<$Res>(_value.profile, (value) {
       return _then(_value.copyWith(profile: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$AccountDtoDtoImplCopyWith<$Res>
-    implements $AccountDtoDtoCopyWith<$Res> {
-  factory _$$AccountDtoDtoImplCopyWith(
-          _$AccountDtoDtoImpl value, $Res Function(_$AccountDtoDtoImpl) then) =
-      __$$AccountDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$AccountDtoImplCopyWith<$Res>
+    implements $AccountDtoCopyWith<$Res> {
+  factory _$$AccountDtoImplCopyWith(
+          _$AccountDtoImpl value, $Res Function(_$AccountDtoImpl) then) =
+      __$$AccountDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
   @override
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
-class __$$AccountDtoDtoImplCopyWithImpl<$Res>
-    extends _$AccountDtoDtoCopyWithImpl<$Res, _$AccountDtoDtoImpl>
-    implements _$$AccountDtoDtoImplCopyWith<$Res> {
-  __$$AccountDtoDtoImplCopyWithImpl(
-      _$AccountDtoDtoImpl _value, $Res Function(_$AccountDtoDtoImpl) _then)
+class __$$AccountDtoImplCopyWithImpl<$Res>
+    extends _$AccountDtoCopyWithImpl<$Res, _$AccountDtoImpl>
+    implements _$$AccountDtoImplCopyWith<$Res> {
+  __$$AccountDtoImplCopyWithImpl(
+      _$AccountDtoImpl _value, $Res Function(_$AccountDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AccountDtoDto
+  /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -305,7 +305,7 @@ class __$$AccountDtoDtoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? profile = null,
   }) {
-    return _then(_$AccountDtoDtoImpl(
+    return _then(_$AccountDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -313,38 +313,38 @@ class __$$AccountDtoDtoImplCopyWithImpl<$Res>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AccountDtoDtoImpl implements _AccountDtoDto {
-  _$AccountDtoDtoImpl(
+class _$AccountDtoImpl implements _AccountDto {
+  _$AccountDtoImpl(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'profile') required this.profile});
 
-  factory _$AccountDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AccountDtoDtoImplFromJson(json);
+  factory _$AccountDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
   final String id;
   @override
   @JsonKey(name: 'profile')
-  final ProfileDtoDto profile;
+  final ProfileDto profile;
 
   @override
   String toString() {
-    return 'AccountDtoDto(id: $id, profile: $profile)';
+    return 'AccountDto(id: $id, profile: $profile)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountDtoDtoImpl &&
+            other is _$AccountDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.profile, profile) || other.profile == profile));
   }
@@ -353,53 +353,52 @@ class _$AccountDtoDtoImpl implements _AccountDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, id, profile);
 
-  /// Create a copy of AccountDtoDto
+  /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountDtoDtoImplCopyWith<_$AccountDtoDtoImpl> get copyWith =>
-      __$$AccountDtoDtoImplCopyWithImpl<_$AccountDtoDtoImpl>(this, _$identity);
+  _$$AccountDtoImplCopyWith<_$AccountDtoImpl> get copyWith =>
+      __$$AccountDtoImplCopyWithImpl<_$AccountDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AccountDtoDtoImplToJson(
+    return _$$AccountDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _AccountDtoDto implements AccountDtoDto {
-  factory _AccountDtoDto(
+abstract class _AccountDto implements AccountDto {
+  factory _AccountDto(
           {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'profile') required final ProfileDtoDto profile}) =
-      _$AccountDtoDtoImpl;
+          @JsonKey(name: 'profile') required final ProfileDto profile}) =
+      _$AccountDtoImpl;
 
-  factory _AccountDtoDto.fromJson(Map<String, dynamic> json) =
-      _$AccountDtoDtoImpl.fromJson;
+  factory _AccountDto.fromJson(Map<String, dynamic> json) =
+      _$AccountDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
   String get id;
   @override
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile;
+  ProfileDto get profile;
 
-  /// Create a copy of AccountDtoDto
+  /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AccountDtoDtoImplCopyWith<_$AccountDtoDtoImpl> get copyWith =>
+  _$$AccountDtoImplCopyWith<_$AccountDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-BulkNotificationDtoDto _$BulkNotificationDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _BulkNotificationDtoDto.fromJson(json);
+BulkNotificationDto _$BulkNotificationDtoFromJson(Map<String, dynamic> json) {
+  return _BulkNotificationDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BulkNotificationDtoDto {
+mixin _$BulkNotificationDto {
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'body')
@@ -409,53 +408,49 @@ mixin _$BulkNotificationDtoDto {
   @JsonKey(name: 'userIds')
   List<String> get userIds => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId => throw _privateConstructorUsedError;
+  String? get relatedEntityId => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
   Map<String, String>? get data => throw _privateConstructorUsedError;
   @JsonKey(name: 'priority')
   int? get priority => throw _privateConstructorUsedError;
 
-  /// Serializes this BulkNotificationDtoDto to a JSON map.
+  /// Serializes this BulkNotificationDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of BulkNotificationDtoDto
+  /// Create a copy of BulkNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $BulkNotificationDtoDtoCopyWith<BulkNotificationDtoDto> get copyWith =>
+  $BulkNotificationDtoCopyWith<BulkNotificationDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BulkNotificationDtoDtoCopyWith<$Res> {
-  factory $BulkNotificationDtoDtoCopyWith(BulkNotificationDtoDto value,
-          $Res Function(BulkNotificationDtoDto) then) =
-      _$BulkNotificationDtoDtoCopyWithImpl<$Res, BulkNotificationDtoDto>;
+abstract class $BulkNotificationDtoCopyWith<$Res> {
+  factory $BulkNotificationDtoCopyWith(
+          BulkNotificationDto value, $Res Function(BulkNotificationDto) then) =
+      _$BulkNotificationDtoCopyWithImpl<$Res, BulkNotificationDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
 
 /// @nodoc
-class _$BulkNotificationDtoDtoCopyWithImpl<$Res,
-        $Val extends BulkNotificationDtoDto>
-    implements $BulkNotificationDtoDtoCopyWith<$Res> {
-  _$BulkNotificationDtoDtoCopyWithImpl(this._value, this._then);
+class _$BulkNotificationDtoCopyWithImpl<$Res, $Val extends BulkNotificationDto>
+    implements $BulkNotificationDtoCopyWith<$Res> {
+  _$BulkNotificationDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BulkNotificationDtoDto
+  /// Create a copy of BulkNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -488,7 +483,7 @@ class _$BulkNotificationDtoDtoCopyWithImpl<$Res,
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -502,12 +497,11 @@ class _$BulkNotificationDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$BulkNotificationDtoDtoImplCopyWith<$Res>
-    implements $BulkNotificationDtoDtoCopyWith<$Res> {
-  factory _$$BulkNotificationDtoDtoImplCopyWith(
-          _$BulkNotificationDtoDtoImpl value,
-          $Res Function(_$BulkNotificationDtoDtoImpl) then) =
-      __$$BulkNotificationDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$BulkNotificationDtoImplCopyWith<$Res>
+    implements $BulkNotificationDtoCopyWith<$Res> {
+  factory _$$BulkNotificationDtoImplCopyWith(_$BulkNotificationDtoImpl value,
+          $Res Function(_$BulkNotificationDtoImpl) then) =
+      __$$BulkNotificationDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -515,24 +509,20 @@ abstract class _$$BulkNotificationDtoDtoImplCopyWith<$Res>
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
 
 /// @nodoc
-class __$$BulkNotificationDtoDtoImplCopyWithImpl<$Res>
-    extends _$BulkNotificationDtoDtoCopyWithImpl<$Res,
-        _$BulkNotificationDtoDtoImpl>
-    implements _$$BulkNotificationDtoDtoImplCopyWith<$Res> {
-  __$$BulkNotificationDtoDtoImplCopyWithImpl(
-      _$BulkNotificationDtoDtoImpl _value,
-      $Res Function(_$BulkNotificationDtoDtoImpl) _then)
+class __$$BulkNotificationDtoImplCopyWithImpl<$Res>
+    extends _$BulkNotificationDtoCopyWithImpl<$Res, _$BulkNotificationDtoImpl>
+    implements _$$BulkNotificationDtoImplCopyWith<$Res> {
+  __$$BulkNotificationDtoImplCopyWithImpl(_$BulkNotificationDtoImpl _value,
+      $Res Function(_$BulkNotificationDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BulkNotificationDtoDto
+  /// Create a copy of BulkNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -545,7 +535,7 @@ class __$$BulkNotificationDtoDtoImplCopyWithImpl<$Res>
     Object? data = freezed,
     Object? priority = freezed,
   }) {
-    return _then(_$BulkNotificationDtoDtoImpl(
+    return _then(_$BulkNotificationDtoImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -565,7 +555,7 @@ class __$$BulkNotificationDtoDtoImplCopyWithImpl<$Res>
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -580,22 +570,20 @@ class __$$BulkNotificationDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BulkNotificationDtoDtoImpl implements _BulkNotificationDtoDto {
-  _$BulkNotificationDtoDtoImpl(
+class _$BulkNotificationDtoImpl implements _BulkNotificationDto {
+  _$BulkNotificationDtoImpl(
       {@JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'body') required this.body,
       @JsonKey(name: 'notificationType') required this.notificationType,
       @JsonKey(name: 'userIds') required final List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      this.relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority})
       : _userIds = userIds,
         _data = data;
 
-  factory _$BulkNotificationDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BulkNotificationDtoDtoImplFromJson(json);
+  factory _$BulkNotificationDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BulkNotificationDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'title')
@@ -617,8 +605,7 @@ class _$BulkNotificationDtoDtoImpl implements _BulkNotificationDtoDto {
 
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? relatedEntityId;
+  final String? relatedEntityId;
   final Map<String, String>? _data;
   @override
   @JsonKey(name: 'data')
@@ -636,14 +623,14 @@ class _$BulkNotificationDtoDtoImpl implements _BulkNotificationDtoDto {
 
   @override
   String toString() {
-    return 'BulkNotificationDtoDto(title: $title, body: $body, notificationType: $notificationType, userIds: $userIds, relatedEntityId: $relatedEntityId, data: $data, priority: $priority)';
+    return 'BulkNotificationDto(title: $title, body: $body, notificationType: $notificationType, userIds: $userIds, relatedEntityId: $relatedEntityId, data: $data, priority: $priority)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BulkNotificationDtoDtoImpl &&
+            other is _$BulkNotificationDtoImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
             (identical(other.notificationType, notificationType) ||
@@ -668,38 +655,36 @@ class _$BulkNotificationDtoDtoImpl implements _BulkNotificationDtoDto {
       const DeepCollectionEquality().hash(_data),
       priority);
 
-  /// Create a copy of BulkNotificationDtoDto
+  /// Create a copy of BulkNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$BulkNotificationDtoDtoImplCopyWith<_$BulkNotificationDtoDtoImpl>
-      get copyWith => __$$BulkNotificationDtoDtoImplCopyWithImpl<
-          _$BulkNotificationDtoDtoImpl>(this, _$identity);
+  _$$BulkNotificationDtoImplCopyWith<_$BulkNotificationDtoImpl> get copyWith =>
+      __$$BulkNotificationDtoImplCopyWithImpl<_$BulkNotificationDtoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BulkNotificationDtoDtoImplToJson(
+    return _$$BulkNotificationDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _BulkNotificationDtoDto implements BulkNotificationDtoDto {
-  factory _BulkNotificationDtoDto(
+abstract class _BulkNotificationDto implements BulkNotificationDto {
+  factory _BulkNotificationDto(
       {@JsonKey(name: 'title') required final String title,
       @JsonKey(name: 'body') required final String body,
       @JsonKey(name: 'notificationType') required final int notificationType,
       @JsonKey(name: 'userIds') required final List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') final String? relatedEntityId,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority')
-      final int? priority}) = _$BulkNotificationDtoDtoImpl;
+      final int? priority}) = _$BulkNotificationDtoImpl;
 
-  factory _BulkNotificationDtoDto.fromJson(Map<String, dynamic> json) =
-      _$BulkNotificationDtoDtoImpl.fromJson;
+  factory _BulkNotificationDto.fromJson(Map<String, dynamic> json) =
+      _$BulkNotificationDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'title')
@@ -715,8 +700,7 @@ abstract class _BulkNotificationDtoDto implements BulkNotificationDtoDto {
   List<String> get userIds;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId;
+  String? get relatedEntityId;
   @override
   @JsonKey(name: 'data')
   Map<String, String>? get data;
@@ -724,57 +708,57 @@ abstract class _BulkNotificationDtoDto implements BulkNotificationDtoDto {
   @JsonKey(name: 'priority')
   int? get priority;
 
-  /// Create a copy of BulkNotificationDtoDto
+  /// Create a copy of BulkNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BulkNotificationDtoDtoImplCopyWith<_$BulkNotificationDtoDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$BulkNotificationDtoImplCopyWith<_$BulkNotificationDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
-CreateCommentInteractionDtoDto _$CreateCommentInteractionDtoDtoFromJson(
+CreateCommentInteractionDto _$CreateCommentInteractionDtoFromJson(
     Map<String, dynamic> json) {
-  return _CreateCommentInteractionDtoDto.fromJson(json);
+  return _CreateCommentInteractionDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateCommentInteractionDtoDto {
+mixin _$CreateCommentInteractionDto {
   @JsonKey(name: 'type')
   int? get type => throw _privateConstructorUsedError;
 
-  /// Serializes this CreateCommentInteractionDtoDto to a JSON map.
+  /// Serializes this CreateCommentInteractionDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of CreateCommentInteractionDtoDto
+  /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateCommentInteractionDtoDtoCopyWith<CreateCommentInteractionDtoDto>
+  $CreateCommentInteractionDtoCopyWith<CreateCommentInteractionDto>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateCommentInteractionDtoDtoCopyWith<$Res> {
-  factory $CreateCommentInteractionDtoDtoCopyWith(
-          CreateCommentInteractionDtoDto value,
-          $Res Function(CreateCommentInteractionDtoDto) then) =
-      _$CreateCommentInteractionDtoDtoCopyWithImpl<$Res,
-          CreateCommentInteractionDtoDto>;
+abstract class $CreateCommentInteractionDtoCopyWith<$Res> {
+  factory $CreateCommentInteractionDtoCopyWith(
+          CreateCommentInteractionDto value,
+          $Res Function(CreateCommentInteractionDto) then) =
+      _$CreateCommentInteractionDtoCopyWithImpl<$Res,
+          CreateCommentInteractionDto>;
   @useResult
   $Res call({@JsonKey(name: 'type') int? type});
 }
 
 /// @nodoc
-class _$CreateCommentInteractionDtoDtoCopyWithImpl<$Res,
-        $Val extends CreateCommentInteractionDtoDto>
-    implements $CreateCommentInteractionDtoDtoCopyWith<$Res> {
-  _$CreateCommentInteractionDtoDtoCopyWithImpl(this._value, this._then);
+class _$CreateCommentInteractionDtoCopyWithImpl<$Res,
+        $Val extends CreateCommentInteractionDto>
+    implements $CreateCommentInteractionDtoCopyWith<$Res> {
+  _$CreateCommentInteractionDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateCommentInteractionDtoDto
+  /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -791,35 +775,35 @@ class _$CreateCommentInteractionDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$CreateCommentInteractionDtoDtoImplCopyWith<$Res>
-    implements $CreateCommentInteractionDtoDtoCopyWith<$Res> {
-  factory _$$CreateCommentInteractionDtoDtoImplCopyWith(
-          _$CreateCommentInteractionDtoDtoImpl value,
-          $Res Function(_$CreateCommentInteractionDtoDtoImpl) then) =
-      __$$CreateCommentInteractionDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$CreateCommentInteractionDtoImplCopyWith<$Res>
+    implements $CreateCommentInteractionDtoCopyWith<$Res> {
+  factory _$$CreateCommentInteractionDtoImplCopyWith(
+          _$CreateCommentInteractionDtoImpl value,
+          $Res Function(_$CreateCommentInteractionDtoImpl) then) =
+      __$$CreateCommentInteractionDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') int? type});
 }
 
 /// @nodoc
-class __$$CreateCommentInteractionDtoDtoImplCopyWithImpl<$Res>
-    extends _$CreateCommentInteractionDtoDtoCopyWithImpl<$Res,
-        _$CreateCommentInteractionDtoDtoImpl>
-    implements _$$CreateCommentInteractionDtoDtoImplCopyWith<$Res> {
-  __$$CreateCommentInteractionDtoDtoImplCopyWithImpl(
-      _$CreateCommentInteractionDtoDtoImpl _value,
-      $Res Function(_$CreateCommentInteractionDtoDtoImpl) _then)
+class __$$CreateCommentInteractionDtoImplCopyWithImpl<$Res>
+    extends _$CreateCommentInteractionDtoCopyWithImpl<$Res,
+        _$CreateCommentInteractionDtoImpl>
+    implements _$$CreateCommentInteractionDtoImplCopyWith<$Res> {
+  __$$CreateCommentInteractionDtoImplCopyWithImpl(
+      _$CreateCommentInteractionDtoImpl _value,
+      $Res Function(_$CreateCommentInteractionDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateCommentInteractionDtoDto
+  /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? type = freezed,
   }) {
-    return _then(_$CreateCommentInteractionDtoDtoImpl(
+    return _then(_$CreateCommentInteractionDtoImpl(
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -830,13 +814,13 @@ class __$$CreateCommentInteractionDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateCommentInteractionDtoDtoImpl
-    implements _CreateCommentInteractionDtoDto {
-  _$CreateCommentInteractionDtoDtoImpl({@JsonKey(name: 'type') this.type});
+class _$CreateCommentInteractionDtoImpl
+    implements _CreateCommentInteractionDto {
+  _$CreateCommentInteractionDtoImpl({@JsonKey(name: 'type') this.type});
 
-  factory _$CreateCommentInteractionDtoDtoImpl.fromJson(
+  factory _$CreateCommentInteractionDtoImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$CreateCommentInteractionDtoDtoImplFromJson(json);
+      _$$CreateCommentInteractionDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'type')
@@ -844,14 +828,14 @@ class _$CreateCommentInteractionDtoDtoImpl
 
   @override
   String toString() {
-    return 'CreateCommentInteractionDtoDto(type: $type)';
+    return 'CreateCommentInteractionDto(type: $type)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateCommentInteractionDtoDtoImpl &&
+            other is _$CreateCommentInteractionDtoImpl &&
             (identical(other.type, type) || other.type == type));
   }
 
@@ -859,97 +843,92 @@ class _$CreateCommentInteractionDtoDtoImpl
   @override
   int get hashCode => Object.hash(runtimeType, type);
 
-  /// Create a copy of CreateCommentInteractionDtoDto
+  /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateCommentInteractionDtoDtoImplCopyWith<
-          _$CreateCommentInteractionDtoDtoImpl>
-      get copyWith => __$$CreateCommentInteractionDtoDtoImplCopyWithImpl<
-          _$CreateCommentInteractionDtoDtoImpl>(this, _$identity);
+  _$$CreateCommentInteractionDtoImplCopyWith<_$CreateCommentInteractionDtoImpl>
+      get copyWith => __$$CreateCommentInteractionDtoImplCopyWithImpl<
+          _$CreateCommentInteractionDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateCommentInteractionDtoDtoImplToJson(
+    return _$$CreateCommentInteractionDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateCommentInteractionDtoDto
-    implements CreateCommentInteractionDtoDto {
-  factory _CreateCommentInteractionDtoDto(
+abstract class _CreateCommentInteractionDto
+    implements CreateCommentInteractionDto {
+  factory _CreateCommentInteractionDto(
           {@JsonKey(name: 'type') final int? type}) =
-      _$CreateCommentInteractionDtoDtoImpl;
+      _$CreateCommentInteractionDtoImpl;
 
-  factory _CreateCommentInteractionDtoDto.fromJson(Map<String, dynamic> json) =
-      _$CreateCommentInteractionDtoDtoImpl.fromJson;
+  factory _CreateCommentInteractionDto.fromJson(Map<String, dynamic> json) =
+      _$CreateCommentInteractionDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'type')
   int? get type;
 
-  /// Create a copy of CreateCommentInteractionDtoDto
+  /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateCommentInteractionDtoDtoImplCopyWith<
-          _$CreateCommentInteractionDtoDtoImpl>
+  _$$CreateCommentInteractionDtoImplCopyWith<_$CreateCommentInteractionDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-CreateReplyCommentDtoDto _$CreateReplyCommentDtoDtoFromJson(
+CreateReplyCommentDto _$CreateReplyCommentDtoFromJson(
     Map<String, dynamic> json) {
-  return _CreateReplyCommentDtoDto.fromJson(json);
+  return _CreateReplyCommentDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateReplyCommentDtoDto {
+mixin _$CreateReplyCommentDto {
   @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'responseToUserId')
   String? get responseToUserId => throw _privateConstructorUsedError;
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId => throw _privateConstructorUsedError;
+  String? get responseToCommentId => throw _privateConstructorUsedError;
 
-  /// Serializes this CreateReplyCommentDtoDto to a JSON map.
+  /// Serializes this CreateReplyCommentDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of CreateReplyCommentDtoDto
+  /// Create a copy of CreateReplyCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateReplyCommentDtoDtoCopyWith<CreateReplyCommentDtoDto> get copyWith =>
+  $CreateReplyCommentDtoCopyWith<CreateReplyCommentDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateReplyCommentDtoDtoCopyWith<$Res> {
-  factory $CreateReplyCommentDtoDtoCopyWith(CreateReplyCommentDtoDto value,
-          $Res Function(CreateReplyCommentDtoDto) then) =
-      _$CreateReplyCommentDtoDtoCopyWithImpl<$Res, CreateReplyCommentDtoDto>;
+abstract class $CreateReplyCommentDtoCopyWith<$Res> {
+  factory $CreateReplyCommentDtoCopyWith(CreateReplyCommentDto value,
+          $Res Function(CreateReplyCommentDto) then) =
+      _$CreateReplyCommentDtoCopyWithImpl<$Res, CreateReplyCommentDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
       @JsonKey(name: 'responseToUserId') String? responseToUserId,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId});
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId});
 }
 
 /// @nodoc
-class _$CreateReplyCommentDtoDtoCopyWithImpl<$Res,
-        $Val extends CreateReplyCommentDtoDto>
-    implements $CreateReplyCommentDtoDtoCopyWith<$Res> {
-  _$CreateReplyCommentDtoDtoCopyWithImpl(this._value, this._then);
+class _$CreateReplyCommentDtoCopyWithImpl<$Res,
+        $Val extends CreateReplyCommentDto>
+    implements $CreateReplyCommentDtoCopyWith<$Res> {
+  _$CreateReplyCommentDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateReplyCommentDtoDto
+  /// Create a copy of CreateReplyCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -970,39 +949,36 @@ class _$CreateReplyCommentDtoDtoCopyWithImpl<$Res,
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$CreateReplyCommentDtoDtoImplCopyWith<$Res>
-    implements $CreateReplyCommentDtoDtoCopyWith<$Res> {
-  factory _$$CreateReplyCommentDtoDtoImplCopyWith(
-          _$CreateReplyCommentDtoDtoImpl value,
-          $Res Function(_$CreateReplyCommentDtoDtoImpl) then) =
-      __$$CreateReplyCommentDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$CreateReplyCommentDtoImplCopyWith<$Res>
+    implements $CreateReplyCommentDtoCopyWith<$Res> {
+  factory _$$CreateReplyCommentDtoImplCopyWith(
+          _$CreateReplyCommentDtoImpl value,
+          $Res Function(_$CreateReplyCommentDtoImpl) then) =
+      __$$CreateReplyCommentDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
       @JsonKey(name: 'responseToUserId') String? responseToUserId,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId});
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId});
 }
 
 /// @nodoc
-class __$$CreateReplyCommentDtoDtoImplCopyWithImpl<$Res>
-    extends _$CreateReplyCommentDtoDtoCopyWithImpl<$Res,
-        _$CreateReplyCommentDtoDtoImpl>
-    implements _$$CreateReplyCommentDtoDtoImplCopyWith<$Res> {
-  __$$CreateReplyCommentDtoDtoImplCopyWithImpl(
-      _$CreateReplyCommentDtoDtoImpl _value,
-      $Res Function(_$CreateReplyCommentDtoDtoImpl) _then)
+class __$$CreateReplyCommentDtoImplCopyWithImpl<$Res>
+    extends _$CreateReplyCommentDtoCopyWithImpl<$Res,
+        _$CreateReplyCommentDtoImpl>
+    implements _$$CreateReplyCommentDtoImplCopyWith<$Res> {
+  __$$CreateReplyCommentDtoImplCopyWithImpl(_$CreateReplyCommentDtoImpl _value,
+      $Res Function(_$CreateReplyCommentDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateReplyCommentDtoDto
+  /// Create a copy of CreateReplyCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1011,7 +987,7 @@ class __$$CreateReplyCommentDtoDtoImplCopyWithImpl<$Res>
     Object? responseToUserId = freezed,
     Object? responseToCommentId = freezed,
   }) {
-    return _then(_$CreateReplyCommentDtoDtoImpl(
+    return _then(_$CreateReplyCommentDtoImpl(
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -1023,23 +999,21 @@ class __$$CreateReplyCommentDtoDtoImplCopyWithImpl<$Res>
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateReplyCommentDtoDtoImpl implements _CreateReplyCommentDtoDto {
-  _$CreateReplyCommentDtoDtoImpl(
+class _$CreateReplyCommentDtoImpl implements _CreateReplyCommentDto {
+  _$CreateReplyCommentDtoImpl(
       {@JsonKey(name: 'content') required this.content,
       @JsonKey(name: 'responseToUserId') this.responseToUserId,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      this.responseToCommentId});
+      @JsonKey(name: 'responseToCommentId') this.responseToCommentId});
 
-  factory _$CreateReplyCommentDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateReplyCommentDtoDtoImplFromJson(json);
+  factory _$CreateReplyCommentDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateReplyCommentDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'content')
@@ -1049,19 +1023,18 @@ class _$CreateReplyCommentDtoDtoImpl implements _CreateReplyCommentDtoDto {
   final String? responseToUserId;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? responseToCommentId;
+  final String? responseToCommentId;
 
   @override
   String toString() {
-    return 'CreateReplyCommentDtoDto(content: $content, responseToUserId: $responseToUserId, responseToCommentId: $responseToCommentId)';
+    return 'CreateReplyCommentDto(content: $content, responseToUserId: $responseToUserId, responseToCommentId: $responseToCommentId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateReplyCommentDtoDtoImpl &&
+            other is _$CreateReplyCommentDtoImpl &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.responseToUserId, responseToUserId) ||
                 other.responseToUserId == responseToUserId) &&
@@ -1074,33 +1047,32 @@ class _$CreateReplyCommentDtoDtoImpl implements _CreateReplyCommentDtoDto {
   int get hashCode =>
       Object.hash(runtimeType, content, responseToUserId, responseToCommentId);
 
-  /// Create a copy of CreateReplyCommentDtoDto
+  /// Create a copy of CreateReplyCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateReplyCommentDtoDtoImplCopyWith<_$CreateReplyCommentDtoDtoImpl>
-      get copyWith => __$$CreateReplyCommentDtoDtoImplCopyWithImpl<
-          _$CreateReplyCommentDtoDtoImpl>(this, _$identity);
+  _$$CreateReplyCommentDtoImplCopyWith<_$CreateReplyCommentDtoImpl>
+      get copyWith => __$$CreateReplyCommentDtoImplCopyWithImpl<
+          _$CreateReplyCommentDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateReplyCommentDtoDtoImplToJson(
+    return _$$CreateReplyCommentDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateReplyCommentDtoDto implements CreateReplyCommentDtoDto {
-  factory _CreateReplyCommentDtoDto(
+abstract class _CreateReplyCommentDto implements CreateReplyCommentDto {
+  factory _CreateReplyCommentDto(
       {@JsonKey(name: 'content') required final String content,
       @JsonKey(name: 'responseToUserId') final String? responseToUserId,
       @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? responseToCommentId}) = _$CreateReplyCommentDtoDtoImpl;
+      final String? responseToCommentId}) = _$CreateReplyCommentDtoImpl;
 
-  factory _CreateReplyCommentDtoDto.fromJson(Map<String, dynamic> json) =
-      _$CreateReplyCommentDtoDtoImpl.fromJson;
+  factory _CreateReplyCommentDto.fromJson(Map<String, dynamic> json) =
+      _$CreateReplyCommentDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'content')
@@ -1110,58 +1082,56 @@ abstract class _CreateReplyCommentDtoDto implements CreateReplyCommentDtoDto {
   String? get responseToUserId;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId;
+  String? get responseToCommentId;
 
-  /// Create a copy of CreateReplyCommentDtoDto
+  /// Create a copy of CreateReplyCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateReplyCommentDtoDtoImplCopyWith<_$CreateReplyCommentDtoDtoImpl>
+  _$$CreateReplyCommentDtoImplCopyWith<_$CreateReplyCommentDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-CreateStepCommentDtoDto _$CreateStepCommentDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _CreateStepCommentDtoDto.fromJson(json);
+CreateStepCommentDto _$CreateStepCommentDtoFromJson(Map<String, dynamic> json) {
+  return _CreateStepCommentDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateStepCommentDtoDto {
+mixin _$CreateStepCommentDto {
   @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
 
-  /// Serializes this CreateStepCommentDtoDto to a JSON map.
+  /// Serializes this CreateStepCommentDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of CreateStepCommentDtoDto
+  /// Create a copy of CreateStepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateStepCommentDtoDtoCopyWith<CreateStepCommentDtoDto> get copyWith =>
+  $CreateStepCommentDtoCopyWith<CreateStepCommentDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateStepCommentDtoDtoCopyWith<$Res> {
-  factory $CreateStepCommentDtoDtoCopyWith(CreateStepCommentDtoDto value,
-          $Res Function(CreateStepCommentDtoDto) then) =
-      _$CreateStepCommentDtoDtoCopyWithImpl<$Res, CreateStepCommentDtoDto>;
+abstract class $CreateStepCommentDtoCopyWith<$Res> {
+  factory $CreateStepCommentDtoCopyWith(CreateStepCommentDto value,
+          $Res Function(CreateStepCommentDto) then) =
+      _$CreateStepCommentDtoCopyWithImpl<$Res, CreateStepCommentDto>;
   @useResult
   $Res call({@JsonKey(name: 'content') String content});
 }
 
 /// @nodoc
-class _$CreateStepCommentDtoDtoCopyWithImpl<$Res,
-        $Val extends CreateStepCommentDtoDto>
-    implements $CreateStepCommentDtoDtoCopyWith<$Res> {
-  _$CreateStepCommentDtoDtoCopyWithImpl(this._value, this._then);
+class _$CreateStepCommentDtoCopyWithImpl<$Res,
+        $Val extends CreateStepCommentDto>
+    implements $CreateStepCommentDtoCopyWith<$Res> {
+  _$CreateStepCommentDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateStepCommentDtoDto
+  /// Create a copy of CreateStepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1178,35 +1148,32 @@ class _$CreateStepCommentDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$CreateStepCommentDtoDtoImplCopyWith<$Res>
-    implements $CreateStepCommentDtoDtoCopyWith<$Res> {
-  factory _$$CreateStepCommentDtoDtoImplCopyWith(
-          _$CreateStepCommentDtoDtoImpl value,
-          $Res Function(_$CreateStepCommentDtoDtoImpl) then) =
-      __$$CreateStepCommentDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$CreateStepCommentDtoImplCopyWith<$Res>
+    implements $CreateStepCommentDtoCopyWith<$Res> {
+  factory _$$CreateStepCommentDtoImplCopyWith(_$CreateStepCommentDtoImpl value,
+          $Res Function(_$CreateStepCommentDtoImpl) then) =
+      __$$CreateStepCommentDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'content') String content});
 }
 
 /// @nodoc
-class __$$CreateStepCommentDtoDtoImplCopyWithImpl<$Res>
-    extends _$CreateStepCommentDtoDtoCopyWithImpl<$Res,
-        _$CreateStepCommentDtoDtoImpl>
-    implements _$$CreateStepCommentDtoDtoImplCopyWith<$Res> {
-  __$$CreateStepCommentDtoDtoImplCopyWithImpl(
-      _$CreateStepCommentDtoDtoImpl _value,
-      $Res Function(_$CreateStepCommentDtoDtoImpl) _then)
+class __$$CreateStepCommentDtoImplCopyWithImpl<$Res>
+    extends _$CreateStepCommentDtoCopyWithImpl<$Res, _$CreateStepCommentDtoImpl>
+    implements _$$CreateStepCommentDtoImplCopyWith<$Res> {
+  __$$CreateStepCommentDtoImplCopyWithImpl(_$CreateStepCommentDtoImpl _value,
+      $Res Function(_$CreateStepCommentDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateStepCommentDtoDto
+  /// Create a copy of CreateStepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? content = null,
   }) {
-    return _then(_$CreateStepCommentDtoDtoImpl(
+    return _then(_$CreateStepCommentDtoImpl(
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -1217,12 +1184,11 @@ class __$$CreateStepCommentDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateStepCommentDtoDtoImpl implements _CreateStepCommentDtoDto {
-  _$CreateStepCommentDtoDtoImpl(
-      {@JsonKey(name: 'content') required this.content});
+class _$CreateStepCommentDtoImpl implements _CreateStepCommentDto {
+  _$CreateStepCommentDtoImpl({@JsonKey(name: 'content') required this.content});
 
-  factory _$CreateStepCommentDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateStepCommentDtoDtoImplFromJson(json);
+  factory _$CreateStepCommentDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateStepCommentDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'content')
@@ -1230,14 +1196,14 @@ class _$CreateStepCommentDtoDtoImpl implements _CreateStepCommentDtoDto {
 
   @override
   String toString() {
-    return 'CreateStepCommentDtoDto(content: $content)';
+    return 'CreateStepCommentDto(content: $content)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateStepCommentDtoDtoImpl &&
+            other is _$CreateStepCommentDtoImpl &&
             (identical(other.content, content) || other.content == content));
   }
 
@@ -1245,87 +1211,87 @@ class _$CreateStepCommentDtoDtoImpl implements _CreateStepCommentDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, content);
 
-  /// Create a copy of CreateStepCommentDtoDto
+  /// Create a copy of CreateStepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateStepCommentDtoDtoImplCopyWith<_$CreateStepCommentDtoDtoImpl>
-      get copyWith => __$$CreateStepCommentDtoDtoImplCopyWithImpl<
-          _$CreateStepCommentDtoDtoImpl>(this, _$identity);
+  _$$CreateStepCommentDtoImplCopyWith<_$CreateStepCommentDtoImpl>
+      get copyWith =>
+          __$$CreateStepCommentDtoImplCopyWithImpl<_$CreateStepCommentDtoImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateStepCommentDtoDtoImplToJson(
+    return _$$CreateStepCommentDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateStepCommentDtoDto implements CreateStepCommentDtoDto {
-  factory _CreateStepCommentDtoDto(
+abstract class _CreateStepCommentDto implements CreateStepCommentDto {
+  factory _CreateStepCommentDto(
           {@JsonKey(name: 'content') required final String content}) =
-      _$CreateStepCommentDtoDtoImpl;
+      _$CreateStepCommentDtoImpl;
 
-  factory _CreateStepCommentDtoDto.fromJson(Map<String, dynamic> json) =
-      _$CreateStepCommentDtoDtoImpl.fromJson;
+  factory _CreateStepCommentDto.fromJson(Map<String, dynamic> json) =
+      _$CreateStepCommentDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'content')
   String get content;
 
-  /// Create a copy of CreateStepCommentDtoDto
+  /// Create a copy of CreateStepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateStepCommentDtoDtoImplCopyWith<_$CreateStepCommentDtoDtoImpl>
+  _$$CreateStepCommentDtoImplCopyWith<_$CreateStepCommentDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-CreateStepDtoDto _$CreateStepDtoDtoFromJson(Map<String, dynamic> json) {
-  return _CreateStepDtoDto.fromJson(json);
+CreateStepDto _$CreateStepDtoFromJson(Map<String, dynamic> json) {
+  return _CreateStepDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateStepDtoDto {
+mixin _$CreateStepDto {
   @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid get journeyId => throw _privateConstructorUsedError;
+  String get journeyId => throw _privateConstructorUsedError;
 
-  /// Serializes this CreateStepDtoDto to a JSON map.
+  /// Serializes this CreateStepDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of CreateStepDtoDto
+  /// Create a copy of CreateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateStepDtoDtoCopyWith<CreateStepDtoDto> get copyWith =>
+  $CreateStepDtoCopyWith<CreateStepDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateStepDtoDtoCopyWith<$Res> {
-  factory $CreateStepDtoDtoCopyWith(
-          CreateStepDtoDto value, $Res Function(CreateStepDtoDto) then) =
-      _$CreateStepDtoDtoCopyWithImpl<$Res, CreateStepDtoDto>;
+abstract class $CreateStepDtoCopyWith<$Res> {
+  factory $CreateStepDtoCopyWith(
+          CreateStepDto value, $Res Function(CreateStepDto) then) =
+      _$CreateStepDtoCopyWithImpl<$Res, CreateStepDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid journeyId});
+      @JsonKey(name: 'journeyId') String journeyId});
 }
 
 /// @nodoc
-class _$CreateStepDtoDtoCopyWithImpl<$Res, $Val extends CreateStepDtoDto>
-    implements $CreateStepDtoDtoCopyWith<$Res> {
-  _$CreateStepDtoDtoCopyWithImpl(this._value, this._then);
+class _$CreateStepDtoCopyWithImpl<$Res, $Val extends CreateStepDto>
+    implements $CreateStepDtoCopyWith<$Res> {
+  _$CreateStepDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateStepDtoDto
+  /// Create a copy of CreateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1341,33 +1307,33 @@ class _$CreateStepDtoDtoCopyWithImpl<$Res, $Val extends CreateStepDtoDto>
       journeyId: null == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$CreateStepDtoDtoImplCopyWith<$Res>
-    implements $CreateStepDtoDtoCopyWith<$Res> {
-  factory _$$CreateStepDtoDtoImplCopyWith(_$CreateStepDtoDtoImpl value,
-          $Res Function(_$CreateStepDtoDtoImpl) then) =
-      __$$CreateStepDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$CreateStepDtoImplCopyWith<$Res>
+    implements $CreateStepDtoCopyWith<$Res> {
+  factory _$$CreateStepDtoImplCopyWith(
+          _$CreateStepDtoImpl value, $Res Function(_$CreateStepDtoImpl) then) =
+      __$$CreateStepDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid journeyId});
+      @JsonKey(name: 'journeyId') String journeyId});
 }
 
 /// @nodoc
-class __$$CreateStepDtoDtoImplCopyWithImpl<$Res>
-    extends _$CreateStepDtoDtoCopyWithImpl<$Res, _$CreateStepDtoDtoImpl>
-    implements _$$CreateStepDtoDtoImplCopyWith<$Res> {
-  __$$CreateStepDtoDtoImplCopyWithImpl(_$CreateStepDtoDtoImpl _value,
-      $Res Function(_$CreateStepDtoDtoImpl) _then)
+class __$$CreateStepDtoImplCopyWithImpl<$Res>
+    extends _$CreateStepDtoCopyWithImpl<$Res, _$CreateStepDtoImpl>
+    implements _$$CreateStepDtoImplCopyWith<$Res> {
+  __$$CreateStepDtoImplCopyWithImpl(
+      _$CreateStepDtoImpl _value, $Res Function(_$CreateStepDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateStepDtoDto
+  /// Create a copy of CreateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1375,7 +1341,7 @@ class __$$CreateStepDtoDtoImplCopyWithImpl<$Res>
     Object? content = null,
     Object? journeyId = null,
   }) {
-    return _then(_$CreateStepDtoDtoImpl(
+    return _then(_$CreateStepDtoImpl(
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -1383,41 +1349,38 @@ class __$$CreateStepDtoDtoImplCopyWithImpl<$Res>
       journeyId: null == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateStepDtoDtoImpl implements _CreateStepDtoDto {
-  _$CreateStepDtoDtoImpl(
+class _$CreateStepDtoImpl implements _CreateStepDto {
+  _$CreateStepDtoImpl(
       {@JsonKey(name: 'content') required this.content,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      required this.journeyId});
+      @JsonKey(name: 'journeyId') required this.journeyId});
 
-  factory _$CreateStepDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CreateStepDtoDtoImplFromJson(json);
+  factory _$CreateStepDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateStepDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'content')
   final String content;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid journeyId;
+  final String journeyId;
 
   @override
   String toString() {
-    return 'CreateStepDtoDto(content: $content, journeyId: $journeyId)';
+    return 'CreateStepDto(content: $content, journeyId: $journeyId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateStepDtoDtoImpl &&
+            other is _$CreateStepDtoImpl &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.journeyId, journeyId) ||
                 other.journeyId == journeyId));
@@ -1427,92 +1390,87 @@ class _$CreateStepDtoDtoImpl implements _CreateStepDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, content, journeyId);
 
-  /// Create a copy of CreateStepDtoDto
+  /// Create a copy of CreateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateStepDtoDtoImplCopyWith<_$CreateStepDtoDtoImpl> get copyWith =>
-      __$$CreateStepDtoDtoImplCopyWithImpl<_$CreateStepDtoDtoImpl>(
-          this, _$identity);
+  _$$CreateStepDtoImplCopyWith<_$CreateStepDtoImpl> get copyWith =>
+      __$$CreateStepDtoImplCopyWithImpl<_$CreateStepDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateStepDtoDtoImplToJson(
+    return _$$CreateStepDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateStepDtoDto implements CreateStepDtoDto {
-  factory _CreateStepDtoDto(
-      {@JsonKey(name: 'content') required final String content,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      required final ApiUuid journeyId}) = _$CreateStepDtoDtoImpl;
+abstract class _CreateStepDto implements CreateStepDto {
+  factory _CreateStepDto(
+          {@JsonKey(name: 'content') required final String content,
+          @JsonKey(name: 'journeyId') required final String journeyId}) =
+      _$CreateStepDtoImpl;
 
-  factory _CreateStepDtoDto.fromJson(Map<String, dynamic> json) =
-      _$CreateStepDtoDtoImpl.fromJson;
+  factory _CreateStepDto.fromJson(Map<String, dynamic> json) =
+      _$CreateStepDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'content')
   String get content;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid get journeyId;
+  String get journeyId;
 
-  /// Create a copy of CreateStepDtoDto
+  /// Create a copy of CreateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateStepDtoDtoImplCopyWith<_$CreateStepDtoDtoImpl> get copyWith =>
+  _$$CreateStepDtoImplCopyWith<_$CreateStepDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-CreateStepInteractionDtoDto _$CreateStepInteractionDtoDtoFromJson(
+CreateStepInteractionDto _$CreateStepInteractionDtoFromJson(
     Map<String, dynamic> json) {
-  return _CreateStepInteractionDtoDto.fromJson(json);
+  return _CreateStepInteractionDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateStepInteractionDtoDto {
+mixin _$CreateStepInteractionDto {
   @JsonKey(name: 'type')
   int? get type => throw _privateConstructorUsedError;
 
-  /// Serializes this CreateStepInteractionDtoDto to a JSON map.
+  /// Serializes this CreateStepInteractionDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of CreateStepInteractionDtoDto
+  /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CreateStepInteractionDtoDtoCopyWith<CreateStepInteractionDtoDto>
-      get copyWith => throw _privateConstructorUsedError;
+  $CreateStepInteractionDtoCopyWith<CreateStepInteractionDto> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateStepInteractionDtoDtoCopyWith<$Res> {
-  factory $CreateStepInteractionDtoDtoCopyWith(
-          CreateStepInteractionDtoDto value,
-          $Res Function(CreateStepInteractionDtoDto) then) =
-      _$CreateStepInteractionDtoDtoCopyWithImpl<$Res,
-          CreateStepInteractionDtoDto>;
+abstract class $CreateStepInteractionDtoCopyWith<$Res> {
+  factory $CreateStepInteractionDtoCopyWith(CreateStepInteractionDto value,
+          $Res Function(CreateStepInteractionDto) then) =
+      _$CreateStepInteractionDtoCopyWithImpl<$Res, CreateStepInteractionDto>;
   @useResult
   $Res call({@JsonKey(name: 'type') int? type});
 }
 
 /// @nodoc
-class _$CreateStepInteractionDtoDtoCopyWithImpl<$Res,
-        $Val extends CreateStepInteractionDtoDto>
-    implements $CreateStepInteractionDtoDtoCopyWith<$Res> {
-  _$CreateStepInteractionDtoDtoCopyWithImpl(this._value, this._then);
+class _$CreateStepInteractionDtoCopyWithImpl<$Res,
+        $Val extends CreateStepInteractionDto>
+    implements $CreateStepInteractionDtoCopyWith<$Res> {
+  _$CreateStepInteractionDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateStepInteractionDtoDto
+  /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1529,35 +1487,35 @@ class _$CreateStepInteractionDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$CreateStepInteractionDtoDtoImplCopyWith<$Res>
-    implements $CreateStepInteractionDtoDtoCopyWith<$Res> {
-  factory _$$CreateStepInteractionDtoDtoImplCopyWith(
-          _$CreateStepInteractionDtoDtoImpl value,
-          $Res Function(_$CreateStepInteractionDtoDtoImpl) then) =
-      __$$CreateStepInteractionDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$CreateStepInteractionDtoImplCopyWith<$Res>
+    implements $CreateStepInteractionDtoCopyWith<$Res> {
+  factory _$$CreateStepInteractionDtoImplCopyWith(
+          _$CreateStepInteractionDtoImpl value,
+          $Res Function(_$CreateStepInteractionDtoImpl) then) =
+      __$$CreateStepInteractionDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'type') int? type});
 }
 
 /// @nodoc
-class __$$CreateStepInteractionDtoDtoImplCopyWithImpl<$Res>
-    extends _$CreateStepInteractionDtoDtoCopyWithImpl<$Res,
-        _$CreateStepInteractionDtoDtoImpl>
-    implements _$$CreateStepInteractionDtoDtoImplCopyWith<$Res> {
-  __$$CreateStepInteractionDtoDtoImplCopyWithImpl(
-      _$CreateStepInteractionDtoDtoImpl _value,
-      $Res Function(_$CreateStepInteractionDtoDtoImpl) _then)
+class __$$CreateStepInteractionDtoImplCopyWithImpl<$Res>
+    extends _$CreateStepInteractionDtoCopyWithImpl<$Res,
+        _$CreateStepInteractionDtoImpl>
+    implements _$$CreateStepInteractionDtoImplCopyWith<$Res> {
+  __$$CreateStepInteractionDtoImplCopyWithImpl(
+      _$CreateStepInteractionDtoImpl _value,
+      $Res Function(_$CreateStepInteractionDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateStepInteractionDtoDto
+  /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? type = freezed,
   }) {
-    return _then(_$CreateStepInteractionDtoDtoImpl(
+    return _then(_$CreateStepInteractionDtoImpl(
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1568,13 +1526,11 @@ class __$$CreateStepInteractionDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CreateStepInteractionDtoDtoImpl
-    implements _CreateStepInteractionDtoDto {
-  _$CreateStepInteractionDtoDtoImpl({@JsonKey(name: 'type') this.type});
+class _$CreateStepInteractionDtoImpl implements _CreateStepInteractionDto {
+  _$CreateStepInteractionDtoImpl({@JsonKey(name: 'type') this.type});
 
-  factory _$CreateStepInteractionDtoDtoImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$CreateStepInteractionDtoDtoImplFromJson(json);
+  factory _$CreateStepInteractionDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreateStepInteractionDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'type')
@@ -1582,14 +1538,14 @@ class _$CreateStepInteractionDtoDtoImpl
 
   @override
   String toString() {
-    return 'CreateStepInteractionDtoDto(type: $type)';
+    return 'CreateStepInteractionDto(type: $type)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateStepInteractionDtoDtoImpl &&
+            other is _$CreateStepInteractionDtoImpl &&
             (identical(other.type, type) || other.type == type));
   }
 
@@ -1597,50 +1553,48 @@ class _$CreateStepInteractionDtoDtoImpl
   @override
   int get hashCode => Object.hash(runtimeType, type);
 
-  /// Create a copy of CreateStepInteractionDtoDto
+  /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreateStepInteractionDtoDtoImplCopyWith<_$CreateStepInteractionDtoDtoImpl>
-      get copyWith => __$$CreateStepInteractionDtoDtoImplCopyWithImpl<
-          _$CreateStepInteractionDtoDtoImpl>(this, _$identity);
+  _$$CreateStepInteractionDtoImplCopyWith<_$CreateStepInteractionDtoImpl>
+      get copyWith => __$$CreateStepInteractionDtoImplCopyWithImpl<
+          _$CreateStepInteractionDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CreateStepInteractionDtoDtoImplToJson(
+    return _$$CreateStepInteractionDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _CreateStepInteractionDtoDto
-    implements CreateStepInteractionDtoDto {
-  factory _CreateStepInteractionDtoDto(
-          {@JsonKey(name: 'type') final int? type}) =
-      _$CreateStepInteractionDtoDtoImpl;
+abstract class _CreateStepInteractionDto implements CreateStepInteractionDto {
+  factory _CreateStepInteractionDto({@JsonKey(name: 'type') final int? type}) =
+      _$CreateStepInteractionDtoImpl;
 
-  factory _CreateStepInteractionDtoDto.fromJson(Map<String, dynamic> json) =
-      _$CreateStepInteractionDtoDtoImpl.fromJson;
+  factory _CreateStepInteractionDto.fromJson(Map<String, dynamic> json) =
+      _$CreateStepInteractionDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'type')
   int? get type;
 
-  /// Create a copy of CreateStepInteractionDtoDto
+  /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateStepInteractionDtoDtoImplCopyWith<_$CreateStepInteractionDtoDtoImpl>
+  _$$CreateStepInteractionDtoImplCopyWith<_$CreateStepInteractionDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-EditUserDtoDto _$EditUserDtoDtoFromJson(Map<String, dynamic> json) {
-  return _EditUserDtoDto.fromJson(json);
+EditUserDto _$EditUserDtoFromJson(Map<String, dynamic> json) {
+  return _EditUserDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$EditUserDtoDto {
+mixin _$EditUserDto {
   @JsonKey(name: 'displayName')
   String get displayName => throw _privateConstructorUsedError;
   @JsonKey(name: 'username')
@@ -1650,21 +1604,21 @@ mixin _$EditUserDtoDto {
   @JsonKey(name: 'isPrivate')
   bool? get isPrivate => throw _privateConstructorUsedError;
 
-  /// Serializes this EditUserDtoDto to a JSON map.
+  /// Serializes this EditUserDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of EditUserDtoDto
+  /// Create a copy of EditUserDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $EditUserDtoDtoCopyWith<EditUserDtoDto> get copyWith =>
+  $EditUserDtoCopyWith<EditUserDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EditUserDtoDtoCopyWith<$Res> {
-  factory $EditUserDtoDtoCopyWith(
-          EditUserDtoDto value, $Res Function(EditUserDtoDto) then) =
-      _$EditUserDtoDtoCopyWithImpl<$Res, EditUserDtoDto>;
+abstract class $EditUserDtoCopyWith<$Res> {
+  factory $EditUserDtoCopyWith(
+          EditUserDto value, $Res Function(EditUserDto) then) =
+      _$EditUserDtoCopyWithImpl<$Res, EditUserDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'displayName') String displayName,
@@ -1674,16 +1628,16 @@ abstract class $EditUserDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EditUserDtoDtoCopyWithImpl<$Res, $Val extends EditUserDtoDto>
-    implements $EditUserDtoDtoCopyWith<$Res> {
-  _$EditUserDtoDtoCopyWithImpl(this._value, this._then);
+class _$EditUserDtoCopyWithImpl<$Res, $Val extends EditUserDto>
+    implements $EditUserDtoCopyWith<$Res> {
+  _$EditUserDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EditUserDtoDto
+  /// Create a copy of EditUserDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1715,11 +1669,11 @@ class _$EditUserDtoDtoCopyWithImpl<$Res, $Val extends EditUserDtoDto>
 }
 
 /// @nodoc
-abstract class _$$EditUserDtoDtoImplCopyWith<$Res>
-    implements $EditUserDtoDtoCopyWith<$Res> {
-  factory _$$EditUserDtoDtoImplCopyWith(_$EditUserDtoDtoImpl value,
-          $Res Function(_$EditUserDtoDtoImpl) then) =
-      __$$EditUserDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$EditUserDtoImplCopyWith<$Res>
+    implements $EditUserDtoCopyWith<$Res> {
+  factory _$$EditUserDtoImplCopyWith(
+          _$EditUserDtoImpl value, $Res Function(_$EditUserDtoImpl) then) =
+      __$$EditUserDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1730,14 +1684,14 @@ abstract class _$$EditUserDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$EditUserDtoDtoImplCopyWithImpl<$Res>
-    extends _$EditUserDtoDtoCopyWithImpl<$Res, _$EditUserDtoDtoImpl>
-    implements _$$EditUserDtoDtoImplCopyWith<$Res> {
-  __$$EditUserDtoDtoImplCopyWithImpl(
-      _$EditUserDtoDtoImpl _value, $Res Function(_$EditUserDtoDtoImpl) _then)
+class __$$EditUserDtoImplCopyWithImpl<$Res>
+    extends _$EditUserDtoCopyWithImpl<$Res, _$EditUserDtoImpl>
+    implements _$$EditUserDtoImplCopyWith<$Res> {
+  __$$EditUserDtoImplCopyWithImpl(
+      _$EditUserDtoImpl _value, $Res Function(_$EditUserDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EditUserDtoDto
+  /// Create a copy of EditUserDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1747,7 +1701,7 @@ class __$$EditUserDtoDtoImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? isPrivate = freezed,
   }) {
-    return _then(_$EditUserDtoDtoImpl(
+    return _then(_$EditUserDtoImpl(
       displayName: null == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -1770,15 +1724,15 @@ class __$$EditUserDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$EditUserDtoDtoImpl implements _EditUserDtoDto {
-  _$EditUserDtoDtoImpl(
+class _$EditUserDtoImpl implements _EditUserDto {
+  _$EditUserDtoImpl(
       {@JsonKey(name: 'displayName') required this.displayName,
       @JsonKey(name: 'username') required this.username,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'isPrivate') this.isPrivate});
 
-  factory _$EditUserDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EditUserDtoDtoImplFromJson(json);
+  factory _$EditUserDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EditUserDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'displayName')
@@ -1795,14 +1749,14 @@ class _$EditUserDtoDtoImpl implements _EditUserDtoDto {
 
   @override
   String toString() {
-    return 'EditUserDtoDto(displayName: $displayName, username: $username, description: $description, isPrivate: $isPrivate)';
+    return 'EditUserDto(displayName: $displayName, username: $username, description: $description, isPrivate: $isPrivate)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EditUserDtoDtoImpl &&
+            other is _$EditUserDtoImpl &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
             (identical(other.username, username) ||
@@ -1818,33 +1772,31 @@ class _$EditUserDtoDtoImpl implements _EditUserDtoDto {
   int get hashCode =>
       Object.hash(runtimeType, displayName, username, description, isPrivate);
 
-  /// Create a copy of EditUserDtoDto
+  /// Create a copy of EditUserDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$EditUserDtoDtoImplCopyWith<_$EditUserDtoDtoImpl> get copyWith =>
-      __$$EditUserDtoDtoImplCopyWithImpl<_$EditUserDtoDtoImpl>(
-          this, _$identity);
+  _$$EditUserDtoImplCopyWith<_$EditUserDtoImpl> get copyWith =>
+      __$$EditUserDtoImplCopyWithImpl<_$EditUserDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EditUserDtoDtoImplToJson(
+    return _$$EditUserDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _EditUserDtoDto implements EditUserDtoDto {
-  factory _EditUserDtoDto(
-          {@JsonKey(name: 'displayName') required final String displayName,
-          @JsonKey(name: 'username') required final String username,
-          @JsonKey(name: 'description') final String? description,
-          @JsonKey(name: 'isPrivate') final bool? isPrivate}) =
-      _$EditUserDtoDtoImpl;
+abstract class _EditUserDto implements EditUserDto {
+  factory _EditUserDto(
+      {@JsonKey(name: 'displayName') required final String displayName,
+      @JsonKey(name: 'username') required final String username,
+      @JsonKey(name: 'description') final String? description,
+      @JsonKey(name: 'isPrivate') final bool? isPrivate}) = _$EditUserDtoImpl;
 
-  factory _EditUserDtoDto.fromJson(Map<String, dynamic> json) =
-      _$EditUserDtoDtoImpl.fromJson;
+  factory _EditUserDto.fromJson(Map<String, dynamic> json) =
+      _$EditUserDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'displayName')
@@ -1859,41 +1811,40 @@ abstract class _EditUserDtoDto implements EditUserDtoDto {
   @JsonKey(name: 'isPrivate')
   bool? get isPrivate;
 
-  /// Create a copy of EditUserDtoDto
+  /// Create a copy of EditUserDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EditUserDtoDtoImplCopyWith<_$EditUserDtoDtoImpl> get copyWith =>
+  _$$EditUserDtoImplCopyWith<_$EditUserDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-FollowingResultDtoDto _$FollowingResultDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _FollowingResultDtoDto.fromJson(json);
+FollowingResultDto _$FollowingResultDtoFromJson(Map<String, dynamic> json) {
+  return _FollowingResultDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FollowingResultDtoDto {
+mixin _$FollowingResultDto {
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
 
-  /// Serializes this FollowingResultDtoDto to a JSON map.
+  /// Serializes this FollowingResultDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of FollowingResultDtoDto
+  /// Create a copy of FollowingResultDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $FollowingResultDtoDtoCopyWith<FollowingResultDtoDto> get copyWith =>
+  $FollowingResultDtoCopyWith<FollowingResultDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FollowingResultDtoDtoCopyWith<$Res> {
-  factory $FollowingResultDtoDtoCopyWith(FollowingResultDtoDto value,
-          $Res Function(FollowingResultDtoDto) then) =
-      _$FollowingResultDtoDtoCopyWithImpl<$Res, FollowingResultDtoDto>;
+abstract class $FollowingResultDtoCopyWith<$Res> {
+  factory $FollowingResultDtoCopyWith(
+          FollowingResultDto value, $Res Function(FollowingResultDto) then) =
+      _$FollowingResultDtoCopyWithImpl<$Res, FollowingResultDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'status') int status,
@@ -1901,17 +1852,16 @@ abstract class $FollowingResultDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FollowingResultDtoDtoCopyWithImpl<$Res,
-        $Val extends FollowingResultDtoDto>
-    implements $FollowingResultDtoDtoCopyWith<$Res> {
-  _$FollowingResultDtoDtoCopyWithImpl(this._value, this._then);
+class _$FollowingResultDtoCopyWithImpl<$Res, $Val extends FollowingResultDto>
+    implements $FollowingResultDtoCopyWith<$Res> {
+  _$FollowingResultDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FollowingResultDtoDto
+  /// Create a copy of FollowingResultDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1933,12 +1883,11 @@ class _$FollowingResultDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$FollowingResultDtoDtoImplCopyWith<$Res>
-    implements $FollowingResultDtoDtoCopyWith<$Res> {
-  factory _$$FollowingResultDtoDtoImplCopyWith(
-          _$FollowingResultDtoDtoImpl value,
-          $Res Function(_$FollowingResultDtoDtoImpl) then) =
-      __$$FollowingResultDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$FollowingResultDtoImplCopyWith<$Res>
+    implements $FollowingResultDtoCopyWith<$Res> {
+  factory _$$FollowingResultDtoImplCopyWith(_$FollowingResultDtoImpl value,
+          $Res Function(_$FollowingResultDtoImpl) then) =
+      __$$FollowingResultDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1947,15 +1896,14 @@ abstract class _$$FollowingResultDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$FollowingResultDtoDtoImplCopyWithImpl<$Res>
-    extends _$FollowingResultDtoDtoCopyWithImpl<$Res,
-        _$FollowingResultDtoDtoImpl>
-    implements _$$FollowingResultDtoDtoImplCopyWith<$Res> {
-  __$$FollowingResultDtoDtoImplCopyWithImpl(_$FollowingResultDtoDtoImpl _value,
-      $Res Function(_$FollowingResultDtoDtoImpl) _then)
+class __$$FollowingResultDtoImplCopyWithImpl<$Res>
+    extends _$FollowingResultDtoCopyWithImpl<$Res, _$FollowingResultDtoImpl>
+    implements _$$FollowingResultDtoImplCopyWith<$Res> {
+  __$$FollowingResultDtoImplCopyWithImpl(_$FollowingResultDtoImpl _value,
+      $Res Function(_$FollowingResultDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FollowingResultDtoDto
+  /// Create a copy of FollowingResultDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1963,7 +1911,7 @@ class __$$FollowingResultDtoDtoImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = freezed,
   }) {
-    return _then(_$FollowingResultDtoDtoImpl(
+    return _then(_$FollowingResultDtoImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -1978,13 +1926,13 @@ class __$$FollowingResultDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FollowingResultDtoDtoImpl implements _FollowingResultDtoDto {
-  _$FollowingResultDtoDtoImpl(
+class _$FollowingResultDtoImpl implements _FollowingResultDto {
+  _$FollowingResultDtoImpl(
       {@JsonKey(name: 'status') required this.status,
       @JsonKey(name: 'message') this.message});
 
-  factory _$FollowingResultDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FollowingResultDtoDtoImplFromJson(json);
+  factory _$FollowingResultDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FollowingResultDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'status')
@@ -1995,14 +1943,14 @@ class _$FollowingResultDtoDtoImpl implements _FollowingResultDtoDto {
 
   @override
   String toString() {
-    return 'FollowingResultDtoDto(status: $status, message: $message)';
+    return 'FollowingResultDto(status: $status, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FollowingResultDtoDtoImpl &&
+            other is _$FollowingResultDtoImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -2011,31 +1959,31 @@ class _$FollowingResultDtoDtoImpl implements _FollowingResultDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  /// Create a copy of FollowingResultDtoDto
+  /// Create a copy of FollowingResultDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FollowingResultDtoDtoImplCopyWith<_$FollowingResultDtoDtoImpl>
-      get copyWith => __$$FollowingResultDtoDtoImplCopyWithImpl<
-          _$FollowingResultDtoDtoImpl>(this, _$identity);
+  _$$FollowingResultDtoImplCopyWith<_$FollowingResultDtoImpl> get copyWith =>
+      __$$FollowingResultDtoImplCopyWithImpl<_$FollowingResultDtoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FollowingResultDtoDtoImplToJson(
+    return _$$FollowingResultDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _FollowingResultDtoDto implements FollowingResultDtoDto {
-  factory _FollowingResultDtoDto(
+abstract class _FollowingResultDto implements FollowingResultDto {
+  factory _FollowingResultDto(
           {@JsonKey(name: 'status') required final int status,
           @JsonKey(name: 'message') final String? message}) =
-      _$FollowingResultDtoDtoImpl;
+      _$FollowingResultDtoImpl;
 
-  factory _FollowingResultDtoDto.fromJson(Map<String, dynamic> json) =
-      _$FollowingResultDtoDtoImpl.fromJson;
+  factory _FollowingResultDto.fromJson(Map<String, dynamic> json) =
+      _$FollowingResultDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'status')
@@ -2044,55 +1992,53 @@ abstract class _FollowingResultDtoDto implements FollowingResultDtoDto {
   @JsonKey(name: 'message')
   String? get message;
 
-  /// Create a copy of FollowingResultDtoDto
+  /// Create a copy of FollowingResultDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FollowingResultDtoDtoImplCopyWith<_$FollowingResultDtoDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$FollowingResultDtoImplCopyWith<_$FollowingResultDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
-FollowingStatusDtoDto _$FollowingStatusDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _FollowingStatusDtoDto.fromJson(json);
+FollowingStatusDto _$FollowingStatusDtoFromJson(Map<String, dynamic> json) {
+  return _FollowingStatusDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FollowingStatusDtoDto {
+mixin _$FollowingStatusDto {
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
 
-  /// Serializes this FollowingStatusDtoDto to a JSON map.
+  /// Serializes this FollowingStatusDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of FollowingStatusDtoDto
+  /// Create a copy of FollowingStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $FollowingStatusDtoDtoCopyWith<FollowingStatusDtoDto> get copyWith =>
+  $FollowingStatusDtoCopyWith<FollowingStatusDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FollowingStatusDtoDtoCopyWith<$Res> {
-  factory $FollowingStatusDtoDtoCopyWith(FollowingStatusDtoDto value,
-          $Res Function(FollowingStatusDtoDto) then) =
-      _$FollowingStatusDtoDtoCopyWithImpl<$Res, FollowingStatusDtoDto>;
+abstract class $FollowingStatusDtoCopyWith<$Res> {
+  factory $FollowingStatusDtoCopyWith(
+          FollowingStatusDto value, $Res Function(FollowingStatusDto) then) =
+      _$FollowingStatusDtoCopyWithImpl<$Res, FollowingStatusDto>;
   @useResult
   $Res call({@JsonKey(name: 'status') int status});
 }
 
 /// @nodoc
-class _$FollowingStatusDtoDtoCopyWithImpl<$Res,
-        $Val extends FollowingStatusDtoDto>
-    implements $FollowingStatusDtoDtoCopyWith<$Res> {
-  _$FollowingStatusDtoDtoCopyWithImpl(this._value, this._then);
+class _$FollowingStatusDtoCopyWithImpl<$Res, $Val extends FollowingStatusDto>
+    implements $FollowingStatusDtoCopyWith<$Res> {
+  _$FollowingStatusDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FollowingStatusDtoDto
+  /// Create a copy of FollowingStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2109,34 +2055,32 @@ class _$FollowingStatusDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$FollowingStatusDtoDtoImplCopyWith<$Res>
-    implements $FollowingStatusDtoDtoCopyWith<$Res> {
-  factory _$$FollowingStatusDtoDtoImplCopyWith(
-          _$FollowingStatusDtoDtoImpl value,
-          $Res Function(_$FollowingStatusDtoDtoImpl) then) =
-      __$$FollowingStatusDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$FollowingStatusDtoImplCopyWith<$Res>
+    implements $FollowingStatusDtoCopyWith<$Res> {
+  factory _$$FollowingStatusDtoImplCopyWith(_$FollowingStatusDtoImpl value,
+          $Res Function(_$FollowingStatusDtoImpl) then) =
+      __$$FollowingStatusDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'status') int status});
 }
 
 /// @nodoc
-class __$$FollowingStatusDtoDtoImplCopyWithImpl<$Res>
-    extends _$FollowingStatusDtoDtoCopyWithImpl<$Res,
-        _$FollowingStatusDtoDtoImpl>
-    implements _$$FollowingStatusDtoDtoImplCopyWith<$Res> {
-  __$$FollowingStatusDtoDtoImplCopyWithImpl(_$FollowingStatusDtoDtoImpl _value,
-      $Res Function(_$FollowingStatusDtoDtoImpl) _then)
+class __$$FollowingStatusDtoImplCopyWithImpl<$Res>
+    extends _$FollowingStatusDtoCopyWithImpl<$Res, _$FollowingStatusDtoImpl>
+    implements _$$FollowingStatusDtoImplCopyWith<$Res> {
+  __$$FollowingStatusDtoImplCopyWithImpl(_$FollowingStatusDtoImpl _value,
+      $Res Function(_$FollowingStatusDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FollowingStatusDtoDto
+  /// Create a copy of FollowingStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
   }) {
-    return _then(_$FollowingStatusDtoDtoImpl(
+    return _then(_$FollowingStatusDtoImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -2147,11 +2091,11 @@ class __$$FollowingStatusDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FollowingStatusDtoDtoImpl implements _FollowingStatusDtoDto {
-  _$FollowingStatusDtoDtoImpl({@JsonKey(name: 'status') required this.status});
+class _$FollowingStatusDtoImpl implements _FollowingStatusDto {
+  _$FollowingStatusDtoImpl({@JsonKey(name: 'status') required this.status});
 
-  factory _$FollowingStatusDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FollowingStatusDtoDtoImplFromJson(json);
+  factory _$FollowingStatusDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FollowingStatusDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'status')
@@ -2159,14 +2103,14 @@ class _$FollowingStatusDtoDtoImpl implements _FollowingStatusDtoDto {
 
   @override
   String toString() {
-    return 'FollowingStatusDtoDto(status: $status)';
+    return 'FollowingStatusDto(status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FollowingStatusDtoDtoImpl &&
+            other is _$FollowingStatusDtoImpl &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -2174,82 +2118,82 @@ class _$FollowingStatusDtoDtoImpl implements _FollowingStatusDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, status);
 
-  /// Create a copy of FollowingStatusDtoDto
+  /// Create a copy of FollowingStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FollowingStatusDtoDtoImplCopyWith<_$FollowingStatusDtoDtoImpl>
-      get copyWith => __$$FollowingStatusDtoDtoImplCopyWithImpl<
-          _$FollowingStatusDtoDtoImpl>(this, _$identity);
+  _$$FollowingStatusDtoImplCopyWith<_$FollowingStatusDtoImpl> get copyWith =>
+      __$$FollowingStatusDtoImplCopyWithImpl<_$FollowingStatusDtoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FollowingStatusDtoDtoImplToJson(
+    return _$$FollowingStatusDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _FollowingStatusDtoDto implements FollowingStatusDtoDto {
-  factory _FollowingStatusDtoDto(
+abstract class _FollowingStatusDto implements FollowingStatusDto {
+  factory _FollowingStatusDto(
           {@JsonKey(name: 'status') required final int status}) =
-      _$FollowingStatusDtoDtoImpl;
+      _$FollowingStatusDtoImpl;
 
-  factory _FollowingStatusDtoDto.fromJson(Map<String, dynamic> json) =
-      _$FollowingStatusDtoDtoImpl.fromJson;
+  factory _FollowingStatusDto.fromJson(Map<String, dynamic> json) =
+      _$FollowingStatusDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'status')
   int get status;
 
-  /// Create a copy of FollowingStatusDtoDto
+  /// Create a copy of FollowingStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FollowingStatusDtoDtoImplCopyWith<_$FollowingStatusDtoDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$FollowingStatusDtoImplCopyWith<_$FollowingStatusDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
-FollowRequestDtoDto _$FollowRequestDtoDtoFromJson(Map<String, dynamic> json) {
-  return _FollowRequestDtoDto.fromJson(json);
+FollowRequestDto _$FollowRequestDtoFromJson(Map<String, dynamic> json) {
+  return _FollowRequestDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FollowRequestDtoDto {
+mixin _$FollowRequestDto {
   @JsonKey(name: 'userId')
   String get userId => throw _privateConstructorUsedError;
 
-  /// Serializes this FollowRequestDtoDto to a JSON map.
+  /// Serializes this FollowRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of FollowRequestDtoDto
+  /// Create a copy of FollowRequestDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $FollowRequestDtoDtoCopyWith<FollowRequestDtoDto> get copyWith =>
+  $FollowRequestDtoCopyWith<FollowRequestDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FollowRequestDtoDtoCopyWith<$Res> {
-  factory $FollowRequestDtoDtoCopyWith(
-          FollowRequestDtoDto value, $Res Function(FollowRequestDtoDto) then) =
-      _$FollowRequestDtoDtoCopyWithImpl<$Res, FollowRequestDtoDto>;
+abstract class $FollowRequestDtoCopyWith<$Res> {
+  factory $FollowRequestDtoCopyWith(
+          FollowRequestDto value, $Res Function(FollowRequestDto) then) =
+      _$FollowRequestDtoCopyWithImpl<$Res, FollowRequestDto>;
   @useResult
   $Res call({@JsonKey(name: 'userId') String userId});
 }
 
 /// @nodoc
-class _$FollowRequestDtoDtoCopyWithImpl<$Res, $Val extends FollowRequestDtoDto>
-    implements $FollowRequestDtoDtoCopyWith<$Res> {
-  _$FollowRequestDtoDtoCopyWithImpl(this._value, this._then);
+class _$FollowRequestDtoCopyWithImpl<$Res, $Val extends FollowRequestDto>
+    implements $FollowRequestDtoCopyWith<$Res> {
+  _$FollowRequestDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FollowRequestDtoDto
+  /// Create a copy of FollowRequestDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2266,32 +2210,32 @@ class _$FollowRequestDtoDtoCopyWithImpl<$Res, $Val extends FollowRequestDtoDto>
 }
 
 /// @nodoc
-abstract class _$$FollowRequestDtoDtoImplCopyWith<$Res>
-    implements $FollowRequestDtoDtoCopyWith<$Res> {
-  factory _$$FollowRequestDtoDtoImplCopyWith(_$FollowRequestDtoDtoImpl value,
-          $Res Function(_$FollowRequestDtoDtoImpl) then) =
-      __$$FollowRequestDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$FollowRequestDtoImplCopyWith<$Res>
+    implements $FollowRequestDtoCopyWith<$Res> {
+  factory _$$FollowRequestDtoImplCopyWith(_$FollowRequestDtoImpl value,
+          $Res Function(_$FollowRequestDtoImpl) then) =
+      __$$FollowRequestDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'userId') String userId});
 }
 
 /// @nodoc
-class __$$FollowRequestDtoDtoImplCopyWithImpl<$Res>
-    extends _$FollowRequestDtoDtoCopyWithImpl<$Res, _$FollowRequestDtoDtoImpl>
-    implements _$$FollowRequestDtoDtoImplCopyWith<$Res> {
-  __$$FollowRequestDtoDtoImplCopyWithImpl(_$FollowRequestDtoDtoImpl _value,
-      $Res Function(_$FollowRequestDtoDtoImpl) _then)
+class __$$FollowRequestDtoImplCopyWithImpl<$Res>
+    extends _$FollowRequestDtoCopyWithImpl<$Res, _$FollowRequestDtoImpl>
+    implements _$$FollowRequestDtoImplCopyWith<$Res> {
+  __$$FollowRequestDtoImplCopyWithImpl(_$FollowRequestDtoImpl _value,
+      $Res Function(_$FollowRequestDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FollowRequestDtoDto
+  /// Create a copy of FollowRequestDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? userId = null,
   }) {
-    return _then(_$FollowRequestDtoDtoImpl(
+    return _then(_$FollowRequestDtoImpl(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -2302,11 +2246,11 @@ class __$$FollowRequestDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FollowRequestDtoDtoImpl implements _FollowRequestDtoDto {
-  _$FollowRequestDtoDtoImpl({@JsonKey(name: 'userId') required this.userId});
+class _$FollowRequestDtoImpl implements _FollowRequestDto {
+  _$FollowRequestDtoImpl({@JsonKey(name: 'userId') required this.userId});
 
-  factory _$FollowRequestDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FollowRequestDtoDtoImplFromJson(json);
+  factory _$FollowRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FollowRequestDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'userId')
@@ -2314,14 +2258,14 @@ class _$FollowRequestDtoDtoImpl implements _FollowRequestDtoDto {
 
   @override
   String toString() {
-    return 'FollowRequestDtoDto(userId: $userId)';
+    return 'FollowRequestDto(userId: $userId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FollowRequestDtoDtoImpl &&
+            other is _$FollowRequestDtoImpl &&
             (identical(other.userId, userId) || other.userId == userId));
   }
 
@@ -2329,49 +2273,49 @@ class _$FollowRequestDtoDtoImpl implements _FollowRequestDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, userId);
 
-  /// Create a copy of FollowRequestDtoDto
+  /// Create a copy of FollowRequestDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FollowRequestDtoDtoImplCopyWith<_$FollowRequestDtoDtoImpl> get copyWith =>
-      __$$FollowRequestDtoDtoImplCopyWithImpl<_$FollowRequestDtoDtoImpl>(
+  _$$FollowRequestDtoImplCopyWith<_$FollowRequestDtoImpl> get copyWith =>
+      __$$FollowRequestDtoImplCopyWithImpl<_$FollowRequestDtoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FollowRequestDtoDtoImplToJson(
+    return _$$FollowRequestDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _FollowRequestDtoDto implements FollowRequestDtoDto {
-  factory _FollowRequestDtoDto(
+abstract class _FollowRequestDto implements FollowRequestDto {
+  factory _FollowRequestDto(
           {@JsonKey(name: 'userId') required final String userId}) =
-      _$FollowRequestDtoDtoImpl;
+      _$FollowRequestDtoImpl;
 
-  factory _FollowRequestDtoDto.fromJson(Map<String, dynamic> json) =
-      _$FollowRequestDtoDtoImpl.fromJson;
+  factory _FollowRequestDto.fromJson(Map<String, dynamic> json) =
+      _$FollowRequestDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'userId')
   String get userId;
 
-  /// Create a copy of FollowRequestDtoDto
+  /// Create a copy of FollowRequestDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FollowRequestDtoDtoImplCopyWith<_$FollowRequestDtoDtoImpl> get copyWith =>
+  _$$FollowRequestDtoImplCopyWith<_$FollowRequestDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-ImageMetadataDtoDto _$ImageMetadataDtoDtoFromJson(Map<String, dynamic> json) {
-  return _ImageMetadataDtoDto.fromJson(json);
+ImageMetadataDto _$ImageMetadataDtoFromJson(Map<String, dynamic> json) {
+  return _ImageMetadataDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ImageMetadataDtoDto {
+mixin _$ImageMetadataDto {
   @JsonKey(name: 'fileName')
   String? get fileName => throw _privateConstructorUsedError;
   @JsonKey(name: 'fileUrl')
@@ -2385,21 +2329,21 @@ mixin _$ImageMetadataDtoDto {
   @JsonKey(name: 'contentType')
   String? get contentType => throw _privateConstructorUsedError;
 
-  /// Serializes this ImageMetadataDtoDto to a JSON map.
+  /// Serializes this ImageMetadataDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ImageMetadataDtoDto
+  /// Create a copy of ImageMetadataDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ImageMetadataDtoDtoCopyWith<ImageMetadataDtoDto> get copyWith =>
+  $ImageMetadataDtoCopyWith<ImageMetadataDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImageMetadataDtoDtoCopyWith<$Res> {
-  factory $ImageMetadataDtoDtoCopyWith(
-          ImageMetadataDtoDto value, $Res Function(ImageMetadataDtoDto) then) =
-      _$ImageMetadataDtoDtoCopyWithImpl<$Res, ImageMetadataDtoDto>;
+abstract class $ImageMetadataDtoCopyWith<$Res> {
+  factory $ImageMetadataDtoCopyWith(
+          ImageMetadataDto value, $Res Function(ImageMetadataDto) then) =
+      _$ImageMetadataDtoCopyWithImpl<$Res, ImageMetadataDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'fileName') String? fileName,
@@ -2411,16 +2355,16 @@ abstract class $ImageMetadataDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ImageMetadataDtoDtoCopyWithImpl<$Res, $Val extends ImageMetadataDtoDto>
-    implements $ImageMetadataDtoDtoCopyWith<$Res> {
-  _$ImageMetadataDtoDtoCopyWithImpl(this._value, this._then);
+class _$ImageMetadataDtoCopyWithImpl<$Res, $Val extends ImageMetadataDto>
+    implements $ImageMetadataDtoCopyWith<$Res> {
+  _$ImageMetadataDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ImageMetadataDtoDto
+  /// Create a copy of ImageMetadataDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2462,11 +2406,11 @@ class _$ImageMetadataDtoDtoCopyWithImpl<$Res, $Val extends ImageMetadataDtoDto>
 }
 
 /// @nodoc
-abstract class _$$ImageMetadataDtoDtoImplCopyWith<$Res>
-    implements $ImageMetadataDtoDtoCopyWith<$Res> {
-  factory _$$ImageMetadataDtoDtoImplCopyWith(_$ImageMetadataDtoDtoImpl value,
-          $Res Function(_$ImageMetadataDtoDtoImpl) then) =
-      __$$ImageMetadataDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$ImageMetadataDtoImplCopyWith<$Res>
+    implements $ImageMetadataDtoCopyWith<$Res> {
+  factory _$$ImageMetadataDtoImplCopyWith(_$ImageMetadataDtoImpl value,
+          $Res Function(_$ImageMetadataDtoImpl) then) =
+      __$$ImageMetadataDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2479,14 +2423,14 @@ abstract class _$$ImageMetadataDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ImageMetadataDtoDtoImplCopyWithImpl<$Res>
-    extends _$ImageMetadataDtoDtoCopyWithImpl<$Res, _$ImageMetadataDtoDtoImpl>
-    implements _$$ImageMetadataDtoDtoImplCopyWith<$Res> {
-  __$$ImageMetadataDtoDtoImplCopyWithImpl(_$ImageMetadataDtoDtoImpl _value,
-      $Res Function(_$ImageMetadataDtoDtoImpl) _then)
+class __$$ImageMetadataDtoImplCopyWithImpl<$Res>
+    extends _$ImageMetadataDtoCopyWithImpl<$Res, _$ImageMetadataDtoImpl>
+    implements _$$ImageMetadataDtoImplCopyWith<$Res> {
+  __$$ImageMetadataDtoImplCopyWithImpl(_$ImageMetadataDtoImpl _value,
+      $Res Function(_$ImageMetadataDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImageMetadataDtoDto
+  /// Create a copy of ImageMetadataDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2498,7 +2442,7 @@ class __$$ImageMetadataDtoDtoImplCopyWithImpl<$Res>
     Object? size = freezed,
     Object? contentType = freezed,
   }) {
-    return _then(_$ImageMetadataDtoDtoImpl(
+    return _then(_$ImageMetadataDtoImpl(
       fileName: freezed == fileName
           ? _value.fileName
           : fileName // ignore: cast_nullable_to_non_nullable
@@ -2529,8 +2473,8 @@ class __$$ImageMetadataDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ImageMetadataDtoDtoImpl implements _ImageMetadataDtoDto {
-  _$ImageMetadataDtoDtoImpl(
+class _$ImageMetadataDtoImpl implements _ImageMetadataDto {
+  _$ImageMetadataDtoImpl(
       {@JsonKey(name: 'fileName') this.fileName,
       @JsonKey(name: 'fileUrl') this.fileUrl,
       @JsonKey(name: 'width') this.width,
@@ -2538,8 +2482,8 @@ class _$ImageMetadataDtoDtoImpl implements _ImageMetadataDtoDto {
       @JsonKey(name: 'size') this.size,
       @JsonKey(name: 'contentType') this.contentType});
 
-  factory _$ImageMetadataDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImageMetadataDtoDtoImplFromJson(json);
+  factory _$ImageMetadataDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageMetadataDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'fileName')
@@ -2562,14 +2506,14 @@ class _$ImageMetadataDtoDtoImpl implements _ImageMetadataDtoDto {
 
   @override
   String toString() {
-    return 'ImageMetadataDtoDto(fileName: $fileName, fileUrl: $fileUrl, width: $width, height: $height, size: $size, contentType: $contentType)';
+    return 'ImageMetadataDto(fileName: $fileName, fileUrl: $fileUrl, width: $width, height: $height, size: $size, contentType: $contentType)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImageMetadataDtoDtoImpl &&
+            other is _$ImageMetadataDtoImpl &&
             (identical(other.fileName, fileName) ||
                 other.fileName == fileName) &&
             (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
@@ -2585,35 +2529,35 @@ class _$ImageMetadataDtoDtoImpl implements _ImageMetadataDtoDto {
   int get hashCode => Object.hash(
       runtimeType, fileName, fileUrl, width, height, size, contentType);
 
-  /// Create a copy of ImageMetadataDtoDto
+  /// Create a copy of ImageMetadataDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ImageMetadataDtoDtoImplCopyWith<_$ImageMetadataDtoDtoImpl> get copyWith =>
-      __$$ImageMetadataDtoDtoImplCopyWithImpl<_$ImageMetadataDtoDtoImpl>(
+  _$$ImageMetadataDtoImplCopyWith<_$ImageMetadataDtoImpl> get copyWith =>
+      __$$ImageMetadataDtoImplCopyWithImpl<_$ImageMetadataDtoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ImageMetadataDtoDtoImplToJson(
+    return _$$ImageMetadataDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ImageMetadataDtoDto implements ImageMetadataDtoDto {
-  factory _ImageMetadataDtoDto(
+abstract class _ImageMetadataDto implements ImageMetadataDto {
+  factory _ImageMetadataDto(
           {@JsonKey(name: 'fileName') final String? fileName,
           @JsonKey(name: 'fileUrl') final String? fileUrl,
           @JsonKey(name: 'width') final int? width,
           @JsonKey(name: 'height') final int? height,
           @JsonKey(name: 'size') final int? size,
           @JsonKey(name: 'contentType') final String? contentType}) =
-      _$ImageMetadataDtoDtoImpl;
+      _$ImageMetadataDtoImpl;
 
-  factory _ImageMetadataDtoDto.fromJson(Map<String, dynamic> json) =
-      _$ImageMetadataDtoDtoImpl.fromJson;
+  factory _ImageMetadataDto.fromJson(Map<String, dynamic> json) =
+      _$ImageMetadataDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'fileName')
@@ -2634,21 +2578,20 @@ abstract class _ImageMetadataDtoDto implements ImageMetadataDtoDto {
   @JsonKey(name: 'contentType')
   String? get contentType;
 
-  /// Create a copy of ImageMetadataDtoDto
+  /// Create a copy of ImageMetadataDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ImageMetadataDtoDtoImplCopyWith<_$ImageMetadataDtoDtoImpl> get copyWith =>
+  _$$ImageMetadataDtoImplCopyWith<_$ImageMetadataDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-ImagePresignedUrlDtoDto _$ImagePresignedUrlDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _ImagePresignedUrlDtoDto.fromJson(json);
+ImagePresignedUrlDto _$ImagePresignedUrlDtoFromJson(Map<String, dynamic> json) {
+  return _ImagePresignedUrlDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ImagePresignedUrlDtoDto {
+mixin _$ImagePresignedUrlDto {
   @JsonKey(name: 'uploadUrl')
   String? get uploadUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'fileUrl')
@@ -2660,21 +2603,21 @@ mixin _$ImagePresignedUrlDtoDto {
   @JsonKey(name: 'headers')
   Map<String, String>? get headers => throw _privateConstructorUsedError;
 
-  /// Serializes this ImagePresignedUrlDtoDto to a JSON map.
+  /// Serializes this ImagePresignedUrlDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ImagePresignedUrlDtoDto
+  /// Create a copy of ImagePresignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ImagePresignedUrlDtoDtoCopyWith<ImagePresignedUrlDtoDto> get copyWith =>
+  $ImagePresignedUrlDtoCopyWith<ImagePresignedUrlDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ImagePresignedUrlDtoDtoCopyWith<$Res> {
-  factory $ImagePresignedUrlDtoDtoCopyWith(ImagePresignedUrlDtoDto value,
-          $Res Function(ImagePresignedUrlDtoDto) then) =
-      _$ImagePresignedUrlDtoDtoCopyWithImpl<$Res, ImagePresignedUrlDtoDto>;
+abstract class $ImagePresignedUrlDtoCopyWith<$Res> {
+  factory $ImagePresignedUrlDtoCopyWith(ImagePresignedUrlDto value,
+          $Res Function(ImagePresignedUrlDto) then) =
+      _$ImagePresignedUrlDtoCopyWithImpl<$Res, ImagePresignedUrlDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'uploadUrl') String? uploadUrl,
@@ -2685,17 +2628,17 @@ abstract class $ImagePresignedUrlDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ImagePresignedUrlDtoDtoCopyWithImpl<$Res,
-        $Val extends ImagePresignedUrlDtoDto>
-    implements $ImagePresignedUrlDtoDtoCopyWith<$Res> {
-  _$ImagePresignedUrlDtoDtoCopyWithImpl(this._value, this._then);
+class _$ImagePresignedUrlDtoCopyWithImpl<$Res,
+        $Val extends ImagePresignedUrlDto>
+    implements $ImagePresignedUrlDtoCopyWith<$Res> {
+  _$ImagePresignedUrlDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ImagePresignedUrlDtoDto
+  /// Create a copy of ImagePresignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2732,12 +2675,11 @@ class _$ImagePresignedUrlDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ImagePresignedUrlDtoDtoImplCopyWith<$Res>
-    implements $ImagePresignedUrlDtoDtoCopyWith<$Res> {
-  factory _$$ImagePresignedUrlDtoDtoImplCopyWith(
-          _$ImagePresignedUrlDtoDtoImpl value,
-          $Res Function(_$ImagePresignedUrlDtoDtoImpl) then) =
-      __$$ImagePresignedUrlDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$ImagePresignedUrlDtoImplCopyWith<$Res>
+    implements $ImagePresignedUrlDtoCopyWith<$Res> {
+  factory _$$ImagePresignedUrlDtoImplCopyWith(_$ImagePresignedUrlDtoImpl value,
+          $Res Function(_$ImagePresignedUrlDtoImpl) then) =
+      __$$ImagePresignedUrlDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2749,16 +2691,14 @@ abstract class _$$ImagePresignedUrlDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ImagePresignedUrlDtoDtoImplCopyWithImpl<$Res>
-    extends _$ImagePresignedUrlDtoDtoCopyWithImpl<$Res,
-        _$ImagePresignedUrlDtoDtoImpl>
-    implements _$$ImagePresignedUrlDtoDtoImplCopyWith<$Res> {
-  __$$ImagePresignedUrlDtoDtoImplCopyWithImpl(
-      _$ImagePresignedUrlDtoDtoImpl _value,
-      $Res Function(_$ImagePresignedUrlDtoDtoImpl) _then)
+class __$$ImagePresignedUrlDtoImplCopyWithImpl<$Res>
+    extends _$ImagePresignedUrlDtoCopyWithImpl<$Res, _$ImagePresignedUrlDtoImpl>
+    implements _$$ImagePresignedUrlDtoImplCopyWith<$Res> {
+  __$$ImagePresignedUrlDtoImplCopyWithImpl(_$ImagePresignedUrlDtoImpl _value,
+      $Res Function(_$ImagePresignedUrlDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ImagePresignedUrlDtoDto
+  /// Create a copy of ImagePresignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2769,7 +2709,7 @@ class __$$ImagePresignedUrlDtoDtoImplCopyWithImpl<$Res>
     Object? expiresAt = freezed,
     Object? headers = freezed,
   }) {
-    return _then(_$ImagePresignedUrlDtoDtoImpl(
+    return _then(_$ImagePresignedUrlDtoImpl(
       uploadUrl: freezed == uploadUrl
           ? _value.uploadUrl
           : uploadUrl // ignore: cast_nullable_to_non_nullable
@@ -2796,8 +2736,8 @@ class __$$ImagePresignedUrlDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ImagePresignedUrlDtoDtoImpl implements _ImagePresignedUrlDtoDto {
-  _$ImagePresignedUrlDtoDtoImpl(
+class _$ImagePresignedUrlDtoImpl implements _ImagePresignedUrlDto {
+  _$ImagePresignedUrlDtoImpl(
       {@JsonKey(name: 'uploadUrl') this.uploadUrl,
       @JsonKey(name: 'fileUrl') this.fileUrl,
       @JsonKey(name: 'fileName') this.fileName,
@@ -2805,8 +2745,8 @@ class _$ImagePresignedUrlDtoDtoImpl implements _ImagePresignedUrlDtoDto {
       @JsonKey(name: 'headers') final Map<String, String>? headers})
       : _headers = headers;
 
-  factory _$ImagePresignedUrlDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImagePresignedUrlDtoDtoImplFromJson(json);
+  factory _$ImagePresignedUrlDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImagePresignedUrlDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'uploadUrl')
@@ -2833,14 +2773,14 @@ class _$ImagePresignedUrlDtoDtoImpl implements _ImagePresignedUrlDtoDto {
 
   @override
   String toString() {
-    return 'ImagePresignedUrlDtoDto(uploadUrl: $uploadUrl, fileUrl: $fileUrl, fileName: $fileName, expiresAt: $expiresAt, headers: $headers)';
+    return 'ImagePresignedUrlDto(uploadUrl: $uploadUrl, fileUrl: $fileUrl, fileName: $fileName, expiresAt: $expiresAt, headers: $headers)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImagePresignedUrlDtoDtoImpl &&
+            other is _$ImagePresignedUrlDtoImpl &&
             (identical(other.uploadUrl, uploadUrl) ||
                 other.uploadUrl == uploadUrl) &&
             (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
@@ -2856,34 +2796,35 @@ class _$ImagePresignedUrlDtoDtoImpl implements _ImagePresignedUrlDtoDto {
   int get hashCode => Object.hash(runtimeType, uploadUrl, fileUrl, fileName,
       expiresAt, const DeepCollectionEquality().hash(_headers));
 
-  /// Create a copy of ImagePresignedUrlDtoDto
+  /// Create a copy of ImagePresignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ImagePresignedUrlDtoDtoImplCopyWith<_$ImagePresignedUrlDtoDtoImpl>
-      get copyWith => __$$ImagePresignedUrlDtoDtoImplCopyWithImpl<
-          _$ImagePresignedUrlDtoDtoImpl>(this, _$identity);
+  _$$ImagePresignedUrlDtoImplCopyWith<_$ImagePresignedUrlDtoImpl>
+      get copyWith =>
+          __$$ImagePresignedUrlDtoImplCopyWithImpl<_$ImagePresignedUrlDtoImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ImagePresignedUrlDtoDtoImplToJson(
+    return _$$ImagePresignedUrlDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ImagePresignedUrlDtoDto implements ImagePresignedUrlDtoDto {
-  factory _ImagePresignedUrlDtoDto(
+abstract class _ImagePresignedUrlDto implements ImagePresignedUrlDto {
+  factory _ImagePresignedUrlDto(
           {@JsonKey(name: 'uploadUrl') final String? uploadUrl,
           @JsonKey(name: 'fileUrl') final String? fileUrl,
           @JsonKey(name: 'fileName') final String? fileName,
           @JsonKey(name: 'expiresAt') final DateTime? expiresAt,
           @JsonKey(name: 'headers') final Map<String, String>? headers}) =
-      _$ImagePresignedUrlDtoDtoImpl;
+      _$ImagePresignedUrlDtoImpl;
 
-  factory _ImagePresignedUrlDtoDto.fromJson(Map<String, dynamic> json) =
-      _$ImagePresignedUrlDtoDtoImpl.fromJson;
+  factory _ImagePresignedUrlDto.fromJson(Map<String, dynamic> json) =
+      _$ImagePresignedUrlDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'uploadUrl')
@@ -2901,21 +2842,20 @@ abstract class _ImagePresignedUrlDtoDto implements ImagePresignedUrlDtoDto {
   @JsonKey(name: 'headers')
   Map<String, String>? get headers;
 
-  /// Create a copy of ImagePresignedUrlDtoDto
+  /// Create a copy of ImagePresignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ImagePresignedUrlDtoDtoImplCopyWith<_$ImagePresignedUrlDtoDtoImpl>
+  _$$ImagePresignedUrlDtoImplCopyWith<_$ImagePresignedUrlDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-InteractionResultDtoDto _$InteractionResultDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _InteractionResultDtoDto.fromJson(json);
+InteractionResultDto _$InteractionResultDtoFromJson(Map<String, dynamic> json) {
+  return _InteractionResultDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$InteractionResultDtoDto {
+mixin _$InteractionResultDto {
   @JsonKey(name: 'isSteppedWith')
   bool? get isSteppedWith => throw _privateConstructorUsedError;
   @JsonKey(name: 'isLiked')
@@ -2923,21 +2863,21 @@ mixin _$InteractionResultDtoDto {
   @JsonKey(name: 'totalLikes')
   int? get totalLikes => throw _privateConstructorUsedError;
 
-  /// Serializes this InteractionResultDtoDto to a JSON map.
+  /// Serializes this InteractionResultDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of InteractionResultDtoDto
+  /// Create a copy of InteractionResultDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $InteractionResultDtoDtoCopyWith<InteractionResultDtoDto> get copyWith =>
+  $InteractionResultDtoCopyWith<InteractionResultDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $InteractionResultDtoDtoCopyWith<$Res> {
-  factory $InteractionResultDtoDtoCopyWith(InteractionResultDtoDto value,
-          $Res Function(InteractionResultDtoDto) then) =
-      _$InteractionResultDtoDtoCopyWithImpl<$Res, InteractionResultDtoDto>;
+abstract class $InteractionResultDtoCopyWith<$Res> {
+  factory $InteractionResultDtoCopyWith(InteractionResultDto value,
+          $Res Function(InteractionResultDto) then) =
+      _$InteractionResultDtoCopyWithImpl<$Res, InteractionResultDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'isSteppedWith') bool? isSteppedWith,
@@ -2946,17 +2886,17 @@ abstract class $InteractionResultDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InteractionResultDtoDtoCopyWithImpl<$Res,
-        $Val extends InteractionResultDtoDto>
-    implements $InteractionResultDtoDtoCopyWith<$Res> {
-  _$InteractionResultDtoDtoCopyWithImpl(this._value, this._then);
+class _$InteractionResultDtoCopyWithImpl<$Res,
+        $Val extends InteractionResultDto>
+    implements $InteractionResultDtoCopyWith<$Res> {
+  _$InteractionResultDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of InteractionResultDtoDto
+  /// Create a copy of InteractionResultDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -2983,12 +2923,11 @@ class _$InteractionResultDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$InteractionResultDtoDtoImplCopyWith<$Res>
-    implements $InteractionResultDtoDtoCopyWith<$Res> {
-  factory _$$InteractionResultDtoDtoImplCopyWith(
-          _$InteractionResultDtoDtoImpl value,
-          $Res Function(_$InteractionResultDtoDtoImpl) then) =
-      __$$InteractionResultDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$InteractionResultDtoImplCopyWith<$Res>
+    implements $InteractionResultDtoCopyWith<$Res> {
+  factory _$$InteractionResultDtoImplCopyWith(_$InteractionResultDtoImpl value,
+          $Res Function(_$InteractionResultDtoImpl) then) =
+      __$$InteractionResultDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2998,16 +2937,14 @@ abstract class _$$InteractionResultDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$InteractionResultDtoDtoImplCopyWithImpl<$Res>
-    extends _$InteractionResultDtoDtoCopyWithImpl<$Res,
-        _$InteractionResultDtoDtoImpl>
-    implements _$$InteractionResultDtoDtoImplCopyWith<$Res> {
-  __$$InteractionResultDtoDtoImplCopyWithImpl(
-      _$InteractionResultDtoDtoImpl _value,
-      $Res Function(_$InteractionResultDtoDtoImpl) _then)
+class __$$InteractionResultDtoImplCopyWithImpl<$Res>
+    extends _$InteractionResultDtoCopyWithImpl<$Res, _$InteractionResultDtoImpl>
+    implements _$$InteractionResultDtoImplCopyWith<$Res> {
+  __$$InteractionResultDtoImplCopyWithImpl(_$InteractionResultDtoImpl _value,
+      $Res Function(_$InteractionResultDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InteractionResultDtoDto
+  /// Create a copy of InteractionResultDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3016,7 +2953,7 @@ class __$$InteractionResultDtoDtoImplCopyWithImpl<$Res>
     Object? isLiked = freezed,
     Object? totalLikes = freezed,
   }) {
-    return _then(_$InteractionResultDtoDtoImpl(
+    return _then(_$InteractionResultDtoImpl(
       isSteppedWith: freezed == isSteppedWith
           ? _value.isSteppedWith
           : isSteppedWith // ignore: cast_nullable_to_non_nullable
@@ -3035,14 +2972,14 @@ class __$$InteractionResultDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$InteractionResultDtoDtoImpl implements _InteractionResultDtoDto {
-  _$InteractionResultDtoDtoImpl(
+class _$InteractionResultDtoImpl implements _InteractionResultDto {
+  _$InteractionResultDtoImpl(
       {@JsonKey(name: 'isSteppedWith') this.isSteppedWith,
       @JsonKey(name: 'isLiked') this.isLiked,
       @JsonKey(name: 'totalLikes') this.totalLikes});
 
-  factory _$InteractionResultDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$InteractionResultDtoDtoImplFromJson(json);
+  factory _$InteractionResultDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$InteractionResultDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'isSteppedWith')
@@ -3056,14 +2993,14 @@ class _$InteractionResultDtoDtoImpl implements _InteractionResultDtoDto {
 
   @override
   String toString() {
-    return 'InteractionResultDtoDto(isSteppedWith: $isSteppedWith, isLiked: $isLiked, totalLikes: $totalLikes)';
+    return 'InteractionResultDto(isSteppedWith: $isSteppedWith, isLiked: $isLiked, totalLikes: $totalLikes)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InteractionResultDtoDtoImpl &&
+            other is _$InteractionResultDtoImpl &&
             (identical(other.isSteppedWith, isSteppedWith) ||
                 other.isSteppedWith == isSteppedWith) &&
             (identical(other.isLiked, isLiked) || other.isLiked == isLiked) &&
@@ -3076,32 +3013,33 @@ class _$InteractionResultDtoDtoImpl implements _InteractionResultDtoDto {
   int get hashCode =>
       Object.hash(runtimeType, isSteppedWith, isLiked, totalLikes);
 
-  /// Create a copy of InteractionResultDtoDto
+  /// Create a copy of InteractionResultDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$InteractionResultDtoDtoImplCopyWith<_$InteractionResultDtoDtoImpl>
-      get copyWith => __$$InteractionResultDtoDtoImplCopyWithImpl<
-          _$InteractionResultDtoDtoImpl>(this, _$identity);
+  _$$InteractionResultDtoImplCopyWith<_$InteractionResultDtoImpl>
+      get copyWith =>
+          __$$InteractionResultDtoImplCopyWithImpl<_$InteractionResultDtoImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$InteractionResultDtoDtoImplToJson(
+    return _$$InteractionResultDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _InteractionResultDtoDto implements InteractionResultDtoDto {
-  factory _InteractionResultDtoDto(
+abstract class _InteractionResultDto implements InteractionResultDto {
+  factory _InteractionResultDto(
           {@JsonKey(name: 'isSteppedWith') final bool? isSteppedWith,
           @JsonKey(name: 'isLiked') final bool? isLiked,
           @JsonKey(name: 'totalLikes') final int? totalLikes}) =
-      _$InteractionResultDtoDtoImpl;
+      _$InteractionResultDtoImpl;
 
-  factory _InteractionResultDtoDto.fromJson(Map<String, dynamic> json) =
-      _$InteractionResultDtoDtoImpl.fromJson;
+  factory _InteractionResultDto.fromJson(Map<String, dynamic> json) =
+      _$InteractionResultDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'isSteppedWith')
@@ -3113,21 +3051,20 @@ abstract class _InteractionResultDtoDto implements InteractionResultDtoDto {
   @JsonKey(name: 'totalLikes')
   int? get totalLikes;
 
-  /// Create a copy of InteractionResultDtoDto
+  /// Create a copy of InteractionResultDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InteractionResultDtoDtoImplCopyWith<_$InteractionResultDtoDtoImpl>
+  _$$InteractionResultDtoImplCopyWith<_$InteractionResultDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-JourneyCreatingDtoDto _$JourneyCreatingDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _JourneyCreatingDtoDto.fromJson(json);
+JourneyCreatingDto _$JourneyCreatingDtoFromJson(Map<String, dynamic> json) {
+  return _JourneyCreatingDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$JourneyCreatingDtoDto {
+mixin _$JourneyCreatingDto {
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
@@ -3135,21 +3072,21 @@ mixin _$JourneyCreatingDtoDto {
   @JsonKey(name: 'firstStepContent')
   String get firstStepContent => throw _privateConstructorUsedError;
 
-  /// Serializes this JourneyCreatingDtoDto to a JSON map.
+  /// Serializes this JourneyCreatingDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of JourneyCreatingDtoDto
+  /// Create a copy of JourneyCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $JourneyCreatingDtoDtoCopyWith<JourneyCreatingDtoDto> get copyWith =>
+  $JourneyCreatingDtoCopyWith<JourneyCreatingDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $JourneyCreatingDtoDtoCopyWith<$Res> {
-  factory $JourneyCreatingDtoDtoCopyWith(JourneyCreatingDtoDto value,
-          $Res Function(JourneyCreatingDtoDto) then) =
-      _$JourneyCreatingDtoDtoCopyWithImpl<$Res, JourneyCreatingDtoDto>;
+abstract class $JourneyCreatingDtoCopyWith<$Res> {
+  factory $JourneyCreatingDtoCopyWith(
+          JourneyCreatingDto value, $Res Function(JourneyCreatingDto) then) =
+      _$JourneyCreatingDtoCopyWithImpl<$Res, JourneyCreatingDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'title') String title,
@@ -3158,17 +3095,16 @@ abstract class $JourneyCreatingDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$JourneyCreatingDtoDtoCopyWithImpl<$Res,
-        $Val extends JourneyCreatingDtoDto>
-    implements $JourneyCreatingDtoDtoCopyWith<$Res> {
-  _$JourneyCreatingDtoDtoCopyWithImpl(this._value, this._then);
+class _$JourneyCreatingDtoCopyWithImpl<$Res, $Val extends JourneyCreatingDto>
+    implements $JourneyCreatingDtoCopyWith<$Res> {
+  _$JourneyCreatingDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of JourneyCreatingDtoDto
+  /// Create a copy of JourneyCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3195,12 +3131,11 @@ class _$JourneyCreatingDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$JourneyCreatingDtoDtoImplCopyWith<$Res>
-    implements $JourneyCreatingDtoDtoCopyWith<$Res> {
-  factory _$$JourneyCreatingDtoDtoImplCopyWith(
-          _$JourneyCreatingDtoDtoImpl value,
-          $Res Function(_$JourneyCreatingDtoDtoImpl) then) =
-      __$$JourneyCreatingDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$JourneyCreatingDtoImplCopyWith<$Res>
+    implements $JourneyCreatingDtoCopyWith<$Res> {
+  factory _$$JourneyCreatingDtoImplCopyWith(_$JourneyCreatingDtoImpl value,
+          $Res Function(_$JourneyCreatingDtoImpl) then) =
+      __$$JourneyCreatingDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3210,15 +3145,14 @@ abstract class _$$JourneyCreatingDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$JourneyCreatingDtoDtoImplCopyWithImpl<$Res>
-    extends _$JourneyCreatingDtoDtoCopyWithImpl<$Res,
-        _$JourneyCreatingDtoDtoImpl>
-    implements _$$JourneyCreatingDtoDtoImplCopyWith<$Res> {
-  __$$JourneyCreatingDtoDtoImplCopyWithImpl(_$JourneyCreatingDtoDtoImpl _value,
-      $Res Function(_$JourneyCreatingDtoDtoImpl) _then)
+class __$$JourneyCreatingDtoImplCopyWithImpl<$Res>
+    extends _$JourneyCreatingDtoCopyWithImpl<$Res, _$JourneyCreatingDtoImpl>
+    implements _$$JourneyCreatingDtoImplCopyWith<$Res> {
+  __$$JourneyCreatingDtoImplCopyWithImpl(_$JourneyCreatingDtoImpl _value,
+      $Res Function(_$JourneyCreatingDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of JourneyCreatingDtoDto
+  /// Create a copy of JourneyCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3227,7 +3161,7 @@ class __$$JourneyCreatingDtoDtoImplCopyWithImpl<$Res>
     Object? description = freezed,
     Object? firstStepContent = null,
   }) {
-    return _then(_$JourneyCreatingDtoDtoImpl(
+    return _then(_$JourneyCreatingDtoImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -3246,14 +3180,14 @@ class __$$JourneyCreatingDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JourneyCreatingDtoDtoImpl implements _JourneyCreatingDtoDto {
-  _$JourneyCreatingDtoDtoImpl(
+class _$JourneyCreatingDtoImpl implements _JourneyCreatingDto {
+  _$JourneyCreatingDtoImpl(
       {@JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'firstStepContent') required this.firstStepContent});
 
-  factory _$JourneyCreatingDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$JourneyCreatingDtoDtoImplFromJson(json);
+  factory _$JourneyCreatingDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$JourneyCreatingDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'title')
@@ -3267,14 +3201,14 @@ class _$JourneyCreatingDtoDtoImpl implements _JourneyCreatingDtoDto {
 
   @override
   String toString() {
-    return 'JourneyCreatingDtoDto(title: $title, description: $description, firstStepContent: $firstStepContent)';
+    return 'JourneyCreatingDto(title: $title, description: $description, firstStepContent: $firstStepContent)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$JourneyCreatingDtoDtoImpl &&
+            other is _$JourneyCreatingDtoImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -3287,32 +3221,32 @@ class _$JourneyCreatingDtoDtoImpl implements _JourneyCreatingDtoDto {
   int get hashCode =>
       Object.hash(runtimeType, title, description, firstStepContent);
 
-  /// Create a copy of JourneyCreatingDtoDto
+  /// Create a copy of JourneyCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$JourneyCreatingDtoDtoImplCopyWith<_$JourneyCreatingDtoDtoImpl>
-      get copyWith => __$$JourneyCreatingDtoDtoImplCopyWithImpl<
-          _$JourneyCreatingDtoDtoImpl>(this, _$identity);
+  _$$JourneyCreatingDtoImplCopyWith<_$JourneyCreatingDtoImpl> get copyWith =>
+      __$$JourneyCreatingDtoImplCopyWithImpl<_$JourneyCreatingDtoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$JourneyCreatingDtoDtoImplToJson(
+    return _$$JourneyCreatingDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _JourneyCreatingDtoDto implements JourneyCreatingDtoDto {
-  factory _JourneyCreatingDtoDto(
+abstract class _JourneyCreatingDto implements JourneyCreatingDto {
+  factory _JourneyCreatingDto(
       {@JsonKey(name: 'title') required final String title,
       @JsonKey(name: 'description') final String? description,
       @JsonKey(name: 'firstStepContent')
-      required final String firstStepContent}) = _$JourneyCreatingDtoDtoImpl;
+      required final String firstStepContent}) = _$JourneyCreatingDtoImpl;
 
-  factory _JourneyCreatingDtoDto.fromJson(Map<String, dynamic> json) =
-      _$JourneyCreatingDtoDtoImpl.fromJson;
+  factory _JourneyCreatingDto.fromJson(Map<String, dynamic> json) =
+      _$JourneyCreatingDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'title')
@@ -3324,64 +3258,64 @@ abstract class _JourneyCreatingDtoDto implements JourneyCreatingDtoDto {
   @JsonKey(name: 'firstStepContent')
   String get firstStepContent;
 
-  /// Create a copy of JourneyCreatingDtoDto
+  /// Create a copy of JourneyCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JourneyCreatingDtoDtoImplCopyWith<_$JourneyCreatingDtoDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$JourneyCreatingDtoImplCopyWith<_$JourneyCreatingDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
-JourneyDayCalendarDtoDto _$JourneyDayCalendarDtoDtoFromJson(
+JourneyDayCalendarDto _$JourneyDayCalendarDtoFromJson(
     Map<String, dynamic> json) {
-  return _JourneyDayCalendarDtoDto.fromJson(json);
+  return _JourneyDayCalendarDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$JourneyDayCalendarDtoDto {
+mixin _$JourneyDayCalendarDto {
   @JsonKey(name: 'lastStep')
-  StepDtoDto get lastStep => throw _privateConstructorUsedError;
+  StepDto get lastStep => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalSteps')
   int get totalSteps => throw _privateConstructorUsedError;
   @JsonKey(name: 'date')
   DateTime get date => throw _privateConstructorUsedError;
 
-  /// Serializes this JourneyDayCalendarDtoDto to a JSON map.
+  /// Serializes this JourneyDayCalendarDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of JourneyDayCalendarDtoDto
+  /// Create a copy of JourneyDayCalendarDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $JourneyDayCalendarDtoDtoCopyWith<JourneyDayCalendarDtoDto> get copyWith =>
+  $JourneyDayCalendarDtoCopyWith<JourneyDayCalendarDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $JourneyDayCalendarDtoDtoCopyWith<$Res> {
-  factory $JourneyDayCalendarDtoDtoCopyWith(JourneyDayCalendarDtoDto value,
-          $Res Function(JourneyDayCalendarDtoDto) then) =
-      _$JourneyDayCalendarDtoDtoCopyWithImpl<$Res, JourneyDayCalendarDtoDto>;
+abstract class $JourneyDayCalendarDtoCopyWith<$Res> {
+  factory $JourneyDayCalendarDtoCopyWith(JourneyDayCalendarDto value,
+          $Res Function(JourneyDayCalendarDto) then) =
+      _$JourneyDayCalendarDtoCopyWithImpl<$Res, JourneyDayCalendarDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'lastStep') StepDtoDto lastStep,
+      {@JsonKey(name: 'lastStep') StepDto lastStep,
       @JsonKey(name: 'totalSteps') int totalSteps,
       @JsonKey(name: 'date') DateTime date});
 
-  $StepDtoDtoCopyWith<$Res> get lastStep;
+  $StepDtoCopyWith<$Res> get lastStep;
 }
 
 /// @nodoc
-class _$JourneyDayCalendarDtoDtoCopyWithImpl<$Res,
-        $Val extends JourneyDayCalendarDtoDto>
-    implements $JourneyDayCalendarDtoDtoCopyWith<$Res> {
-  _$JourneyDayCalendarDtoDtoCopyWithImpl(this._value, this._then);
+class _$JourneyDayCalendarDtoCopyWithImpl<$Res,
+        $Val extends JourneyDayCalendarDto>
+    implements $JourneyDayCalendarDtoCopyWith<$Res> {
+  _$JourneyDayCalendarDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of JourneyDayCalendarDtoDto
+  /// Create a copy of JourneyDayCalendarDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3394,7 +3328,7 @@ class _$JourneyDayCalendarDtoDtoCopyWithImpl<$Res,
       lastStep: null == lastStep
           ? _value.lastStep
           : lastStep // ignore: cast_nullable_to_non_nullable
-              as StepDtoDto,
+              as StepDto,
       totalSteps: null == totalSteps
           ? _value.totalSteps
           : totalSteps // ignore: cast_nullable_to_non_nullable
@@ -3406,46 +3340,45 @@ class _$JourneyDayCalendarDtoDtoCopyWithImpl<$Res,
     ) as $Val);
   }
 
-  /// Create a copy of JourneyDayCalendarDtoDto
+  /// Create a copy of JourneyDayCalendarDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StepDtoDtoCopyWith<$Res> get lastStep {
-    return $StepDtoDtoCopyWith<$Res>(_value.lastStep, (value) {
+  $StepDtoCopyWith<$Res> get lastStep {
+    return $StepDtoCopyWith<$Res>(_value.lastStep, (value) {
       return _then(_value.copyWith(lastStep: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$JourneyDayCalendarDtoDtoImplCopyWith<$Res>
-    implements $JourneyDayCalendarDtoDtoCopyWith<$Res> {
-  factory _$$JourneyDayCalendarDtoDtoImplCopyWith(
-          _$JourneyDayCalendarDtoDtoImpl value,
-          $Res Function(_$JourneyDayCalendarDtoDtoImpl) then) =
-      __$$JourneyDayCalendarDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$JourneyDayCalendarDtoImplCopyWith<$Res>
+    implements $JourneyDayCalendarDtoCopyWith<$Res> {
+  factory _$$JourneyDayCalendarDtoImplCopyWith(
+          _$JourneyDayCalendarDtoImpl value,
+          $Res Function(_$JourneyDayCalendarDtoImpl) then) =
+      __$$JourneyDayCalendarDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'lastStep') StepDtoDto lastStep,
+      {@JsonKey(name: 'lastStep') StepDto lastStep,
       @JsonKey(name: 'totalSteps') int totalSteps,
       @JsonKey(name: 'date') DateTime date});
 
   @override
-  $StepDtoDtoCopyWith<$Res> get lastStep;
+  $StepDtoCopyWith<$Res> get lastStep;
 }
 
 /// @nodoc
-class __$$JourneyDayCalendarDtoDtoImplCopyWithImpl<$Res>
-    extends _$JourneyDayCalendarDtoDtoCopyWithImpl<$Res,
-        _$JourneyDayCalendarDtoDtoImpl>
-    implements _$$JourneyDayCalendarDtoDtoImplCopyWith<$Res> {
-  __$$JourneyDayCalendarDtoDtoImplCopyWithImpl(
-      _$JourneyDayCalendarDtoDtoImpl _value,
-      $Res Function(_$JourneyDayCalendarDtoDtoImpl) _then)
+class __$$JourneyDayCalendarDtoImplCopyWithImpl<$Res>
+    extends _$JourneyDayCalendarDtoCopyWithImpl<$Res,
+        _$JourneyDayCalendarDtoImpl>
+    implements _$$JourneyDayCalendarDtoImplCopyWith<$Res> {
+  __$$JourneyDayCalendarDtoImplCopyWithImpl(_$JourneyDayCalendarDtoImpl _value,
+      $Res Function(_$JourneyDayCalendarDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of JourneyDayCalendarDtoDto
+  /// Create a copy of JourneyDayCalendarDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3454,11 +3387,11 @@ class __$$JourneyDayCalendarDtoDtoImplCopyWithImpl<$Res>
     Object? totalSteps = null,
     Object? date = null,
   }) {
-    return _then(_$JourneyDayCalendarDtoDtoImpl(
+    return _then(_$JourneyDayCalendarDtoImpl(
       lastStep: null == lastStep
           ? _value.lastStep
           : lastStep // ignore: cast_nullable_to_non_nullable
-              as StepDtoDto,
+              as StepDto,
       totalSteps: null == totalSteps
           ? _value.totalSteps
           : totalSteps // ignore: cast_nullable_to_non_nullable
@@ -3473,18 +3406,18 @@ class __$$JourneyDayCalendarDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JourneyDayCalendarDtoDtoImpl implements _JourneyDayCalendarDtoDto {
-  _$JourneyDayCalendarDtoDtoImpl(
+class _$JourneyDayCalendarDtoImpl implements _JourneyDayCalendarDto {
+  _$JourneyDayCalendarDtoImpl(
       {@JsonKey(name: 'lastStep') required this.lastStep,
       @JsonKey(name: 'totalSteps') this.totalSteps = 0,
       @JsonKey(name: 'date') required this.date});
 
-  factory _$JourneyDayCalendarDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$JourneyDayCalendarDtoDtoImplFromJson(json);
+  factory _$JourneyDayCalendarDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$JourneyDayCalendarDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'lastStep')
-  final StepDtoDto lastStep;
+  final StepDto lastStep;
   @override
   @JsonKey(name: 'totalSteps')
   final int totalSteps;
@@ -3494,14 +3427,14 @@ class _$JourneyDayCalendarDtoDtoImpl implements _JourneyDayCalendarDtoDto {
 
   @override
   String toString() {
-    return 'JourneyDayCalendarDtoDto(lastStep: $lastStep, totalSteps: $totalSteps, date: $date)';
+    return 'JourneyDayCalendarDto(lastStep: $lastStep, totalSteps: $totalSteps, date: $date)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$JourneyDayCalendarDtoDtoImpl &&
+            other is _$JourneyDayCalendarDtoImpl &&
             (identical(other.lastStep, lastStep) ||
                 other.lastStep == lastStep) &&
             (identical(other.totalSteps, totalSteps) ||
@@ -3513,36 +3446,36 @@ class _$JourneyDayCalendarDtoDtoImpl implements _JourneyDayCalendarDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, lastStep, totalSteps, date);
 
-  /// Create a copy of JourneyDayCalendarDtoDto
+  /// Create a copy of JourneyDayCalendarDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$JourneyDayCalendarDtoDtoImplCopyWith<_$JourneyDayCalendarDtoDtoImpl>
-      get copyWith => __$$JourneyDayCalendarDtoDtoImplCopyWithImpl<
-          _$JourneyDayCalendarDtoDtoImpl>(this, _$identity);
+  _$$JourneyDayCalendarDtoImplCopyWith<_$JourneyDayCalendarDtoImpl>
+      get copyWith => __$$JourneyDayCalendarDtoImplCopyWithImpl<
+          _$JourneyDayCalendarDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$JourneyDayCalendarDtoDtoImplToJson(
+    return _$$JourneyDayCalendarDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _JourneyDayCalendarDtoDto implements JourneyDayCalendarDtoDto {
-  factory _JourneyDayCalendarDtoDto(
-          {@JsonKey(name: 'lastStep') required final StepDtoDto lastStep,
+abstract class _JourneyDayCalendarDto implements JourneyDayCalendarDto {
+  factory _JourneyDayCalendarDto(
+          {@JsonKey(name: 'lastStep') required final StepDto lastStep,
           @JsonKey(name: 'totalSteps') final int totalSteps,
           @JsonKey(name: 'date') required final DateTime date}) =
-      _$JourneyDayCalendarDtoDtoImpl;
+      _$JourneyDayCalendarDtoImpl;
 
-  factory _JourneyDayCalendarDtoDto.fromJson(Map<String, dynamic> json) =
-      _$JourneyDayCalendarDtoDtoImpl.fromJson;
+  factory _JourneyDayCalendarDto.fromJson(Map<String, dynamic> json) =
+      _$JourneyDayCalendarDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'lastStep')
-  StepDtoDto get lastStep;
+  StepDto get lastStep;
   @override
   @JsonKey(name: 'totalSteps')
   int get totalSteps;
@@ -3550,23 +3483,22 @@ abstract class _JourneyDayCalendarDtoDto implements JourneyDayCalendarDtoDto {
   @JsonKey(name: 'date')
   DateTime get date;
 
-  /// Create a copy of JourneyDayCalendarDtoDto
+  /// Create a copy of JourneyDayCalendarDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JourneyDayCalendarDtoDtoImplCopyWith<_$JourneyDayCalendarDtoDtoImpl>
+  _$$JourneyDayCalendarDtoImplCopyWith<_$JourneyDayCalendarDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-JourneyDtoDto _$JourneyDtoDtoFromJson(Map<String, dynamic> json) {
-  return _JourneyDtoDto.fromJson(json);
+JourneyDto _$JourneyDtoFromJson(Map<String, dynamic> json) {
+  return _JourneyDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$JourneyDtoDto {
+mixin _$JourneyDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
@@ -3582,30 +3514,28 @@ mixin _$JourneyDtoDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId => throw _privateConstructorUsedError;
+  String? get firstStepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId => throw _privateConstructorUsedError;
+  String? get finalStepId => throw _privateConstructorUsedError;
 
-  /// Serializes this JourneyDtoDto to a JSON map.
+  /// Serializes this JourneyDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of JourneyDtoDto
+  /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $JourneyDtoDtoCopyWith<JourneyDtoDto> get copyWith =>
+  $JourneyDtoCopyWith<JourneyDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $JourneyDtoDtoCopyWith<$Res> {
-  factory $JourneyDtoDtoCopyWith(
-          JourneyDtoDto value, $Res Function(JourneyDtoDto) then) =
-      _$JourneyDtoDtoCopyWithImpl<$Res, JourneyDtoDto>;
+abstract class $JourneyDtoCopyWith<$Res> {
+  factory $JourneyDtoCopyWith(
+          JourneyDto value, $Res Function(JourneyDto) then) =
+      _$JourneyDtoCopyWithImpl<$Res, JourneyDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -3613,25 +3543,21 @@ abstract class $JourneyDtoDtoCopyWith<$Res> {
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
-class _$JourneyDtoDtoCopyWithImpl<$Res, $Val extends JourneyDtoDto>
-    implements $JourneyDtoDtoCopyWith<$Res> {
-  _$JourneyDtoDtoCopyWithImpl(this._value, this._then);
+class _$JourneyDtoCopyWithImpl<$Res, $Val extends JourneyDto>
+    implements $JourneyDtoCopyWith<$Res> {
+  _$JourneyDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of JourneyDtoDto
+  /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3651,7 +3577,7 @@ class _$JourneyDtoDtoCopyWithImpl<$Res, $Val extends JourneyDtoDto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -3683,25 +3609,25 @@ class _$JourneyDtoDtoCopyWithImpl<$Res, $Val extends JourneyDtoDto>
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$JourneyDtoDtoImplCopyWith<$Res>
-    implements $JourneyDtoDtoCopyWith<$Res> {
-  factory _$$JourneyDtoDtoImplCopyWith(
-          _$JourneyDtoDtoImpl value, $Res Function(_$JourneyDtoDtoImpl) then) =
-      __$$JourneyDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$JourneyDtoImplCopyWith<$Res>
+    implements $JourneyDtoCopyWith<$Res> {
+  factory _$$JourneyDtoImplCopyWith(
+          _$JourneyDtoImpl value, $Res Function(_$JourneyDtoImpl) then) =
+      __$$JourneyDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -3709,23 +3635,19 @@ abstract class _$$JourneyDtoDtoImplCopyWith<$Res>
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
-class __$$JourneyDtoDtoImplCopyWithImpl<$Res>
-    extends _$JourneyDtoDtoCopyWithImpl<$Res, _$JourneyDtoDtoImpl>
-    implements _$$JourneyDtoDtoImplCopyWith<$Res> {
-  __$$JourneyDtoDtoImplCopyWithImpl(
-      _$JourneyDtoDtoImpl _value, $Res Function(_$JourneyDtoDtoImpl) _then)
+class __$$JourneyDtoImplCopyWithImpl<$Res>
+    extends _$JourneyDtoCopyWithImpl<$Res, _$JourneyDtoImpl>
+    implements _$$JourneyDtoImplCopyWith<$Res> {
+  __$$JourneyDtoImplCopyWithImpl(
+      _$JourneyDtoImpl _value, $Res Function(_$JourneyDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of JourneyDtoDto
+  /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -3741,11 +3663,11 @@ class __$$JourneyDtoDtoImplCopyWithImpl<$Res>
     Object? firstStepId = freezed,
     Object? finalStepId = freezed,
   }) {
-    return _then(_$JourneyDtoDtoImpl(
+    return _then(_$JourneyDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -3777,20 +3699,20 @@ class __$$JourneyDtoDtoImplCopyWithImpl<$Res>
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$JourneyDtoDtoImpl implements _JourneyDtoDto {
-  _$JourneyDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+class _$JourneyDtoImpl implements _JourneyDto {
+  _$JourneyDtoImpl(
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -3798,16 +3720,15 @@ class _$JourneyDtoDtoImpl implements _JourneyDtoDto {
       @JsonKey(name: 'status') this.status,
       @JsonKey(name: 'completedDate') this.completedDate,
       @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'firstStepId') @ApiUuidJsonConverter() this.firstStepId,
-      @JsonKey(name: 'finalStepId') @ApiUuidJsonConverter() this.finalStepId});
+      @JsonKey(name: 'firstStepId') this.firstStepId,
+      @JsonKey(name: 'finalStepId') this.finalStepId});
 
-  factory _$JourneyDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$JourneyDtoDtoImplFromJson(json);
+  factory _$JourneyDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$JourneyDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -3831,23 +3752,21 @@ class _$JourneyDtoDtoImpl implements _JourneyDtoDto {
   final String? userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? firstStepId;
+  final String? firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? finalStepId;
+  final String? finalStepId;
 
   @override
   String toString() {
-    return 'JourneyDtoDto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId)';
+    return 'JourneyDto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$JourneyDtoDtoImpl &&
+            other is _$JourneyDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -3881,46 +3800,42 @@ class _$JourneyDtoDtoImpl implements _JourneyDtoDto {
       firstStepId,
       finalStepId);
 
-  /// Create a copy of JourneyDtoDto
+  /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$JourneyDtoDtoImplCopyWith<_$JourneyDtoDtoImpl> get copyWith =>
-      __$$JourneyDtoDtoImplCopyWithImpl<_$JourneyDtoDtoImpl>(this, _$identity);
+  _$$JourneyDtoImplCopyWith<_$JourneyDtoImpl> get copyWith =>
+      __$$JourneyDtoImplCopyWithImpl<_$JourneyDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$JourneyDtoDtoImplToJson(
+    return _$$JourneyDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _JourneyDtoDto implements JourneyDtoDto {
-  factory _JourneyDtoDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'status') final String? status,
-      @JsonKey(name: 'completedDate') final DateTime? completedDate,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? finalStepId}) = _$JourneyDtoDtoImpl;
+abstract class _JourneyDto implements JourneyDto {
+  factory _JourneyDto(
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'status') final String? status,
+          @JsonKey(name: 'completedDate') final DateTime? completedDate,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'firstStepId') final String? firstStepId,
+          @JsonKey(name: 'finalStepId') final String? finalStepId}) =
+      _$JourneyDtoImpl;
 
-  factory _JourneyDtoDto.fromJson(Map<String, dynamic> json) =
-      _$JourneyDtoDtoImpl.fromJson;
+  factory _JourneyDto.fromJson(Map<String, dynamic> json) =
+      _$JourneyDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -3944,18 +3859,16 @@ abstract class _JourneyDtoDto implements JourneyDtoDto {
   String? get userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId;
+  String? get firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId;
+  String? get finalStepId;
 
-  /// Create a copy of JourneyDtoDto
+  /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JourneyDtoDtoImplCopyWith<_$JourneyDtoDtoImpl> get copyWith =>
+  _$$JourneyDtoImplCopyWith<_$JourneyDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3966,8 +3879,7 @@ JourneyDto2Dto _$JourneyDto2DtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$JourneyDto2Dto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
@@ -3983,11 +3895,9 @@ mixin _$JourneyDto2Dto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId => throw _privateConstructorUsedError;
+  String? get firstStepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId => throw _privateConstructorUsedError;
+  String? get finalStepId => throw _privateConstructorUsedError;
 
   /// Serializes this JourneyDto2Dto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -4006,7 +3916,7 @@ abstract class $JourneyDto2DtoCopyWith<$Res> {
       _$JourneyDto2DtoCopyWithImpl<$Res, JourneyDto2Dto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -4014,12 +3924,8 @@ abstract class $JourneyDto2DtoCopyWith<$Res> {
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -4052,7 +3958,7 @@ class _$JourneyDto2DtoCopyWithImpl<$Res, $Val extends JourneyDto2Dto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -4084,11 +3990,11 @@ class _$JourneyDto2DtoCopyWithImpl<$Res, $Val extends JourneyDto2Dto>
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ) as $Val);
   }
 }
@@ -4102,7 +4008,7 @@ abstract class _$$JourneyDto2DtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -4110,12 +4016,8 @@ abstract class _$$JourneyDto2DtoImplCopyWith<$Res>
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -4146,7 +4048,7 @@ class __$$JourneyDto2DtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -4178,11 +4080,11 @@ class __$$JourneyDto2DtoImplCopyWithImpl<$Res>
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ));
   }
 }
@@ -4191,7 +4093,7 @@ class __$$JourneyDto2DtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$JourneyDto2DtoImpl implements _JourneyDto2Dto {
   _$JourneyDto2DtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -4199,16 +4101,15 @@ class _$JourneyDto2DtoImpl implements _JourneyDto2Dto {
       @JsonKey(name: 'status') this.status,
       @JsonKey(name: 'completedDate') this.completedDate,
       @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'firstStepId') @ApiUuidJsonConverter() this.firstStepId,
-      @JsonKey(name: 'finalStepId') @ApiUuidJsonConverter() this.finalStepId});
+      @JsonKey(name: 'firstStepId') this.firstStepId,
+      @JsonKey(name: 'finalStepId') this.finalStepId});
 
   factory _$JourneyDto2DtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$JourneyDto2DtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -4232,12 +4133,10 @@ class _$JourneyDto2DtoImpl implements _JourneyDto2Dto {
   final String? userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? firstStepId;
+  final String? firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? finalStepId;
+  final String? finalStepId;
 
   @override
   String toString() {
@@ -4301,28 +4200,24 @@ class _$JourneyDto2DtoImpl implements _JourneyDto2Dto {
 
 abstract class _JourneyDto2Dto implements JourneyDto2Dto {
   factory _JourneyDto2Dto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'status') final String? status,
-      @JsonKey(name: 'completedDate') final DateTime? completedDate,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? finalStepId}) = _$JourneyDto2DtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'status') final String? status,
+          @JsonKey(name: 'completedDate') final DateTime? completedDate,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'firstStepId') final String? firstStepId,
+          @JsonKey(name: 'finalStepId') final String? finalStepId}) =
+      _$JourneyDto2DtoImpl;
 
   factory _JourneyDto2Dto.fromJson(Map<String, dynamic> json) =
       _$JourneyDto2DtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -4346,12 +4241,10 @@ abstract class _JourneyDto2Dto implements JourneyDto2Dto {
   String? get userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId;
+  String? get firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId;
+  String? get finalStepId;
 
   /// Create a copy of JourneyDto2Dto
   /// with the given fields replaced by the non-null parameter values.
@@ -4361,13 +4254,12 @@ abstract class _JourneyDto2Dto implements JourneyDto2Dto {
       throw _privateConstructorUsedError;
 }
 
-JourneyInDetailDtoDto _$JourneyInDetailDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _JourneyInDetailDtoDto.fromJson(json);
+JourneyInDetailDto _$JourneyInDetailDtoFromJson(Map<String, dynamic> json) {
+  return _JourneyInDetailDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$JourneyInDetailDtoDto {
+mixin _$JourneyInDetailDto {
   @JsonKey(name: 'journey')
   JourneyDto2Dto get journey => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepsCount')
@@ -4377,70 +4269,63 @@ mixin _$JourneyInDetailDtoDto {
   @JsonKey(name: 'stepperCount')
   int? get stepperCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestSteppers')
-  List<UserDtoDto>? get latestSteppers => throw _privateConstructorUsedError;
+  List<UserDto>? get latestSteppers => throw _privateConstructorUsedError;
   @JsonKey(name: 'starterCount')
   int? get starterCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestStarters')
-  List<JourneyInDetailDtoDtoLatestStartersDto>? get latestStarters =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get latestStarters => throw _privateConstructorUsedError;
   @JsonKey(name: 'companionCount')
   int? get companionCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestCompanions')
-  List<JourneyInDetailDtoDtoLatestCompanionsDto>? get latestCompanions =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get latestCompanions => throw _privateConstructorUsedError;
   @JsonKey(name: 'celebratorCount')
   int? get celebratorCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestCelebrators')
-  List<JourneyInDetailDtoDtoLatestCelebratorsDto>? get latestCelebrators =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get latestCelebrators => throw _privateConstructorUsedError;
 
-  /// Serializes this JourneyInDetailDtoDto to a JSON map.
+  /// Serializes this JourneyInDetailDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of JourneyInDetailDtoDto
+  /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $JourneyInDetailDtoDtoCopyWith<JourneyInDetailDtoDto> get copyWith =>
+  $JourneyInDetailDtoCopyWith<JourneyInDetailDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $JourneyInDetailDtoDtoCopyWith<$Res> {
-  factory $JourneyInDetailDtoDtoCopyWith(JourneyInDetailDtoDto value,
-          $Res Function(JourneyInDetailDtoDto) then) =
-      _$JourneyInDetailDtoDtoCopyWithImpl<$Res, JourneyInDetailDtoDto>;
+abstract class $JourneyInDetailDtoCopyWith<$Res> {
+  factory $JourneyInDetailDtoCopyWith(
+          JourneyInDetailDto value, $Res Function(JourneyInDetailDto) then) =
+      _$JourneyInDetailDtoCopyWithImpl<$Res, JourneyInDetailDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'journey') JourneyDto2Dto journey,
       @JsonKey(name: 'stepsCount') int stepsCount,
       @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') int? stepperCount,
-      @JsonKey(name: 'latestSteppers') List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') int? starterCount,
-      @JsonKey(name: 'latestStarters')
-      List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') int? companionCount,
-      @JsonKey(name: 'latestCompanions')
-      List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators')
-      List<JourneyInDetailDtoDtoLatestCelebratorsDto>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<dynamic>? latestCelebrators});
 
   $JourneyDto2DtoCopyWith<$Res> get journey;
 }
 
 /// @nodoc
-class _$JourneyInDetailDtoDtoCopyWithImpl<$Res,
-        $Val extends JourneyInDetailDtoDto>
-    implements $JourneyInDetailDtoDtoCopyWith<$Res> {
-  _$JourneyInDetailDtoDtoCopyWithImpl(this._value, this._then);
+class _$JourneyInDetailDtoCopyWithImpl<$Res, $Val extends JourneyInDetailDto>
+    implements $JourneyInDetailDtoCopyWith<$Res> {
+  _$JourneyInDetailDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of JourneyInDetailDtoDto
+  /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -4477,7 +4362,7 @@ class _$JourneyInDetailDtoDtoCopyWithImpl<$Res,
       latestSteppers: freezed == latestSteppers
           ? _value.latestSteppers
           : latestSteppers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       starterCount: freezed == starterCount
           ? _value.starterCount
           : starterCount // ignore: cast_nullable_to_non_nullable
@@ -4485,7 +4370,7 @@ class _$JourneyInDetailDtoDtoCopyWithImpl<$Res,
       latestStarters: freezed == latestStarters
           ? _value.latestStarters
           : latestStarters // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestStartersDto>?,
+              as List<dynamic>?,
       companionCount: freezed == companionCount
           ? _value.companionCount
           : companionCount // ignore: cast_nullable_to_non_nullable
@@ -4493,7 +4378,7 @@ class _$JourneyInDetailDtoDtoCopyWithImpl<$Res,
       latestCompanions: freezed == latestCompanions
           ? _value.latestCompanions
           : latestCompanions // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCompanionsDto>?,
+              as List<dynamic>?,
       celebratorCount: freezed == celebratorCount
           ? _value.celebratorCount
           : celebratorCount // ignore: cast_nullable_to_non_nullable
@@ -4501,11 +4386,11 @@ class _$JourneyInDetailDtoDtoCopyWithImpl<$Res,
       latestCelebrators: freezed == latestCelebrators
           ? _value.latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCelebratorsDto>?,
+              as List<dynamic>?,
     ) as $Val);
   }
 
-  /// Create a copy of JourneyInDetailDtoDto
+  /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -4517,12 +4402,11 @@ class _$JourneyInDetailDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$JourneyInDetailDtoDtoImplCopyWith<$Res>
-    implements $JourneyInDetailDtoDtoCopyWith<$Res> {
-  factory _$$JourneyInDetailDtoDtoImplCopyWith(
-          _$JourneyInDetailDtoDtoImpl value,
-          $Res Function(_$JourneyInDetailDtoDtoImpl) then) =
-      __$$JourneyInDetailDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$JourneyInDetailDtoImplCopyWith<$Res>
+    implements $JourneyInDetailDtoCopyWith<$Res> {
+  factory _$$JourneyInDetailDtoImplCopyWith(_$JourneyInDetailDtoImpl value,
+          $Res Function(_$JourneyInDetailDtoImpl) then) =
+      __$$JourneyInDetailDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -4530,31 +4414,27 @@ abstract class _$$JourneyInDetailDtoDtoImplCopyWith<$Res>
       @JsonKey(name: 'stepsCount') int stepsCount,
       @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') int? stepperCount,
-      @JsonKey(name: 'latestSteppers') List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') int? starterCount,
-      @JsonKey(name: 'latestStarters')
-      List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') int? companionCount,
-      @JsonKey(name: 'latestCompanions')
-      List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators')
-      List<JourneyInDetailDtoDtoLatestCelebratorsDto>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<dynamic>? latestCelebrators});
 
   @override
   $JourneyDto2DtoCopyWith<$Res> get journey;
 }
 
 /// @nodoc
-class __$$JourneyInDetailDtoDtoImplCopyWithImpl<$Res>
-    extends _$JourneyInDetailDtoDtoCopyWithImpl<$Res,
-        _$JourneyInDetailDtoDtoImpl>
-    implements _$$JourneyInDetailDtoDtoImplCopyWith<$Res> {
-  __$$JourneyInDetailDtoDtoImplCopyWithImpl(_$JourneyInDetailDtoDtoImpl _value,
-      $Res Function(_$JourneyInDetailDtoDtoImpl) _then)
+class __$$JourneyInDetailDtoImplCopyWithImpl<$Res>
+    extends _$JourneyInDetailDtoCopyWithImpl<$Res, _$JourneyInDetailDtoImpl>
+    implements _$$JourneyInDetailDtoImplCopyWith<$Res> {
+  __$$JourneyInDetailDtoImplCopyWithImpl(_$JourneyInDetailDtoImpl _value,
+      $Res Function(_$JourneyInDetailDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of JourneyInDetailDtoDto
+  /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -4571,7 +4451,7 @@ class __$$JourneyInDetailDtoDtoImplCopyWithImpl<$Res>
     Object? celebratorCount = freezed,
     Object? latestCelebrators = freezed,
   }) {
-    return _then(_$JourneyInDetailDtoDtoImpl(
+    return _then(_$JourneyInDetailDtoImpl(
       journey: null == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
@@ -4591,7 +4471,7 @@ class __$$JourneyInDetailDtoDtoImplCopyWithImpl<$Res>
       latestSteppers: freezed == latestSteppers
           ? _value._latestSteppers
           : latestSteppers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       starterCount: freezed == starterCount
           ? _value.starterCount
           : starterCount // ignore: cast_nullable_to_non_nullable
@@ -4599,7 +4479,7 @@ class __$$JourneyInDetailDtoDtoImplCopyWithImpl<$Res>
       latestStarters: freezed == latestStarters
           ? _value._latestStarters
           : latestStarters // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestStartersDto>?,
+              as List<dynamic>?,
       companionCount: freezed == companionCount
           ? _value.companionCount
           : companionCount // ignore: cast_nullable_to_non_nullable
@@ -4607,7 +4487,7 @@ class __$$JourneyInDetailDtoDtoImplCopyWithImpl<$Res>
       latestCompanions: freezed == latestCompanions
           ? _value._latestCompanions
           : latestCompanions // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCompanionsDto>?,
+              as List<dynamic>?,
       celebratorCount: freezed == celebratorCount
           ? _value.celebratorCount
           : celebratorCount // ignore: cast_nullable_to_non_nullable
@@ -4615,36 +4495,34 @@ class __$$JourneyInDetailDtoDtoImplCopyWithImpl<$Res>
       latestCelebrators: freezed == latestCelebrators
           ? _value._latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCelebratorsDto>?,
+              as List<dynamic>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$JourneyInDetailDtoDtoImpl implements _JourneyInDetailDtoDto {
-  _$JourneyInDetailDtoDtoImpl(
+class _$JourneyInDetailDtoImpl implements _JourneyInDetailDto {
+  _$JourneyInDetailDtoImpl(
       {@JsonKey(name: 'journey') required this.journey,
       @JsonKey(name: 'stepsCount') required this.stepsCount,
       @JsonKey(name: 'lastStepDate') required this.lastStepDate,
       @JsonKey(name: 'stepperCount') this.stepperCount,
-      @JsonKey(name: 'latestSteppers') final List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') final List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') this.starterCount,
-      @JsonKey(name: 'latestStarters')
-      final List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') final List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') this.companionCount,
-      @JsonKey(name: 'latestCompanions')
-      final List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') final List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') this.celebratorCount,
       @JsonKey(name: 'latestCelebrators')
-      final List<JourneyInDetailDtoDtoLatestCelebratorsDto>? latestCelebrators})
+      final List<dynamic>? latestCelebrators})
       : _latestSteppers = latestSteppers,
         _latestStarters = latestStarters,
         _latestCompanions = latestCompanions,
         _latestCelebrators = latestCelebrators;
 
-  factory _$JourneyInDetailDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$JourneyInDetailDtoDtoImplFromJson(json);
+  factory _$JourneyInDetailDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$JourneyInDetailDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'journey')
@@ -4658,10 +4536,10 @@ class _$JourneyInDetailDtoDtoImpl implements _JourneyInDetailDtoDto {
   @override
   @JsonKey(name: 'stepperCount')
   final int? stepperCount;
-  final List<UserDtoDto>? _latestSteppers;
+  final List<UserDto>? _latestSteppers;
   @override
   @JsonKey(name: 'latestSteppers')
-  List<UserDtoDto>? get latestSteppers {
+  List<UserDto>? get latestSteppers {
     final value = _latestSteppers;
     if (value == null) return null;
     if (_latestSteppers is EqualUnmodifiableListView) return _latestSteppers;
@@ -4672,10 +4550,10 @@ class _$JourneyInDetailDtoDtoImpl implements _JourneyInDetailDtoDto {
   @override
   @JsonKey(name: 'starterCount')
   final int? starterCount;
-  final List<JourneyInDetailDtoDtoLatestStartersDto>? _latestStarters;
+  final List<dynamic>? _latestStarters;
   @override
   @JsonKey(name: 'latestStarters')
-  List<JourneyInDetailDtoDtoLatestStartersDto>? get latestStarters {
+  List<dynamic>? get latestStarters {
     final value = _latestStarters;
     if (value == null) return null;
     if (_latestStarters is EqualUnmodifiableListView) return _latestStarters;
@@ -4686,10 +4564,10 @@ class _$JourneyInDetailDtoDtoImpl implements _JourneyInDetailDtoDto {
   @override
   @JsonKey(name: 'companionCount')
   final int? companionCount;
-  final List<JourneyInDetailDtoDtoLatestCompanionsDto>? _latestCompanions;
+  final List<dynamic>? _latestCompanions;
   @override
   @JsonKey(name: 'latestCompanions')
-  List<JourneyInDetailDtoDtoLatestCompanionsDto>? get latestCompanions {
+  List<dynamic>? get latestCompanions {
     final value = _latestCompanions;
     if (value == null) return null;
     if (_latestCompanions is EqualUnmodifiableListView)
@@ -4701,10 +4579,10 @@ class _$JourneyInDetailDtoDtoImpl implements _JourneyInDetailDtoDto {
   @override
   @JsonKey(name: 'celebratorCount')
   final int? celebratorCount;
-  final List<JourneyInDetailDtoDtoLatestCelebratorsDto>? _latestCelebrators;
+  final List<dynamic>? _latestCelebrators;
   @override
   @JsonKey(name: 'latestCelebrators')
-  List<JourneyInDetailDtoDtoLatestCelebratorsDto>? get latestCelebrators {
+  List<dynamic>? get latestCelebrators {
     final value = _latestCelebrators;
     if (value == null) return null;
     if (_latestCelebrators is EqualUnmodifiableListView)
@@ -4715,14 +4593,14 @@ class _$JourneyInDetailDtoDtoImpl implements _JourneyInDetailDtoDto {
 
   @override
   String toString() {
-    return 'JourneyInDetailDtoDto(journey: $journey, stepsCount: $stepsCount, lastStepDate: $lastStepDate, stepperCount: $stepperCount, latestSteppers: $latestSteppers, starterCount: $starterCount, latestStarters: $latestStarters, companionCount: $companionCount, latestCompanions: $latestCompanions, celebratorCount: $celebratorCount, latestCelebrators: $latestCelebrators)';
+    return 'JourneyInDetailDto(journey: $journey, stepsCount: $stepsCount, lastStepDate: $lastStepDate, stepperCount: $stepperCount, latestSteppers: $latestSteppers, starterCount: $starterCount, latestStarters: $latestStarters, companionCount: $companionCount, latestCompanions: $latestCompanions, celebratorCount: $celebratorCount, latestCelebrators: $latestCelebrators)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$JourneyInDetailDtoDtoImpl &&
+            other is _$JourneyInDetailDtoImpl &&
             (identical(other.journey, journey) || other.journey == journey) &&
             (identical(other.stepsCount, stepsCount) ||
                 other.stepsCount == stepsCount) &&
@@ -4762,43 +4640,40 @@ class _$JourneyInDetailDtoDtoImpl implements _JourneyInDetailDtoDto {
       celebratorCount,
       const DeepCollectionEquality().hash(_latestCelebrators));
 
-  /// Create a copy of JourneyInDetailDtoDto
+  /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$JourneyInDetailDtoDtoImplCopyWith<_$JourneyInDetailDtoDtoImpl>
-      get copyWith => __$$JourneyInDetailDtoDtoImplCopyWithImpl<
-          _$JourneyInDetailDtoDtoImpl>(this, _$identity);
+  _$$JourneyInDetailDtoImplCopyWith<_$JourneyInDetailDtoImpl> get copyWith =>
+      __$$JourneyInDetailDtoImplCopyWithImpl<_$JourneyInDetailDtoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$JourneyInDetailDtoDtoImplToJson(
+    return _$$JourneyInDetailDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _JourneyInDetailDtoDto implements JourneyInDetailDtoDto {
-  factory _JourneyInDetailDtoDto(
+abstract class _JourneyInDetailDto implements JourneyInDetailDto {
+  factory _JourneyInDetailDto(
       {@JsonKey(name: 'journey') required final JourneyDto2Dto journey,
       @JsonKey(name: 'stepsCount') required final int stepsCount,
       @JsonKey(name: 'lastStepDate') required final DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') final int? stepperCount,
-      @JsonKey(name: 'latestSteppers') final List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') final List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') final int? starterCount,
-      @JsonKey(name: 'latestStarters')
-      final List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') final List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') final int? companionCount,
-      @JsonKey(name: 'latestCompanions')
-      final List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') final List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') final int? celebratorCount,
       @JsonKey(name: 'latestCelebrators')
-      final List<JourneyInDetailDtoDtoLatestCelebratorsDto>?
-          latestCelebrators}) = _$JourneyInDetailDtoDtoImpl;
+      final List<dynamic>? latestCelebrators}) = _$JourneyInDetailDtoImpl;
 
-  factory _JourneyInDetailDtoDto.fromJson(Map<String, dynamic> json) =
-      _$JourneyInDetailDtoDtoImpl.fromJson;
+  factory _JourneyInDetailDto.fromJson(Map<String, dynamic> json) =
+      _$JourneyInDetailDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'journey')
@@ -4814,43 +4689,42 @@ abstract class _JourneyInDetailDtoDto implements JourneyInDetailDtoDto {
   int? get stepperCount;
   @override
   @JsonKey(name: 'latestSteppers')
-  List<UserDtoDto>? get latestSteppers;
+  List<UserDto>? get latestSteppers;
   @override
   @JsonKey(name: 'starterCount')
   int? get starterCount;
   @override
   @JsonKey(name: 'latestStarters')
-  List<JourneyInDetailDtoDtoLatestStartersDto>? get latestStarters;
+  List<dynamic>? get latestStarters;
   @override
   @JsonKey(name: 'companionCount')
   int? get companionCount;
   @override
   @JsonKey(name: 'latestCompanions')
-  List<JourneyInDetailDtoDtoLatestCompanionsDto>? get latestCompanions;
+  List<dynamic>? get latestCompanions;
   @override
   @JsonKey(name: 'celebratorCount')
   int? get celebratorCount;
   @override
   @JsonKey(name: 'latestCelebrators')
-  List<JourneyInDetailDtoDtoLatestCelebratorsDto>? get latestCelebrators;
+  List<dynamic>? get latestCelebrators;
 
-  /// Create a copy of JourneyInDetailDtoDto
+  /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$JourneyInDetailDtoDtoImplCopyWith<_$JourneyInDetailDtoDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$JourneyInDetailDtoImplCopyWith<_$JourneyInDetailDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
-NotificationDtoDto _$NotificationDtoDtoFromJson(Map<String, dynamic> json) {
-  return _NotificationDtoDto.fromJson(json);
+NotificationDto _$NotificationDtoFromJson(Map<String, dynamic> json) {
+  return _NotificationDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$NotificationDtoDto {
+mixin _$NotificationDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'body')
@@ -4866,29 +4740,28 @@ mixin _$NotificationDtoDto {
   @JsonKey(name: 'priority')
   int? get priority => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId => throw _privateConstructorUsedError;
+  String? get relatedEntityId => throw _privateConstructorUsedError;
   @JsonKey(name: 'sourceUser')
   UserDetailDto2Dto? get sourceUser => throw _privateConstructorUsedError;
 
-  /// Serializes this NotificationDtoDto to a JSON map.
+  /// Serializes this NotificationDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of NotificationDtoDto
+  /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $NotificationDtoDtoCopyWith<NotificationDtoDto> get copyWith =>
+  $NotificationDtoCopyWith<NotificationDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NotificationDtoDtoCopyWith<$Res> {
-  factory $NotificationDtoDtoCopyWith(
-          NotificationDtoDto value, $Res Function(NotificationDtoDto) then) =
-      _$NotificationDtoDtoCopyWithImpl<$Res, NotificationDtoDto>;
+abstract class $NotificationDtoCopyWith<$Res> {
+  factory $NotificationDtoCopyWith(
+          NotificationDto value, $Res Function(NotificationDto) then) =
+      _$NotificationDtoCopyWithImpl<$Res, NotificationDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'notificationType') int? notificationType,
@@ -4896,25 +4769,23 @@ abstract class $NotificationDtoDtoCopyWith<$Res> {
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser});
 
   $UserDetailDto2DtoCopyWith<$Res>? get sourceUser;
 }
 
 /// @nodoc
-class _$NotificationDtoDtoCopyWithImpl<$Res, $Val extends NotificationDtoDto>
-    implements $NotificationDtoDtoCopyWith<$Res> {
-  _$NotificationDtoDtoCopyWithImpl(this._value, this._then);
+class _$NotificationDtoCopyWithImpl<$Res, $Val extends NotificationDto>
+    implements $NotificationDtoCopyWith<$Res> {
+  _$NotificationDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of NotificationDtoDto
+  /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -4934,7 +4805,7 @@ class _$NotificationDtoDtoCopyWithImpl<$Res, $Val extends NotificationDtoDto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -4966,7 +4837,7 @@ class _$NotificationDtoDtoCopyWithImpl<$Res, $Val extends NotificationDtoDto>
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       sourceUser: freezed == sourceUser
           ? _value.sourceUser
           : sourceUser // ignore: cast_nullable_to_non_nullable
@@ -4974,7 +4845,7 @@ class _$NotificationDtoDtoCopyWithImpl<$Res, $Val extends NotificationDtoDto>
     ) as $Val);
   }
 
-  /// Create a copy of NotificationDtoDto
+  /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -4990,15 +4861,15 @@ class _$NotificationDtoDtoCopyWithImpl<$Res, $Val extends NotificationDtoDto>
 }
 
 /// @nodoc
-abstract class _$$NotificationDtoDtoImplCopyWith<$Res>
-    implements $NotificationDtoDtoCopyWith<$Res> {
-  factory _$$NotificationDtoDtoImplCopyWith(_$NotificationDtoDtoImpl value,
-          $Res Function(_$NotificationDtoDtoImpl) then) =
-      __$$NotificationDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$NotificationDtoImplCopyWith<$Res>
+    implements $NotificationDtoCopyWith<$Res> {
+  factory _$$NotificationDtoImplCopyWith(_$NotificationDtoImpl value,
+          $Res Function(_$NotificationDtoImpl) then) =
+      __$$NotificationDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'notificationType') int? notificationType,
@@ -5006,9 +4877,7 @@ abstract class _$$NotificationDtoDtoImplCopyWith<$Res>
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser});
 
   @override
@@ -5016,14 +4885,14 @@ abstract class _$$NotificationDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$NotificationDtoDtoImplCopyWithImpl<$Res>
-    extends _$NotificationDtoDtoCopyWithImpl<$Res, _$NotificationDtoDtoImpl>
-    implements _$$NotificationDtoDtoImplCopyWith<$Res> {
-  __$$NotificationDtoDtoImplCopyWithImpl(_$NotificationDtoDtoImpl _value,
-      $Res Function(_$NotificationDtoDtoImpl) _then)
+class __$$NotificationDtoImplCopyWithImpl<$Res>
+    extends _$NotificationDtoCopyWithImpl<$Res, _$NotificationDtoImpl>
+    implements _$$NotificationDtoImplCopyWith<$Res> {
+  __$$NotificationDtoImplCopyWithImpl(
+      _$NotificationDtoImpl _value, $Res Function(_$NotificationDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of NotificationDtoDto
+  /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -5039,11 +4908,11 @@ class __$$NotificationDtoDtoImplCopyWithImpl<$Res>
     Object? relatedEntityId = freezed,
     Object? sourceUser = freezed,
   }) {
-    return _then(_$NotificationDtoDtoImpl(
+    return _then(_$NotificationDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -5075,7 +4944,7 @@ class __$$NotificationDtoDtoImplCopyWithImpl<$Res>
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       sourceUser: freezed == sourceUser
           ? _value.sourceUser
           : sourceUser // ignore: cast_nullable_to_non_nullable
@@ -5086,9 +4955,9 @@ class __$$NotificationDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$NotificationDtoDtoImpl implements _NotificationDtoDto {
-  _$NotificationDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+class _$NotificationDtoImpl implements _NotificationDto {
+  _$NotificationDtoImpl(
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'body') this.body,
       @JsonKey(name: 'notificationType') this.notificationType,
@@ -5096,19 +4965,16 @@ class _$NotificationDtoDtoImpl implements _NotificationDtoDto {
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      this.relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'sourceUser') this.sourceUser})
       : _data = data;
 
-  factory _$NotificationDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NotificationDtoDtoImplFromJson(json);
+  factory _$NotificationDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NotificationDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -5140,22 +5006,21 @@ class _$NotificationDtoDtoImpl implements _NotificationDtoDto {
   final int? priority;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? relatedEntityId;
+  final String? relatedEntityId;
   @override
   @JsonKey(name: 'sourceUser')
   final UserDetailDto2Dto? sourceUser;
 
   @override
   String toString() {
-    return 'NotificationDtoDto(id: $id, title: $title, body: $body, notificationType: $notificationType, isRead: $isRead, createdDate: $createdDate, data: $data, priority: $priority, relatedEntityId: $relatedEntityId, sourceUser: $sourceUser)';
+    return 'NotificationDto(id: $id, title: $title, body: $body, notificationType: $notificationType, isRead: $isRead, createdDate: $createdDate, data: $data, priority: $priority, relatedEntityId: $relatedEntityId, sourceUser: $sourceUser)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NotificationDtoDtoImpl &&
+            other is _$NotificationDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
@@ -5188,26 +5053,26 @@ class _$NotificationDtoDtoImpl implements _NotificationDtoDto {
       relatedEntityId,
       sourceUser);
 
-  /// Create a copy of NotificationDtoDto
+  /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$NotificationDtoDtoImplCopyWith<_$NotificationDtoDtoImpl> get copyWith =>
-      __$$NotificationDtoDtoImplCopyWithImpl<_$NotificationDtoDtoImpl>(
+  _$$NotificationDtoImplCopyWith<_$NotificationDtoImpl> get copyWith =>
+      __$$NotificationDtoImplCopyWithImpl<_$NotificationDtoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NotificationDtoDtoImplToJson(
+    return _$$NotificationDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _NotificationDtoDto implements NotificationDtoDto {
-  factory _NotificationDtoDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
+abstract class _NotificationDto implements NotificationDto {
+  factory _NotificationDto(
+          {@JsonKey(name: 'id') final String? id,
           @JsonKey(name: 'title') final String? title,
           @JsonKey(name: 'body') final String? body,
           @JsonKey(name: 'notificationType') final int? notificationType,
@@ -5215,19 +5080,16 @@ abstract class _NotificationDtoDto implements NotificationDtoDto {
           @JsonKey(name: 'createdDate') final DateTime? createdDate,
           @JsonKey(name: 'data') final Map<String, String>? data,
           @JsonKey(name: 'priority') final int? priority,
-          @JsonKey(name: 'relatedEntityId')
-          @ApiUuidJsonConverter()
-          final ApiUuid? relatedEntityId,
+          @JsonKey(name: 'relatedEntityId') final String? relatedEntityId,
           @JsonKey(name: 'sourceUser') final UserDetailDto2Dto? sourceUser}) =
-      _$NotificationDtoDtoImpl;
+      _$NotificationDtoImpl;
 
-  factory _NotificationDtoDto.fromJson(Map<String, dynamic> json) =
-      _$NotificationDtoDtoImpl.fromJson;
+  factory _NotificationDto.fromJson(Map<String, dynamic> json) =
+      _$NotificationDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -5251,29 +5113,27 @@ abstract class _NotificationDtoDto implements NotificationDtoDto {
   int? get priority;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId;
+  String? get relatedEntityId;
   @override
   @JsonKey(name: 'sourceUser')
   UserDetailDto2Dto? get sourceUser;
 
-  /// Create a copy of NotificationDtoDto
+  /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NotificationDtoDtoImplCopyWith<_$NotificationDtoDtoImpl> get copyWith =>
+  _$$NotificationDtoImplCopyWith<_$NotificationDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-NotificationPagedDtoDto _$NotificationPagedDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _NotificationPagedDtoDto.fromJson(json);
+NotificationPagedDto _$NotificationPagedDtoFromJson(Map<String, dynamic> json) {
+  return _NotificationPagedDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$NotificationPagedDtoDto {
+mixin _$NotificationPagedDto {
   @JsonKey(name: 'notifications')
-  List<NotificationDtoDto>? get notifications =>
+  List<NotificationDto>? get notifications =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'page')
   int? get page => throw _privateConstructorUsedError;
@@ -5286,24 +5146,24 @@ mixin _$NotificationPagedDtoDto {
   @JsonKey(name: 'hasMore')
   bool? get hasMore => throw _privateConstructorUsedError;
 
-  /// Serializes this NotificationPagedDtoDto to a JSON map.
+  /// Serializes this NotificationPagedDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of NotificationPagedDtoDto
+  /// Create a copy of NotificationPagedDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $NotificationPagedDtoDtoCopyWith<NotificationPagedDtoDto> get copyWith =>
+  $NotificationPagedDtoCopyWith<NotificationPagedDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NotificationPagedDtoDtoCopyWith<$Res> {
-  factory $NotificationPagedDtoDtoCopyWith(NotificationPagedDtoDto value,
-          $Res Function(NotificationPagedDtoDto) then) =
-      _$NotificationPagedDtoDtoCopyWithImpl<$Res, NotificationPagedDtoDto>;
+abstract class $NotificationPagedDtoCopyWith<$Res> {
+  factory $NotificationPagedDtoCopyWith(NotificationPagedDto value,
+          $Res Function(NotificationPagedDto) then) =
+      _$NotificationPagedDtoCopyWithImpl<$Res, NotificationPagedDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'notifications') List<NotificationDtoDto>? notifications,
+      {@JsonKey(name: 'notifications') List<NotificationDto>? notifications,
       @JsonKey(name: 'page') int? page,
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
@@ -5312,17 +5172,17 @@ abstract class $NotificationPagedDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$NotificationPagedDtoDtoCopyWithImpl<$Res,
-        $Val extends NotificationPagedDtoDto>
-    implements $NotificationPagedDtoDtoCopyWith<$Res> {
-  _$NotificationPagedDtoDtoCopyWithImpl(this._value, this._then);
+class _$NotificationPagedDtoCopyWithImpl<$Res,
+        $Val extends NotificationPagedDto>
+    implements $NotificationPagedDtoCopyWith<$Res> {
+  _$NotificationPagedDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of NotificationPagedDtoDto
+  /// Create a copy of NotificationPagedDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -5338,7 +5198,7 @@ class _$NotificationPagedDtoDtoCopyWithImpl<$Res,
       notifications: freezed == notifications
           ? _value.notifications
           : notifications // ignore: cast_nullable_to_non_nullable
-              as List<NotificationDtoDto>?,
+              as List<NotificationDto>?,
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -5364,16 +5224,15 @@ class _$NotificationPagedDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$NotificationPagedDtoDtoImplCopyWith<$Res>
-    implements $NotificationPagedDtoDtoCopyWith<$Res> {
-  factory _$$NotificationPagedDtoDtoImplCopyWith(
-          _$NotificationPagedDtoDtoImpl value,
-          $Res Function(_$NotificationPagedDtoDtoImpl) then) =
-      __$$NotificationPagedDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$NotificationPagedDtoImplCopyWith<$Res>
+    implements $NotificationPagedDtoCopyWith<$Res> {
+  factory _$$NotificationPagedDtoImplCopyWith(_$NotificationPagedDtoImpl value,
+          $Res Function(_$NotificationPagedDtoImpl) then) =
+      __$$NotificationPagedDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'notifications') List<NotificationDtoDto>? notifications,
+      {@JsonKey(name: 'notifications') List<NotificationDto>? notifications,
       @JsonKey(name: 'page') int? page,
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
@@ -5382,16 +5241,14 @@ abstract class _$$NotificationPagedDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$NotificationPagedDtoDtoImplCopyWithImpl<$Res>
-    extends _$NotificationPagedDtoDtoCopyWithImpl<$Res,
-        _$NotificationPagedDtoDtoImpl>
-    implements _$$NotificationPagedDtoDtoImplCopyWith<$Res> {
-  __$$NotificationPagedDtoDtoImplCopyWithImpl(
-      _$NotificationPagedDtoDtoImpl _value,
-      $Res Function(_$NotificationPagedDtoDtoImpl) _then)
+class __$$NotificationPagedDtoImplCopyWithImpl<$Res>
+    extends _$NotificationPagedDtoCopyWithImpl<$Res, _$NotificationPagedDtoImpl>
+    implements _$$NotificationPagedDtoImplCopyWith<$Res> {
+  __$$NotificationPagedDtoImplCopyWithImpl(_$NotificationPagedDtoImpl _value,
+      $Res Function(_$NotificationPagedDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of NotificationPagedDtoDto
+  /// Create a copy of NotificationPagedDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -5403,11 +5260,11 @@ class __$$NotificationPagedDtoDtoImplCopyWithImpl<$Res>
     Object? unreadCount = freezed,
     Object? hasMore = freezed,
   }) {
-    return _then(_$NotificationPagedDtoDtoImpl(
+    return _then(_$NotificationPagedDtoImpl(
       notifications: freezed == notifications
           ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
-              as List<NotificationDtoDto>?,
+              as List<NotificationDto>?,
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -5434,10 +5291,10 @@ class __$$NotificationPagedDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$NotificationPagedDtoDtoImpl implements _NotificationPagedDtoDto {
-  _$NotificationPagedDtoDtoImpl(
+class _$NotificationPagedDtoImpl implements _NotificationPagedDto {
+  _$NotificationPagedDtoImpl(
       {@JsonKey(name: 'notifications')
-      final List<NotificationDtoDto>? notifications,
+      final List<NotificationDto>? notifications,
       @JsonKey(name: 'page') this.page,
       @JsonKey(name: 'pageSize') this.pageSize,
       @JsonKey(name: 'totalCount') this.totalCount,
@@ -5445,13 +5302,13 @@ class _$NotificationPagedDtoDtoImpl implements _NotificationPagedDtoDto {
       @JsonKey(name: 'hasMore') this.hasMore})
       : _notifications = notifications;
 
-  factory _$NotificationPagedDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$NotificationPagedDtoDtoImplFromJson(json);
+  factory _$NotificationPagedDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NotificationPagedDtoImplFromJson(json);
 
-  final List<NotificationDtoDto>? _notifications;
+  final List<NotificationDto>? _notifications;
   @override
   @JsonKey(name: 'notifications')
-  List<NotificationDtoDto>? get notifications {
+  List<NotificationDto>? get notifications {
     final value = _notifications;
     if (value == null) return null;
     if (_notifications is EqualUnmodifiableListView) return _notifications;
@@ -5477,14 +5334,14 @@ class _$NotificationPagedDtoDtoImpl implements _NotificationPagedDtoDto {
 
   @override
   String toString() {
-    return 'NotificationPagedDtoDto(notifications: $notifications, page: $page, pageSize: $pageSize, totalCount: $totalCount, unreadCount: $unreadCount, hasMore: $hasMore)';
+    return 'NotificationPagedDto(notifications: $notifications, page: $page, pageSize: $pageSize, totalCount: $totalCount, unreadCount: $unreadCount, hasMore: $hasMore)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NotificationPagedDtoDtoImpl &&
+            other is _$NotificationPagedDtoImpl &&
             const DeepCollectionEquality()
                 .equals(other._notifications, _notifications) &&
             (identical(other.page, page) || other.page == page) &&
@@ -5508,40 +5365,41 @@ class _$NotificationPagedDtoDtoImpl implements _NotificationPagedDtoDto {
       unreadCount,
       hasMore);
 
-  /// Create a copy of NotificationPagedDtoDto
+  /// Create a copy of NotificationPagedDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$NotificationPagedDtoDtoImplCopyWith<_$NotificationPagedDtoDtoImpl>
-      get copyWith => __$$NotificationPagedDtoDtoImplCopyWithImpl<
-          _$NotificationPagedDtoDtoImpl>(this, _$identity);
+  _$$NotificationPagedDtoImplCopyWith<_$NotificationPagedDtoImpl>
+      get copyWith =>
+          __$$NotificationPagedDtoImplCopyWithImpl<_$NotificationPagedDtoImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$NotificationPagedDtoDtoImplToJson(
+    return _$$NotificationPagedDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _NotificationPagedDtoDto implements NotificationPagedDtoDto {
-  factory _NotificationPagedDtoDto(
+abstract class _NotificationPagedDto implements NotificationPagedDto {
+  factory _NotificationPagedDto(
           {@JsonKey(name: 'notifications')
-          final List<NotificationDtoDto>? notifications,
+          final List<NotificationDto>? notifications,
           @JsonKey(name: 'page') final int? page,
           @JsonKey(name: 'pageSize') final int? pageSize,
           @JsonKey(name: 'totalCount') final int? totalCount,
           @JsonKey(name: 'unreadCount') final int? unreadCount,
           @JsonKey(name: 'hasMore') final bool? hasMore}) =
-      _$NotificationPagedDtoDtoImpl;
+      _$NotificationPagedDtoImpl;
 
-  factory _NotificationPagedDtoDto.fromJson(Map<String, dynamic> json) =
-      _$NotificationPagedDtoDtoImpl.fromJson;
+  factory _NotificationPagedDto.fromJson(Map<String, dynamic> json) =
+      _$NotificationPagedDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'notifications')
-  List<NotificationDtoDto>? get notifications;
+  List<NotificationDto>? get notifications;
   @override
   @JsonKey(name: 'page')
   int? get page;
@@ -5558,76 +5416,74 @@ abstract class _NotificationPagedDtoDto implements NotificationPagedDtoDto {
   @JsonKey(name: 'hasMore')
   bool? get hasMore;
 
-  /// Create a copy of NotificationPagedDtoDto
+  /// Create a copy of NotificationPagedDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NotificationPagedDtoDtoImplCopyWith<_$NotificationPagedDtoDtoImpl>
+  _$$NotificationPagedDtoImplCopyWith<_$NotificationPagedDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ProfileDtoDto _$ProfileDtoDtoFromJson(Map<String, dynamic> json) {
-  return _ProfileDtoDto.fromJson(json);
+ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) {
+  return _ProfileDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ProfileDtoDto {
+mixin _$ProfileDto {
   @JsonKey(name: 'userDetail')
-  UserDetailDtoDto get userDetail => throw _privateConstructorUsedError;
+  UserDetailDto get userDetail => throw _privateConstructorUsedError;
   @JsonKey(name: 'badgesCount')
   int? get badgesCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'badgesUsers')
-  List<UserDtoDto>? get badgesUsers => throw _privateConstructorUsedError;
+  List<UserDto>? get badgesUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'supportersCount')
   int? get supportersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'supportersUsers')
-  List<ProfileDtoDtoSupportersUsersDto>? get supportersUsers =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get supportersUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'followersCount')
   int? get followersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'followingsCount')
   int? get followingsCount => throw _privateConstructorUsedError;
 
-  /// Serializes this ProfileDtoDto to a JSON map.
+  /// Serializes this ProfileDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ProfileDtoDto
+  /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProfileDtoDtoCopyWith<ProfileDtoDto> get copyWith =>
+  $ProfileDtoCopyWith<ProfileDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProfileDtoDtoCopyWith<$Res> {
-  factory $ProfileDtoDtoCopyWith(
-          ProfileDtoDto value, $Res Function(ProfileDtoDto) then) =
-      _$ProfileDtoDtoCopyWithImpl<$Res, ProfileDtoDto>;
+abstract class $ProfileDtoCopyWith<$Res> {
+  factory $ProfileDtoCopyWith(
+          ProfileDto value, $Res Function(ProfileDto) then) =
+      _$ProfileDtoCopyWithImpl<$Res, ProfileDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'userDetail') UserDetailDtoDto userDetail,
+      {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
       @JsonKey(name: 'badgesCount') int? badgesCount,
-      @JsonKey(name: 'badgesUsers') List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') int? supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') int? followersCount,
       @JsonKey(name: 'followingsCount') int? followingsCount});
 
-  $UserDetailDtoDtoCopyWith<$Res> get userDetail;
+  $UserDetailDtoCopyWith<$Res> get userDetail;
 }
 
 /// @nodoc
-class _$ProfileDtoDtoCopyWithImpl<$Res, $Val extends ProfileDtoDto>
-    implements $ProfileDtoDtoCopyWith<$Res> {
-  _$ProfileDtoDtoCopyWithImpl(this._value, this._then);
+class _$ProfileDtoCopyWithImpl<$Res, $Val extends ProfileDto>
+    implements $ProfileDtoCopyWith<$Res> {
+  _$ProfileDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProfileDtoDto
+  /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -5644,7 +5500,7 @@ class _$ProfileDtoDtoCopyWithImpl<$Res, $Val extends ProfileDtoDto>
       userDetail: null == userDetail
           ? _value.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
-              as UserDetailDtoDto,
+              as UserDetailDto,
       badgesCount: freezed == badgesCount
           ? _value.badgesCount
           : badgesCount // ignore: cast_nullable_to_non_nullable
@@ -5652,7 +5508,7 @@ class _$ProfileDtoDtoCopyWithImpl<$Res, $Val extends ProfileDtoDto>
       badgesUsers: freezed == badgesUsers
           ? _value.badgesUsers
           : badgesUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       supportersCount: freezed == supportersCount
           ? _value.supportersCount
           : supportersCount // ignore: cast_nullable_to_non_nullable
@@ -5660,7 +5516,7 @@ class _$ProfileDtoDtoCopyWithImpl<$Res, $Val extends ProfileDtoDto>
       supportersUsers: freezed == supportersUsers
           ? _value.supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
-              as List<ProfileDtoDtoSupportersUsersDto>?,
+              as List<dynamic>?,
       followersCount: freezed == followersCount
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
@@ -5672,48 +5528,47 @@ class _$ProfileDtoDtoCopyWithImpl<$Res, $Val extends ProfileDtoDto>
     ) as $Val);
   }
 
-  /// Create a copy of ProfileDtoDto
+  /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDetailDtoDtoCopyWith<$Res> get userDetail {
-    return $UserDetailDtoDtoCopyWith<$Res>(_value.userDetail, (value) {
+  $UserDetailDtoCopyWith<$Res> get userDetail {
+    return $UserDetailDtoCopyWith<$Res>(_value.userDetail, (value) {
       return _then(_value.copyWith(userDetail: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ProfileDtoDtoImplCopyWith<$Res>
-    implements $ProfileDtoDtoCopyWith<$Res> {
-  factory _$$ProfileDtoDtoImplCopyWith(
-          _$ProfileDtoDtoImpl value, $Res Function(_$ProfileDtoDtoImpl) then) =
-      __$$ProfileDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$ProfileDtoImplCopyWith<$Res>
+    implements $ProfileDtoCopyWith<$Res> {
+  factory _$$ProfileDtoImplCopyWith(
+          _$ProfileDtoImpl value, $Res Function(_$ProfileDtoImpl) then) =
+      __$$ProfileDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'userDetail') UserDetailDtoDto userDetail,
+      {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
       @JsonKey(name: 'badgesCount') int? badgesCount,
-      @JsonKey(name: 'badgesUsers') List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') int? supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') int? followersCount,
       @JsonKey(name: 'followingsCount') int? followingsCount});
 
   @override
-  $UserDetailDtoDtoCopyWith<$Res> get userDetail;
+  $UserDetailDtoCopyWith<$Res> get userDetail;
 }
 
 /// @nodoc
-class __$$ProfileDtoDtoImplCopyWithImpl<$Res>
-    extends _$ProfileDtoDtoCopyWithImpl<$Res, _$ProfileDtoDtoImpl>
-    implements _$$ProfileDtoDtoImplCopyWith<$Res> {
-  __$$ProfileDtoDtoImplCopyWithImpl(
-      _$ProfileDtoDtoImpl _value, $Res Function(_$ProfileDtoDtoImpl) _then)
+class __$$ProfileDtoImplCopyWithImpl<$Res>
+    extends _$ProfileDtoCopyWithImpl<$Res, _$ProfileDtoImpl>
+    implements _$$ProfileDtoImplCopyWith<$Res> {
+  __$$ProfileDtoImplCopyWithImpl(
+      _$ProfileDtoImpl _value, $Res Function(_$ProfileDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileDtoDto
+  /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -5726,11 +5581,11 @@ class __$$ProfileDtoDtoImplCopyWithImpl<$Res>
     Object? followersCount = freezed,
     Object? followingsCount = freezed,
   }) {
-    return _then(_$ProfileDtoDtoImpl(
+    return _then(_$ProfileDtoImpl(
       userDetail: null == userDetail
           ? _value.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
-              as UserDetailDtoDto,
+              as UserDetailDto,
       badgesCount: freezed == badgesCount
           ? _value.badgesCount
           : badgesCount // ignore: cast_nullable_to_non_nullable
@@ -5738,7 +5593,7 @@ class __$$ProfileDtoDtoImplCopyWithImpl<$Res>
       badgesUsers: freezed == badgesUsers
           ? _value._badgesUsers
           : badgesUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       supportersCount: freezed == supportersCount
           ? _value.supportersCount
           : supportersCount // ignore: cast_nullable_to_non_nullable
@@ -5746,7 +5601,7 @@ class __$$ProfileDtoDtoImplCopyWithImpl<$Res>
       supportersUsers: freezed == supportersUsers
           ? _value._supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
-              as List<ProfileDtoDtoSupportersUsersDto>?,
+              as List<dynamic>?,
       followersCount: freezed == followersCount
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
@@ -5761,32 +5616,31 @@ class __$$ProfileDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProfileDtoDtoImpl implements _ProfileDtoDto {
-  _$ProfileDtoDtoImpl(
+class _$ProfileDtoImpl implements _ProfileDto {
+  _$ProfileDtoImpl(
       {@JsonKey(name: 'userDetail') required this.userDetail,
       @JsonKey(name: 'badgesCount') this.badgesCount,
-      @JsonKey(name: 'badgesUsers') final List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') final List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') this.supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      final List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') final List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') this.followersCount,
       @JsonKey(name: 'followingsCount') this.followingsCount})
       : _badgesUsers = badgesUsers,
         _supportersUsers = supportersUsers;
 
-  factory _$ProfileDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProfileDtoDtoImplFromJson(json);
+  factory _$ProfileDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProfileDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'userDetail')
-  final UserDetailDtoDto userDetail;
+  final UserDetailDto userDetail;
   @override
   @JsonKey(name: 'badgesCount')
   final int? badgesCount;
-  final List<UserDtoDto>? _badgesUsers;
+  final List<UserDto>? _badgesUsers;
   @override
   @JsonKey(name: 'badgesUsers')
-  List<UserDtoDto>? get badgesUsers {
+  List<UserDto>? get badgesUsers {
     final value = _badgesUsers;
     if (value == null) return null;
     if (_badgesUsers is EqualUnmodifiableListView) return _badgesUsers;
@@ -5797,10 +5651,10 @@ class _$ProfileDtoDtoImpl implements _ProfileDtoDto {
   @override
   @JsonKey(name: 'supportersCount')
   final int? supportersCount;
-  final List<ProfileDtoDtoSupportersUsersDto>? _supportersUsers;
+  final List<dynamic>? _supportersUsers;
   @override
   @JsonKey(name: 'supportersUsers')
-  List<ProfileDtoDtoSupportersUsersDto>? get supportersUsers {
+  List<dynamic>? get supportersUsers {
     final value = _supportersUsers;
     if (value == null) return null;
     if (_supportersUsers is EqualUnmodifiableListView) return _supportersUsers;
@@ -5817,14 +5671,14 @@ class _$ProfileDtoDtoImpl implements _ProfileDtoDto {
 
   @override
   String toString() {
-    return 'ProfileDtoDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount)';
+    return 'ProfileDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileDtoDtoImpl &&
+            other is _$ProfileDtoImpl &&
             (identical(other.userDetail, userDetail) ||
                 other.userDetail == userDetail) &&
             (identical(other.badgesCount, badgesCount) ||
@@ -5853,52 +5707,51 @@ class _$ProfileDtoDtoImpl implements _ProfileDtoDto {
       followersCount,
       followingsCount);
 
-  /// Create a copy of ProfileDtoDto
+  /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileDtoDtoImplCopyWith<_$ProfileDtoDtoImpl> get copyWith =>
-      __$$ProfileDtoDtoImplCopyWithImpl<_$ProfileDtoDtoImpl>(this, _$identity);
+  _$$ProfileDtoImplCopyWith<_$ProfileDtoImpl> get copyWith =>
+      __$$ProfileDtoImplCopyWithImpl<_$ProfileDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProfileDtoDtoImplToJson(
+    return _$$ProfileDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ProfileDtoDto implements ProfileDtoDto {
-  factory _ProfileDtoDto(
-      {@JsonKey(name: 'userDetail') required final UserDetailDtoDto userDetail,
+abstract class _ProfileDto implements ProfileDto {
+  factory _ProfileDto(
+      {@JsonKey(name: 'userDetail') required final UserDetailDto userDetail,
       @JsonKey(name: 'badgesCount') final int? badgesCount,
-      @JsonKey(name: 'badgesUsers') final List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') final List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') final int? supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      final List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') final List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') final int? followersCount,
       @JsonKey(name: 'followingsCount')
-      final int? followingsCount}) = _$ProfileDtoDtoImpl;
+      final int? followingsCount}) = _$ProfileDtoImpl;
 
-  factory _ProfileDtoDto.fromJson(Map<String, dynamic> json) =
-      _$ProfileDtoDtoImpl.fromJson;
+  factory _ProfileDto.fromJson(Map<String, dynamic> json) =
+      _$ProfileDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'userDetail')
-  UserDetailDtoDto get userDetail;
+  UserDetailDto get userDetail;
   @override
   @JsonKey(name: 'badgesCount')
   int? get badgesCount;
   @override
   @JsonKey(name: 'badgesUsers')
-  List<UserDtoDto>? get badgesUsers;
+  List<UserDto>? get badgesUsers;
   @override
   @JsonKey(name: 'supportersCount')
   int? get supportersCount;
   @override
   @JsonKey(name: 'supportersUsers')
-  List<ProfileDtoDtoSupportersUsersDto>? get supportersUsers;
+  List<dynamic>? get supportersUsers;
   @override
   @JsonKey(name: 'followersCount')
   int? get followersCount;
@@ -5906,23 +5759,22 @@ abstract class _ProfileDtoDto implements ProfileDtoDto {
   @JsonKey(name: 'followingsCount')
   int? get followingsCount;
 
-  /// Create a copy of ProfileDtoDto
+  /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProfileDtoDtoImplCopyWith<_$ProfileDtoDtoImpl> get copyWith =>
+  _$$ProfileDtoImplCopyWith<_$ProfileDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-ReplyDtoDto _$ReplyDtoDtoFromJson(Map<String, dynamic> json) {
-  return _ReplyDtoDto.fromJson(json);
+ReplyDto _$ReplyDtoFromJson(Map<String, dynamic> json) {
+  return _ReplyDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ReplyDtoDto {
+mixin _$ReplyDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -5932,68 +5784,61 @@ mixin _$ReplyDtoDto {
   @JsonKey(name: 'deletedDate')
   DateTime? get deletedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto? get user => throw _privateConstructorUsedError;
+  UserDto? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'parentCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get parentCommentId => throw _privateConstructorUsedError;
+  String? get parentCommentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'responseToUser')
   UserDto2Dto? get responseToUser => throw _privateConstructorUsedError;
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId => throw _privateConstructorUsedError;
+  String? get responseToCommentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartCount')
   int? get heartCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
   bool? get heartedByUser => throw _privateConstructorUsedError;
 
-  /// Serializes this ReplyDtoDto to a JSON map.
+  /// Serializes this ReplyDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ReplyDtoDto
+  /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReplyDtoDtoCopyWith<ReplyDtoDto> get copyWith =>
+  $ReplyDtoCopyWith<ReplyDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReplyDtoDtoCopyWith<$Res> {
-  factory $ReplyDtoDtoCopyWith(
-          ReplyDtoDto value, $Res Function(ReplyDtoDto) then) =
-      _$ReplyDtoDtoCopyWithImpl<$Res, ReplyDtoDto>;
+abstract class $ReplyDtoCopyWith<$Res> {
+  factory $ReplyDtoCopyWith(ReplyDto value, $Res Function(ReplyDto) then) =
+      _$ReplyDtoCopyWithImpl<$Res, ReplyDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'parentCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? parentCommentId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'parentCommentId') String? parentCommentId,
       @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId,
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser});
 
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
   $UserDto2DtoCopyWith<$Res>? get responseToUser;
 }
 
 /// @nodoc
-class _$ReplyDtoDtoCopyWithImpl<$Res, $Val extends ReplyDtoDto>
-    implements $ReplyDtoDtoCopyWith<$Res> {
-  _$ReplyDtoDtoCopyWithImpl(this._value, this._then);
+class _$ReplyDtoCopyWithImpl<$Res, $Val extends ReplyDto>
+    implements $ReplyDtoCopyWith<$Res> {
+  _$ReplyDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ReplyDtoDto
+  /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -6014,7 +5859,7 @@ class _$ReplyDtoDtoCopyWithImpl<$Res, $Val extends ReplyDtoDto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -6034,11 +5879,11 @@ class _$ReplyDtoDtoCopyWithImpl<$Res, $Val extends ReplyDtoDto>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       parentCommentId: freezed == parentCommentId
           ? _value.parentCommentId
           : parentCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       responseToUser: freezed == responseToUser
           ? _value.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
@@ -6046,7 +5891,7 @@ class _$ReplyDtoDtoCopyWithImpl<$Res, $Val extends ReplyDtoDto>
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -6058,21 +5903,21 @@ class _$ReplyDtoDtoCopyWithImpl<$Res, $Val extends ReplyDtoDto>
     ) as $Val);
   }
 
-  /// Create a copy of ReplyDtoDto
+  /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res>? get user {
+  $UserDtoCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $UserDtoDtoCopyWith<$Res>(_value.user!, (value) {
+    return $UserDtoCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
-  /// Create a copy of ReplyDtoDto
+  /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -6088,45 +5933,41 @@ class _$ReplyDtoDtoCopyWithImpl<$Res, $Val extends ReplyDtoDto>
 }
 
 /// @nodoc
-abstract class _$$ReplyDtoDtoImplCopyWith<$Res>
-    implements $ReplyDtoDtoCopyWith<$Res> {
-  factory _$$ReplyDtoDtoImplCopyWith(
-          _$ReplyDtoDtoImpl value, $Res Function(_$ReplyDtoDtoImpl) then) =
-      __$$ReplyDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$ReplyDtoImplCopyWith<$Res>
+    implements $ReplyDtoCopyWith<$Res> {
+  factory _$$ReplyDtoImplCopyWith(
+          _$ReplyDtoImpl value, $Res Function(_$ReplyDtoImpl) then) =
+      __$$ReplyDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'parentCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? parentCommentId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'parentCommentId') String? parentCommentId,
       @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId,
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser});
 
   @override
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
   @override
   $UserDto2DtoCopyWith<$Res>? get responseToUser;
 }
 
 /// @nodoc
-class __$$ReplyDtoDtoImplCopyWithImpl<$Res>
-    extends _$ReplyDtoDtoCopyWithImpl<$Res, _$ReplyDtoDtoImpl>
-    implements _$$ReplyDtoDtoImplCopyWith<$Res> {
-  __$$ReplyDtoDtoImplCopyWithImpl(
-      _$ReplyDtoDtoImpl _value, $Res Function(_$ReplyDtoDtoImpl) _then)
+class __$$ReplyDtoImplCopyWithImpl<$Res>
+    extends _$ReplyDtoCopyWithImpl<$Res, _$ReplyDtoImpl>
+    implements _$$ReplyDtoImplCopyWith<$Res> {
+  __$$ReplyDtoImplCopyWithImpl(
+      _$ReplyDtoImpl _value, $Res Function(_$ReplyDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ReplyDtoDto
+  /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -6143,11 +5984,11 @@ class __$$ReplyDtoDtoImplCopyWithImpl<$Res>
     Object? heartCount = freezed,
     Object? heartedByUser = freezed,
   }) {
-    return _then(_$ReplyDtoDtoImpl(
+    return _then(_$ReplyDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -6167,11 +6008,11 @@ class __$$ReplyDtoDtoImplCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       parentCommentId: freezed == parentCommentId
           ? _value.parentCommentId
           : parentCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       responseToUser: freezed == responseToUser
           ? _value.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
@@ -6179,7 +6020,7 @@ class __$$ReplyDtoDtoImplCopyWithImpl<$Res>
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -6194,31 +6035,26 @@ class __$$ReplyDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ReplyDtoDtoImpl implements _ReplyDtoDto {
-  _$ReplyDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+class _$ReplyDtoImpl implements _ReplyDto {
+  _$ReplyDtoImpl(
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'deletedDate') this.deletedDate,
       @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'parentCommentId')
-      @ApiUuidJsonConverter()
-      this.parentCommentId,
+      @JsonKey(name: 'parentCommentId') this.parentCommentId,
       @JsonKey(name: 'responseToUser') this.responseToUser,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      this.responseToCommentId,
+      @JsonKey(name: 'responseToCommentId') this.responseToCommentId,
       @JsonKey(name: 'heartCount') this.heartCount,
       @JsonKey(name: 'heartedByUser') this.heartedByUser});
 
-  factory _$ReplyDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReplyDtoDtoImplFromJson(json);
+  factory _$ReplyDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReplyDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -6233,18 +6069,16 @@ class _$ReplyDtoDtoImpl implements _ReplyDtoDto {
   final DateTime? deletedDate;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto? user;
+  final UserDto? user;
   @override
   @JsonKey(name: 'parentCommentId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? parentCommentId;
+  final String? parentCommentId;
   @override
   @JsonKey(name: 'responseToUser')
   final UserDto2Dto? responseToUser;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? responseToCommentId;
+  final String? responseToCommentId;
   @override
   @JsonKey(name: 'heartCount')
   final int? heartCount;
@@ -6254,14 +6088,14 @@ class _$ReplyDtoDtoImpl implements _ReplyDtoDto {
 
   @override
   String toString() {
-    return 'ReplyDtoDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, parentCommentId: $parentCommentId, responseToUser: $responseToUser, responseToCommentId: $responseToCommentId, heartCount: $heartCount, heartedByUser: $heartedByUser)';
+    return 'ReplyDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, parentCommentId: $parentCommentId, responseToUser: $responseToUser, responseToCommentId: $responseToCommentId, heartCount: $heartCount, heartedByUser: $heartedByUser)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReplyDtoDtoImpl &&
+            other is _$ReplyDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.createdDate, createdDate) ||
@@ -6299,48 +6133,43 @@ class _$ReplyDtoDtoImpl implements _ReplyDtoDto {
       heartCount,
       heartedByUser);
 
-  /// Create a copy of ReplyDtoDto
+  /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ReplyDtoDtoImplCopyWith<_$ReplyDtoDtoImpl> get copyWith =>
-      __$$ReplyDtoDtoImplCopyWithImpl<_$ReplyDtoDtoImpl>(this, _$identity);
+  _$$ReplyDtoImplCopyWith<_$ReplyDtoImpl> get copyWith =>
+      __$$ReplyDtoImplCopyWithImpl<_$ReplyDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ReplyDtoDtoImplToJson(
+    return _$$ReplyDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ReplyDtoDto implements ReplyDtoDto {
-  factory _ReplyDtoDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-          @JsonKey(name: 'content') final String? content,
-          @JsonKey(name: 'createdDate') final DateTime? createdDate,
-          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-          @JsonKey(name: 'deletedDate') final DateTime? deletedDate,
-          @JsonKey(name: 'user') final UserDtoDto? user,
-          @JsonKey(name: 'parentCommentId')
-          @ApiUuidJsonConverter()
-          final ApiUuid? parentCommentId,
-          @JsonKey(name: 'responseToUser') final UserDto2Dto? responseToUser,
-          @JsonKey(name: 'responseToCommentId')
-          @ApiUuidJsonConverter()
-          final ApiUuid? responseToCommentId,
-          @JsonKey(name: 'heartCount') final int? heartCount,
-          @JsonKey(name: 'heartedByUser') final bool? heartedByUser}) =
-      _$ReplyDtoDtoImpl;
+abstract class _ReplyDto implements ReplyDto {
+  factory _ReplyDto(
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'content') final String? content,
+      @JsonKey(name: 'createdDate') final DateTime? createdDate,
+      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+      @JsonKey(name: 'deletedDate') final DateTime? deletedDate,
+      @JsonKey(name: 'user') final UserDto? user,
+      @JsonKey(name: 'parentCommentId') final String? parentCommentId,
+      @JsonKey(name: 'responseToUser') final UserDto2Dto? responseToUser,
+      @JsonKey(name: 'responseToCommentId') final String? responseToCommentId,
+      @JsonKey(name: 'heartCount') final int? heartCount,
+      @JsonKey(name: 'heartedByUser')
+      final bool? heartedByUser}) = _$ReplyDtoImpl;
 
-  factory _ReplyDtoDto.fromJson(Map<String, dynamic> json) =
-      _$ReplyDtoDtoImpl.fromJson;
+  factory _ReplyDto.fromJson(Map<String, dynamic> json) =
+      _$ReplyDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -6355,18 +6184,16 @@ abstract class _ReplyDtoDto implements ReplyDtoDto {
   DateTime? get deletedDate;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto? get user;
+  UserDto? get user;
   @override
   @JsonKey(name: 'parentCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get parentCommentId;
+  String? get parentCommentId;
   @override
   @JsonKey(name: 'responseToUser')
   UserDto2Dto? get responseToUser;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId;
+  String? get responseToCommentId;
   @override
   @JsonKey(name: 'heartCount')
   int? get heartCount;
@@ -6374,20 +6201,20 @@ abstract class _ReplyDtoDto implements ReplyDtoDto {
   @JsonKey(name: 'heartedByUser')
   bool? get heartedByUser;
 
-  /// Create a copy of ReplyDtoDto
+  /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReplyDtoDtoImplCopyWith<_$ReplyDtoDtoImpl> get copyWith =>
+  _$$ReplyDtoImplCopyWith<_$ReplyDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-ReportCreatingDtoDto _$ReportCreatingDtoDtoFromJson(Map<String, dynamic> json) {
-  return _ReportCreatingDtoDto.fromJson(json);
+ReportCreatingDto _$ReportCreatingDtoFromJson(Map<String, dynamic> json) {
+  return _ReportCreatingDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ReportCreatingDtoDto {
+mixin _$ReportCreatingDto {
   @JsonKey(name: 'entityType')
   String get entityType => throw _privateConstructorUsedError;
   @JsonKey(name: 'entityId')
@@ -6395,21 +6222,21 @@ mixin _$ReportCreatingDtoDto {
   @JsonKey(name: 'reason')
   String get reason => throw _privateConstructorUsedError;
 
-  /// Serializes this ReportCreatingDtoDto to a JSON map.
+  /// Serializes this ReportCreatingDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ReportCreatingDtoDto
+  /// Create a copy of ReportCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReportCreatingDtoDtoCopyWith<ReportCreatingDtoDto> get copyWith =>
+  $ReportCreatingDtoCopyWith<ReportCreatingDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReportCreatingDtoDtoCopyWith<$Res> {
-  factory $ReportCreatingDtoDtoCopyWith(ReportCreatingDtoDto value,
-          $Res Function(ReportCreatingDtoDto) then) =
-      _$ReportCreatingDtoDtoCopyWithImpl<$Res, ReportCreatingDtoDto>;
+abstract class $ReportCreatingDtoCopyWith<$Res> {
+  factory $ReportCreatingDtoCopyWith(
+          ReportCreatingDto value, $Res Function(ReportCreatingDto) then) =
+      _$ReportCreatingDtoCopyWithImpl<$Res, ReportCreatingDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'entityType') String entityType,
@@ -6418,17 +6245,16 @@ abstract class $ReportCreatingDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReportCreatingDtoDtoCopyWithImpl<$Res,
-        $Val extends ReportCreatingDtoDto>
-    implements $ReportCreatingDtoDtoCopyWith<$Res> {
-  _$ReportCreatingDtoDtoCopyWithImpl(this._value, this._then);
+class _$ReportCreatingDtoCopyWithImpl<$Res, $Val extends ReportCreatingDto>
+    implements $ReportCreatingDtoCopyWith<$Res> {
+  _$ReportCreatingDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ReportCreatingDtoDto
+  /// Create a copy of ReportCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -6455,11 +6281,11 @@ class _$ReportCreatingDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ReportCreatingDtoDtoImplCopyWith<$Res>
-    implements $ReportCreatingDtoDtoCopyWith<$Res> {
-  factory _$$ReportCreatingDtoDtoImplCopyWith(_$ReportCreatingDtoDtoImpl value,
-          $Res Function(_$ReportCreatingDtoDtoImpl) then) =
-      __$$ReportCreatingDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$ReportCreatingDtoImplCopyWith<$Res>
+    implements $ReportCreatingDtoCopyWith<$Res> {
+  factory _$$ReportCreatingDtoImplCopyWith(_$ReportCreatingDtoImpl value,
+          $Res Function(_$ReportCreatingDtoImpl) then) =
+      __$$ReportCreatingDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -6469,14 +6295,14 @@ abstract class _$$ReportCreatingDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ReportCreatingDtoDtoImplCopyWithImpl<$Res>
-    extends _$ReportCreatingDtoDtoCopyWithImpl<$Res, _$ReportCreatingDtoDtoImpl>
-    implements _$$ReportCreatingDtoDtoImplCopyWith<$Res> {
-  __$$ReportCreatingDtoDtoImplCopyWithImpl(_$ReportCreatingDtoDtoImpl _value,
-      $Res Function(_$ReportCreatingDtoDtoImpl) _then)
+class __$$ReportCreatingDtoImplCopyWithImpl<$Res>
+    extends _$ReportCreatingDtoCopyWithImpl<$Res, _$ReportCreatingDtoImpl>
+    implements _$$ReportCreatingDtoImplCopyWith<$Res> {
+  __$$ReportCreatingDtoImplCopyWithImpl(_$ReportCreatingDtoImpl _value,
+      $Res Function(_$ReportCreatingDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ReportCreatingDtoDto
+  /// Create a copy of ReportCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -6485,7 +6311,7 @@ class __$$ReportCreatingDtoDtoImplCopyWithImpl<$Res>
     Object? entityId = null,
     Object? reason = null,
   }) {
-    return _then(_$ReportCreatingDtoDtoImpl(
+    return _then(_$ReportCreatingDtoImpl(
       entityType: null == entityType
           ? _value.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
@@ -6504,14 +6330,14 @@ class __$$ReportCreatingDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ReportCreatingDtoDtoImpl implements _ReportCreatingDtoDto {
-  _$ReportCreatingDtoDtoImpl(
+class _$ReportCreatingDtoImpl implements _ReportCreatingDto {
+  _$ReportCreatingDtoImpl(
       {@JsonKey(name: 'entityType') required this.entityType,
       @JsonKey(name: 'entityId') required this.entityId,
       @JsonKey(name: 'reason') required this.reason});
 
-  factory _$ReportCreatingDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReportCreatingDtoDtoImplFromJson(json);
+  factory _$ReportCreatingDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReportCreatingDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'entityType')
@@ -6525,14 +6351,14 @@ class _$ReportCreatingDtoDtoImpl implements _ReportCreatingDtoDto {
 
   @override
   String toString() {
-    return 'ReportCreatingDtoDto(entityType: $entityType, entityId: $entityId, reason: $reason)';
+    return 'ReportCreatingDto(entityType: $entityType, entityId: $entityId, reason: $reason)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReportCreatingDtoDtoImpl &&
+            other is _$ReportCreatingDtoImpl &&
             (identical(other.entityType, entityType) ||
                 other.entityType == entityType) &&
             (identical(other.entityId, entityId) ||
@@ -6544,33 +6370,32 @@ class _$ReportCreatingDtoDtoImpl implements _ReportCreatingDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, entityType, entityId, reason);
 
-  /// Create a copy of ReportCreatingDtoDto
+  /// Create a copy of ReportCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ReportCreatingDtoDtoImplCopyWith<_$ReportCreatingDtoDtoImpl>
-      get copyWith =>
-          __$$ReportCreatingDtoDtoImplCopyWithImpl<_$ReportCreatingDtoDtoImpl>(
-              this, _$identity);
+  _$$ReportCreatingDtoImplCopyWith<_$ReportCreatingDtoImpl> get copyWith =>
+      __$$ReportCreatingDtoImplCopyWithImpl<_$ReportCreatingDtoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ReportCreatingDtoDtoImplToJson(
+    return _$$ReportCreatingDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ReportCreatingDtoDto implements ReportCreatingDtoDto {
-  factory _ReportCreatingDtoDto(
+abstract class _ReportCreatingDto implements ReportCreatingDto {
+  factory _ReportCreatingDto(
           {@JsonKey(name: 'entityType') required final String entityType,
           @JsonKey(name: 'entityId') required final String entityId,
           @JsonKey(name: 'reason') required final String reason}) =
-      _$ReportCreatingDtoDtoImpl;
+      _$ReportCreatingDtoImpl;
 
-  factory _ReportCreatingDtoDto.fromJson(Map<String, dynamic> json) =
-      _$ReportCreatingDtoDtoImpl.fromJson;
+  factory _ReportCreatingDto.fromJson(Map<String, dynamic> json) =
+      _$ReportCreatingDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'entityType')
@@ -6582,23 +6407,22 @@ abstract class _ReportCreatingDtoDto implements ReportCreatingDtoDto {
   @JsonKey(name: 'reason')
   String get reason;
 
-  /// Create a copy of ReportCreatingDtoDto
+  /// Create a copy of ReportCreatingDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReportCreatingDtoDtoImplCopyWith<_$ReportCreatingDtoDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$ReportCreatingDtoImplCopyWith<_$ReportCreatingDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
-ReportDtoDto _$ReportDtoDtoFromJson(Map<String, dynamic> json) {
-  return _ReportDtoDto.fromJson(json);
+ReportDto _$ReportDtoFromJson(Map<String, dynamic> json) {
+  return _ReportDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ReportDtoDto {
+mixin _$ReportDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'entityType')
   String get entityType => throw _privateConstructorUsedError;
   @JsonKey(name: 'entityId')
@@ -6610,24 +6434,23 @@ mixin _$ReportDtoDto {
   @JsonKey(name: 'createdDate')
   DateTime? get createdDate => throw _privateConstructorUsedError;
 
-  /// Serializes this ReportDtoDto to a JSON map.
+  /// Serializes this ReportDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ReportDtoDto
+  /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReportDtoDtoCopyWith<ReportDtoDto> get copyWith =>
+  $ReportDtoCopyWith<ReportDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReportDtoDtoCopyWith<$Res> {
-  factory $ReportDtoDtoCopyWith(
-          ReportDtoDto value, $Res Function(ReportDtoDto) then) =
-      _$ReportDtoDtoCopyWithImpl<$Res, ReportDtoDto>;
+abstract class $ReportDtoCopyWith<$Res> {
+  factory $ReportDtoCopyWith(ReportDto value, $Res Function(ReportDto) then) =
+      _$ReportDtoCopyWithImpl<$Res, ReportDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
       @JsonKey(name: 'entityId') String? entityId,
       @JsonKey(name: 'reporter') UserDto2Dto? reporter,
@@ -6638,16 +6461,16 @@ abstract class $ReportDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReportDtoDtoCopyWithImpl<$Res, $Val extends ReportDtoDto>
-    implements $ReportDtoDtoCopyWith<$Res> {
-  _$ReportDtoDtoCopyWithImpl(this._value, this._then);
+class _$ReportDtoCopyWithImpl<$Res, $Val extends ReportDto>
+    implements $ReportDtoCopyWith<$Res> {
+  _$ReportDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ReportDtoDto
+  /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -6663,7 +6486,7 @@ class _$ReportDtoDtoCopyWithImpl<$Res, $Val extends ReportDtoDto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       entityType: null == entityType
           ? _value.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
@@ -6687,7 +6510,7 @@ class _$ReportDtoDtoCopyWithImpl<$Res, $Val extends ReportDtoDto>
     ) as $Val);
   }
 
-  /// Create a copy of ReportDtoDto
+  /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -6703,15 +6526,15 @@ class _$ReportDtoDtoCopyWithImpl<$Res, $Val extends ReportDtoDto>
 }
 
 /// @nodoc
-abstract class _$$ReportDtoDtoImplCopyWith<$Res>
-    implements $ReportDtoDtoCopyWith<$Res> {
-  factory _$$ReportDtoDtoImplCopyWith(
-          _$ReportDtoDtoImpl value, $Res Function(_$ReportDtoDtoImpl) then) =
-      __$$ReportDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$ReportDtoImplCopyWith<$Res>
+    implements $ReportDtoCopyWith<$Res> {
+  factory _$$ReportDtoImplCopyWith(
+          _$ReportDtoImpl value, $Res Function(_$ReportDtoImpl) then) =
+      __$$ReportDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
       @JsonKey(name: 'entityId') String? entityId,
       @JsonKey(name: 'reporter') UserDto2Dto? reporter,
@@ -6723,14 +6546,14 @@ abstract class _$$ReportDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ReportDtoDtoImplCopyWithImpl<$Res>
-    extends _$ReportDtoDtoCopyWithImpl<$Res, _$ReportDtoDtoImpl>
-    implements _$$ReportDtoDtoImplCopyWith<$Res> {
-  __$$ReportDtoDtoImplCopyWithImpl(
-      _$ReportDtoDtoImpl _value, $Res Function(_$ReportDtoDtoImpl) _then)
+class __$$ReportDtoImplCopyWithImpl<$Res>
+    extends _$ReportDtoCopyWithImpl<$Res, _$ReportDtoImpl>
+    implements _$$ReportDtoImplCopyWith<$Res> {
+  __$$ReportDtoImplCopyWithImpl(
+      _$ReportDtoImpl _value, $Res Function(_$ReportDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ReportDtoDto
+  /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -6742,11 +6565,11 @@ class __$$ReportDtoDtoImplCopyWithImpl<$Res>
     Object? reason = null,
     Object? createdDate = freezed,
   }) {
-    return _then(_$ReportDtoDtoImpl(
+    return _then(_$ReportDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       entityType: null == entityType
           ? _value.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
@@ -6773,22 +6596,21 @@ class __$$ReportDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ReportDtoDtoImpl implements _ReportDtoDto {
-  _$ReportDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+class _$ReportDtoImpl implements _ReportDto {
+  _$ReportDtoImpl(
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'entityType') required this.entityType,
       @JsonKey(name: 'entityId') this.entityId,
       @JsonKey(name: 'reporter') this.reporter,
       @JsonKey(name: 'reason') required this.reason,
       @JsonKey(name: 'createdDate') this.createdDate});
 
-  factory _$ReportDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ReportDtoDtoImplFromJson(json);
+  factory _$ReportDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ReportDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'entityType')
   final String entityType;
@@ -6807,14 +6629,14 @@ class _$ReportDtoDtoImpl implements _ReportDtoDto {
 
   @override
   String toString() {
-    return 'ReportDtoDto(id: $id, entityType: $entityType, entityId: $entityId, reporter: $reporter, reason: $reason, createdDate: $createdDate)';
+    return 'ReportDto(id: $id, entityType: $entityType, entityId: $entityId, reporter: $reporter, reason: $reason, createdDate: $createdDate)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReportDtoDtoImpl &&
+            other is _$ReportDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.entityType, entityType) ||
                 other.entityType == entityType) &&
@@ -6832,39 +6654,38 @@ class _$ReportDtoDtoImpl implements _ReportDtoDto {
   int get hashCode => Object.hash(
       runtimeType, id, entityType, entityId, reporter, reason, createdDate);
 
-  /// Create a copy of ReportDtoDto
+  /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ReportDtoDtoImplCopyWith<_$ReportDtoDtoImpl> get copyWith =>
-      __$$ReportDtoDtoImplCopyWithImpl<_$ReportDtoDtoImpl>(this, _$identity);
+  _$$ReportDtoImplCopyWith<_$ReportDtoImpl> get copyWith =>
+      __$$ReportDtoImplCopyWithImpl<_$ReportDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ReportDtoDtoImplToJson(
+    return _$$ReportDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ReportDtoDto implements ReportDtoDto {
-  factory _ReportDtoDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
+abstract class _ReportDto implements ReportDto {
+  factory _ReportDto(
+          {@JsonKey(name: 'id') final String? id,
           @JsonKey(name: 'entityType') required final String entityType,
           @JsonKey(name: 'entityId') final String? entityId,
           @JsonKey(name: 'reporter') final UserDto2Dto? reporter,
           @JsonKey(name: 'reason') required final String reason,
           @JsonKey(name: 'createdDate') final DateTime? createdDate}) =
-      _$ReportDtoDtoImpl;
+      _$ReportDtoImpl;
 
-  factory _ReportDtoDto.fromJson(Map<String, dynamic> json) =
-      _$ReportDtoDtoImpl.fromJson;
+  factory _ReportDto.fromJson(Map<String, dynamic> json) =
+      _$ReportDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'entityType')
   String get entityType;
@@ -6881,21 +6702,20 @@ abstract class _ReportDtoDto implements ReportDtoDto {
   @JsonKey(name: 'createdDate')
   DateTime? get createdDate;
 
-  /// Create a copy of ReportDtoDto
+  /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReportDtoDtoImplCopyWith<_$ReportDtoDtoImpl> get copyWith =>
+  _$$ReportDtoImplCopyWith<_$ReportDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-SendNotificationDtoDto _$SendNotificationDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _SendNotificationDtoDto.fromJson(json);
+SendNotificationDto _$SendNotificationDtoFromJson(Map<String, dynamic> json) {
+  return _SendNotificationDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SendNotificationDtoDto {
+mixin _$SendNotificationDto {
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'body')
@@ -6905,8 +6725,7 @@ mixin _$SendNotificationDtoDto {
   @JsonKey(name: 'targetUserId')
   String? get targetUserId => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId => throw _privateConstructorUsedError;
+  String? get relatedEntityId => throw _privateConstructorUsedError;
   @JsonKey(name: 'scheduledFor')
   DateTime? get scheduledFor => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
@@ -6914,47 +6733,44 @@ mixin _$SendNotificationDtoDto {
   @JsonKey(name: 'priority')
   int? get priority => throw _privateConstructorUsedError;
 
-  /// Serializes this SendNotificationDtoDto to a JSON map.
+  /// Serializes this SendNotificationDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of SendNotificationDtoDto
+  /// Create a copy of SendNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SendNotificationDtoDtoCopyWith<SendNotificationDtoDto> get copyWith =>
+  $SendNotificationDtoCopyWith<SendNotificationDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SendNotificationDtoDtoCopyWith<$Res> {
-  factory $SendNotificationDtoDtoCopyWith(SendNotificationDtoDto value,
-          $Res Function(SendNotificationDtoDto) then) =
-      _$SendNotificationDtoDtoCopyWithImpl<$Res, SendNotificationDtoDto>;
+abstract class $SendNotificationDtoCopyWith<$Res> {
+  factory $SendNotificationDtoCopyWith(
+          SendNotificationDto value, $Res Function(SendNotificationDto) then) =
+      _$SendNotificationDtoCopyWithImpl<$Res, SendNotificationDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
 
 /// @nodoc
-class _$SendNotificationDtoDtoCopyWithImpl<$Res,
-        $Val extends SendNotificationDtoDto>
-    implements $SendNotificationDtoDtoCopyWith<$Res> {
-  _$SendNotificationDtoDtoCopyWithImpl(this._value, this._then);
+class _$SendNotificationDtoCopyWithImpl<$Res, $Val extends SendNotificationDto>
+    implements $SendNotificationDtoCopyWith<$Res> {
+  _$SendNotificationDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SendNotificationDtoDto
+  /// Create a copy of SendNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -6988,7 +6804,7 @@ class _$SendNotificationDtoDtoCopyWithImpl<$Res,
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       scheduledFor: freezed == scheduledFor
           ? _value.scheduledFor
           : scheduledFor // ignore: cast_nullable_to_non_nullable
@@ -7006,12 +6822,11 @@ class _$SendNotificationDtoDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SendNotificationDtoDtoImplCopyWith<$Res>
-    implements $SendNotificationDtoDtoCopyWith<$Res> {
-  factory _$$SendNotificationDtoDtoImplCopyWith(
-          _$SendNotificationDtoDtoImpl value,
-          $Res Function(_$SendNotificationDtoDtoImpl) then) =
-      __$$SendNotificationDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$SendNotificationDtoImplCopyWith<$Res>
+    implements $SendNotificationDtoCopyWith<$Res> {
+  factory _$$SendNotificationDtoImplCopyWith(_$SendNotificationDtoImpl value,
+          $Res Function(_$SendNotificationDtoImpl) then) =
+      __$$SendNotificationDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -7019,25 +6834,21 @@ abstract class _$$SendNotificationDtoDtoImplCopyWith<$Res>
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
 
 /// @nodoc
-class __$$SendNotificationDtoDtoImplCopyWithImpl<$Res>
-    extends _$SendNotificationDtoDtoCopyWithImpl<$Res,
-        _$SendNotificationDtoDtoImpl>
-    implements _$$SendNotificationDtoDtoImplCopyWith<$Res> {
-  __$$SendNotificationDtoDtoImplCopyWithImpl(
-      _$SendNotificationDtoDtoImpl _value,
-      $Res Function(_$SendNotificationDtoDtoImpl) _then)
+class __$$SendNotificationDtoImplCopyWithImpl<$Res>
+    extends _$SendNotificationDtoCopyWithImpl<$Res, _$SendNotificationDtoImpl>
+    implements _$$SendNotificationDtoImplCopyWith<$Res> {
+  __$$SendNotificationDtoImplCopyWithImpl(_$SendNotificationDtoImpl _value,
+      $Res Function(_$SendNotificationDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SendNotificationDtoDto
+  /// Create a copy of SendNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -7051,7 +6862,7 @@ class __$$SendNotificationDtoDtoImplCopyWithImpl<$Res>
     Object? data = freezed,
     Object? priority = freezed,
   }) {
-    return _then(_$SendNotificationDtoDtoImpl(
+    return _then(_$SendNotificationDtoImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -7071,7 +6882,7 @@ class __$$SendNotificationDtoDtoImplCopyWithImpl<$Res>
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       scheduledFor: freezed == scheduledFor
           ? _value.scheduledFor
           : scheduledFor // ignore: cast_nullable_to_non_nullable
@@ -7090,22 +6901,20 @@ class __$$SendNotificationDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SendNotificationDtoDtoImpl implements _SendNotificationDtoDto {
-  _$SendNotificationDtoDtoImpl(
+class _$SendNotificationDtoImpl implements _SendNotificationDto {
+  _$SendNotificationDtoImpl(
       {@JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'body') required this.body,
       @JsonKey(name: 'notificationType') required this.notificationType,
       @JsonKey(name: 'targetUserId') this.targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      this.relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'scheduledFor') this.scheduledFor,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority})
       : _data = data;
 
-  factory _$SendNotificationDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SendNotificationDtoDtoImplFromJson(json);
+  factory _$SendNotificationDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SendNotificationDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'title')
@@ -7121,8 +6930,7 @@ class _$SendNotificationDtoDtoImpl implements _SendNotificationDtoDto {
   final String? targetUserId;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? relatedEntityId;
+  final String? relatedEntityId;
   @override
   @JsonKey(name: 'scheduledFor')
   final DateTime? scheduledFor;
@@ -7143,14 +6951,14 @@ class _$SendNotificationDtoDtoImpl implements _SendNotificationDtoDto {
 
   @override
   String toString() {
-    return 'SendNotificationDtoDto(title: $title, body: $body, notificationType: $notificationType, targetUserId: $targetUserId, relatedEntityId: $relatedEntityId, scheduledFor: $scheduledFor, data: $data, priority: $priority)';
+    return 'SendNotificationDto(title: $title, body: $body, notificationType: $notificationType, targetUserId: $targetUserId, relatedEntityId: $relatedEntityId, scheduledFor: $scheduledFor, data: $data, priority: $priority)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SendNotificationDtoDtoImpl &&
+            other is _$SendNotificationDtoImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
             (identical(other.notificationType, notificationType) ||
@@ -7179,39 +6987,37 @@ class _$SendNotificationDtoDtoImpl implements _SendNotificationDtoDto {
       const DeepCollectionEquality().hash(_data),
       priority);
 
-  /// Create a copy of SendNotificationDtoDto
+  /// Create a copy of SendNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SendNotificationDtoDtoImplCopyWith<_$SendNotificationDtoDtoImpl>
-      get copyWith => __$$SendNotificationDtoDtoImplCopyWithImpl<
-          _$SendNotificationDtoDtoImpl>(this, _$identity);
+  _$$SendNotificationDtoImplCopyWith<_$SendNotificationDtoImpl> get copyWith =>
+      __$$SendNotificationDtoImplCopyWithImpl<_$SendNotificationDtoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SendNotificationDtoDtoImplToJson(
+    return _$$SendNotificationDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _SendNotificationDtoDto implements SendNotificationDtoDto {
-  factory _SendNotificationDtoDto(
+abstract class _SendNotificationDto implements SendNotificationDto {
+  factory _SendNotificationDto(
       {@JsonKey(name: 'title') required final String title,
       @JsonKey(name: 'body') required final String body,
       @JsonKey(name: 'notificationType') required final int notificationType,
       @JsonKey(name: 'targetUserId') final String? targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') final String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') final DateTime? scheduledFor,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority')
-      final int? priority}) = _$SendNotificationDtoDtoImpl;
+      final int? priority}) = _$SendNotificationDtoImpl;
 
-  factory _SendNotificationDtoDto.fromJson(Map<String, dynamic> json) =
-      _$SendNotificationDtoDtoImpl.fromJson;
+  factory _SendNotificationDto.fromJson(Map<String, dynamic> json) =
+      _$SendNotificationDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'title')
@@ -7227,8 +7033,7 @@ abstract class _SendNotificationDtoDto implements SendNotificationDtoDto {
   String? get targetUserId;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId;
+  String? get relatedEntityId;
   @override
   @JsonKey(name: 'scheduledFor')
   DateTime? get scheduledFor;
@@ -7239,23 +7044,22 @@ abstract class _SendNotificationDtoDto implements SendNotificationDtoDto {
   @JsonKey(name: 'priority')
   int? get priority;
 
-  /// Create a copy of SendNotificationDtoDto
+  /// Create a copy of SendNotificationDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SendNotificationDtoDtoImplCopyWith<_$SendNotificationDtoDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$SendNotificationDtoImplCopyWith<_$SendNotificationDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
-StepCommentDtoDto _$StepCommentDtoDtoFromJson(Map<String, dynamic> json) {
-  return _StepCommentDtoDto.fromJson(json);
+StepCommentDto _$StepCommentDtoFromJson(Map<String, dynamic> json) {
+  return _StepCommentDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StepCommentDtoDto {
+mixin _$StepCommentDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdAt')
@@ -7265,10 +7069,9 @@ mixin _$StepCommentDtoDto {
   @JsonKey(name: 'deletedAt')
   DateTime? get deletedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto? get user => throw _privateConstructorUsedError;
+  UserDto? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId => throw _privateConstructorUsedError;
+  String? get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartCount')
   int? get heartCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -7276,48 +7079,48 @@ mixin _$StepCommentDtoDto {
   @JsonKey(name: 'replyCount')
   int? get replyCount => throw _privateConstructorUsedError;
 
-  /// Serializes this StepCommentDtoDto to a JSON map.
+  /// Serializes this StepCommentDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of StepCommentDtoDto
+  /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $StepCommentDtoDtoCopyWith<StepCommentDtoDto> get copyWith =>
+  $StepCommentDtoCopyWith<StepCommentDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepCommentDtoDtoCopyWith<$Res> {
-  factory $StepCommentDtoDtoCopyWith(
-          StepCommentDtoDto value, $Res Function(StepCommentDtoDto) then) =
-      _$StepCommentDtoDtoCopyWithImpl<$Res, StepCommentDtoDto>;
+abstract class $StepCommentDtoCopyWith<$Res> {
+  factory $StepCommentDtoCopyWith(
+          StepCommentDto value, $Res Function(StepCommentDto) then) =
+      _$StepCommentDtoCopyWithImpl<$Res, StepCommentDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdAt') DateTime? createdAt,
       @JsonKey(name: 'updatedAt') DateTime? updatedAt,
       @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'replyCount') int? replyCount});
 
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
 }
 
 /// @nodoc
-class _$StepCommentDtoDtoCopyWithImpl<$Res, $Val extends StepCommentDtoDto>
-    implements $StepCommentDtoDtoCopyWith<$Res> {
-  _$StepCommentDtoDtoCopyWithImpl(this._value, this._then);
+class _$StepCommentDtoCopyWithImpl<$Res, $Val extends StepCommentDto>
+    implements $StepCommentDtoCopyWith<$Res> {
+  _$StepCommentDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StepCommentDtoDto
+  /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -7337,7 +7140,7 @@ class _$StepCommentDtoDtoCopyWithImpl<$Res, $Val extends StepCommentDtoDto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -7357,11 +7160,11 @@ class _$StepCommentDtoDtoCopyWithImpl<$Res, $Val extends StepCommentDtoDto>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -7377,54 +7180,54 @@ class _$StepCommentDtoDtoCopyWithImpl<$Res, $Val extends StepCommentDtoDto>
     ) as $Val);
   }
 
-  /// Create a copy of StepCommentDtoDto
+  /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res>? get user {
+  $UserDtoCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $UserDtoDtoCopyWith<$Res>(_value.user!, (value) {
+    return $UserDtoCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$StepCommentDtoDtoImplCopyWith<$Res>
-    implements $StepCommentDtoDtoCopyWith<$Res> {
-  factory _$$StepCommentDtoDtoImplCopyWith(_$StepCommentDtoDtoImpl value,
-          $Res Function(_$StepCommentDtoDtoImpl) then) =
-      __$$StepCommentDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$StepCommentDtoImplCopyWith<$Res>
+    implements $StepCommentDtoCopyWith<$Res> {
+  factory _$$StepCommentDtoImplCopyWith(_$StepCommentDtoImpl value,
+          $Res Function(_$StepCommentDtoImpl) then) =
+      __$$StepCommentDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdAt') DateTime? createdAt,
       @JsonKey(name: 'updatedAt') DateTime? updatedAt,
       @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'replyCount') int? replyCount});
 
   @override
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
 }
 
 /// @nodoc
-class __$$StepCommentDtoDtoImplCopyWithImpl<$Res>
-    extends _$StepCommentDtoDtoCopyWithImpl<$Res, _$StepCommentDtoDtoImpl>
-    implements _$$StepCommentDtoDtoImplCopyWith<$Res> {
-  __$$StepCommentDtoDtoImplCopyWithImpl(_$StepCommentDtoDtoImpl _value,
-      $Res Function(_$StepCommentDtoDtoImpl) _then)
+class __$$StepCommentDtoImplCopyWithImpl<$Res>
+    extends _$StepCommentDtoCopyWithImpl<$Res, _$StepCommentDtoImpl>
+    implements _$$StepCommentDtoImplCopyWith<$Res> {
+  __$$StepCommentDtoImplCopyWithImpl(
+      _$StepCommentDtoImpl _value, $Res Function(_$StepCommentDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StepCommentDtoDto
+  /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -7440,11 +7243,11 @@ class __$$StepCommentDtoDtoImplCopyWithImpl<$Res>
     Object? heartedByUser = freezed,
     Object? replyCount = freezed,
   }) {
-    return _then(_$StepCommentDtoDtoImpl(
+    return _then(_$StepCommentDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -7464,11 +7267,11 @@ class __$$StepCommentDtoDtoImplCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -7487,26 +7290,25 @@ class __$$StepCommentDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$StepCommentDtoDtoImpl implements _StepCommentDtoDto {
-  _$StepCommentDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+class _$StepCommentDtoImpl implements _StepCommentDto {
+  _$StepCommentDtoImpl(
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdAt') this.createdAt,
       @JsonKey(name: 'updatedAt') this.updatedAt,
       @JsonKey(name: 'deletedAt') this.deletedAt,
       @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() this.stepId,
+      @JsonKey(name: 'stepId') this.stepId,
       @JsonKey(name: 'heartCount') this.heartCount,
       @JsonKey(name: 'heartedByUser') this.heartedByUser,
       @JsonKey(name: 'replyCount') this.replyCount});
 
-  factory _$StepCommentDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StepCommentDtoDtoImplFromJson(json);
+  factory _$StepCommentDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StepCommentDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -7521,11 +7323,10 @@ class _$StepCommentDtoDtoImpl implements _StepCommentDtoDto {
   final DateTime? deletedAt;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto? user;
+  final UserDto? user;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? stepId;
+  final String? stepId;
   @override
   @JsonKey(name: 'heartCount')
   final int? heartCount;
@@ -7538,14 +7339,14 @@ class _$StepCommentDtoDtoImpl implements _StepCommentDtoDto {
 
   @override
   String toString() {
-    return 'StepCommentDtoDto(id: $id, content: $content, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
+    return 'StepCommentDto(id: $id, content: $content, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StepCommentDtoDtoImpl &&
+            other is _$StepCommentDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.createdAt, createdAt) ||
@@ -7579,44 +7380,43 @@ class _$StepCommentDtoDtoImpl implements _StepCommentDtoDto {
       heartedByUser,
       replyCount);
 
-  /// Create a copy of StepCommentDtoDto
+  /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StepCommentDtoDtoImplCopyWith<_$StepCommentDtoDtoImpl> get copyWith =>
-      __$$StepCommentDtoDtoImplCopyWithImpl<_$StepCommentDtoDtoImpl>(
+  _$$StepCommentDtoImplCopyWith<_$StepCommentDtoImpl> get copyWith =>
+      __$$StepCommentDtoImplCopyWithImpl<_$StepCommentDtoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StepCommentDtoDtoImplToJson(
+    return _$$StepCommentDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _StepCommentDtoDto implements StepCommentDtoDto {
-  factory _StepCommentDtoDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'content') final String? content,
-      @JsonKey(name: 'createdAt') final DateTime? createdAt,
-      @JsonKey(name: 'updatedAt') final DateTime? updatedAt,
-      @JsonKey(name: 'deletedAt') final DateTime? deletedAt,
-      @JsonKey(name: 'user') final UserDtoDto? user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() final ApiUuid? stepId,
-      @JsonKey(name: 'heartCount') final int? heartCount,
-      @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
-      @JsonKey(name: 'replyCount')
-      final int? replyCount}) = _$StepCommentDtoDtoImpl;
+abstract class _StepCommentDto implements StepCommentDto {
+  factory _StepCommentDto(
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'createdAt') final DateTime? createdAt,
+          @JsonKey(name: 'updatedAt') final DateTime? updatedAt,
+          @JsonKey(name: 'deletedAt') final DateTime? deletedAt,
+          @JsonKey(name: 'user') final UserDto? user,
+          @JsonKey(name: 'stepId') final String? stepId,
+          @JsonKey(name: 'heartCount') final int? heartCount,
+          @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
+          @JsonKey(name: 'replyCount') final int? replyCount}) =
+      _$StepCommentDtoImpl;
 
-  factory _StepCommentDtoDto.fromJson(Map<String, dynamic> json) =
-      _$StepCommentDtoDtoImpl.fromJson;
+  factory _StepCommentDto.fromJson(Map<String, dynamic> json) =
+      _$StepCommentDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -7631,11 +7431,10 @@ abstract class _StepCommentDtoDto implements StepCommentDtoDto {
   DateTime? get deletedAt;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto? get user;
+  UserDto? get user;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId;
+  String? get stepId;
   @override
   @JsonKey(name: 'heartCount')
   int? get heartCount;
@@ -7646,23 +7445,22 @@ abstract class _StepCommentDtoDto implements StepCommentDtoDto {
   @JsonKey(name: 'replyCount')
   int? get replyCount;
 
-  /// Create a copy of StepCommentDtoDto
+  /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StepCommentDtoDtoImplCopyWith<_$StepCommentDtoDtoImpl> get copyWith =>
+  _$$StepCommentDtoImplCopyWith<_$StepCommentDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-StepDetailDtoDto _$StepDetailDtoDtoFromJson(Map<String, dynamic> json) {
-  return _StepDetailDtoDto.fromJson(json);
+StepDetailDto _$StepDetailDtoFromJson(Map<String, dynamic> json) {
+  return _StepDetailDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StepDetailDtoDto {
+mixin _$StepDetailDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -7672,12 +7470,11 @@ mixin _$StepDetailDtoDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto get user => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId => throw _privateConstructorUsedError;
+  String? get journeyId => throw _privateConstructorUsedError;
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey => throw _privateConstructorUsedError;
+  JourneyDto? get journey => throw _privateConstructorUsedError;
   @JsonKey(name: 'hearts')
   int? get hearts => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -7695,38 +7492,37 @@ mixin _$StepDetailDtoDto {
   @JsonKey(name: 'othersStepWith')
   int? get othersStepWith => throw _privateConstructorUsedError;
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers =>
-      throw _privateConstructorUsedError;
+  List<UserDto>? get othersStepWithUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media => throw _privateConstructorUsedError;
+  List<StepMediaDto>? get media => throw _privateConstructorUsedError;
 
-  /// Serializes this StepDetailDtoDto to a JSON map.
+  /// Serializes this StepDetailDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of StepDetailDtoDto
+  /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $StepDetailDtoDtoCopyWith<StepDetailDtoDto> get copyWith =>
+  $StepDetailDtoCopyWith<StepDetailDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepDetailDtoDtoCopyWith<$Res> {
-  factory $StepDetailDtoDtoCopyWith(
-          StepDetailDtoDto value, $Res Function(StepDetailDtoDto) then) =
-      _$StepDetailDtoDtoCopyWithImpl<$Res, StepDetailDtoDto>;
+abstract class $StepDetailDtoCopyWith<$Res> {
+  factory $StepDetailDtoCopyWith(
+          StepDetailDto value, $Res Function(StepDetailDto) then) =
+      _$StepDetailDtoCopyWithImpl<$Res, StepDetailDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -7736,26 +7532,25 @@ abstract class $StepDetailDtoDtoCopyWith<$Res> {
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
-  $UserDtoDtoCopyWith<$Res> get user;
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $UserDtoCopyWith<$Res> get user;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
-class _$StepDetailDtoDtoCopyWithImpl<$Res, $Val extends StepDetailDtoDto>
-    implements $StepDetailDtoDtoCopyWith<$Res> {
-  _$StepDetailDtoDtoCopyWithImpl(this._value, this._then);
+class _$StepDetailDtoCopyWithImpl<$Res, $Val extends StepDetailDto>
+    implements $StepDetailDtoCopyWith<$Res> {
+  _$StepDetailDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StepDetailDtoDto
+  /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -7784,7 +7579,7 @@ class _$StepDetailDtoDtoCopyWithImpl<$Res, $Val extends StepDetailDtoDto>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -7804,15 +7599,15 @@ class _$StepDetailDtoDtoCopyWithImpl<$Res, $Val extends StepDetailDtoDto>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -7848,7 +7643,7 @@ class _$StepDetailDtoDtoCopyWithImpl<$Res, $Val extends StepDetailDtoDto>
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value.othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -7856,52 +7651,52 @@ class _$StepDetailDtoDtoCopyWithImpl<$Res, $Val extends StepDetailDtoDto>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ) as $Val);
   }
 
-  /// Create a copy of StepDetailDtoDto
+  /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res> get user {
-    return $UserDtoDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
-  /// Create a copy of StepDetailDtoDto
+  /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDtoDtoCopyWith<$Res>? get journey {
+  $JourneyDtoCopyWith<$Res>? get journey {
     if (_value.journey == null) {
       return null;
     }
 
-    return $JourneyDtoDtoCopyWith<$Res>(_value.journey!, (value) {
+    return $JourneyDtoCopyWith<$Res>(_value.journey!, (value) {
       return _then(_value.copyWith(journey: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$StepDetailDtoDtoImplCopyWith<$Res>
-    implements $StepDetailDtoDtoCopyWith<$Res> {
-  factory _$$StepDetailDtoDtoImplCopyWith(_$StepDetailDtoDtoImpl value,
-          $Res Function(_$StepDetailDtoDtoImpl) then) =
-      __$$StepDetailDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$StepDetailDtoImplCopyWith<$Res>
+    implements $StepDetailDtoCopyWith<$Res> {
+  factory _$$StepDetailDtoImplCopyWith(
+          _$StepDetailDtoImpl value, $Res Function(_$StepDetailDtoImpl) then) =
+      __$$StepDetailDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -7911,26 +7706,25 @@ abstract class _$$StepDetailDtoDtoImplCopyWith<$Res>
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
   @override
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
   @override
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
-class __$$StepDetailDtoDtoImplCopyWithImpl<$Res>
-    extends _$StepDetailDtoDtoCopyWithImpl<$Res, _$StepDetailDtoDtoImpl>
-    implements _$$StepDetailDtoDtoImplCopyWith<$Res> {
-  __$$StepDetailDtoDtoImplCopyWithImpl(_$StepDetailDtoDtoImpl _value,
-      $Res Function(_$StepDetailDtoDtoImpl) _then)
+class __$$StepDetailDtoImplCopyWithImpl<$Res>
+    extends _$StepDetailDtoCopyWithImpl<$Res, _$StepDetailDtoImpl>
+    implements _$$StepDetailDtoImplCopyWith<$Res> {
+  __$$StepDetailDtoImplCopyWithImpl(
+      _$StepDetailDtoImpl _value, $Res Function(_$StepDetailDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StepDetailDtoDto
+  /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -7955,11 +7749,11 @@ class __$$StepDetailDtoDtoImplCopyWithImpl<$Res>
     Object? stepTypeString = freezed,
     Object? media = freezed,
   }) {
-    return _then(_$StepDetailDtoDtoImpl(
+    return _then(_$StepDetailDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -7979,15 +7773,15 @@ class __$$StepDetailDtoDtoImplCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -8023,7 +7817,7 @@ class __$$StepDetailDtoDtoImplCopyWithImpl<$Res>
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value._othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -8031,22 +7825,22 @@ class __$$StepDetailDtoDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$StepDetailDtoDtoImpl implements _StepDetailDtoDto {
-  _$StepDetailDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required this.id,
+class _$StepDetailDtoImpl implements _StepDetailDto {
+  _$StepDetailDtoImpl(
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'userId') this.userId,
       @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() this.journeyId,
+      @JsonKey(name: 'journeyId') this.journeyId,
       @JsonKey(name: 'journey') this.journey,
       @JsonKey(name: 'hearts') this.hearts,
       @JsonKey(name: 'heartedByUser') this.heartedByUser,
@@ -8058,19 +7852,18 @@ class _$StepDetailDtoDtoImpl implements _StepDetailDtoDto {
       this.userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') this.othersStepWith,
       @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
+      final List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') this.stepTypeString,
-      @JsonKey(name: 'media') final List<StepMediaDtoDto>? media})
+      @JsonKey(name: 'media') final List<StepMediaDto>? media})
       : _othersStepWithUsers = othersStepWithUsers,
         _media = media;
 
-  factory _$StepDetailDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StepDetailDtoDtoImplFromJson(json);
+  factory _$StepDetailDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StepDetailDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
+  final String id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -8085,14 +7878,13 @@ class _$StepDetailDtoDtoImpl implements _StepDetailDtoDto {
   final String? userId;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto user;
+  final UserDto user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? journeyId;
+  final String? journeyId;
   @override
   @JsonKey(name: 'journey')
-  final JourneyDtoDto? journey;
+  final JourneyDto? journey;
   @override
   @JsonKey(name: 'hearts')
   final int? hearts;
@@ -8117,10 +7909,10 @@ class _$StepDetailDtoDtoImpl implements _StepDetailDtoDto {
   @override
   @JsonKey(name: 'othersStepWith')
   final int? othersStepWith;
-  final List<UserDtoDto>? _othersStepWithUsers;
+  final List<UserDto>? _othersStepWithUsers;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers {
+  List<UserDto>? get othersStepWithUsers {
     final value = _othersStepWithUsers;
     if (value == null) return null;
     if (_othersStepWithUsers is EqualUnmodifiableListView)
@@ -8132,10 +7924,10 @@ class _$StepDetailDtoDtoImpl implements _StepDetailDtoDto {
   @override
   @JsonKey(name: 'stepTypeString')
   final String? stepTypeString;
-  final List<StepMediaDtoDto>? _media;
+  final List<StepMediaDto>? _media;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media {
+  List<StepMediaDto>? get media {
     final value = _media;
     if (value == null) return null;
     if (_media is EqualUnmodifiableListView) return _media;
@@ -8145,14 +7937,14 @@ class _$StepDetailDtoDtoImpl implements _StepDetailDtoDto {
 
   @override
   String toString() {
-    return 'StepDetailDtoDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, user: $user, journeyId: $journeyId, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepTypeString: $stepTypeString, media: $media)';
+    return 'StepDetailDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, user: $user, journeyId: $journeyId, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepTypeString: $stepTypeString, media: $media)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StepDetailDtoDtoImpl &&
+            other is _$StepDetailDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.createdDate, createdDate) ||
@@ -8212,57 +8004,53 @@ class _$StepDetailDtoDtoImpl implements _StepDetailDtoDto {
         const DeepCollectionEquality().hash(_media)
       ]);
 
-  /// Create a copy of StepDetailDtoDto
+  /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StepDetailDtoDtoImplCopyWith<_$StepDetailDtoDtoImpl> get copyWith =>
-      __$$StepDetailDtoDtoImplCopyWithImpl<_$StepDetailDtoDtoImpl>(
-          this, _$identity);
+  _$$StepDetailDtoImplCopyWith<_$StepDetailDtoImpl> get copyWith =>
+      __$$StepDetailDtoImplCopyWithImpl<_$StepDetailDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StepDetailDtoDtoImplToJson(
+    return _$$StepDetailDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _StepDetailDtoDto implements StepDetailDtoDto {
-  factory _StepDetailDtoDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required final ApiUuid id,
-      @JsonKey(name: 'content') final String? content,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'user') required final UserDtoDto user,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? journeyId,
-      @JsonKey(name: 'journey') final JourneyDtoDto? journey,
-      @JsonKey(name: 'hearts') final int? hearts,
-      @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
-      @JsonKey(name: 'shares') final int? shares,
-      @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
-      @JsonKey(name: 'comments') final int? comments,
-      @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
-      @JsonKey(name: 'userSteppedWithInteractions')
-      final int? userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') final int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') final String? stepTypeString,
-      @JsonKey(name: 'media')
-      final List<StepMediaDtoDto>? media}) = _$StepDetailDtoDtoImpl;
+abstract class _StepDetailDto implements StepDetailDto {
+  factory _StepDetailDto(
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'user') required final UserDto user,
+          @JsonKey(name: 'journeyId') final String? journeyId,
+          @JsonKey(name: 'journey') final JourneyDto? journey,
+          @JsonKey(name: 'hearts') final int? hearts,
+          @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
+          @JsonKey(name: 'shares') final int? shares,
+          @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
+          @JsonKey(name: 'comments') final int? comments,
+          @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
+          @JsonKey(name: 'userSteppedWithInteractions')
+          final int? userSteppedWithInteractions,
+          @JsonKey(name: 'othersStepWith') final int? othersStepWith,
+          @JsonKey(name: 'othersStepWithUsers')
+          final List<UserDto>? othersStepWithUsers,
+          @JsonKey(name: 'stepTypeString') final String? stepTypeString,
+          @JsonKey(name: 'media') final List<StepMediaDto>? media}) =
+      _$StepDetailDtoImpl;
 
-  factory _StepDetailDtoDto.fromJson(Map<String, dynamic> json) =
-      _$StepDetailDtoDtoImpl.fromJson;
+  factory _StepDetailDto.fromJson(Map<String, dynamic> json) =
+      _$StepDetailDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id;
+  String get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -8277,14 +8065,13 @@ abstract class _StepDetailDtoDto implements StepDetailDtoDto {
   String? get userId;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto get user;
+  UserDto get user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId;
+  String? get journeyId;
   @override
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey;
+  JourneyDto? get journey;
   @override
   @JsonKey(name: 'hearts')
   int? get hearts;
@@ -8311,31 +8098,30 @@ abstract class _StepDetailDtoDto implements StepDetailDtoDto {
   int? get othersStepWith;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers;
+  List<UserDto>? get othersStepWithUsers;
   @override
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media;
+  List<StepMediaDto>? get media;
 
-  /// Create a copy of StepDetailDtoDto
+  /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StepDetailDtoDtoImplCopyWith<_$StepDetailDtoDtoImpl> get copyWith =>
+  _$$StepDetailDtoImplCopyWith<_$StepDetailDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-StepDtoDto _$StepDtoDtoFromJson(Map<String, dynamic> json) {
-  return _StepDtoDto.fromJson(json);
+StepDto _$StepDtoFromJson(Map<String, dynamic> json) {
+  return _StepDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StepDtoDto {
+mixin _$StepDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -8345,50 +8131,47 @@ mixin _$StepDtoDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId => throw _privateConstructorUsedError;
+  String? get journeyId => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
   StepMediaDto2Dto? get media => throw _privateConstructorUsedError;
 
-  /// Serializes this StepDtoDto to a JSON map.
+  /// Serializes this StepDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of StepDtoDto
+  /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $StepDtoDtoCopyWith<StepDtoDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $StepDtoCopyWith<StepDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepDtoDtoCopyWith<$Res> {
-  factory $StepDtoDtoCopyWith(
-          StepDtoDto value, $Res Function(StepDtoDto) then) =
-      _$StepDtoDtoCopyWithImpl<$Res, StepDtoDto>;
+abstract class $StepDtoCopyWith<$Res> {
+  factory $StepDtoCopyWith(StepDto value, $Res Function(StepDto) then) =
+      _$StepDtoCopyWithImpl<$Res, StepDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
+      @JsonKey(name: 'journeyId') String? journeyId,
       @JsonKey(name: 'media') StepMediaDto2Dto? media});
 
   $StepMediaDto2DtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
-class _$StepDtoDtoCopyWithImpl<$Res, $Val extends StepDtoDto>
-    implements $StepDtoDtoCopyWith<$Res> {
-  _$StepDtoDtoCopyWithImpl(this._value, this._then);
+class _$StepDtoCopyWithImpl<$Res, $Val extends StepDto>
+    implements $StepDtoCopyWith<$Res> {
+  _$StepDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StepDtoDto
+  /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -8405,7 +8188,7 @@ class _$StepDtoDtoCopyWithImpl<$Res, $Val extends StepDtoDto>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -8425,7 +8208,7 @@ class _$StepDtoDtoCopyWithImpl<$Res, $Val extends StepDtoDto>
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -8433,7 +8216,7 @@ class _$StepDtoDtoCopyWithImpl<$Res, $Val extends StepDtoDto>
     ) as $Val);
   }
 
-  /// Create a copy of StepDtoDto
+  /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -8449,20 +8232,19 @@ class _$StepDtoDtoCopyWithImpl<$Res, $Val extends StepDtoDto>
 }
 
 /// @nodoc
-abstract class _$$StepDtoDtoImplCopyWith<$Res>
-    implements $StepDtoDtoCopyWith<$Res> {
-  factory _$$StepDtoDtoImplCopyWith(
-          _$StepDtoDtoImpl value, $Res Function(_$StepDtoDtoImpl) then) =
-      __$$StepDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$StepDtoImplCopyWith<$Res> implements $StepDtoCopyWith<$Res> {
+  factory _$$StepDtoImplCopyWith(
+          _$StepDtoImpl value, $Res Function(_$StepDtoImpl) then) =
+      __$$StepDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
+      @JsonKey(name: 'journeyId') String? journeyId,
       @JsonKey(name: 'media') StepMediaDto2Dto? media});
 
   @override
@@ -8470,14 +8252,14 @@ abstract class _$$StepDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$StepDtoDtoImplCopyWithImpl<$Res>
-    extends _$StepDtoDtoCopyWithImpl<$Res, _$StepDtoDtoImpl>
-    implements _$$StepDtoDtoImplCopyWith<$Res> {
-  __$$StepDtoDtoImplCopyWithImpl(
-      _$StepDtoDtoImpl _value, $Res Function(_$StepDtoDtoImpl) _then)
+class __$$StepDtoImplCopyWithImpl<$Res>
+    extends _$StepDtoCopyWithImpl<$Res, _$StepDtoImpl>
+    implements _$$StepDtoImplCopyWith<$Res> {
+  __$$StepDtoImplCopyWithImpl(
+      _$StepDtoImpl _value, $Res Function(_$StepDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StepDtoDto
+  /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -8490,11 +8272,11 @@ class __$$StepDtoDtoImplCopyWithImpl<$Res>
     Object? journeyId = freezed,
     Object? media = freezed,
   }) {
-    return _then(_$StepDtoDtoImpl(
+    return _then(_$StepDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -8514,7 +8296,7 @@ class __$$StepDtoDtoImplCopyWithImpl<$Res>
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -8525,23 +8307,22 @@ class __$$StepDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$StepDtoDtoImpl implements _StepDtoDto {
-  _$StepDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required this.id,
+class _$StepDtoImpl implements _StepDto {
+  _$StepDtoImpl(
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() this.journeyId,
+      @JsonKey(name: 'journeyId') this.journeyId,
       @JsonKey(name: 'media') this.media});
 
-  factory _$StepDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StepDtoDtoImplFromJson(json);
+  factory _$StepDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StepDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
+  final String id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -8556,22 +8337,21 @@ class _$StepDtoDtoImpl implements _StepDtoDto {
   final String? userId;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? journeyId;
+  final String? journeyId;
   @override
   @JsonKey(name: 'media')
   final StepMediaDto2Dto? media;
 
   @override
   String toString() {
-    return 'StepDtoDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, media: $media)';
+    return 'StepDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, media: $media)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StepDtoDtoImpl &&
+            other is _$StepDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.createdDate, createdDate) ||
@@ -8589,42 +8369,37 @@ class _$StepDtoDtoImpl implements _StepDtoDto {
   int get hashCode => Object.hash(runtimeType, id, content, createdDate,
       lastUpdated, userId, journeyId, media);
 
-  /// Create a copy of StepDtoDto
+  /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StepDtoDtoImplCopyWith<_$StepDtoDtoImpl> get copyWith =>
-      __$$StepDtoDtoImplCopyWithImpl<_$StepDtoDtoImpl>(this, _$identity);
+  _$$StepDtoImplCopyWith<_$StepDtoImpl> get copyWith =>
+      __$$StepDtoImplCopyWithImpl<_$StepDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StepDtoDtoImplToJson(
+    return _$$StepDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _StepDtoDto implements StepDtoDto {
-  factory _StepDtoDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required final ApiUuid id,
+abstract class _StepDto implements StepDto {
+  factory _StepDto(
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'content') final String? content,
       @JsonKey(name: 'createdDate') final DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
       @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? journeyId,
-      @JsonKey(name: 'media')
-      final StepMediaDto2Dto? media}) = _$StepDtoDtoImpl;
+      @JsonKey(name: 'journeyId') final String? journeyId,
+      @JsonKey(name: 'media') final StepMediaDto2Dto? media}) = _$StepDtoImpl;
 
-  factory _StepDtoDto.fromJson(Map<String, dynamic> json) =
-      _$StepDtoDtoImpl.fromJson;
+  factory _StepDto.fromJson(Map<String, dynamic> json) = _$StepDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id;
+  String get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -8639,32 +8414,29 @@ abstract class _StepDtoDto implements StepDtoDto {
   String? get userId;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId;
+  String? get journeyId;
   @override
   @JsonKey(name: 'media')
   StepMediaDto2Dto? get media;
 
-  /// Create a copy of StepDtoDto
+  /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StepDtoDtoImplCopyWith<_$StepDtoDtoImpl> get copyWith =>
+  _$$StepDtoImplCopyWith<_$StepDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-StepMediaDtoDto _$StepMediaDtoDtoFromJson(Map<String, dynamic> json) {
-  return _StepMediaDtoDto.fromJson(json);
+StepMediaDto _$StepMediaDtoFromJson(Map<String, dynamic> json) {
+  return _StepMediaDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StepMediaDtoDto {
+mixin _$StepMediaDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId => throw _privateConstructorUsedError;
+  String? get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'mediaType')
   String? get mediaType => throw _privateConstructorUsedError;
   @JsonKey(name: 'originalUrl')
@@ -8696,25 +8468,25 @@ mixin _$StepMediaDtoDto {
   @JsonKey(name: 'isImage')
   bool? get isImage => throw _privateConstructorUsedError;
 
-  /// Serializes this StepMediaDtoDto to a JSON map.
+  /// Serializes this StepMediaDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of StepMediaDtoDto
+  /// Create a copy of StepMediaDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $StepMediaDtoDtoCopyWith<StepMediaDtoDto> get copyWith =>
+  $StepMediaDtoCopyWith<StepMediaDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepMediaDtoDtoCopyWith<$Res> {
-  factory $StepMediaDtoDtoCopyWith(
-          StepMediaDtoDto value, $Res Function(StepMediaDtoDto) then) =
-      _$StepMediaDtoDtoCopyWithImpl<$Res, StepMediaDtoDto>;
+abstract class $StepMediaDtoCopyWith<$Res> {
+  factory $StepMediaDtoCopyWith(
+          StepMediaDto value, $Res Function(StepMediaDto) then) =
+      _$StepMediaDtoCopyWithImpl<$Res, StepMediaDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -8733,16 +8505,16 @@ abstract class $StepMediaDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StepMediaDtoDtoCopyWithImpl<$Res, $Val extends StepMediaDtoDto>
-    implements $StepMediaDtoDtoCopyWith<$Res> {
-  _$StepMediaDtoDtoCopyWithImpl(this._value, this._then);
+class _$StepMediaDtoCopyWithImpl<$Res, $Val extends StepMediaDto>
+    implements $StepMediaDtoCopyWith<$Res> {
+  _$StepMediaDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StepMediaDtoDto
+  /// Create a copy of StepMediaDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -8769,11 +8541,11 @@ class _$StepMediaDtoDtoCopyWithImpl<$Res, $Val extends StepMediaDtoDto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -8839,16 +8611,16 @@ class _$StepMediaDtoDtoCopyWithImpl<$Res, $Val extends StepMediaDtoDto>
 }
 
 /// @nodoc
-abstract class _$$StepMediaDtoDtoImplCopyWith<$Res>
-    implements $StepMediaDtoDtoCopyWith<$Res> {
-  factory _$$StepMediaDtoDtoImplCopyWith(_$StepMediaDtoDtoImpl value,
-          $Res Function(_$StepMediaDtoDtoImpl) then) =
-      __$$StepMediaDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$StepMediaDtoImplCopyWith<$Res>
+    implements $StepMediaDtoCopyWith<$Res> {
+  factory _$$StepMediaDtoImplCopyWith(
+          _$StepMediaDtoImpl value, $Res Function(_$StepMediaDtoImpl) then) =
+      __$$StepMediaDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -8867,14 +8639,14 @@ abstract class _$$StepMediaDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$StepMediaDtoDtoImplCopyWithImpl<$Res>
-    extends _$StepMediaDtoDtoCopyWithImpl<$Res, _$StepMediaDtoDtoImpl>
-    implements _$$StepMediaDtoDtoImplCopyWith<$Res> {
-  __$$StepMediaDtoDtoImplCopyWithImpl(
-      _$StepMediaDtoDtoImpl _value, $Res Function(_$StepMediaDtoDtoImpl) _then)
+class __$$StepMediaDtoImplCopyWithImpl<$Res>
+    extends _$StepMediaDtoCopyWithImpl<$Res, _$StepMediaDtoImpl>
+    implements _$$StepMediaDtoImplCopyWith<$Res> {
+  __$$StepMediaDtoImplCopyWithImpl(
+      _$StepMediaDtoImpl _value, $Res Function(_$StepMediaDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StepMediaDtoDto
+  /// Create a copy of StepMediaDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -8897,15 +8669,15 @@ class __$$StepMediaDtoDtoImplCopyWithImpl<$Res>
     Object? isVideo = freezed,
     Object? isImage = freezed,
   }) {
-    return _then(_$StepMediaDtoDtoImpl(
+    return _then(_$StepMediaDtoImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -8972,10 +8744,10 @@ class __$$StepMediaDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$StepMediaDtoDtoImpl implements _StepMediaDtoDto {
-  _$StepMediaDtoDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() this.stepId,
+class _$StepMediaDtoImpl implements _StepMediaDto {
+  _$StepMediaDtoImpl(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'stepId') this.stepId,
       @JsonKey(name: 'mediaType') this.mediaType,
       @JsonKey(name: 'originalUrl') this.originalUrl,
       @JsonKey(name: 'largeUrl') this.largeUrl,
@@ -8992,17 +8764,15 @@ class _$StepMediaDtoDtoImpl implements _StepMediaDtoDto {
       @JsonKey(name: 'isVideo') this.isVideo,
       @JsonKey(name: 'isImage') this.isImage});
 
-  factory _$StepMediaDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StepMediaDtoDtoImplFromJson(json);
+  factory _$StepMediaDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StepMediaDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? stepId;
+  final String? stepId;
   @override
   @JsonKey(name: 'mediaType')
   final String? mediaType;
@@ -9051,14 +8821,14 @@ class _$StepMediaDtoDtoImpl implements _StepMediaDtoDto {
 
   @override
   String toString() {
-    return 'StepMediaDtoDto(id: $id, stepId: $stepId, mediaType: $mediaType, originalUrl: $originalUrl, largeUrl: $largeUrl, mediumUrl: $mediumUrl, smallUrl: $smallUrl, thumbnailUrl: $thumbnailUrl, videoThumbnailUrl: $videoThumbnailUrl, bunnyVideoId: $bunnyVideoId, width: $width, height: $height, size: $size, duration: $duration, status: $status, isVideo: $isVideo, isImage: $isImage)';
+    return 'StepMediaDto(id: $id, stepId: $stepId, mediaType: $mediaType, originalUrl: $originalUrl, largeUrl: $largeUrl, mediumUrl: $mediumUrl, smallUrl: $smallUrl, thumbnailUrl: $thumbnailUrl, videoThumbnailUrl: $videoThumbnailUrl, bunnyVideoId: $bunnyVideoId, width: $width, height: $height, size: $size, duration: $duration, status: $status, isVideo: $isVideo, isImage: $isImage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StepMediaDtoDtoImpl &&
+            other is _$StepMediaDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.stepId, stepId) || other.stepId == stepId) &&
             (identical(other.mediaType, mediaType) ||
@@ -9109,27 +8879,26 @@ class _$StepMediaDtoDtoImpl implements _StepMediaDtoDto {
       isVideo,
       isImage);
 
-  /// Create a copy of StepMediaDtoDto
+  /// Create a copy of StepMediaDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$StepMediaDtoDtoImplCopyWith<_$StepMediaDtoDtoImpl> get copyWith =>
-      __$$StepMediaDtoDtoImplCopyWithImpl<_$StepMediaDtoDtoImpl>(
-          this, _$identity);
+  _$$StepMediaDtoImplCopyWith<_$StepMediaDtoImpl> get copyWith =>
+      __$$StepMediaDtoImplCopyWithImpl<_$StepMediaDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$StepMediaDtoDtoImplToJson(
+    return _$$StepMediaDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _StepMediaDtoDto implements StepMediaDtoDto {
-  factory _StepMediaDtoDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() final ApiUuid? stepId,
+abstract class _StepMediaDto implements StepMediaDto {
+  factory _StepMediaDto(
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'stepId') final String? stepId,
       @JsonKey(name: 'mediaType') final String? mediaType,
       @JsonKey(name: 'originalUrl') final String? originalUrl,
       @JsonKey(name: 'largeUrl') final String? largeUrl,
@@ -9144,19 +8913,17 @@ abstract class _StepMediaDtoDto implements StepMediaDtoDto {
       @JsonKey(name: 'duration') final num? duration,
       @JsonKey(name: 'status') final int? status,
       @JsonKey(name: 'isVideo') final bool? isVideo,
-      @JsonKey(name: 'isImage') final bool? isImage}) = _$StepMediaDtoDtoImpl;
+      @JsonKey(name: 'isImage') final bool? isImage}) = _$StepMediaDtoImpl;
 
-  factory _StepMediaDtoDto.fromJson(Map<String, dynamic> json) =
-      _$StepMediaDtoDtoImpl.fromJson;
+  factory _StepMediaDto.fromJson(Map<String, dynamic> json) =
+      _$StepMediaDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId;
+  String? get stepId;
   @override
   @JsonKey(name: 'mediaType')
   String? get mediaType;
@@ -9203,11 +8970,11 @@ abstract class _StepMediaDtoDto implements StepMediaDtoDto {
   @JsonKey(name: 'isImage')
   bool? get isImage;
 
-  /// Create a copy of StepMediaDtoDto
+  /// Create a copy of StepMediaDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StepMediaDtoDtoImplCopyWith<_$StepMediaDtoDtoImpl> get copyWith =>
+  _$$StepMediaDtoImplCopyWith<_$StepMediaDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -9218,11 +8985,9 @@ StepMediaDto2Dto _$StepMediaDto2DtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StepMediaDto2Dto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId => throw _privateConstructorUsedError;
+  String? get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'mediaType')
   String? get mediaType => throw _privateConstructorUsedError;
   @JsonKey(name: 'originalUrl')
@@ -9271,8 +9036,8 @@ abstract class $StepMediaDto2DtoCopyWith<$Res> {
       _$StepMediaDto2DtoCopyWithImpl<$Res, StepMediaDto2Dto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -9327,11 +9092,11 @@ class _$StepMediaDto2DtoCopyWithImpl<$Res, $Val extends StepMediaDto2Dto>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -9405,8 +9170,8 @@ abstract class _$$StepMediaDto2DtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -9459,11 +9224,11 @@ class __$$StepMediaDto2DtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -9532,8 +9297,8 @@ class __$$StepMediaDto2DtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StepMediaDto2DtoImpl implements _StepMediaDto2Dto {
   _$StepMediaDto2DtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() this.stepId,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'stepId') this.stepId,
       @JsonKey(name: 'mediaType') this.mediaType,
       @JsonKey(name: 'originalUrl') this.originalUrl,
       @JsonKey(name: 'largeUrl') this.largeUrl,
@@ -9555,12 +9320,10 @@ class _$StepMediaDto2DtoImpl implements _StepMediaDto2Dto {
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? stepId;
+  final String? stepId;
   @override
   @JsonKey(name: 'mediaType')
   final String? mediaType;
@@ -9686,8 +9449,8 @@ class _$StepMediaDto2DtoImpl implements _StepMediaDto2Dto {
 
 abstract class _StepMediaDto2Dto implements StepMediaDto2Dto {
   factory _StepMediaDto2Dto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() final ApiUuid? stepId,
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'stepId') final String? stepId,
       @JsonKey(name: 'mediaType') final String? mediaType,
       @JsonKey(name: 'originalUrl') final String? originalUrl,
       @JsonKey(name: 'largeUrl') final String? largeUrl,
@@ -9709,12 +9472,10 @@ abstract class _StepMediaDto2Dto implements StepMediaDto2Dto {
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId;
+  String? get stepId;
   @override
   @JsonKey(name: 'mediaType')
   String? get mediaType;
@@ -9769,32 +9530,32 @@ abstract class _StepMediaDto2Dto implements StepMediaDto2Dto {
       throw _privateConstructorUsedError;
 }
 
-UpdateJourneyDtoDto _$UpdateJourneyDtoDtoFromJson(Map<String, dynamic> json) {
-  return _UpdateJourneyDtoDto.fromJson(json);
+UpdateJourneyDto _$UpdateJourneyDtoFromJson(Map<String, dynamic> json) {
+  return _UpdateJourneyDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UpdateJourneyDtoDto {
+mixin _$UpdateJourneyDto {
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
 
-  /// Serializes this UpdateJourneyDtoDto to a JSON map.
+  /// Serializes this UpdateJourneyDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of UpdateJourneyDtoDto
+  /// Create a copy of UpdateJourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UpdateJourneyDtoDtoCopyWith<UpdateJourneyDtoDto> get copyWith =>
+  $UpdateJourneyDtoCopyWith<UpdateJourneyDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UpdateJourneyDtoDtoCopyWith<$Res> {
-  factory $UpdateJourneyDtoDtoCopyWith(
-          UpdateJourneyDtoDto value, $Res Function(UpdateJourneyDtoDto) then) =
-      _$UpdateJourneyDtoDtoCopyWithImpl<$Res, UpdateJourneyDtoDto>;
+abstract class $UpdateJourneyDtoCopyWith<$Res> {
+  factory $UpdateJourneyDtoCopyWith(
+          UpdateJourneyDto value, $Res Function(UpdateJourneyDto) then) =
+      _$UpdateJourneyDtoCopyWithImpl<$Res, UpdateJourneyDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'title') String title,
@@ -9802,16 +9563,16 @@ abstract class $UpdateJourneyDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateJourneyDtoDtoCopyWithImpl<$Res, $Val extends UpdateJourneyDtoDto>
-    implements $UpdateJourneyDtoDtoCopyWith<$Res> {
-  _$UpdateJourneyDtoDtoCopyWithImpl(this._value, this._then);
+class _$UpdateJourneyDtoCopyWithImpl<$Res, $Val extends UpdateJourneyDto>
+    implements $UpdateJourneyDtoCopyWith<$Res> {
+  _$UpdateJourneyDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UpdateJourneyDtoDto
+  /// Create a copy of UpdateJourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -9833,11 +9594,11 @@ class _$UpdateJourneyDtoDtoCopyWithImpl<$Res, $Val extends UpdateJourneyDtoDto>
 }
 
 /// @nodoc
-abstract class _$$UpdateJourneyDtoDtoImplCopyWith<$Res>
-    implements $UpdateJourneyDtoDtoCopyWith<$Res> {
-  factory _$$UpdateJourneyDtoDtoImplCopyWith(_$UpdateJourneyDtoDtoImpl value,
-          $Res Function(_$UpdateJourneyDtoDtoImpl) then) =
-      __$$UpdateJourneyDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$UpdateJourneyDtoImplCopyWith<$Res>
+    implements $UpdateJourneyDtoCopyWith<$Res> {
+  factory _$$UpdateJourneyDtoImplCopyWith(_$UpdateJourneyDtoImpl value,
+          $Res Function(_$UpdateJourneyDtoImpl) then) =
+      __$$UpdateJourneyDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -9846,14 +9607,14 @@ abstract class _$$UpdateJourneyDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UpdateJourneyDtoDtoImplCopyWithImpl<$Res>
-    extends _$UpdateJourneyDtoDtoCopyWithImpl<$Res, _$UpdateJourneyDtoDtoImpl>
-    implements _$$UpdateJourneyDtoDtoImplCopyWith<$Res> {
-  __$$UpdateJourneyDtoDtoImplCopyWithImpl(_$UpdateJourneyDtoDtoImpl _value,
-      $Res Function(_$UpdateJourneyDtoDtoImpl) _then)
+class __$$UpdateJourneyDtoImplCopyWithImpl<$Res>
+    extends _$UpdateJourneyDtoCopyWithImpl<$Res, _$UpdateJourneyDtoImpl>
+    implements _$$UpdateJourneyDtoImplCopyWith<$Res> {
+  __$$UpdateJourneyDtoImplCopyWithImpl(_$UpdateJourneyDtoImpl _value,
+      $Res Function(_$UpdateJourneyDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of UpdateJourneyDtoDto
+  /// Create a copy of UpdateJourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -9861,7 +9622,7 @@ class __$$UpdateJourneyDtoDtoImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = freezed,
   }) {
-    return _then(_$UpdateJourneyDtoDtoImpl(
+    return _then(_$UpdateJourneyDtoImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -9876,13 +9637,13 @@ class __$$UpdateJourneyDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UpdateJourneyDtoDtoImpl implements _UpdateJourneyDtoDto {
-  _$UpdateJourneyDtoDtoImpl(
+class _$UpdateJourneyDtoImpl implements _UpdateJourneyDto {
+  _$UpdateJourneyDtoImpl(
       {@JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'description') this.description});
 
-  factory _$UpdateJourneyDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UpdateJourneyDtoDtoImplFromJson(json);
+  factory _$UpdateJourneyDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UpdateJourneyDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'title')
@@ -9893,14 +9654,14 @@ class _$UpdateJourneyDtoDtoImpl implements _UpdateJourneyDtoDto {
 
   @override
   String toString() {
-    return 'UpdateJourneyDtoDto(title: $title, description: $description)';
+    return 'UpdateJourneyDto(title: $title, description: $description)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateJourneyDtoDtoImpl &&
+            other is _$UpdateJourneyDtoImpl &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description));
@@ -9910,31 +9671,31 @@ class _$UpdateJourneyDtoDtoImpl implements _UpdateJourneyDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, title, description);
 
-  /// Create a copy of UpdateJourneyDtoDto
+  /// Create a copy of UpdateJourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateJourneyDtoDtoImplCopyWith<_$UpdateJourneyDtoDtoImpl> get copyWith =>
-      __$$UpdateJourneyDtoDtoImplCopyWithImpl<_$UpdateJourneyDtoDtoImpl>(
+  _$$UpdateJourneyDtoImplCopyWith<_$UpdateJourneyDtoImpl> get copyWith =>
+      __$$UpdateJourneyDtoImplCopyWithImpl<_$UpdateJourneyDtoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UpdateJourneyDtoDtoImplToJson(
+    return _$$UpdateJourneyDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _UpdateJourneyDtoDto implements UpdateJourneyDtoDto {
-  factory _UpdateJourneyDtoDto(
+abstract class _UpdateJourneyDto implements UpdateJourneyDto {
+  factory _UpdateJourneyDto(
           {@JsonKey(name: 'title') required final String title,
           @JsonKey(name: 'description') final String? description}) =
-      _$UpdateJourneyDtoDtoImpl;
+      _$UpdateJourneyDtoImpl;
 
-  factory _UpdateJourneyDtoDto.fromJson(Map<String, dynamic> json) =
-      _$UpdateJourneyDtoDtoImpl.fromJson;
+  factory _UpdateJourneyDto.fromJson(Map<String, dynamic> json) =
+      _$UpdateJourneyDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'title')
@@ -9943,53 +9704,53 @@ abstract class _UpdateJourneyDtoDto implements UpdateJourneyDtoDto {
   @JsonKey(name: 'description')
   String? get description;
 
-  /// Create a copy of UpdateJourneyDtoDto
+  /// Create a copy of UpdateJourneyDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateJourneyDtoDtoImplCopyWith<_$UpdateJourneyDtoDtoImpl> get copyWith =>
+  _$$UpdateJourneyDtoImplCopyWith<_$UpdateJourneyDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-UpdateStepDtoDto _$UpdateStepDtoDtoFromJson(Map<String, dynamic> json) {
-  return _UpdateStepDtoDto.fromJson(json);
+UpdateStepDto _$UpdateStepDtoFromJson(Map<String, dynamic> json) {
+  return _UpdateStepDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UpdateStepDtoDto {
+mixin _$UpdateStepDto {
   @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
 
-  /// Serializes this UpdateStepDtoDto to a JSON map.
+  /// Serializes this UpdateStepDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of UpdateStepDtoDto
+  /// Create a copy of UpdateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UpdateStepDtoDtoCopyWith<UpdateStepDtoDto> get copyWith =>
+  $UpdateStepDtoCopyWith<UpdateStepDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UpdateStepDtoDtoCopyWith<$Res> {
-  factory $UpdateStepDtoDtoCopyWith(
-          UpdateStepDtoDto value, $Res Function(UpdateStepDtoDto) then) =
-      _$UpdateStepDtoDtoCopyWithImpl<$Res, UpdateStepDtoDto>;
+abstract class $UpdateStepDtoCopyWith<$Res> {
+  factory $UpdateStepDtoCopyWith(
+          UpdateStepDto value, $Res Function(UpdateStepDto) then) =
+      _$UpdateStepDtoCopyWithImpl<$Res, UpdateStepDto>;
   @useResult
   $Res call({@JsonKey(name: 'content') String content});
 }
 
 /// @nodoc
-class _$UpdateStepDtoDtoCopyWithImpl<$Res, $Val extends UpdateStepDtoDto>
-    implements $UpdateStepDtoDtoCopyWith<$Res> {
-  _$UpdateStepDtoDtoCopyWithImpl(this._value, this._then);
+class _$UpdateStepDtoCopyWithImpl<$Res, $Val extends UpdateStepDto>
+    implements $UpdateStepDtoCopyWith<$Res> {
+  _$UpdateStepDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UpdateStepDtoDto
+  /// Create a copy of UpdateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -10006,32 +9767,32 @@ class _$UpdateStepDtoDtoCopyWithImpl<$Res, $Val extends UpdateStepDtoDto>
 }
 
 /// @nodoc
-abstract class _$$UpdateStepDtoDtoImplCopyWith<$Res>
-    implements $UpdateStepDtoDtoCopyWith<$Res> {
-  factory _$$UpdateStepDtoDtoImplCopyWith(_$UpdateStepDtoDtoImpl value,
-          $Res Function(_$UpdateStepDtoDtoImpl) then) =
-      __$$UpdateStepDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$UpdateStepDtoImplCopyWith<$Res>
+    implements $UpdateStepDtoCopyWith<$Res> {
+  factory _$$UpdateStepDtoImplCopyWith(
+          _$UpdateStepDtoImpl value, $Res Function(_$UpdateStepDtoImpl) then) =
+      __$$UpdateStepDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'content') String content});
 }
 
 /// @nodoc
-class __$$UpdateStepDtoDtoImplCopyWithImpl<$Res>
-    extends _$UpdateStepDtoDtoCopyWithImpl<$Res, _$UpdateStepDtoDtoImpl>
-    implements _$$UpdateStepDtoDtoImplCopyWith<$Res> {
-  __$$UpdateStepDtoDtoImplCopyWithImpl(_$UpdateStepDtoDtoImpl _value,
-      $Res Function(_$UpdateStepDtoDtoImpl) _then)
+class __$$UpdateStepDtoImplCopyWithImpl<$Res>
+    extends _$UpdateStepDtoCopyWithImpl<$Res, _$UpdateStepDtoImpl>
+    implements _$$UpdateStepDtoImplCopyWith<$Res> {
+  __$$UpdateStepDtoImplCopyWithImpl(
+      _$UpdateStepDtoImpl _value, $Res Function(_$UpdateStepDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of UpdateStepDtoDto
+  /// Create a copy of UpdateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? content = null,
   }) {
-    return _then(_$UpdateStepDtoDtoImpl(
+    return _then(_$UpdateStepDtoImpl(
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -10042,11 +9803,11 @@ class __$$UpdateStepDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UpdateStepDtoDtoImpl implements _UpdateStepDtoDto {
-  _$UpdateStepDtoDtoImpl({@JsonKey(name: 'content') required this.content});
+class _$UpdateStepDtoImpl implements _UpdateStepDto {
+  _$UpdateStepDtoImpl({@JsonKey(name: 'content') required this.content});
 
-  factory _$UpdateStepDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UpdateStepDtoDtoImplFromJson(json);
+  factory _$UpdateStepDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UpdateStepDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'content')
@@ -10054,14 +9815,14 @@ class _$UpdateStepDtoDtoImpl implements _UpdateStepDtoDto {
 
   @override
   String toString() {
-    return 'UpdateStepDtoDto(content: $content)';
+    return 'UpdateStepDto(content: $content)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateStepDtoDtoImpl &&
+            other is _$UpdateStepDtoImpl &&
             (identical(other.content, content) || other.content == content));
   }
 
@@ -10069,88 +9830,87 @@ class _$UpdateStepDtoDtoImpl implements _UpdateStepDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, content);
 
-  /// Create a copy of UpdateStepDtoDto
+  /// Create a copy of UpdateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateStepDtoDtoImplCopyWith<_$UpdateStepDtoDtoImpl> get copyWith =>
-      __$$UpdateStepDtoDtoImplCopyWithImpl<_$UpdateStepDtoDtoImpl>(
-          this, _$identity);
+  _$$UpdateStepDtoImplCopyWith<_$UpdateStepDtoImpl> get copyWith =>
+      __$$UpdateStepDtoImplCopyWithImpl<_$UpdateStepDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UpdateStepDtoDtoImplToJson(
+    return _$$UpdateStepDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _UpdateStepDtoDto implements UpdateStepDtoDto {
-  factory _UpdateStepDtoDto(
+abstract class _UpdateStepDto implements UpdateStepDto {
+  factory _UpdateStepDto(
           {@JsonKey(name: 'content') required final String content}) =
-      _$UpdateStepDtoDtoImpl;
+      _$UpdateStepDtoImpl;
 
-  factory _UpdateStepDtoDto.fromJson(Map<String, dynamic> json) =
-      _$UpdateStepDtoDtoImpl.fromJson;
+  factory _UpdateStepDto.fromJson(Map<String, dynamic> json) =
+      _$UpdateStepDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'content')
   String get content;
 
-  /// Create a copy of UpdateStepDtoDto
+  /// Create a copy of UpdateStepDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateStepDtoDtoImplCopyWith<_$UpdateStepDtoDtoImpl> get copyWith =>
+  _$$UpdateStepDtoImplCopyWith<_$UpdateStepDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-UserDetailDtoDto _$UserDetailDtoDtoFromJson(Map<String, dynamic> json) {
-  return _UserDetailDtoDto.fromJson(json);
+UserDetailDto _$UserDetailDtoFromJson(Map<String, dynamic> json) {
+  return _UserDetailDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UserDetailDtoDto {
+mixin _$UserDetailDto {
   @JsonKey(name: 'user')
-  UserDtoDto get user => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'followingStatus')
   int? get followingStatus => throw _privateConstructorUsedError;
 
-  /// Serializes this UserDetailDtoDto to a JSON map.
+  /// Serializes this UserDetailDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserDetailDtoDto
+  /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserDetailDtoDtoCopyWith<UserDetailDtoDto> get copyWith =>
+  $UserDetailDtoCopyWith<UserDetailDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserDetailDtoDtoCopyWith<$Res> {
-  factory $UserDetailDtoDtoCopyWith(
-          UserDetailDtoDto value, $Res Function(UserDetailDtoDto) then) =
-      _$UserDetailDtoDtoCopyWithImpl<$Res, UserDetailDtoDto>;
+abstract class $UserDetailDtoCopyWith<$Res> {
+  factory $UserDetailDtoCopyWith(
+          UserDetailDto value, $Res Function(UserDetailDto) then) =
+      _$UserDetailDtoCopyWithImpl<$Res, UserDetailDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'user') UserDtoDto user,
+      {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'followingStatus') int? followingStatus});
 
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$UserDetailDtoDtoCopyWithImpl<$Res, $Val extends UserDetailDtoDto>
-    implements $UserDetailDtoDtoCopyWith<$Res> {
-  _$UserDetailDtoDtoCopyWithImpl(this._value, this._then);
+class _$UserDetailDtoCopyWithImpl<$Res, $Val extends UserDetailDto>
+    implements $UserDetailDtoCopyWith<$Res> {
+  _$UserDetailDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UserDetailDtoDto
+  /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -10162,7 +9922,7 @@ class _$UserDetailDtoDtoCopyWithImpl<$Res, $Val extends UserDetailDtoDto>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       followingStatus: freezed == followingStatus
           ? _value.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
@@ -10170,42 +9930,42 @@ class _$UserDetailDtoDtoCopyWithImpl<$Res, $Val extends UserDetailDtoDto>
     ) as $Val);
   }
 
-  /// Create a copy of UserDetailDtoDto
+  /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res> get user {
-    return $UserDtoDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$UserDetailDtoDtoImplCopyWith<$Res>
-    implements $UserDetailDtoDtoCopyWith<$Res> {
-  factory _$$UserDetailDtoDtoImplCopyWith(_$UserDetailDtoDtoImpl value,
-          $Res Function(_$UserDetailDtoDtoImpl) then) =
-      __$$UserDetailDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$UserDetailDtoImplCopyWith<$Res>
+    implements $UserDetailDtoCopyWith<$Res> {
+  factory _$$UserDetailDtoImplCopyWith(
+          _$UserDetailDtoImpl value, $Res Function(_$UserDetailDtoImpl) then) =
+      __$$UserDetailDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'user') UserDtoDto user,
+      {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'followingStatus') int? followingStatus});
 
   @override
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class __$$UserDetailDtoDtoImplCopyWithImpl<$Res>
-    extends _$UserDetailDtoDtoCopyWithImpl<$Res, _$UserDetailDtoDtoImpl>
-    implements _$$UserDetailDtoDtoImplCopyWith<$Res> {
-  __$$UserDetailDtoDtoImplCopyWithImpl(_$UserDetailDtoDtoImpl _value,
-      $Res Function(_$UserDetailDtoDtoImpl) _then)
+class __$$UserDetailDtoImplCopyWithImpl<$Res>
+    extends _$UserDetailDtoCopyWithImpl<$Res, _$UserDetailDtoImpl>
+    implements _$$UserDetailDtoImplCopyWith<$Res> {
+  __$$UserDetailDtoImplCopyWithImpl(
+      _$UserDetailDtoImpl _value, $Res Function(_$UserDetailDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of UserDetailDtoDto
+  /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -10213,11 +9973,11 @@ class __$$UserDetailDtoDtoImplCopyWithImpl<$Res>
     Object? user = null,
     Object? followingStatus = freezed,
   }) {
-    return _then(_$UserDetailDtoDtoImpl(
+    return _then(_$UserDetailDtoImpl(
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       followingStatus: freezed == followingStatus
           ? _value.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
@@ -10228,31 +9988,31 @@ class __$$UserDetailDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserDetailDtoDtoImpl implements _UserDetailDtoDto {
-  _$UserDetailDtoDtoImpl(
+class _$UserDetailDtoImpl implements _UserDetailDto {
+  _$UserDetailDtoImpl(
       {@JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'followingStatus') this.followingStatus});
 
-  factory _$UserDetailDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserDetailDtoDtoImplFromJson(json);
+  factory _$UserDetailDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserDetailDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto user;
+  final UserDto user;
   @override
   @JsonKey(name: 'followingStatus')
   final int? followingStatus;
 
   @override
   String toString() {
-    return 'UserDetailDtoDto(user: $user, followingStatus: $followingStatus)';
+    return 'UserDetailDto(user: $user, followingStatus: $followingStatus)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserDetailDtoDtoImpl &&
+            other is _$UserDetailDtoImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.followingStatus, followingStatus) ||
                 other.followingStatus == followingStatus));
@@ -10262,44 +10022,43 @@ class _$UserDetailDtoDtoImpl implements _UserDetailDtoDto {
   @override
   int get hashCode => Object.hash(runtimeType, user, followingStatus);
 
-  /// Create a copy of UserDetailDtoDto
+  /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserDetailDtoDtoImplCopyWith<_$UserDetailDtoDtoImpl> get copyWith =>
-      __$$UserDetailDtoDtoImplCopyWithImpl<_$UserDetailDtoDtoImpl>(
-          this, _$identity);
+  _$$UserDetailDtoImplCopyWith<_$UserDetailDtoImpl> get copyWith =>
+      __$$UserDetailDtoImplCopyWithImpl<_$UserDetailDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserDetailDtoDtoImplToJson(
+    return _$$UserDetailDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _UserDetailDtoDto implements UserDetailDtoDto {
-  factory _UserDetailDtoDto(
-          {@JsonKey(name: 'user') required final UserDtoDto user,
+abstract class _UserDetailDto implements UserDetailDto {
+  factory _UserDetailDto(
+          {@JsonKey(name: 'user') required final UserDto user,
           @JsonKey(name: 'followingStatus') final int? followingStatus}) =
-      _$UserDetailDtoDtoImpl;
+      _$UserDetailDtoImpl;
 
-  factory _UserDetailDtoDto.fromJson(Map<String, dynamic> json) =
-      _$UserDetailDtoDtoImpl.fromJson;
+  factory _UserDetailDto.fromJson(Map<String, dynamic> json) =
+      _$UserDetailDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'user')
-  UserDtoDto get user;
+  UserDto get user;
   @override
   @JsonKey(name: 'followingStatus')
   int? get followingStatus;
 
-  /// Create a copy of UserDetailDtoDto
+  /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserDetailDtoDtoImplCopyWith<_$UserDetailDtoDtoImpl> get copyWith =>
+  _$$UserDetailDtoImplCopyWith<_$UserDetailDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -10310,7 +10069,7 @@ UserDetailDto2Dto _$UserDetailDto2DtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserDetailDto2Dto {
   @JsonKey(name: 'user')
-  UserDtoDto get user => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'followingStatus')
   int? get followingStatus => throw _privateConstructorUsedError;
 
@@ -10331,10 +10090,10 @@ abstract class $UserDetailDto2DtoCopyWith<$Res> {
       _$UserDetailDto2DtoCopyWithImpl<$Res, UserDetailDto2Dto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'user') UserDtoDto user,
+      {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'followingStatus') int? followingStatus});
 
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -10359,7 +10118,7 @@ class _$UserDetailDto2DtoCopyWithImpl<$Res, $Val extends UserDetailDto2Dto>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       followingStatus: freezed == followingStatus
           ? _value.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
@@ -10371,8 +10130,8 @@ class _$UserDetailDto2DtoCopyWithImpl<$Res, $Val extends UserDetailDto2Dto>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res> get user {
-    return $UserDtoDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -10387,11 +10146,11 @@ abstract class _$$UserDetailDto2DtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'user') UserDtoDto user,
+      {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'followingStatus') int? followingStatus});
 
   @override
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -10414,7 +10173,7 @@ class __$$UserDetailDto2DtoImplCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       followingStatus: freezed == followingStatus
           ? _value.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
@@ -10435,7 +10194,7 @@ class _$UserDetailDto2DtoImpl implements _UserDetailDto2Dto {
 
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto user;
+  final UserDto user;
   @override
   @JsonKey(name: 'followingStatus')
   final int? followingStatus;
@@ -10478,7 +10237,7 @@ class _$UserDetailDto2DtoImpl implements _UserDetailDto2Dto {
 
 abstract class _UserDetailDto2Dto implements UserDetailDto2Dto {
   factory _UserDetailDto2Dto(
-          {@JsonKey(name: 'user') required final UserDtoDto user,
+          {@JsonKey(name: 'user') required final UserDto user,
           @JsonKey(name: 'followingStatus') final int? followingStatus}) =
       _$UserDetailDto2DtoImpl;
 
@@ -10487,7 +10246,7 @@ abstract class _UserDetailDto2Dto implements UserDetailDto2Dto {
 
   @override
   @JsonKey(name: 'user')
-  UserDtoDto get user;
+  UserDto get user;
   @override
   @JsonKey(name: 'followingStatus')
   int? get followingStatus;
@@ -10500,12 +10259,12 @@ abstract class _UserDetailDto2Dto implements UserDetailDto2Dto {
       throw _privateConstructorUsedError;
 }
 
-UserDtoDto _$UserDtoDtoFromJson(Map<String, dynamic> json) {
-  return _UserDtoDto.fromJson(json);
+UserDto _$UserDtoFromJson(Map<String, dynamic> json) {
+  return _UserDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UserDtoDto {
+mixin _$UserDto {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'displayName')
@@ -10529,21 +10288,19 @@ mixin _$UserDtoDto {
   @JsonKey(name: 'lastUpdated')
   DateTime? get lastUpdated => throw _privateConstructorUsedError;
 
-  /// Serializes this UserDtoDto to a JSON map.
+  /// Serializes this UserDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of UserDtoDto
+  /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $UserDtoDtoCopyWith<UserDtoDto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UserDtoCopyWith<UserDto> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserDtoDtoCopyWith<$Res> {
-  factory $UserDtoDtoCopyWith(
-          UserDtoDto value, $Res Function(UserDtoDto) then) =
-      _$UserDtoDtoCopyWithImpl<$Res, UserDtoDto>;
+abstract class $UserDtoCopyWith<$Res> {
+  factory $UserDtoCopyWith(UserDto value, $Res Function(UserDto) then) =
+      _$UserDtoCopyWithImpl<$Res, UserDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
@@ -10560,16 +10317,16 @@ abstract class $UserDtoDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserDtoDtoCopyWithImpl<$Res, $Val extends UserDtoDto>
-    implements $UserDtoDtoCopyWith<$Res> {
-  _$UserDtoDtoCopyWithImpl(this._value, this._then);
+class _$UserDtoCopyWithImpl<$Res, $Val extends UserDto>
+    implements $UserDtoCopyWith<$Res> {
+  _$UserDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of UserDtoDto
+  /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -10636,11 +10393,10 @@ class _$UserDtoDtoCopyWithImpl<$Res, $Val extends UserDtoDto>
 }
 
 /// @nodoc
-abstract class _$$UserDtoDtoImplCopyWith<$Res>
-    implements $UserDtoDtoCopyWith<$Res> {
-  factory _$$UserDtoDtoImplCopyWith(
-          _$UserDtoDtoImpl value, $Res Function(_$UserDtoDtoImpl) then) =
-      __$$UserDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$UserDtoImplCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
+  factory _$$UserDtoImplCopyWith(
+          _$UserDtoImpl value, $Res Function(_$UserDtoImpl) then) =
+      __$$UserDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -10658,14 +10414,14 @@ abstract class _$$UserDtoDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserDtoDtoImplCopyWithImpl<$Res>
-    extends _$UserDtoDtoCopyWithImpl<$Res, _$UserDtoDtoImpl>
-    implements _$$UserDtoDtoImplCopyWith<$Res> {
-  __$$UserDtoDtoImplCopyWithImpl(
-      _$UserDtoDtoImpl _value, $Res Function(_$UserDtoDtoImpl) _then)
+class __$$UserDtoImplCopyWithImpl<$Res>
+    extends _$UserDtoCopyWithImpl<$Res, _$UserDtoImpl>
+    implements _$$UserDtoImplCopyWith<$Res> {
+  __$$UserDtoImplCopyWithImpl(
+      _$UserDtoImpl _value, $Res Function(_$UserDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of UserDtoDto
+  /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -10682,7 +10438,7 @@ class __$$UserDtoDtoImplCopyWithImpl<$Res>
     Object? createdDate = freezed,
     Object? lastUpdated = freezed,
   }) {
-    return _then(_$UserDtoDtoImpl(
+    return _then(_$UserDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -10733,8 +10489,8 @@ class __$$UserDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserDtoDtoImpl implements _UserDtoDto {
-  _$UserDtoDtoImpl(
+class _$UserDtoImpl implements _UserDto {
+  _$UserDtoImpl(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'displayName') this.displayName,
       @JsonKey(name: 'username') this.username,
@@ -10747,8 +10503,8 @@ class _$UserDtoDtoImpl implements _UserDtoDto {
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated});
 
-  factory _$UserDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserDtoDtoImplFromJson(json);
+  factory _$UserDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -10786,14 +10542,14 @@ class _$UserDtoDtoImpl implements _UserDtoDto {
 
   @override
   String toString() {
-    return 'UserDtoDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated)';
+    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserDtoDtoImpl &&
+            other is _$UserDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
@@ -10831,24 +10587,24 @@ class _$UserDtoDtoImpl implements _UserDtoDto {
       createdDate,
       lastUpdated);
 
-  /// Create a copy of UserDtoDto
+  /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserDtoDtoImplCopyWith<_$UserDtoDtoImpl> get copyWith =>
-      __$$UserDtoDtoImplCopyWithImpl<_$UserDtoDtoImpl>(this, _$identity);
+  _$$UserDtoImplCopyWith<_$UserDtoImpl> get copyWith =>
+      __$$UserDtoImplCopyWithImpl<_$UserDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserDtoDtoImplToJson(
+    return _$$UserDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _UserDtoDto implements UserDtoDto {
-  factory _UserDtoDto(
+abstract class _UserDto implements UserDto {
+  factory _UserDto(
           {@JsonKey(name: 'id') required final String id,
           @JsonKey(name: 'displayName') final String? displayName,
           @JsonKey(name: 'username') final String? username,
@@ -10860,10 +10616,9 @@ abstract class _UserDtoDto implements UserDtoDto {
           @JsonKey(name: 'isPrivate') final bool? isPrivate,
           @JsonKey(name: 'createdDate') final DateTime? createdDate,
           @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated}) =
-      _$UserDtoDtoImpl;
+      _$UserDtoImpl;
 
-  factory _UserDtoDto.fromJson(Map<String, dynamic> json) =
-      _$UserDtoDtoImpl.fromJson;
+  factory _UserDto.fromJson(Map<String, dynamic> json) = _$UserDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -10899,11 +10654,11 @@ abstract class _UserDtoDto implements UserDtoDto {
   @JsonKey(name: 'lastUpdated')
   DateTime? get lastUpdated;
 
-  /// Create a copy of UserDtoDto
+  /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UserDtoDtoImplCopyWith<_$UserDtoDtoImpl> get copyWith =>
+  _$$UserDtoImplCopyWith<_$UserDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -11314,20 +11069,18 @@ abstract class _UserDto2Dto implements UserDto2Dto {
       throw _privateConstructorUsedError;
 }
 
-VideoPreSignedUrlDtoDto _$VideoPreSignedUrlDtoDtoFromJson(
-    Map<String, dynamic> json) {
-  return _VideoPreSignedUrlDtoDto.fromJson(json);
+VideoPreSignedUrlDto _$VideoPreSignedUrlDtoFromJson(Map<String, dynamic> json) {
+  return _VideoPreSignedUrlDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$VideoPreSignedUrlDtoDto {
+mixin _$VideoPreSignedUrlDto {
   @JsonKey(name: 'authorizationSignature')
   String? get authorizationSignature => throw _privateConstructorUsedError;
   @JsonKey(name: 'authorizationExpire')
   int? get authorizationExpire => throw _privateConstructorUsedError;
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid => throw _privateConstructorUsedError;
+  String? get videoGuid => throw _privateConstructorUsedError;
   @JsonKey(name: 'libraryId')
   int? get libraryId => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
@@ -11335,48 +11088,48 @@ mixin _$VideoPreSignedUrlDtoDto {
   @JsonKey(name: 'collectionId')
   String? get collectionId => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  StepMediaDtoDto? get media => throw _privateConstructorUsedError;
+  StepMediaDto? get media => throw _privateConstructorUsedError;
 
-  /// Serializes this VideoPreSignedUrlDtoDto to a JSON map.
+  /// Serializes this VideoPreSignedUrlDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of VideoPreSignedUrlDtoDto
+  /// Create a copy of VideoPreSignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VideoPreSignedUrlDtoDtoCopyWith<VideoPreSignedUrlDtoDto> get copyWith =>
+  $VideoPreSignedUrlDtoCopyWith<VideoPreSignedUrlDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VideoPreSignedUrlDtoDtoCopyWith<$Res> {
-  factory $VideoPreSignedUrlDtoDtoCopyWith(VideoPreSignedUrlDtoDto value,
-          $Res Function(VideoPreSignedUrlDtoDto) then) =
-      _$VideoPreSignedUrlDtoDtoCopyWithImpl<$Res, VideoPreSignedUrlDtoDto>;
+abstract class $VideoPreSignedUrlDtoCopyWith<$Res> {
+  factory $VideoPreSignedUrlDtoCopyWith(VideoPreSignedUrlDto value,
+          $Res Function(VideoPreSignedUrlDto) then) =
+      _$VideoPreSignedUrlDtoCopyWithImpl<$Res, VideoPreSignedUrlDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'collectionId') String? collectionId,
-      @JsonKey(name: 'media') StepMediaDtoDto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
-  $StepMediaDtoDtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
-class _$VideoPreSignedUrlDtoDtoCopyWithImpl<$Res,
-        $Val extends VideoPreSignedUrlDtoDto>
-    implements $VideoPreSignedUrlDtoDtoCopyWith<$Res> {
-  _$VideoPreSignedUrlDtoDtoCopyWithImpl(this._value, this._then);
+class _$VideoPreSignedUrlDtoCopyWithImpl<$Res,
+        $Val extends VideoPreSignedUrlDto>
+    implements $VideoPreSignedUrlDtoCopyWith<$Res> {
+  _$VideoPreSignedUrlDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VideoPreSignedUrlDtoDto
+  /// Create a copy of VideoPreSignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -11401,7 +11154,7 @@ class _$VideoPreSignedUrlDtoDtoCopyWithImpl<$Res,
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       libraryId: freezed == libraryId
           ? _value.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
@@ -11417,58 +11170,55 @@ class _$VideoPreSignedUrlDtoDtoCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDtoDto?,
+              as StepMediaDto?,
     ) as $Val);
   }
 
-  /// Create a copy of VideoPreSignedUrlDtoDto
+  /// Create a copy of VideoPreSignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StepMediaDtoDtoCopyWith<$Res>? get media {
+  $StepMediaDtoCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $StepMediaDtoDtoCopyWith<$Res>(_value.media!, (value) {
+    return $StepMediaDtoCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$VideoPreSignedUrlDtoDtoImplCopyWith<$Res>
-    implements $VideoPreSignedUrlDtoDtoCopyWith<$Res> {
-  factory _$$VideoPreSignedUrlDtoDtoImplCopyWith(
-          _$VideoPreSignedUrlDtoDtoImpl value,
-          $Res Function(_$VideoPreSignedUrlDtoDtoImpl) then) =
-      __$$VideoPreSignedUrlDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$VideoPreSignedUrlDtoImplCopyWith<$Res>
+    implements $VideoPreSignedUrlDtoCopyWith<$Res> {
+  factory _$$VideoPreSignedUrlDtoImplCopyWith(_$VideoPreSignedUrlDtoImpl value,
+          $Res Function(_$VideoPreSignedUrlDtoImpl) then) =
+      __$$VideoPreSignedUrlDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'collectionId') String? collectionId,
-      @JsonKey(name: 'media') StepMediaDtoDto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
   @override
-  $StepMediaDtoDtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
-class __$$VideoPreSignedUrlDtoDtoImplCopyWithImpl<$Res>
-    extends _$VideoPreSignedUrlDtoDtoCopyWithImpl<$Res,
-        _$VideoPreSignedUrlDtoDtoImpl>
-    implements _$$VideoPreSignedUrlDtoDtoImplCopyWith<$Res> {
-  __$$VideoPreSignedUrlDtoDtoImplCopyWithImpl(
-      _$VideoPreSignedUrlDtoDtoImpl _value,
-      $Res Function(_$VideoPreSignedUrlDtoDtoImpl) _then)
+class __$$VideoPreSignedUrlDtoImplCopyWithImpl<$Res>
+    extends _$VideoPreSignedUrlDtoCopyWithImpl<$Res, _$VideoPreSignedUrlDtoImpl>
+    implements _$$VideoPreSignedUrlDtoImplCopyWith<$Res> {
+  __$$VideoPreSignedUrlDtoImplCopyWithImpl(_$VideoPreSignedUrlDtoImpl _value,
+      $Res Function(_$VideoPreSignedUrlDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VideoPreSignedUrlDtoDto
+  /// Create a copy of VideoPreSignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -11481,7 +11231,7 @@ class __$$VideoPreSignedUrlDtoDtoImplCopyWithImpl<$Res>
     Object? collectionId = freezed,
     Object? media = freezed,
   }) {
-    return _then(_$VideoPreSignedUrlDtoDtoImpl(
+    return _then(_$VideoPreSignedUrlDtoImpl(
       authorizationSignature: freezed == authorizationSignature
           ? _value.authorizationSignature
           : authorizationSignature // ignore: cast_nullable_to_non_nullable
@@ -11493,7 +11243,7 @@ class __$$VideoPreSignedUrlDtoDtoImplCopyWithImpl<$Res>
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       libraryId: freezed == libraryId
           ? _value.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
@@ -11509,25 +11259,25 @@ class __$$VideoPreSignedUrlDtoDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDtoDto?,
+              as StepMediaDto?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$VideoPreSignedUrlDtoDtoImpl implements _VideoPreSignedUrlDtoDto {
-  _$VideoPreSignedUrlDtoDtoImpl(
+class _$VideoPreSignedUrlDtoImpl implements _VideoPreSignedUrlDto {
+  _$VideoPreSignedUrlDtoImpl(
       {@JsonKey(name: 'authorizationSignature') this.authorizationSignature,
       @JsonKey(name: 'authorizationExpire') this.authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() this.videoGuid,
+      @JsonKey(name: 'videoGuid') this.videoGuid,
       @JsonKey(name: 'libraryId') this.libraryId,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'collectionId') this.collectionId,
       @JsonKey(name: 'media') this.media});
 
-  factory _$VideoPreSignedUrlDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VideoPreSignedUrlDtoDtoImplFromJson(json);
+  factory _$VideoPreSignedUrlDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VideoPreSignedUrlDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'authorizationSignature')
@@ -11537,8 +11287,7 @@ class _$VideoPreSignedUrlDtoDtoImpl implements _VideoPreSignedUrlDtoDto {
   final int? authorizationExpire;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  final ApiUuid? videoGuid;
+  final String? videoGuid;
   @override
   @JsonKey(name: 'libraryId')
   final int? libraryId;
@@ -11550,18 +11299,18 @@ class _$VideoPreSignedUrlDtoDtoImpl implements _VideoPreSignedUrlDtoDto {
   final String? collectionId;
   @override
   @JsonKey(name: 'media')
-  final StepMediaDtoDto? media;
+  final StepMediaDto? media;
 
   @override
   String toString() {
-    return 'VideoPreSignedUrlDtoDto(authorizationSignature: $authorizationSignature, authorizationExpire: $authorizationExpire, videoGuid: $videoGuid, libraryId: $libraryId, title: $title, collectionId: $collectionId, media: $media)';
+    return 'VideoPreSignedUrlDto(authorizationSignature: $authorizationSignature, authorizationExpire: $authorizationExpire, videoGuid: $videoGuid, libraryId: $libraryId, title: $title, collectionId: $collectionId, media: $media)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VideoPreSignedUrlDtoDtoImpl &&
+            other is _$VideoPreSignedUrlDtoImpl &&
             (identical(other.authorizationSignature, authorizationSignature) ||
                 other.authorizationSignature == authorizationSignature) &&
             (identical(other.authorizationExpire, authorizationExpire) ||
@@ -11581,39 +11330,38 @@ class _$VideoPreSignedUrlDtoDtoImpl implements _VideoPreSignedUrlDtoDto {
   int get hashCode => Object.hash(runtimeType, authorizationSignature,
       authorizationExpire, videoGuid, libraryId, title, collectionId, media);
 
-  /// Create a copy of VideoPreSignedUrlDtoDto
+  /// Create a copy of VideoPreSignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$VideoPreSignedUrlDtoDtoImplCopyWith<_$VideoPreSignedUrlDtoDtoImpl>
-      get copyWith => __$$VideoPreSignedUrlDtoDtoImplCopyWithImpl<
-          _$VideoPreSignedUrlDtoDtoImpl>(this, _$identity);
+  _$$VideoPreSignedUrlDtoImplCopyWith<_$VideoPreSignedUrlDtoImpl>
+      get copyWith =>
+          __$$VideoPreSignedUrlDtoImplCopyWithImpl<_$VideoPreSignedUrlDtoImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$VideoPreSignedUrlDtoDtoImplToJson(
+    return _$$VideoPreSignedUrlDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _VideoPreSignedUrlDtoDto implements VideoPreSignedUrlDtoDto {
-  factory _VideoPreSignedUrlDtoDto(
+abstract class _VideoPreSignedUrlDto implements VideoPreSignedUrlDto {
+  factory _VideoPreSignedUrlDto(
           {@JsonKey(name: 'authorizationSignature')
           final String? authorizationSignature,
           @JsonKey(name: 'authorizationExpire') final int? authorizationExpire,
-          @JsonKey(name: 'videoGuid')
-          @ApiUuidJsonConverter()
-          final ApiUuid? videoGuid,
+          @JsonKey(name: 'videoGuid') final String? videoGuid,
           @JsonKey(name: 'libraryId') final int? libraryId,
           @JsonKey(name: 'title') final String? title,
           @JsonKey(name: 'collectionId') final String? collectionId,
-          @JsonKey(name: 'media') final StepMediaDtoDto? media}) =
-      _$VideoPreSignedUrlDtoDtoImpl;
+          @JsonKey(name: 'media') final StepMediaDto? media}) =
+      _$VideoPreSignedUrlDtoImpl;
 
-  factory _VideoPreSignedUrlDtoDto.fromJson(Map<String, dynamic> json) =
-      _$VideoPreSignedUrlDtoDtoImpl.fromJson;
+  factory _VideoPreSignedUrlDto.fromJson(Map<String, dynamic> json) =
+      _$VideoPreSignedUrlDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'authorizationSignature')
@@ -11623,8 +11371,7 @@ abstract class _VideoPreSignedUrlDtoDto implements VideoPreSignedUrlDtoDto {
   int? get authorizationExpire;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid;
+  String? get videoGuid;
   @override
   @JsonKey(name: 'libraryId')
   int? get libraryId;
@@ -11636,63 +11383,62 @@ abstract class _VideoPreSignedUrlDtoDto implements VideoPreSignedUrlDtoDto {
   String? get collectionId;
   @override
   @JsonKey(name: 'media')
-  StepMediaDtoDto? get media;
+  StepMediaDto? get media;
 
-  /// Create a copy of VideoPreSignedUrlDtoDto
+  /// Create a copy of VideoPreSignedUrlDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VideoPreSignedUrlDtoDtoImplCopyWith<_$VideoPreSignedUrlDtoDtoImpl>
+  _$$VideoPreSignedUrlDtoImplCopyWith<_$VideoPreSignedUrlDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-VideoStatusDtoDto _$VideoStatusDtoDtoFromJson(Map<String, dynamic> json) {
-  return _VideoStatusDtoDto.fromJson(json);
+VideoStatusDto _$VideoStatusDtoFromJson(Map<String, dynamic> json) {
+  return _VideoStatusDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$VideoStatusDtoDto {
+mixin _$VideoStatusDto {
   @JsonKey(name: 'videoLibraryId')
   int? get videoLibraryId => throw _privateConstructorUsedError;
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid => throw _privateConstructorUsedError;
+  String? get videoGuid => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   int? get status => throw _privateConstructorUsedError;
 
-  /// Serializes this VideoStatusDtoDto to a JSON map.
+  /// Serializes this VideoStatusDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of VideoStatusDtoDto
+  /// Create a copy of VideoStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $VideoStatusDtoDtoCopyWith<VideoStatusDtoDto> get copyWith =>
+  $VideoStatusDtoCopyWith<VideoStatusDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $VideoStatusDtoDtoCopyWith<$Res> {
-  factory $VideoStatusDtoDtoCopyWith(
-          VideoStatusDtoDto value, $Res Function(VideoStatusDtoDto) then) =
-      _$VideoStatusDtoDtoCopyWithImpl<$Res, VideoStatusDtoDto>;
+abstract class $VideoStatusDtoCopyWith<$Res> {
+  factory $VideoStatusDtoCopyWith(
+          VideoStatusDto value, $Res Function(VideoStatusDto) then) =
+      _$VideoStatusDtoCopyWithImpl<$Res, VideoStatusDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'videoLibraryId') int? videoLibraryId,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'status') int? status});
 }
 
 /// @nodoc
-class _$VideoStatusDtoDtoCopyWithImpl<$Res, $Val extends VideoStatusDtoDto>
-    implements $VideoStatusDtoDtoCopyWith<$Res> {
-  _$VideoStatusDtoDtoCopyWithImpl(this._value, this._then);
+class _$VideoStatusDtoCopyWithImpl<$Res, $Val extends VideoStatusDto>
+    implements $VideoStatusDtoCopyWith<$Res> {
+  _$VideoStatusDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of VideoStatusDtoDto
+  /// Create a copy of VideoStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -11709,7 +11455,7 @@ class _$VideoStatusDtoDtoCopyWithImpl<$Res, $Val extends VideoStatusDtoDto>
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -11719,28 +11465,28 @@ class _$VideoStatusDtoDtoCopyWithImpl<$Res, $Val extends VideoStatusDtoDto>
 }
 
 /// @nodoc
-abstract class _$$VideoStatusDtoDtoImplCopyWith<$Res>
-    implements $VideoStatusDtoDtoCopyWith<$Res> {
-  factory _$$VideoStatusDtoDtoImplCopyWith(_$VideoStatusDtoDtoImpl value,
-          $Res Function(_$VideoStatusDtoDtoImpl) then) =
-      __$$VideoStatusDtoDtoImplCopyWithImpl<$Res>;
+abstract class _$$VideoStatusDtoImplCopyWith<$Res>
+    implements $VideoStatusDtoCopyWith<$Res> {
+  factory _$$VideoStatusDtoImplCopyWith(_$VideoStatusDtoImpl value,
+          $Res Function(_$VideoStatusDtoImpl) then) =
+      __$$VideoStatusDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'videoLibraryId') int? videoLibraryId,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'status') int? status});
 }
 
 /// @nodoc
-class __$$VideoStatusDtoDtoImplCopyWithImpl<$Res>
-    extends _$VideoStatusDtoDtoCopyWithImpl<$Res, _$VideoStatusDtoDtoImpl>
-    implements _$$VideoStatusDtoDtoImplCopyWith<$Res> {
-  __$$VideoStatusDtoDtoImplCopyWithImpl(_$VideoStatusDtoDtoImpl _value,
-      $Res Function(_$VideoStatusDtoDtoImpl) _then)
+class __$$VideoStatusDtoImplCopyWithImpl<$Res>
+    extends _$VideoStatusDtoCopyWithImpl<$Res, _$VideoStatusDtoImpl>
+    implements _$$VideoStatusDtoImplCopyWith<$Res> {
+  __$$VideoStatusDtoImplCopyWithImpl(
+      _$VideoStatusDtoImpl _value, $Res Function(_$VideoStatusDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of VideoStatusDtoDto
+  /// Create a copy of VideoStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -11749,7 +11495,7 @@ class __$$VideoStatusDtoDtoImplCopyWithImpl<$Res>
     Object? videoGuid = freezed,
     Object? status = freezed,
   }) {
-    return _then(_$VideoStatusDtoDtoImpl(
+    return _then(_$VideoStatusDtoImpl(
       videoLibraryId: freezed == videoLibraryId
           ? _value.videoLibraryId
           : videoLibraryId // ignore: cast_nullable_to_non_nullable
@@ -11757,7 +11503,7 @@ class __$$VideoStatusDtoDtoImplCopyWithImpl<$Res>
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -11768,36 +11514,35 @@ class __$$VideoStatusDtoDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$VideoStatusDtoDtoImpl implements _VideoStatusDtoDto {
-  _$VideoStatusDtoDtoImpl(
+class _$VideoStatusDtoImpl implements _VideoStatusDto {
+  _$VideoStatusDtoImpl(
       {@JsonKey(name: 'videoLibraryId') this.videoLibraryId,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() this.videoGuid,
+      @JsonKey(name: 'videoGuid') this.videoGuid,
       @JsonKey(name: 'status') this.status});
 
-  factory _$VideoStatusDtoDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VideoStatusDtoDtoImplFromJson(json);
+  factory _$VideoStatusDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VideoStatusDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'videoLibraryId')
   final int? videoLibraryId;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  final ApiUuid? videoGuid;
+  final String? videoGuid;
   @override
   @JsonKey(name: 'status')
   final int? status;
 
   @override
   String toString() {
-    return 'VideoStatusDtoDto(videoLibraryId: $videoLibraryId, videoGuid: $videoGuid, status: $status)';
+    return 'VideoStatusDto(videoLibraryId: $videoLibraryId, videoGuid: $videoGuid, status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VideoStatusDtoDtoImpl &&
+            other is _$VideoStatusDtoImpl &&
             (identical(other.videoLibraryId, videoLibraryId) ||
                 other.videoLibraryId == videoLibraryId) &&
             (identical(other.videoGuid, videoGuid) ||
@@ -11810,50 +11555,47 @@ class _$VideoStatusDtoDtoImpl implements _VideoStatusDtoDto {
   int get hashCode =>
       Object.hash(runtimeType, videoLibraryId, videoGuid, status);
 
-  /// Create a copy of VideoStatusDtoDto
+  /// Create a copy of VideoStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$VideoStatusDtoDtoImplCopyWith<_$VideoStatusDtoDtoImpl> get copyWith =>
-      __$$VideoStatusDtoDtoImplCopyWithImpl<_$VideoStatusDtoDtoImpl>(
+  _$$VideoStatusDtoImplCopyWith<_$VideoStatusDtoImpl> get copyWith =>
+      __$$VideoStatusDtoImplCopyWithImpl<_$VideoStatusDtoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$VideoStatusDtoDtoImplToJson(
+    return _$$VideoStatusDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _VideoStatusDtoDto implements VideoStatusDtoDto {
-  factory _VideoStatusDtoDto(
+abstract class _VideoStatusDto implements VideoStatusDto {
+  factory _VideoStatusDto(
       {@JsonKey(name: 'videoLibraryId') final int? videoLibraryId,
-      @JsonKey(name: 'videoGuid')
-      @ApiUuidJsonConverter()
-      final ApiUuid? videoGuid,
-      @JsonKey(name: 'status') final int? status}) = _$VideoStatusDtoDtoImpl;
+      @JsonKey(name: 'videoGuid') final String? videoGuid,
+      @JsonKey(name: 'status') final int? status}) = _$VideoStatusDtoImpl;
 
-  factory _VideoStatusDtoDto.fromJson(Map<String, dynamic> json) =
-      _$VideoStatusDtoDtoImpl.fromJson;
+  factory _VideoStatusDto.fromJson(Map<String, dynamic> json) =
+      _$VideoStatusDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'videoLibraryId')
   int? get videoLibraryId;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid;
+  String? get videoGuid;
   @override
   @JsonKey(name: 'status')
   int? get status;
 
-  /// Create a copy of VideoStatusDtoDto
+  /// Create a copy of VideoStatusDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VideoStatusDtoDtoImplCopyWith<_$VideoStatusDtoDtoImpl> get copyWith =>
+  _$$VideoStatusDtoImplCopyWith<_$VideoStatusDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -11867,7 +11609,7 @@ mixin _$ApiV1AccountGetResponseDto {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile => throw _privateConstructorUsedError;
+  ProfileDto get profile => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1AccountGetResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -11888,9 +11630,9 @@ abstract class $ApiV1AccountGetResponseDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -11920,7 +11662,7 @@ class _$ApiV1AccountGetResponseDtoCopyWithImpl<$Res,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ) as $Val);
   }
 
@@ -11928,8 +11670,8 @@ class _$ApiV1AccountGetResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileDtoDtoCopyWith<$Res> get profile {
-    return $ProfileDtoDtoCopyWith<$Res>(_value.profile, (value) {
+  $ProfileDtoCopyWith<$Res> get profile {
+    return $ProfileDtoCopyWith<$Res>(_value.profile, (value) {
       return _then(_value.copyWith(profile: value) as $Val);
     });
   }
@@ -11946,10 +11688,10 @@ abstract class _$$ApiV1AccountGetResponseDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
   @override
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -11978,7 +11720,7 @@ class __$$ApiV1AccountGetResponseDtoImplCopyWithImpl<$Res>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ));
   }
 }
@@ -11999,7 +11741,7 @@ class _$ApiV1AccountGetResponseDtoImpl implements _ApiV1AccountGetResponseDto {
   final String id;
   @override
   @JsonKey(name: 'profile')
-  final ProfileDtoDto profile;
+  final ProfileDto profile;
 
   @override
   String toString() {
@@ -12040,7 +11782,7 @@ abstract class _ApiV1AccountGetResponseDto
     implements ApiV1AccountGetResponseDto {
   factory _ApiV1AccountGetResponseDto(
           {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'profile') required final ProfileDtoDto profile}) =
+          @JsonKey(name: 'profile') required final ProfileDto profile}) =
       _$ApiV1AccountGetResponseDtoImpl;
 
   factory _ApiV1AccountGetResponseDto.fromJson(Map<String, dynamic> json) =
@@ -12051,7 +11793,7 @@ abstract class _ApiV1AccountGetResponseDto
   String get id;
   @override
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile;
+  ProfileDto get profile;
 
   /// Create a copy of ApiV1AccountGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12071,7 +11813,7 @@ mixin _$ApiV1AccountPutResponseDto {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile => throw _privateConstructorUsedError;
+  ProfileDto get profile => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1AccountPutResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -12092,9 +11834,9 @@ abstract class $ApiV1AccountPutResponseDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -12124,7 +11866,7 @@ class _$ApiV1AccountPutResponseDtoCopyWithImpl<$Res,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ) as $Val);
   }
 
@@ -12132,8 +11874,8 @@ class _$ApiV1AccountPutResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileDtoDtoCopyWith<$Res> get profile {
-    return $ProfileDtoDtoCopyWith<$Res>(_value.profile, (value) {
+  $ProfileDtoCopyWith<$Res> get profile {
+    return $ProfileDtoCopyWith<$Res>(_value.profile, (value) {
       return _then(_value.copyWith(profile: value) as $Val);
     });
   }
@@ -12150,10 +11892,10 @@ abstract class _$$ApiV1AccountPutResponseDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
   @override
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -12182,7 +11924,7 @@ class __$$ApiV1AccountPutResponseDtoImplCopyWithImpl<$Res>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ));
   }
 }
@@ -12203,7 +11945,7 @@ class _$ApiV1AccountPutResponseDtoImpl implements _ApiV1AccountPutResponseDto {
   final String id;
   @override
   @JsonKey(name: 'profile')
-  final ProfileDtoDto profile;
+  final ProfileDto profile;
 
   @override
   String toString() {
@@ -12244,7 +11986,7 @@ abstract class _ApiV1AccountPutResponseDto
     implements ApiV1AccountPutResponseDto {
   factory _ApiV1AccountPutResponseDto(
           {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'profile') required final ProfileDtoDto profile}) =
+          @JsonKey(name: 'profile') required final ProfileDto profile}) =
       _$ApiV1AccountPutResponseDtoImpl;
 
   factory _ApiV1AccountPutResponseDto.fromJson(Map<String, dynamic> json) =
@@ -12255,7 +11997,7 @@ abstract class _ApiV1AccountPutResponseDto
   String get id;
   @override
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile;
+  ProfileDto get profile;
 
   /// Create a copy of ApiV1AccountPutResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12512,7 +12254,7 @@ mixin _$ApiV1AccountAvatarPutResponseDto {
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile => throw _privateConstructorUsedError;
+  ProfileDto get profile => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1AccountAvatarPutResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -12534,9 +12276,9 @@ abstract class $ApiV1AccountAvatarPutResponseDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -12566,7 +12308,7 @@ class _$ApiV1AccountAvatarPutResponseDtoCopyWithImpl<$Res,
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ) as $Val);
   }
 
@@ -12574,8 +12316,8 @@ class _$ApiV1AccountAvatarPutResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileDtoDtoCopyWith<$Res> get profile {
-    return $ProfileDtoDtoCopyWith<$Res>(_value.profile, (value) {
+  $ProfileDtoCopyWith<$Res> get profile {
+    return $ProfileDtoCopyWith<$Res>(_value.profile, (value) {
       return _then(_value.copyWith(profile: value) as $Val);
     });
   }
@@ -12592,10 +12334,10 @@ abstract class _$$ApiV1AccountAvatarPutResponseDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDtoDto profile});
+      @JsonKey(name: 'profile') ProfileDto profile});
 
   @override
-  $ProfileDtoDtoCopyWith<$Res> get profile;
+  $ProfileDtoCopyWith<$Res> get profile;
 }
 
 /// @nodoc
@@ -12624,7 +12366,7 @@ class __$$ApiV1AccountAvatarPutResponseDtoImplCopyWithImpl<$Res>
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDtoDto,
+              as ProfileDto,
     ));
   }
 }
@@ -12646,7 +12388,7 @@ class _$ApiV1AccountAvatarPutResponseDtoImpl
   final String id;
   @override
   @JsonKey(name: 'profile')
-  final ProfileDtoDto profile;
+  final ProfileDto profile;
 
   @override
   String toString() {
@@ -12688,7 +12430,7 @@ abstract class _ApiV1AccountAvatarPutResponseDto
     implements ApiV1AccountAvatarPutResponseDto {
   factory _ApiV1AccountAvatarPutResponseDto(
           {@JsonKey(name: 'id') required final String id,
-          @JsonKey(name: 'profile') required final ProfileDtoDto profile}) =
+          @JsonKey(name: 'profile') required final ProfileDto profile}) =
       _$ApiV1AccountAvatarPutResponseDtoImpl;
 
   factory _ApiV1AccountAvatarPutResponseDto.fromJson(
@@ -12700,7 +12442,7 @@ abstract class _ApiV1AccountAvatarPutResponseDto
   String get id;
   @override
   @JsonKey(name: 'profile')
-  ProfileDtoDto get profile;
+  ProfileDto get profile;
 
   /// Create a copy of ApiV1AccountAvatarPutResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12719,16 +12461,15 @@ ApiV1UsersIdGetResponseDto _$ApiV1UsersIdGetResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1UsersIdGetResponseDto {
   @JsonKey(name: 'userDetail')
-  UserDetailDtoDto get userDetail => throw _privateConstructorUsedError;
+  UserDetailDto get userDetail => throw _privateConstructorUsedError;
   @JsonKey(name: 'badgesCount')
   int? get badgesCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'badgesUsers')
-  List<UserDtoDto>? get badgesUsers => throw _privateConstructorUsedError;
+  List<UserDto>? get badgesUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'supportersCount')
   int? get supportersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'supportersUsers')
-  List<ProfileDtoDtoSupportersUsersDto>? get supportersUsers =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get supportersUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'followersCount')
   int? get followersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'followingsCount')
@@ -12752,16 +12493,15 @@ abstract class $ApiV1UsersIdGetResponseDtoCopyWith<$Res> {
           ApiV1UsersIdGetResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'userDetail') UserDetailDtoDto userDetail,
+      {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
       @JsonKey(name: 'badgesCount') int? badgesCount,
-      @JsonKey(name: 'badgesUsers') List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') int? supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') int? followersCount,
       @JsonKey(name: 'followingsCount') int? followingsCount});
 
-  $UserDetailDtoDtoCopyWith<$Res> get userDetail;
+  $UserDetailDtoCopyWith<$Res> get userDetail;
 }
 
 /// @nodoc
@@ -12792,7 +12532,7 @@ class _$ApiV1UsersIdGetResponseDtoCopyWithImpl<$Res,
       userDetail: null == userDetail
           ? _value.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
-              as UserDetailDtoDto,
+              as UserDetailDto,
       badgesCount: freezed == badgesCount
           ? _value.badgesCount
           : badgesCount // ignore: cast_nullable_to_non_nullable
@@ -12800,7 +12540,7 @@ class _$ApiV1UsersIdGetResponseDtoCopyWithImpl<$Res,
       badgesUsers: freezed == badgesUsers
           ? _value.badgesUsers
           : badgesUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       supportersCount: freezed == supportersCount
           ? _value.supportersCount
           : supportersCount // ignore: cast_nullable_to_non_nullable
@@ -12808,7 +12548,7 @@ class _$ApiV1UsersIdGetResponseDtoCopyWithImpl<$Res,
       supportersUsers: freezed == supportersUsers
           ? _value.supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
-              as List<ProfileDtoDtoSupportersUsersDto>?,
+              as List<dynamic>?,
       followersCount: freezed == followersCount
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
@@ -12824,8 +12564,8 @@ class _$ApiV1UsersIdGetResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDetailDtoDtoCopyWith<$Res> get userDetail {
-    return $UserDetailDtoDtoCopyWith<$Res>(_value.userDetail, (value) {
+  $UserDetailDtoCopyWith<$Res> get userDetail {
+    return $UserDetailDtoCopyWith<$Res>(_value.userDetail, (value) {
       return _then(_value.copyWith(userDetail: value) as $Val);
     });
   }
@@ -12841,17 +12581,16 @@ abstract class _$$ApiV1UsersIdGetResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'userDetail') UserDetailDtoDto userDetail,
+      {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
       @JsonKey(name: 'badgesCount') int? badgesCount,
-      @JsonKey(name: 'badgesUsers') List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') int? supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') int? followersCount,
       @JsonKey(name: 'followingsCount') int? followingsCount});
 
   @override
-  $UserDetailDtoDtoCopyWith<$Res> get userDetail;
+  $UserDetailDtoCopyWith<$Res> get userDetail;
 }
 
 /// @nodoc
@@ -12881,7 +12620,7 @@ class __$$ApiV1UsersIdGetResponseDtoImplCopyWithImpl<$Res>
       userDetail: null == userDetail
           ? _value.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
-              as UserDetailDtoDto,
+              as UserDetailDto,
       badgesCount: freezed == badgesCount
           ? _value.badgesCount
           : badgesCount // ignore: cast_nullable_to_non_nullable
@@ -12889,7 +12628,7 @@ class __$$ApiV1UsersIdGetResponseDtoImplCopyWithImpl<$Res>
       badgesUsers: freezed == badgesUsers
           ? _value._badgesUsers
           : badgesUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       supportersCount: freezed == supportersCount
           ? _value.supportersCount
           : supportersCount // ignore: cast_nullable_to_non_nullable
@@ -12897,7 +12636,7 @@ class __$$ApiV1UsersIdGetResponseDtoImplCopyWithImpl<$Res>
       supportersUsers: freezed == supportersUsers
           ? _value._supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
-              as List<ProfileDtoDtoSupportersUsersDto>?,
+              as List<dynamic>?,
       followersCount: freezed == followersCount
           ? _value.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
@@ -12916,10 +12655,9 @@ class _$ApiV1UsersIdGetResponseDtoImpl implements _ApiV1UsersIdGetResponseDto {
   _$ApiV1UsersIdGetResponseDtoImpl(
       {@JsonKey(name: 'userDetail') required this.userDetail,
       @JsonKey(name: 'badgesCount') this.badgesCount,
-      @JsonKey(name: 'badgesUsers') final List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') final List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') this.supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      final List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') final List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') this.followersCount,
       @JsonKey(name: 'followingsCount') this.followingsCount})
       : _badgesUsers = badgesUsers,
@@ -12931,14 +12669,14 @@ class _$ApiV1UsersIdGetResponseDtoImpl implements _ApiV1UsersIdGetResponseDto {
 
   @override
   @JsonKey(name: 'userDetail')
-  final UserDetailDtoDto userDetail;
+  final UserDetailDto userDetail;
   @override
   @JsonKey(name: 'badgesCount')
   final int? badgesCount;
-  final List<UserDtoDto>? _badgesUsers;
+  final List<UserDto>? _badgesUsers;
   @override
   @JsonKey(name: 'badgesUsers')
-  List<UserDtoDto>? get badgesUsers {
+  List<UserDto>? get badgesUsers {
     final value = _badgesUsers;
     if (value == null) return null;
     if (_badgesUsers is EqualUnmodifiableListView) return _badgesUsers;
@@ -12949,10 +12687,10 @@ class _$ApiV1UsersIdGetResponseDtoImpl implements _ApiV1UsersIdGetResponseDto {
   @override
   @JsonKey(name: 'supportersCount')
   final int? supportersCount;
-  final List<ProfileDtoDtoSupportersUsersDto>? _supportersUsers;
+  final List<dynamic>? _supportersUsers;
   @override
   @JsonKey(name: 'supportersUsers')
-  List<ProfileDtoDtoSupportersUsersDto>? get supportersUsers {
+  List<dynamic>? get supportersUsers {
     final value = _supportersUsers;
     if (value == null) return null;
     if (_supportersUsers is EqualUnmodifiableListView) return _supportersUsers;
@@ -13025,12 +12763,11 @@ class _$ApiV1UsersIdGetResponseDtoImpl implements _ApiV1UsersIdGetResponseDto {
 abstract class _ApiV1UsersIdGetResponseDto
     implements ApiV1UsersIdGetResponseDto {
   factory _ApiV1UsersIdGetResponseDto(
-      {@JsonKey(name: 'userDetail') required final UserDetailDtoDto userDetail,
+      {@JsonKey(name: 'userDetail') required final UserDetailDto userDetail,
       @JsonKey(name: 'badgesCount') final int? badgesCount,
-      @JsonKey(name: 'badgesUsers') final List<UserDtoDto>? badgesUsers,
+      @JsonKey(name: 'badgesUsers') final List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') final int? supportersCount,
-      @JsonKey(name: 'supportersUsers')
-      final List<ProfileDtoDtoSupportersUsersDto>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') final List<dynamic>? supportersUsers,
       @JsonKey(name: 'followersCount') final int? followersCount,
       @JsonKey(name: 'followingsCount')
       final int? followingsCount}) = _$ApiV1UsersIdGetResponseDtoImpl;
@@ -13040,19 +12777,19 @@ abstract class _ApiV1UsersIdGetResponseDto
 
   @override
   @JsonKey(name: 'userDetail')
-  UserDetailDtoDto get userDetail;
+  UserDetailDto get userDetail;
   @override
   @JsonKey(name: 'badgesCount')
   int? get badgesCount;
   @override
   @JsonKey(name: 'badgesUsers')
-  List<UserDtoDto>? get badgesUsers;
+  List<UserDto>? get badgesUsers;
   @override
   @JsonKey(name: 'supportersCount')
   int? get supportersCount;
   @override
   @JsonKey(name: 'supportersUsers')
-  List<ProfileDtoDtoSupportersUsersDto>? get supportersUsers;
+  List<dynamic>? get supportersUsers;
   @override
   @JsonKey(name: 'followersCount')
   int? get followersCount;
@@ -13076,8 +12813,7 @@ ApiV1StepsPostResponseDto _$ApiV1StepsPostResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1StepsPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -13087,12 +12823,11 @@ mixin _$ApiV1StepsPostResponseDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto get user => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId => throw _privateConstructorUsedError;
+  String? get journeyId => throw _privateConstructorUsedError;
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey => throw _privateConstructorUsedError;
+  JourneyDto? get journey => throw _privateConstructorUsedError;
   @JsonKey(name: 'hearts')
   int? get hearts => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -13110,12 +12845,11 @@ mixin _$ApiV1StepsPostResponseDto {
   @JsonKey(name: 'othersStepWith')
   int? get othersStepWith => throw _privateConstructorUsedError;
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers =>
-      throw _privateConstructorUsedError;
+  List<UserDto>? get othersStepWithUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media => throw _privateConstructorUsedError;
+  List<StepMediaDto>? get media => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1StepsPostResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -13134,14 +12868,14 @@ abstract class $ApiV1StepsPostResponseDtoCopyWith<$Res> {
       _$ApiV1StepsPostResponseDtoCopyWithImpl<$Res, ApiV1StepsPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -13151,13 +12885,12 @@ abstract class $ApiV1StepsPostResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
-  $UserDtoDtoCopyWith<$Res> get user;
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $UserDtoCopyWith<$Res> get user;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -13200,7 +12933,7 @@ class _$ApiV1StepsPostResponseDtoCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -13220,15 +12953,15 @@ class _$ApiV1StepsPostResponseDtoCopyWithImpl<$Res,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -13264,7 +12997,7 @@ class _$ApiV1StepsPostResponseDtoCopyWithImpl<$Res,
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value.othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -13272,7 +13005,7 @@ class _$ApiV1StepsPostResponseDtoCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ) as $Val);
   }
 
@@ -13280,8 +13013,8 @@ class _$ApiV1StepsPostResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res> get user {
-    return $UserDtoDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -13290,12 +13023,12 @@ class _$ApiV1StepsPostResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDtoDtoCopyWith<$Res>? get journey {
+  $JourneyDtoCopyWith<$Res>? get journey {
     if (_value.journey == null) {
       return null;
     }
 
-    return $JourneyDtoDtoCopyWith<$Res>(_value.journey!, (value) {
+    return $JourneyDtoCopyWith<$Res>(_value.journey!, (value) {
       return _then(_value.copyWith(journey: value) as $Val);
     });
   }
@@ -13311,14 +13044,14 @@ abstract class _$$ApiV1StepsPostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -13328,15 +13061,14 @@ abstract class _$$ApiV1StepsPostResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
   @override
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
   @override
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -13378,7 +13110,7 @@ class __$$ApiV1StepsPostResponseDtoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -13398,15 +13130,15 @@ class __$$ApiV1StepsPostResponseDtoImplCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -13442,7 +13174,7 @@ class __$$ApiV1StepsPostResponseDtoImplCopyWithImpl<$Res>
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value._othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -13450,7 +13182,7 @@ class __$$ApiV1StepsPostResponseDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ));
   }
 }
@@ -13459,13 +13191,13 @@ class __$$ApiV1StepsPostResponseDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ApiV1StepsPostResponseDtoImpl implements _ApiV1StepsPostResponseDto {
   _$ApiV1StepsPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'userId') this.userId,
       @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() this.journeyId,
+      @JsonKey(name: 'journeyId') this.journeyId,
       @JsonKey(name: 'journey') this.journey,
       @JsonKey(name: 'hearts') this.hearts,
       @JsonKey(name: 'heartedByUser') this.heartedByUser,
@@ -13477,9 +13209,9 @@ class _$ApiV1StepsPostResponseDtoImpl implements _ApiV1StepsPostResponseDto {
       this.userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') this.othersStepWith,
       @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
+      final List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') this.stepTypeString,
-      @JsonKey(name: 'media') final List<StepMediaDtoDto>? media})
+      @JsonKey(name: 'media') final List<StepMediaDto>? media})
       : _othersStepWithUsers = othersStepWithUsers,
         _media = media;
 
@@ -13488,8 +13220,7 @@ class _$ApiV1StepsPostResponseDtoImpl implements _ApiV1StepsPostResponseDto {
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
+  final String id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -13504,14 +13235,13 @@ class _$ApiV1StepsPostResponseDtoImpl implements _ApiV1StepsPostResponseDto {
   final String? userId;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto user;
+  final UserDto user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? journeyId;
+  final String? journeyId;
   @override
   @JsonKey(name: 'journey')
-  final JourneyDtoDto? journey;
+  final JourneyDto? journey;
   @override
   @JsonKey(name: 'hearts')
   final int? hearts;
@@ -13536,10 +13266,10 @@ class _$ApiV1StepsPostResponseDtoImpl implements _ApiV1StepsPostResponseDto {
   @override
   @JsonKey(name: 'othersStepWith')
   final int? othersStepWith;
-  final List<UserDtoDto>? _othersStepWithUsers;
+  final List<UserDto>? _othersStepWithUsers;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers {
+  List<UserDto>? get othersStepWithUsers {
     final value = _othersStepWithUsers;
     if (value == null) return null;
     if (_othersStepWithUsers is EqualUnmodifiableListView)
@@ -13551,10 +13281,10 @@ class _$ApiV1StepsPostResponseDtoImpl implements _ApiV1StepsPostResponseDto {
   @override
   @JsonKey(name: 'stepTypeString')
   final String? stepTypeString;
-  final List<StepMediaDtoDto>? _media;
+  final List<StepMediaDto>? _media;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media {
+  List<StepMediaDto>? get media {
     final value = _media;
     if (value == null) return null;
     if (_media is EqualUnmodifiableListView) return _media;
@@ -13650,38 +13380,35 @@ class _$ApiV1StepsPostResponseDtoImpl implements _ApiV1StepsPostResponseDto {
 
 abstract class _ApiV1StepsPostResponseDto implements ApiV1StepsPostResponseDto {
   factory _ApiV1StepsPostResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required final ApiUuid id,
-      @JsonKey(name: 'content') final String? content,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'user') required final UserDtoDto user,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? journeyId,
-      @JsonKey(name: 'journey') final JourneyDtoDto? journey,
-      @JsonKey(name: 'hearts') final int? hearts,
-      @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
-      @JsonKey(name: 'shares') final int? shares,
-      @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
-      @JsonKey(name: 'comments') final int? comments,
-      @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
-      @JsonKey(name: 'userSteppedWithInteractions')
-      final int? userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') final int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') final String? stepTypeString,
-      @JsonKey(name: 'media')
-      final List<StepMediaDtoDto>? media}) = _$ApiV1StepsPostResponseDtoImpl;
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'user') required final UserDto user,
+          @JsonKey(name: 'journeyId') final String? journeyId,
+          @JsonKey(name: 'journey') final JourneyDto? journey,
+          @JsonKey(name: 'hearts') final int? hearts,
+          @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
+          @JsonKey(name: 'shares') final int? shares,
+          @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
+          @JsonKey(name: 'comments') final int? comments,
+          @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
+          @JsonKey(name: 'userSteppedWithInteractions')
+          final int? userSteppedWithInteractions,
+          @JsonKey(name: 'othersStepWith') final int? othersStepWith,
+          @JsonKey(name: 'othersStepWithUsers')
+          final List<UserDto>? othersStepWithUsers,
+          @JsonKey(name: 'stepTypeString') final String? stepTypeString,
+          @JsonKey(name: 'media') final List<StepMediaDto>? media}) =
+      _$ApiV1StepsPostResponseDtoImpl;
 
   factory _ApiV1StepsPostResponseDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1StepsPostResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id;
+  String get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -13696,14 +13423,13 @@ abstract class _ApiV1StepsPostResponseDto implements ApiV1StepsPostResponseDto {
   String? get userId;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto get user;
+  UserDto get user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId;
+  String? get journeyId;
   @override
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey;
+  JourneyDto? get journey;
   @override
   @JsonKey(name: 'hearts')
   int? get hearts;
@@ -13730,13 +13456,13 @@ abstract class _ApiV1StepsPostResponseDto implements ApiV1StepsPostResponseDto {
   int? get othersStepWith;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers;
+  List<UserDto>? get othersStepWithUsers;
   @override
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media;
+  List<StepMediaDto>? get media;
 
   /// Create a copy of ApiV1StepsPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -13756,8 +13482,7 @@ mixin _$ApiV1StepsPostRequestDto {
   @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid get journeyId => throw _privateConstructorUsedError;
+  String get journeyId => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1StepsPostRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -13777,7 +13502,7 @@ abstract class $ApiV1StepsPostRequestDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid journeyId});
+      @JsonKey(name: 'journeyId') String journeyId});
 }
 
 /// @nodoc
@@ -13807,7 +13532,7 @@ class _$ApiV1StepsPostRequestDtoCopyWithImpl<$Res,
       journeyId: null == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
     ) as $Val);
   }
 }
@@ -13823,7 +13548,7 @@ abstract class _$$ApiV1StepsPostRequestDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid journeyId});
+      @JsonKey(name: 'journeyId') String journeyId});
 }
 
 /// @nodoc
@@ -13852,7 +13577,7 @@ class __$$ApiV1StepsPostRequestDtoImplCopyWithImpl<$Res>
       journeyId: null == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
     ));
   }
 }
@@ -13862,9 +13587,7 @@ class __$$ApiV1StepsPostRequestDtoImplCopyWithImpl<$Res>
 class _$ApiV1StepsPostRequestDtoImpl implements _ApiV1StepsPostRequestDto {
   _$ApiV1StepsPostRequestDtoImpl(
       {@JsonKey(name: 'content') required this.content,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      required this.journeyId});
+      @JsonKey(name: 'journeyId') required this.journeyId});
 
   factory _$ApiV1StepsPostRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ApiV1StepsPostRequestDtoImplFromJson(json);
@@ -13874,8 +13597,7 @@ class _$ApiV1StepsPostRequestDtoImpl implements _ApiV1StepsPostRequestDto {
   final String content;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid journeyId;
+  final String journeyId;
 
   @override
   String toString() {
@@ -13915,10 +13637,9 @@ class _$ApiV1StepsPostRequestDtoImpl implements _ApiV1StepsPostRequestDto {
 
 abstract class _ApiV1StepsPostRequestDto implements ApiV1StepsPostRequestDto {
   factory _ApiV1StepsPostRequestDto(
-      {@JsonKey(name: 'content') required final String content,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      required final ApiUuid journeyId}) = _$ApiV1StepsPostRequestDtoImpl;
+          {@JsonKey(name: 'content') required final String content,
+          @JsonKey(name: 'journeyId') required final String journeyId}) =
+      _$ApiV1StepsPostRequestDtoImpl;
 
   factory _ApiV1StepsPostRequestDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1StepsPostRequestDtoImpl.fromJson;
@@ -13928,8 +13649,7 @@ abstract class _ApiV1StepsPostRequestDto implements ApiV1StepsPostRequestDto {
   String get content;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid get journeyId;
+  String get journeyId;
 
   /// Create a copy of ApiV1StepsPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -13947,8 +13667,7 @@ ApiV1StepsStepIdGetResponseDto _$ApiV1StepsStepIdGetResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1StepsStepIdGetResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -13958,12 +13677,11 @@ mixin _$ApiV1StepsStepIdGetResponseDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto get user => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId => throw _privateConstructorUsedError;
+  String? get journeyId => throw _privateConstructorUsedError;
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey => throw _privateConstructorUsedError;
+  JourneyDto? get journey => throw _privateConstructorUsedError;
   @JsonKey(name: 'hearts')
   int? get hearts => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -13981,12 +13699,11 @@ mixin _$ApiV1StepsStepIdGetResponseDto {
   @JsonKey(name: 'othersStepWith')
   int? get othersStepWith => throw _privateConstructorUsedError;
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers =>
-      throw _privateConstructorUsedError;
+  List<UserDto>? get othersStepWithUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media => throw _privateConstructorUsedError;
+  List<StepMediaDto>? get media => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1StepsStepIdGetResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -14007,14 +13724,14 @@ abstract class $ApiV1StepsStepIdGetResponseDtoCopyWith<$Res> {
           ApiV1StepsStepIdGetResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -14024,13 +13741,12 @@ abstract class $ApiV1StepsStepIdGetResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
-  $UserDtoDtoCopyWith<$Res> get user;
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $UserDtoCopyWith<$Res> get user;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -14073,7 +13789,7 @@ class _$ApiV1StepsStepIdGetResponseDtoCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -14093,15 +13809,15 @@ class _$ApiV1StepsStepIdGetResponseDtoCopyWithImpl<$Res,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -14137,7 +13853,7 @@ class _$ApiV1StepsStepIdGetResponseDtoCopyWithImpl<$Res,
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value.othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -14145,7 +13861,7 @@ class _$ApiV1StepsStepIdGetResponseDtoCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ) as $Val);
   }
 
@@ -14153,8 +13869,8 @@ class _$ApiV1StepsStepIdGetResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res> get user {
-    return $UserDtoDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -14163,12 +13879,12 @@ class _$ApiV1StepsStepIdGetResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDtoDtoCopyWith<$Res>? get journey {
+  $JourneyDtoCopyWith<$Res>? get journey {
     if (_value.journey == null) {
       return null;
     }
 
-    return $JourneyDtoDtoCopyWith<$Res>(_value.journey!, (value) {
+    return $JourneyDtoCopyWith<$Res>(_value.journey!, (value) {
       return _then(_value.copyWith(journey: value) as $Val);
     });
   }
@@ -14184,14 +13900,14 @@ abstract class _$$ApiV1StepsStepIdGetResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -14201,15 +13917,14 @@ abstract class _$$ApiV1StepsStepIdGetResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
   @override
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
   @override
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -14251,7 +13966,7 @@ class __$$ApiV1StepsStepIdGetResponseDtoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -14271,15 +13986,15 @@ class __$$ApiV1StepsStepIdGetResponseDtoImplCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -14315,7 +14030,7 @@ class __$$ApiV1StepsStepIdGetResponseDtoImplCopyWithImpl<$Res>
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value._othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -14323,7 +14038,7 @@ class __$$ApiV1StepsStepIdGetResponseDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ));
   }
 }
@@ -14333,13 +14048,13 @@ class __$$ApiV1StepsStepIdGetResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1StepsStepIdGetResponseDtoImpl
     implements _ApiV1StepsStepIdGetResponseDto {
   _$ApiV1StepsStepIdGetResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'userId') this.userId,
       @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() this.journeyId,
+      @JsonKey(name: 'journeyId') this.journeyId,
       @JsonKey(name: 'journey') this.journey,
       @JsonKey(name: 'hearts') this.hearts,
       @JsonKey(name: 'heartedByUser') this.heartedByUser,
@@ -14351,9 +14066,9 @@ class _$ApiV1StepsStepIdGetResponseDtoImpl
       this.userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') this.othersStepWith,
       @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
+      final List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') this.stepTypeString,
-      @JsonKey(name: 'media') final List<StepMediaDtoDto>? media})
+      @JsonKey(name: 'media') final List<StepMediaDto>? media})
       : _othersStepWithUsers = othersStepWithUsers,
         _media = media;
 
@@ -14363,8 +14078,7 @@ class _$ApiV1StepsStepIdGetResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
+  final String id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -14379,14 +14093,13 @@ class _$ApiV1StepsStepIdGetResponseDtoImpl
   final String? userId;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto user;
+  final UserDto user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? journeyId;
+  final String? journeyId;
   @override
   @JsonKey(name: 'journey')
-  final JourneyDtoDto? journey;
+  final JourneyDto? journey;
   @override
   @JsonKey(name: 'hearts')
   final int? hearts;
@@ -14411,10 +14124,10 @@ class _$ApiV1StepsStepIdGetResponseDtoImpl
   @override
   @JsonKey(name: 'othersStepWith')
   final int? othersStepWith;
-  final List<UserDtoDto>? _othersStepWithUsers;
+  final List<UserDto>? _othersStepWithUsers;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers {
+  List<UserDto>? get othersStepWithUsers {
     final value = _othersStepWithUsers;
     if (value == null) return null;
     if (_othersStepWithUsers is EqualUnmodifiableListView)
@@ -14426,10 +14139,10 @@ class _$ApiV1StepsStepIdGetResponseDtoImpl
   @override
   @JsonKey(name: 'stepTypeString')
   final String? stepTypeString;
-  final List<StepMediaDtoDto>? _media;
+  final List<StepMediaDto>? _media;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media {
+  List<StepMediaDto>? get media {
     final value = _media;
     if (value == null) return null;
     if (_media is EqualUnmodifiableListView) return _media;
@@ -14527,39 +14240,35 @@ class _$ApiV1StepsStepIdGetResponseDtoImpl
 abstract class _ApiV1StepsStepIdGetResponseDto
     implements ApiV1StepsStepIdGetResponseDto {
   factory _ApiV1StepsStepIdGetResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required final ApiUuid id,
-      @JsonKey(name: 'content') final String? content,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'user') required final UserDtoDto user,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? journeyId,
-      @JsonKey(name: 'journey') final JourneyDtoDto? journey,
-      @JsonKey(name: 'hearts') final int? hearts,
-      @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
-      @JsonKey(name: 'shares') final int? shares,
-      @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
-      @JsonKey(name: 'comments') final int? comments,
-      @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
-      @JsonKey(name: 'userSteppedWithInteractions')
-      final int? userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') final int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') final String? stepTypeString,
-      @JsonKey(name: 'media')
-      final List<StepMediaDtoDto>?
-          media}) = _$ApiV1StepsStepIdGetResponseDtoImpl;
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'user') required final UserDto user,
+          @JsonKey(name: 'journeyId') final String? journeyId,
+          @JsonKey(name: 'journey') final JourneyDto? journey,
+          @JsonKey(name: 'hearts') final int? hearts,
+          @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
+          @JsonKey(name: 'shares') final int? shares,
+          @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
+          @JsonKey(name: 'comments') final int? comments,
+          @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
+          @JsonKey(name: 'userSteppedWithInteractions')
+          final int? userSteppedWithInteractions,
+          @JsonKey(name: 'othersStepWith') final int? othersStepWith,
+          @JsonKey(name: 'othersStepWithUsers')
+          final List<UserDto>? othersStepWithUsers,
+          @JsonKey(name: 'stepTypeString') final String? stepTypeString,
+          @JsonKey(name: 'media') final List<StepMediaDto>? media}) =
+      _$ApiV1StepsStepIdGetResponseDtoImpl;
 
   factory _ApiV1StepsStepIdGetResponseDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1StepsStepIdGetResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id;
+  String get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -14574,14 +14283,13 @@ abstract class _ApiV1StepsStepIdGetResponseDto
   String? get userId;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto get user;
+  UserDto get user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId;
+  String? get journeyId;
   @override
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey;
+  JourneyDto? get journey;
   @override
   @JsonKey(name: 'hearts')
   int? get hearts;
@@ -14608,13 +14316,13 @@ abstract class _ApiV1StepsStepIdGetResponseDto
   int? get othersStepWith;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers;
+  List<UserDto>? get othersStepWithUsers;
   @override
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media;
+  List<StepMediaDto>? get media;
 
   /// Create a copy of ApiV1StepsStepIdGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -14633,8 +14341,7 @@ ApiV1StepsStepIdPutResponseDto _$ApiV1StepsStepIdPutResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1StepsStepIdPutResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -14644,12 +14351,11 @@ mixin _$ApiV1StepsStepIdPutResponseDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto get user => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId => throw _privateConstructorUsedError;
+  String? get journeyId => throw _privateConstructorUsedError;
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey => throw _privateConstructorUsedError;
+  JourneyDto? get journey => throw _privateConstructorUsedError;
   @JsonKey(name: 'hearts')
   int? get hearts => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -14667,12 +14373,11 @@ mixin _$ApiV1StepsStepIdPutResponseDto {
   @JsonKey(name: 'othersStepWith')
   int? get othersStepWith => throw _privateConstructorUsedError;
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers =>
-      throw _privateConstructorUsedError;
+  List<UserDto>? get othersStepWithUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media => throw _privateConstructorUsedError;
+  List<StepMediaDto>? get media => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1StepsStepIdPutResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -14693,14 +14398,14 @@ abstract class $ApiV1StepsStepIdPutResponseDtoCopyWith<$Res> {
           ApiV1StepsStepIdPutResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -14710,13 +14415,12 @@ abstract class $ApiV1StepsStepIdPutResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
-  $UserDtoDtoCopyWith<$Res> get user;
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $UserDtoCopyWith<$Res> get user;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -14759,7 +14463,7 @@ class _$ApiV1StepsStepIdPutResponseDtoCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -14779,15 +14483,15 @@ class _$ApiV1StepsStepIdPutResponseDtoCopyWithImpl<$Res,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -14823,7 +14527,7 @@ class _$ApiV1StepsStepIdPutResponseDtoCopyWithImpl<$Res,
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value.othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -14831,7 +14535,7 @@ class _$ApiV1StepsStepIdPutResponseDtoCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ) as $Val);
   }
 
@@ -14839,8 +14543,8 @@ class _$ApiV1StepsStepIdPutResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res> get user {
-    return $UserDtoDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -14849,12 +14553,12 @@ class _$ApiV1StepsStepIdPutResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDtoDtoCopyWith<$Res>? get journey {
+  $JourneyDtoCopyWith<$Res>? get journey {
     if (_value.journey == null) {
       return null;
     }
 
-    return $JourneyDtoDtoCopyWith<$Res>(_value.journey!, (value) {
+    return $JourneyDtoCopyWith<$Res>(_value.journey!, (value) {
       return _then(_value.copyWith(journey: value) as $Val);
     });
   }
@@ -14870,14 +14574,14 @@ abstract class _$$ApiV1StepsStepIdPutResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -14887,15 +14591,14 @@ abstract class _$$ApiV1StepsStepIdPutResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
   @override
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
   @override
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -14937,7 +14640,7 @@ class __$$ApiV1StepsStepIdPutResponseDtoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -14957,15 +14660,15 @@ class __$$ApiV1StepsStepIdPutResponseDtoImplCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -15001,7 +14704,7 @@ class __$$ApiV1StepsStepIdPutResponseDtoImplCopyWithImpl<$Res>
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value._othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -15009,7 +14712,7 @@ class __$$ApiV1StepsStepIdPutResponseDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ));
   }
 }
@@ -15019,13 +14722,13 @@ class __$$ApiV1StepsStepIdPutResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1StepsStepIdPutResponseDtoImpl
     implements _ApiV1StepsStepIdPutResponseDto {
   _$ApiV1StepsStepIdPutResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'userId') this.userId,
       @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() this.journeyId,
+      @JsonKey(name: 'journeyId') this.journeyId,
       @JsonKey(name: 'journey') this.journey,
       @JsonKey(name: 'hearts') this.hearts,
       @JsonKey(name: 'heartedByUser') this.heartedByUser,
@@ -15037,9 +14740,9 @@ class _$ApiV1StepsStepIdPutResponseDtoImpl
       this.userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') this.othersStepWith,
       @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
+      final List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') this.stepTypeString,
-      @JsonKey(name: 'media') final List<StepMediaDtoDto>? media})
+      @JsonKey(name: 'media') final List<StepMediaDto>? media})
       : _othersStepWithUsers = othersStepWithUsers,
         _media = media;
 
@@ -15049,8 +14752,7 @@ class _$ApiV1StepsStepIdPutResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
+  final String id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -15065,14 +14767,13 @@ class _$ApiV1StepsStepIdPutResponseDtoImpl
   final String? userId;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto user;
+  final UserDto user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? journeyId;
+  final String? journeyId;
   @override
   @JsonKey(name: 'journey')
-  final JourneyDtoDto? journey;
+  final JourneyDto? journey;
   @override
   @JsonKey(name: 'hearts')
   final int? hearts;
@@ -15097,10 +14798,10 @@ class _$ApiV1StepsStepIdPutResponseDtoImpl
   @override
   @JsonKey(name: 'othersStepWith')
   final int? othersStepWith;
-  final List<UserDtoDto>? _othersStepWithUsers;
+  final List<UserDto>? _othersStepWithUsers;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers {
+  List<UserDto>? get othersStepWithUsers {
     final value = _othersStepWithUsers;
     if (value == null) return null;
     if (_othersStepWithUsers is EqualUnmodifiableListView)
@@ -15112,10 +14813,10 @@ class _$ApiV1StepsStepIdPutResponseDtoImpl
   @override
   @JsonKey(name: 'stepTypeString')
   final String? stepTypeString;
-  final List<StepMediaDtoDto>? _media;
+  final List<StepMediaDto>? _media;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media {
+  List<StepMediaDto>? get media {
     final value = _media;
     if (value == null) return null;
     if (_media is EqualUnmodifiableListView) return _media;
@@ -15213,39 +14914,35 @@ class _$ApiV1StepsStepIdPutResponseDtoImpl
 abstract class _ApiV1StepsStepIdPutResponseDto
     implements ApiV1StepsStepIdPutResponseDto {
   factory _ApiV1StepsStepIdPutResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required final ApiUuid id,
-      @JsonKey(name: 'content') final String? content,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'user') required final UserDtoDto user,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? journeyId,
-      @JsonKey(name: 'journey') final JourneyDtoDto? journey,
-      @JsonKey(name: 'hearts') final int? hearts,
-      @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
-      @JsonKey(name: 'shares') final int? shares,
-      @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
-      @JsonKey(name: 'comments') final int? comments,
-      @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
-      @JsonKey(name: 'userSteppedWithInteractions')
-      final int? userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') final int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') final String? stepTypeString,
-      @JsonKey(name: 'media')
-      final List<StepMediaDtoDto>?
-          media}) = _$ApiV1StepsStepIdPutResponseDtoImpl;
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'user') required final UserDto user,
+          @JsonKey(name: 'journeyId') final String? journeyId,
+          @JsonKey(name: 'journey') final JourneyDto? journey,
+          @JsonKey(name: 'hearts') final int? hearts,
+          @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
+          @JsonKey(name: 'shares') final int? shares,
+          @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
+          @JsonKey(name: 'comments') final int? comments,
+          @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
+          @JsonKey(name: 'userSteppedWithInteractions')
+          final int? userSteppedWithInteractions,
+          @JsonKey(name: 'othersStepWith') final int? othersStepWith,
+          @JsonKey(name: 'othersStepWithUsers')
+          final List<UserDto>? othersStepWithUsers,
+          @JsonKey(name: 'stepTypeString') final String? stepTypeString,
+          @JsonKey(name: 'media') final List<StepMediaDto>? media}) =
+      _$ApiV1StepsStepIdPutResponseDtoImpl;
 
   factory _ApiV1StepsStepIdPutResponseDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1StepsStepIdPutResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id;
+  String get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -15260,14 +14957,13 @@ abstract class _ApiV1StepsStepIdPutResponseDto
   String? get userId;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto get user;
+  UserDto get user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId;
+  String? get journeyId;
   @override
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey;
+  JourneyDto? get journey;
   @override
   @JsonKey(name: 'hearts')
   int? get hearts;
@@ -15294,13 +14990,13 @@ abstract class _ApiV1StepsStepIdPutResponseDto
   int? get othersStepWith;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers;
+  List<UserDto>? get othersStepWithUsers;
   @override
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media;
+  List<StepMediaDto>? get media;
 
   /// Create a copy of ApiV1StepsStepIdPutResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -15779,11 +15475,9 @@ ApiV1StepsStepIdImagesPutResponseDto
 /// @nodoc
 mixin _$ApiV1StepsStepIdImagesPutResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId => throw _privateConstructorUsedError;
+  String? get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'mediaType')
   String? get mediaType => throw _privateConstructorUsedError;
   @JsonKey(name: 'originalUrl')
@@ -15835,8 +15529,8 @@ abstract class $ApiV1StepsStepIdImagesPutResponseDtoCopyWith<$Res> {
           ApiV1StepsStepIdImagesPutResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -15892,11 +15586,11 @@ class _$ApiV1StepsStepIdImagesPutResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -15971,8 +15665,8 @@ abstract class _$$ApiV1StepsStepIdImagesPutResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -16027,11 +15721,11 @@ class __$$ApiV1StepsStepIdImagesPutResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -16101,8 +15795,8 @@ class __$$ApiV1StepsStepIdImagesPutResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1StepsStepIdImagesPutResponseDtoImpl
     implements _ApiV1StepsStepIdImagesPutResponseDto {
   _$ApiV1StepsStepIdImagesPutResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() this.stepId,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'stepId') this.stepId,
       @JsonKey(name: 'mediaType') this.mediaType,
       @JsonKey(name: 'originalUrl') this.originalUrl,
       @JsonKey(name: 'largeUrl') this.largeUrl,
@@ -16125,12 +15819,10 @@ class _$ApiV1StepsStepIdImagesPutResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? stepId;
+  final String? stepId;
   @override
   @JsonKey(name: 'mediaType')
   final String? mediaType;
@@ -16258,24 +15950,24 @@ class _$ApiV1StepsStepIdImagesPutResponseDtoImpl
 abstract class _ApiV1StepsStepIdImagesPutResponseDto
     implements ApiV1StepsStepIdImagesPutResponseDto {
   factory _ApiV1StepsStepIdImagesPutResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() final ApiUuid? stepId,
-      @JsonKey(name: 'mediaType') final String? mediaType,
-      @JsonKey(name: 'originalUrl') final String? originalUrl,
-      @JsonKey(name: 'largeUrl') final String? largeUrl,
-      @JsonKey(name: 'mediumUrl') final String? mediumUrl,
-      @JsonKey(name: 'smallUrl') final String? smallUrl,
-      @JsonKey(name: 'thumbnailUrl') final String? thumbnailUrl,
-      @JsonKey(name: 'videoThumbnailUrl') final String? videoThumbnailUrl,
-      @JsonKey(name: 'bunnyVideoId') final String? bunnyVideoId,
-      @JsonKey(name: 'width') final int? width,
-      @JsonKey(name: 'height') final int? height,
-      @JsonKey(name: 'size') final int? size,
-      @JsonKey(name: 'duration') final num? duration,
-      @JsonKey(name: 'status') final int? status,
-      @JsonKey(name: 'isVideo') final bool? isVideo,
-      @JsonKey(name: 'isImage')
-      final bool? isImage}) = _$ApiV1StepsStepIdImagesPutResponseDtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'stepId') final String? stepId,
+          @JsonKey(name: 'mediaType') final String? mediaType,
+          @JsonKey(name: 'originalUrl') final String? originalUrl,
+          @JsonKey(name: 'largeUrl') final String? largeUrl,
+          @JsonKey(name: 'mediumUrl') final String? mediumUrl,
+          @JsonKey(name: 'smallUrl') final String? smallUrl,
+          @JsonKey(name: 'thumbnailUrl') final String? thumbnailUrl,
+          @JsonKey(name: 'videoThumbnailUrl') final String? videoThumbnailUrl,
+          @JsonKey(name: 'bunnyVideoId') final String? bunnyVideoId,
+          @JsonKey(name: 'width') final int? width,
+          @JsonKey(name: 'height') final int? height,
+          @JsonKey(name: 'size') final int? size,
+          @JsonKey(name: 'duration') final num? duration,
+          @JsonKey(name: 'status') final int? status,
+          @JsonKey(name: 'isVideo') final bool? isVideo,
+          @JsonKey(name: 'isImage') final bool? isImage}) =
+      _$ApiV1StepsStepIdImagesPutResponseDtoImpl;
 
   factory _ApiV1StepsStepIdImagesPutResponseDto.fromJson(
           Map<String, dynamic> json) =
@@ -16283,12 +15975,10 @@ abstract class _ApiV1StepsStepIdImagesPutResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId;
+  String? get stepId;
   @override
   @JsonKey(name: 'mediaType')
   String? get mediaType;
@@ -16646,8 +16336,7 @@ mixin _$ApiV1StepsStepIdVideoPutResponseDto {
   @JsonKey(name: 'authorizationExpire')
   int? get authorizationExpire => throw _privateConstructorUsedError;
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid => throw _privateConstructorUsedError;
+  String? get videoGuid => throw _privateConstructorUsedError;
   @JsonKey(name: 'libraryId')
   int? get libraryId => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
@@ -16655,7 +16344,7 @@ mixin _$ApiV1StepsStepIdVideoPutResponseDto {
   @JsonKey(name: 'collectionId')
   String? get collectionId => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  StepMediaDtoDto? get media => throw _privateConstructorUsedError;
+  StepMediaDto? get media => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1StepsStepIdVideoPutResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -16679,13 +16368,13 @@ abstract class $ApiV1StepsStepIdVideoPutResponseDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'collectionId') String? collectionId,
-      @JsonKey(name: 'media') StepMediaDtoDto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
-  $StepMediaDtoDtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -16724,7 +16413,7 @@ class _$ApiV1StepsStepIdVideoPutResponseDtoCopyWithImpl<$Res,
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       libraryId: freezed == libraryId
           ? _value.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
@@ -16740,7 +16429,7 @@ class _$ApiV1StepsStepIdVideoPutResponseDtoCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDtoDto?,
+              as StepMediaDto?,
     ) as $Val);
   }
 
@@ -16748,12 +16437,12 @@ class _$ApiV1StepsStepIdVideoPutResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StepMediaDtoDtoCopyWith<$Res>? get media {
+  $StepMediaDtoCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $StepMediaDtoDtoCopyWith<$Res>(_value.media!, (value) {
+    return $StepMediaDtoCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -16771,14 +16460,14 @@ abstract class _$$ApiV1StepsStepIdVideoPutResponseDtoImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'collectionId') String? collectionId,
-      @JsonKey(name: 'media') StepMediaDtoDto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
   @override
-  $StepMediaDtoDtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -16816,7 +16505,7 @@ class __$$ApiV1StepsStepIdVideoPutResponseDtoImplCopyWithImpl<$Res>
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       libraryId: freezed == libraryId
           ? _value.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
@@ -16832,7 +16521,7 @@ class __$$ApiV1StepsStepIdVideoPutResponseDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDtoDto?,
+              as StepMediaDto?,
     ));
   }
 }
@@ -16844,7 +16533,7 @@ class _$ApiV1StepsStepIdVideoPutResponseDtoImpl
   _$ApiV1StepsStepIdVideoPutResponseDtoImpl(
       {@JsonKey(name: 'authorizationSignature') this.authorizationSignature,
       @JsonKey(name: 'authorizationExpire') this.authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() this.videoGuid,
+      @JsonKey(name: 'videoGuid') this.videoGuid,
       @JsonKey(name: 'libraryId') this.libraryId,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'collectionId') this.collectionId,
@@ -16862,8 +16551,7 @@ class _$ApiV1StepsStepIdVideoPutResponseDtoImpl
   final int? authorizationExpire;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  final ApiUuid? videoGuid;
+  final String? videoGuid;
   @override
   @JsonKey(name: 'libraryId')
   final int? libraryId;
@@ -16875,7 +16563,7 @@ class _$ApiV1StepsStepIdVideoPutResponseDtoImpl
   final String? collectionId;
   @override
   @JsonKey(name: 'media')
-  final StepMediaDtoDto? media;
+  final StepMediaDto? media;
 
   @override
   String toString() {
@@ -16930,13 +16618,11 @@ abstract class _ApiV1StepsStepIdVideoPutResponseDto
           {@JsonKey(name: 'authorizationSignature')
           final String? authorizationSignature,
           @JsonKey(name: 'authorizationExpire') final int? authorizationExpire,
-          @JsonKey(name: 'videoGuid')
-          @ApiUuidJsonConverter()
-          final ApiUuid? videoGuid,
+          @JsonKey(name: 'videoGuid') final String? videoGuid,
           @JsonKey(name: 'libraryId') final int? libraryId,
           @JsonKey(name: 'title') final String? title,
           @JsonKey(name: 'collectionId') final String? collectionId,
-          @JsonKey(name: 'media') final StepMediaDtoDto? media}) =
+          @JsonKey(name: 'media') final StepMediaDto? media}) =
       _$ApiV1StepsStepIdVideoPutResponseDtoImpl;
 
   factory _ApiV1StepsStepIdVideoPutResponseDto.fromJson(
@@ -16951,8 +16637,7 @@ abstract class _ApiV1StepsStepIdVideoPutResponseDto
   int? get authorizationExpire;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid;
+  String? get videoGuid;
   @override
   @JsonKey(name: 'libraryId')
   int? get libraryId;
@@ -16964,7 +16649,7 @@ abstract class _ApiV1StepsStepIdVideoPutResponseDto
   String? get collectionId;
   @override
   @JsonKey(name: 'media')
-  StepMediaDtoDto? get media;
+  StepMediaDto? get media;
 
   /// Create a copy of ApiV1StepsStepIdVideoPutResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -16983,8 +16668,7 @@ ApiV1ReportsPostResponseDto _$ApiV1ReportsPostResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1ReportsPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'entityType')
   String get entityType => throw _privateConstructorUsedError;
   @JsonKey(name: 'entityId')
@@ -17015,7 +16699,7 @@ abstract class $ApiV1ReportsPostResponseDtoCopyWith<$Res> {
           ApiV1ReportsPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
       @JsonKey(name: 'entityId') String? entityId,
       @JsonKey(name: 'reporter') UserDto2Dto? reporter,
@@ -17052,7 +16736,7 @@ class _$ApiV1ReportsPostResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       entityType: null == entityType
           ? _value.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
@@ -17101,7 +16785,7 @@ abstract class _$$ApiV1ReportsPostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
       @JsonKey(name: 'entityId') String? entityId,
       @JsonKey(name: 'reporter') UserDto2Dto? reporter,
@@ -17138,7 +16822,7 @@ class __$$ApiV1ReportsPostResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       entityType: null == entityType
           ? _value.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
@@ -17168,7 +16852,7 @@ class __$$ApiV1ReportsPostResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1ReportsPostResponseDtoImpl
     implements _ApiV1ReportsPostResponseDto {
   _$ApiV1ReportsPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'entityType') required this.entityType,
       @JsonKey(name: 'entityId') this.entityId,
       @JsonKey(name: 'reporter') this.reporter,
@@ -17181,8 +16865,7 @@ class _$ApiV1ReportsPostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'entityType')
   final String entityType;
@@ -17246,7 +16929,7 @@ class _$ApiV1ReportsPostResponseDtoImpl
 abstract class _ApiV1ReportsPostResponseDto
     implements ApiV1ReportsPostResponseDto {
   factory _ApiV1ReportsPostResponseDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
+          {@JsonKey(name: 'id') final String? id,
           @JsonKey(name: 'entityType') required final String entityType,
           @JsonKey(name: 'entityId') final String? entityId,
           @JsonKey(name: 'reporter') final UserDto2Dto? reporter,
@@ -17259,8 +16942,7 @@ abstract class _ApiV1ReportsPostResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'entityType')
   String get entityType;
@@ -17507,7 +17189,7 @@ ApiV1NotificationsGetResponseDto _$ApiV1NotificationsGetResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1NotificationsGetResponseDto {
   @JsonKey(name: 'notifications')
-  List<NotificationDtoDto>? get notifications =>
+  List<NotificationDto>? get notifications =>
       throw _privateConstructorUsedError;
   @JsonKey(name: 'page')
   int? get page => throw _privateConstructorUsedError;
@@ -17539,7 +17221,7 @@ abstract class $ApiV1NotificationsGetResponseDtoCopyWith<$Res> {
           ApiV1NotificationsGetResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'notifications') List<NotificationDtoDto>? notifications,
+      {@JsonKey(name: 'notifications') List<NotificationDto>? notifications,
       @JsonKey(name: 'page') int? page,
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
@@ -17574,7 +17256,7 @@ class _$ApiV1NotificationsGetResponseDtoCopyWithImpl<$Res,
       notifications: freezed == notifications
           ? _value.notifications
           : notifications // ignore: cast_nullable_to_non_nullable
-              as List<NotificationDtoDto>?,
+              as List<NotificationDto>?,
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -17609,7 +17291,7 @@ abstract class _$$ApiV1NotificationsGetResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'notifications') List<NotificationDtoDto>? notifications,
+      {@JsonKey(name: 'notifications') List<NotificationDto>? notifications,
       @JsonKey(name: 'page') int? page,
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
@@ -17643,7 +17325,7 @@ class __$$ApiV1NotificationsGetResponseDtoImplCopyWithImpl<$Res>
       notifications: freezed == notifications
           ? _value._notifications
           : notifications // ignore: cast_nullable_to_non_nullable
-              as List<NotificationDtoDto>?,
+              as List<NotificationDto>?,
       page: freezed == page
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -17674,7 +17356,7 @@ class _$ApiV1NotificationsGetResponseDtoImpl
     implements _ApiV1NotificationsGetResponseDto {
   _$ApiV1NotificationsGetResponseDtoImpl(
       {@JsonKey(name: 'notifications')
-      final List<NotificationDtoDto>? notifications,
+      final List<NotificationDto>? notifications,
       @JsonKey(name: 'page') this.page,
       @JsonKey(name: 'pageSize') this.pageSize,
       @JsonKey(name: 'totalCount') this.totalCount,
@@ -17686,10 +17368,10 @@ class _$ApiV1NotificationsGetResponseDtoImpl
           Map<String, dynamic> json) =>
       _$$ApiV1NotificationsGetResponseDtoImplFromJson(json);
 
-  final List<NotificationDtoDto>? _notifications;
+  final List<NotificationDto>? _notifications;
   @override
   @JsonKey(name: 'notifications')
-  List<NotificationDtoDto>? get notifications {
+  List<NotificationDto>? get notifications {
     final value = _notifications;
     if (value == null) return null;
     if (_notifications is EqualUnmodifiableListView) return _notifications;
@@ -17768,7 +17450,7 @@ abstract class _ApiV1NotificationsGetResponseDto
     implements ApiV1NotificationsGetResponseDto {
   factory _ApiV1NotificationsGetResponseDto(
           {@JsonKey(name: 'notifications')
-          final List<NotificationDtoDto>? notifications,
+          final List<NotificationDto>? notifications,
           @JsonKey(name: 'page') final int? page,
           @JsonKey(name: 'pageSize') final int? pageSize,
           @JsonKey(name: 'totalCount') final int? totalCount,
@@ -17782,7 +17464,7 @@ abstract class _ApiV1NotificationsGetResponseDto
 
   @override
   @JsonKey(name: 'notifications')
-  List<NotificationDtoDto>? get notifications;
+  List<NotificationDto>? get notifications;
   @override
   @JsonKey(name: 'page')
   int? get page;
@@ -17816,8 +17498,7 @@ ApiV1NotificationsPostResponseDto _$ApiV1NotificationsPostResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1NotificationsPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'body')
@@ -17833,8 +17514,7 @@ mixin _$ApiV1NotificationsPostResponseDto {
   @JsonKey(name: 'priority')
   int? get priority => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId => throw _privateConstructorUsedError;
+  String? get relatedEntityId => throw _privateConstructorUsedError;
   @JsonKey(name: 'sourceUser')
   UserDetailDto2Dto? get sourceUser => throw _privateConstructorUsedError;
 
@@ -17857,7 +17537,7 @@ abstract class $ApiV1NotificationsPostResponseDtoCopyWith<$Res> {
           ApiV1NotificationsPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'notificationType') int? notificationType,
@@ -17865,9 +17545,7 @@ abstract class $ApiV1NotificationsPostResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser});
 
   $UserDetailDto2DtoCopyWith<$Res>? get sourceUser;
@@ -17904,7 +17582,7 @@ class _$ApiV1NotificationsPostResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -17936,7 +17614,7 @@ class _$ApiV1NotificationsPostResponseDtoCopyWithImpl<$Res,
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       sourceUser: freezed == sourceUser
           ? _value.sourceUser
           : sourceUser // ignore: cast_nullable_to_non_nullable
@@ -17969,7 +17647,7 @@ abstract class _$$ApiV1NotificationsPostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'notificationType') int? notificationType,
@@ -17977,9 +17655,7 @@ abstract class _$$ApiV1NotificationsPostResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser});
 
   @override
@@ -18016,7 +17692,7 @@ class __$$ApiV1NotificationsPostResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -18048,7 +17724,7 @@ class __$$ApiV1NotificationsPostResponseDtoImplCopyWithImpl<$Res>
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       sourceUser: freezed == sourceUser
           ? _value.sourceUser
           : sourceUser // ignore: cast_nullable_to_non_nullable
@@ -18062,7 +17738,7 @@ class __$$ApiV1NotificationsPostResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1NotificationsPostResponseDtoImpl
     implements _ApiV1NotificationsPostResponseDto {
   _$ApiV1NotificationsPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'body') this.body,
       @JsonKey(name: 'notificationType') this.notificationType,
@@ -18070,9 +17746,7 @@ class _$ApiV1NotificationsPostResponseDtoImpl
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      this.relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'sourceUser') this.sourceUser})
       : _data = data;
 
@@ -18082,8 +17756,7 @@ class _$ApiV1NotificationsPostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -18115,8 +17788,7 @@ class _$ApiV1NotificationsPostResponseDtoImpl
   final int? priority;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? relatedEntityId;
+  final String? relatedEntityId;
   @override
   @JsonKey(name: 'sourceUser')
   final UserDetailDto2Dto? sourceUser;
@@ -18184,7 +17856,7 @@ class _$ApiV1NotificationsPostResponseDtoImpl
 abstract class _ApiV1NotificationsPostResponseDto
     implements ApiV1NotificationsPostResponseDto {
   factory _ApiV1NotificationsPostResponseDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
+          {@JsonKey(name: 'id') final String? id,
           @JsonKey(name: 'title') final String? title,
           @JsonKey(name: 'body') final String? body,
           @JsonKey(name: 'notificationType') final int? notificationType,
@@ -18192,9 +17864,7 @@ abstract class _ApiV1NotificationsPostResponseDto
           @JsonKey(name: 'createdDate') final DateTime? createdDate,
           @JsonKey(name: 'data') final Map<String, String>? data,
           @JsonKey(name: 'priority') final int? priority,
-          @JsonKey(name: 'relatedEntityId')
-          @ApiUuidJsonConverter()
-          final ApiUuid? relatedEntityId,
+          @JsonKey(name: 'relatedEntityId') final String? relatedEntityId,
           @JsonKey(name: 'sourceUser') final UserDetailDto2Dto? sourceUser}) =
       _$ApiV1NotificationsPostResponseDtoImpl;
 
@@ -18204,8 +17874,7 @@ abstract class _ApiV1NotificationsPostResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -18229,8 +17898,7 @@ abstract class _ApiV1NotificationsPostResponseDto
   int? get priority;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId;
+  String? get relatedEntityId;
   @override
   @JsonKey(name: 'sourceUser')
   UserDetailDto2Dto? get sourceUser;
@@ -18260,8 +17928,7 @@ mixin _$ApiV1NotificationsPostRequestDto {
   @JsonKey(name: 'targetUserId')
   String? get targetUserId => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId => throw _privateConstructorUsedError;
+  String? get relatedEntityId => throw _privateConstructorUsedError;
   @JsonKey(name: 'scheduledFor')
   DateTime? get scheduledFor => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
@@ -18292,9 +17959,7 @@ abstract class $ApiV1NotificationsPostRequestDtoCopyWith<$Res> {
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
@@ -18345,7 +18010,7 @@ class _$ApiV1NotificationsPostRequestDtoCopyWithImpl<$Res,
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       scheduledFor: freezed == scheduledFor
           ? _value.scheduledFor
           : scheduledFor // ignore: cast_nullable_to_non_nullable
@@ -18376,9 +18041,7 @@ abstract class _$$ApiV1NotificationsPostRequestDtoImplCopyWith<$Res>
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
@@ -18428,7 +18091,7 @@ class __$$ApiV1NotificationsPostRequestDtoImplCopyWithImpl<$Res>
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       scheduledFor: freezed == scheduledFor
           ? _value.scheduledFor
           : scheduledFor // ignore: cast_nullable_to_non_nullable
@@ -18454,9 +18117,7 @@ class _$ApiV1NotificationsPostRequestDtoImpl
       @JsonKey(name: 'body') required this.body,
       @JsonKey(name: 'notificationType') required this.notificationType,
       @JsonKey(name: 'targetUserId') this.targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      this.relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'scheduledFor') this.scheduledFor,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority})
@@ -18480,8 +18141,7 @@ class _$ApiV1NotificationsPostRequestDtoImpl
   final String? targetUserId;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? relatedEntityId;
+  final String? relatedEntityId;
   @override
   @JsonKey(name: 'scheduledFor')
   final DateTime? scheduledFor;
@@ -18563,9 +18223,7 @@ abstract class _ApiV1NotificationsPostRequestDto
       @JsonKey(name: 'body') required final String body,
       @JsonKey(name: 'notificationType') required final int notificationType,
       @JsonKey(name: 'targetUserId') final String? targetUserId,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') final String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') final DateTime? scheduledFor,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority')
@@ -18589,8 +18247,7 @@ abstract class _ApiV1NotificationsPostRequestDto
   String? get targetUserId;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId;
+  String? get relatedEntityId;
   @override
   @JsonKey(name: 'scheduledFor')
   DateTime? get scheduledFor;
@@ -18626,8 +18283,7 @@ mixin _$ApiV1NotificationsBulkPostRequestDto {
   @JsonKey(name: 'userIds')
   List<String> get userIds => throw _privateConstructorUsedError;
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId => throw _privateConstructorUsedError;
+  String? get relatedEntityId => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
   Map<String, String>? get data => throw _privateConstructorUsedError;
   @JsonKey(name: 'priority')
@@ -18657,9 +18313,7 @@ abstract class $ApiV1NotificationsBulkPostRequestDtoCopyWith<$Res> {
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
@@ -18708,7 +18362,7 @@ class _$ApiV1NotificationsBulkPostRequestDtoCopyWithImpl<$Res,
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -18735,9 +18389,7 @@ abstract class _$$ApiV1NotificationsBulkPostRequestDtoImplCopyWith<$Res>
       @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') int notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
@@ -18785,7 +18437,7 @@ class __$$ApiV1NotificationsBulkPostRequestDtoImplCopyWithImpl<$Res>
       relatedEntityId: freezed == relatedEntityId
           ? _value.relatedEntityId
           : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -18807,9 +18459,7 @@ class _$ApiV1NotificationsBulkPostRequestDtoImpl
       @JsonKey(name: 'body') required this.body,
       @JsonKey(name: 'notificationType') required this.notificationType,
       @JsonKey(name: 'userIds') required final List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      this.relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority})
       : _userIds = userIds,
@@ -18839,8 +18489,7 @@ class _$ApiV1NotificationsBulkPostRequestDtoImpl
 
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? relatedEntityId;
+  final String? relatedEntityId;
   final Map<String, String>? _data;
   @override
   @JsonKey(name: 'data')
@@ -18915,9 +18564,7 @@ abstract class _ApiV1NotificationsBulkPostRequestDto
       @JsonKey(name: 'body') required final String body,
       @JsonKey(name: 'notificationType') required final int notificationType,
       @JsonKey(name: 'userIds') required final List<String> userIds,
-      @JsonKey(name: 'relatedEntityId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? relatedEntityId,
+      @JsonKey(name: 'relatedEntityId') final String? relatedEntityId,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority')
       final int? priority}) = _$ApiV1NotificationsBulkPostRequestDtoImpl;
@@ -18940,8 +18587,7 @@ abstract class _ApiV1NotificationsBulkPostRequestDto
   List<String> get userIds;
   @override
   @JsonKey(name: 'relatedEntityId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get relatedEntityId;
+  String? get relatedEntityId;
   @override
   @JsonKey(name: 'data')
   Map<String, String>? get data;
@@ -19241,11 +18887,9 @@ ApiV1MediaImagesPostResponseDto _$ApiV1MediaImagesPostResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1MediaImagesPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId => throw _privateConstructorUsedError;
+  String? get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'mediaType')
   String? get mediaType => throw _privateConstructorUsedError;
   @JsonKey(name: 'originalUrl')
@@ -19296,8 +18940,8 @@ abstract class $ApiV1MediaImagesPostResponseDtoCopyWith<$Res> {
           ApiV1MediaImagesPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -19353,11 +18997,11 @@ class _$ApiV1MediaImagesPostResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -19432,8 +19076,8 @@ abstract class _$$ApiV1MediaImagesPostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -19488,11 +19132,11 @@ class __$$ApiV1MediaImagesPostResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -19562,8 +19206,8 @@ class __$$ApiV1MediaImagesPostResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1MediaImagesPostResponseDtoImpl
     implements _ApiV1MediaImagesPostResponseDto {
   _$ApiV1MediaImagesPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() this.stepId,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'stepId') this.stepId,
       @JsonKey(name: 'mediaType') this.mediaType,
       @JsonKey(name: 'originalUrl') this.originalUrl,
       @JsonKey(name: 'largeUrl') this.largeUrl,
@@ -19586,12 +19230,10 @@ class _$ApiV1MediaImagesPostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? stepId;
+  final String? stepId;
   @override
   @JsonKey(name: 'mediaType')
   final String? mediaType;
@@ -19719,36 +19361,34 @@ class _$ApiV1MediaImagesPostResponseDtoImpl
 abstract class _ApiV1MediaImagesPostResponseDto
     implements ApiV1MediaImagesPostResponseDto {
   factory _ApiV1MediaImagesPostResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() final ApiUuid? stepId,
-      @JsonKey(name: 'mediaType') final String? mediaType,
-      @JsonKey(name: 'originalUrl') final String? originalUrl,
-      @JsonKey(name: 'largeUrl') final String? largeUrl,
-      @JsonKey(name: 'mediumUrl') final String? mediumUrl,
-      @JsonKey(name: 'smallUrl') final String? smallUrl,
-      @JsonKey(name: 'thumbnailUrl') final String? thumbnailUrl,
-      @JsonKey(name: 'videoThumbnailUrl') final String? videoThumbnailUrl,
-      @JsonKey(name: 'bunnyVideoId') final String? bunnyVideoId,
-      @JsonKey(name: 'width') final int? width,
-      @JsonKey(name: 'height') final int? height,
-      @JsonKey(name: 'size') final int? size,
-      @JsonKey(name: 'duration') final num? duration,
-      @JsonKey(name: 'status') final int? status,
-      @JsonKey(name: 'isVideo') final bool? isVideo,
-      @JsonKey(name: 'isImage')
-      final bool? isImage}) = _$ApiV1MediaImagesPostResponseDtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'stepId') final String? stepId,
+          @JsonKey(name: 'mediaType') final String? mediaType,
+          @JsonKey(name: 'originalUrl') final String? originalUrl,
+          @JsonKey(name: 'largeUrl') final String? largeUrl,
+          @JsonKey(name: 'mediumUrl') final String? mediumUrl,
+          @JsonKey(name: 'smallUrl') final String? smallUrl,
+          @JsonKey(name: 'thumbnailUrl') final String? thumbnailUrl,
+          @JsonKey(name: 'videoThumbnailUrl') final String? videoThumbnailUrl,
+          @JsonKey(name: 'bunnyVideoId') final String? bunnyVideoId,
+          @JsonKey(name: 'width') final int? width,
+          @JsonKey(name: 'height') final int? height,
+          @JsonKey(name: 'size') final int? size,
+          @JsonKey(name: 'duration') final num? duration,
+          @JsonKey(name: 'status') final int? status,
+          @JsonKey(name: 'isVideo') final bool? isVideo,
+          @JsonKey(name: 'isImage') final bool? isImage}) =
+      _$ApiV1MediaImagesPostResponseDtoImpl;
 
   factory _ApiV1MediaImagesPostResponseDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1MediaImagesPostResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId;
+  String? get stepId;
   @override
   @JsonKey(name: 'mediaType')
   String? get mediaType;
@@ -20104,8 +19744,7 @@ mixin _$ApiV1MediaVideosPostResponseDto {
   @JsonKey(name: 'authorizationExpire')
   int? get authorizationExpire => throw _privateConstructorUsedError;
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid => throw _privateConstructorUsedError;
+  String? get videoGuid => throw _privateConstructorUsedError;
   @JsonKey(name: 'libraryId')
   int? get libraryId => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
@@ -20113,7 +19752,7 @@ mixin _$ApiV1MediaVideosPostResponseDto {
   @JsonKey(name: 'collectionId')
   String? get collectionId => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  StepMediaDtoDto? get media => throw _privateConstructorUsedError;
+  StepMediaDto? get media => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1MediaVideosPostResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -20136,13 +19775,13 @@ abstract class $ApiV1MediaVideosPostResponseDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'collectionId') String? collectionId,
-      @JsonKey(name: 'media') StepMediaDtoDto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
-  $StepMediaDtoDtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -20181,7 +19820,7 @@ class _$ApiV1MediaVideosPostResponseDtoCopyWithImpl<$Res,
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       libraryId: freezed == libraryId
           ? _value.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
@@ -20197,7 +19836,7 @@ class _$ApiV1MediaVideosPostResponseDtoCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDtoDto?,
+              as StepMediaDto?,
     ) as $Val);
   }
 
@@ -20205,12 +19844,12 @@ class _$ApiV1MediaVideosPostResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StepMediaDtoDtoCopyWith<$Res>? get media {
+  $StepMediaDtoCopyWith<$Res>? get media {
     if (_value.media == null) {
       return null;
     }
 
-    return $StepMediaDtoDtoCopyWith<$Res>(_value.media!, (value) {
+    return $StepMediaDtoCopyWith<$Res>(_value.media!, (value) {
       return _then(_value.copyWith(media: value) as $Val);
     });
   }
@@ -20228,14 +19867,14 @@ abstract class _$$ApiV1MediaVideosPostResponseDtoImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'collectionId') String? collectionId,
-      @JsonKey(name: 'media') StepMediaDtoDto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
   @override
-  $StepMediaDtoDtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -20273,7 +19912,7 @@ class __$$ApiV1MediaVideosPostResponseDtoImplCopyWithImpl<$Res>
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       libraryId: freezed == libraryId
           ? _value.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
@@ -20289,7 +19928,7 @@ class __$$ApiV1MediaVideosPostResponseDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDtoDto?,
+              as StepMediaDto?,
     ));
   }
 }
@@ -20301,7 +19940,7 @@ class _$ApiV1MediaVideosPostResponseDtoImpl
   _$ApiV1MediaVideosPostResponseDtoImpl(
       {@JsonKey(name: 'authorizationSignature') this.authorizationSignature,
       @JsonKey(name: 'authorizationExpire') this.authorizationExpire,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() this.videoGuid,
+      @JsonKey(name: 'videoGuid') this.videoGuid,
       @JsonKey(name: 'libraryId') this.libraryId,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'collectionId') this.collectionId,
@@ -20319,8 +19958,7 @@ class _$ApiV1MediaVideosPostResponseDtoImpl
   final int? authorizationExpire;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  final ApiUuid? videoGuid;
+  final String? videoGuid;
   @override
   @JsonKey(name: 'libraryId')
   final int? libraryId;
@@ -20332,7 +19970,7 @@ class _$ApiV1MediaVideosPostResponseDtoImpl
   final String? collectionId;
   @override
   @JsonKey(name: 'media')
-  final StepMediaDtoDto? media;
+  final StepMediaDto? media;
 
   @override
   String toString() {
@@ -20387,13 +20025,11 @@ abstract class _ApiV1MediaVideosPostResponseDto
           {@JsonKey(name: 'authorizationSignature')
           final String? authorizationSignature,
           @JsonKey(name: 'authorizationExpire') final int? authorizationExpire,
-          @JsonKey(name: 'videoGuid')
-          @ApiUuidJsonConverter()
-          final ApiUuid? videoGuid,
+          @JsonKey(name: 'videoGuid') final String? videoGuid,
           @JsonKey(name: 'libraryId') final int? libraryId,
           @JsonKey(name: 'title') final String? title,
           @JsonKey(name: 'collectionId') final String? collectionId,
-          @JsonKey(name: 'media') final StepMediaDtoDto? media}) =
+          @JsonKey(name: 'media') final StepMediaDto? media}) =
       _$ApiV1MediaVideosPostResponseDtoImpl;
 
   factory _ApiV1MediaVideosPostResponseDto.fromJson(Map<String, dynamic> json) =
@@ -20407,8 +20043,7 @@ abstract class _ApiV1MediaVideosPostResponseDto
   int? get authorizationExpire;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid;
+  String? get videoGuid;
   @override
   @JsonKey(name: 'libraryId')
   int? get libraryId;
@@ -20420,7 +20055,7 @@ abstract class _ApiV1MediaVideosPostResponseDto
   String? get collectionId;
   @override
   @JsonKey(name: 'media')
-  StepMediaDtoDto? get media;
+  StepMediaDto? get media;
 
   /// Create a copy of ApiV1MediaVideosPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -20439,11 +20074,9 @@ ApiV1MediaMediaIdGetResponseDto _$ApiV1MediaMediaIdGetResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1MediaMediaIdGetResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId => throw _privateConstructorUsedError;
+  String? get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'mediaType')
   String? get mediaType => throw _privateConstructorUsedError;
   @JsonKey(name: 'originalUrl')
@@ -20494,8 +20127,8 @@ abstract class $ApiV1MediaMediaIdGetResponseDtoCopyWith<$Res> {
           ApiV1MediaMediaIdGetResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -20551,11 +20184,11 @@ class _$ApiV1MediaMediaIdGetResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -20630,8 +20263,8 @@ abstract class _$$ApiV1MediaMediaIdGetResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'mediaType') String? mediaType,
       @JsonKey(name: 'originalUrl') String? originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
@@ -20686,11 +20319,11 @@ class __$$ApiV1MediaMediaIdGetResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       mediaType: freezed == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -20760,8 +20393,8 @@ class __$$ApiV1MediaMediaIdGetResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1MediaMediaIdGetResponseDtoImpl
     implements _ApiV1MediaMediaIdGetResponseDto {
   _$ApiV1MediaMediaIdGetResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() this.stepId,
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'stepId') this.stepId,
       @JsonKey(name: 'mediaType') this.mediaType,
       @JsonKey(name: 'originalUrl') this.originalUrl,
       @JsonKey(name: 'largeUrl') this.largeUrl,
@@ -20784,12 +20417,10 @@ class _$ApiV1MediaMediaIdGetResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? stepId;
+  final String? stepId;
   @override
   @JsonKey(name: 'mediaType')
   final String? mediaType;
@@ -20917,36 +20548,34 @@ class _$ApiV1MediaMediaIdGetResponseDtoImpl
 abstract class _ApiV1MediaMediaIdGetResponseDto
     implements ApiV1MediaMediaIdGetResponseDto {
   factory _ApiV1MediaMediaIdGetResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() final ApiUuid? stepId,
-      @JsonKey(name: 'mediaType') final String? mediaType,
-      @JsonKey(name: 'originalUrl') final String? originalUrl,
-      @JsonKey(name: 'largeUrl') final String? largeUrl,
-      @JsonKey(name: 'mediumUrl') final String? mediumUrl,
-      @JsonKey(name: 'smallUrl') final String? smallUrl,
-      @JsonKey(name: 'thumbnailUrl') final String? thumbnailUrl,
-      @JsonKey(name: 'videoThumbnailUrl') final String? videoThumbnailUrl,
-      @JsonKey(name: 'bunnyVideoId') final String? bunnyVideoId,
-      @JsonKey(name: 'width') final int? width,
-      @JsonKey(name: 'height') final int? height,
-      @JsonKey(name: 'size') final int? size,
-      @JsonKey(name: 'duration') final num? duration,
-      @JsonKey(name: 'status') final int? status,
-      @JsonKey(name: 'isVideo') final bool? isVideo,
-      @JsonKey(name: 'isImage')
-      final bool? isImage}) = _$ApiV1MediaMediaIdGetResponseDtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'stepId') final String? stepId,
+          @JsonKey(name: 'mediaType') final String? mediaType,
+          @JsonKey(name: 'originalUrl') final String? originalUrl,
+          @JsonKey(name: 'largeUrl') final String? largeUrl,
+          @JsonKey(name: 'mediumUrl') final String? mediumUrl,
+          @JsonKey(name: 'smallUrl') final String? smallUrl,
+          @JsonKey(name: 'thumbnailUrl') final String? thumbnailUrl,
+          @JsonKey(name: 'videoThumbnailUrl') final String? videoThumbnailUrl,
+          @JsonKey(name: 'bunnyVideoId') final String? bunnyVideoId,
+          @JsonKey(name: 'width') final int? width,
+          @JsonKey(name: 'height') final int? height,
+          @JsonKey(name: 'size') final int? size,
+          @JsonKey(name: 'duration') final num? duration,
+          @JsonKey(name: 'status') final int? status,
+          @JsonKey(name: 'isVideo') final bool? isVideo,
+          @JsonKey(name: 'isImage') final bool? isImage}) =
+      _$ApiV1MediaMediaIdGetResponseDtoImpl;
 
   factory _ApiV1MediaMediaIdGetResponseDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1MediaMediaIdGetResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId;
+  String? get stepId;
   @override
   @JsonKey(name: 'mediaType')
   String? get mediaType;
@@ -21013,8 +20642,7 @@ mixin _$ApiV1WebhooksVideoUpdatesPostRequestDto {
   @JsonKey(name: 'videoLibraryId')
   int? get videoLibraryId => throw _privateConstructorUsedError;
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid => throw _privateConstructorUsedError;
+  String? get videoGuid => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   int? get status => throw _privateConstructorUsedError;
 
@@ -21039,7 +20667,7 @@ abstract class $ApiV1WebhooksVideoUpdatesPostRequestDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'videoLibraryId') int? videoLibraryId,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'status') int? status});
 }
 
@@ -21072,7 +20700,7 @@ class _$ApiV1WebhooksVideoUpdatesPostRequestDtoCopyWithImpl<$Res,
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -21092,7 +20720,7 @@ abstract class _$$ApiV1WebhooksVideoUpdatesPostRequestDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'videoLibraryId') int? videoLibraryId,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() ApiUuid? videoGuid,
+      @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'status') int? status});
 }
 
@@ -21123,7 +20751,7 @@ class __$$ApiV1WebhooksVideoUpdatesPostRequestDtoImplCopyWithImpl<$Res>
       videoGuid: freezed == videoGuid
           ? _value.videoGuid
           : videoGuid // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -21138,7 +20766,7 @@ class _$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl
     implements _ApiV1WebhooksVideoUpdatesPostRequestDto {
   _$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl(
       {@JsonKey(name: 'videoLibraryId') this.videoLibraryId,
-      @JsonKey(name: 'videoGuid') @ApiUuidJsonConverter() this.videoGuid,
+      @JsonKey(name: 'videoGuid') this.videoGuid,
       @JsonKey(name: 'status') this.status});
 
   factory _$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl.fromJson(
@@ -21150,8 +20778,7 @@ class _$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl
   final int? videoLibraryId;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  final ApiUuid? videoGuid;
+  final String? videoGuid;
   @override
   @JsonKey(name: 'status')
   final int? status;
@@ -21201,9 +20828,7 @@ abstract class _ApiV1WebhooksVideoUpdatesPostRequestDto
     implements ApiV1WebhooksVideoUpdatesPostRequestDto {
   factory _ApiV1WebhooksVideoUpdatesPostRequestDto(
           {@JsonKey(name: 'videoLibraryId') final int? videoLibraryId,
-          @JsonKey(name: 'videoGuid')
-          @ApiUuidJsonConverter()
-          final ApiUuid? videoGuid,
+          @JsonKey(name: 'videoGuid') final String? videoGuid,
           @JsonKey(name: 'status') final int? status}) =
       _$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl;
 
@@ -21216,8 +20841,7 @@ abstract class _ApiV1WebhooksVideoUpdatesPostRequestDto
   int? get videoLibraryId;
   @override
   @JsonKey(name: 'videoGuid')
-  @ApiUuidJsonConverter()
-  ApiUuid? get videoGuid;
+  String? get videoGuid;
   @override
   @JsonKey(name: 'status')
   int? get status;
@@ -21247,22 +20871,19 @@ mixin _$ApiV1JourneysIdGetResponseDto {
   @JsonKey(name: 'stepperCount')
   int? get stepperCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestSteppers')
-  List<UserDtoDto>? get latestSteppers => throw _privateConstructorUsedError;
+  List<UserDto>? get latestSteppers => throw _privateConstructorUsedError;
   @JsonKey(name: 'starterCount')
   int? get starterCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestStarters')
-  List<JourneyInDetailDtoDtoLatestStartersDto>? get latestStarters =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get latestStarters => throw _privateConstructorUsedError;
   @JsonKey(name: 'companionCount')
   int? get companionCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestCompanions')
-  List<JourneyInDetailDtoDtoLatestCompanionsDto>? get latestCompanions =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get latestCompanions => throw _privateConstructorUsedError;
   @JsonKey(name: 'celebratorCount')
   int? get celebratorCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'latestCelebrators')
-  List<JourneyInDetailDtoDtoLatestCelebratorsDto>? get latestCelebrators =>
-      throw _privateConstructorUsedError;
+  List<dynamic>? get latestCelebrators => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1JourneysIdGetResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -21287,16 +20908,13 @@ abstract class $ApiV1JourneysIdGetResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'stepsCount') int stepsCount,
       @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') int? stepperCount,
-      @JsonKey(name: 'latestSteppers') List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') int? starterCount,
-      @JsonKey(name: 'latestStarters')
-      List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') int? companionCount,
-      @JsonKey(name: 'latestCompanions')
-      List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators')
-      List<JourneyInDetailDtoDtoLatestCelebratorsDto>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<dynamic>? latestCelebrators});
 
   $JourneyDto2DtoCopyWith<$Res> get journey;
 }
@@ -21349,7 +20967,7 @@ class _$ApiV1JourneysIdGetResponseDtoCopyWithImpl<$Res,
       latestSteppers: freezed == latestSteppers
           ? _value.latestSteppers
           : latestSteppers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       starterCount: freezed == starterCount
           ? _value.starterCount
           : starterCount // ignore: cast_nullable_to_non_nullable
@@ -21357,7 +20975,7 @@ class _$ApiV1JourneysIdGetResponseDtoCopyWithImpl<$Res,
       latestStarters: freezed == latestStarters
           ? _value.latestStarters
           : latestStarters // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestStartersDto>?,
+              as List<dynamic>?,
       companionCount: freezed == companionCount
           ? _value.companionCount
           : companionCount // ignore: cast_nullable_to_non_nullable
@@ -21365,7 +20983,7 @@ class _$ApiV1JourneysIdGetResponseDtoCopyWithImpl<$Res,
       latestCompanions: freezed == latestCompanions
           ? _value.latestCompanions
           : latestCompanions // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCompanionsDto>?,
+              as List<dynamic>?,
       celebratorCount: freezed == celebratorCount
           ? _value.celebratorCount
           : celebratorCount // ignore: cast_nullable_to_non_nullable
@@ -21373,7 +20991,7 @@ class _$ApiV1JourneysIdGetResponseDtoCopyWithImpl<$Res,
       latestCelebrators: freezed == latestCelebrators
           ? _value.latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCelebratorsDto>?,
+              as List<dynamic>?,
     ) as $Val);
   }
 
@@ -21402,16 +21020,13 @@ abstract class _$$ApiV1JourneysIdGetResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'stepsCount') int stepsCount,
       @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') int? stepperCount,
-      @JsonKey(name: 'latestSteppers') List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') int? starterCount,
-      @JsonKey(name: 'latestStarters')
-      List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') int? companionCount,
-      @JsonKey(name: 'latestCompanions')
-      List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators')
-      List<JourneyInDetailDtoDtoLatestCelebratorsDto>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<dynamic>? latestCelebrators});
 
   @override
   $JourneyDto2DtoCopyWith<$Res> get journey;
@@ -21464,7 +21079,7 @@ class __$$ApiV1JourneysIdGetResponseDtoImplCopyWithImpl<$Res>
       latestSteppers: freezed == latestSteppers
           ? _value._latestSteppers
           : latestSteppers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       starterCount: freezed == starterCount
           ? _value.starterCount
           : starterCount // ignore: cast_nullable_to_non_nullable
@@ -21472,7 +21087,7 @@ class __$$ApiV1JourneysIdGetResponseDtoImplCopyWithImpl<$Res>
       latestStarters: freezed == latestStarters
           ? _value._latestStarters
           : latestStarters // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestStartersDto>?,
+              as List<dynamic>?,
       companionCount: freezed == companionCount
           ? _value.companionCount
           : companionCount // ignore: cast_nullable_to_non_nullable
@@ -21480,7 +21095,7 @@ class __$$ApiV1JourneysIdGetResponseDtoImplCopyWithImpl<$Res>
       latestCompanions: freezed == latestCompanions
           ? _value._latestCompanions
           : latestCompanions // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCompanionsDto>?,
+              as List<dynamic>?,
       celebratorCount: freezed == celebratorCount
           ? _value.celebratorCount
           : celebratorCount // ignore: cast_nullable_to_non_nullable
@@ -21488,7 +21103,7 @@ class __$$ApiV1JourneysIdGetResponseDtoImplCopyWithImpl<$Res>
       latestCelebrators: freezed == latestCelebrators
           ? _value._latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
-              as List<JourneyInDetailDtoDtoLatestCelebratorsDto>?,
+              as List<dynamic>?,
     ));
   }
 }
@@ -21502,16 +21117,14 @@ class _$ApiV1JourneysIdGetResponseDtoImpl
       @JsonKey(name: 'stepsCount') required this.stepsCount,
       @JsonKey(name: 'lastStepDate') required this.lastStepDate,
       @JsonKey(name: 'stepperCount') this.stepperCount,
-      @JsonKey(name: 'latestSteppers') final List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') final List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') this.starterCount,
-      @JsonKey(name: 'latestStarters')
-      final List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') final List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') this.companionCount,
-      @JsonKey(name: 'latestCompanions')
-      final List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') final List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') this.celebratorCount,
       @JsonKey(name: 'latestCelebrators')
-      final List<JourneyInDetailDtoDtoLatestCelebratorsDto>? latestCelebrators})
+      final List<dynamic>? latestCelebrators})
       : _latestSteppers = latestSteppers,
         _latestStarters = latestStarters,
         _latestCompanions = latestCompanions,
@@ -21533,10 +21146,10 @@ class _$ApiV1JourneysIdGetResponseDtoImpl
   @override
   @JsonKey(name: 'stepperCount')
   final int? stepperCount;
-  final List<UserDtoDto>? _latestSteppers;
+  final List<UserDto>? _latestSteppers;
   @override
   @JsonKey(name: 'latestSteppers')
-  List<UserDtoDto>? get latestSteppers {
+  List<UserDto>? get latestSteppers {
     final value = _latestSteppers;
     if (value == null) return null;
     if (_latestSteppers is EqualUnmodifiableListView) return _latestSteppers;
@@ -21547,10 +21160,10 @@ class _$ApiV1JourneysIdGetResponseDtoImpl
   @override
   @JsonKey(name: 'starterCount')
   final int? starterCount;
-  final List<JourneyInDetailDtoDtoLatestStartersDto>? _latestStarters;
+  final List<dynamic>? _latestStarters;
   @override
   @JsonKey(name: 'latestStarters')
-  List<JourneyInDetailDtoDtoLatestStartersDto>? get latestStarters {
+  List<dynamic>? get latestStarters {
     final value = _latestStarters;
     if (value == null) return null;
     if (_latestStarters is EqualUnmodifiableListView) return _latestStarters;
@@ -21561,10 +21174,10 @@ class _$ApiV1JourneysIdGetResponseDtoImpl
   @override
   @JsonKey(name: 'companionCount')
   final int? companionCount;
-  final List<JourneyInDetailDtoDtoLatestCompanionsDto>? _latestCompanions;
+  final List<dynamic>? _latestCompanions;
   @override
   @JsonKey(name: 'latestCompanions')
-  List<JourneyInDetailDtoDtoLatestCompanionsDto>? get latestCompanions {
+  List<dynamic>? get latestCompanions {
     final value = _latestCompanions;
     if (value == null) return null;
     if (_latestCompanions is EqualUnmodifiableListView)
@@ -21576,10 +21189,10 @@ class _$ApiV1JourneysIdGetResponseDtoImpl
   @override
   @JsonKey(name: 'celebratorCount')
   final int? celebratorCount;
-  final List<JourneyInDetailDtoDtoLatestCelebratorsDto>? _latestCelebrators;
+  final List<dynamic>? _latestCelebrators;
   @override
   @JsonKey(name: 'latestCelebrators')
-  List<JourneyInDetailDtoDtoLatestCelebratorsDto>? get latestCelebrators {
+  List<dynamic>? get latestCelebrators {
     final value = _latestCelebrators;
     if (value == null) return null;
     if (_latestCelebrators is EqualUnmodifiableListView)
@@ -21662,16 +21275,14 @@ abstract class _ApiV1JourneysIdGetResponseDto
       @JsonKey(name: 'stepsCount') required final int stepsCount,
       @JsonKey(name: 'lastStepDate') required final DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') final int? stepperCount,
-      @JsonKey(name: 'latestSteppers') final List<UserDtoDto>? latestSteppers,
+      @JsonKey(name: 'latestSteppers') final List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') final int? starterCount,
-      @JsonKey(name: 'latestStarters')
-      final List<JourneyInDetailDtoDtoLatestStartersDto>? latestStarters,
+      @JsonKey(name: 'latestStarters') final List<dynamic>? latestStarters,
       @JsonKey(name: 'companionCount') final int? companionCount,
-      @JsonKey(name: 'latestCompanions')
-      final List<JourneyInDetailDtoDtoLatestCompanionsDto>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') final List<dynamic>? latestCompanions,
       @JsonKey(name: 'celebratorCount') final int? celebratorCount,
       @JsonKey(name: 'latestCelebrators')
-      final List<JourneyInDetailDtoDtoLatestCelebratorsDto>?
+      final List<dynamic>?
           latestCelebrators}) = _$ApiV1JourneysIdGetResponseDtoImpl;
 
   factory _ApiV1JourneysIdGetResponseDto.fromJson(Map<String, dynamic> json) =
@@ -21691,25 +21302,25 @@ abstract class _ApiV1JourneysIdGetResponseDto
   int? get stepperCount;
   @override
   @JsonKey(name: 'latestSteppers')
-  List<UserDtoDto>? get latestSteppers;
+  List<UserDto>? get latestSteppers;
   @override
   @JsonKey(name: 'starterCount')
   int? get starterCount;
   @override
   @JsonKey(name: 'latestStarters')
-  List<JourneyInDetailDtoDtoLatestStartersDto>? get latestStarters;
+  List<dynamic>? get latestStarters;
   @override
   @JsonKey(name: 'companionCount')
   int? get companionCount;
   @override
   @JsonKey(name: 'latestCompanions')
-  List<JourneyInDetailDtoDtoLatestCompanionsDto>? get latestCompanions;
+  List<dynamic>? get latestCompanions;
   @override
   @JsonKey(name: 'celebratorCount')
   int? get celebratorCount;
   @override
   @JsonKey(name: 'latestCelebrators')
-  List<JourneyInDetailDtoDtoLatestCelebratorsDto>? get latestCelebrators;
+  List<dynamic>? get latestCelebrators;
 
   /// Create a copy of ApiV1JourneysIdGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -21728,8 +21339,7 @@ ApiV1JourneysIdPutResponseDto _$ApiV1JourneysIdPutResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1JourneysIdPutResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
@@ -21745,11 +21355,9 @@ mixin _$ApiV1JourneysIdPutResponseDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId => throw _privateConstructorUsedError;
+  String? get firstStepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId => throw _privateConstructorUsedError;
+  String? get finalStepId => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1JourneysIdPutResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -21770,7 +21378,7 @@ abstract class $ApiV1JourneysIdPutResponseDtoCopyWith<$Res> {
           ApiV1JourneysIdPutResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -21778,12 +21386,8 @@ abstract class $ApiV1JourneysIdPutResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -21817,7 +21421,7 @@ class _$ApiV1JourneysIdPutResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -21849,11 +21453,11 @@ class _$ApiV1JourneysIdPutResponseDtoCopyWithImpl<$Res,
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ) as $Val);
   }
 }
@@ -21868,7 +21472,7 @@ abstract class _$$ApiV1JourneysIdPutResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -21876,12 +21480,8 @@ abstract class _$$ApiV1JourneysIdPutResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -21914,7 +21514,7 @@ class __$$ApiV1JourneysIdPutResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -21946,11 +21546,11 @@ class __$$ApiV1JourneysIdPutResponseDtoImplCopyWithImpl<$Res>
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ));
   }
 }
@@ -21960,7 +21560,7 @@ class __$$ApiV1JourneysIdPutResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1JourneysIdPutResponseDtoImpl
     implements _ApiV1JourneysIdPutResponseDto {
   _$ApiV1JourneysIdPutResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -21968,8 +21568,8 @@ class _$ApiV1JourneysIdPutResponseDtoImpl
       @JsonKey(name: 'status') this.status,
       @JsonKey(name: 'completedDate') this.completedDate,
       @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'firstStepId') @ApiUuidJsonConverter() this.firstStepId,
-      @JsonKey(name: 'finalStepId') @ApiUuidJsonConverter() this.finalStepId});
+      @JsonKey(name: 'firstStepId') this.firstStepId,
+      @JsonKey(name: 'finalStepId') this.finalStepId});
 
   factory _$ApiV1JourneysIdPutResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -21977,8 +21577,7 @@ class _$ApiV1JourneysIdPutResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -22002,12 +21601,10 @@ class _$ApiV1JourneysIdPutResponseDtoImpl
   final String? userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? firstStepId;
+  final String? firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? finalStepId;
+  final String? finalStepId;
 
   @override
   String toString() {
@@ -22073,28 +21670,24 @@ class _$ApiV1JourneysIdPutResponseDtoImpl
 abstract class _ApiV1JourneysIdPutResponseDto
     implements ApiV1JourneysIdPutResponseDto {
   factory _ApiV1JourneysIdPutResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'status') final String? status,
-      @JsonKey(name: 'completedDate') final DateTime? completedDate,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? finalStepId}) = _$ApiV1JourneysIdPutResponseDtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'status') final String? status,
+          @JsonKey(name: 'completedDate') final DateTime? completedDate,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'firstStepId') final String? firstStepId,
+          @JsonKey(name: 'finalStepId') final String? finalStepId}) =
+      _$ApiV1JourneysIdPutResponseDtoImpl;
 
   factory _ApiV1JourneysIdPutResponseDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1JourneysIdPutResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -22118,12 +21711,10 @@ abstract class _ApiV1JourneysIdPutResponseDto
   String? get userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId;
+  String? get firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId;
+  String? get finalStepId;
 
   /// Create a copy of ApiV1JourneysIdPutResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -22336,8 +21927,7 @@ ApiV1JourneysPostResponseDto _$ApiV1JourneysPostResponseDtoFromJson(
 /// @nodoc
 mixin _$ApiV1JourneysPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -22347,12 +21937,11 @@ mixin _$ApiV1JourneysPostResponseDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto get user => throw _privateConstructorUsedError;
+  UserDto get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId => throw _privateConstructorUsedError;
+  String? get journeyId => throw _privateConstructorUsedError;
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey => throw _privateConstructorUsedError;
+  JourneyDto? get journey => throw _privateConstructorUsedError;
   @JsonKey(name: 'hearts')
   int? get hearts => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -22370,12 +21959,11 @@ mixin _$ApiV1JourneysPostResponseDto {
   @JsonKey(name: 'othersStepWith')
   int? get othersStepWith => throw _privateConstructorUsedError;
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers =>
-      throw _privateConstructorUsedError;
+  List<UserDto>? get othersStepWithUsers => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString => throw _privateConstructorUsedError;
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media => throw _privateConstructorUsedError;
+  List<StepMediaDto>? get media => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1JourneysPostResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -22396,14 +21984,14 @@ abstract class $ApiV1JourneysPostResponseDtoCopyWith<$Res> {
           ApiV1JourneysPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -22413,13 +22001,12 @@ abstract class $ApiV1JourneysPostResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
-  $UserDtoDtoCopyWith<$Res> get user;
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $UserDtoCopyWith<$Res> get user;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -22462,7 +22049,7 @@ class _$ApiV1JourneysPostResponseDtoCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -22482,15 +22069,15 @@ class _$ApiV1JourneysPostResponseDtoCopyWithImpl<$Res,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -22526,7 +22113,7 @@ class _$ApiV1JourneysPostResponseDtoCopyWithImpl<$Res,
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value.othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -22534,7 +22121,7 @@ class _$ApiV1JourneysPostResponseDtoCopyWithImpl<$Res,
       media: freezed == media
           ? _value.media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ) as $Val);
   }
 
@@ -22542,8 +22129,8 @@ class _$ApiV1JourneysPostResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res> get user {
-    return $UserDtoDtoCopyWith<$Res>(_value.user, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -22552,12 +22139,12 @@ class _$ApiV1JourneysPostResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDtoDtoCopyWith<$Res>? get journey {
+  $JourneyDtoCopyWith<$Res>? get journey {
     if (_value.journey == null) {
       return null;
     }
 
-    return $JourneyDtoDtoCopyWith<$Res>(_value.journey!, (value) {
+    return $JourneyDtoCopyWith<$Res>(_value.journey!, (value) {
       return _then(_value.copyWith(journey: value) as $Val);
     });
   }
@@ -22573,14 +22160,14 @@ abstract class _$$ApiV1JourneysPostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDtoDto user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() ApiUuid? journeyId,
-      @JsonKey(name: 'journey') JourneyDtoDto? journey,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'journey') JourneyDto? journey,
       @JsonKey(name: 'hearts') int? hearts,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'shares') int? shares,
@@ -22590,15 +22177,14 @@ abstract class _$$ApiV1JourneysPostResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'userSteppedWithInteractions')
       int? userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      List<UserDtoDto>? othersStepWithUsers,
+      @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDtoDto>? media});
+      @JsonKey(name: 'media') List<StepMediaDto>? media});
 
   @override
-  $UserDtoDtoCopyWith<$Res> get user;
+  $UserDtoCopyWith<$Res> get user;
   @override
-  $JourneyDtoDtoCopyWith<$Res>? get journey;
+  $JourneyDtoCopyWith<$Res>? get journey;
 }
 
 /// @nodoc
@@ -22640,7 +22226,7 @@ class __$$ApiV1JourneysPostResponseDtoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -22660,15 +22246,15 @@ class __$$ApiV1JourneysPostResponseDtoImplCopyWithImpl<$Res>
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto,
+              as UserDto,
       journeyId: freezed == journeyId
           ? _value.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       journey: freezed == journey
           ? _value.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDtoDto?,
+              as JourneyDto?,
       hearts: freezed == hearts
           ? _value.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -22704,7 +22290,7 @@ class __$$ApiV1JourneysPostResponseDtoImplCopyWithImpl<$Res>
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _value._othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
-              as List<UserDtoDto>?,
+              as List<UserDto>?,
       stepTypeString: freezed == stepTypeString
           ? _value.stepTypeString
           : stepTypeString // ignore: cast_nullable_to_non_nullable
@@ -22712,7 +22298,7 @@ class __$$ApiV1JourneysPostResponseDtoImplCopyWithImpl<$Res>
       media: freezed == media
           ? _value._media
           : media // ignore: cast_nullable_to_non_nullable
-              as List<StepMediaDtoDto>?,
+              as List<StepMediaDto>?,
     ));
   }
 }
@@ -22722,13 +22308,13 @@ class __$$ApiV1JourneysPostResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1JourneysPostResponseDtoImpl
     implements _ApiV1JourneysPostResponseDto {
   _$ApiV1JourneysPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required this.id,
+      {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'userId') this.userId,
       @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'journeyId') @ApiUuidJsonConverter() this.journeyId,
+      @JsonKey(name: 'journeyId') this.journeyId,
       @JsonKey(name: 'journey') this.journey,
       @JsonKey(name: 'hearts') this.hearts,
       @JsonKey(name: 'heartedByUser') this.heartedByUser,
@@ -22740,9 +22326,9 @@ class _$ApiV1JourneysPostResponseDtoImpl
       this.userSteppedWithInteractions,
       @JsonKey(name: 'othersStepWith') this.othersStepWith,
       @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
+      final List<UserDto>? othersStepWithUsers,
       @JsonKey(name: 'stepTypeString') this.stepTypeString,
-      @JsonKey(name: 'media') final List<StepMediaDtoDto>? media})
+      @JsonKey(name: 'media') final List<StepMediaDto>? media})
       : _othersStepWithUsers = othersStepWithUsers,
         _media = media;
 
@@ -22752,8 +22338,7 @@ class _$ApiV1JourneysPostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
+  final String id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -22768,14 +22353,13 @@ class _$ApiV1JourneysPostResponseDtoImpl
   final String? userId;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto user;
+  final UserDto user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? journeyId;
+  final String? journeyId;
   @override
   @JsonKey(name: 'journey')
-  final JourneyDtoDto? journey;
+  final JourneyDto? journey;
   @override
   @JsonKey(name: 'hearts')
   final int? hearts;
@@ -22800,10 +22384,10 @@ class _$ApiV1JourneysPostResponseDtoImpl
   @override
   @JsonKey(name: 'othersStepWith')
   final int? othersStepWith;
-  final List<UserDtoDto>? _othersStepWithUsers;
+  final List<UserDto>? _othersStepWithUsers;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers {
+  List<UserDto>? get othersStepWithUsers {
     final value = _othersStepWithUsers;
     if (value == null) return null;
     if (_othersStepWithUsers is EqualUnmodifiableListView)
@@ -22815,10 +22399,10 @@ class _$ApiV1JourneysPostResponseDtoImpl
   @override
   @JsonKey(name: 'stepTypeString')
   final String? stepTypeString;
-  final List<StepMediaDtoDto>? _media;
+  final List<StepMediaDto>? _media;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media {
+  List<StepMediaDto>? get media {
     final value = _media;
     if (value == null) return null;
     if (_media is EqualUnmodifiableListView) return _media;
@@ -22916,38 +22500,35 @@ class _$ApiV1JourneysPostResponseDtoImpl
 abstract class _ApiV1JourneysPostResponseDto
     implements ApiV1JourneysPostResponseDto {
   factory _ApiV1JourneysPostResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required final ApiUuid id,
-      @JsonKey(name: 'content') final String? content,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'user') required final UserDtoDto user,
-      @JsonKey(name: 'journeyId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? journeyId,
-      @JsonKey(name: 'journey') final JourneyDtoDto? journey,
-      @JsonKey(name: 'hearts') final int? hearts,
-      @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
-      @JsonKey(name: 'shares') final int? shares,
-      @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
-      @JsonKey(name: 'comments') final int? comments,
-      @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
-      @JsonKey(name: 'userSteppedWithInteractions')
-      final int? userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') final int? othersStepWith,
-      @JsonKey(name: 'othersStepWithUsers')
-      final List<UserDtoDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') final String? stepTypeString,
-      @JsonKey(name: 'media')
-      final List<StepMediaDtoDto>? media}) = _$ApiV1JourneysPostResponseDtoImpl;
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'user') required final UserDto user,
+          @JsonKey(name: 'journeyId') final String? journeyId,
+          @JsonKey(name: 'journey') final JourneyDto? journey,
+          @JsonKey(name: 'hearts') final int? hearts,
+          @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
+          @JsonKey(name: 'shares') final int? shares,
+          @JsonKey(name: 'sharedByUser') final bool? sharedByUser,
+          @JsonKey(name: 'comments') final int? comments,
+          @JsonKey(name: 'commentedByUser') final bool? commentedByUser,
+          @JsonKey(name: 'userSteppedWithInteractions')
+          final int? userSteppedWithInteractions,
+          @JsonKey(name: 'othersStepWith') final int? othersStepWith,
+          @JsonKey(name: 'othersStepWithUsers')
+          final List<UserDto>? othersStepWithUsers,
+          @JsonKey(name: 'stepTypeString') final String? stepTypeString,
+          @JsonKey(name: 'media') final List<StepMediaDto>? media}) =
+      _$ApiV1JourneysPostResponseDtoImpl;
 
   factory _ApiV1JourneysPostResponseDto.fromJson(Map<String, dynamic> json) =
       _$ApiV1JourneysPostResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id;
+  String get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -22962,14 +22543,13 @@ abstract class _ApiV1JourneysPostResponseDto
   String? get userId;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto get user;
+  UserDto get user;
   @override
   @JsonKey(name: 'journeyId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get journeyId;
+  String? get journeyId;
   @override
   @JsonKey(name: 'journey')
-  JourneyDtoDto? get journey;
+  JourneyDto? get journey;
   @override
   @JsonKey(name: 'hearts')
   int? get hearts;
@@ -22996,13 +22576,13 @@ abstract class _ApiV1JourneysPostResponseDto
   int? get othersStepWith;
   @override
   @JsonKey(name: 'othersStepWithUsers')
-  List<UserDtoDto>? get othersStepWithUsers;
+  List<UserDto>? get othersStepWithUsers;
   @override
   @JsonKey(name: 'stepTypeString')
   String? get stepTypeString;
   @override
   @JsonKey(name: 'media')
-  List<StepMediaDtoDto>? get media;
+  List<StepMediaDto>? get media;
 
   /// Create a copy of ApiV1JourneysPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -23239,8 +22819,7 @@ ApiV1JourneysIdClosePostResponseDto
 /// @nodoc
 mixin _$ApiV1JourneysIdClosePostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
@@ -23256,11 +22835,9 @@ mixin _$ApiV1JourneysIdClosePostResponseDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId => throw _privateConstructorUsedError;
+  String? get firstStepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId => throw _privateConstructorUsedError;
+  String? get finalStepId => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1JourneysIdClosePostResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -23282,7 +22859,7 @@ abstract class $ApiV1JourneysIdClosePostResponseDtoCopyWith<$Res> {
           ApiV1JourneysIdClosePostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -23290,12 +22867,8 @@ abstract class $ApiV1JourneysIdClosePostResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -23329,7 +22902,7 @@ class _$ApiV1JourneysIdClosePostResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -23361,11 +22934,11 @@ class _$ApiV1JourneysIdClosePostResponseDtoCopyWithImpl<$Res,
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ) as $Val);
   }
 }
@@ -23380,7 +22953,7 @@ abstract class _$$ApiV1JourneysIdClosePostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -23388,12 +22961,8 @@ abstract class _$$ApiV1JourneysIdClosePostResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -23426,7 +22995,7 @@ class __$$ApiV1JourneysIdClosePostResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -23458,11 +23027,11 @@ class __$$ApiV1JourneysIdClosePostResponseDtoImplCopyWithImpl<$Res>
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ));
   }
 }
@@ -23472,7 +23041,7 @@ class __$$ApiV1JourneysIdClosePostResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1JourneysIdClosePostResponseDtoImpl
     implements _ApiV1JourneysIdClosePostResponseDto {
   _$ApiV1JourneysIdClosePostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -23480,8 +23049,8 @@ class _$ApiV1JourneysIdClosePostResponseDtoImpl
       @JsonKey(name: 'status') this.status,
       @JsonKey(name: 'completedDate') this.completedDate,
       @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'firstStepId') @ApiUuidJsonConverter() this.firstStepId,
-      @JsonKey(name: 'finalStepId') @ApiUuidJsonConverter() this.finalStepId});
+      @JsonKey(name: 'firstStepId') this.firstStepId,
+      @JsonKey(name: 'finalStepId') this.finalStepId});
 
   factory _$ApiV1JourneysIdClosePostResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -23489,8 +23058,7 @@ class _$ApiV1JourneysIdClosePostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -23514,12 +23082,10 @@ class _$ApiV1JourneysIdClosePostResponseDtoImpl
   final String? userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? firstStepId;
+  final String? firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? finalStepId;
+  final String? finalStepId;
 
   @override
   String toString() {
@@ -23585,20 +23151,17 @@ class _$ApiV1JourneysIdClosePostResponseDtoImpl
 abstract class _ApiV1JourneysIdClosePostResponseDto
     implements ApiV1JourneysIdClosePostResponseDto {
   factory _ApiV1JourneysIdClosePostResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'status') final String? status,
-      @JsonKey(name: 'completedDate') final DateTime? completedDate,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? finalStepId}) = _$ApiV1JourneysIdClosePostResponseDtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'status') final String? status,
+          @JsonKey(name: 'completedDate') final DateTime? completedDate,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'firstStepId') final String? firstStepId,
+          @JsonKey(name: 'finalStepId') final String? finalStepId}) =
+      _$ApiV1JourneysIdClosePostResponseDtoImpl;
 
   factory _ApiV1JourneysIdClosePostResponseDto.fromJson(
           Map<String, dynamic> json) =
@@ -23606,8 +23169,7 @@ abstract class _ApiV1JourneysIdClosePostResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -23631,12 +23193,10 @@ abstract class _ApiV1JourneysIdClosePostResponseDto
   String? get userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId;
+  String? get firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId;
+  String? get finalStepId;
 
   /// Create a copy of ApiV1JourneysIdClosePostResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -23655,8 +23215,7 @@ ApiV1JourneysIdReopenPostResponseDto
 /// @nodoc
 mixin _$ApiV1JourneysIdReopenPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'description')
@@ -23672,11 +23231,9 @@ mixin _$ApiV1JourneysIdReopenPostResponseDto {
   @JsonKey(name: 'userId')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId => throw _privateConstructorUsedError;
+  String? get firstStepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId => throw _privateConstructorUsedError;
+  String? get finalStepId => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1JourneysIdReopenPostResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -23698,7 +23255,7 @@ abstract class $ApiV1JourneysIdReopenPostResponseDtoCopyWith<$Res> {
           ApiV1JourneysIdReopenPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -23706,12 +23263,8 @@ abstract class $ApiV1JourneysIdReopenPostResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -23745,7 +23298,7 @@ class _$ApiV1JourneysIdReopenPostResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -23777,11 +23330,11 @@ class _$ApiV1JourneysIdReopenPostResponseDtoCopyWithImpl<$Res,
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ) as $Val);
   }
 }
@@ -23796,7 +23349,7 @@ abstract class _$$ApiV1JourneysIdReopenPostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -23804,12 +23357,8 @@ abstract class _$$ApiV1JourneysIdReopenPostResponseDtoImplCopyWith<$Res>
       @JsonKey(name: 'status') String? status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      ApiUuid? finalStepId});
+      @JsonKey(name: 'firstStepId') String? firstStepId,
+      @JsonKey(name: 'finalStepId') String? finalStepId});
 }
 
 /// @nodoc
@@ -23842,7 +23391,7 @@ class __$$ApiV1JourneysIdReopenPostResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -23874,11 +23423,11 @@ class __$$ApiV1JourneysIdReopenPostResponseDtoImplCopyWithImpl<$Res>
       firstStepId: freezed == firstStepId
           ? _value.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       finalStepId: freezed == finalStepId
           ? _value.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ));
   }
 }
@@ -23888,7 +23437,7 @@ class __$$ApiV1JourneysIdReopenPostResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1JourneysIdReopenPostResponseDtoImpl
     implements _ApiV1JourneysIdReopenPostResponseDto {
   _$ApiV1JourneysIdReopenPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -23896,8 +23445,8 @@ class _$ApiV1JourneysIdReopenPostResponseDtoImpl
       @JsonKey(name: 'status') this.status,
       @JsonKey(name: 'completedDate') this.completedDate,
       @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'firstStepId') @ApiUuidJsonConverter() this.firstStepId,
-      @JsonKey(name: 'finalStepId') @ApiUuidJsonConverter() this.finalStepId});
+      @JsonKey(name: 'firstStepId') this.firstStepId,
+      @JsonKey(name: 'finalStepId') this.finalStepId});
 
   factory _$ApiV1JourneysIdReopenPostResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -23905,8 +23454,7 @@ class _$ApiV1JourneysIdReopenPostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'title')
   final String? title;
@@ -23930,12 +23478,10 @@ class _$ApiV1JourneysIdReopenPostResponseDtoImpl
   final String? userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? firstStepId;
+  final String? firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? finalStepId;
+  final String? finalStepId;
 
   @override
   String toString() {
@@ -24001,20 +23547,17 @@ class _$ApiV1JourneysIdReopenPostResponseDtoImpl
 abstract class _ApiV1JourneysIdReopenPostResponseDto
     implements ApiV1JourneysIdReopenPostResponseDto {
   factory _ApiV1JourneysIdReopenPostResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'createdDate') final DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
-      @JsonKey(name: 'status') final String? status,
-      @JsonKey(name: 'completedDate') final DateTime? completedDate,
-      @JsonKey(name: 'userId') final String? userId,
-      @JsonKey(name: 'firstStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? firstStepId,
-      @JsonKey(name: 'finalStepId')
-      @ApiUuidJsonConverter()
-      final ApiUuid? finalStepId}) = _$ApiV1JourneysIdReopenPostResponseDtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'createdDate') final DateTime? createdDate,
+          @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
+          @JsonKey(name: 'status') final String? status,
+          @JsonKey(name: 'completedDate') final DateTime? completedDate,
+          @JsonKey(name: 'userId') final String? userId,
+          @JsonKey(name: 'firstStepId') final String? firstStepId,
+          @JsonKey(name: 'finalStepId') final String? finalStepId}) =
+      _$ApiV1JourneysIdReopenPostResponseDtoImpl;
 
   factory _ApiV1JourneysIdReopenPostResponseDto.fromJson(
           Map<String, dynamic> json) =
@@ -24022,8 +23565,7 @@ abstract class _ApiV1JourneysIdReopenPostResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'title')
   String? get title;
@@ -24047,12 +23589,10 @@ abstract class _ApiV1JourneysIdReopenPostResponseDto
   String? get userId;
   @override
   @JsonKey(name: 'firstStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get firstStepId;
+  String? get firstStepId;
   @override
   @JsonKey(name: 'finalStepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get finalStepId;
+  String? get finalStepId;
 
   /// Create a copy of ApiV1JourneysIdReopenPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -26592,8 +26132,7 @@ ApiV1CommentsParentCommentIdRepliesPostResponseDto
 /// @nodoc
 mixin _$ApiV1CommentsParentCommentIdRepliesPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdDate')
@@ -26603,15 +26142,13 @@ mixin _$ApiV1CommentsParentCommentIdRepliesPostResponseDto {
   @JsonKey(name: 'deletedDate')
   DateTime? get deletedDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto? get user => throw _privateConstructorUsedError;
+  UserDto? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'parentCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get parentCommentId => throw _privateConstructorUsedError;
+  String? get parentCommentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'responseToUser')
   UserDto2Dto? get responseToUser => throw _privateConstructorUsedError;
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId => throw _privateConstructorUsedError;
+  String? get responseToCommentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartCount')
   int? get heartCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -26639,23 +26176,19 @@ abstract class $ApiV1CommentsParentCommentIdRepliesPostResponseDtoCopyWith<
           ApiV1CommentsParentCommentIdRepliesPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'parentCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? parentCommentId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'parentCommentId') String? parentCommentId,
       @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId,
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser});
 
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
   $UserDto2DtoCopyWith<$Res>? get responseToUser;
 }
 
@@ -26693,7 +26226,7 @@ class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -26713,11 +26246,11 @@ class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoCopyWithImpl<$Res,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       parentCommentId: freezed == parentCommentId
           ? _value.parentCommentId
           : parentCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       responseToUser: freezed == responseToUser
           ? _value.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
@@ -26725,7 +26258,7 @@ class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoCopyWithImpl<$Res,
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -26741,12 +26274,12 @@ class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res>? get user {
+  $UserDtoCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $UserDtoDtoCopyWith<$Res>(_value.user!, (value) {
+    return $UserDtoCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -26781,24 +26314,20 @@ abstract class _$$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImplCopyWith
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'parentCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? parentCommentId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'parentCommentId') String? parentCommentId,
       @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId,
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser});
 
   @override
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
   @override
   $UserDto2DtoCopyWith<$Res>? get responseToUser;
 }
@@ -26838,7 +26367,7 @@ class __$$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImplCopyWithImpl<
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -26858,11 +26387,11 @@ class __$$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImplCopyWithImpl<
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       parentCommentId: freezed == parentCommentId
           ? _value.parentCommentId
           : parentCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       responseToUser: freezed == responseToUser
           ? _value.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
@@ -26870,7 +26399,7 @@ class __$$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImplCopyWithImpl<
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -26888,19 +26417,15 @@ class __$$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImplCopyWithImpl<
 class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl
     implements _ApiV1CommentsParentCommentIdRepliesPostResponseDto {
   _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'deletedDate') this.deletedDate,
       @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'parentCommentId')
-      @ApiUuidJsonConverter()
-      this.parentCommentId,
+      @JsonKey(name: 'parentCommentId') this.parentCommentId,
       @JsonKey(name: 'responseToUser') this.responseToUser,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      this.responseToCommentId,
+      @JsonKey(name: 'responseToCommentId') this.responseToCommentId,
       @JsonKey(name: 'heartCount') this.heartCount,
       @JsonKey(name: 'heartedByUser') this.heartedByUser});
 
@@ -26910,8 +26435,7 @@ class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -26926,18 +26450,16 @@ class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl
   final DateTime? deletedDate;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto? user;
+  final UserDto? user;
   @override
   @JsonKey(name: 'parentCommentId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? parentCommentId;
+  final String? parentCommentId;
   @override
   @JsonKey(name: 'responseToUser')
   final UserDto2Dto? responseToUser;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? responseToCommentId;
+  final String? responseToCommentId;
   @override
   @JsonKey(name: 'heartCount')
   final int? heartCount;
@@ -27015,19 +26537,15 @@ class _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl
 abstract class _ApiV1CommentsParentCommentIdRepliesPostResponseDto
     implements ApiV1CommentsParentCommentIdRepliesPostResponseDto {
   factory _ApiV1CommentsParentCommentIdRepliesPostResponseDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
+          {@JsonKey(name: 'id') final String? id,
           @JsonKey(name: 'content') final String? content,
           @JsonKey(name: 'createdDate') final DateTime? createdDate,
           @JsonKey(name: 'lastUpdated') final DateTime? lastUpdated,
           @JsonKey(name: 'deletedDate') final DateTime? deletedDate,
-          @JsonKey(name: 'user') final UserDtoDto? user,
-          @JsonKey(name: 'parentCommentId')
-          @ApiUuidJsonConverter()
-          final ApiUuid? parentCommentId,
+          @JsonKey(name: 'user') final UserDto? user,
+          @JsonKey(name: 'parentCommentId') final String? parentCommentId,
           @JsonKey(name: 'responseToUser') final UserDto2Dto? responseToUser,
-          @JsonKey(name: 'responseToCommentId')
-          @ApiUuidJsonConverter()
-          final ApiUuid? responseToCommentId,
+          @JsonKey(name: 'responseToCommentId') final String? responseToCommentId,
           @JsonKey(name: 'heartCount') final int? heartCount,
           @JsonKey(name: 'heartedByUser') final bool? heartedByUser}) =
       _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl;
@@ -27038,8 +26556,7 @@ abstract class _ApiV1CommentsParentCommentIdRepliesPostResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -27054,18 +26571,16 @@ abstract class _ApiV1CommentsParentCommentIdRepliesPostResponseDto
   DateTime? get deletedDate;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto? get user;
+  UserDto? get user;
   @override
   @JsonKey(name: 'parentCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get parentCommentId;
+  String? get parentCommentId;
   @override
   @JsonKey(name: 'responseToUser')
   UserDto2Dto? get responseToUser;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId;
+  String? get responseToCommentId;
   @override
   @JsonKey(name: 'heartCount')
   int? get heartCount;
@@ -27095,8 +26610,7 @@ mixin _$ApiV1CommentsParentCommentIdRepliesPostRequestDto {
   @JsonKey(name: 'responseToUserId')
   String? get responseToUserId => throw _privateConstructorUsedError;
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId => throw _privateConstructorUsedError;
+  String? get responseToCommentId => throw _privateConstructorUsedError;
 
   /// Serializes this ApiV1CommentsParentCommentIdRepliesPostRequestDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -27122,9 +26636,7 @@ abstract class $ApiV1CommentsParentCommentIdRepliesPostRequestDtoCopyWith<
   $Res call(
       {@JsonKey(name: 'content') String content,
       @JsonKey(name: 'responseToUserId') String? responseToUserId,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId});
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId});
 }
 
 /// @nodoc
@@ -27161,7 +26673,7 @@ class _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoCopyWithImpl<$Res,
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ) as $Val);
   }
 }
@@ -27182,9 +26694,7 @@ abstract class _$$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImplCopyWith<
   $Res call(
       {@JsonKey(name: 'content') String content,
       @JsonKey(name: 'responseToUserId') String? responseToUserId,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      ApiUuid? responseToCommentId});
+      @JsonKey(name: 'responseToCommentId') String? responseToCommentId});
 }
 
 /// @nodoc
@@ -27221,7 +26731,7 @@ class __$$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImplCopyWithImpl<
       responseToCommentId: freezed == responseToCommentId
           ? _value.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
     ));
   }
 }
@@ -27233,9 +26743,7 @@ class _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl
   _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl(
       {@JsonKey(name: 'content') required this.content,
       @JsonKey(name: 'responseToUserId') this.responseToUserId,
-      @JsonKey(name: 'responseToCommentId')
-      @ApiUuidJsonConverter()
-      this.responseToCommentId});
+      @JsonKey(name: 'responseToCommentId') this.responseToCommentId});
 
   factory _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -27249,8 +26757,7 @@ class _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl
   final String? responseToUserId;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? responseToCommentId;
+  final String? responseToCommentId;
 
   @override
   String toString() {
@@ -27300,8 +26807,7 @@ abstract class _ApiV1CommentsParentCommentIdRepliesPostRequestDto
           {@JsonKey(name: 'content') required final String content,
           @JsonKey(name: 'responseToUserId') final String? responseToUserId,
           @JsonKey(name: 'responseToCommentId')
-          @ApiUuidJsonConverter()
-          final ApiUuid? responseToCommentId}) =
+          final String? responseToCommentId}) =
       _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl;
 
   factory _ApiV1CommentsParentCommentIdRepliesPostRequestDto.fromJson(
@@ -27316,8 +26822,7 @@ abstract class _ApiV1CommentsParentCommentIdRepliesPostRequestDto
   String? get responseToUserId;
   @override
   @JsonKey(name: 'responseToCommentId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get responseToCommentId;
+  String? get responseToCommentId;
 
   /// Create a copy of ApiV1CommentsParentCommentIdRepliesPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -27337,8 +26842,7 @@ ApiV1StepsStepIdCommentsPostResponseDto
 /// @nodoc
 mixin _$ApiV1StepsStepIdCommentsPostResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdAt')
@@ -27348,10 +26852,9 @@ mixin _$ApiV1StepsStepIdCommentsPostResponseDto {
   @JsonKey(name: 'deletedAt')
   DateTime? get deletedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'user')
-  UserDtoDto? get user => throw _privateConstructorUsedError;
+  UserDto? get user => throw _privateConstructorUsedError;
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId => throw _privateConstructorUsedError;
+  String? get stepId => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartCount')
   int? get heartCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'heartedByUser')
@@ -27379,18 +26882,18 @@ abstract class $ApiV1StepsStepIdCommentsPostResponseDtoCopyWith<$Res> {
           ApiV1StepsStepIdCommentsPostResponseDto>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdAt') DateTime? createdAt,
       @JsonKey(name: 'updatedAt') DateTime? updatedAt,
       @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'replyCount') int? replyCount});
 
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -27425,7 +26928,7 @@ class _$ApiV1StepsStepIdCommentsPostResponseDtoCopyWithImpl<$Res,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -27445,11 +26948,11 @@ class _$ApiV1StepsStepIdCommentsPostResponseDtoCopyWithImpl<$Res,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -27469,12 +26972,12 @@ class _$ApiV1StepsStepIdCommentsPostResponseDtoCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoDtoCopyWith<$Res>? get user {
+  $UserDtoCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $UserDtoDtoCopyWith<$Res>(_value.user!, (value) {
+    return $UserDtoCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -27490,19 +26993,19 @@ abstract class _$$ApiV1StepsStepIdCommentsPostResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid? id,
+      {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'content') String? content,
       @JsonKey(name: 'createdAt') DateTime? createdAt,
       @JsonKey(name: 'updatedAt') DateTime? updatedAt,
       @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-      @JsonKey(name: 'user') UserDtoDto? user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() ApiUuid? stepId,
+      @JsonKey(name: 'user') UserDto? user,
+      @JsonKey(name: 'stepId') String? stepId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser,
       @JsonKey(name: 'replyCount') int? replyCount});
 
   @override
-  $UserDtoDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -27535,7 +27038,7 @@ class __$$ApiV1StepsStepIdCommentsPostResponseDtoImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -27555,11 +27058,11 @@ class __$$ApiV1StepsStepIdCommentsPostResponseDtoImplCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDtoDto?,
+              as UserDto?,
       stepId: freezed == stepId
           ? _value.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as ApiUuid?,
+              as String?,
       heartCount: freezed == heartCount
           ? _value.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
@@ -27581,13 +27084,13 @@ class __$$ApiV1StepsStepIdCommentsPostResponseDtoImplCopyWithImpl<$Res>
 class _$ApiV1StepsStepIdCommentsPostResponseDtoImpl
     implements _ApiV1StepsStepIdCommentsPostResponseDto {
   _$ApiV1StepsStepIdCommentsPostResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() this.id,
+      {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'content') this.content,
       @JsonKey(name: 'createdAt') this.createdAt,
       @JsonKey(name: 'updatedAt') this.updatedAt,
       @JsonKey(name: 'deletedAt') this.deletedAt,
       @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() this.stepId,
+      @JsonKey(name: 'stepId') this.stepId,
       @JsonKey(name: 'heartCount') this.heartCount,
       @JsonKey(name: 'heartedByUser') this.heartedByUser,
       @JsonKey(name: 'replyCount') this.replyCount});
@@ -27598,8 +27101,7 @@ class _$ApiV1StepsStepIdCommentsPostResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid? id;
+  final String? id;
   @override
   @JsonKey(name: 'content')
   final String? content;
@@ -27614,11 +27116,10 @@ class _$ApiV1StepsStepIdCommentsPostResponseDtoImpl
   final DateTime? deletedAt;
   @override
   @JsonKey(name: 'user')
-  final UserDtoDto? user;
+  final UserDto? user;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  final ApiUuid? stepId;
+  final String? stepId;
   @override
   @JsonKey(name: 'heartCount')
   final int? heartCount;
@@ -27694,17 +27195,17 @@ class _$ApiV1StepsStepIdCommentsPostResponseDtoImpl
 abstract class _ApiV1StepsStepIdCommentsPostResponseDto
     implements ApiV1StepsStepIdCommentsPostResponseDto {
   factory _ApiV1StepsStepIdCommentsPostResponseDto(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() final ApiUuid? id,
-      @JsonKey(name: 'content') final String? content,
-      @JsonKey(name: 'createdAt') final DateTime? createdAt,
-      @JsonKey(name: 'updatedAt') final DateTime? updatedAt,
-      @JsonKey(name: 'deletedAt') final DateTime? deletedAt,
-      @JsonKey(name: 'user') final UserDtoDto? user,
-      @JsonKey(name: 'stepId') @ApiUuidJsonConverter() final ApiUuid? stepId,
-      @JsonKey(name: 'heartCount') final int? heartCount,
-      @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
-      @JsonKey(name: 'replyCount')
-      final int? replyCount}) = _$ApiV1StepsStepIdCommentsPostResponseDtoImpl;
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'createdAt') final DateTime? createdAt,
+          @JsonKey(name: 'updatedAt') final DateTime? updatedAt,
+          @JsonKey(name: 'deletedAt') final DateTime? deletedAt,
+          @JsonKey(name: 'user') final UserDto? user,
+          @JsonKey(name: 'stepId') final String? stepId,
+          @JsonKey(name: 'heartCount') final int? heartCount,
+          @JsonKey(name: 'heartedByUser') final bool? heartedByUser,
+          @JsonKey(name: 'replyCount') final int? replyCount}) =
+      _$ApiV1StepsStepIdCommentsPostResponseDtoImpl;
 
   factory _ApiV1StepsStepIdCommentsPostResponseDto.fromJson(
           Map<String, dynamic> json) =
@@ -27712,8 +27213,7 @@ abstract class _ApiV1StepsStepIdCommentsPostResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid? get id;
+  String? get id;
   @override
   @JsonKey(name: 'content')
   String? get content;
@@ -27728,11 +27228,10 @@ abstract class _ApiV1StepsStepIdCommentsPostResponseDto
   DateTime? get deletedAt;
   @override
   @JsonKey(name: 'user')
-  UserDtoDto? get user;
+  UserDto? get user;
   @override
   @JsonKey(name: 'stepId')
-  @ApiUuidJsonConverter()
-  ApiUuid? get stepId;
+  String? get stepId;
   @override
   @JsonKey(name: 'heartCount')
   int? get heartCount;

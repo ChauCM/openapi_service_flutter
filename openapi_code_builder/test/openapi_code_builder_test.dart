@@ -587,6 +587,186 @@ components:
         expect(dtosOutput, isNot(contains('class UnusedSchemaDto')));
         expect(dtosOutput, isNot(contains('class AnotherUnusedSchemaDto')));
       });
+
+      test('handles primitive return types without fromJson calls', () async {
+        final primitiveYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Primitive API
+  x-dart-name: PrimitiveApi
+
+paths:
+  /count:
+    get:
+      responses:
+        '200':
+          description: Returns a count
+          content:
+            application/json:
+              schema:
+                type: integer
+  /name:
+    get:
+      responses:
+        '200':
+          description: Returns a name
+          content:
+            application/json:
+              schema:
+                type: string
+  /enabled:
+    get:
+      responses:
+        '200':
+          description: Returns a boolean
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /rating:
+    get:
+      responses:
+        '200':
+          description: Returns a rating
+          content:
+            application/json:
+              schema:
+                type: number
+''';
+        final api = OpenApiCodeBuilderUtils.loadApiFromYaml(primitiveYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'PrimitiveApi',
+          partFileName: 'primitive_api.openapi.dtos.g.dart',
+          freezedPartFileName: 'primitive_api.openapi.dtos.freezed.dart',
+          useNullSafetySyntax: true,
+          generateProvider: false,
+          providerNamePrefix: '',
+          ignoreSecuritySchemes: false,
+        );
+
+        final serviceLibrary = generator.generateServiceLibrary('primitive_api');
+        final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+          useNullSafetySyntax: true,
+        );
+
+        // Service should have methods returning primitive types wrapped in Either
+        expect(serviceOutput, contains('Future<Either<ApiError, int>>'));
+        expect(serviceOutput, contains('Future<Either<ApiError, String>>'));
+        expect(serviceOutput, contains('Future<Either<ApiError, bool>>'));
+        expect(serviceOutput, contains('Future<Either<ApiError, num>>'));
+        
+        // Should NOT have fromJson calls for primitive types
+        expect(serviceOutput, isNot(contains('int.fromJson')));
+        expect(serviceOutput, isNot(contains('String.fromJson')));
+        expect(serviceOutput, isNot(contains('bool.fromJson')));
+        expect(serviceOutput, isNot(contains('num.fromJson')));
+        
+        // Should directly cast response.data to the primitive type
+        expect(serviceOutput, contains('response.data as int'));
+        expect(serviceOutput, contains('response.data as String'));
+        expect(serviceOutput, contains('response.data as bool'));
+        expect(serviceOutput, contains('response.data as num'));
+      });
+
+      test('handles empty array items without generating missing DTOs', () async {
+        final emptyArrayItemsYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Empty Array Items API
+  x-dart-name: EmptyArrayItemsApi
+
+paths:
+  /journey:
+    get:
+      responses:
+        '200':
+          description: Returns a journey
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  journey:
+                    \$ref: '#/components/schemas/Journey'
+                  stepsCount:
+                    type: integer
+                  latestStarters:
+                    type: array
+                    items: {}
+                  latestCompanions:
+                    type: array
+                    items: {}
+                  latestCelebrators:
+                    type: array
+                    items: {}
+                required:
+                  - journey
+                  - stepsCount
+
+components:
+  schemas:
+    Journey:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+''';
+        final api = OpenApiCodeBuilderUtils.loadApiFromYaml(emptyArrayItemsYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'EmptyArrayItemsApi',
+          partFileName: 'empty_array_items_api.openapi.dtos.g.dart',
+          freezedPartFileName: 'empty_array_items_api.openapi.dtos.freezed.dart',
+          useNullSafetySyntax: true,
+          generateProvider: false,
+          providerNamePrefix: '',
+          ignoreSecuritySchemes: false,
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiCodeBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+          useNullSafetySyntax: true,
+        );
+
+        // Should generate the Journey DTO
+        expect(dtosOutput, contains('class JourneyDto'));
+        
+        // Should generate the response DTO with List<dynamic> for empty array items
+        expect(dtosOutput, contains('class JourneyGetResponseDto'));
+        expect(dtosOutput, contains('List<dynamic>? latestStarters'));
+        expect(dtosOutput, contains('List<dynamic>? latestCompanions'));
+        expect(dtosOutput, contains('List<dynamic>? latestCelebrators'));
+        
+        // Should NOT generate any missing DTO classes for empty array items
+        expect(dtosOutput, isNot(contains('JourneyGetResponseDtoLatestStartersDto')));
+        expect(dtosOutput, isNot(contains('JourneyGetResponseDtoLatestCompanionsDto')));
+        expect(dtosOutput, isNot(contains('JourneyGetResponseDtoLatestCelebratorsDto')));
+        
+        final serviceLibrary = generator.generateServiceLibrary('empty_array_items_api');
+        final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+          useNullSafetySyntax: true,
+        );
+
+        // Service should compile without errors
+        expect(serviceOutput, contains('class EmptyArrayItemsApiService'));
+        expect(serviceOutput, contains('Future<Either<ApiError, JourneyGetResponseDto>>'));
+      });
     });
 
     group('buildExtensions', () {
