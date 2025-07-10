@@ -1316,8 +1316,7 @@ UuidExampleMessageIdGetResponseDto _$UuidExampleMessageIdGetResponseDtoFromJson(
 /// @nodoc
 mixin _$UuidExampleMessageIdGetResponseDto {
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   /// Serializes this UuidExampleMessageIdGetResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1338,7 +1337,7 @@ abstract class $UuidExampleMessageIdGetResponseDtoCopyWith<$Res> {
       _$UuidExampleMessageIdGetResponseDtoCopyWithImpl<$Res,
           UuidExampleMessageIdGetResponseDto>;
   @useResult
-  $Res call({@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id});
+  $Res call({@JsonKey(name: 'id') String id});
 }
 
 /// @nodoc
@@ -1363,7 +1362,7 @@ class _$UuidExampleMessageIdGetResponseDtoCopyWithImpl<$Res,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
     ) as $Val);
   }
 }
@@ -1377,7 +1376,7 @@ abstract class _$$UuidExampleMessageIdGetResponseDtoImplCopyWith<$Res>
       __$$UuidExampleMessageIdGetResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'id') @ApiUuidJsonConverter() ApiUuid id});
+  $Res call({@JsonKey(name: 'id') String id});
 }
 
 /// @nodoc
@@ -1401,7 +1400,7 @@ class __$$UuidExampleMessageIdGetResponseDtoImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as ApiUuid,
+              as String,
     ));
   }
 }
@@ -1411,7 +1410,7 @@ class __$$UuidExampleMessageIdGetResponseDtoImplCopyWithImpl<$Res>
 class _$UuidExampleMessageIdGetResponseDtoImpl
     implements _UuidExampleMessageIdGetResponseDto {
   _$UuidExampleMessageIdGetResponseDtoImpl(
-      {@JsonKey(name: 'id') @ApiUuidJsonConverter() required this.id});
+      {@JsonKey(name: 'id') required this.id});
 
   factory _$UuidExampleMessageIdGetResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -1419,8 +1418,7 @@ class _$UuidExampleMessageIdGetResponseDtoImpl
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  final ApiUuid id;
+  final String id;
 
   @override
   String toString() {
@@ -1460,9 +1458,8 @@ class _$UuidExampleMessageIdGetResponseDtoImpl
 abstract class _UuidExampleMessageIdGetResponseDto
     implements UuidExampleMessageIdGetResponseDto {
   factory _UuidExampleMessageIdGetResponseDto(
-      {@JsonKey(name: 'id')
-      @ApiUuidJsonConverter()
-      required final ApiUuid id}) = _$UuidExampleMessageIdGetResponseDtoImpl;
+          {@JsonKey(name: 'id') required final String id}) =
+      _$UuidExampleMessageIdGetResponseDtoImpl;
 
   factory _UuidExampleMessageIdGetResponseDto.fromJson(
           Map<String, dynamic> json) =
@@ -1470,8 +1467,7 @@ abstract class _UuidExampleMessageIdGetResponseDto
 
   @override
   @JsonKey(name: 'id')
-  @ApiUuidJsonConverter()
-  ApiUuid get id;
+  String get id;
 
   /// Create a copy of UuidExampleMessageIdGetResponseDto
   /// with the given fields replaced by the non-null parameter values.

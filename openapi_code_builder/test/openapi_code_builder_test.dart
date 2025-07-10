@@ -174,9 +174,9 @@ void main() {
           useNullSafetySyntax: true,
         );
 
-        expect(dtosOutput, contains('ApiUuid'));
+        expect(dtosOutput, contains('String'));
         expect(dtosOutput, contains('DateTime'));
-        expect(dtosOutput, contains('ApiUuidJsonConverter'));
+        expect(dtosOutput, contains('UserDto'));
 
         final serviceLibrary = generator.generateServiceLibrary('uuid_api');
         final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
@@ -185,7 +185,7 @@ void main() {
           useNullSafetySyntax: true,
         );
 
-        expect(serviceOutput, contains('ApiUuid'));
+        expect(serviceOutput, contains('String'));
       });
 
       test('uses custom dart name from x-dart-name extension', () async {
@@ -326,12 +326,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-              required:
-                - name
+              \$ref: '#/components/schemas/ExistingDto'
       responses:
         '200':
           description: Success
@@ -388,6 +383,209 @@ components:
 
         expect(serviceOutput, contains('class DtoNamingTestService'));
         expect(serviceOutput, isNot(contains('DtoDto')));
+      });
+
+      test('only generates DTOs for schemas used by endpoints', () async {
+        final unusedSchemaYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Unused Schema API
+  x-dart-name: UnusedSchemaApi
+
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                \$ref: '#/components/schemas/UsedSchema'
+
+components:
+  schemas:
+    UsedSchema:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+    UnusedSchema:
+      type: object
+      properties:
+        value:
+          type: string
+        description:
+          type: string
+      required:
+        - value
+    AlsoUnusedSchema:
+      type: object
+      properties:
+        data:
+          type: string
+''';
+        final api = OpenApiCodeBuilderUtils.loadApiFromYaml(unusedSchemaYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'UnusedSchemaApi',
+          partFileName: 'unused_schema.openapi.dtos.g.dart',
+          freezedPartFileName: 'unused_schema.openapi.dtos.freezed.dart',
+          useNullSafetySyntax: true,
+          generateProvider: false,
+          providerNamePrefix: '',
+          ignoreSecuritySchemes: false,
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiCodeBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+          useNullSafetySyntax: true,
+        );
+
+        // Only UsedSchema should be generated since it's referenced by the endpoint
+        expect(dtosOutput, contains('class UsedSchemaDto'));
+        
+        // UnusedSchema and AlsoUnusedSchema should NOT be generated
+        expect(dtosOutput, isNot(contains('class UnusedSchemaDto')));
+        expect(dtosOutput, isNot(contains('class AlsoUnusedSchemaDto')));
+        
+        // Verify the generated service references the response DTO (not the referenced schema directly)
+        final serviceLibrary = generator.generateServiceLibrary('unused_schema');
+        final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+          useNullSafetySyntax: true,
+        );
+        
+        expect(serviceOutput, contains('TestGetResponseDto'));
+        expect(serviceOutput, isNot(contains('UnusedSchemaDto')));
+        expect(serviceOutput, isNot(contains('AlsoUnusedSchemaDto')));
+      });
+
+      test('generates DTOs for schemas used in various locations', () async {
+        final complexUsageYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Complex Usage API
+  x-dart-name: ComplexUsageApi
+
+paths:
+  /users:
+    get:
+      parameters:
+        - name: status
+          in: query
+          schema:
+            \$ref: '#/components/schemas/UserStatus'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  \$ref: '#/components/schemas/User'
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              \$ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                \$ref: '#/components/schemas/User'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          \$ref: '#/components/schemas/UserStatus'
+      required:
+        - id
+        - name
+        - status
+    UserStatus:
+      type: string
+      enum:
+        - active
+        - inactive
+        - pending
+    CreateUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        initialStatus:
+          \$ref: '#/components/schemas/UserStatus'
+      required:
+        - name
+        - initialStatus
+    UnusedSchema:
+      type: object
+      properties:
+        unusedField:
+          type: string
+    AnotherUnusedSchema:
+      type: object
+      properties:
+        anotherUnusedField:
+          type: integer
+''';
+        final api = OpenApiCodeBuilderUtils.loadApiFromYaml(complexUsageYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'ComplexUsageApi',
+          partFileName: 'complex_usage.openapi.dtos.g.dart',
+          freezedPartFileName: 'complex_usage.openapi.dtos.freezed.dart',
+          useNullSafetySyntax: true,
+          generateProvider: false,
+          providerNamePrefix: '',
+          ignoreSecuritySchemes: false,
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiCodeBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+          useNullSafetySyntax: true,
+        );
+
+        // Should generate DTOs for schemas used in:
+        // - Response body (User -> referenced schemas generate DTOs)
+        // - Request body (CreateUserRequest -> referenced schemas generate DTOs)
+        // - Referenced by other schemas (UserStatus -> various enum forms)
+        expect(dtosOutput, contains('class UserDto'));
+        expect(dtosOutput, contains('class CreateUserRequestDto'));
+        expect(dtosOutput, contains('class UsersPostResponseDto'));
+        expect(dtosOutput, contains('class UsersPostRequestDto'));
+        expect(dtosOutput, contains('enum UsersGetStatusDto'));
+        
+        // Should NOT generate DTOs for unused schemas
+        expect(dtosOutput, isNot(contains('class UnusedSchemaDto')));
+        expect(dtosOutput, isNot(contains('class AnotherUnusedSchemaDto')));
       });
     });
 

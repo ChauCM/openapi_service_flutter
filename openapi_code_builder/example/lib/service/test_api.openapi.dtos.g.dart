@@ -108,11 +108,11 @@ _$UuidExampleMessageIdGetResponseDtoImpl
     _$$UuidExampleMessageIdGetResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
         _$UuidExampleMessageIdGetResponseDtoImpl(
-          id: const ApiUuidJsonConverter().fromJson(json['id'] as String),
+          id: json['id'] as String,
         );
 
 Map<String, dynamic> _$$UuidExampleMessageIdGetResponseDtoImplToJson(
         _$UuidExampleMessageIdGetResponseDtoImpl instance) =>
     <String, dynamic>{
-      'id': const ApiUuidJsonConverter().toJson(instance.id),
+      'id': instance.id,
     };
