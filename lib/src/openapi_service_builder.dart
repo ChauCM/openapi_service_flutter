@@ -79,9 +79,9 @@ class OpenApiLibraryGenerator {
   final _dioException = refer('DioException', 'package:dio/dio.dart');
   final _dioExceptionType = refer('DioExceptionType', 'package:dio/dio.dart');
   final _dioResponse = refer('Response', 'package:dio/dio.dart');
-  final _either = refer('Either', 'package:dartz/dartz.dart');
-  final _left = refer('Left', 'package:dartz/dartz.dart');
-  final _right = refer('Right', 'package:dartz/dartz.dart');
+  final _either = refer('Either', 'package:either_dart/either.dart');
+  final _left = refer('Left', 'package:either_dart/either.dart');
+  final _right = refer('Right', 'package:either_dart/either.dart');
   final _required = refer('required', 'package:meta/meta.dart');
   final _override = refer('override');
   final _void = refer('void');
