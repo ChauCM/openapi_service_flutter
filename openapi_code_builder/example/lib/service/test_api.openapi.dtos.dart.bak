@@ -91,7 +91,7 @@ sealed class HelloNamePutRequestDto with _$HelloNamePutRequestDto {
 sealed class UuidExampleMessageIdGetResponseDto
     with _$UuidExampleMessageIdGetResponseDto {
   factory UuidExampleMessageIdGetResponseDto(
-          {@JsonKey(name: 'id') @ApiUuidJsonConverter() required ApiUuid id}) =
+          {@JsonKey(name: 'id') required String id}) =
       _UuidExampleMessageIdGetResponseDto;
 
   factory UuidExampleMessageIdGetResponseDto.fromJson(

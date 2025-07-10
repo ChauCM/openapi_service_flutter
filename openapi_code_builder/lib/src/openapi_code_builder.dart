@@ -1025,7 +1025,7 @@ class OpenApiLibraryGenerator {
           return _typeDateTime;
         }
         if (schema.format == 'uuid') {
-          return _apiUuid;
+          return _typeString;
         }
         if (schema.format == 'binary') {
           return _uint8List;
