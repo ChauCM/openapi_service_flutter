@@ -32,14 +32,12 @@ This `build_runner` package automatically generates type-safe Dart client code f
    info:
      x-dart-name: MyApiName
    ```
-4. Configure service-style generation in `build.yaml`:
+4. Configure generation in `build.yaml`:
    ```yaml
    targets:
      $default:
        builders:
          openapi_code_builder:openapi_code_builder:
-           options:
-             generateServiceClasses: true
    ```
 5. Generate the code:
    ```shell
@@ -90,7 +88,7 @@ components:
           description: 'The Hello World greeting'
 ```
 
-## Generated Client Usage (Service Style)
+## Generated Client Usage
 
 ```dart
 import 'package:dio/dio.dart';
@@ -136,4 +134,43 @@ Run the client example:
 ```shell
 cd openapi_code_builder/example
 dart run usage/example_client.dart  # Run client
+```
+
+# Testing
+
+## Running Tests
+
+```shell
+# Run all tests
+dart test
+
+# Run tests with verbose output
+dart test --reporter=expanded
+
+# Run specific test file
+dart test test/openapi_code_builder_test.dart
+
+# Run tests with stack traces for debugging
+dart test --chain-stack-traces
+```
+
+## Test Structure
+
+- **`test/openapi_library_generator_test.dart`**: Core generation logic (fastest)
+- **`test/openapi_code_builder_test.dart`**: Main functionality tests
+- **`test/openapi_code_builder_edge_cases_test.dart`**: Error handling and edge cases
+
+## Writing Tests
+
+Use direct generator testing:
+
+```dart
+test('generates correct DTO', () async {
+  final api = OpenApiCodeBuilderUtils.loadApiFromYaml(yamlContent);
+  final generator = OpenApiLibraryGenerator(api, baseName: 'TestApi', ...);
+  final output = OpenApiCodeBuilderUtils.formatLibrary(generator.generateDtosLibrary(), ...);
+  
+  expect(output, contains('class TestApiService'));
+  expect(output, contains('@freezed'));
+});
 ```
