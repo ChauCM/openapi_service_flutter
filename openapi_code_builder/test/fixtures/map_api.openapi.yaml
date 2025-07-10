@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Map API
+  x-dart-name: MapApi
+
+paths:
+  /inventory:
+    get:
+      summary: Get inventory
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+  /metadata:
+    get:
+      summary: Get metadata
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+
+components:
+  schemas:
+    DynamicMap:
+      type: object
+      additionalProperties:
+        type: string

@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Enum API
+  x-dart-name: EnumApi
+
+paths:
+  /status:
+    get:
+      summary: Get status
+      parameters:
+        - name: type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - active
+              - inactive
+              - pending
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+components:
+  schemas:
+    StatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+            - error
+        message:
+          type: string
+      required:
+        - status
+        - message

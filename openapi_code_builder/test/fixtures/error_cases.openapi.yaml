@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Error Cases API
+  x-dart-name: ErrorCasesApi
+
+paths:
+  /error:
+    get:
+      summary: Get error responses
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        code:
+          type: integer
+        details:
+          type: array
+          items:
+            type: string
+      required:
+        - error
+        - code

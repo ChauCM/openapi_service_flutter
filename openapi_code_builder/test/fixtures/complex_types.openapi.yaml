@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Complex Types API
+  x-dart-name: ComplexTypesApi
+
+paths:
+  /complex:
+    post:
+      summary: Handle complex types
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComplexRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplexResponse'
+
+components:
+  schemas:
+    ComplexRequest:
+      type: object
+      properties:
+        inheritance:
+          $ref: '#/components/schemas/ChildClass'
+        recursive:
+          $ref: '#/components/schemas/RecursiveType'
+        mixedArray:
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: integer
+        additionalData:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: number
+      required:
+        - inheritance
+
+    ComplexResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/ComplexRequest'
+
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        timestamp:
+          type: string
+          format: date-time
+      required:
+        - success
+        - timestamp
+
+    ChildClass:
+      allOf:
+        - $ref: '#/components/schemas/BaseClass'
+        - type: object
+          properties:
+            childProperty:
+              type: string
+
+    BaseClass:
+      type: object
+      properties:
+        baseProperty:
+          type: string
+      required:
+        - baseProperty
+
+    RecursiveType:
+      type: object
+      properties:
+        name:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecursiveType'
+      required:
+        - name

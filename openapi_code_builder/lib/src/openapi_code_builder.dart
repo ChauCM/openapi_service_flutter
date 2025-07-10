@@ -123,8 +123,10 @@ class OpenApiLibraryGenerator {
     lb.body.add(_generateApiErrorModel());
 
     // Generate freezed DTOs for schemas
-    for (final schemaEntry in api.components!.schemas!.entries) {
-      _schemaReference(schemaEntry.key, schemaEntry.value!);
+    if (api.components?.schemas != null) {
+      for (final schemaEntry in api.components!.schemas!.entries) {
+        _schemaReference(schemaEntry.key, schemaEntry.value!);
+      }
     }
 
     // Generate service class
@@ -133,7 +135,7 @@ class OpenApiLibraryGenerator {
     return lb.build();
   }
 
-  Library _generateDtosLibrary() {
+  Library generateDtosLibrary() {
     final dtosLb = LibraryBuilder();
 
     // Add both part directives for Freezed and JSON serialization
@@ -154,7 +156,7 @@ class OpenApiLibraryGenerator {
           if (response.value?.content != null) {
             for (final content in response.value!.content!.values) {
               if (content?.schema != null) {
-                _collectSchemaReferences(content!.schema!, usedSchemas);
+                collectSchemaReferences(content!.schema!, usedSchemas);
               }
             }
           }
@@ -165,7 +167,7 @@ class OpenApiLibraryGenerator {
         if (body?.content != null) {
           for (final content in body!.content!.values) {
             if (content?.schema != null) {
-              _collectSchemaReferences(content!.schema!, usedSchemas);
+              collectSchemaReferences(content!.schema!, usedSchemas);
             }
           }
         }
@@ -177,22 +179,24 @@ class OpenApiLibraryGenerator {
         ];
         for (final param in allParameters) {
           if (param?.schema != null) {
-            _collectSchemaReferences(param!.schema!, usedSchemas);
+            collectSchemaReferences(param!.schema!, usedSchemas);
           }
         }
       }
     }
 
     // Generate DTOs only for used schemas (either used directly by endpoints or enums)
-    for (final schemaEntry in api.components!.schemas!.entries) {
-      final schema = schemaEntry.value!;
-      final isUsed = usedSchemas.contains(schemaEntry.key);
-      final isEnum = schema.enumerated?.isNotEmpty == true;
-      final shouldGenerate = _shouldGenerateDto(schema);
+    if (api.components?.schemas != null) {
+      for (final schemaEntry in api.components!.schemas!.entries) {
+        final schema = schemaEntry.value!;
+        final isUsed = usedSchemas.contains(schemaEntry.key);
+        final isEnum = schema.enumerated?.isNotEmpty == true;
+        final shouldGenerate = shouldGenerateDto(schema);
 
-      // Generate if: (used by endpoints OR is an enum) AND should generate DTO
-      if ((isUsed || isEnum) && shouldGenerate) {
-        _generateSchemaIntoLibrary(dtosLb, schemaEntry.key, schema);
+        // Generate if: (used by endpoints OR is an enum) AND should generate DTO
+        if ((isUsed || isEnum) && shouldGenerate) {
+          _generateSchemaIntoLibrary(dtosLb, schemaEntry.key, schema);
+        }
       }
     }
 
@@ -215,7 +219,7 @@ class OpenApiLibraryGenerator {
           if (content?.schema != null) {
             final schema = content!.schema!;
             // Only generate response DTOs for complex schemas with actual properties
-            if (_shouldGenerateDto(schema)) {
+            if (shouldGenerateDto(schema)) {
               final responseTypeName = '${operationName}Response';
               _generateSchemaIntoLibrary(dtosLb, responseTypeName, schema);
             }
@@ -251,7 +255,7 @@ class OpenApiLibraryGenerator {
           if (content?.schema != null) {
             final schema = content!.schema!;
             // Only generate request DTOs for complex schemas with actual properties
-            if (_shouldGenerateDto(schema)) {
+            if (shouldGenerateDto(schema)) {
               final requestTypeName = '${operationName}Request';
               _generateSchemaIntoLibrary(dtosLb, requestTypeName, schema);
             }
@@ -263,7 +267,7 @@ class OpenApiLibraryGenerator {
     return dtosLb.build();
   }
 
-  void _collectSchemaReferences(
+  void collectSchemaReferences(
       APISchemaObject schema, Set<String> usedSchemas) {
     // Add reference if this schema points to a component
     final uri = schema.referenceURI;
@@ -279,38 +283,38 @@ class OpenApiLibraryGenerator {
     // Recursively check nested schemas
     if (schema.properties != null) {
       for (final prop in schema.properties!.values) {
-        _collectSchemaReferences(prop!, usedSchemas);
+        collectSchemaReferences(prop!, usedSchemas);
       }
     }
 
     if (schema.items != null) {
-      _collectSchemaReferences(schema.items!, usedSchemas);
+      collectSchemaReferences(schema.items!, usedSchemas);
     }
 
     if (schema.allOf != null) {
       for (final subSchema in schema.allOf!) {
-        _collectSchemaReferences(subSchema!, usedSchemas);
+        collectSchemaReferences(subSchema!, usedSchemas);
       }
     }
 
     if (schema.oneOf != null) {
       for (final subSchema in schema.oneOf!) {
-        _collectSchemaReferences(subSchema!, usedSchemas);
+        collectSchemaReferences(subSchema!, usedSchemas);
       }
     }
 
     if (schema.anyOf != null) {
       for (final subSchema in schema.anyOf!) {
-        _collectSchemaReferences(subSchema!, usedSchemas);
+        collectSchemaReferences(subSchema!, usedSchemas);
       }
     }
 
     if (schema.additionalPropertySchema != null) {
-      _collectSchemaReferences(schema.additionalPropertySchema!, usedSchemas);
+      collectSchemaReferences(schema.additionalPropertySchema!, usedSchemas);
     }
   }
 
-  bool _shouldGenerateDto(APISchemaObject schema) {
+  bool shouldGenerateDto(APISchemaObject schema) {
     // Don't generate DTOs for simple types (string, number, boolean, etc.)
     if (schema.type != null && schema.type != APIType.object) {
       return false;
@@ -335,7 +339,7 @@ class OpenApiLibraryGenerator {
 
   void _generateSchemaIntoLibrary(
       LibraryBuilder targetLb, String key, APISchemaObject schemaObject) {
-    final componentName = _classNameForComponent(key);
+    final componentName = classNameForComponent(key);
 
     // Handle enums
     if (schemaObject.enumerated?.isNotEmpty == true) {
@@ -391,7 +395,7 @@ class OpenApiLibraryGenerator {
     }
   }
 
-  Library _generateServiceLibrary(String inputIdBasename) {
+  Library generateServiceLibrary(String inputIdBasename) {
     final serviceLb = LibraryBuilder();
 
     // Add import for DTOs first
@@ -466,12 +470,12 @@ class OpenApiLibraryGenerator {
           if (content?.schema != null) {
             final schema = content!.schema!;
             // Only use specific DTO type if we generated one for this schema
-            if (_shouldGenerateDto(schema)) {
+            if (shouldGenerateDto(schema)) {
               successResponseType =
                   refer('${operationName.pascalCase}ResponseDto');
             } else {
               successResponseType =
-                  _toDartType('${operationName}Response', schema);
+                  toDartType('${operationName}Response', schema);
             }
           }
         }
@@ -577,7 +581,7 @@ class OpenApiLibraryGenerator {
           refer('${operationName.pascalCase}${param.name!.pascalCase}Dto')
         ]);
       } else {
-        paramType = _toDartType(operationName, param.schema!);
+        paramType = toDartType(operationName, param.schema!);
       }
       final paramNameCamelCase = param.name!.camelCase;
 
@@ -596,10 +600,10 @@ class OpenApiLibraryGenerator {
         final schema = content!.schema!;
         Reference bodyType;
         // Only use specific DTO type if we generated one for this schema
-        if (_shouldGenerateDto(schema)) {
+        if (shouldGenerateDto(schema)) {
           bodyType = refer('${operationName.pascalCase}RequestDto');
         } else {
-          bodyType = _toDartType('${operationName}Request', schema);
+          bodyType = toDartType('${operationName}Request', schema);
         }
 
         method.requiredParameters.add(Parameter((pb) => pb
@@ -838,7 +842,7 @@ class OpenApiLibraryGenerator {
       ]));
   }
 
-  String _classNameForComponent(String componentName) {
+  String classNameForComponent(String componentName) {
     return '${componentName.pascalCase}Dto';
   }
 
@@ -848,7 +852,7 @@ class OpenApiLibraryGenerator {
     }
     final segments = referenceUri.pathSegments;
     if (segments[0] == 'components' && segments[1] == 'schemas') {
-      final name = _classNameForComponent(segments[2]);
+      final name = classNameForComponent(segments[2]);
       return name;
     }
     return null;
@@ -858,7 +862,7 @@ class OpenApiLibraryGenerator {
     _logger.finer('Looking up ${schemaObject.referenceURI}');
     final uri = schemaObject.referenceURI;
     final componentName =
-        _componentNameFromReferenceUri(uri) ?? _classNameForComponent(key);
+        _componentNameFromReferenceUri(uri) ?? classNameForComponent(key);
 
     if (createdSchema[schemaObject] case final ref?) {
       _logger.finest('Found already created for this schema reference.');
@@ -904,7 +908,7 @@ class OpenApiLibraryGenerator {
         ..optionalParameters.addAll(properties.entries.map((entry) {
           final fieldName = entry.key.camelCase;
           final fieldType =
-              _toDartType('$className${entry.key.pascalCase}', entry.value!);
+              toDartType('$className${entry.key.pascalCase}', entry.value!);
           final hasDefaultValue = entry.value!.defaultValue != null;
           final isRequired = required.contains(entry.key);
 
@@ -969,7 +973,7 @@ class OpenApiLibraryGenerator {
     });
   }
 
-  Reference _toDartType(String parent, APISchemaObject schema) {
+  Reference toDartType(String parent, APISchemaObject schema) {
     switch (schema.type ?? APIType.object) {
       case APIType.string:
         if (schema.enumerated != null && schema.enumerated!.isNotEmpty) {
@@ -992,7 +996,7 @@ class OpenApiLibraryGenerator {
       case APIType.boolean:
         return refer('bool');
       case APIType.array:
-        final type = _toDartType(parent, schema.items!);
+        final type = toDartType(parent, schema.items!);
         return _referType('List', generics: [type]);
       case APIType.object:
         // Handle object type with additionalProperties but no properties
@@ -1000,7 +1004,7 @@ class OpenApiLibraryGenerator {
             schema.additionalPropertySchema != null) {
           // This is a map-like object with additionalProperties
           final valueType =
-              _toDartType('${parent}Value', schema.additionalPropertySchema!);
+              toDartType('${parent}Value', schema.additionalPropertySchema!);
           return _referType('Map', generics: [_typeString, valueType]);
         } else if ((schema.properties?.isEmpty ?? true) &&
             schema.additionalPropertyPolicy ==
@@ -1152,7 +1156,7 @@ class OpenApiCodeBuilder extends Builder {
     OpenApiCodeBuilderUtils.loadApiFromYaml(source);
     final api = OpenApiCodeBuilderUtils.loadApiFromYaml(source);
 
-    final baseName = api.info!.extensions['x-dart-name'] as String? ??
+    final baseName = api.info?.extensions?['x-dart-name'] as String? ??
         inputIdBasename.pascalCase;
 
     // Create separate generators for DTOs and Service with correct part file names
@@ -1182,7 +1186,7 @@ class OpenApiCodeBuilder extends Builder {
     );
 
     // Generate DTOs library
-    final dtosLibrary = dtosGenerator._generateDtosLibrary();
+    final dtosLibrary = dtosGenerator.generateDtosLibrary();
     final dtosOutput = OpenApiCodeBuilderUtils.formatLibrary(
       dtosLibrary,
       orderDirectives: true,
@@ -1193,7 +1197,7 @@ class OpenApiCodeBuilder extends Builder {
 
     // Generate Service library
     final serviceLibrary =
-        serviceGenerator._generateServiceLibrary(inputIdBasename);
+        serviceGenerator.generateServiceLibrary(inputIdBasename);
     final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
       serviceLibrary,
       orderDirectives: true,
