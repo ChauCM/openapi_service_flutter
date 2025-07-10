@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element, unnecessary_import, unused_import
+// ignore_for_file: unused_element, unnecessary_import, unused_import, invalid_annotation_target
 
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
