@@ -117,10 +117,31 @@ dependency_overrides:
 
 ## Testing Generated Code
 
-The `openapi_code_builder/example/` contains working examples:
+The `openapi_code_builder/example/` contains working examples with the following structure:
+
+**Example Directory Structure:**
+```
+openapi_code_builder/example/
+├── lib/service/
+│   ├── test_api.openapi.yaml          # Simple Hello World API spec
+│   ├── test_api.openapi.dtos.dart     # Generated DTOs
+│   ├── test_api.openapi.dtos.dart.bak # Backup of generated DTOs for comparison
+│   ├── test_api.openapi.service.dart  # Generated service classes
+│   ├── test_api.openapi.service.dart.bak # Backup of generated service for comparison
+│   ├── pet_store.openapi.yaml         # Pet Store API spec
+│   ├── pet_store.openapi.dtos.dart    # Generated Pet Store DTOs
+│   ├── pet_store.openapi.dtos.dart.bak # Backup of Pet Store DTOs
+│   ├── pet_store.openapi.service.dart # Generated Pet Store service
+│   └── pet_store.openapi.service.dart.bak # Backup of Pet Store service
+└── usage/
+    └── example_client.dart            # Client usage example
+```
+
+**Key Files:**
 - `lib/service/test_api.openapi.yaml` - Simple Hello World API with various parameter types
 - `lib/service/pet_store.openapi.yaml` - More complex Pet Store API
 - `usage/example_client.dart` - Client usage example showing service-style generation
+- `*.dart.bak` files - Backup copies of generated files for easier comparison when updating the generator
 
 The example demonstrates:
 - Dual-file generation (DTOs + Service)

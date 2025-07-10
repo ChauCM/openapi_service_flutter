@@ -1,0 +1,2685 @@
+openapi: 3.0.1
+info:
+  title: StepoBackend.Api | v1
+  version: 1.0.0
+servers:
+  - url: https://localhost:7000/
+paths:
+  /api/v1/account:
+    get:
+      tags:
+        - Account
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+    delete:
+      tags:
+        - Account
+      responses:
+        "200":
+          description: OK
+    put:
+      tags:
+        - Account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EditUserDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/EditUserDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/EditUserDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+  /api/v1/account/avatar/upload-url:
+    get:
+      tags:
+        - Account
+      parameters:
+        - name: fileName
+          in: query
+          schema:
+            type: string
+        - name: contentType
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /api/v1/account/avatar:
+    put:
+      tags:
+        - Account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/*+json:
+            schema:
+              type: string
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/AccountDto"
+  /api/v1/account/journeys:
+    get:
+      tags:
+        - Account
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+  /api/v1/account/steps:
+    get:
+      tags:
+        - Account
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+  /api/v1/account/feed:
+    get:
+      tags:
+        - Account
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+  /api/v1/users/{id}:
+    get:
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ProfileDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfileDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/ProfileDto"
+  /api/v1/users/{id}/journeys:
+    get:
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+  /api/v1/users/{id}/steps:
+    get:
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+  /api/v1/steps:
+    post:
+      tags:
+        - Steps
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CreateStepDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+  /api/v1/steps/{stepId}:
+    get:
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+    put:
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStepDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/UpdateStepDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/UpdateStepDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+    delete:
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+  /api/v1/steps/{stepId}/media/upload-requests:
+    post:
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: fileName
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: contentType
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ImagePresignedUrlDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImagePresignedUrlDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/ImagePresignedUrlDto"
+  /api/v1/steps/{stepId}/images:
+    put:
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImageMetadataDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ImageMetadataDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ImageMetadataDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+  /api/v1/steps/{stepId}/video:
+    put:
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
+  /api/v1/reports:
+    post:
+      tags:
+        - Reports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReportCreatingDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ReportCreatingDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ReportCreatingDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ReportDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/ReportDto"
+    get:
+      tags:
+        - Reports
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 15
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReportDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReportDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReportDto"
+  /api/v1/notifications:
+    get:
+      tags:
+        - Notifications
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 20
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotificationPagedDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationPagedDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/NotificationPagedDto"
+    post:
+      tags:
+        - Notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendNotificationDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/SendNotificationDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/SendNotificationDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotificationDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/NotificationDto"
+  /api/v1/notifications/summary:
+    get:
+      tags:
+        - Notifications
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+  /api/v1/notifications/{notificationId}/read:
+    put:
+      tags:
+        - Notifications
+      parameters:
+        - name: notificationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+  /api/v1/notifications/read-status:
+    put:
+      tags:
+        - Notifications
+      responses:
+        "200":
+          description: OK
+  /api/v1/notifications/{notificationId}:
+    delete:
+      tags:
+        - Notifications
+      parameters:
+        - name: notificationId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+  /api/v1/notifications/bulk:
+    post:
+      tags:
+        - Notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BulkNotificationDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/BulkNotificationDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/BulkNotificationDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NotificationDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NotificationDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NotificationDto"
+  /api/v1/media/uploads:
+    post:
+      tags:
+        - Media
+      parameters:
+        - name: fileName
+          in: query
+          schema:
+            type: string
+        - name: contentType
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ImagePresignedUrlDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImagePresignedUrlDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/ImagePresignedUrlDto"
+  /api/v1/media/images:
+    post:
+      tags:
+        - Media
+      parameters:
+        - name: stepId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImageMetadataDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ImageMetadataDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ImageMetadataDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+  /api/v1/media/videos:
+    post:
+      tags:
+        - Media
+      parameters:
+        - name: stepId
+          in: query
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
+  /api/v1/media/{mediaId}:
+    get:
+      tags:
+        - Media
+      parameters:
+        - name: mediaId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepMediaDto"
+  /api/v1/webhooks/video-updates:
+    post:
+      tags:
+        - VideoProcessing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VideoStatusDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/VideoStatusDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/VideoStatusDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+  /api/v1/video-jobs:
+    post:
+      tags:
+        - VideoProcessing
+      responses:
+        "200":
+          description: OK
+  /api/v1/journeys/{id}:
+    get:
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/JourneyInDetailDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JourneyInDetailDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/JourneyInDetailDto"
+    put:
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJourneyDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJourneyDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/UpdateJourneyDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+    delete:
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+  /api/v1/journeys:
+    post:
+      tags:
+        - Journeys
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JourneyCreatingDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/JourneyCreatingDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/JourneyCreatingDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepDetailDto"
+  /api/v1/journeys/{id}/close:
+    post:
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: finalStepId
+          in: query
+          schema:
+            type: string
+            format: uuid
+            default: null
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+  /api/v1/journeys/{id}/reopen:
+    post:
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/JourneyDto2"
+  /api/v1/journeys/{journeyId}/steps-detail:
+    get:
+      tags:
+        - Journeys
+      parameters:
+        - name: journeyId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+  /api/v1/journeys/{journeyId}/steps:
+    get:
+      tags:
+        - Journeys
+      parameters:
+        - name: journeyId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+  /api/v1/journeys/{journeyId}/calendar:
+    get:
+      tags:
+        - Journeys
+      parameters:
+        - name: journeyId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/JourneyDayCalendarDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/JourneyDayCalendarDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/JourneyDayCalendarDto"
+  /api/v1/journeys/newer-steps/{stepId}:
+    get:
+      tags:
+        - Journeys
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+  /api/v1/journeys/older-steps/{stepId}:
+    get:
+      tags:
+        - Journeys
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepDetailDto"
+  /api/v1/steps/{stepId}/hearts:
+    post:
+      tags:
+        - Interactions
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepInteractionDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepInteractionDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CreateStepInteractionDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+    delete:
+      tags:
+        - Interactions
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+  /api/v1/steps/{stepId}/shares:
+    post:
+      tags:
+        - Interactions
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepInteractionDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepInteractionDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CreateStepInteractionDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+  /api/v1/steps/{stepId}/interactions:
+    get:
+      tags:
+        - Interactions
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/InteractionResultDto"
+  /api/v1/steps/comments/{commentId}/hearts:
+    post:
+      tags:
+        - Interactions
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCommentInteractionDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CreateCommentInteractionDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CreateCommentInteractionDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+    delete:
+      tags:
+        - Interactions
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+  /api/v1/followings/{userId}/followers:
+    get:
+      tags:
+        - Followings
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+  /api/v1/followings/{userId}/followings:
+    get:
+      tags:
+        - Followings
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+  /api/v1/followings/{userId}/followers/count:
+    get:
+      tags:
+        - Followings
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+  /api/v1/followings/{userId}/followings/count:
+    get:
+      tags:
+        - Followings
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+                format: int32
+            application/json:
+              schema:
+                type: integer
+                format: int32
+            text/json:
+              schema:
+                type: integer
+                format: int32
+  /api/v1/followings/follow:
+    post:
+      tags:
+        - Followings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FollowRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/FollowRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/FollowRequestDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+  /api/v1/followings/unfollow:
+    delete:
+      tags:
+        - Followings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FollowRequestDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/FollowRequestDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/FollowRequestDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+  /api/v1/followings/{userId}/reject:
+    post:
+      tags:
+        - Followings
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/FollowingResultDto"
+  /api/v1/followings/me/followers:
+    get:
+      tags:
+        - Followings
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+  /api/v1/followings/me/followings:
+    get:
+      tags:
+        - Followings
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDetailDto"
+  /api/v1/followings/status/{userId}:
+    get:
+      tags:
+        - Followings
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/FollowingStatusDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FollowingStatusDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/FollowingStatusDto"
+  /api/v1/comments/{commentId}:
+    delete:
+      tags:
+        - Comments
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+  /api/v1/comments/{parentCommentId}/replies:
+    post:
+      tags:
+        - Comments
+      parameters:
+        - name: parentCommentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateReplyCommentDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CreateReplyCommentDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CreateReplyCommentDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/ReplyDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReplyDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/ReplyDto"
+  /api/v1/comments/{commentId}/replies:
+    get:
+      tags:
+        - Comments
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReplyDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReplyDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ReplyDto"
+  /api/v1/steps/{stepId}/comments:
+    get:
+      tags:
+        - StepComments
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepCommentDto"
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepCommentDto"
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StepCommentDto"
+    post:
+      tags:
+        - StepComments
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepCommentDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/CreateStepCommentDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/CreateStepCommentDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/StepCommentDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StepCommentDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/StepCommentDto"
+components:
+  schemas:
+    AccountDto:
+      required:
+        - id
+        - profile
+      type: object
+      properties:
+        id:
+          type: string
+        profile:
+          $ref: "#/components/schemas/ProfileDto"
+    BulkNotificationDto:
+      required:
+        - title
+        - body
+        - notificationType
+        - userIds
+      type: object
+      properties:
+        title:
+          maxLength: 100
+          type: string
+        body:
+          maxLength: 500
+          type: string
+        notificationType:
+          $ref: "#/components/schemas/NotificationType"
+        userIds:
+          minItems: 1
+          type: array
+          items:
+            type: string
+        relatedEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+    CreateCommentInteractionDto:
+      type: object
+      properties:
+        type:
+          $ref: "#/components/schemas/InteractionType"
+    CreateReplyCommentDto:
+      required:
+        - content
+      type: object
+      properties:
+        content:
+          maxLength: 500
+          type: string
+        responseToUserId:
+          type: string
+          nullable: true
+        responseToCommentId:
+          type: string
+          format: uuid
+          nullable: true
+    CreateStepCommentDto:
+      required:
+        - content
+      type: object
+      properties:
+        content:
+          maxLength: 500
+          type: string
+    CreateStepDto:
+      required:
+        - content
+        - journeyId
+      type: object
+      properties:
+        content:
+          maxLength: 1000
+          type: string
+        journeyId:
+          type: string
+          format: uuid
+    CreateStepInteractionDto:
+      type: object
+      properties:
+        type:
+          $ref: "#/components/schemas/InteractionType"
+    EditUserDto:
+      required:
+        - displayName
+        - username
+      type: object
+      properties:
+        displayName:
+          maxLength: 50
+          minLength: 1
+          type: string
+        username:
+          maxLength: 20
+          minLength: 1
+          type: string
+        description:
+          maxLength: 160
+          type: string
+        isPrivate:
+          type: boolean
+    FollowingResultDto:
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/FollowingStatusEnum"
+        message:
+          type: string
+          nullable: true
+    FollowingStatusDto:
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/FollowingStatusEnum"
+    FollowingStatusEnum:
+      type: integer
+    FollowRequestDto:
+      required:
+        - userId
+      type: object
+      properties:
+        userId:
+          type: string
+    ImageMetadataDto:
+      type: object
+      properties:
+        fileName:
+          type: string
+        fileUrl:
+          type: string
+        width:
+          type: integer
+          format: int32
+        height:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int64
+          nullable: true
+        contentType:
+          type: string
+    ImagePresignedUrlDto:
+      type: object
+      properties:
+        uploadUrl:
+          type: string
+        fileUrl:
+          type: string
+        fileName:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+    InteractionResultDto:
+      type: object
+      properties:
+        isSteppedWith:
+          type: boolean
+        isLiked:
+          type: boolean
+        totalLikes:
+          type: integer
+          format: int32
+    InteractionType:
+      type: integer
+    JourneyCreatingDto:
+      required:
+        - title
+        - firstStepContent
+      type: object
+      properties:
+        title:
+          maxLength: 100
+          minLength: 1
+          pattern: ^(?!\s*$).+
+          type: string
+        description:
+          maxLength: 500
+          minLength: 0
+          type: string
+          nullable: true
+        firstStepContent:
+          maxLength: 1000
+          minLength: 1
+          pattern: ^(?!\s*$).+
+          type: string
+    JourneyDayCalendarDto:
+      required:
+        - lastStep
+        - date
+      type: object
+      properties:
+        lastStep:
+          $ref: "#/components/schemas/StepDto"
+        totalSteps:
+          type: integer
+          format: int32
+          default: 0
+        date:
+          type: string
+          format: date-time
+    JourneyDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+        completedDate:
+          type: string
+          format: date-time
+          nullable: true
+        userId:
+          type: string
+        firstStepId:
+          type: string
+          format: uuid
+          nullable: true
+        finalStepId:
+          type: string
+          format: uuid
+          nullable: true
+      nullable: true
+    JourneyDto2:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+        completedDate:
+          type: string
+          format: date-time
+          nullable: true
+        userId:
+          type: string
+        firstStepId:
+          type: string
+          format: uuid
+          nullable: true
+        finalStepId:
+          type: string
+          format: uuid
+          nullable: true
+    JourneyInDetailDto:
+      required:
+        - journey
+        - stepsCount
+        - lastStepDate
+      type: object
+      properties:
+        journey:
+          $ref: "#/components/schemas/JourneyDto2"
+        stepsCount:
+          type: integer
+          format: int32
+        lastStepDate:
+          type: string
+          format: date-time
+        stepperCount:
+          type: integer
+          format: int32
+        latestSteppers:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserDto"
+        starterCount:
+          type: integer
+          format: int32
+        latestStarters:
+          type: array
+          items: {}
+        companionCount:
+          type: integer
+          format: int32
+        latestCompanions:
+          type: array
+          items: {}
+        celebratorCount:
+          type: integer
+          format: int32
+        latestCelebrators:
+          type: array
+          items: {}
+    MediaStatus:
+      type: integer
+    NotificationDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        body:
+          type: string
+        notificationType:
+          $ref: "#/components/schemas/NotificationType"
+        isRead:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+        relatedEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        sourceUser:
+          $ref: "#/components/schemas/UserDetailDto2"
+    NotificationPagedDto:
+      type: object
+      properties:
+        notifications:
+          type: array
+          items:
+            $ref: "#/components/schemas/NotificationDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        unreadCount:
+          type: integer
+          format: int32
+        hasMore:
+          type: boolean
+    NotificationType:
+      type: integer
+    ProfileDto:
+      required:
+        - userDetail
+      type: object
+      properties:
+        userDetail:
+          $ref: "#/components/schemas/UserDetailDto"
+        badgesCount:
+          type: integer
+          format: int32
+        badgesUsers:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserDto"
+        supportersCount:
+          type: integer
+          format: int32
+        supportersUsers:
+          type: array
+          items: {}
+        followersCount:
+          type: integer
+          format: int32
+        followingsCount:
+          type: integer
+          format: int32
+    ReplyDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        content:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+          nullable: true
+        deletedDate:
+          type: string
+          format: date-time
+          nullable: true
+        user:
+          $ref: "#/components/schemas/UserDto"
+        parentCommentId:
+          type: string
+          format: uuid
+        responseToUser:
+          $ref: "#/components/schemas/UserDto2"
+        responseToCommentId:
+          type: string
+          format: uuid
+          nullable: true
+        heartCount:
+          type: integer
+          format: int32
+        heartedByUser:
+          type: boolean
+    ReportCreatingDto:
+      required:
+        - entityType
+        - entityId
+        - reason
+      type: object
+      properties:
+        entityType:
+          type: string
+        entityId:
+          type: string
+        reason:
+          maxLength: 500
+          type: string
+    ReportDto:
+      required:
+        - entityType
+        - reason
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        entityType:
+          type: string
+        entityId:
+          type: string
+        reporter:
+          $ref: "#/components/schemas/UserDto2"
+        reason:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+    SendNotificationDto:
+      required:
+        - title
+        - body
+        - notificationType
+      type: object
+      properties:
+        title:
+          maxLength: 100
+          type: string
+        body:
+          maxLength: 500
+          type: string
+        notificationType:
+          $ref: "#/components/schemas/NotificationType"
+        targetUserId:
+          type: string
+          nullable: true
+        relatedEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        scheduledFor:
+          type: string
+          format: date-time
+          nullable: true
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+    StepCommentDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+          nullable: true
+        deletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        user:
+          $ref: "#/components/schemas/UserDto"
+        stepId:
+          type: string
+          format: uuid
+        heartCount:
+          type: integer
+          format: int32
+        heartedByUser:
+          type: boolean
+        replyCount:
+          type: integer
+          format: int32
+    StepDetailDto:
+      required:
+        - id
+        - user
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        content:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        userId:
+          type: string
+        user:
+          $ref: "#/components/schemas/UserDto"
+        journeyId:
+          type: string
+          format: uuid
+        journey:
+          $ref: "#/components/schemas/JourneyDto"
+        hearts:
+          type: integer
+          format: int32
+        heartedByUser:
+          type: boolean
+        shares:
+          type: integer
+          format: int32
+        sharedByUser:
+          type: boolean
+        comments:
+          type: integer
+          format: int32
+        commentedByUser:
+          type: boolean
+        userSteppedWithInteractions:
+          type: integer
+          format: int32
+        othersStepWith:
+          type: integer
+          format: int32
+        othersStepWithUsers:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserDto"
+        stepTypeString:
+          type: string
+          nullable: true
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/StepMediaDto"
+    StepDto:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        content:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        userId:
+          type: string
+        journeyId:
+          type: string
+          format: uuid
+        media:
+          $ref: "#/components/schemas/StepMediaDto2"
+    StepMediaDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        stepId:
+          type: string
+          format: uuid
+        mediaType:
+          type: string
+        originalUrl:
+          type: string
+        largeUrl:
+          type: string
+          nullable: true
+        mediumUrl:
+          type: string
+          nullable: true
+        smallUrl:
+          type: string
+          nullable: true
+        thumbnailUrl:
+          type: string
+          nullable: true
+        videoThumbnailUrl:
+          type: string
+          nullable: true
+        bunnyVideoId:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+          nullable: true
+        height:
+          type: integer
+          format: int32
+          nullable: true
+        size:
+          type: integer
+          format: int64
+          nullable: true
+        duration:
+          type: number
+          format: double
+          nullable: true
+        status:
+          $ref: "#/components/schemas/MediaStatus"
+        isVideo:
+          type: boolean
+        isImage:
+          type: boolean
+    StepMediaDto2:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        stepId:
+          type: string
+          format: uuid
+        mediaType:
+          type: string
+        originalUrl:
+          type: string
+        largeUrl:
+          type: string
+          nullable: true
+        mediumUrl:
+          type: string
+          nullable: true
+        smallUrl:
+          type: string
+          nullable: true
+        thumbnailUrl:
+          type: string
+          nullable: true
+        videoThumbnailUrl:
+          type: string
+          nullable: true
+        bunnyVideoId:
+          type: string
+          nullable: true
+        width:
+          type: integer
+          format: int32
+          nullable: true
+        height:
+          type: integer
+          format: int32
+          nullable: true
+        size:
+          type: integer
+          format: int64
+          nullable: true
+        duration:
+          type: number
+          format: double
+          nullable: true
+        status:
+          $ref: "#/components/schemas/MediaStatus"
+        isVideo:
+          type: boolean
+        isImage:
+          type: boolean
+      nullable: true
+    UpdateJourneyDto:
+      required:
+        - title
+      type: object
+      properties:
+        title:
+          maxLength: 255
+          minLength: 1
+          pattern: ^(?!\s*$).+
+          type: string
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          nullable: true
+    UpdateStepDto:
+      required:
+        - content
+      type: object
+      properties:
+        content:
+          maxLength: 1000
+          type: string
+    UserDetailDto:
+      required:
+        - user
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/UserDto"
+        followingStatus:
+          $ref: "#/components/schemas/FollowingStatusEnum"
+    UserDetailDto2:
+      required:
+        - user
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/UserDto"
+        followingStatus:
+          $ref: "#/components/schemas/FollowingStatusEnum"
+      nullable: true
+    UserDto:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        username:
+          type: string
+        description:
+          type: string
+        profilePictureUrl:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        age:
+          type: integer
+          format: int32
+          nullable: true
+        isPrivate:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    UserDto2:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        username:
+          type: string
+        description:
+          type: string
+        profilePictureUrl:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        age:
+          type: integer
+          format: int32
+          nullable: true
+        isPrivate:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+      nullable: true
+    VideoPreSignedUrlDto:
+      type: object
+      properties:
+        authorizationSignature:
+          type: string
+        authorizationExpire:
+          type: integer
+          format: int64
+        videoGuid:
+          type: string
+          format: uuid
+        libraryId:
+          type: integer
+          format: int32
+        title:
+          type: string
+        collectionId:
+          type: string
+        media:
+          $ref: "#/components/schemas/StepMediaDto"
+    VideoStatusDto:
+      type: object
+      properties:
+        videoLibraryId:
+          type: integer
+          format: int32
+        videoGuid:
+          type: string
+          format: uuid
+        status:
+          type: integer
+          format: int32
+tags:
+  - name: Account
+  - name: Users
+  - name: Steps
+  - name: Reports
+  - name: Notifications
+  - name: Media
+  - name: VideoProcessing
+  - name: Journeys
+  - name: Interactions
+  - name: Followings
+  - name: Comments
+  - name: StepComments
