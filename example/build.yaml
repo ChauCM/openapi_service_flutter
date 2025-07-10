@@ -1,5 +1,5 @@
 targets:
   $default:
     builders:
-      openapi_service_flutter:
+      openapi_service_flutter:openapi_service_flutter:
         enabled: true

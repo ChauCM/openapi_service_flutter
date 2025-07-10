@@ -1,32 +1,25 @@
-import 'package:openapi_service_flutter/openapi_service_builder.dart';
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
 
 /// Test utilities for OpenApiServiceBuilder tests
 class TestUtils {
   /// Creates a default OpenApiServiceBuilder instance for testing
   static OpenApiServiceBuilder createDefaultBuilder() {
     return OpenApiServiceBuilder(
-      useNullSafetySyntax: true,
       orderDirectives: true,
       generateProvider: false,
-      providerNamePrefix: '',
-      ignoreSecuritySchemes: false,
     );
   }
 
   /// Creates a builder with custom configuration
   static OpenApiServiceBuilder createCustomBuilder({
-    bool useNullSafetySyntax = true,
     bool orderDirectives = true,
     bool generateProvider = false,
     String providerNamePrefix = '',
     bool ignoreSecuritySchemes = false,
   }) {
     return OpenApiServiceBuilder(
-      useNullSafetySyntax: useNullSafetySyntax,
       orderDirectives: orderDirectives,
       generateProvider: generateProvider,
-      providerNamePrefix: providerNamePrefix,
-      ignoreSecuritySchemes: ignoreSecuritySchemes,
     );
   }
 

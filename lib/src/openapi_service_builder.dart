@@ -25,11 +25,7 @@ class OpenApiLibraryGenerator {
     required this.baseName,
     required this.partFileName,
     this.freezedPartFileName = '',
-    this.useNullSafetySyntax = false,
     this.apiMethodsWithRequest = false,
-    this.generateProvider = false,
-    this.providerNamePrefix = '',
-    this.ignoreSecuritySchemes = false,
   });
 
   final APIDocument api;
@@ -38,11 +34,7 @@ class OpenApiLibraryGenerator {
   final String baseName;
   final String freezedPartFileName;
   final String partFileName;
-  final bool useNullSafetySyntax;
   final bool apiMethodsWithRequest;
-  final bool generateProvider;
-  final String providerNamePrefix;
-  final bool ignoreSecuritySchemes;
 
   final jsonValue = refer('JsonValue');
   final jsonKey = refer('JsonKey');
@@ -1181,12 +1173,11 @@ class OpenApiServiceBuilderUtils {
     return api;
   }
 
-  static String formatLibrary(Library library,
-      {bool orderDirectives = false, required bool useNullSafetySyntax}) {
+  static String formatLibrary(Library library, {bool orderDirectives = false}) {
     final emitter = DartEmitter(
       allocator: CustomAllocator(),
       orderDirectives: orderDirectives,
-      useNullSafetySyntax: useNullSafetySyntax,
+      useNullSafetySyntax: true,
     );
     final libraryOutput = DartFormatter(
       languageVersion: Version(3, 2, 0),
@@ -1201,17 +1192,11 @@ class OpenApiServiceBuilderUtils {
 class OpenApiServiceBuilder extends Builder {
   OpenApiServiceBuilder({
     this.orderDirectives = false,
-    required this.useNullSafetySyntax,
     this.generateProvider = false,
-    this.providerNamePrefix = '',
-    this.ignoreSecuritySchemes = false,
   });
 
   final bool generateProvider;
   final bool orderDirectives;
-  final bool useNullSafetySyntax;
-  final String providerNamePrefix;
-  final bool ignoreSecuritySchemes;
 
   @override
   FutureOr<void> build(BuildStep buildStep) async {
@@ -1237,10 +1222,6 @@ class OpenApiServiceBuilder extends Builder {
         partFileName: inputId.changeExtension('.dtos.g.dart').pathSegments.last,
         freezedPartFileName:
             inputId.changeExtension('.dtos.freezed.dart').pathSegments.last,
-        useNullSafetySyntax: useNullSafetySyntax,
-        generateProvider: generateProvider,
-        providerNamePrefix: providerNamePrefix,
-        ignoreSecuritySchemes: ignoreSecuritySchemes,
       );
 
       final serviceGenerator = OpenApiLibraryGenerator(
@@ -1250,10 +1231,6 @@ class OpenApiServiceBuilder extends Builder {
             inputId.changeExtension('.service.g.dart').pathSegments.last,
         freezedPartFileName:
             inputId.changeExtension('.service.freezed.dart').pathSegments.last,
-        useNullSafetySyntax: useNullSafetySyntax,
-        generateProvider: generateProvider,
-        providerNamePrefix: providerNamePrefix,
-        ignoreSecuritySchemes: ignoreSecuritySchemes,
       );
 
       // Generate DTOs library
@@ -1261,7 +1238,6 @@ class OpenApiServiceBuilder extends Builder {
       final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
         dtosLibrary,
         orderDirectives: true,
-        useNullSafetySyntax: useNullSafetySyntax,
       );
       final dtosOutputId = inputId.changeExtension('.dtos.dart');
       await buildStep.writeAsString(dtosOutputId, dtosOutput);
@@ -1272,7 +1248,6 @@ class OpenApiServiceBuilder extends Builder {
       final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
         serviceLibrary,
         orderDirectives: true,
-        useNullSafetySyntax: useNullSafetySyntax,
       );
       final serviceOutputId = inputId.changeExtension('.service.dart');
       await buildStep.writeAsString(serviceOutputId, serviceOutput);
@@ -1335,11 +1310,7 @@ extension on ListBuilder<String> {
 
 extension on ParameterBuilder {
   void asRequired(OpenApiLibraryGenerator generator, [bool isRequired = true]) {
-    if (generator.useNullSafetySyntax) {
-      required = isRequired;
-    } else if (isRequired) {
-      annotations.add(generator._required);
-    }
+    required = isRequired;
   }
 }
 
