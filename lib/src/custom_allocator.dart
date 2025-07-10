@@ -8,7 +8,7 @@ class CustomAllocator implements Allocator {
     'package:json_annotation/json_annotation.dart',
     'package:freezed_annotation/freezed_annotation.dart',
     'package:dio/dio.dart',
-    'package:dartz/dartz.dart',
+    'package:either_dart/either.dart',
   ];
 
   final _imports = <String, int>{};

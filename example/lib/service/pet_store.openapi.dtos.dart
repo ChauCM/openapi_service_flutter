@@ -2,8 +2,8 @@
 
 // ignore_for_file: unused_element, unnecessary_import, unused_import
 
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'pet_store.openapi.dtos.freezed.dart';
