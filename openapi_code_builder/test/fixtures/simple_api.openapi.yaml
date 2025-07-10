@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Simple API
+  x-dart-name: SimpleApi
+
+paths:
+  /hello:
+    get:
+      summary: Get hello message
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+
+components:
+  schemas:
+    SimpleResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
