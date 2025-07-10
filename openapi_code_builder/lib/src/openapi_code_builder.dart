@@ -123,8 +123,9 @@ class OpenApiLibraryGenerator {
     lb.body.add(_generateApiErrorModel());
 
     // Generate freezed DTOs for schemas
-    if (api.components?.schemas != null) {
-      for (final schemaEntry in api.components!.schemas!.entries) {
+    final components = api.components;
+    if (components?.schemas != null) {
+      for (final schemaEntry in components!.schemas!.entries) {
         _schemaReference(schemaEntry.key, schemaEntry.value!);
       }
     }
@@ -149,45 +150,48 @@ class OpenApiLibraryGenerator {
     final usedSchemas = <String>{};
 
     // First pass: collect all schema references from endpoints
-    for (final path in api.paths!.entries) {
-      for (final operation in path.value!.operations.entries) {
-        // Check response schemas
-        for (final response in operation.value!.responses!.entries) {
-          if (response.value?.content != null) {
-            for (final content in response.value!.content!.values) {
+    if (api.paths != null) {
+      for (final path in api.paths!.entries) {
+        for (final operation in path.value!.operations.entries) {
+          // Check response schemas
+          for (final response in operation.value!.responses!.entries) {
+            if (response.value?.content != null) {
+              for (final content in response.value!.content!.values) {
+                if (content?.schema != null) {
+                  collectSchemaReferences(content!.schema!, usedSchemas);
+                }
+              }
+            }
+          }
+
+          // Check request body schemas
+          final body = operation.value!.requestBody;
+          if (body?.content != null) {
+            for (final content in body!.content!.values) {
               if (content?.schema != null) {
                 collectSchemaReferences(content!.schema!, usedSchemas);
               }
             }
           }
-        }
 
-        // Check request body schemas
-        final body = operation.value!.requestBody;
-        if (body?.content != null) {
-          for (final content in body!.content!.values) {
-            if (content?.schema != null) {
-              collectSchemaReferences(content!.schema!, usedSchemas);
+          // Check parameter schemas
+          final allParameters = [
+            ...?path.value!.parameters,
+            ...?operation.value!.parameters
+          ];
+          for (final param in allParameters) {
+            if (param?.schema != null) {
+              collectSchemaReferences(param!.schema!, usedSchemas);
             }
-          }
-        }
-
-        // Check parameter schemas
-        final allParameters = [
-          ...?path.value!.parameters,
-          ...?operation.value!.parameters
-        ];
-        for (final param in allParameters) {
-          if (param?.schema != null) {
-            collectSchemaReferences(param!.schema!, usedSchemas);
           }
         }
       }
     }
 
     // Generate DTOs only for used schemas (either used directly by endpoints or enums)
-    if (api.components?.schemas != null) {
-      for (final schemaEntry in api.components!.schemas!.entries) {
+    final components = api.components;
+    if (components?.schemas != null) {
+      for (final schemaEntry in components!.schemas!.entries) {
         final schema = schemaEntry.value!;
         final isUsed = usedSchemas.contains(schemaEntry.key);
         final isEnum = schema.enumerated?.isNotEmpty == true;
@@ -201,63 +205,70 @@ class OpenApiLibraryGenerator {
     }
 
     // Generate DTOs from API operations (responses, parameters, and request bodies)
-    for (final path in api.paths!.entries) {
-      for (final operation in path.value!.operations.entries) {
-        final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
-        final operationName = operation.value!.id?.camelCase ??
-            '$pathName${operation.key.pascalCase}';
+    if (api.paths != null) {
+      for (final path in api.paths!.entries) {
+        for (final operation in path.value!.operations.entries) {
+          final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
+          final operationName = operation.value!.id?.camelCase ??
+              '$pathName${operation.key.pascalCase}';
 
-        // Generate response DTOs (only for non-trivial schemas)
-        final successResponse = operation.value!.responses!.entries.firstWhere(
-            (e) => e.key.startsWith('2'),
-            orElse: () => MapEntry(
-                '200', operation.value!.responses!.entries.first.value));
+          // Generate response DTOs (only for non-trivial schemas)
+          final successResponse = operation.value!.responses!.entries
+              .where((e) => e.key.startsWith('2'))
+              .firstOrNull;
 
-        if (successResponse.value?.content != null &&
-            successResponse.value!.content!.isNotEmpty) {
-          final content = successResponse.value!.content!.values.first;
-          if (content?.schema != null) {
-            final schema = content!.schema!;
-            // Only generate response DTOs for complex schemas with actual properties
-            if (shouldGenerateDto(schema)) {
-              final responseTypeName = '${operationName}Response';
-              _generateSchemaIntoLibrary(dtosLb, responseTypeName, schema);
+          if (successResponse?.value?.content != null &&
+              successResponse!.value!.content!.isNotEmpty) {
+            final content = successResponse.value!.content!.values.first;
+            if (content?.schema != null) {
+              final schema = content!.schema!;
+              // Only generate response DTOs for complex schemas with actual properties
+              if (shouldGenerateDto(schema)) {
+                final responseBaseName = '${operationName.pascalCase}Response';
+                final responseTypeName = responseBaseName.endsWith('Dto')
+                    ? responseBaseName
+                    : '${responseBaseName}Dto';
+                _generateSchemaIntoLibrary(dtosLb, responseTypeName, schema);
+              }
             }
           }
-        }
 
-        // Generate parameter DTOs for enums
-        final allParameters = [
-          ...?path.value!.parameters,
-          ...?operation.value!.parameters
-        ];
-        for (final param in allParameters) {
-          // Handle direct enum parameters
-          if (param!.schema?.enumerated != null &&
-              param.schema!.enumerated!.isNotEmpty) {
-            final paramTypeName = '$operationName${param.name!.pascalCase}';
-            _generateSchemaIntoLibrary(dtosLb, paramTypeName, param.schema!);
+          // Generate parameter DTOs for enums
+          final allParameters = [
+            ...?path.value!.parameters,
+            ...?operation.value!.parameters
+          ];
+          for (final param in allParameters) {
+            // Handle direct enum parameters
+            if (param!.schema?.enumerated != null &&
+                param.schema!.enumerated!.isNotEmpty) {
+              final paramTypeName = '$operationName${param.name!.pascalCase}';
+              _generateSchemaIntoLibrary(dtosLb, paramTypeName, param.schema!);
+            }
+            // Handle array parameters with enum items
+            else if (param.schema?.type == APIType.array &&
+                param.schema!.items?.enumerated != null &&
+                param.schema!.items!.enumerated!.isNotEmpty) {
+              final paramTypeName = '$operationName${param.name!.pascalCase}';
+              _generateSchemaIntoLibrary(
+                  dtosLb, paramTypeName, param.schema!.items!);
+            }
           }
-          // Handle array parameters with enum items
-          else if (param.schema?.type == APIType.array &&
-              param.schema!.items?.enumerated != null &&
-              param.schema!.items!.enumerated!.isNotEmpty) {
-            final paramTypeName = '$operationName${param.name!.pascalCase}';
-            _generateSchemaIntoLibrary(
-                dtosLb, paramTypeName, param.schema!.items!);
-          }
-        }
 
-        // Generate request body DTOs (only for non-trivial schemas)
-        final body = operation.value!.requestBody;
-        if (body != null && body.content!.isNotEmpty) {
-          final content = body.content!.values.first;
-          if (content?.schema != null) {
-            final schema = content!.schema!;
-            // Only generate request DTOs for complex schemas with actual properties
-            if (shouldGenerateDto(schema)) {
-              final requestTypeName = '${operationName}Request';
-              _generateSchemaIntoLibrary(dtosLb, requestTypeName, schema);
+          // Generate request body DTOs (only for non-trivial schemas)
+          final body = operation.value!.requestBody;
+          if (body != null && body.content!.isNotEmpty) {
+            final content = body.content!.values.first;
+            if (content?.schema != null) {
+              final schema = content!.schema!;
+              // Only generate request DTOs for complex schemas with actual properties
+              if (shouldGenerateDto(schema)) {
+                final requestBaseName = '${operationName.pascalCase}Request';
+                final requestTypeName = requestBaseName.endsWith('Dto')
+                    ? requestBaseName
+                    : '${requestBaseName}Dto';
+                _generateSchemaIntoLibrary(dtosLb, requestTypeName, schema);
+              }
             }
           }
         }
@@ -268,7 +279,16 @@ class OpenApiLibraryGenerator {
   }
 
   void collectSchemaReferences(
-      APISchemaObject schema, Set<String> usedSchemas) {
+      APISchemaObject schema, Set<String> usedSchemas, [Set<APISchemaObject>? visitedSchemas]) {
+    // Initialize visited schemas set if not provided
+    visitedSchemas ??= <APISchemaObject>{};
+    
+    // Check if we've already visited this schema to prevent infinite recursion
+    if (visitedSchemas.contains(schema)) {
+      return;
+    }
+    visitedSchemas.add(schema);
+    
     // Add reference if this schema points to a component
     final uri = schema.referenceURI;
     if (uri != null) {
@@ -283,34 +303,34 @@ class OpenApiLibraryGenerator {
     // Recursively check nested schemas
     if (schema.properties != null) {
       for (final prop in schema.properties!.values) {
-        collectSchemaReferences(prop!, usedSchemas);
+        collectSchemaReferences(prop!, usedSchemas, visitedSchemas);
       }
     }
 
     if (schema.items != null) {
-      collectSchemaReferences(schema.items!, usedSchemas);
+      collectSchemaReferences(schema.items!, usedSchemas, visitedSchemas);
     }
 
     if (schema.allOf != null) {
       for (final subSchema in schema.allOf!) {
-        collectSchemaReferences(subSchema!, usedSchemas);
+        collectSchemaReferences(subSchema!, usedSchemas, visitedSchemas);
       }
     }
 
     if (schema.oneOf != null) {
       for (final subSchema in schema.oneOf!) {
-        collectSchemaReferences(subSchema!, usedSchemas);
+        collectSchemaReferences(subSchema!, usedSchemas, visitedSchemas);
       }
     }
 
     if (schema.anyOf != null) {
       for (final subSchema in schema.anyOf!) {
-        collectSchemaReferences(subSchema!, usedSchemas);
+        collectSchemaReferences(subSchema!, usedSchemas, visitedSchemas);
       }
     }
 
     if (schema.additionalPropertySchema != null) {
-      collectSchemaReferences(schema.additionalPropertySchema!, usedSchemas);
+      collectSchemaReferences(schema.additionalPropertySchema!, usedSchemas, visitedSchemas);
     }
   }
 
@@ -373,7 +393,10 @@ class OpenApiLibraryGenerator {
           final propSchema = propEntry.value!;
           if (propSchema.enumerated != null &&
               propSchema.enumerated!.isNotEmpty) {
-            final enumName = '$componentName${propEntry.key.pascalCase}Dto';
+            final enumBaseName = '$componentName${propEntry.key.pascalCase}';
+            final enumName = enumBaseName.endsWith('Dto')
+                ? enumBaseName
+                : '${enumBaseName}Dto';
             final enumSpec = EnumSpec(
               name: enumName,
               values: propSchema.enumerated!
@@ -451,44 +474,48 @@ class OpenApiLibraryGenerator {
       ..modifier = FieldModifier.final$));
 
     // Generate service methods for each API operation
-    for (final path in api.paths!.entries) {
-      for (final operation in path.value!.operations.entries) {
-        final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
-        final operationName = operation.value!.id?.camelCase ??
-            '$pathName${operation.key.pascalCase}';
+    if (api.paths != null) {
+      for (final path in api.paths!.entries) {
+        for (final operation in path.value!.operations.entries) {
+          final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
+          final operationName = operation.value!.id?.camelCase ??
+              '$pathName${operation.key.pascalCase}';
 
-        // Determine response DTO type
-        Reference? successResponseType;
-        final successResponse = operation.value!.responses!.entries.firstWhere(
-            (e) => e.key.startsWith('2'),
-            orElse: () => MapEntry(
-                '200', operation.value!.responses!.entries.first.value));
+          // Determine response DTO type
+          Reference? successResponseType;
+          final successResponse = operation.value!.responses!.entries
+              .where((e) => e.key.startsWith('2'))
+              .firstOrNull;
 
-        if (successResponse.value?.content != null &&
-            successResponse.value!.content!.isNotEmpty) {
-          final content = successResponse.value!.content!.values.first;
-          if (content?.schema != null) {
-            final schema = content!.schema!;
-            // Only use specific DTO type if we generated one for this schema
-            if (shouldGenerateDto(schema)) {
-              successResponseType =
-                  refer('${operationName.pascalCase}ResponseDto');
-            } else {
-              successResponseType =
-                  toDartType('${operationName}Response', schema);
+          if (successResponse?.value?.content != null &&
+              successResponse!.value!.content!.isNotEmpty) {
+            final content = successResponse.value!.content!.values.first;
+            if (content?.schema != null) {
+              final schema = content!.schema!;
+              // Only use specific DTO type if we generated one for this schema
+              if (shouldGenerateDto(schema)) {
+                final responseBaseName = '${operationName.pascalCase}Response';
+                final responseTypeName = responseBaseName.endsWith('Dto')
+                    ? responseBaseName
+                    : '${responseBaseName}Dto';
+                successResponseType = refer(responseTypeName);
+              } else {
+                successResponseType =
+                    toDartType('${operationName}Response', schema);
+              }
             }
           }
-        }
 
-        // Generate method
-        final method = _generateServiceMethod(
-          operationName,
-          operation.key,
-          path.key,
-          operation.value!,
-          successResponseType ?? _void,
-        );
-        serviceClass.methods.add(method);
+          // Generate method
+          final method = _generateServiceMethod(
+            operationName,
+            operation.key,
+            path.key,
+            operation.value!,
+            successResponseType ?? _void,
+          );
+          serviceClass.methods.add(method);
+        }
       }
     }
 
@@ -572,14 +599,21 @@ class OpenApiLibraryGenerator {
       // Use correct parameter DTO naming for enums
       if (param!.schema?.enumerated != null &&
           param.schema!.enumerated!.isNotEmpty) {
-        paramType =
-            refer('${operationName.pascalCase}${param.name!.pascalCase}Dto');
+        final paramBaseName =
+            '${operationName.pascalCase}${param.name!.pascalCase}';
+        final paramTypeName = paramBaseName.endsWith('Dto')
+            ? paramBaseName
+            : '${paramBaseName}Dto';
+        paramType = refer(paramTypeName);
       } else if (param.schema?.type == APIType.array &&
           param.schema!.items?.enumerated != null &&
           param.schema!.items!.enumerated!.isNotEmpty) {
-        paramType = _referType('List', generics: [
-          refer('${operationName.pascalCase}${param.name!.pascalCase}Dto')
-        ]);
+        final paramBaseName =
+            '${operationName.pascalCase}${param.name!.pascalCase}';
+        final paramTypeName = paramBaseName.endsWith('Dto')
+            ? paramBaseName
+            : '${paramBaseName}Dto';
+        paramType = _referType('List', generics: [refer(paramTypeName)]);
       } else {
         paramType = toDartType(operationName, param.schema!);
       }
@@ -601,7 +635,11 @@ class OpenApiLibraryGenerator {
         Reference bodyType;
         // Only use specific DTO type if we generated one for this schema
         if (shouldGenerateDto(schema)) {
-          bodyType = refer('${operationName.pascalCase}RequestDto');
+          final requestBaseName = '${operationName.pascalCase}Request';
+          final requestTypeName = requestBaseName.endsWith('Dto')
+              ? requestBaseName
+              : '${requestBaseName}Dto';
+          bodyType = refer(requestTypeName);
         } else {
           bodyType = toDartType('${operationName}Request', schema);
         }
@@ -643,13 +681,12 @@ class OpenApiLibraryGenerator {
       // Parse response
       if (returnType != _void) ...[
         ...() {
-          final successResponse = operation.responses!.entries.firstWhere(
-              (e) => e.key.startsWith('2'),
-              orElse: () =>
-                  MapEntry('200', operation.responses!.entries.first.value));
+          final successResponse = operation.responses!.entries
+              .where((e) => e.key.startsWith('2'))
+              .firstOrNull;
 
-          if (successResponse.value?.content != null &&
-              successResponse.value!.content!.isNotEmpty) {
+          if (successResponse?.value?.content != null &&
+              successResponse!.value!.content!.isNotEmpty) {
             final content = successResponse.value!.content!.values.first;
             if (content?.schema != null) {
               final schema = content!.schema!;
@@ -843,7 +880,12 @@ class OpenApiLibraryGenerator {
   }
 
   String classNameForComponent(String componentName) {
-    return '${componentName.pascalCase}Dto';
+    final pascalCaseName = componentName.pascalCase;
+    // Avoid double "Dto" suffix
+    if (pascalCaseName.endsWith('Dto')) {
+      return pascalCaseName;
+    }
+    return '${pascalCaseName}Dto';
   }
 
   String? _componentNameFromReferenceUri(Uri? referenceUri) {
@@ -1148,65 +1190,72 @@ class OpenApiCodeBuilder extends Builder {
 
   @override
   FutureOr<void> build(BuildStep buildStep) async {
-    final inputId = buildStep.inputId;
-    final source = await buildStep.readAsString(inputId);
-    checkArgument(inputId.pathSegments.last.endsWith('.openapi.yaml'));
-    final inputIdBasename =
-        inputId.pathSegments.last.replaceAll('.openapi.yaml', '');
-    OpenApiCodeBuilderUtils.loadApiFromYaml(source);
-    final api = OpenApiCodeBuilderUtils.loadApiFromYaml(source);
+    try {
+      final inputId = buildStep.inputId;
+      final source = await buildStep.readAsString(inputId);
+      checkArgument(inputId.pathSegments.last.endsWith('.openapi.yaml'));
+      final inputIdBasename =
+          inputId.pathSegments.last.replaceAll('.openapi.yaml', '');
+      OpenApiCodeBuilderUtils.loadApiFromYaml(source);
+      final api = OpenApiCodeBuilderUtils.loadApiFromYaml(source);
 
-    final baseName = api.info?.extensions?['x-dart-name'] as String? ??
-        inputIdBasename.pascalCase;
+      // Safe access to extensions with null checks
+      final extensions = api.info?.extensions;
+      final dartName = extensions != null ? extensions['x-dart-name'] as String? : null;
+      final baseName = dartName ?? inputIdBasename.pascalCase;
 
-    // Create separate generators for DTOs and Service with correct part file names
-    final dtosGenerator = OpenApiLibraryGenerator(
-      api,
-      baseName: baseName,
-      partFileName: inputId.changeExtension('.dtos.g.dart').pathSegments.last,
-      freezedPartFileName:
-          inputId.changeExtension('.dtos.freezed.dart').pathSegments.last,
-      useNullSafetySyntax: useNullSafetySyntax,
-      generateProvider: generateProvider,
-      providerNamePrefix: providerNamePrefix,
-      ignoreSecuritySchemes: ignoreSecuritySchemes,
-    );
+      // Create separate generators for DTOs and Service with correct part file names
+      final dtosGenerator = OpenApiLibraryGenerator(
+        api,
+        baseName: baseName,
+        partFileName: inputId.changeExtension('.dtos.g.dart').pathSegments.last,
+        freezedPartFileName:
+            inputId.changeExtension('.dtos.freezed.dart').pathSegments.last,
+        useNullSafetySyntax: useNullSafetySyntax,
+        generateProvider: generateProvider,
+        providerNamePrefix: providerNamePrefix,
+        ignoreSecuritySchemes: ignoreSecuritySchemes,
+      );
 
-    final serviceGenerator = OpenApiLibraryGenerator(
-      api,
-      baseName: baseName,
-      partFileName:
-          inputId.changeExtension('.service.g.dart').pathSegments.last,
-      freezedPartFileName:
-          inputId.changeExtension('.service.freezed.dart').pathSegments.last,
-      useNullSafetySyntax: useNullSafetySyntax,
-      generateProvider: generateProvider,
-      providerNamePrefix: providerNamePrefix,
-      ignoreSecuritySchemes: ignoreSecuritySchemes,
-    );
+      final serviceGenerator = OpenApiLibraryGenerator(
+        api,
+        baseName: baseName,
+        partFileName:
+            inputId.changeExtension('.service.g.dart').pathSegments.last,
+        freezedPartFileName:
+            inputId.changeExtension('.service.freezed.dart').pathSegments.last,
+        useNullSafetySyntax: useNullSafetySyntax,
+        generateProvider: generateProvider,
+        providerNamePrefix: providerNamePrefix,
+        ignoreSecuritySchemes: ignoreSecuritySchemes,
+      );
 
-    // Generate DTOs library
-    final dtosLibrary = dtosGenerator.generateDtosLibrary();
-    final dtosOutput = OpenApiCodeBuilderUtils.formatLibrary(
-      dtosLibrary,
-      orderDirectives: true,
-      useNullSafetySyntax: useNullSafetySyntax,
-    );
-    final dtosOutputId = inputId.changeExtension('.dtos.dart');
-    await buildStep.writeAsString(dtosOutputId, dtosOutput);
+      // Generate DTOs library
+      final dtosLibrary = dtosGenerator.generateDtosLibrary();
+      final dtosOutput = OpenApiCodeBuilderUtils.formatLibrary(
+        dtosLibrary,
+        orderDirectives: true,
+        useNullSafetySyntax: useNullSafetySyntax,
+      );
+      final dtosOutputId = inputId.changeExtension('.dtos.dart');
+      await buildStep.writeAsString(dtosOutputId, dtosOutput);
 
-    // Generate Service library
-    final serviceLibrary =
-        serviceGenerator.generateServiceLibrary(inputIdBasename);
-    final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
-      serviceLibrary,
-      orderDirectives: true,
-      useNullSafetySyntax: useNullSafetySyntax,
-    );
-    final serviceOutputId = inputId.changeExtension('.service.dart');
-    await buildStep.writeAsString(serviceOutputId, serviceOutput);
+      // Generate Service library
+      final serviceLibrary =
+          serviceGenerator.generateServiceLibrary(inputIdBasename);
+      final serviceOutput = OpenApiCodeBuilderUtils.formatLibrary(
+        serviceLibrary,
+        orderDirectives: true,
+        useNullSafetySyntax: useNullSafetySyntax,
+      );
+      final serviceOutputId = inputId.changeExtension('.service.dart');
+      await buildStep.writeAsString(serviceOutputId, serviceOutput);
 
-    // Don't generate the combined .openapi.dart file when splitting
+      // Don't generate the combined .openapi.dart file when splitting
+    } catch (e, stackTrace) {
+      _logger.severe('Error building OpenAPI code: $e', e, stackTrace);
+      rethrow;
+    }
   }
 
   @override

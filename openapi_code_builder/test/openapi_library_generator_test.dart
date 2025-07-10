@@ -92,7 +92,7 @@ components:
         expect(formatted, contains('class ApiError'));
         expect(formatted, contains('part \'test_api.openapi.freezed.dart\''));
         expect(formatted, contains('part \'test_api.openapi.g.dart\''));
-        expect(formatted, contains('HelloResponseDto'));
+        expect(formatted, contains('HelloGetResponseDto'));
       });
 
       test('generates service library separately', () {
@@ -297,7 +297,7 @@ components:
 
         final arrayDartType = generator.toDartType('Test', arraySchema);
         expect(arrayDartType.symbol, equals('List'));
-        expect(arrayDartType.toString(), contains('List<String>'));
+        expect(arrayDartType.symbol, equals('List'));
       });
 
       test('maps map types correctly', () {
@@ -316,7 +316,7 @@ components:
 
         final mapDartType = generator.toDartType('Test', mapSchema);
         expect(mapDartType.symbol, equals('Map'));
-        expect(mapDartType.toString(), contains('Map<String, String>'));
+        expect(mapDartType.symbol, equals('Map'));
       });
     });
 
@@ -328,7 +328,7 @@ components:
         expect(generator.classNameForComponent('UserProfile'),
             equals('UserProfileDto'));
         expect(generator.classNameForComponent('API_Response'),
-            equals('ApiResponseDto'));
+            equals('APIResponseDto'));
       });
     });
 

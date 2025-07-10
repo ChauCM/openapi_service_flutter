@@ -2,7 +2,7 @@ builders:
   openapi_code_builder:
     import: 'package:openapi_code_builder/openapi_code_builder.dart'
     builder_factories: ['openapiCodeBuilder']
-    build_extensions: {".openapi.yaml": [".openapi.dart"]}
+    build_extensions: {".openapi.yaml": [".openapi.dtos.dart", ".openapi.service.dart"]}
     auto_apply: dependents
 #    build_to: cache
     build_to: source

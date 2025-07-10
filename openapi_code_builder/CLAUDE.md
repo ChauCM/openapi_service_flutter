@@ -46,16 +46,14 @@ flutter run -d web-server --web-port 8080
 ### Code Generation Flow
 1. **Input**: OpenAPI 3.0 YAML files with `.openapi.yaml` extension in `lib/` folders
 2. **Processing**: `OpenApiLibraryGenerator` in `openapi_code_builder/src/` parses YAML and generates Dart code
-3. **Output**: When `generateServiceClasses: true` is configured, generates two separate files:
+3. **Output**: Generates two separate files:
    - `*.openapi.dtos.dart` - Data Transfer Objects with Freezed and JSON serialization
    - `*.openapi.service.dart` - Service classes with Dio HTTP client and functional error handling
 
 ### Key Components
 
 **OpenAPI Code Builder (`openapi_code_builder/`):**
-- `OpenApiLibraryGenerator` - Main code generation engine that supports two generation styles:
-  - Legacy style: Generates traditional client classes with response mapping
-  - Service style: Generates modern Dart client code using Dio, Freezed, and Dartz for error handling
+- `OpenApiLibraryGenerator` - Main code generation engine that generates modern Dart client code using Dio, Freezed, and Dartz for error handling
 - `CustomAllocator` - Manages code generation imports and references
 - `OpenApiCodeBuilder` - Builder class that integrates with `build_runner`
 - Uses `code_builder` package for AST generation and `dart_style` for formatting
@@ -66,8 +64,7 @@ flutter run -d web-server --web-port 8080
 - HTTP headers, content types, and UUID handling utilities
 
 **Generated Code Structure:**
-- **Legacy Style**: Single `.openapi.dart` file with client classes extending base client, response classes use sealed class pattern with `map()` methods
-- **Service Style** (Recommended): Dual-file generation with:
+- **Dual-file generation**:
   - **DTOs file**: Freezed-based immutable classes with `json_annotation` serialization, enum support, inheritance via `allOf`
   - **Service file**: Dio-based HTTP client with `Either<ApiError, T>` return types for functional error handling
 - **Smart DTO Generation**: Only generates DTOs for schemas actually used by endpoints, filters out empty/unused schemas automatically
@@ -79,15 +76,12 @@ flutter run -d web-server --web-port 8080
 - Integrates with `json_serializable` and `freezed` for data class generation
 - Runs before other code generators in the build pipeline (`runs_before: ['freezed|freezed', 'json_serializable|json_serializable']`)
 
-### Code Generation Modes
-The generator supports two architectural styles configured via `generateServiceClasses` flag:
-
-1. **Legacy Style** (default): Traditional OpenAPI client with response mapping
-2. **Service Style**: Modern Dart approach with:
-   - Dio for HTTP client
-   - Freezed for immutable DTOs
-   - Dartz Either for functional error handling
-   - ApiError model for structured error responses
+### Code Generation
+The generator uses a modern Dart approach with:
+- Dio for HTTP client
+- Freezed for immutable DTOs
+- Dartz Either for functional error handling
+- ApiError model for structured error responses
 
 ## Working with OpenAPI Specs
 
@@ -95,10 +89,9 @@ The generator supports two architectural styles configured via `generateServiceC
 Place OpenAPI specs in `lib/` folders with `.openapi.yaml` extension. 
 
 **File Generation:**
-- **Legacy mode**: Creates single `*.openapi.dart` file
-- **Service mode** (`generateServiceClasses: true`): Creates two files:
-  - `*.openapi.dtos.dart` - Data Transfer Objects
-  - `*.openapi.service.dart` - Service classes
+Creates two files:
+- `*.openapi.dtos.dart` - Data Transfer Objects
+- `*.openapi.service.dart` - Service classes
 
 ### Required Schema Configuration
 ```yaml
@@ -140,7 +133,7 @@ openapi_code_builder/example/
 **Key Files:**
 - `lib/service/test_api.openapi.yaml` - Simple Hello World API with various parameter types
 - `lib/service/pet_store.openapi.yaml` - More complex Pet Store API
-- `usage/example_client.dart` - Client usage example showing service-style generation
+- `usage/example_client.dart` - Client usage example
 - `*.dart.bak` files - Backup copies of generated files for easier comparison when updating the generator
 
 The example demonstrates:
@@ -155,3 +148,41 @@ cd openapi_code_builder/example
 dart run build_runner build --delete-conflicting-outputs
 dart run usage/example_client.dart
 ```
+
+## Testing and Development
+
+### Running Tests
+```bash
+# Run all tests (most important during development)
+dart test
+
+# Run tests with detailed output for debugging
+dart test --reporter=expanded
+
+# Run tests with stack traces when debugging failures
+dart test --chain-stack-traces
+
+# Run specific test file
+dart test test/openapi_code_builder_test.dart
+dart test test/openapi_library_generator_test.dart
+dart test test/openapi_code_builder_edge_cases_test.dart
+```
+
+### Test Structure Overview
+- **`test/openapi_library_generator_test.dart`**: Core generation logic (fastest, most reliable)
+- **`test/openapi_code_builder_test.dart`**: Main functionality tests
+- **`test/openapi_code_builder_edge_cases_test.dart`**: Error handling and edge cases
+
+### Test Approach
+Use direct `OpenApiLibraryGenerator` testing:
+```dart
+final api = OpenApiCodeBuilderUtils.loadApiFromYaml(yamlContent);
+final generator = OpenApiLibraryGenerator(api, baseName: 'TestApi', ...);
+final output = OpenApiCodeBuilderUtils.formatLibrary(generator.generateDtosLibrary(), ...);
+expect(output, contains('expected content'));
+```
+
+### Test Best Practices
+- **Direct testing**: Use `OpenApiLibraryGenerator` directly for fast, reliable tests
+- **Edge cases**: Test empty schemas, missing components, malformed YAML
+- **Flexible expectations**: Use content matchers that adapt to naming changes

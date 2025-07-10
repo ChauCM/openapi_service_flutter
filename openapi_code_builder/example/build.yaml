@@ -2,5 +2,3 @@ targets:
   $default:
     builders:
       openapi_code_builder:
-        options:
-          generateServiceClasses: true
