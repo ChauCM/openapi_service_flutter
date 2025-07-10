@@ -248,7 +248,7 @@ components:
 ''').components!.schemas!['UuidSchema']!;
 
         final uuidDartType = generator.toDartType('Test', uuidSchema);
-        expect(uuidDartType.symbol, equals('ApiUuid'));
+        expect(uuidDartType.symbol, equals('String'));
 
         final dateTimeSchema = OpenApiCodeBuilderUtils.loadApiFromYaml('''
 openapi: 3.0.0

@@ -699,6 +699,30 @@ class OpenApiLibraryGenerator {
                       .statement,
                   _right([refer('result')]).returned.statement,
                 ];
+              } else if (schema.type == APIType.integer) {
+                return [
+                  declareFinal('result')
+                      .assign(
+                          refer('response').property('data').asA(returnType))
+                      .statement,
+                  _right([refer('result')]).returned.statement,
+                ];
+              } else if (schema.type == APIType.number) {
+                return [
+                  declareFinal('result')
+                      .assign(
+                          refer('response').property('data').asA(returnType))
+                      .statement,
+                  _right([refer('result')]).returned.statement,
+                ];
+              } else if (schema.type == APIType.boolean) {
+                return [
+                  declareFinal('result')
+                      .assign(
+                          refer('response').property('data').asA(returnType))
+                      .statement,
+                  _right([refer('result')]).returned.statement,
+                ];
               } else if (schema.type == APIType.array) {
                 return [
                   declareFinal('result')
@@ -1053,6 +1077,9 @@ class OpenApiLibraryGenerator {
                 APISchemaAdditionalPropertyPolicy.freeForm) {
           // This is a free-form object (Map<String, dynamic>)
           return _referType('Map', generics: [_typeString, refer('dynamic')]);
+        } else if (!shouldGenerateDto(schema) && schema.referenceURI == null) {
+          // This is an empty object schema (like items: {}) - use dynamic
+          return refer('dynamic');
         } else {
           // This is a regular object schema that should have a DTO
           return _schemaReference(parent, schema);
