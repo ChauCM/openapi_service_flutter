@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element, unnecessary_import, unused_import
+// ignore_for_file: unused_element, unnecessary_import, unused_import, invalid_annotation_target
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:typed_data' as _i1;
