@@ -133,6 +133,7 @@ Future<void> _demonstrateErrorHandling(TestApiService apiService) async {
 }
 
 // Example of how to implement retry logic
+// ignore: unused_element
 Future<T> _retryApiCall<T>(
   Future<T> Function() apiCall, {
   int maxRetries = 3,

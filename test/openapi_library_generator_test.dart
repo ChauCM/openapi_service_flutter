@@ -1,4 +1,4 @@
-import 'package:openapi_service_flutter/openapi_service_builder.dart';
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -47,11 +47,7 @@ components:
         baseName: 'TestApi',
         partFileName: 'test_api.openapi.g.dart',
         freezedPartFileName: 'test_api.openapi.freezed.dart',
-        useNullSafetySyntax: true,
         apiMethodsWithRequest: false,
-        generateProvider: false,
-        providerNamePrefix: '',
-        ignoreSecuritySchemes: false,
       );
     });
 
@@ -65,7 +61,6 @@ components:
         // Convert to string to check contents
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           library,
-          useNullSafetySyntax: true,
           orderDirectives: true,
         );
 
@@ -85,7 +80,6 @@ components:
 
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          useNullSafetySyntax: true,
           orderDirectives: true,
         );
 
@@ -103,7 +97,6 @@ components:
 
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          useNullSafetySyntax: true,
           orderDirectives: true,
         );
 
@@ -352,7 +345,6 @@ paths:
           baseName: 'EmptyApi',
           partFileName: 'empty.g.dart',
           freezedPartFileName: 'empty.freezed.dart',
-          useNullSafetySyntax: true,
         );
 
         final library = emptyGenerator.generate();
@@ -361,7 +353,6 @@ paths:
 
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           library,
-          useNullSafetySyntax: true,
           orderDirectives: true,
         );
 

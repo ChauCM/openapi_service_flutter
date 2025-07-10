@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:openapi_service_flutter/openapi_service_builder.dart';
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -16,10 +16,6 @@ void main() {
           baseName: 'SimpleApi',
           partFileName: 'simple_api.openapi.dtos.g.dart',
           freezedPartFileName: 'simple_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         // Generate DTOs library
@@ -27,7 +23,6 @@ void main() {
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Verify DTOs file content
@@ -43,7 +38,6 @@ void main() {
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Verify service file content
@@ -66,17 +60,12 @@ void main() {
           baseName: 'EnumApi',
           partFileName: 'enum_api.openapi.dtos.g.dart',
           freezedPartFileName: 'enum_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(dtosOutput, contains('enum'));
@@ -86,7 +75,6 @@ void main() {
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Just verify the service was generated - specific enum references depend on the actual API structure
@@ -103,17 +91,12 @@ void main() {
           baseName: 'ArrayApi',
           partFileName: 'array_api.openapi.dtos.g.dart',
           freezedPartFileName: 'array_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(dtosOutput, contains('List<String>'));
@@ -122,7 +105,6 @@ void main() {
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('class ArrayApiService'));
@@ -138,17 +120,12 @@ void main() {
           baseName: 'MapApi',
           partFileName: 'map_api.openapi.dtos.g.dart',
           freezedPartFileName: 'map_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final serviceLibrary = generator.generateServiceLibrary('map_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('Map<String, int>'));
@@ -165,17 +142,12 @@ void main() {
           baseName: 'UuidApi',
           partFileName: 'uuid_api.openapi.dtos.g.dart',
           freezedPartFileName: 'uuid_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(dtosOutput, contains('String'));
@@ -186,7 +158,6 @@ void main() {
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('String'));
@@ -218,17 +189,12 @@ paths:
           baseName: 'MyCustomApi',
           partFileName: 'custom.openapi.dtos.g.dart',
           freezedPartFileName: 'custom.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final serviceLibrary = generator.generateServiceLibrary('custom');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('MyCustomApiService'));
@@ -259,10 +225,6 @@ paths:
           baseName: 'FallbackName',
           partFileName: 'fallback_name.openapi.dtos.g.dart',
           freezedPartFileName: 'fallback_name.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final serviceLibrary =
@@ -270,7 +232,6 @@ paths:
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('FallbackNameService'));
@@ -298,17 +259,12 @@ paths:
           baseName: 'VoidApi',
           partFileName: 'void_api.openapi.dtos.g.dart',
           freezedPartFileName: 'void_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final serviceLibrary = generator.generateServiceLibrary('void_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('Either<ApiError, void>'));
@@ -362,17 +318,12 @@ components:
           baseName: 'DtoNamingTest',
           partFileName: 'dto_naming.openapi.dtos.g.dart',
           freezedPartFileName: 'dto_naming.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Verify that existing schemas ending with 'Dto' don't get double suffix
@@ -383,7 +334,6 @@ components:
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('class DtoNamingTestService'));
@@ -444,17 +394,12 @@ components:
           baseName: 'UnusedSchemaApi',
           partFileName: 'unused_schema.openapi.dtos.g.dart',
           freezedPartFileName: 'unused_schema.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Only UsedSchema should be generated since it's referenced by the endpoint
@@ -470,7 +415,6 @@ components:
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         expect(serviceOutput, contains('TestGetResponseDto'));
@@ -568,17 +512,12 @@ components:
           baseName: 'ComplexUsageApi',
           partFileName: 'complex_usage.openapi.dtos.g.dart',
           freezedPartFileName: 'complex_usage.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Should generate DTOs for schemas used in:
@@ -649,10 +588,6 @@ paths:
           baseName: 'PrimitiveApi',
           partFileName: 'primitive_api.openapi.dtos.g.dart',
           freezedPartFileName: 'primitive_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final serviceLibrary =
@@ -660,7 +595,6 @@ paths:
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Service should have methods returning primitive types wrapped in Either
@@ -741,17 +675,12 @@ components:
           partFileName: 'empty_array_items_api.openapi.dtos.g.dart',
           freezedPartFileName:
               'empty_array_items_api.openapi.dtos.freezed.dart',
-          useNullSafetySyntax: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Should generate the Journey DTO
@@ -776,7 +705,6 @@ components:
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
-          useNullSafetySyntax: true,
         );
 
         // Service should compile without errors
@@ -789,11 +717,7 @@ components:
     group('buildExtensions', () {
       test('returns correct file extensions', () {
         final builder = OpenApiServiceBuilder(
-          useNullSafetySyntax: true,
           orderDirectives: true,
-          generateProvider: false,
-          providerNamePrefix: '',
-          ignoreSecuritySchemes: false,
         );
 
         expect(

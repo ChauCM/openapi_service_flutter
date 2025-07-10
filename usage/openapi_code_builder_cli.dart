@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:logging_appenders/logging_appenders.dart';
-import 'package:openapi_service_flutter/openapi_service_builder.dart';
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
 
@@ -21,13 +21,10 @@ Future<void> main(List<String> args) async {
     api,
     baseName: baseName,
     partFileName: '${path.basenameWithoutExtension(fileName)}.g.dart',
-    useNullSafetySyntax: true,
-    ignoreSecuritySchemes: true,
   ).generate();
   final libraryOutput = OpenApiServiceBuilderUtils.formatLibrary(
     library,
     orderDirectives: true,
-    useNullSafetySyntax: true,
   );
   print(libraryOutput);
 }
