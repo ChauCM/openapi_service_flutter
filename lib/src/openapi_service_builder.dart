@@ -519,6 +519,7 @@ class OpenApiLibraryGenerator {
     return Class((cb) {
       cb
         ..name = 'ApiError'
+        ..sealed = true
         ..annotations.add(_freezed)
         ..mixins.add(refer('_\$ApiError'))
         ..constructors.add(Constructor((ccb) => ccb

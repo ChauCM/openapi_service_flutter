@@ -6,35 +6,31 @@ part of 'stepo.openapi.dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ApiErrorImpl _$$ApiErrorImplFromJson(Map<String, dynamic> json) =>
-    _$ApiErrorImpl(
+_ApiError _$ApiErrorFromJson(Map<String, dynamic> json) => _ApiError(
       message: json['message'] as String,
       statusCode: (json['statusCode'] as num?)?.toInt(),
       type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$$ApiErrorImplToJson(_$ApiErrorImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiErrorToJson(_ApiError instance) => <String, dynamic>{
       'message': instance.message,
       'statusCode': instance.statusCode,
       'type': instance.type,
     };
 
-_$AccountDtoImpl _$$AccountDtoImplFromJson(Map<String, dynamic> json) =>
-    _$AccountDtoImpl(
+_AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) => _AccountDto(
       id: json['id'] as String,
       profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$AccountDtoImplToJson(_$AccountDtoImpl instance) =>
+Map<String, dynamic> _$AccountDtoToJson(_AccountDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'profile': instance.profile,
     };
 
-_$BulkNotificationDtoImpl _$$BulkNotificationDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$BulkNotificationDtoImpl(
+_BulkNotificationDto _$BulkNotificationDtoFromJson(Map<String, dynamic> json) =>
+    _BulkNotificationDto(
       title: json['title'] as String,
       body: json['body'] as String,
       notificationType: (json['notificationType'] as num).toInt(),
@@ -47,8 +43,8 @@ _$BulkNotificationDtoImpl _$$BulkNotificationDtoImplFromJson(
       priority: (json['priority'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$BulkNotificationDtoImplToJson(
-        _$BulkNotificationDtoImpl instance) =>
+Map<String, dynamic> _$BulkNotificationDtoToJson(
+        _BulkNotificationDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
@@ -59,79 +55,78 @@ Map<String, dynamic> _$$BulkNotificationDtoImplToJson(
       'priority': instance.priority,
     };
 
-_$CreateCommentInteractionDtoImpl _$$CreateCommentInteractionDtoImplFromJson(
+_CreateCommentInteractionDto _$CreateCommentInteractionDtoFromJson(
         Map<String, dynamic> json) =>
-    _$CreateCommentInteractionDtoImpl(
+    _CreateCommentInteractionDto(
       type: (json['type'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$CreateCommentInteractionDtoImplToJson(
-        _$CreateCommentInteractionDtoImpl instance) =>
+Map<String, dynamic> _$CreateCommentInteractionDtoToJson(
+        _CreateCommentInteractionDto instance) =>
     <String, dynamic>{
       'type': instance.type,
     };
 
-_$CreateReplyCommentDtoImpl _$$CreateReplyCommentDtoImplFromJson(
+_CreateReplyCommentDto _$CreateReplyCommentDtoFromJson(
         Map<String, dynamic> json) =>
-    _$CreateReplyCommentDtoImpl(
+    _CreateReplyCommentDto(
       content: json['content'] as String,
       responseToUserId: json['responseToUserId'] as String?,
       responseToCommentId: json['responseToCommentId'] as String?,
     );
 
-Map<String, dynamic> _$$CreateReplyCommentDtoImplToJson(
-        _$CreateReplyCommentDtoImpl instance) =>
+Map<String, dynamic> _$CreateReplyCommentDtoToJson(
+        _CreateReplyCommentDto instance) =>
     <String, dynamic>{
       'content': instance.content,
       'responseToUserId': instance.responseToUserId,
       'responseToCommentId': instance.responseToCommentId,
     };
 
-_$CreateStepCommentDtoImpl _$$CreateStepCommentDtoImplFromJson(
+_CreateStepCommentDto _$CreateStepCommentDtoFromJson(
         Map<String, dynamic> json) =>
-    _$CreateStepCommentDtoImpl(
+    _CreateStepCommentDto(
       content: json['content'] as String,
     );
 
-Map<String, dynamic> _$$CreateStepCommentDtoImplToJson(
-        _$CreateStepCommentDtoImpl instance) =>
+Map<String, dynamic> _$CreateStepCommentDtoToJson(
+        _CreateStepCommentDto instance) =>
     <String, dynamic>{
       'content': instance.content,
     };
 
-_$CreateStepDtoImpl _$$CreateStepDtoImplFromJson(Map<String, dynamic> json) =>
-    _$CreateStepDtoImpl(
+_CreateStepDto _$CreateStepDtoFromJson(Map<String, dynamic> json) =>
+    _CreateStepDto(
       content: json['content'] as String,
       journeyId: json['journeyId'] as String,
     );
 
-Map<String, dynamic> _$$CreateStepDtoImplToJson(_$CreateStepDtoImpl instance) =>
+Map<String, dynamic> _$CreateStepDtoToJson(_CreateStepDto instance) =>
     <String, dynamic>{
       'content': instance.content,
       'journeyId': instance.journeyId,
     };
 
-_$CreateStepInteractionDtoImpl _$$CreateStepInteractionDtoImplFromJson(
+_CreateStepInteractionDto _$CreateStepInteractionDtoFromJson(
         Map<String, dynamic> json) =>
-    _$CreateStepInteractionDtoImpl(
+    _CreateStepInteractionDto(
       type: (json['type'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$CreateStepInteractionDtoImplToJson(
-        _$CreateStepInteractionDtoImpl instance) =>
+Map<String, dynamic> _$CreateStepInteractionDtoToJson(
+        _CreateStepInteractionDto instance) =>
     <String, dynamic>{
       'type': instance.type,
     };
 
-_$EditUserDtoImpl _$$EditUserDtoImplFromJson(Map<String, dynamic> json) =>
-    _$EditUserDtoImpl(
+_EditUserDto _$EditUserDtoFromJson(Map<String, dynamic> json) => _EditUserDto(
       displayName: json['displayName'] as String,
       username: json['username'] as String,
       description: json['description'] as String?,
       isPrivate: json['isPrivate'] as bool?,
     );
 
-Map<String, dynamic> _$$EditUserDtoImplToJson(_$EditUserDtoImpl instance) =>
+Map<String, dynamic> _$EditUserDtoToJson(_EditUserDto instance) =>
     <String, dynamic>{
       'displayName': instance.displayName,
       'username': instance.username,
@@ -139,35 +134,30 @@ Map<String, dynamic> _$$EditUserDtoImplToJson(_$EditUserDtoImpl instance) =>
       'isPrivate': instance.isPrivate,
     };
 
-_$FollowingResultDtoImpl _$$FollowingResultDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FollowingResultDtoImpl(
+_FollowingResultDto _$FollowingResultDtoFromJson(Map<String, dynamic> json) =>
+    _FollowingResultDto(
       status: (json['status'] as num).toInt(),
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$FollowingResultDtoImplToJson(
-        _$FollowingResultDtoImpl instance) =>
+Map<String, dynamic> _$FollowingResultDtoToJson(_FollowingResultDto instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
     };
 
-_$FollowingStatusDtoImpl _$$FollowingStatusDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FollowingStatusDtoImpl(
+_FollowingStatusDto _$FollowingStatusDtoFromJson(Map<String, dynamic> json) =>
+    _FollowingStatusDto(
       status: (json['status'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$FollowingStatusDtoImplToJson(
-        _$FollowingStatusDtoImpl instance) =>
+Map<String, dynamic> _$FollowingStatusDtoToJson(_FollowingStatusDto instance) =>
     <String, dynamic>{
       'status': instance.status,
     };
 
-_$ImageMetadataDtoImpl _$$ImageMetadataDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ImageMetadataDtoImpl(
+_ImageMetadataDto _$ImageMetadataDtoFromJson(Map<String, dynamic> json) =>
+    _ImageMetadataDto(
       fileName: json['fileName'] as String?,
       fileUrl: json['fileUrl'] as String?,
       width: (json['width'] as num?)?.toInt(),
@@ -176,8 +166,7 @@ _$ImageMetadataDtoImpl _$$ImageMetadataDtoImplFromJson(
       contentType: json['contentType'] as String?,
     );
 
-Map<String, dynamic> _$$ImageMetadataDtoImplToJson(
-        _$ImageMetadataDtoImpl instance) =>
+Map<String, dynamic> _$ImageMetadataDtoToJson(_ImageMetadataDto instance) =>
     <String, dynamic>{
       'fileName': instance.fileName,
       'fileUrl': instance.fileUrl,
@@ -187,9 +176,9 @@ Map<String, dynamic> _$$ImageMetadataDtoImplToJson(
       'contentType': instance.contentType,
     };
 
-_$ImagePresignedUrlDtoImpl _$$ImagePresignedUrlDtoImplFromJson(
+_ImagePresignedUrlDto _$ImagePresignedUrlDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ImagePresignedUrlDtoImpl(
+    _ImagePresignedUrlDto(
       uploadUrl: json['uploadUrl'] as String?,
       fileUrl: json['fileUrl'] as String?,
       fileName: json['fileName'] as String?,
@@ -201,8 +190,8 @@ _$ImagePresignedUrlDtoImpl _$$ImagePresignedUrlDtoImplFromJson(
       ),
     );
 
-Map<String, dynamic> _$$ImagePresignedUrlDtoImplToJson(
-        _$ImagePresignedUrlDtoImpl instance) =>
+Map<String, dynamic> _$ImagePresignedUrlDtoToJson(
+        _ImagePresignedUrlDto instance) =>
     <String, dynamic>{
       'uploadUrl': instance.uploadUrl,
       'fileUrl': instance.fileUrl,
@@ -211,56 +200,53 @@ Map<String, dynamic> _$$ImagePresignedUrlDtoImplToJson(
       'headers': instance.headers,
     };
 
-_$InteractionResultDtoImpl _$$InteractionResultDtoImplFromJson(
+_InteractionResultDto _$InteractionResultDtoFromJson(
         Map<String, dynamic> json) =>
-    _$InteractionResultDtoImpl(
+    _InteractionResultDto(
       isSteppedWith: json['isSteppedWith'] as bool?,
       isLiked: json['isLiked'] as bool?,
       totalLikes: (json['totalLikes'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$InteractionResultDtoImplToJson(
-        _$InteractionResultDtoImpl instance) =>
+Map<String, dynamic> _$InteractionResultDtoToJson(
+        _InteractionResultDto instance) =>
     <String, dynamic>{
       'isSteppedWith': instance.isSteppedWith,
       'isLiked': instance.isLiked,
       'totalLikes': instance.totalLikes,
     };
 
-_$JourneyCreatingDtoImpl _$$JourneyCreatingDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$JourneyCreatingDtoImpl(
+_JourneyCreatingDto _$JourneyCreatingDtoFromJson(Map<String, dynamic> json) =>
+    _JourneyCreatingDto(
       title: json['title'] as String,
       description: json['description'] as String?,
       firstStepContent: json['firstStepContent'] as String,
     );
 
-Map<String, dynamic> _$$JourneyCreatingDtoImplToJson(
-        _$JourneyCreatingDtoImpl instance) =>
+Map<String, dynamic> _$JourneyCreatingDtoToJson(_JourneyCreatingDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'firstStepContent': instance.firstStepContent,
     };
 
-_$JourneyDayCalendarDtoImpl _$$JourneyDayCalendarDtoImplFromJson(
+_JourneyDayCalendarDto _$JourneyDayCalendarDtoFromJson(
         Map<String, dynamic> json) =>
-    _$JourneyDayCalendarDtoImpl(
+    _JourneyDayCalendarDto(
       lastStep: StepDto.fromJson(json['lastStep'] as Map<String, dynamic>),
       totalSteps: (json['totalSteps'] as num?)?.toInt() ?? 0,
       date: DateTime.parse(json['date'] as String),
     );
 
-Map<String, dynamic> _$$JourneyDayCalendarDtoImplToJson(
-        _$JourneyDayCalendarDtoImpl instance) =>
+Map<String, dynamic> _$JourneyDayCalendarDtoToJson(
+        _JourneyDayCalendarDto instance) =>
     <String, dynamic>{
       'lastStep': instance.lastStep,
       'totalSteps': instance.totalSteps,
       'date': instance.date.toIso8601String(),
     };
 
-_$JourneyDtoImpl _$$JourneyDtoImplFromJson(Map<String, dynamic> json) =>
-    _$JourneyDtoImpl(
+_JourneyDto _$JourneyDtoFromJson(Map<String, dynamic> json) => _JourneyDto(
       id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -279,7 +265,7 @@ _$JourneyDtoImpl _$$JourneyDtoImplFromJson(Map<String, dynamic> json) =>
       finalStepId: json['finalStepId'] as String?,
     );
 
-Map<String, dynamic> _$$JourneyDtoImplToJson(_$JourneyDtoImpl instance) =>
+Map<String, dynamic> _$JourneyDtoToJson(_JourneyDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -293,8 +279,8 @@ Map<String, dynamic> _$$JourneyDtoImplToJson(_$JourneyDtoImpl instance) =>
       'finalStepId': instance.finalStepId,
     };
 
-_$JourneyDto2DtoImpl _$$JourneyDto2DtoImplFromJson(Map<String, dynamic> json) =>
-    _$JourneyDto2DtoImpl(
+_JourneyDto2Dto _$JourneyDto2DtoFromJson(Map<String, dynamic> json) =>
+    _JourneyDto2Dto(
       id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -313,8 +299,7 @@ _$JourneyDto2DtoImpl _$$JourneyDto2DtoImplFromJson(Map<String, dynamic> json) =>
       finalStepId: json['finalStepId'] as String?,
     );
 
-Map<String, dynamic> _$$JourneyDto2DtoImplToJson(
-        _$JourneyDto2DtoImpl instance) =>
+Map<String, dynamic> _$JourneyDto2DtoToJson(_JourneyDto2Dto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -328,9 +313,8 @@ Map<String, dynamic> _$$JourneyDto2DtoImplToJson(
       'finalStepId': instance.finalStepId,
     };
 
-_$JourneyInDetailDtoImpl _$$JourneyInDetailDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$JourneyInDetailDtoImpl(
+_JourneyInDetailDto _$JourneyInDetailDtoFromJson(Map<String, dynamic> json) =>
+    _JourneyInDetailDto(
       journey: JourneyDto2Dto.fromJson(json['journey'] as Map<String, dynamic>),
       stepsCount: (json['stepsCount'] as num).toInt(),
       lastStepDate: DateTime.parse(json['lastStepDate'] as String),
@@ -346,8 +330,7 @@ _$JourneyInDetailDtoImpl _$$JourneyInDetailDtoImplFromJson(
       latestCelebrators: json['latestCelebrators'] as List<dynamic>?,
     );
 
-Map<String, dynamic> _$$JourneyInDetailDtoImplToJson(
-        _$JourneyInDetailDtoImpl instance) =>
+Map<String, dynamic> _$JourneyInDetailDtoToJson(_JourneyInDetailDto instance) =>
     <String, dynamic>{
       'journey': instance.journey,
       'stepsCount': instance.stepsCount,
@@ -362,35 +345,30 @@ Map<String, dynamic> _$$JourneyInDetailDtoImplToJson(
       'latestCelebrators': instance.latestCelebrators,
     };
 
-_$LoginDtoImpl _$$LoginDtoImplFromJson(Map<String, dynamic> json) =>
-    _$LoginDtoImpl(
+_LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) => _LoginDto(
       email: json['email'] as String,
       password: json['password'] as String,
     );
 
-Map<String, dynamic> _$$LoginDtoImplToJson(_$LoginDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$LoginDtoToJson(_LoginDto instance) => <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
     };
 
-_$LoginResponseDtoImpl _$$LoginResponseDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LoginResponseDtoImpl(
+_LoginResponseDto _$LoginResponseDtoFromJson(Map<String, dynamic> json) =>
+    _LoginResponseDto(
       token: json['token'] as String?,
       uid: json['uid'] as String?,
     );
 
-Map<String, dynamic> _$$LoginResponseDtoImplToJson(
-        _$LoginResponseDtoImpl instance) =>
+Map<String, dynamic> _$LoginResponseDtoToJson(_LoginResponseDto instance) =>
     <String, dynamic>{
       'token': instance.token,
       'uid': instance.uid,
     };
 
-_$NotificationDtoImpl _$$NotificationDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$NotificationDtoImpl(
+_NotificationDto _$NotificationDtoFromJson(Map<String, dynamic> json) =>
+    _NotificationDto(
       id: json['id'] as String?,
       title: json['title'] as String?,
       body: json['body'] as String?,
@@ -410,8 +388,7 @@ _$NotificationDtoImpl _$$NotificationDtoImplFromJson(
               json['sourceUser'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$NotificationDtoImplToJson(
-        _$NotificationDtoImpl instance) =>
+Map<String, dynamic> _$NotificationDtoToJson(_NotificationDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -425,9 +402,9 @@ Map<String, dynamic> _$$NotificationDtoImplToJson(
       'sourceUser': instance.sourceUser,
     };
 
-_$NotificationPagedDtoImpl _$$NotificationPagedDtoImplFromJson(
+_NotificationPagedDto _$NotificationPagedDtoFromJson(
         Map<String, dynamic> json) =>
-    _$NotificationPagedDtoImpl(
+    _NotificationPagedDto(
       notifications: (json['notifications'] as List<dynamic>?)
           ?.map((e) => NotificationDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -438,8 +415,8 @@ _$NotificationPagedDtoImpl _$$NotificationPagedDtoImplFromJson(
       hasMore: json['hasMore'] as bool?,
     );
 
-Map<String, dynamic> _$$NotificationPagedDtoImplToJson(
-        _$NotificationPagedDtoImpl instance) =>
+Map<String, dynamic> _$NotificationPagedDtoToJson(
+        _NotificationPagedDto instance) =>
     <String, dynamic>{
       'notifications': instance.notifications,
       'page': instance.page,
@@ -449,8 +426,7 @@ Map<String, dynamic> _$$NotificationPagedDtoImplToJson(
       'hasMore': instance.hasMore,
     };
 
-_$ProfileDtoImpl _$$ProfileDtoImplFromJson(Map<String, dynamic> json) =>
-    _$ProfileDtoImpl(
+_ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => _ProfileDto(
       userDetail:
           UserDetailDto.fromJson(json['userDetail'] as Map<String, dynamic>),
       badgesCount: (json['badgesCount'] as num?)?.toInt(),
@@ -463,7 +439,7 @@ _$ProfileDtoImpl _$$ProfileDtoImplFromJson(Map<String, dynamic> json) =>
       followingsCount: (json['followingsCount'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$ProfileDtoImplToJson(_$ProfileDtoImpl instance) =>
+Map<String, dynamic> _$ProfileDtoToJson(_ProfileDto instance) =>
     <String, dynamic>{
       'userDetail': instance.userDetail,
       'badgesCount': instance.badgesCount,
@@ -474,8 +450,7 @@ Map<String, dynamic> _$$ProfileDtoImplToJson(_$ProfileDtoImpl instance) =>
       'followingsCount': instance.followingsCount,
     };
 
-_$ReplyDtoImpl _$$ReplyDtoImplFromJson(Map<String, dynamic> json) =>
-    _$ReplyDtoImpl(
+_ReplyDto _$ReplyDtoFromJson(Map<String, dynamic> json) => _ReplyDto(
       id: json['id'] as String?,
       content: json['content'] as String?,
       createdDate: json['createdDate'] == null
@@ -500,8 +475,7 @@ _$ReplyDtoImpl _$$ReplyDtoImplFromJson(Map<String, dynamic> json) =>
       heartedByUser: json['heartedByUser'] as bool?,
     );
 
-Map<String, dynamic> _$$ReplyDtoImplToJson(_$ReplyDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ReplyDtoToJson(_ReplyDto instance) => <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
       'createdDate': instance.createdDate?.toIso8601String(),
@@ -515,24 +489,21 @@ Map<String, dynamic> _$$ReplyDtoImplToJson(_$ReplyDtoImpl instance) =>
       'heartedByUser': instance.heartedByUser,
     };
 
-_$ReportCreatingDtoImpl _$$ReportCreatingDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ReportCreatingDtoImpl(
+_ReportCreatingDto _$ReportCreatingDtoFromJson(Map<String, dynamic> json) =>
+    _ReportCreatingDto(
       entityType: json['entityType'] as String,
       entityId: json['entityId'] as String,
       reason: json['reason'] as String,
     );
 
-Map<String, dynamic> _$$ReportCreatingDtoImplToJson(
-        _$ReportCreatingDtoImpl instance) =>
+Map<String, dynamic> _$ReportCreatingDtoToJson(_ReportCreatingDto instance) =>
     <String, dynamic>{
       'entityType': instance.entityType,
       'entityId': instance.entityId,
       'reason': instance.reason,
     };
 
-_$ReportDtoImpl _$$ReportDtoImplFromJson(Map<String, dynamic> json) =>
-    _$ReportDtoImpl(
+_ReportDto _$ReportDtoFromJson(Map<String, dynamic> json) => _ReportDto(
       id: json['id'] as String?,
       entityType: json['entityType'] as String,
       entityId: json['entityId'] as String?,
@@ -545,7 +516,7 @@ _$ReportDtoImpl _$$ReportDtoImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['createdDate'] as String),
     );
 
-Map<String, dynamic> _$$ReportDtoImplToJson(_$ReportDtoImpl instance) =>
+Map<String, dynamic> _$ReportDtoToJson(_ReportDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'entityType': instance.entityType,
@@ -555,9 +526,8 @@ Map<String, dynamic> _$$ReportDtoImplToJson(_$ReportDtoImpl instance) =>
       'createdDate': instance.createdDate?.toIso8601String(),
     };
 
-_$SendNotificationDtoImpl _$$SendNotificationDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SendNotificationDtoImpl(
+_SendNotificationDto _$SendNotificationDtoFromJson(Map<String, dynamic> json) =>
+    _SendNotificationDto(
       title: json['title'] as String,
       body: json['body'] as String,
       notificationType: (json['notificationType'] as num).toInt(),
@@ -572,8 +542,8 @@ _$SendNotificationDtoImpl _$$SendNotificationDtoImplFromJson(
       priority: (json['priority'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$SendNotificationDtoImplToJson(
-        _$SendNotificationDtoImpl instance) =>
+Map<String, dynamic> _$SendNotificationDtoToJson(
+        _SendNotificationDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
@@ -585,8 +555,8 @@ Map<String, dynamic> _$$SendNotificationDtoImplToJson(
       'priority': instance.priority,
     };
 
-_$StepCommentDtoImpl _$$StepCommentDtoImplFromJson(Map<String, dynamic> json) =>
-    _$StepCommentDtoImpl(
+_StepCommentDto _$StepCommentDtoFromJson(Map<String, dynamic> json) =>
+    _StepCommentDto(
       id: json['id'] as String?,
       content: json['content'] as String?,
       createdAt: json['createdAt'] == null
@@ -607,8 +577,7 @@ _$StepCommentDtoImpl _$$StepCommentDtoImplFromJson(Map<String, dynamic> json) =>
       replyCount: (json['replyCount'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$StepCommentDtoImplToJson(
-        _$StepCommentDtoImpl instance) =>
+Map<String, dynamic> _$StepCommentDtoToJson(_StepCommentDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -622,8 +591,8 @@ Map<String, dynamic> _$$StepCommentDtoImplToJson(
       'replyCount': instance.replyCount,
     };
 
-_$StepDetailDtoImpl _$$StepDetailDtoImplFromJson(Map<String, dynamic> json) =>
-    _$StepDetailDtoImpl(
+_StepDetailDto _$StepDetailDtoFromJson(Map<String, dynamic> json) =>
+    _StepDetailDto(
       id: json['id'] as String,
       content: json['content'] as String?,
       createdDate: json['createdDate'] == null
@@ -656,7 +625,7 @@ _$StepDetailDtoImpl _$$StepDetailDtoImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$StepDetailDtoImplToJson(_$StepDetailDtoImpl instance) =>
+Map<String, dynamic> _$StepDetailDtoToJson(_StepDetailDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -679,8 +648,7 @@ Map<String, dynamic> _$$StepDetailDtoImplToJson(_$StepDetailDtoImpl instance) =>
       'media': instance.media,
     };
 
-_$StepDtoImpl _$$StepDtoImplFromJson(Map<String, dynamic> json) =>
-    _$StepDtoImpl(
+_StepDto _$StepDtoFromJson(Map<String, dynamic> json) => _StepDto(
       id: json['id'] as String,
       content: json['content'] as String?,
       createdDate: json['createdDate'] == null
@@ -696,8 +664,7 @@ _$StepDtoImpl _$$StepDtoImplFromJson(Map<String, dynamic> json) =>
           : StepMediaDto2Dto.fromJson(json['media'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$StepDtoImplToJson(_$StepDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$StepDtoToJson(_StepDto instance) => <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
       'createdDate': instance.createdDate?.toIso8601String(),
@@ -707,8 +674,8 @@ Map<String, dynamic> _$$StepDtoImplToJson(_$StepDtoImpl instance) =>
       'media': instance.media,
     };
 
-_$StepMediaDtoImpl _$$StepMediaDtoImplFromJson(Map<String, dynamic> json) =>
-    _$StepMediaDtoImpl(
+_StepMediaDto _$StepMediaDtoFromJson(Map<String, dynamic> json) =>
+    _StepMediaDto(
       id: json['id'] as String?,
       stepId: json['stepId'] as String?,
       mediaType: json['mediaType'] as String?,
@@ -728,7 +695,7 @@ _$StepMediaDtoImpl _$$StepMediaDtoImplFromJson(Map<String, dynamic> json) =>
       isImage: json['isImage'] as bool?,
     );
 
-Map<String, dynamic> _$$StepMediaDtoImplToJson(_$StepMediaDtoImpl instance) =>
+Map<String, dynamic> _$StepMediaDtoToJson(_StepMediaDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'stepId': instance.stepId,
@@ -749,9 +716,8 @@ Map<String, dynamic> _$$StepMediaDtoImplToJson(_$StepMediaDtoImpl instance) =>
       'isImage': instance.isImage,
     };
 
-_$StepMediaDto2DtoImpl _$$StepMediaDto2DtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$StepMediaDto2DtoImpl(
+_StepMediaDto2Dto _$StepMediaDto2DtoFromJson(Map<String, dynamic> json) =>
+    _StepMediaDto2Dto(
       id: json['id'] as String?,
       stepId: json['stepId'] as String?,
       mediaType: json['mediaType'] as String?,
@@ -771,8 +737,7 @@ _$StepMediaDto2DtoImpl _$$StepMediaDto2DtoImplFromJson(
       isImage: json['isImage'] as bool?,
     );
 
-Map<String, dynamic> _$$StepMediaDto2DtoImplToJson(
-        _$StepMediaDto2DtoImpl instance) =>
+Map<String, dynamic> _$StepMediaDto2DtoToJson(_StepMediaDto2Dto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'stepId': instance.stepId,
@@ -793,58 +758,53 @@ Map<String, dynamic> _$$StepMediaDto2DtoImplToJson(
       'isImage': instance.isImage,
     };
 
-_$UpdateJourneyDtoImpl _$$UpdateJourneyDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$UpdateJourneyDtoImpl(
+_UpdateJourneyDto _$UpdateJourneyDtoFromJson(Map<String, dynamic> json) =>
+    _UpdateJourneyDto(
       title: json['title'] as String,
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$$UpdateJourneyDtoImplToJson(
-        _$UpdateJourneyDtoImpl instance) =>
+Map<String, dynamic> _$UpdateJourneyDtoToJson(_UpdateJourneyDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
     };
 
-_$UpdateStepDtoImpl _$$UpdateStepDtoImplFromJson(Map<String, dynamic> json) =>
-    _$UpdateStepDtoImpl(
+_UpdateStepDto _$UpdateStepDtoFromJson(Map<String, dynamic> json) =>
+    _UpdateStepDto(
       content: json['content'] as String,
     );
 
-Map<String, dynamic> _$$UpdateStepDtoImplToJson(_$UpdateStepDtoImpl instance) =>
+Map<String, dynamic> _$UpdateStepDtoToJson(_UpdateStepDto instance) =>
     <String, dynamic>{
       'content': instance.content,
     };
 
-_$UserDetailDtoImpl _$$UserDetailDtoImplFromJson(Map<String, dynamic> json) =>
-    _$UserDetailDtoImpl(
+_UserDetailDto _$UserDetailDtoFromJson(Map<String, dynamic> json) =>
+    _UserDetailDto(
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
       followingStatus: (json['followingStatus'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$UserDetailDtoImplToJson(_$UserDetailDtoImpl instance) =>
+Map<String, dynamic> _$UserDetailDtoToJson(_UserDetailDto instance) =>
     <String, dynamic>{
       'user': instance.user,
       'followingStatus': instance.followingStatus,
     };
 
-_$UserDetailDto2DtoImpl _$$UserDetailDto2DtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$UserDetailDto2DtoImpl(
+_UserDetailDto2Dto _$UserDetailDto2DtoFromJson(Map<String, dynamic> json) =>
+    _UserDetailDto2Dto(
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
       followingStatus: (json['followingStatus'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$UserDetailDto2DtoImplToJson(
-        _$UserDetailDto2DtoImpl instance) =>
+Map<String, dynamic> _$UserDetailDto2DtoToJson(_UserDetailDto2Dto instance) =>
     <String, dynamic>{
       'user': instance.user,
       'followingStatus': instance.followingStatus,
     };
 
-_$UserDtoImpl _$$UserDtoImplFromJson(Map<String, dynamic> json) =>
-    _$UserDtoImpl(
+_UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
       id: json['id'] as String,
       displayName: json['displayName'] as String?,
       username: json['username'] as String?,
@@ -862,8 +822,7 @@ _$UserDtoImpl _$$UserDtoImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['lastUpdated'] as String),
     );
 
-Map<String, dynamic> _$$UserDtoImplToJson(_$UserDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
       'id': instance.id,
       'displayName': instance.displayName,
       'username': instance.username,
@@ -877,8 +836,7 @@ Map<String, dynamic> _$$UserDtoImplToJson(_$UserDtoImpl instance) =>
       'lastUpdated': instance.lastUpdated?.toIso8601String(),
     };
 
-_$UserDto2DtoImpl _$$UserDto2DtoImplFromJson(Map<String, dynamic> json) =>
-    _$UserDto2DtoImpl(
+_UserDto2Dto _$UserDto2DtoFromJson(Map<String, dynamic> json) => _UserDto2Dto(
       id: json['id'] as String,
       displayName: json['displayName'] as String?,
       username: json['username'] as String?,
@@ -896,7 +854,7 @@ _$UserDto2DtoImpl _$$UserDto2DtoImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['lastUpdated'] as String),
     );
 
-Map<String, dynamic> _$$UserDto2DtoImplToJson(_$UserDto2DtoImpl instance) =>
+Map<String, dynamic> _$UserDto2DtoToJson(_UserDto2Dto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'displayName': instance.displayName,
@@ -911,9 +869,9 @@ Map<String, dynamic> _$$UserDto2DtoImplToJson(_$UserDto2DtoImpl instance) =>
       'lastUpdated': instance.lastUpdated?.toIso8601String(),
     };
 
-_$VideoPreSignedUrlDtoImpl _$$VideoPreSignedUrlDtoImplFromJson(
+_VideoPreSignedUrlDto _$VideoPreSignedUrlDtoFromJson(
         Map<String, dynamic> json) =>
-    _$VideoPreSignedUrlDtoImpl(
+    _VideoPreSignedUrlDto(
       authorizationSignature: json['authorizationSignature'] as String?,
       authorizationExpire: (json['authorizationExpire'] as num?)?.toInt(),
       videoGuid: json['videoGuid'] as String?,
@@ -925,8 +883,8 @@ _$VideoPreSignedUrlDtoImpl _$$VideoPreSignedUrlDtoImplFromJson(
           : StepMediaDto.fromJson(json['media'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$VideoPreSignedUrlDtoImplToJson(
-        _$VideoPreSignedUrlDtoImpl instance) =>
+Map<String, dynamic> _$VideoPreSignedUrlDtoToJson(
+        _VideoPreSignedUrlDto instance) =>
     <String, dynamic>{
       'authorizationSignature': instance.authorizationSignature,
       'authorizationExpire': instance.authorizationExpire,
@@ -937,60 +895,59 @@ Map<String, dynamic> _$$VideoPreSignedUrlDtoImplToJson(
       'media': instance.media,
     };
 
-_$VideoStatusDtoImpl _$$VideoStatusDtoImplFromJson(Map<String, dynamic> json) =>
-    _$VideoStatusDtoImpl(
+_VideoStatusDto _$VideoStatusDtoFromJson(Map<String, dynamic> json) =>
+    _VideoStatusDto(
       videoLibraryId: (json['videoLibraryId'] as num?)?.toInt(),
       videoGuid: json['videoGuid'] as String?,
       status: (json['status'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$VideoStatusDtoImplToJson(
-        _$VideoStatusDtoImpl instance) =>
+Map<String, dynamic> _$VideoStatusDtoToJson(_VideoStatusDto instance) =>
     <String, dynamic>{
       'videoLibraryId': instance.videoLibraryId,
       'videoGuid': instance.videoGuid,
       'status': instance.status,
     };
 
-_$ApiV1AccountGetResponseDtoImpl _$$ApiV1AccountGetResponseDtoImplFromJson(
+_ApiV1AccountGetResponseDto _$ApiV1AccountGetResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1AccountGetResponseDtoImpl(
+    _ApiV1AccountGetResponseDto(
       id: json['id'] as String,
       profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ApiV1AccountGetResponseDtoImplToJson(
-        _$ApiV1AccountGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1AccountGetResponseDtoToJson(
+        _ApiV1AccountGetResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'profile': instance.profile,
     };
 
-_$ApiV1AccountPutResponseDtoImpl _$$ApiV1AccountPutResponseDtoImplFromJson(
+_ApiV1AccountPutResponseDto _$ApiV1AccountPutResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1AccountPutResponseDtoImpl(
+    _ApiV1AccountPutResponseDto(
       id: json['id'] as String,
       profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ApiV1AccountPutResponseDtoImplToJson(
-        _$ApiV1AccountPutResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1AccountPutResponseDtoToJson(
+        _ApiV1AccountPutResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'profile': instance.profile,
     };
 
-_$ApiV1AccountPutRequestDtoImpl _$$ApiV1AccountPutRequestDtoImplFromJson(
+_ApiV1AccountPutRequestDto _$ApiV1AccountPutRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1AccountPutRequestDtoImpl(
+    _ApiV1AccountPutRequestDto(
       displayName: json['displayName'] as String,
       username: json['username'] as String,
       description: json['description'] as String?,
       isPrivate: json['isPrivate'] as bool?,
     );
 
-Map<String, dynamic> _$$ApiV1AccountPutRequestDtoImplToJson(
-        _$ApiV1AccountPutRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1AccountPutRequestDtoToJson(
+        _ApiV1AccountPutRequestDto instance) =>
     <String, dynamic>{
       'displayName': instance.displayName,
       'username': instance.username,
@@ -998,52 +955,51 @@ Map<String, dynamic> _$$ApiV1AccountPutRequestDtoImplToJson(
       'isPrivate': instance.isPrivate,
     };
 
-_$ApiV1AccountAvatarPutResponseDtoImpl
-    _$$ApiV1AccountAvatarPutResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1AccountAvatarPutResponseDtoImpl(
-          id: json['id'] as String,
-          profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
-        );
+_ApiV1AccountAvatarPutResponseDto _$ApiV1AccountAvatarPutResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1AccountAvatarPutResponseDto(
+      id: json['id'] as String,
+      profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$$ApiV1AccountAvatarPutResponseDtoImplToJson(
-        _$ApiV1AccountAvatarPutResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1AccountAvatarPutResponseDtoToJson(
+        _ApiV1AccountAvatarPutResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'profile': instance.profile,
     };
 
-_$ApiV1AuthLoginPostResponseDtoImpl
-    _$$ApiV1AuthLoginPostResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1AuthLoginPostResponseDtoImpl(
-          token: json['token'] as String?,
-          uid: json['uid'] as String?,
-        );
+_ApiV1AuthLoginPostResponseDto _$ApiV1AuthLoginPostResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1AuthLoginPostResponseDto(
+      token: json['token'] as String?,
+      uid: json['uid'] as String?,
+    );
 
-Map<String, dynamic> _$$ApiV1AuthLoginPostResponseDtoImplToJson(
-        _$ApiV1AuthLoginPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1AuthLoginPostResponseDtoToJson(
+        _ApiV1AuthLoginPostResponseDto instance) =>
     <String, dynamic>{
       'token': instance.token,
       'uid': instance.uid,
     };
 
-_$ApiV1AuthLoginPostRequestDtoImpl _$$ApiV1AuthLoginPostRequestDtoImplFromJson(
+_ApiV1AuthLoginPostRequestDto _$ApiV1AuthLoginPostRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1AuthLoginPostRequestDtoImpl(
+    _ApiV1AuthLoginPostRequestDto(
       email: json['email'] as String,
       password: json['password'] as String,
     );
 
-Map<String, dynamic> _$$ApiV1AuthLoginPostRequestDtoImplToJson(
-        _$ApiV1AuthLoginPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1AuthLoginPostRequestDtoToJson(
+        _ApiV1AuthLoginPostRequestDto instance) =>
     <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
     };
 
-_$ApiV1UsersIdGetResponseDtoImpl _$$ApiV1UsersIdGetResponseDtoImplFromJson(
+_ApiV1UsersIdGetResponseDto _$ApiV1UsersIdGetResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1UsersIdGetResponseDtoImpl(
+    _ApiV1UsersIdGetResponseDto(
       userDetail:
           UserDetailDto.fromJson(json['userDetail'] as Map<String, dynamic>),
       badgesCount: (json['badgesCount'] as num?)?.toInt(),
@@ -1056,8 +1012,8 @@ _$ApiV1UsersIdGetResponseDtoImpl _$$ApiV1UsersIdGetResponseDtoImplFromJson(
       followingsCount: (json['followingsCount'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$ApiV1UsersIdGetResponseDtoImplToJson(
-        _$ApiV1UsersIdGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1UsersIdGetResponseDtoToJson(
+        _ApiV1UsersIdGetResponseDto instance) =>
     <String, dynamic>{
       'userDetail': instance.userDetail,
       'badgesCount': instance.badgesCount,
@@ -1068,9 +1024,9 @@ Map<String, dynamic> _$$ApiV1UsersIdGetResponseDtoImplToJson(
       'followingsCount': instance.followingsCount,
     };
 
-_$ApiV1StepsPostResponseDtoImpl _$$ApiV1StepsPostResponseDtoImplFromJson(
+_ApiV1StepsPostResponseDto _$ApiV1StepsPostResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1StepsPostResponseDtoImpl(
+    _ApiV1StepsPostResponseDto(
       id: json['id'] as String,
       content: json['content'] as String?,
       createdDate: json['createdDate'] == null
@@ -1103,8 +1059,8 @@ _$ApiV1StepsPostResponseDtoImpl _$$ApiV1StepsPostResponseDtoImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$ApiV1StepsPostResponseDtoImplToJson(
-        _$ApiV1StepsPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsPostResponseDtoToJson(
+        _ApiV1StepsPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -1127,57 +1083,57 @@ Map<String, dynamic> _$$ApiV1StepsPostResponseDtoImplToJson(
       'media': instance.media,
     };
 
-_$ApiV1StepsPostRequestDtoImpl _$$ApiV1StepsPostRequestDtoImplFromJson(
+_ApiV1StepsPostRequestDto _$ApiV1StepsPostRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1StepsPostRequestDtoImpl(
+    _ApiV1StepsPostRequestDto(
       content: json['content'] as String,
       journeyId: json['journeyId'] as String,
     );
 
-Map<String, dynamic> _$$ApiV1StepsPostRequestDtoImplToJson(
-        _$ApiV1StepsPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsPostRequestDtoToJson(
+        _ApiV1StepsPostRequestDto instance) =>
     <String, dynamic>{
       'content': instance.content,
       'journeyId': instance.journeyId,
     };
 
-_$ApiV1StepsStepIdGetResponseDtoImpl
-    _$$ApiV1StepsStepIdGetResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdGetResponseDtoImpl(
-          id: json['id'] as String,
-          content: json['content'] as String?,
-          createdDate: json['createdDate'] == null
-              ? null
-              : DateTime.parse(json['createdDate'] as String),
-          lastUpdated: json['lastUpdated'] == null
-              ? null
-              : DateTime.parse(json['lastUpdated'] as String),
-          userId: json['userId'] as String?,
-          user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
-          journeyId: json['journeyId'] as String?,
-          journey: json['journey'] == null
-              ? null
-              : JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
-          hearts: (json['hearts'] as num?)?.toInt(),
-          heartedByUser: json['heartedByUser'] as bool?,
-          shares: (json['shares'] as num?)?.toInt(),
-          sharedByUser: json['sharedByUser'] as bool?,
-          comments: (json['comments'] as num?)?.toInt(),
-          commentedByUser: json['commentedByUser'] as bool?,
-          userSteppedWithInteractions:
-              (json['userSteppedWithInteractions'] as num?)?.toInt(),
-          othersStepWith: (json['othersStepWith'] as num?)?.toInt(),
-          othersStepWithUsers: (json['othersStepWithUsers'] as List<dynamic>?)
-              ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          stepTypeString: json['stepTypeString'] as String?,
-          media: (json['media'] as List<dynamic>?)
-              ?.map((e) => StepMediaDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        );
+_ApiV1StepsStepIdGetResponseDto _$ApiV1StepsStepIdGetResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1StepsStepIdGetResponseDto(
+      id: json['id'] as String,
+      content: json['content'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdated: json['lastUpdated'] == null
+          ? null
+          : DateTime.parse(json['lastUpdated'] as String),
+      userId: json['userId'] as String?,
+      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      journeyId: json['journeyId'] as String?,
+      journey: json['journey'] == null
+          ? null
+          : JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
+      hearts: (json['hearts'] as num?)?.toInt(),
+      heartedByUser: json['heartedByUser'] as bool?,
+      shares: (json['shares'] as num?)?.toInt(),
+      sharedByUser: json['sharedByUser'] as bool?,
+      comments: (json['comments'] as num?)?.toInt(),
+      commentedByUser: json['commentedByUser'] as bool?,
+      userSteppedWithInteractions:
+          (json['userSteppedWithInteractions'] as num?)?.toInt(),
+      othersStepWith: (json['othersStepWith'] as num?)?.toInt(),
+      othersStepWithUsers: (json['othersStepWithUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      stepTypeString: json['stepTypeString'] as String?,
+      media: (json['media'] as List<dynamic>?)
+          ?.map((e) => StepMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdGetResponseDtoImplToJson(
-        _$ApiV1StepsStepIdGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdGetResponseDtoToJson(
+        _ApiV1StepsStepIdGetResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -1200,43 +1156,43 @@ Map<String, dynamic> _$$ApiV1StepsStepIdGetResponseDtoImplToJson(
       'media': instance.media,
     };
 
-_$ApiV1StepsStepIdPutResponseDtoImpl
-    _$$ApiV1StepsStepIdPutResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdPutResponseDtoImpl(
-          id: json['id'] as String,
-          content: json['content'] as String?,
-          createdDate: json['createdDate'] == null
-              ? null
-              : DateTime.parse(json['createdDate'] as String),
-          lastUpdated: json['lastUpdated'] == null
-              ? null
-              : DateTime.parse(json['lastUpdated'] as String),
-          userId: json['userId'] as String?,
-          user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
-          journeyId: json['journeyId'] as String?,
-          journey: json['journey'] == null
-              ? null
-              : JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
-          hearts: (json['hearts'] as num?)?.toInt(),
-          heartedByUser: json['heartedByUser'] as bool?,
-          shares: (json['shares'] as num?)?.toInt(),
-          sharedByUser: json['sharedByUser'] as bool?,
-          comments: (json['comments'] as num?)?.toInt(),
-          commentedByUser: json['commentedByUser'] as bool?,
-          userSteppedWithInteractions:
-              (json['userSteppedWithInteractions'] as num?)?.toInt(),
-          othersStepWith: (json['othersStepWith'] as num?)?.toInt(),
-          othersStepWithUsers: (json['othersStepWithUsers'] as List<dynamic>?)
-              ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          stepTypeString: json['stepTypeString'] as String?,
-          media: (json['media'] as List<dynamic>?)
-              ?.map((e) => StepMediaDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        );
+_ApiV1StepsStepIdPutResponseDto _$ApiV1StepsStepIdPutResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1StepsStepIdPutResponseDto(
+      id: json['id'] as String,
+      content: json['content'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdated: json['lastUpdated'] == null
+          ? null
+          : DateTime.parse(json['lastUpdated'] as String),
+      userId: json['userId'] as String?,
+      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      journeyId: json['journeyId'] as String?,
+      journey: json['journey'] == null
+          ? null
+          : JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
+      hearts: (json['hearts'] as num?)?.toInt(),
+      heartedByUser: json['heartedByUser'] as bool?,
+      shares: (json['shares'] as num?)?.toInt(),
+      sharedByUser: json['sharedByUser'] as bool?,
+      comments: (json['comments'] as num?)?.toInt(),
+      commentedByUser: json['commentedByUser'] as bool?,
+      userSteppedWithInteractions:
+          (json['userSteppedWithInteractions'] as num?)?.toInt(),
+      othersStepWith: (json['othersStepWith'] as num?)?.toInt(),
+      othersStepWithUsers: (json['othersStepWithUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      stepTypeString: json['stepTypeString'] as String?,
+      media: (json['media'] as List<dynamic>?)
+          ?.map((e) => StepMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdPutResponseDtoImplToJson(
-        _$ApiV1StepsStepIdPutResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdPutResponseDtoToJson(
+        _ApiV1StepsStepIdPutResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -1259,22 +1215,22 @@ Map<String, dynamic> _$$ApiV1StepsStepIdPutResponseDtoImplToJson(
       'media': instance.media,
     };
 
-_$ApiV1StepsStepIdPutRequestDtoImpl
-    _$$ApiV1StepsStepIdPutRequestDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdPutRequestDtoImpl(
-          content: json['content'] as String,
-        );
+_ApiV1StepsStepIdPutRequestDto _$ApiV1StepsStepIdPutRequestDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1StepsStepIdPutRequestDto(
+      content: json['content'] as String,
+    );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdPutRequestDtoImplToJson(
-        _$ApiV1StepsStepIdPutRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdPutRequestDtoToJson(
+        _ApiV1StepsStepIdPutRequestDto instance) =>
     <String, dynamic>{
       'content': instance.content,
     };
 
-_$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoImpl
-    _$$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoImplFromJson(
+_ApiV1StepsStepIdMediaUploadRequestsPostResponseDto
+    _$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoImpl(
+        _ApiV1StepsStepIdMediaUploadRequestsPostResponseDto(
           uploadUrl: json['uploadUrl'] as String?,
           fileUrl: json['fileUrl'] as String?,
           fileName: json['fileName'] as String?,
@@ -1286,9 +1242,8 @@ _$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoImpl
           ),
         );
 
-Map<String,
-    dynamic> _$$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoImplToJson(
-        _$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdMediaUploadRequestsPostResponseDtoToJson(
+        _ApiV1StepsStepIdMediaUploadRequestsPostResponseDto instance) =>
     <String, dynamic>{
       'uploadUrl': instance.uploadUrl,
       'fileUrl': instance.fileUrl,
@@ -1297,10 +1252,9 @@ Map<String,
       'headers': instance.headers,
     };
 
-_$ApiV1StepsStepIdImagesPutResponseDtoImpl
-    _$$ApiV1StepsStepIdImagesPutResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdImagesPutResponseDtoImpl(
+_ApiV1StepsStepIdImagesPutResponseDto
+    _$ApiV1StepsStepIdImagesPutResponseDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1StepsStepIdImagesPutResponseDto(
           id: json['id'] as String?,
           stepId: json['stepId'] as String?,
           mediaType: json['mediaType'] as String?,
@@ -1320,8 +1274,8 @@ _$ApiV1StepsStepIdImagesPutResponseDtoImpl
           isImage: json['isImage'] as bool?,
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdImagesPutResponseDtoImplToJson(
-        _$ApiV1StepsStepIdImagesPutResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdImagesPutResponseDtoToJson(
+        _ApiV1StepsStepIdImagesPutResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'stepId': instance.stepId,
@@ -1342,10 +1296,9 @@ Map<String, dynamic> _$$ApiV1StepsStepIdImagesPutResponseDtoImplToJson(
       'isImage': instance.isImage,
     };
 
-_$ApiV1StepsStepIdImagesPutRequestDtoImpl
-    _$$ApiV1StepsStepIdImagesPutRequestDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdImagesPutRequestDtoImpl(
+_ApiV1StepsStepIdImagesPutRequestDto
+    _$ApiV1StepsStepIdImagesPutRequestDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1StepsStepIdImagesPutRequestDto(
           fileName: json['fileName'] as String?,
           fileUrl: json['fileUrl'] as String?,
           width: (json['width'] as num?)?.toInt(),
@@ -1354,8 +1307,8 @@ _$ApiV1StepsStepIdImagesPutRequestDtoImpl
           contentType: json['contentType'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdImagesPutRequestDtoImplToJson(
-        _$ApiV1StepsStepIdImagesPutRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdImagesPutRequestDtoToJson(
+        _ApiV1StepsStepIdImagesPutRequestDto instance) =>
     <String, dynamic>{
       'fileName': instance.fileName,
       'fileUrl': instance.fileUrl,
@@ -1365,10 +1318,9 @@ Map<String, dynamic> _$$ApiV1StepsStepIdImagesPutRequestDtoImplToJson(
       'contentType': instance.contentType,
     };
 
-_$ApiV1StepsStepIdVideoPutResponseDtoImpl
-    _$$ApiV1StepsStepIdVideoPutResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdVideoPutResponseDtoImpl(
+_ApiV1StepsStepIdVideoPutResponseDto
+    _$ApiV1StepsStepIdVideoPutResponseDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1StepsStepIdVideoPutResponseDto(
           authorizationSignature: json['authorizationSignature'] as String?,
           authorizationExpire: (json['authorizationExpire'] as num?)?.toInt(),
           videoGuid: json['videoGuid'] as String?,
@@ -1380,8 +1332,8 @@ _$ApiV1StepsStepIdVideoPutResponseDtoImpl
               : StepMediaDto.fromJson(json['media'] as Map<String, dynamic>),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdVideoPutResponseDtoImplToJson(
-        _$ApiV1StepsStepIdVideoPutResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdVideoPutResponseDtoToJson(
+        _ApiV1StepsStepIdVideoPutResponseDto instance) =>
     <String, dynamic>{
       'authorizationSignature': instance.authorizationSignature,
       'authorizationExpire': instance.authorizationExpire,
@@ -1392,9 +1344,9 @@ Map<String, dynamic> _$$ApiV1StepsStepIdVideoPutResponseDtoImplToJson(
       'media': instance.media,
     };
 
-_$ApiV1ReportsPostResponseDtoImpl _$$ApiV1ReportsPostResponseDtoImplFromJson(
+_ApiV1ReportsPostResponseDto _$ApiV1ReportsPostResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1ReportsPostResponseDtoImpl(
+    _ApiV1ReportsPostResponseDto(
       id: json['id'] as String?,
       entityType: json['entityType'] as String,
       entityId: json['entityId'] as String?,
@@ -1407,8 +1359,8 @@ _$ApiV1ReportsPostResponseDtoImpl _$$ApiV1ReportsPostResponseDtoImplFromJson(
           : DateTime.parse(json['createdDate'] as String),
     );
 
-Map<String, dynamic> _$$ApiV1ReportsPostResponseDtoImplToJson(
-        _$ApiV1ReportsPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1ReportsPostResponseDtoToJson(
+        _ApiV1ReportsPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'entityType': instance.entityType,
@@ -1418,38 +1370,37 @@ Map<String, dynamic> _$$ApiV1ReportsPostResponseDtoImplToJson(
       'createdDate': instance.createdDate?.toIso8601String(),
     };
 
-_$ApiV1ReportsPostRequestDtoImpl _$$ApiV1ReportsPostRequestDtoImplFromJson(
+_ApiV1ReportsPostRequestDto _$ApiV1ReportsPostRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1ReportsPostRequestDtoImpl(
+    _ApiV1ReportsPostRequestDto(
       entityType: json['entityType'] as String,
       entityId: json['entityId'] as String,
       reason: json['reason'] as String,
     );
 
-Map<String, dynamic> _$$ApiV1ReportsPostRequestDtoImplToJson(
-        _$ApiV1ReportsPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1ReportsPostRequestDtoToJson(
+        _ApiV1ReportsPostRequestDto instance) =>
     <String, dynamic>{
       'entityType': instance.entityType,
       'entityId': instance.entityId,
       'reason': instance.reason,
     };
 
-_$ApiV1NotificationsGetResponseDtoImpl
-    _$$ApiV1NotificationsGetResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1NotificationsGetResponseDtoImpl(
-          notifications: (json['notifications'] as List<dynamic>?)
-              ?.map((e) => NotificationDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          page: (json['page'] as num?)?.toInt(),
-          pageSize: (json['pageSize'] as num?)?.toInt(),
-          totalCount: (json['totalCount'] as num?)?.toInt(),
-          unreadCount: (json['unreadCount'] as num?)?.toInt(),
-          hasMore: json['hasMore'] as bool?,
-        );
+_ApiV1NotificationsGetResponseDto _$ApiV1NotificationsGetResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1NotificationsGetResponseDto(
+      notifications: (json['notifications'] as List<dynamic>?)
+          ?.map((e) => NotificationDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
+      totalCount: (json['totalCount'] as num?)?.toInt(),
+      unreadCount: (json['unreadCount'] as num?)?.toInt(),
+      hasMore: json['hasMore'] as bool?,
+    );
 
-Map<String, dynamic> _$$ApiV1NotificationsGetResponseDtoImplToJson(
-        _$ApiV1NotificationsGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1NotificationsGetResponseDtoToJson(
+        _ApiV1NotificationsGetResponseDto instance) =>
     <String, dynamic>{
       'notifications': instance.notifications,
       'page': instance.page,
@@ -1459,31 +1410,30 @@ Map<String, dynamic> _$$ApiV1NotificationsGetResponseDtoImplToJson(
       'hasMore': instance.hasMore,
     };
 
-_$ApiV1NotificationsPostResponseDtoImpl
-    _$$ApiV1NotificationsPostResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1NotificationsPostResponseDtoImpl(
-          id: json['id'] as String?,
-          title: json['title'] as String?,
-          body: json['body'] as String?,
-          notificationType: (json['notificationType'] as num?)?.toInt(),
-          isRead: json['isRead'] as bool?,
-          createdDate: json['createdDate'] == null
-              ? null
-              : DateTime.parse(json['createdDate'] as String),
-          data: (json['data'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as String),
-          ),
-          priority: (json['priority'] as num?)?.toInt(),
-          relatedEntityId: json['relatedEntityId'] as String?,
-          sourceUser: json['sourceUser'] == null
-              ? null
-              : UserDetailDto2Dto.fromJson(
-                  json['sourceUser'] as Map<String, dynamic>),
-        );
+_ApiV1NotificationsPostResponseDto _$ApiV1NotificationsPostResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1NotificationsPostResponseDto(
+      id: json['id'] as String?,
+      title: json['title'] as String?,
+      body: json['body'] as String?,
+      notificationType: (json['notificationType'] as num?)?.toInt(),
+      isRead: json['isRead'] as bool?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      data: (json['data'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
+      priority: (json['priority'] as num?)?.toInt(),
+      relatedEntityId: json['relatedEntityId'] as String?,
+      sourceUser: json['sourceUser'] == null
+          ? null
+          : UserDetailDto2Dto.fromJson(
+              json['sourceUser'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$$ApiV1NotificationsPostResponseDtoImplToJson(
-        _$ApiV1NotificationsPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1NotificationsPostResponseDtoToJson(
+        _ApiV1NotificationsPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -1497,26 +1447,25 @@ Map<String, dynamic> _$$ApiV1NotificationsPostResponseDtoImplToJson(
       'sourceUser': instance.sourceUser,
     };
 
-_$ApiV1NotificationsPostRequestDtoImpl
-    _$$ApiV1NotificationsPostRequestDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1NotificationsPostRequestDtoImpl(
-          title: json['title'] as String,
-          body: json['body'] as String,
-          notificationType: (json['notificationType'] as num).toInt(),
-          targetUserId: json['targetUserId'] as String?,
-          relatedEntityId: json['relatedEntityId'] as String?,
-          scheduledFor: json['scheduledFor'] == null
-              ? null
-              : DateTime.parse(json['scheduledFor'] as String),
-          data: (json['data'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as String),
-          ),
-          priority: (json['priority'] as num?)?.toInt(),
-        );
+_ApiV1NotificationsPostRequestDto _$ApiV1NotificationsPostRequestDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1NotificationsPostRequestDto(
+      title: json['title'] as String,
+      body: json['body'] as String,
+      notificationType: (json['notificationType'] as num).toInt(),
+      targetUserId: json['targetUserId'] as String?,
+      relatedEntityId: json['relatedEntityId'] as String?,
+      scheduledFor: json['scheduledFor'] == null
+          ? null
+          : DateTime.parse(json['scheduledFor'] as String),
+      data: (json['data'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
+      priority: (json['priority'] as num?)?.toInt(),
+    );
 
-Map<String, dynamic> _$$ApiV1NotificationsPostRequestDtoImplToJson(
-        _$ApiV1NotificationsPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1NotificationsPostRequestDtoToJson(
+        _ApiV1NotificationsPostRequestDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
@@ -1528,10 +1477,9 @@ Map<String, dynamic> _$$ApiV1NotificationsPostRequestDtoImplToJson(
       'priority': instance.priority,
     };
 
-_$ApiV1NotificationsBulkPostRequestDtoImpl
-    _$$ApiV1NotificationsBulkPostRequestDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1NotificationsBulkPostRequestDtoImpl(
+_ApiV1NotificationsBulkPostRequestDto
+    _$ApiV1NotificationsBulkPostRequestDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1NotificationsBulkPostRequestDto(
           title: json['title'] as String,
           body: json['body'] as String,
           notificationType: (json['notificationType'] as num).toInt(),
@@ -1545,8 +1493,8 @@ _$ApiV1NotificationsBulkPostRequestDtoImpl
           priority: (json['priority'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1NotificationsBulkPostRequestDtoImplToJson(
-        _$ApiV1NotificationsBulkPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1NotificationsBulkPostRequestDtoToJson(
+        _ApiV1NotificationsBulkPostRequestDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
@@ -1557,23 +1505,22 @@ Map<String, dynamic> _$$ApiV1NotificationsBulkPostRequestDtoImplToJson(
       'priority': instance.priority,
     };
 
-_$ApiV1MediaUploadsPostResponseDtoImpl
-    _$$ApiV1MediaUploadsPostResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1MediaUploadsPostResponseDtoImpl(
-          uploadUrl: json['uploadUrl'] as String?,
-          fileUrl: json['fileUrl'] as String?,
-          fileName: json['fileName'] as String?,
-          expiresAt: json['expiresAt'] == null
-              ? null
-              : DateTime.parse(json['expiresAt'] as String),
-          headers: (json['headers'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as String),
-          ),
-        );
+_ApiV1MediaUploadsPostResponseDto _$ApiV1MediaUploadsPostResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1MediaUploadsPostResponseDto(
+      uploadUrl: json['uploadUrl'] as String?,
+      fileUrl: json['fileUrl'] as String?,
+      fileName: json['fileName'] as String?,
+      expiresAt: json['expiresAt'] == null
+          ? null
+          : DateTime.parse(json['expiresAt'] as String),
+      headers: (json['headers'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
+    );
 
-Map<String, dynamic> _$$ApiV1MediaUploadsPostResponseDtoImplToJson(
-        _$ApiV1MediaUploadsPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1MediaUploadsPostResponseDtoToJson(
+        _ApiV1MediaUploadsPostResponseDto instance) =>
     <String, dynamic>{
       'uploadUrl': instance.uploadUrl,
       'fileUrl': instance.fileUrl,
@@ -1582,30 +1529,30 @@ Map<String, dynamic> _$$ApiV1MediaUploadsPostResponseDtoImplToJson(
       'headers': instance.headers,
     };
 
-_$ApiV1MediaImagesPostResponseDtoImpl
-    _$$ApiV1MediaImagesPostResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1MediaImagesPostResponseDtoImpl(
-          id: json['id'] as String?,
-          stepId: json['stepId'] as String?,
-          mediaType: json['mediaType'] as String?,
-          originalUrl: json['originalUrl'] as String?,
-          largeUrl: json['largeUrl'] as String?,
-          mediumUrl: json['mediumUrl'] as String?,
-          smallUrl: json['smallUrl'] as String?,
-          thumbnailUrl: json['thumbnailUrl'] as String?,
-          videoThumbnailUrl: json['videoThumbnailUrl'] as String?,
-          bunnyVideoId: json['bunnyVideoId'] as String?,
-          width: (json['width'] as num?)?.toInt(),
-          height: (json['height'] as num?)?.toInt(),
-          size: (json['size'] as num?)?.toInt(),
-          duration: json['duration'] as num?,
-          status: (json['status'] as num?)?.toInt(),
-          isVideo: json['isVideo'] as bool?,
-          isImage: json['isImage'] as bool?,
-        );
+_ApiV1MediaImagesPostResponseDto _$ApiV1MediaImagesPostResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1MediaImagesPostResponseDto(
+      id: json['id'] as String?,
+      stepId: json['stepId'] as String?,
+      mediaType: json['mediaType'] as String?,
+      originalUrl: json['originalUrl'] as String?,
+      largeUrl: json['largeUrl'] as String?,
+      mediumUrl: json['mediumUrl'] as String?,
+      smallUrl: json['smallUrl'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
+      videoThumbnailUrl: json['videoThumbnailUrl'] as String?,
+      bunnyVideoId: json['bunnyVideoId'] as String?,
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      size: (json['size'] as num?)?.toInt(),
+      duration: json['duration'] as num?,
+      status: (json['status'] as num?)?.toInt(),
+      isVideo: json['isVideo'] as bool?,
+      isImage: json['isImage'] as bool?,
+    );
 
-Map<String, dynamic> _$$ApiV1MediaImagesPostResponseDtoImplToJson(
-        _$ApiV1MediaImagesPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1MediaImagesPostResponseDtoToJson(
+        _ApiV1MediaImagesPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'stepId': instance.stepId,
@@ -1626,19 +1573,19 @@ Map<String, dynamic> _$$ApiV1MediaImagesPostResponseDtoImplToJson(
       'isImage': instance.isImage,
     };
 
-_$ApiV1MediaImagesPostRequestDtoImpl
-    _$$ApiV1MediaImagesPostRequestDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1MediaImagesPostRequestDtoImpl(
-          fileName: json['fileName'] as String?,
-          fileUrl: json['fileUrl'] as String?,
-          width: (json['width'] as num?)?.toInt(),
-          height: (json['height'] as num?)?.toInt(),
-          size: (json['size'] as num?)?.toInt(),
-          contentType: json['contentType'] as String?,
-        );
+_ApiV1MediaImagesPostRequestDto _$ApiV1MediaImagesPostRequestDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1MediaImagesPostRequestDto(
+      fileName: json['fileName'] as String?,
+      fileUrl: json['fileUrl'] as String?,
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      size: (json['size'] as num?)?.toInt(),
+      contentType: json['contentType'] as String?,
+    );
 
-Map<String, dynamic> _$$ApiV1MediaImagesPostRequestDtoImplToJson(
-        _$ApiV1MediaImagesPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1MediaImagesPostRequestDtoToJson(
+        _ApiV1MediaImagesPostRequestDto instance) =>
     <String, dynamic>{
       'fileName': instance.fileName,
       'fileUrl': instance.fileUrl,
@@ -1648,22 +1595,22 @@ Map<String, dynamic> _$$ApiV1MediaImagesPostRequestDtoImplToJson(
       'contentType': instance.contentType,
     };
 
-_$ApiV1MediaVideosPostResponseDtoImpl
-    _$$ApiV1MediaVideosPostResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1MediaVideosPostResponseDtoImpl(
-          authorizationSignature: json['authorizationSignature'] as String?,
-          authorizationExpire: (json['authorizationExpire'] as num?)?.toInt(),
-          videoGuid: json['videoGuid'] as String?,
-          libraryId: (json['libraryId'] as num?)?.toInt(),
-          title: json['title'] as String?,
-          collectionId: json['collectionId'] as String?,
-          media: json['media'] == null
-              ? null
-              : StepMediaDto.fromJson(json['media'] as Map<String, dynamic>),
-        );
+_ApiV1MediaVideosPostResponseDto _$ApiV1MediaVideosPostResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1MediaVideosPostResponseDto(
+      authorizationSignature: json['authorizationSignature'] as String?,
+      authorizationExpire: (json['authorizationExpire'] as num?)?.toInt(),
+      videoGuid: json['videoGuid'] as String?,
+      libraryId: (json['libraryId'] as num?)?.toInt(),
+      title: json['title'] as String?,
+      collectionId: json['collectionId'] as String?,
+      media: json['media'] == null
+          ? null
+          : StepMediaDto.fromJson(json['media'] as Map<String, dynamic>),
+    );
 
-Map<String, dynamic> _$$ApiV1MediaVideosPostResponseDtoImplToJson(
-        _$ApiV1MediaVideosPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1MediaVideosPostResponseDtoToJson(
+        _ApiV1MediaVideosPostResponseDto instance) =>
     <String, dynamic>{
       'authorizationSignature': instance.authorizationSignature,
       'authorizationExpire': instance.authorizationExpire,
@@ -1674,30 +1621,30 @@ Map<String, dynamic> _$$ApiV1MediaVideosPostResponseDtoImplToJson(
       'media': instance.media,
     };
 
-_$ApiV1MediaMediaIdGetResponseDtoImpl
-    _$$ApiV1MediaMediaIdGetResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1MediaMediaIdGetResponseDtoImpl(
-          id: json['id'] as String?,
-          stepId: json['stepId'] as String?,
-          mediaType: json['mediaType'] as String?,
-          originalUrl: json['originalUrl'] as String?,
-          largeUrl: json['largeUrl'] as String?,
-          mediumUrl: json['mediumUrl'] as String?,
-          smallUrl: json['smallUrl'] as String?,
-          thumbnailUrl: json['thumbnailUrl'] as String?,
-          videoThumbnailUrl: json['videoThumbnailUrl'] as String?,
-          bunnyVideoId: json['bunnyVideoId'] as String?,
-          width: (json['width'] as num?)?.toInt(),
-          height: (json['height'] as num?)?.toInt(),
-          size: (json['size'] as num?)?.toInt(),
-          duration: json['duration'] as num?,
-          status: (json['status'] as num?)?.toInt(),
-          isVideo: json['isVideo'] as bool?,
-          isImage: json['isImage'] as bool?,
-        );
+_ApiV1MediaMediaIdGetResponseDto _$ApiV1MediaMediaIdGetResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1MediaMediaIdGetResponseDto(
+      id: json['id'] as String?,
+      stepId: json['stepId'] as String?,
+      mediaType: json['mediaType'] as String?,
+      originalUrl: json['originalUrl'] as String?,
+      largeUrl: json['largeUrl'] as String?,
+      mediumUrl: json['mediumUrl'] as String?,
+      smallUrl: json['smallUrl'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String?,
+      videoThumbnailUrl: json['videoThumbnailUrl'] as String?,
+      bunnyVideoId: json['bunnyVideoId'] as String?,
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      size: (json['size'] as num?)?.toInt(),
+      duration: json['duration'] as num?,
+      status: (json['status'] as num?)?.toInt(),
+      isVideo: json['isVideo'] as bool?,
+      isImage: json['isImage'] as bool?,
+    );
 
-Map<String, dynamic> _$$ApiV1MediaMediaIdGetResponseDtoImplToJson(
-        _$ApiV1MediaMediaIdGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1MediaMediaIdGetResponseDtoToJson(
+        _ApiV1MediaMediaIdGetResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'stepId': instance.stepId,
@@ -1718,44 +1665,43 @@ Map<String, dynamic> _$$ApiV1MediaMediaIdGetResponseDtoImplToJson(
       'isImage': instance.isImage,
     };
 
-_$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl
-    _$$ApiV1WebhooksVideoUpdatesPostRequestDtoImplFromJson(
+_ApiV1WebhooksVideoUpdatesPostRequestDto
+    _$ApiV1WebhooksVideoUpdatesPostRequestDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl(
+        _ApiV1WebhooksVideoUpdatesPostRequestDto(
           videoLibraryId: (json['videoLibraryId'] as num?)?.toInt(),
           videoGuid: json['videoGuid'] as String?,
           status: (json['status'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1WebhooksVideoUpdatesPostRequestDtoImplToJson(
-        _$ApiV1WebhooksVideoUpdatesPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1WebhooksVideoUpdatesPostRequestDtoToJson(
+        _ApiV1WebhooksVideoUpdatesPostRequestDto instance) =>
     <String, dynamic>{
       'videoLibraryId': instance.videoLibraryId,
       'videoGuid': instance.videoGuid,
       'status': instance.status,
     };
 
-_$ApiV1JourneysIdGetResponseDtoImpl
-    _$$ApiV1JourneysIdGetResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1JourneysIdGetResponseDtoImpl(
-          journey:
-              JourneyDto2Dto.fromJson(json['journey'] as Map<String, dynamic>),
-          stepsCount: (json['stepsCount'] as num).toInt(),
-          lastStepDate: DateTime.parse(json['lastStepDate'] as String),
-          stepperCount: (json['stepperCount'] as num?)?.toInt(),
-          latestSteppers: (json['latestSteppers'] as List<dynamic>?)
-              ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          starterCount: (json['starterCount'] as num?)?.toInt(),
-          latestStarters: json['latestStarters'] as List<dynamic>?,
-          companionCount: (json['companionCount'] as num?)?.toInt(),
-          latestCompanions: json['latestCompanions'] as List<dynamic>?,
-          celebratorCount: (json['celebratorCount'] as num?)?.toInt(),
-          latestCelebrators: json['latestCelebrators'] as List<dynamic>?,
-        );
+_ApiV1JourneysIdGetResponseDto _$ApiV1JourneysIdGetResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1JourneysIdGetResponseDto(
+      journey: JourneyDto2Dto.fromJson(json['journey'] as Map<String, dynamic>),
+      stepsCount: (json['stepsCount'] as num).toInt(),
+      lastStepDate: DateTime.parse(json['lastStepDate'] as String),
+      stepperCount: (json['stepperCount'] as num?)?.toInt(),
+      latestSteppers: (json['latestSteppers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      starterCount: (json['starterCount'] as num?)?.toInt(),
+      latestStarters: json['latestStarters'] as List<dynamic>?,
+      companionCount: (json['companionCount'] as num?)?.toInt(),
+      latestCompanions: json['latestCompanions'] as List<dynamic>?,
+      celebratorCount: (json['celebratorCount'] as num?)?.toInt(),
+      latestCelebrators: json['latestCelebrators'] as List<dynamic>?,
+    );
 
-Map<String, dynamic> _$$ApiV1JourneysIdGetResponseDtoImplToJson(
-        _$ApiV1JourneysIdGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1JourneysIdGetResponseDtoToJson(
+        _ApiV1JourneysIdGetResponseDto instance) =>
     <String, dynamic>{
       'journey': instance.journey,
       'stepsCount': instance.stepsCount,
@@ -1770,29 +1716,29 @@ Map<String, dynamic> _$$ApiV1JourneysIdGetResponseDtoImplToJson(
       'latestCelebrators': instance.latestCelebrators,
     };
 
-_$ApiV1JourneysIdPutResponseDtoImpl
-    _$$ApiV1JourneysIdPutResponseDtoImplFromJson(Map<String, dynamic> json) =>
-        _$ApiV1JourneysIdPutResponseDtoImpl(
-          id: json['id'] as String?,
-          title: json['title'] as String?,
-          description: json['description'] as String?,
-          createdDate: json['createdDate'] == null
-              ? null
-              : DateTime.parse(json['createdDate'] as String),
-          lastUpdated: json['lastUpdated'] == null
-              ? null
-              : DateTime.parse(json['lastUpdated'] as String),
-          status: json['status'] as String?,
-          completedDate: json['completedDate'] == null
-              ? null
-              : DateTime.parse(json['completedDate'] as String),
-          userId: json['userId'] as String?,
-          firstStepId: json['firstStepId'] as String?,
-          finalStepId: json['finalStepId'] as String?,
-        );
+_ApiV1JourneysIdPutResponseDto _$ApiV1JourneysIdPutResponseDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ApiV1JourneysIdPutResponseDto(
+      id: json['id'] as String?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdated: json['lastUpdated'] == null
+          ? null
+          : DateTime.parse(json['lastUpdated'] as String),
+      status: json['status'] as String?,
+      completedDate: json['completedDate'] == null
+          ? null
+          : DateTime.parse(json['completedDate'] as String),
+      userId: json['userId'] as String?,
+      firstStepId: json['firstStepId'] as String?,
+      finalStepId: json['finalStepId'] as String?,
+    );
 
-Map<String, dynamic> _$$ApiV1JourneysIdPutResponseDtoImplToJson(
-        _$ApiV1JourneysIdPutResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1JourneysIdPutResponseDtoToJson(
+        _ApiV1JourneysIdPutResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -1806,23 +1752,23 @@ Map<String, dynamic> _$$ApiV1JourneysIdPutResponseDtoImplToJson(
       'finalStepId': instance.finalStepId,
     };
 
-_$ApiV1JourneysIdPutRequestDtoImpl _$$ApiV1JourneysIdPutRequestDtoImplFromJson(
+_ApiV1JourneysIdPutRequestDto _$ApiV1JourneysIdPutRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1JourneysIdPutRequestDtoImpl(
+    _ApiV1JourneysIdPutRequestDto(
       title: json['title'] as String,
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$$ApiV1JourneysIdPutRequestDtoImplToJson(
-        _$ApiV1JourneysIdPutRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1JourneysIdPutRequestDtoToJson(
+        _ApiV1JourneysIdPutRequestDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
     };
 
-_$ApiV1JourneysPostResponseDtoImpl _$$ApiV1JourneysPostResponseDtoImplFromJson(
+_ApiV1JourneysPostResponseDto _$ApiV1JourneysPostResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1JourneysPostResponseDtoImpl(
+    _ApiV1JourneysPostResponseDto(
       id: json['id'] as String,
       content: json['content'] as String?,
       createdDate: json['createdDate'] == null
@@ -1855,8 +1801,8 @@ _$ApiV1JourneysPostResponseDtoImpl _$$ApiV1JourneysPostResponseDtoImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$ApiV1JourneysPostResponseDtoImplToJson(
-        _$ApiV1JourneysPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1JourneysPostResponseDtoToJson(
+        _ApiV1JourneysPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -1879,26 +1825,25 @@ Map<String, dynamic> _$$ApiV1JourneysPostResponseDtoImplToJson(
       'media': instance.media,
     };
 
-_$ApiV1JourneysPostRequestDtoImpl _$$ApiV1JourneysPostRequestDtoImplFromJson(
+_ApiV1JourneysPostRequestDto _$ApiV1JourneysPostRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$ApiV1JourneysPostRequestDtoImpl(
+    _ApiV1JourneysPostRequestDto(
       title: json['title'] as String,
       description: json['description'] as String?,
       firstStepContent: json['firstStepContent'] as String,
     );
 
-Map<String, dynamic> _$$ApiV1JourneysPostRequestDtoImplToJson(
-        _$ApiV1JourneysPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1JourneysPostRequestDtoToJson(
+        _ApiV1JourneysPostRequestDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'firstStepContent': instance.firstStepContent,
     };
 
-_$ApiV1JourneysIdClosePostResponseDtoImpl
-    _$$ApiV1JourneysIdClosePostResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1JourneysIdClosePostResponseDtoImpl(
+_ApiV1JourneysIdClosePostResponseDto
+    _$ApiV1JourneysIdClosePostResponseDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1JourneysIdClosePostResponseDto(
           id: json['id'] as String?,
           title: json['title'] as String?,
           description: json['description'] as String?,
@@ -1917,8 +1862,8 @@ _$ApiV1JourneysIdClosePostResponseDtoImpl
           finalStepId: json['finalStepId'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1JourneysIdClosePostResponseDtoImplToJson(
-        _$ApiV1JourneysIdClosePostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1JourneysIdClosePostResponseDtoToJson(
+        _ApiV1JourneysIdClosePostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -1932,10 +1877,9 @@ Map<String, dynamic> _$$ApiV1JourneysIdClosePostResponseDtoImplToJson(
       'finalStepId': instance.finalStepId,
     };
 
-_$ApiV1JourneysIdReopenPostResponseDtoImpl
-    _$$ApiV1JourneysIdReopenPostResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1JourneysIdReopenPostResponseDtoImpl(
+_ApiV1JourneysIdReopenPostResponseDto
+    _$ApiV1JourneysIdReopenPostResponseDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1JourneysIdReopenPostResponseDto(
           id: json['id'] as String?,
           title: json['title'] as String?,
           description: json['description'] as String?,
@@ -1954,8 +1898,8 @@ _$ApiV1JourneysIdReopenPostResponseDtoImpl
           finalStepId: json['finalStepId'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1JourneysIdReopenPostResponseDtoImplToJson(
-        _$ApiV1JourneysIdReopenPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1JourneysIdReopenPostResponseDtoToJson(
+        _ApiV1JourneysIdReopenPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -1969,176 +1913,173 @@ Map<String, dynamic> _$$ApiV1JourneysIdReopenPostResponseDtoImplToJson(
       'finalStepId': instance.finalStepId,
     };
 
-_$ApiV1StepsStepIdHeartsPostResponseDtoImpl
-    _$$ApiV1StepsStepIdHeartsPostResponseDtoImplFromJson(
+_ApiV1StepsStepIdHeartsPostResponseDto
+    _$ApiV1StepsStepIdHeartsPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdHeartsPostResponseDtoImpl(
+        _ApiV1StepsStepIdHeartsPostResponseDto(
           isSteppedWith: json['isSteppedWith'] as bool?,
           isLiked: json['isLiked'] as bool?,
           totalLikes: (json['totalLikes'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdHeartsPostResponseDtoImplToJson(
-        _$ApiV1StepsStepIdHeartsPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdHeartsPostResponseDtoToJson(
+        _ApiV1StepsStepIdHeartsPostResponseDto instance) =>
     <String, dynamic>{
       'isSteppedWith': instance.isSteppedWith,
       'isLiked': instance.isLiked,
       'totalLikes': instance.totalLikes,
     };
 
-_$ApiV1StepsStepIdHeartsPostRequestDtoImpl
-    _$$ApiV1StepsStepIdHeartsPostRequestDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdHeartsPostRequestDtoImpl(
+_ApiV1StepsStepIdHeartsPostRequestDto
+    _$ApiV1StepsStepIdHeartsPostRequestDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1StepsStepIdHeartsPostRequestDto(
           type: (json['type'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdHeartsPostRequestDtoImplToJson(
-        _$ApiV1StepsStepIdHeartsPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdHeartsPostRequestDtoToJson(
+        _ApiV1StepsStepIdHeartsPostRequestDto instance) =>
     <String, dynamic>{
       'type': instance.type,
     };
 
-_$ApiV1StepsStepIdHeartsDeleteResponseDtoImpl
-    _$$ApiV1StepsStepIdHeartsDeleteResponseDtoImplFromJson(
+_ApiV1StepsStepIdHeartsDeleteResponseDto
+    _$ApiV1StepsStepIdHeartsDeleteResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdHeartsDeleteResponseDtoImpl(
+        _ApiV1StepsStepIdHeartsDeleteResponseDto(
           isSteppedWith: json['isSteppedWith'] as bool?,
           isLiked: json['isLiked'] as bool?,
           totalLikes: (json['totalLikes'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdHeartsDeleteResponseDtoImplToJson(
-        _$ApiV1StepsStepIdHeartsDeleteResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdHeartsDeleteResponseDtoToJson(
+        _ApiV1StepsStepIdHeartsDeleteResponseDto instance) =>
     <String, dynamic>{
       'isSteppedWith': instance.isSteppedWith,
       'isLiked': instance.isLiked,
       'totalLikes': instance.totalLikes,
     };
 
-_$ApiV1StepsStepIdSharesPostResponseDtoImpl
-    _$$ApiV1StepsStepIdSharesPostResponseDtoImplFromJson(
+_ApiV1StepsStepIdSharesPostResponseDto
+    _$ApiV1StepsStepIdSharesPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdSharesPostResponseDtoImpl(
+        _ApiV1StepsStepIdSharesPostResponseDto(
           isSteppedWith: json['isSteppedWith'] as bool?,
           isLiked: json['isLiked'] as bool?,
           totalLikes: (json['totalLikes'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdSharesPostResponseDtoImplToJson(
-        _$ApiV1StepsStepIdSharesPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdSharesPostResponseDtoToJson(
+        _ApiV1StepsStepIdSharesPostResponseDto instance) =>
     <String, dynamic>{
       'isSteppedWith': instance.isSteppedWith,
       'isLiked': instance.isLiked,
       'totalLikes': instance.totalLikes,
     };
 
-_$ApiV1StepsStepIdSharesPostRequestDtoImpl
-    _$$ApiV1StepsStepIdSharesPostRequestDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdSharesPostRequestDtoImpl(
+_ApiV1StepsStepIdSharesPostRequestDto
+    _$ApiV1StepsStepIdSharesPostRequestDtoFromJson(Map<String, dynamic> json) =>
+        _ApiV1StepsStepIdSharesPostRequestDto(
           type: (json['type'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdSharesPostRequestDtoImplToJson(
-        _$ApiV1StepsStepIdSharesPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdSharesPostRequestDtoToJson(
+        _ApiV1StepsStepIdSharesPostRequestDto instance) =>
     <String, dynamic>{
       'type': instance.type,
     };
 
-_$ApiV1StepsStepIdInteractionsGetResponseDtoImpl
-    _$$ApiV1StepsStepIdInteractionsGetResponseDtoImplFromJson(
+_ApiV1StepsStepIdInteractionsGetResponseDto
+    _$ApiV1StepsStepIdInteractionsGetResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdInteractionsGetResponseDtoImpl(
+        _ApiV1StepsStepIdInteractionsGetResponseDto(
           isSteppedWith: json['isSteppedWith'] as bool?,
           isLiked: json['isLiked'] as bool?,
           totalLikes: (json['totalLikes'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdInteractionsGetResponseDtoImplToJson(
-        _$ApiV1StepsStepIdInteractionsGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdInteractionsGetResponseDtoToJson(
+        _ApiV1StepsStepIdInteractionsGetResponseDto instance) =>
     <String, dynamic>{
       'isSteppedWith': instance.isSteppedWith,
       'isLiked': instance.isLiked,
       'totalLikes': instance.totalLikes,
     };
 
-_$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoImpl
-    _$$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoImplFromJson(
+_ApiV1StepsCommentsCommentIdHeartsPostRequestDto
+    _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoImpl(
+        _ApiV1StepsCommentsCommentIdHeartsPostRequestDto(
           type: (json['type'] as num?)?.toInt(),
         );
 
-Map<String, dynamic>
-    _$$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoImplToJson(
-            _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoImpl instance) =>
-        <String, dynamic>{
-          'type': instance.type,
-        };
+Map<String, dynamic> _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoToJson(
+        _ApiV1StepsCommentsCommentIdHeartsPostRequestDto instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+    };
 
-_$ApiV1UsersUserIdFollowPostResponseDtoImpl
-    _$$ApiV1UsersUserIdFollowPostResponseDtoImplFromJson(
+_ApiV1UsersUserIdFollowPostResponseDto
+    _$ApiV1UsersUserIdFollowPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1UsersUserIdFollowPostResponseDtoImpl(
+        _ApiV1UsersUserIdFollowPostResponseDto(
           status: (json['status'] as num).toInt(),
           message: json['message'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1UsersUserIdFollowPostResponseDtoImplToJson(
-        _$ApiV1UsersUserIdFollowPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1UsersUserIdFollowPostResponseDtoToJson(
+        _ApiV1UsersUserIdFollowPostResponseDto instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
     };
 
-_$ApiV1UsersUserIdFollowDeleteResponseDtoImpl
-    _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplFromJson(
+_ApiV1UsersUserIdFollowDeleteResponseDto
+    _$ApiV1UsersUserIdFollowDeleteResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl(
+        _ApiV1UsersUserIdFollowDeleteResponseDto(
           status: (json['status'] as num).toInt(),
           message: json['message'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplToJson(
-        _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1UsersUserIdFollowDeleteResponseDtoToJson(
+        _ApiV1UsersUserIdFollowDeleteResponseDto instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
     };
 
-_$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl
-    _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplFromJson(
+_ApiV1UsersUserIdRejectFollowPostResponseDto
+    _$ApiV1UsersUserIdRejectFollowPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl(
+        _ApiV1UsersUserIdRejectFollowPostResponseDto(
           status: (json['status'] as num).toInt(),
           message: json['message'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplToJson(
-        _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1UsersUserIdRejectFollowPostResponseDtoToJson(
+        _ApiV1UsersUserIdRejectFollowPostResponseDto instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
     };
 
-_$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl
-    _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplFromJson(
+_ApiV1UsersUserIdFollowStatusGetResponseDto
+    _$ApiV1UsersUserIdFollowStatusGetResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl(
+        _ApiV1UsersUserIdFollowStatusGetResponseDto(
           status: (json['status'] as num).toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplToJson(
-        _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1UsersUserIdFollowStatusGetResponseDtoToJson(
+        _ApiV1UsersUserIdFollowStatusGetResponseDto instance) =>
     <String, dynamic>{
       'status': instance.status,
     };
 
-_$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl
-    _$$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImplFromJson(
+_ApiV1CommentsParentCommentIdRepliesPostResponseDto
+    _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl(
+        _ApiV1CommentsParentCommentIdRepliesPostResponseDto(
           id: json['id'] as String?,
           content: json['content'] as String?,
           createdDate: json['createdDate'] == null
@@ -2163,9 +2104,8 @@ _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl
           heartedByUser: json['heartedByUser'] as bool?,
         );
 
-Map<String,
-    dynamic> _$$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImplToJson(
-        _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1CommentsParentCommentIdRepliesPostResponseDtoToJson(
+        _ApiV1CommentsParentCommentIdRepliesPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -2180,28 +2120,27 @@ Map<String,
       'heartedByUser': instance.heartedByUser,
     };
 
-_$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl
-    _$$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImplFromJson(
+_ApiV1CommentsParentCommentIdRepliesPostRequestDto
+    _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl(
+        _ApiV1CommentsParentCommentIdRepliesPostRequestDto(
           content: json['content'] as String,
           responseToUserId: json['responseToUserId'] as String?,
           responseToCommentId: json['responseToCommentId'] as String?,
         );
 
-Map<String, dynamic>
-    _$$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImplToJson(
-            _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoImpl instance) =>
-        <String, dynamic>{
-          'content': instance.content,
-          'responseToUserId': instance.responseToUserId,
-          'responseToCommentId': instance.responseToCommentId,
-        };
+Map<String, dynamic> _$ApiV1CommentsParentCommentIdRepliesPostRequestDtoToJson(
+        _ApiV1CommentsParentCommentIdRepliesPostRequestDto instance) =>
+    <String, dynamic>{
+      'content': instance.content,
+      'responseToUserId': instance.responseToUserId,
+      'responseToCommentId': instance.responseToCommentId,
+    };
 
-_$ApiV1StepsStepIdCommentsPostResponseDtoImpl
-    _$$ApiV1StepsStepIdCommentsPostResponseDtoImplFromJson(
+_ApiV1StepsStepIdCommentsPostResponseDto
+    _$ApiV1StepsStepIdCommentsPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdCommentsPostResponseDtoImpl(
+        _ApiV1StepsStepIdCommentsPostResponseDto(
           id: json['id'] as String?,
           content: json['content'] as String?,
           createdAt: json['createdAt'] == null
@@ -2222,8 +2161,8 @@ _$ApiV1StepsStepIdCommentsPostResponseDtoImpl
           replyCount: (json['replyCount'] as num?)?.toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdCommentsPostResponseDtoImplToJson(
-        _$ApiV1StepsStepIdCommentsPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdCommentsPostResponseDtoToJson(
+        _ApiV1StepsStepIdCommentsPostResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
@@ -2237,15 +2176,15 @@ Map<String, dynamic> _$$ApiV1StepsStepIdCommentsPostResponseDtoImplToJson(
       'replyCount': instance.replyCount,
     };
 
-_$ApiV1StepsStepIdCommentsPostRequestDtoImpl
-    _$$ApiV1StepsStepIdCommentsPostRequestDtoImplFromJson(
+_ApiV1StepsStepIdCommentsPostRequestDto
+    _$ApiV1StepsStepIdCommentsPostRequestDtoFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1StepsStepIdCommentsPostRequestDtoImpl(
+        _ApiV1StepsStepIdCommentsPostRequestDto(
           content: json['content'] as String,
         );
 
-Map<String, dynamic> _$$ApiV1StepsStepIdCommentsPostRequestDtoImplToJson(
-        _$ApiV1StepsStepIdCommentsPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$ApiV1StepsStepIdCommentsPostRequestDtoToJson(
+        _ApiV1StepsStepIdCommentsPostRequestDto instance) =>
     <String, dynamic>{
       'content': instance.content,
     };

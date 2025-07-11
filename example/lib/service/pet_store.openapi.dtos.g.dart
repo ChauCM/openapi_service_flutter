@@ -6,22 +6,19 @@ part of 'pet_store.openapi.dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ApiErrorImpl _$$ApiErrorImplFromJson(Map<String, dynamic> json) =>
-    _$ApiErrorImpl(
+_ApiError _$ApiErrorFromJson(Map<String, dynamic> json) => _ApiError(
       message: json['message'] as String,
       statusCode: (json['statusCode'] as num?)?.toInt(),
       type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$$ApiErrorImplToJson(_$ApiErrorImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiErrorToJson(_ApiError instance) => <String, dynamic>{
       'message': instance.message,
       'statusCode': instance.statusCode,
       'type': instance.type,
     };
 
-_$OrderDtoImpl _$$OrderDtoImplFromJson(Map<String, dynamic> json) =>
-    _$OrderDtoImpl(
+_OrderDto _$OrderDtoFromJson(Map<String, dynamic> json) => _OrderDto(
       id: (json['id'] as num?)?.toInt(),
       petId: (json['petId'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
@@ -32,8 +29,7 @@ _$OrderDtoImpl _$$OrderDtoImplFromJson(Map<String, dynamic> json) =>
       complete: json['complete'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$OrderDtoImplToJson(_$OrderDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$OrderDtoToJson(_OrderDto instance) => <String, dynamic>{
       'id': instance.id,
       'petId': instance.petId,
       'quantity': instance.quantity,
@@ -48,20 +44,18 @@ const _$OrderDtoStatusDtoEnumMap = {
   OrderDtoStatusDto.delivered: 'delivered',
 };
 
-_$CategoryDtoImpl _$$CategoryDtoImplFromJson(Map<String, dynamic> json) =>
-    _$CategoryDtoImpl(
+_CategoryDto _$CategoryDtoFromJson(Map<String, dynamic> json) => _CategoryDto(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$$CategoryDtoImplToJson(_$CategoryDtoImpl instance) =>
+Map<String, dynamic> _$CategoryDtoToJson(_CategoryDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$UserDtoImpl _$$UserDtoImplFromJson(Map<String, dynamic> json) =>
-    _$UserDtoImpl(
+_UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
       id: (json['id'] as num?)?.toInt(),
       username: json['username'] as String?,
       firstName: json['firstName'] as String?,
@@ -72,8 +66,7 @@ _$UserDtoImpl _$$UserDtoImplFromJson(Map<String, dynamic> json) =>
       userStatus: (json['userStatus'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$UserDtoImplToJson(_$UserDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
       'firstName': instance.firstName,
@@ -84,18 +77,17 @@ Map<String, dynamic> _$$UserDtoImplToJson(_$UserDtoImpl instance) =>
       'userStatus': instance.userStatus,
     };
 
-_$TagDtoImpl _$$TagDtoImplFromJson(Map<String, dynamic> json) => _$TagDtoImpl(
+_TagDto _$TagDtoFromJson(Map<String, dynamic> json) => _TagDto(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
     );
 
-Map<String, dynamic> _$$TagDtoImplToJson(_$TagDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TagDtoToJson(_TagDto instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };
 
-_$PetDtoImpl _$$PetDtoImplFromJson(Map<String, dynamic> json) => _$PetDtoImpl(
+_PetDto _$PetDtoFromJson(Map<String, dynamic> json) => _PetDto(
       id: (json['id'] as num?)?.toInt(),
       category: json['category'] == null
           ? null
@@ -109,8 +101,7 @@ _$PetDtoImpl _$$PetDtoImplFromJson(Map<String, dynamic> json) => _$PetDtoImpl(
       status: $enumDecodeNullable(_$PetDtoStatusDtoEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$$PetDtoImplToJson(_$PetDtoImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PetDtoToJson(_PetDto instance) => <String, dynamic>{
       'id': instance.id,
       'category': instance.category,
       'name': instance.name,
@@ -125,24 +116,22 @@ const _$PetDtoStatusDtoEnumMap = {
   PetDtoStatusDto.sold: 'sold',
 };
 
-_$ApiResponseDtoImpl _$$ApiResponseDtoImplFromJson(Map<String, dynamic> json) =>
-    _$ApiResponseDtoImpl(
+_ApiResponseDto _$ApiResponseDtoFromJson(Map<String, dynamic> json) =>
+    _ApiResponseDto(
       code: (json['code'] as num?)?.toInt(),
       type: json['type'] as String?,
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$ApiResponseDtoImplToJson(
-        _$ApiResponseDtoImpl instance) =>
+Map<String, dynamic> _$ApiResponseDtoToJson(_ApiResponseDto instance) =>
     <String, dynamic>{
       'code': instance.code,
       'type': instance.type,
       'message': instance.message,
     };
 
-_$UpdatePetRequestDtoImpl _$$UpdatePetRequestDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$UpdatePetRequestDtoImpl(
+_UpdatePetRequestDto _$UpdatePetRequestDtoFromJson(Map<String, dynamic> json) =>
+    _UpdatePetRequestDto(
       id: (json['id'] as num?)?.toInt(),
       category: json['category'] == null
           ? null
@@ -156,8 +145,8 @@ _$UpdatePetRequestDtoImpl _$$UpdatePetRequestDtoImplFromJson(
       status: $enumDecodeNullable(_$PetDtoStatusDtoEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$$UpdatePetRequestDtoImplToJson(
-        _$UpdatePetRequestDtoImpl instance) =>
+Map<String, dynamic> _$UpdatePetRequestDtoToJson(
+        _UpdatePetRequestDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'category': instance.category,
@@ -167,9 +156,8 @@ Map<String, dynamic> _$$UpdatePetRequestDtoImplToJson(
       'status': _$PetDtoStatusDtoEnumMap[instance.status],
     };
 
-_$AddPetRequestDtoImpl _$$AddPetRequestDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$AddPetRequestDtoImpl(
+_AddPetRequestDto _$AddPetRequestDtoFromJson(Map<String, dynamic> json) =>
+    _AddPetRequestDto(
       id: (json['id'] as num?)?.toInt(),
       category: json['category'] == null
           ? null
@@ -183,8 +171,7 @@ _$AddPetRequestDtoImpl _$$AddPetRequestDtoImplFromJson(
       status: $enumDecodeNullable(_$PetDtoStatusDtoEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$$AddPetRequestDtoImplToJson(
-        _$AddPetRequestDtoImpl instance) =>
+Map<String, dynamic> _$AddPetRequestDtoToJson(_AddPetRequestDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'category': instance.category,
@@ -194,9 +181,9 @@ Map<String, dynamic> _$$AddPetRequestDtoImplToJson(
       'status': _$PetDtoStatusDtoEnumMap[instance.status],
     };
 
-_$GetPetByIdResponseDtoImpl _$$GetPetByIdResponseDtoImplFromJson(
+_GetPetByIdResponseDto _$GetPetByIdResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$GetPetByIdResponseDtoImpl(
+    _GetPetByIdResponseDto(
       id: (json['id'] as num?)?.toInt(),
       category: json['category'] == null
           ? null
@@ -210,8 +197,8 @@ _$GetPetByIdResponseDtoImpl _$$GetPetByIdResponseDtoImplFromJson(
       status: $enumDecodeNullable(_$PetDtoStatusDtoEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$$GetPetByIdResponseDtoImplToJson(
-        _$GetPetByIdResponseDtoImpl instance) =>
+Map<String, dynamic> _$GetPetByIdResponseDtoToJson(
+        _GetPetByIdResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'category': instance.category,
@@ -221,39 +208,39 @@ Map<String, dynamic> _$$GetPetByIdResponseDtoImplToJson(
       'status': _$PetDtoStatusDtoEnumMap[instance.status],
     };
 
-_$UpdatePetWithFormRequestDtoImpl _$$UpdatePetWithFormRequestDtoImplFromJson(
+_UpdatePetWithFormRequestDto _$UpdatePetWithFormRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$UpdatePetWithFormRequestDtoImpl(
+    _UpdatePetWithFormRequestDto(
       name: json['name'] as String?,
       status: json['status'] as String?,
     );
 
-Map<String, dynamic> _$$UpdatePetWithFormRequestDtoImplToJson(
-        _$UpdatePetWithFormRequestDtoImpl instance) =>
+Map<String, dynamic> _$UpdatePetWithFormRequestDtoToJson(
+        _UpdatePetWithFormRequestDto instance) =>
     <String, dynamic>{
       'name': instance.name,
       'status': instance.status,
     };
 
-_$UploadFileResponseDtoImpl _$$UploadFileResponseDtoImplFromJson(
+_UploadFileResponseDto _$UploadFileResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$UploadFileResponseDtoImpl(
+    _UploadFileResponseDto(
       code: (json['code'] as num?)?.toInt(),
       type: json['type'] as String?,
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$UploadFileResponseDtoImplToJson(
-        _$UploadFileResponseDtoImpl instance) =>
+Map<String, dynamic> _$UploadFileResponseDtoToJson(
+        _UploadFileResponseDto instance) =>
     <String, dynamic>{
       'code': instance.code,
       'type': instance.type,
       'message': instance.message,
     };
 
-_$PlaceOrderResponseDtoImpl _$$PlaceOrderResponseDtoImplFromJson(
+_PlaceOrderResponseDto _$PlaceOrderResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$PlaceOrderResponseDtoImpl(
+    _PlaceOrderResponseDto(
       id: (json['id'] as num?)?.toInt(),
       petId: (json['petId'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
@@ -264,8 +251,8 @@ _$PlaceOrderResponseDtoImpl _$$PlaceOrderResponseDtoImplFromJson(
       complete: json['complete'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$PlaceOrderResponseDtoImplToJson(
-        _$PlaceOrderResponseDtoImpl instance) =>
+Map<String, dynamic> _$PlaceOrderResponseDtoToJson(
+        _PlaceOrderResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'petId': instance.petId,
@@ -275,9 +262,9 @@ Map<String, dynamic> _$$PlaceOrderResponseDtoImplToJson(
       'complete': instance.complete,
     };
 
-_$PlaceOrderRequestDtoImpl _$$PlaceOrderRequestDtoImplFromJson(
+_PlaceOrderRequestDto _$PlaceOrderRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$PlaceOrderRequestDtoImpl(
+    _PlaceOrderRequestDto(
       id: (json['id'] as num?)?.toInt(),
       petId: (json['petId'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
@@ -288,8 +275,8 @@ _$PlaceOrderRequestDtoImpl _$$PlaceOrderRequestDtoImplFromJson(
       complete: json['complete'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$PlaceOrderRequestDtoImplToJson(
-        _$PlaceOrderRequestDtoImpl instance) =>
+Map<String, dynamic> _$PlaceOrderRequestDtoToJson(
+        _PlaceOrderRequestDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'petId': instance.petId,
@@ -299,9 +286,9 @@ Map<String, dynamic> _$$PlaceOrderRequestDtoImplToJson(
       'complete': instance.complete,
     };
 
-_$GetOrderByIdResponseDtoImpl _$$GetOrderByIdResponseDtoImplFromJson(
+_GetOrderByIdResponseDto _$GetOrderByIdResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$GetOrderByIdResponseDtoImpl(
+    _GetOrderByIdResponseDto(
       id: (json['id'] as num?)?.toInt(),
       petId: (json['petId'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
@@ -312,8 +299,8 @@ _$GetOrderByIdResponseDtoImpl _$$GetOrderByIdResponseDtoImplFromJson(
       complete: json['complete'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$GetOrderByIdResponseDtoImplToJson(
-        _$GetOrderByIdResponseDtoImpl instance) =>
+Map<String, dynamic> _$GetOrderByIdResponseDtoToJson(
+        _GetOrderByIdResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'petId': instance.petId,
@@ -323,9 +310,9 @@ Map<String, dynamic> _$$GetOrderByIdResponseDtoImplToJson(
       'complete': instance.complete,
     };
 
-_$CreateUserRequestDtoImpl _$$CreateUserRequestDtoImplFromJson(
+_CreateUserRequestDto _$CreateUserRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$CreateUserRequestDtoImpl(
+    _CreateUserRequestDto(
       id: (json['id'] as num?)?.toInt(),
       username: json['username'] as String?,
       firstName: json['firstName'] as String?,
@@ -336,8 +323,8 @@ _$CreateUserRequestDtoImpl _$$CreateUserRequestDtoImplFromJson(
       userStatus: (json['userStatus'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$CreateUserRequestDtoImplToJson(
-        _$CreateUserRequestDtoImpl instance) =>
+Map<String, dynamic> _$CreateUserRequestDtoToJson(
+        _CreateUserRequestDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
@@ -349,9 +336,9 @@ Map<String, dynamic> _$$CreateUserRequestDtoImplToJson(
       'userStatus': instance.userStatus,
     };
 
-_$GetUserByNameResponseDtoImpl _$$GetUserByNameResponseDtoImplFromJson(
+_GetUserByNameResponseDto _$GetUserByNameResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$GetUserByNameResponseDtoImpl(
+    _GetUserByNameResponseDto(
       id: (json['id'] as num?)?.toInt(),
       username: json['username'] as String?,
       firstName: json['firstName'] as String?,
@@ -362,8 +349,8 @@ _$GetUserByNameResponseDtoImpl _$$GetUserByNameResponseDtoImplFromJson(
       userStatus: (json['userStatus'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$GetUserByNameResponseDtoImplToJson(
-        _$GetUserByNameResponseDtoImpl instance) =>
+Map<String, dynamic> _$GetUserByNameResponseDtoToJson(
+        _GetUserByNameResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
@@ -375,9 +362,9 @@ Map<String, dynamic> _$$GetUserByNameResponseDtoImplToJson(
       'userStatus': instance.userStatus,
     };
 
-_$UpdateUserRequestDtoImpl _$$UpdateUserRequestDtoImplFromJson(
+_UpdateUserRequestDto _$UpdateUserRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$UpdateUserRequestDtoImpl(
+    _UpdateUserRequestDto(
       id: (json['id'] as num?)?.toInt(),
       username: json['username'] as String?,
       firstName: json['firstName'] as String?,
@@ -388,8 +375,8 @@ _$UpdateUserRequestDtoImpl _$$UpdateUserRequestDtoImplFromJson(
       userStatus: (json['userStatus'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$UpdateUserRequestDtoImplToJson(
-        _$UpdateUserRequestDtoImpl instance) =>
+Map<String, dynamic> _$UpdateUserRequestDtoToJson(
+        _UpdateUserRequestDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
