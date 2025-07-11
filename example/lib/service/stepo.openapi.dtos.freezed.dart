@@ -2155,161 +2155,6 @@ abstract class _FollowingStatusDto implements FollowingStatusDto {
       throw _privateConstructorUsedError;
 }
 
-FollowRequestDto _$FollowRequestDtoFromJson(Map<String, dynamic> json) {
-  return _FollowRequestDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$FollowRequestDto {
-  @JsonKey(name: 'userId')
-  String get userId => throw _privateConstructorUsedError;
-
-  /// Serializes this FollowRequestDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FollowRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $FollowRequestDtoCopyWith<FollowRequestDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FollowRequestDtoCopyWith<$Res> {
-  factory $FollowRequestDtoCopyWith(
-          FollowRequestDto value, $Res Function(FollowRequestDto) then) =
-      _$FollowRequestDtoCopyWithImpl<$Res, FollowRequestDto>;
-  @useResult
-  $Res call({@JsonKey(name: 'userId') String userId});
-}
-
-/// @nodoc
-class _$FollowRequestDtoCopyWithImpl<$Res, $Val extends FollowRequestDto>
-    implements $FollowRequestDtoCopyWith<$Res> {
-  _$FollowRequestDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of FollowRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$FollowRequestDtoImplCopyWith<$Res>
-    implements $FollowRequestDtoCopyWith<$Res> {
-  factory _$$FollowRequestDtoImplCopyWith(_$FollowRequestDtoImpl value,
-          $Res Function(_$FollowRequestDtoImpl) then) =
-      __$$FollowRequestDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'userId') String userId});
-}
-
-/// @nodoc
-class __$$FollowRequestDtoImplCopyWithImpl<$Res>
-    extends _$FollowRequestDtoCopyWithImpl<$Res, _$FollowRequestDtoImpl>
-    implements _$$FollowRequestDtoImplCopyWith<$Res> {
-  __$$FollowRequestDtoImplCopyWithImpl(_$FollowRequestDtoImpl _value,
-      $Res Function(_$FollowRequestDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of FollowRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_$FollowRequestDtoImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$FollowRequestDtoImpl implements _FollowRequestDto {
-  _$FollowRequestDtoImpl({@JsonKey(name: 'userId') required this.userId});
-
-  factory _$FollowRequestDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FollowRequestDtoImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'userId')
-  final String userId;
-
-  @override
-  String toString() {
-    return 'FollowRequestDto(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FollowRequestDtoImpl &&
-            (identical(other.userId, userId) || other.userId == userId));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, userId);
-
-  /// Create a copy of FollowRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FollowRequestDtoImplCopyWith<_$FollowRequestDtoImpl> get copyWith =>
-      __$$FollowRequestDtoImplCopyWithImpl<_$FollowRequestDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FollowRequestDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _FollowRequestDto implements FollowRequestDto {
-  factory _FollowRequestDto(
-          {@JsonKey(name: 'userId') required final String userId}) =
-      _$FollowRequestDtoImpl;
-
-  factory _FollowRequestDto.fromJson(Map<String, dynamic> json) =
-      _$FollowRequestDtoImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'userId')
-  String get userId;
-
-  /// Create a copy of FollowRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FollowRequestDtoImplCopyWith<_$FollowRequestDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 ImageMetadataDto _$ImageMetadataDtoFromJson(Map<String, dynamic> json) {
   return _ImageMetadataDto.fromJson(json);
 }
@@ -4714,6 +4559,365 @@ abstract class _JourneyInDetailDto implements JourneyInDetailDto {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$JourneyInDetailDtoImplCopyWith<_$JourneyInDetailDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) {
+  return _LoginDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LoginDto {
+  @JsonKey(name: 'email')
+  String get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'password')
+  String get password => throw _privateConstructorUsedError;
+
+  /// Serializes this LoginDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LoginDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LoginDtoCopyWith<LoginDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoginDtoCopyWith<$Res> {
+  factory $LoginDtoCopyWith(LoginDto value, $Res Function(LoginDto) then) =
+      _$LoginDtoCopyWithImpl<$Res, LoginDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'email') String email,
+      @JsonKey(name: 'password') String password});
+}
+
+/// @nodoc
+class _$LoginDtoCopyWithImpl<$Res, $Val extends LoginDto>
+    implements $LoginDtoCopyWith<$Res> {
+  _$LoginDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LoginDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LoginDtoImplCopyWith<$Res>
+    implements $LoginDtoCopyWith<$Res> {
+  factory _$$LoginDtoImplCopyWith(
+          _$LoginDtoImpl value, $Res Function(_$LoginDtoImpl) then) =
+      __$$LoginDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'email') String email,
+      @JsonKey(name: 'password') String password});
+}
+
+/// @nodoc
+class __$$LoginDtoImplCopyWithImpl<$Res>
+    extends _$LoginDtoCopyWithImpl<$Res, _$LoginDtoImpl>
+    implements _$$LoginDtoImplCopyWith<$Res> {
+  __$$LoginDtoImplCopyWithImpl(
+      _$LoginDtoImpl _value, $Res Function(_$LoginDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LoginDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$LoginDtoImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LoginDtoImpl implements _LoginDto {
+  _$LoginDtoImpl(
+      {@JsonKey(name: 'email') required this.email,
+      @JsonKey(name: 'password') required this.password});
+
+  factory _$LoginDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoginDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'email')
+  final String email;
+  @override
+  @JsonKey(name: 'password')
+  final String password;
+
+  @override
+  String toString() {
+    return 'LoginDto(email: $email, password: $password)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginDtoImpl &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, email, password);
+
+  /// Create a copy of LoginDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
+      __$$LoginDtoImplCopyWithImpl<_$LoginDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LoginDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LoginDto implements LoginDto {
+  factory _LoginDto(
+          {@JsonKey(name: 'email') required final String email,
+          @JsonKey(name: 'password') required final String password}) =
+      _$LoginDtoImpl;
+
+  factory _LoginDto.fromJson(Map<String, dynamic> json) =
+      _$LoginDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'email')
+  String get email;
+  @override
+  @JsonKey(name: 'password')
+  String get password;
+
+  /// Create a copy of LoginDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoginDtoImplCopyWith<_$LoginDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LoginResponseDto _$LoginResponseDtoFromJson(Map<String, dynamic> json) {
+  return _LoginResponseDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LoginResponseDto {
+  @JsonKey(name: 'token')
+  String? get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'uid')
+  String? get uid => throw _privateConstructorUsedError;
+
+  /// Serializes this LoginResponseDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LoginResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LoginResponseDtoCopyWith<LoginResponseDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LoginResponseDtoCopyWith<$Res> {
+  factory $LoginResponseDtoCopyWith(
+          LoginResponseDto value, $Res Function(LoginResponseDto) then) =
+      _$LoginResponseDtoCopyWithImpl<$Res, LoginResponseDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'uid') String? uid});
+}
+
+/// @nodoc
+class _$LoginResponseDtoCopyWithImpl<$Res, $Val extends LoginResponseDto>
+    implements $LoginResponseDtoCopyWith<$Res> {
+  _$LoginResponseDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LoginResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = freezed,
+    Object? uid = freezed,
+  }) {
+    return _then(_value.copyWith(
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LoginResponseDtoImplCopyWith<$Res>
+    implements $LoginResponseDtoCopyWith<$Res> {
+  factory _$$LoginResponseDtoImplCopyWith(_$LoginResponseDtoImpl value,
+          $Res Function(_$LoginResponseDtoImpl) then) =
+      __$$LoginResponseDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'uid') String? uid});
+}
+
+/// @nodoc
+class __$$LoginResponseDtoImplCopyWithImpl<$Res>
+    extends _$LoginResponseDtoCopyWithImpl<$Res, _$LoginResponseDtoImpl>
+    implements _$$LoginResponseDtoImplCopyWith<$Res> {
+  __$$LoginResponseDtoImplCopyWithImpl(_$LoginResponseDtoImpl _value,
+      $Res Function(_$LoginResponseDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LoginResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = freezed,
+    Object? uid = freezed,
+  }) {
+    return _then(_$LoginResponseDtoImpl(
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LoginResponseDtoImpl implements _LoginResponseDto {
+  _$LoginResponseDtoImpl(
+      {@JsonKey(name: 'token') this.token, @JsonKey(name: 'uid') this.uid});
+
+  factory _$LoginResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoginResponseDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'token')
+  final String? token;
+  @override
+  @JsonKey(name: 'uid')
+  final String? uid;
+
+  @override
+  String toString() {
+    return 'LoginResponseDto(token: $token, uid: $uid)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoginResponseDtoImpl &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, token, uid);
+
+  /// Create a copy of LoginResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginResponseDtoImplCopyWith<_$LoginResponseDtoImpl> get copyWith =>
+      __$$LoginResponseDtoImplCopyWithImpl<_$LoginResponseDtoImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LoginResponseDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LoginResponseDto implements LoginResponseDto {
+  factory _LoginResponseDto(
+      {@JsonKey(name: 'token') final String? token,
+      @JsonKey(name: 'uid') final String? uid}) = _$LoginResponseDtoImpl;
+
+  factory _LoginResponseDto.fromJson(Map<String, dynamic> json) =
+      _$LoginResponseDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'token')
+  String? get token;
+  @override
+  @JsonKey(name: 'uid')
+  String? get uid;
+
+  /// Create a copy of LoginResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoginResponseDtoImplCopyWith<_$LoginResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -12450,6 +12654,392 @@ abstract class _ApiV1AccountAvatarPutResponseDto
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ApiV1AccountAvatarPutResponseDtoImplCopyWith<
           _$ApiV1AccountAvatarPutResponseDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ApiV1AuthLoginPostResponseDto _$ApiV1AuthLoginPostResponseDtoFromJson(
+    Map<String, dynamic> json) {
+  return _ApiV1AuthLoginPostResponseDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ApiV1AuthLoginPostResponseDto {
+  @JsonKey(name: 'token')
+  String? get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'uid')
+  String? get uid => throw _privateConstructorUsedError;
+
+  /// Serializes this ApiV1AuthLoginPostResponseDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ApiV1AuthLoginPostResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ApiV1AuthLoginPostResponseDtoCopyWith<ApiV1AuthLoginPostResponseDto>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ApiV1AuthLoginPostResponseDtoCopyWith<$Res> {
+  factory $ApiV1AuthLoginPostResponseDtoCopyWith(
+          ApiV1AuthLoginPostResponseDto value,
+          $Res Function(ApiV1AuthLoginPostResponseDto) then) =
+      _$ApiV1AuthLoginPostResponseDtoCopyWithImpl<$Res,
+          ApiV1AuthLoginPostResponseDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'uid') String? uid});
+}
+
+/// @nodoc
+class _$ApiV1AuthLoginPostResponseDtoCopyWithImpl<$Res,
+        $Val extends ApiV1AuthLoginPostResponseDto>
+    implements $ApiV1AuthLoginPostResponseDtoCopyWith<$Res> {
+  _$ApiV1AuthLoginPostResponseDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ApiV1AuthLoginPostResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = freezed,
+    Object? uid = freezed,
+  }) {
+    return _then(_value.copyWith(
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ApiV1AuthLoginPostResponseDtoImplCopyWith<$Res>
+    implements $ApiV1AuthLoginPostResponseDtoCopyWith<$Res> {
+  factory _$$ApiV1AuthLoginPostResponseDtoImplCopyWith(
+          _$ApiV1AuthLoginPostResponseDtoImpl value,
+          $Res Function(_$ApiV1AuthLoginPostResponseDtoImpl) then) =
+      __$$ApiV1AuthLoginPostResponseDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'uid') String? uid});
+}
+
+/// @nodoc
+class __$$ApiV1AuthLoginPostResponseDtoImplCopyWithImpl<$Res>
+    extends _$ApiV1AuthLoginPostResponseDtoCopyWithImpl<$Res,
+        _$ApiV1AuthLoginPostResponseDtoImpl>
+    implements _$$ApiV1AuthLoginPostResponseDtoImplCopyWith<$Res> {
+  __$$ApiV1AuthLoginPostResponseDtoImplCopyWithImpl(
+      _$ApiV1AuthLoginPostResponseDtoImpl _value,
+      $Res Function(_$ApiV1AuthLoginPostResponseDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ApiV1AuthLoginPostResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = freezed,
+    Object? uid = freezed,
+  }) {
+    return _then(_$ApiV1AuthLoginPostResponseDtoImpl(
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: freezed == uid
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ApiV1AuthLoginPostResponseDtoImpl
+    implements _ApiV1AuthLoginPostResponseDto {
+  _$ApiV1AuthLoginPostResponseDtoImpl(
+      {@JsonKey(name: 'token') this.token, @JsonKey(name: 'uid') this.uid});
+
+  factory _$ApiV1AuthLoginPostResponseDtoImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ApiV1AuthLoginPostResponseDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'token')
+  final String? token;
+  @override
+  @JsonKey(name: 'uid')
+  final String? uid;
+
+  @override
+  String toString() {
+    return 'ApiV1AuthLoginPostResponseDto(token: $token, uid: $uid)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApiV1AuthLoginPostResponseDtoImpl &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.uid, uid) || other.uid == uid));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, token, uid);
+
+  /// Create a copy of ApiV1AuthLoginPostResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApiV1AuthLoginPostResponseDtoImplCopyWith<
+          _$ApiV1AuthLoginPostResponseDtoImpl>
+      get copyWith => __$$ApiV1AuthLoginPostResponseDtoImplCopyWithImpl<
+          _$ApiV1AuthLoginPostResponseDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ApiV1AuthLoginPostResponseDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ApiV1AuthLoginPostResponseDto
+    implements ApiV1AuthLoginPostResponseDto {
+  factory _ApiV1AuthLoginPostResponseDto(
+          {@JsonKey(name: 'token') final String? token,
+          @JsonKey(name: 'uid') final String? uid}) =
+      _$ApiV1AuthLoginPostResponseDtoImpl;
+
+  factory _ApiV1AuthLoginPostResponseDto.fromJson(Map<String, dynamic> json) =
+      _$ApiV1AuthLoginPostResponseDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'token')
+  String? get token;
+  @override
+  @JsonKey(name: 'uid')
+  String? get uid;
+
+  /// Create a copy of ApiV1AuthLoginPostResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ApiV1AuthLoginPostResponseDtoImplCopyWith<
+          _$ApiV1AuthLoginPostResponseDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ApiV1AuthLoginPostRequestDto _$ApiV1AuthLoginPostRequestDtoFromJson(
+    Map<String, dynamic> json) {
+  return _ApiV1AuthLoginPostRequestDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ApiV1AuthLoginPostRequestDto {
+  @JsonKey(name: 'email')
+  String get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'password')
+  String get password => throw _privateConstructorUsedError;
+
+  /// Serializes this ApiV1AuthLoginPostRequestDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ApiV1AuthLoginPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ApiV1AuthLoginPostRequestDtoCopyWith<ApiV1AuthLoginPostRequestDto>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ApiV1AuthLoginPostRequestDtoCopyWith<$Res> {
+  factory $ApiV1AuthLoginPostRequestDtoCopyWith(
+          ApiV1AuthLoginPostRequestDto value,
+          $Res Function(ApiV1AuthLoginPostRequestDto) then) =
+      _$ApiV1AuthLoginPostRequestDtoCopyWithImpl<$Res,
+          ApiV1AuthLoginPostRequestDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'email') String email,
+      @JsonKey(name: 'password') String password});
+}
+
+/// @nodoc
+class _$ApiV1AuthLoginPostRequestDtoCopyWithImpl<$Res,
+        $Val extends ApiV1AuthLoginPostRequestDto>
+    implements $ApiV1AuthLoginPostRequestDtoCopyWith<$Res> {
+  _$ApiV1AuthLoginPostRequestDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ApiV1AuthLoginPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_value.copyWith(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ApiV1AuthLoginPostRequestDtoImplCopyWith<$Res>
+    implements $ApiV1AuthLoginPostRequestDtoCopyWith<$Res> {
+  factory _$$ApiV1AuthLoginPostRequestDtoImplCopyWith(
+          _$ApiV1AuthLoginPostRequestDtoImpl value,
+          $Res Function(_$ApiV1AuthLoginPostRequestDtoImpl) then) =
+      __$$ApiV1AuthLoginPostRequestDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'email') String email,
+      @JsonKey(name: 'password') String password});
+}
+
+/// @nodoc
+class __$$ApiV1AuthLoginPostRequestDtoImplCopyWithImpl<$Res>
+    extends _$ApiV1AuthLoginPostRequestDtoCopyWithImpl<$Res,
+        _$ApiV1AuthLoginPostRequestDtoImpl>
+    implements _$$ApiV1AuthLoginPostRequestDtoImplCopyWith<$Res> {
+  __$$ApiV1AuthLoginPostRequestDtoImplCopyWithImpl(
+      _$ApiV1AuthLoginPostRequestDtoImpl _value,
+      $Res Function(_$ApiV1AuthLoginPostRequestDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ApiV1AuthLoginPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+    Object? password = null,
+  }) {
+    return _then(_$ApiV1AuthLoginPostRequestDtoImpl(
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ApiV1AuthLoginPostRequestDtoImpl
+    implements _ApiV1AuthLoginPostRequestDto {
+  _$ApiV1AuthLoginPostRequestDtoImpl(
+      {@JsonKey(name: 'email') required this.email,
+      @JsonKey(name: 'password') required this.password});
+
+  factory _$ApiV1AuthLoginPostRequestDtoImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ApiV1AuthLoginPostRequestDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'email')
+  final String email;
+  @override
+  @JsonKey(name: 'password')
+  final String password;
+
+  @override
+  String toString() {
+    return 'ApiV1AuthLoginPostRequestDto(email: $email, password: $password)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ApiV1AuthLoginPostRequestDtoImpl &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, email, password);
+
+  /// Create a copy of ApiV1AuthLoginPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ApiV1AuthLoginPostRequestDtoImplCopyWith<
+          _$ApiV1AuthLoginPostRequestDtoImpl>
+      get copyWith => __$$ApiV1AuthLoginPostRequestDtoImplCopyWithImpl<
+          _$ApiV1AuthLoginPostRequestDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ApiV1AuthLoginPostRequestDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ApiV1AuthLoginPostRequestDto
+    implements ApiV1AuthLoginPostRequestDto {
+  factory _ApiV1AuthLoginPostRequestDto(
+          {@JsonKey(name: 'email') required final String email,
+          @JsonKey(name: 'password') required final String password}) =
+      _$ApiV1AuthLoginPostRequestDtoImpl;
+
+  factory _ApiV1AuthLoginPostRequestDto.fromJson(Map<String, dynamic> json) =
+      _$ApiV1AuthLoginPostRequestDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'email')
+  String get email;
+  @override
+  @JsonKey(name: 'password')
+  String get password;
+
+  /// Create a copy of ApiV1AuthLoginPostRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ApiV1AuthLoginPostRequestDtoImplCopyWith<
+          _$ApiV1AuthLoginPostRequestDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -25013,36 +25603,36 @@ abstract class _ApiV1StepsCommentsCommentIdHeartsPostRequestDto
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ApiV1FollowingsFollowPostResponseDto
-    _$ApiV1FollowingsFollowPostResponseDtoFromJson(Map<String, dynamic> json) {
-  return _ApiV1FollowingsFollowPostResponseDto.fromJson(json);
+ApiV1UsersUserIdFollowPostResponseDto
+    _$ApiV1UsersUserIdFollowPostResponseDtoFromJson(Map<String, dynamic> json) {
+  return _ApiV1UsersUserIdFollowPostResponseDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ApiV1FollowingsFollowPostResponseDto {
+mixin _$ApiV1UsersUserIdFollowPostResponseDto {
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
 
-  /// Serializes this ApiV1FollowingsFollowPostResponseDto to a JSON map.
+  /// Serializes this ApiV1UsersUserIdFollowPostResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ApiV1FollowingsFollowPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ApiV1FollowingsFollowPostResponseDtoCopyWith<
-          ApiV1FollowingsFollowPostResponseDto>
+  $ApiV1UsersUserIdFollowPostResponseDtoCopyWith<
+          ApiV1UsersUserIdFollowPostResponseDto>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ApiV1FollowingsFollowPostResponseDtoCopyWith<$Res> {
-  factory $ApiV1FollowingsFollowPostResponseDtoCopyWith(
-          ApiV1FollowingsFollowPostResponseDto value,
-          $Res Function(ApiV1FollowingsFollowPostResponseDto) then) =
-      _$ApiV1FollowingsFollowPostResponseDtoCopyWithImpl<$Res,
-          ApiV1FollowingsFollowPostResponseDto>;
+abstract class $ApiV1UsersUserIdFollowPostResponseDtoCopyWith<$Res> {
+  factory $ApiV1UsersUserIdFollowPostResponseDtoCopyWith(
+          ApiV1UsersUserIdFollowPostResponseDto value,
+          $Res Function(ApiV1UsersUserIdFollowPostResponseDto) then) =
+      _$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl<$Res,
+          ApiV1UsersUserIdFollowPostResponseDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'status') int status,
@@ -25050,17 +25640,17 @@ abstract class $ApiV1FollowingsFollowPostResponseDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ApiV1FollowingsFollowPostResponseDtoCopyWithImpl<$Res,
-        $Val extends ApiV1FollowingsFollowPostResponseDto>
-    implements $ApiV1FollowingsFollowPostResponseDtoCopyWith<$Res> {
-  _$ApiV1FollowingsFollowPostResponseDtoCopyWithImpl(this._value, this._then);
+class _$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl<$Res,
+        $Val extends ApiV1UsersUserIdFollowPostResponseDto>
+    implements $ApiV1UsersUserIdFollowPostResponseDtoCopyWith<$Res> {
+  _$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ApiV1FollowingsFollowPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -25082,12 +25672,12 @@ class _$ApiV1FollowingsFollowPostResponseDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ApiV1FollowingsFollowPostResponseDtoImplCopyWith<$Res>
-    implements $ApiV1FollowingsFollowPostResponseDtoCopyWith<$Res> {
-  factory _$$ApiV1FollowingsFollowPostResponseDtoImplCopyWith(
-          _$ApiV1FollowingsFollowPostResponseDtoImpl value,
-          $Res Function(_$ApiV1FollowingsFollowPostResponseDtoImpl) then) =
-      __$$ApiV1FollowingsFollowPostResponseDtoImplCopyWithImpl<$Res>;
+abstract class _$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWith<$Res>
+    implements $ApiV1UsersUserIdFollowPostResponseDtoCopyWith<$Res> {
+  factory _$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWith(
+          _$ApiV1UsersUserIdFollowPostResponseDtoImpl value,
+          $Res Function(_$ApiV1UsersUserIdFollowPostResponseDtoImpl) then) =
+      __$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -25096,16 +25686,16 @@ abstract class _$$ApiV1FollowingsFollowPostResponseDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ApiV1FollowingsFollowPostResponseDtoImplCopyWithImpl<$Res>
-    extends _$ApiV1FollowingsFollowPostResponseDtoCopyWithImpl<$Res,
-        _$ApiV1FollowingsFollowPostResponseDtoImpl>
-    implements _$$ApiV1FollowingsFollowPostResponseDtoImplCopyWith<$Res> {
-  __$$ApiV1FollowingsFollowPostResponseDtoImplCopyWithImpl(
-      _$ApiV1FollowingsFollowPostResponseDtoImpl _value,
-      $Res Function(_$ApiV1FollowingsFollowPostResponseDtoImpl) _then)
+class __$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWithImpl<$Res>
+    extends _$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl<$Res,
+        _$ApiV1UsersUserIdFollowPostResponseDtoImpl>
+    implements _$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWith<$Res> {
+  __$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWithImpl(
+      _$ApiV1UsersUserIdFollowPostResponseDtoImpl _value,
+      $Res Function(_$ApiV1UsersUserIdFollowPostResponseDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ApiV1FollowingsFollowPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -25113,7 +25703,7 @@ class __$$ApiV1FollowingsFollowPostResponseDtoImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = freezed,
   }) {
-    return _then(_$ApiV1FollowingsFollowPostResponseDtoImpl(
+    return _then(_$ApiV1UsersUserIdFollowPostResponseDtoImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -25128,15 +25718,15 @@ class __$$ApiV1FollowingsFollowPostResponseDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ApiV1FollowingsFollowPostResponseDtoImpl
-    implements _ApiV1FollowingsFollowPostResponseDto {
-  _$ApiV1FollowingsFollowPostResponseDtoImpl(
+class _$ApiV1UsersUserIdFollowPostResponseDtoImpl
+    implements _ApiV1UsersUserIdFollowPostResponseDto {
+  _$ApiV1UsersUserIdFollowPostResponseDtoImpl(
       {@JsonKey(name: 'status') required this.status,
       @JsonKey(name: 'message') this.message});
 
-  factory _$ApiV1FollowingsFollowPostResponseDtoImpl.fromJson(
+  factory _$ApiV1UsersUserIdFollowPostResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$ApiV1FollowingsFollowPostResponseDtoImplFromJson(json);
+      _$$ApiV1UsersUserIdFollowPostResponseDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'status')
@@ -25147,14 +25737,14 @@ class _$ApiV1FollowingsFollowPostResponseDtoImpl
 
   @override
   String toString() {
-    return 'ApiV1FollowingsFollowPostResponseDto(status: $status, message: $message)';
+    return 'ApiV1UsersUserIdFollowPostResponseDto(status: $status, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApiV1FollowingsFollowPostResponseDtoImpl &&
+            other is _$ApiV1UsersUserIdFollowPostResponseDtoImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -25163,34 +25753,34 @@ class _$ApiV1FollowingsFollowPostResponseDtoImpl
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  /// Create a copy of ApiV1FollowingsFollowPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApiV1FollowingsFollowPostResponseDtoImplCopyWith<
-          _$ApiV1FollowingsFollowPostResponseDtoImpl>
-      get copyWith => __$$ApiV1FollowingsFollowPostResponseDtoImplCopyWithImpl<
-          _$ApiV1FollowingsFollowPostResponseDtoImpl>(this, _$identity);
+  _$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdFollowPostResponseDtoImpl>
+      get copyWith => __$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWithImpl<
+          _$ApiV1UsersUserIdFollowPostResponseDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ApiV1FollowingsFollowPostResponseDtoImplToJson(
+    return _$$ApiV1UsersUserIdFollowPostResponseDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ApiV1FollowingsFollowPostResponseDto
-    implements ApiV1FollowingsFollowPostResponseDto {
-  factory _ApiV1FollowingsFollowPostResponseDto(
+abstract class _ApiV1UsersUserIdFollowPostResponseDto
+    implements ApiV1UsersUserIdFollowPostResponseDto {
+  factory _ApiV1UsersUserIdFollowPostResponseDto(
           {@JsonKey(name: 'status') required final int status,
           @JsonKey(name: 'message') final String? message}) =
-      _$ApiV1FollowingsFollowPostResponseDtoImpl;
+      _$ApiV1UsersUserIdFollowPostResponseDtoImpl;
 
-  factory _ApiV1FollowingsFollowPostResponseDto.fromJson(
+  factory _ApiV1UsersUserIdFollowPostResponseDto.fromJson(
           Map<String, dynamic> json) =
-      _$ApiV1FollowingsFollowPostResponseDtoImpl.fromJson;
+      _$ApiV1UsersUserIdFollowPostResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'status')
@@ -25199,216 +25789,46 @@ abstract class _ApiV1FollowingsFollowPostResponseDto
   @JsonKey(name: 'message')
   String? get message;
 
-  /// Create a copy of ApiV1FollowingsFollowPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ApiV1FollowingsFollowPostResponseDtoImplCopyWith<
-          _$ApiV1FollowingsFollowPostResponseDtoImpl>
+  _$$ApiV1UsersUserIdFollowPostResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdFollowPostResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ApiV1FollowingsFollowPostRequestDto
-    _$ApiV1FollowingsFollowPostRequestDtoFromJson(Map<String, dynamic> json) {
-  return _ApiV1FollowingsFollowPostRequestDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ApiV1FollowingsFollowPostRequestDto {
-  @JsonKey(name: 'userId')
-  String get userId => throw _privateConstructorUsedError;
-
-  /// Serializes this ApiV1FollowingsFollowPostRequestDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ApiV1FollowingsFollowPostRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ApiV1FollowingsFollowPostRequestDtoCopyWith<
-          ApiV1FollowingsFollowPostRequestDto>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ApiV1FollowingsFollowPostRequestDtoCopyWith<$Res> {
-  factory $ApiV1FollowingsFollowPostRequestDtoCopyWith(
-          ApiV1FollowingsFollowPostRequestDto value,
-          $Res Function(ApiV1FollowingsFollowPostRequestDto) then) =
-      _$ApiV1FollowingsFollowPostRequestDtoCopyWithImpl<$Res,
-          ApiV1FollowingsFollowPostRequestDto>;
-  @useResult
-  $Res call({@JsonKey(name: 'userId') String userId});
-}
-
-/// @nodoc
-class _$ApiV1FollowingsFollowPostRequestDtoCopyWithImpl<$Res,
-        $Val extends ApiV1FollowingsFollowPostRequestDto>
-    implements $ApiV1FollowingsFollowPostRequestDtoCopyWith<$Res> {
-  _$ApiV1FollowingsFollowPostRequestDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ApiV1FollowingsFollowPostRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ApiV1FollowingsFollowPostRequestDtoImplCopyWith<$Res>
-    implements $ApiV1FollowingsFollowPostRequestDtoCopyWith<$Res> {
-  factory _$$ApiV1FollowingsFollowPostRequestDtoImplCopyWith(
-          _$ApiV1FollowingsFollowPostRequestDtoImpl value,
-          $Res Function(_$ApiV1FollowingsFollowPostRequestDtoImpl) then) =
-      __$$ApiV1FollowingsFollowPostRequestDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'userId') String userId});
-}
-
-/// @nodoc
-class __$$ApiV1FollowingsFollowPostRequestDtoImplCopyWithImpl<$Res>
-    extends _$ApiV1FollowingsFollowPostRequestDtoCopyWithImpl<$Res,
-        _$ApiV1FollowingsFollowPostRequestDtoImpl>
-    implements _$$ApiV1FollowingsFollowPostRequestDtoImplCopyWith<$Res> {
-  __$$ApiV1FollowingsFollowPostRequestDtoImplCopyWithImpl(
-      _$ApiV1FollowingsFollowPostRequestDtoImpl _value,
-      $Res Function(_$ApiV1FollowingsFollowPostRequestDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ApiV1FollowingsFollowPostRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_$ApiV1FollowingsFollowPostRequestDtoImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ApiV1FollowingsFollowPostRequestDtoImpl
-    implements _ApiV1FollowingsFollowPostRequestDto {
-  _$ApiV1FollowingsFollowPostRequestDtoImpl(
-      {@JsonKey(name: 'userId') required this.userId});
-
-  factory _$ApiV1FollowingsFollowPostRequestDtoImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$ApiV1FollowingsFollowPostRequestDtoImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'userId')
-  final String userId;
-
-  @override
-  String toString() {
-    return 'ApiV1FollowingsFollowPostRequestDto(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ApiV1FollowingsFollowPostRequestDtoImpl &&
-            (identical(other.userId, userId) || other.userId == userId));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, userId);
-
-  /// Create a copy of ApiV1FollowingsFollowPostRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ApiV1FollowingsFollowPostRequestDtoImplCopyWith<
-          _$ApiV1FollowingsFollowPostRequestDtoImpl>
-      get copyWith => __$$ApiV1FollowingsFollowPostRequestDtoImplCopyWithImpl<
-          _$ApiV1FollowingsFollowPostRequestDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ApiV1FollowingsFollowPostRequestDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ApiV1FollowingsFollowPostRequestDto
-    implements ApiV1FollowingsFollowPostRequestDto {
-  factory _ApiV1FollowingsFollowPostRequestDto(
-          {@JsonKey(name: 'userId') required final String userId}) =
-      _$ApiV1FollowingsFollowPostRequestDtoImpl;
-
-  factory _ApiV1FollowingsFollowPostRequestDto.fromJson(
-          Map<String, dynamic> json) =
-      _$ApiV1FollowingsFollowPostRequestDtoImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'userId')
-  String get userId;
-
-  /// Create a copy of ApiV1FollowingsFollowPostRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ApiV1FollowingsFollowPostRequestDtoImplCopyWith<
-          _$ApiV1FollowingsFollowPostRequestDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-ApiV1FollowingsUnfollowDeleteResponseDto
-    _$ApiV1FollowingsUnfollowDeleteResponseDtoFromJson(
+ApiV1UsersUserIdFollowDeleteResponseDto
+    _$ApiV1UsersUserIdFollowDeleteResponseDtoFromJson(
         Map<String, dynamic> json) {
-  return _ApiV1FollowingsUnfollowDeleteResponseDto.fromJson(json);
+  return _ApiV1UsersUserIdFollowDeleteResponseDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ApiV1FollowingsUnfollowDeleteResponseDto {
+mixin _$ApiV1UsersUserIdFollowDeleteResponseDto {
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
 
-  /// Serializes this ApiV1FollowingsUnfollowDeleteResponseDto to a JSON map.
+  /// Serializes this ApiV1UsersUserIdFollowDeleteResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowDeleteResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ApiV1FollowingsUnfollowDeleteResponseDtoCopyWith<
-          ApiV1FollowingsUnfollowDeleteResponseDto>
+  $ApiV1UsersUserIdFollowDeleteResponseDtoCopyWith<
+          ApiV1UsersUserIdFollowDeleteResponseDto>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ApiV1FollowingsUnfollowDeleteResponseDtoCopyWith<$Res> {
-  factory $ApiV1FollowingsUnfollowDeleteResponseDtoCopyWith(
-          ApiV1FollowingsUnfollowDeleteResponseDto value,
-          $Res Function(ApiV1FollowingsUnfollowDeleteResponseDto) then) =
-      _$ApiV1FollowingsUnfollowDeleteResponseDtoCopyWithImpl<$Res,
-          ApiV1FollowingsUnfollowDeleteResponseDto>;
+abstract class $ApiV1UsersUserIdFollowDeleteResponseDtoCopyWith<$Res> {
+  factory $ApiV1UsersUserIdFollowDeleteResponseDtoCopyWith(
+          ApiV1UsersUserIdFollowDeleteResponseDto value,
+          $Res Function(ApiV1UsersUserIdFollowDeleteResponseDto) then) =
+      _$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl<$Res,
+          ApiV1UsersUserIdFollowDeleteResponseDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'status') int status,
@@ -25416,10 +25836,10 @@ abstract class $ApiV1FollowingsUnfollowDeleteResponseDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ApiV1FollowingsUnfollowDeleteResponseDtoCopyWithImpl<$Res,
-        $Val extends ApiV1FollowingsUnfollowDeleteResponseDto>
-    implements $ApiV1FollowingsUnfollowDeleteResponseDtoCopyWith<$Res> {
-  _$ApiV1FollowingsUnfollowDeleteResponseDtoCopyWithImpl(
+class _$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl<$Res,
+        $Val extends ApiV1UsersUserIdFollowDeleteResponseDto>
+    implements $ApiV1UsersUserIdFollowDeleteResponseDtoCopyWith<$Res> {
+  _$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl(
       this._value, this._then);
 
   // ignore: unused_field
@@ -25427,7 +25847,7 @@ class _$ApiV1FollowingsUnfollowDeleteResponseDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowDeleteResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -25449,12 +25869,12 @@ class _$ApiV1FollowingsUnfollowDeleteResponseDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWith<$Res>
-    implements $ApiV1FollowingsUnfollowDeleteResponseDtoCopyWith<$Res> {
-  factory _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWith(
-          _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl value,
-          $Res Function(_$ApiV1FollowingsUnfollowDeleteResponseDtoImpl) then) =
-      __$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWithImpl<$Res>;
+abstract class _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWith<$Res>
+    implements $ApiV1UsersUserIdFollowDeleteResponseDtoCopyWith<$Res> {
+  factory _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWith(
+          _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl value,
+          $Res Function(_$ApiV1UsersUserIdFollowDeleteResponseDtoImpl) then) =
+      __$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -25463,16 +25883,16 @@ abstract class _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWithImpl<$Res>
-    extends _$ApiV1FollowingsUnfollowDeleteResponseDtoCopyWithImpl<$Res,
-        _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl>
-    implements _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWith<$Res> {
-  __$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWithImpl(
-      _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl _value,
-      $Res Function(_$ApiV1FollowingsUnfollowDeleteResponseDtoImpl) _then)
+class __$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWithImpl<$Res>
+    extends _$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl<$Res,
+        _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl>
+    implements _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWith<$Res> {
+  __$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWithImpl(
+      _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl _value,
+      $Res Function(_$ApiV1UsersUserIdFollowDeleteResponseDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowDeleteResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -25480,7 +25900,7 @@ class __$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = freezed,
   }) {
-    return _then(_$ApiV1FollowingsUnfollowDeleteResponseDtoImpl(
+    return _then(_$ApiV1UsersUserIdFollowDeleteResponseDtoImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -25495,15 +25915,15 @@ class __$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl
-    implements _ApiV1FollowingsUnfollowDeleteResponseDto {
-  _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl(
+class _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl
+    implements _ApiV1UsersUserIdFollowDeleteResponseDto {
+  _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl(
       {@JsonKey(name: 'status') required this.status,
       @JsonKey(name: 'message') this.message});
 
-  factory _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl.fromJson(
+  factory _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplFromJson(json);
+      _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'status')
@@ -25514,14 +25934,14 @@ class _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl
 
   @override
   String toString() {
-    return 'ApiV1FollowingsUnfollowDeleteResponseDto(status: $status, message: $message)';
+    return 'ApiV1UsersUserIdFollowDeleteResponseDto(status: $status, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl &&
+            other is _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -25530,35 +25950,35 @@ class _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowDeleteResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWith<
-          _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl>
+  _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl>
       get copyWith =>
-          __$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWithImpl<
-              _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl>(this, _$identity);
+          __$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWithImpl<
+              _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplToJson(
+    return _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ApiV1FollowingsUnfollowDeleteResponseDto
-    implements ApiV1FollowingsUnfollowDeleteResponseDto {
-  factory _ApiV1FollowingsUnfollowDeleteResponseDto(
+abstract class _ApiV1UsersUserIdFollowDeleteResponseDto
+    implements ApiV1UsersUserIdFollowDeleteResponseDto {
+  factory _ApiV1UsersUserIdFollowDeleteResponseDto(
           {@JsonKey(name: 'status') required final int status,
           @JsonKey(name: 'message') final String? message}) =
-      _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl;
+      _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl;
 
-  factory _ApiV1FollowingsUnfollowDeleteResponseDto.fromJson(
+  factory _ApiV1UsersUserIdFollowDeleteResponseDto.fromJson(
           Map<String, dynamic> json) =
-      _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl.fromJson;
+      _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'status')
@@ -25567,219 +25987,46 @@ abstract class _ApiV1FollowingsUnfollowDeleteResponseDto
   @JsonKey(name: 'message')
   String? get message;
 
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowDeleteResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplCopyWith<
-          _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl>
+  _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ApiV1FollowingsUnfollowDeleteRequestDto
-    _$ApiV1FollowingsUnfollowDeleteRequestDtoFromJson(
+ApiV1UsersUserIdRejectFollowPostResponseDto
+    _$ApiV1UsersUserIdRejectFollowPostResponseDtoFromJson(
         Map<String, dynamic> json) {
-  return _ApiV1FollowingsUnfollowDeleteRequestDto.fromJson(json);
+  return _ApiV1UsersUserIdRejectFollowPostResponseDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ApiV1FollowingsUnfollowDeleteRequestDto {
-  @JsonKey(name: 'userId')
-  String get userId => throw _privateConstructorUsedError;
-
-  /// Serializes this ApiV1FollowingsUnfollowDeleteRequestDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ApiV1FollowingsUnfollowDeleteRequestDtoCopyWith<
-          ApiV1FollowingsUnfollowDeleteRequestDto>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ApiV1FollowingsUnfollowDeleteRequestDtoCopyWith<$Res> {
-  factory $ApiV1FollowingsUnfollowDeleteRequestDtoCopyWith(
-          ApiV1FollowingsUnfollowDeleteRequestDto value,
-          $Res Function(ApiV1FollowingsUnfollowDeleteRequestDto) then) =
-      _$ApiV1FollowingsUnfollowDeleteRequestDtoCopyWithImpl<$Res,
-          ApiV1FollowingsUnfollowDeleteRequestDto>;
-  @useResult
-  $Res call({@JsonKey(name: 'userId') String userId});
-}
-
-/// @nodoc
-class _$ApiV1FollowingsUnfollowDeleteRequestDtoCopyWithImpl<$Res,
-        $Val extends ApiV1FollowingsUnfollowDeleteRequestDto>
-    implements $ApiV1FollowingsUnfollowDeleteRequestDtoCopyWith<$Res> {
-  _$ApiV1FollowingsUnfollowDeleteRequestDtoCopyWithImpl(
-      this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWith<$Res>
-    implements $ApiV1FollowingsUnfollowDeleteRequestDtoCopyWith<$Res> {
-  factory _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWith(
-          _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl value,
-          $Res Function(_$ApiV1FollowingsUnfollowDeleteRequestDtoImpl) then) =
-      __$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({@JsonKey(name: 'userId') String userId});
-}
-
-/// @nodoc
-class __$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWithImpl<$Res>
-    extends _$ApiV1FollowingsUnfollowDeleteRequestDtoCopyWithImpl<$Res,
-        _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl>
-    implements _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWith<$Res> {
-  __$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWithImpl(
-      _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl _value,
-      $Res Function(_$ApiV1FollowingsUnfollowDeleteRequestDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_$ApiV1FollowingsUnfollowDeleteRequestDtoImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl
-    implements _ApiV1FollowingsUnfollowDeleteRequestDto {
-  _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl(
-      {@JsonKey(name: 'userId') required this.userId});
-
-  factory _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplFromJson(json);
-
-  @override
-  @JsonKey(name: 'userId')
-  final String userId;
-
-  @override
-  String toString() {
-    return 'ApiV1FollowingsUnfollowDeleteRequestDto(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl &&
-            (identical(other.userId, userId) || other.userId == userId));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, userId);
-
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWith<
-          _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl>
-      get copyWith =>
-          __$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWithImpl<
-              _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ApiV1FollowingsUnfollowDeleteRequestDto
-    implements ApiV1FollowingsUnfollowDeleteRequestDto {
-  factory _ApiV1FollowingsUnfollowDeleteRequestDto(
-          {@JsonKey(name: 'userId') required final String userId}) =
-      _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl;
-
-  factory _ApiV1FollowingsUnfollowDeleteRequestDto.fromJson(
-          Map<String, dynamic> json) =
-      _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'userId')
-  String get userId;
-
-  /// Create a copy of ApiV1FollowingsUnfollowDeleteRequestDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplCopyWith<
-          _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-ApiV1FollowingsUserIdRejectPostResponseDto
-    _$ApiV1FollowingsUserIdRejectPostResponseDtoFromJson(
-        Map<String, dynamic> json) {
-  return _ApiV1FollowingsUserIdRejectPostResponseDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ApiV1FollowingsUserIdRejectPostResponseDto {
+mixin _$ApiV1UsersUserIdRejectFollowPostResponseDto {
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'message')
   String? get message => throw _privateConstructorUsedError;
 
-  /// Serializes this ApiV1FollowingsUserIdRejectPostResponseDto to a JSON map.
+  /// Serializes this ApiV1UsersUserIdRejectFollowPostResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ApiV1FollowingsUserIdRejectPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdRejectFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ApiV1FollowingsUserIdRejectPostResponseDtoCopyWith<
-          ApiV1FollowingsUserIdRejectPostResponseDto>
+  $ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWith<
+          ApiV1UsersUserIdRejectFollowPostResponseDto>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ApiV1FollowingsUserIdRejectPostResponseDtoCopyWith<$Res> {
-  factory $ApiV1FollowingsUserIdRejectPostResponseDtoCopyWith(
-          ApiV1FollowingsUserIdRejectPostResponseDto value,
-          $Res Function(ApiV1FollowingsUserIdRejectPostResponseDto) then) =
-      _$ApiV1FollowingsUserIdRejectPostResponseDtoCopyWithImpl<$Res,
-          ApiV1FollowingsUserIdRejectPostResponseDto>;
+abstract class $ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWith<$Res> {
+  factory $ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWith(
+          ApiV1UsersUserIdRejectFollowPostResponseDto value,
+          $Res Function(ApiV1UsersUserIdRejectFollowPostResponseDto) then) =
+      _$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl<$Res,
+          ApiV1UsersUserIdRejectFollowPostResponseDto>;
   @useResult
   $Res call(
       {@JsonKey(name: 'status') int status,
@@ -25787,10 +26034,10 @@ abstract class $ApiV1FollowingsUserIdRejectPostResponseDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ApiV1FollowingsUserIdRejectPostResponseDtoCopyWithImpl<$Res,
-        $Val extends ApiV1FollowingsUserIdRejectPostResponseDto>
-    implements $ApiV1FollowingsUserIdRejectPostResponseDtoCopyWith<$Res> {
-  _$ApiV1FollowingsUserIdRejectPostResponseDtoCopyWithImpl(
+class _$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl<$Res,
+        $Val extends ApiV1UsersUserIdRejectFollowPostResponseDto>
+    implements $ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWith<$Res> {
+  _$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl(
       this._value, this._then);
 
   // ignore: unused_field
@@ -25798,7 +26045,7 @@ class _$ApiV1FollowingsUserIdRejectPostResponseDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ApiV1FollowingsUserIdRejectPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdRejectFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -25820,13 +26067,13 @@ class _$ApiV1FollowingsUserIdRejectPostResponseDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWith<$Res>
-    implements $ApiV1FollowingsUserIdRejectPostResponseDtoCopyWith<$Res> {
-  factory _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWith(
-          _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl value,
-          $Res Function(_$ApiV1FollowingsUserIdRejectPostResponseDtoImpl)
+abstract class _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWith<$Res>
+    implements $ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWith<$Res> {
+  factory _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWith(
+          _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl value,
+          $Res Function(_$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl)
               then) =
-      __$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWithImpl<$Res>;
+      __$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -25835,16 +26082,17 @@ abstract class _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWithImpl<$Res>
-    extends _$ApiV1FollowingsUserIdRejectPostResponseDtoCopyWithImpl<$Res,
-        _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl>
-    implements _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWith<$Res> {
-  __$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWithImpl(
-      _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl _value,
-      $Res Function(_$ApiV1FollowingsUserIdRejectPostResponseDtoImpl) _then)
+class __$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWithImpl<$Res>
+    extends _$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl<$Res,
+        _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl>
+    implements
+        _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWith<$Res> {
+  __$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWithImpl(
+      _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl _value,
+      $Res Function(_$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ApiV1FollowingsUserIdRejectPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdRejectFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -25852,7 +26100,7 @@ class __$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = freezed,
   }) {
-    return _then(_$ApiV1FollowingsUserIdRejectPostResponseDtoImpl(
+    return _then(_$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -25867,15 +26115,15 @@ class __$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl
-    implements _ApiV1FollowingsUserIdRejectPostResponseDto {
-  _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl(
+class _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl
+    implements _ApiV1UsersUserIdRejectFollowPostResponseDto {
+  _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl(
       {@JsonKey(name: 'status') required this.status,
       @JsonKey(name: 'message') this.message});
 
-  factory _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl.fromJson(
+  factory _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplFromJson(json);
+      _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'status')
@@ -25886,14 +26134,14 @@ class _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl
 
   @override
   String toString() {
-    return 'ApiV1FollowingsUserIdRejectPostResponseDto(status: $status, message: $message)';
+    return 'ApiV1UsersUserIdRejectFollowPostResponseDto(status: $status, message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl &&
+            other is _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message));
   }
@@ -25902,36 +26150,36 @@ class _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  /// Create a copy of ApiV1FollowingsUserIdRejectPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdRejectFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWith<
-          _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl>
+  _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl>
       get copyWith =>
-          __$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWithImpl<
-                  _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl>(
+          __$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWithImpl<
+                  _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl>(
               this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplToJson(
+    return _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ApiV1FollowingsUserIdRejectPostResponseDto
-    implements ApiV1FollowingsUserIdRejectPostResponseDto {
-  factory _ApiV1FollowingsUserIdRejectPostResponseDto(
+abstract class _ApiV1UsersUserIdRejectFollowPostResponseDto
+    implements ApiV1UsersUserIdRejectFollowPostResponseDto {
+  factory _ApiV1UsersUserIdRejectFollowPostResponseDto(
           {@JsonKey(name: 'status') required final int status,
           @JsonKey(name: 'message') final String? message}) =
-      _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl;
+      _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl;
 
-  factory _ApiV1FollowingsUserIdRejectPostResponseDto.fromJson(
+  factory _ApiV1UsersUserIdRejectFollowPostResponseDto.fromJson(
           Map<String, dynamic> json) =
-      _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl.fromJson;
+      _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'status')
@@ -25940,53 +26188,53 @@ abstract class _ApiV1FollowingsUserIdRejectPostResponseDto
   @JsonKey(name: 'message')
   String? get message;
 
-  /// Create a copy of ApiV1FollowingsUserIdRejectPostResponseDto
+  /// Create a copy of ApiV1UsersUserIdRejectFollowPostResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplCopyWith<
-          _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl>
+  _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ApiV1FollowingsStatusUserIdGetResponseDto
-    _$ApiV1FollowingsStatusUserIdGetResponseDtoFromJson(
+ApiV1UsersUserIdFollowStatusGetResponseDto
+    _$ApiV1UsersUserIdFollowStatusGetResponseDtoFromJson(
         Map<String, dynamic> json) {
-  return _ApiV1FollowingsStatusUserIdGetResponseDto.fromJson(json);
+  return _ApiV1UsersUserIdFollowStatusGetResponseDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ApiV1FollowingsStatusUserIdGetResponseDto {
+mixin _$ApiV1UsersUserIdFollowStatusGetResponseDto {
   @JsonKey(name: 'status')
   int get status => throw _privateConstructorUsedError;
 
-  /// Serializes this ApiV1FollowingsStatusUserIdGetResponseDto to a JSON map.
+  /// Serializes this ApiV1UsersUserIdFollowStatusGetResponseDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ApiV1FollowingsStatusUserIdGetResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowStatusGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ApiV1FollowingsStatusUserIdGetResponseDtoCopyWith<
-          ApiV1FollowingsStatusUserIdGetResponseDto>
+  $ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWith<
+          ApiV1UsersUserIdFollowStatusGetResponseDto>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ApiV1FollowingsStatusUserIdGetResponseDtoCopyWith<$Res> {
-  factory $ApiV1FollowingsStatusUserIdGetResponseDtoCopyWith(
-          ApiV1FollowingsStatusUserIdGetResponseDto value,
-          $Res Function(ApiV1FollowingsStatusUserIdGetResponseDto) then) =
-      _$ApiV1FollowingsStatusUserIdGetResponseDtoCopyWithImpl<$Res,
-          ApiV1FollowingsStatusUserIdGetResponseDto>;
+abstract class $ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWith<$Res> {
+  factory $ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWith(
+          ApiV1UsersUserIdFollowStatusGetResponseDto value,
+          $Res Function(ApiV1UsersUserIdFollowStatusGetResponseDto) then) =
+      _$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl<$Res,
+          ApiV1UsersUserIdFollowStatusGetResponseDto>;
   @useResult
   $Res call({@JsonKey(name: 'status') int status});
 }
 
 /// @nodoc
-class _$ApiV1FollowingsStatusUserIdGetResponseDtoCopyWithImpl<$Res,
-        $Val extends ApiV1FollowingsStatusUserIdGetResponseDto>
-    implements $ApiV1FollowingsStatusUserIdGetResponseDtoCopyWith<$Res> {
-  _$ApiV1FollowingsStatusUserIdGetResponseDtoCopyWithImpl(
+class _$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl<$Res,
+        $Val extends ApiV1UsersUserIdFollowStatusGetResponseDto>
+    implements $ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWith<$Res> {
+  _$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl(
       this._value, this._then);
 
   // ignore: unused_field
@@ -25994,7 +26242,7 @@ class _$ApiV1FollowingsStatusUserIdGetResponseDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ApiV1FollowingsStatusUserIdGetResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowStatusGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -26011,35 +26259,36 @@ class _$ApiV1FollowingsStatusUserIdGetResponseDtoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWith<$Res>
-    implements $ApiV1FollowingsStatusUserIdGetResponseDtoCopyWith<$Res> {
-  factory _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWith(
-          _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl value,
-          $Res Function(_$ApiV1FollowingsStatusUserIdGetResponseDtoImpl) then) =
-      __$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWithImpl<$Res>;
+abstract class _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWith<$Res>
+    implements $ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWith<$Res> {
+  factory _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWith(
+          _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl value,
+          $Res Function(_$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl)
+              then) =
+      __$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'status') int status});
 }
 
 /// @nodoc
-class __$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWithImpl<$Res>
-    extends _$ApiV1FollowingsStatusUserIdGetResponseDtoCopyWithImpl<$Res,
-        _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl>
-    implements _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWith<$Res> {
-  __$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWithImpl(
-      _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl _value,
-      $Res Function(_$ApiV1FollowingsStatusUserIdGetResponseDtoImpl) _then)
+class __$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWithImpl<$Res>
+    extends _$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl<$Res,
+        _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl>
+    implements _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWith<$Res> {
+  __$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWithImpl(
+      _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl _value,
+      $Res Function(_$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ApiV1FollowingsStatusUserIdGetResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowStatusGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? status = null,
   }) {
-    return _then(_$ApiV1FollowingsStatusUserIdGetResponseDtoImpl(
+    return _then(_$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -26050,14 +26299,14 @@ class __$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl
-    implements _ApiV1FollowingsStatusUserIdGetResponseDto {
-  _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl(
+class _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl
+    implements _ApiV1UsersUserIdFollowStatusGetResponseDto {
+  _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl(
       {@JsonKey(name: 'status') required this.status});
 
-  factory _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl.fromJson(
+  factory _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplFromJson(json);
+      _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplFromJson(json);
 
   @override
   @JsonKey(name: 'status')
@@ -26065,14 +26314,14 @@ class _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl
 
   @override
   String toString() {
-    return 'ApiV1FollowingsStatusUserIdGetResponseDto(status: $status)';
+    return 'ApiV1UsersUserIdFollowStatusGetResponseDto(status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl &&
+            other is _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -26080,46 +26329,46 @@ class _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl
   @override
   int get hashCode => Object.hash(runtimeType, status);
 
-  /// Create a copy of ApiV1FollowingsStatusUserIdGetResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowStatusGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWith<
-          _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl>
+  _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl>
       get copyWith =>
-          __$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWithImpl<
-                  _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl>(
+          __$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWithImpl<
+                  _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl>(
               this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplToJson(
+    return _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplToJson(
       this,
     );
   }
 }
 
-abstract class _ApiV1FollowingsStatusUserIdGetResponseDto
-    implements ApiV1FollowingsStatusUserIdGetResponseDto {
-  factory _ApiV1FollowingsStatusUserIdGetResponseDto(
+abstract class _ApiV1UsersUserIdFollowStatusGetResponseDto
+    implements ApiV1UsersUserIdFollowStatusGetResponseDto {
+  factory _ApiV1UsersUserIdFollowStatusGetResponseDto(
           {@JsonKey(name: 'status') required final int status}) =
-      _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl;
+      _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl;
 
-  factory _ApiV1FollowingsStatusUserIdGetResponseDto.fromJson(
+  factory _ApiV1UsersUserIdFollowStatusGetResponseDto.fromJson(
           Map<String, dynamic> json) =
-      _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl.fromJson;
+      _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl.fromJson;
 
   @override
   @JsonKey(name: 'status')
   int get status;
 
-  /// Create a copy of ApiV1FollowingsStatusUserIdGetResponseDto
+  /// Create a copy of ApiV1UsersUserIdFollowStatusGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplCopyWith<
-          _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl>
+  _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplCopyWith<
+          _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 

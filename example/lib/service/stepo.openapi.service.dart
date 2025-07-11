@@ -151,6 +151,21 @@ class StepoService {
     }
   }
 
+  /// post: /api/v1/auth/login
+  Future<Either<ApiError, ApiV1AuthLoginPostResponseDto>> apiV1AuthLoginPost(
+      ApiV1AuthLoginPostRequestDto body) async {
+    try {
+      final response = await _dio.post(
+        '/api/v1/auth/login',
+        data: body.toJson(),
+      );
+      final result = ApiV1AuthLoginPostResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
   /// get: /api/v1/users/{id}
   Future<Either<ApiError, ApiV1UsersIdGetResponseDto>> apiV1UsersIdGet(
       {required String id}) async {
@@ -840,9 +855,104 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/followings/{userId}/followers
-  Future<Either<ApiError, List<UserDetailDto>>>
-      apiV1FollowingsUserIdFollowersGet({
+  /// get: /api/v1/account/followers
+  Future<Either<ApiError, List<UserDetailDto>>> apiV1AccountFollowersGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/account/followers',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result.map((item) => item).toList();
+      return Right((mappedResult as List<UserDetailDto>));
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
+  /// get: /api/v1/account/followings
+  Future<Either<ApiError, List<UserDetailDto>>> apiV1AccountFollowingsGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/account/followings',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result.map((item) => item).toList();
+      return Right((mappedResult as List<UserDetailDto>));
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
+  /// post: /api/v1/users/{userId}/follow
+  Future<Either<ApiError, ApiV1UsersUserIdFollowPostResponseDto>>
+      apiV1UsersUserIdFollowPost({required String userId}) async {
+    try {
+      final response = await _dio.post('/api/v1/users/$userId/follow');
+      final result =
+          ApiV1UsersUserIdFollowPostResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
+  /// delete: /api/v1/users/{userId}/follow
+  Future<Either<ApiError, ApiV1UsersUserIdFollowDeleteResponseDto>>
+      apiV1UsersUserIdFollowDelete({required String userId}) async {
+    try {
+      final response = await _dio.delete('/api/v1/users/$userId/follow');
+      final result =
+          ApiV1UsersUserIdFollowDeleteResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
+  /// post: /api/v1/users/{userId}/reject-follow
+  Future<Either<ApiError, ApiV1UsersUserIdRejectFollowPostResponseDto>>
+      apiV1UsersUserIdRejectFollowPost({required String userId}) async {
+    try {
+      final response = await _dio.post('/api/v1/users/$userId/reject-follow');
+      final result =
+          ApiV1UsersUserIdRejectFollowPostResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
+  /// get: /api/v1/users/{userId}/follow-status
+  Future<Either<ApiError, ApiV1UsersUserIdFollowStatusGetResponseDto>>
+      apiV1UsersUserIdFollowStatusGet({required String userId}) async {
+    try {
+      final response = await _dio.get('/api/v1/users/$userId/follow-status');
+      final result =
+          ApiV1UsersUserIdFollowStatusGetResponseDto.fromJson(response.data);
+      return Right(result);
+    } catch (e) {
+      return Left(_handleError(e));
+    }
+  }
+
+  /// get: /api/v1/users/{userId}/followers
+  Future<Either<ApiError, List<UserDetailDto>>> apiV1UsersUserIdFollowersGet({
     required String userId,
     int? page,
     int? pageSize,
@@ -853,7 +963,7 @@ class StepoService {
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/api/v1/followings/$userId/followers',
+        '/api/v1/users/$userId/followers',
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -864,9 +974,8 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/followings/{userId}/followings
-  Future<Either<ApiError, List<UserDetailDto>>>
-      apiV1FollowingsUserIdFollowingsGet({
+  /// get: /api/v1/users/{userId}/followings
+  Future<Either<ApiError, List<UserDetailDto>>> apiV1UsersUserIdFollowingsGet({
     required String userId,
     int? page,
     int? pageSize,
@@ -877,7 +986,7 @@ class StepoService {
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/api/v1/followings/$userId/followings',
+        '/api/v1/users/$userId/followings',
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -888,12 +997,11 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/followings/{userId}/followers/count
-  Future<Either<ApiError, int>> apiV1FollowingsUserIdFollowersCountGet(
+  /// get: /api/v1/users/{userId}/followers/count
+  Future<Either<ApiError, int>> apiV1UsersUserIdFollowersCountGet(
       {required String userId}) async {
     try {
-      final response =
-          await _dio.get('/api/v1/followings/$userId/followers/count');
+      final response = await _dio.get('/api/v1/users/$userId/followers/count');
       final result = (response.data as int);
       return Right(result);
     } catch (e) {
@@ -901,117 +1009,12 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/followings/{userId}/followings/count
-  Future<Either<ApiError, int>> apiV1FollowingsUserIdFollowingsCountGet(
+  /// get: /api/v1/users/{userId}/followings/count
+  Future<Either<ApiError, int>> apiV1UsersUserIdFollowingsCountGet(
       {required String userId}) async {
     try {
-      final response =
-          await _dio.get('/api/v1/followings/$userId/followings/count');
+      final response = await _dio.get('/api/v1/users/$userId/followings/count');
       final result = (response.data as int);
-      return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
-    }
-  }
-
-  /// post: /api/v1/followings/follow
-  Future<Either<ApiError, ApiV1FollowingsFollowPostResponseDto>>
-      apiV1FollowingsFollowPost(
-          ApiV1FollowingsFollowPostRequestDto body) async {
-    try {
-      final response = await _dio.post(
-        '/api/v1/followings/follow',
-        data: body.toJson(),
-      );
-      final result =
-          ApiV1FollowingsFollowPostResponseDto.fromJson(response.data);
-      return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
-    }
-  }
-
-  /// delete: /api/v1/followings/unfollow
-  Future<Either<ApiError, ApiV1FollowingsUnfollowDeleteResponseDto>>
-      apiV1FollowingsUnfollowDelete(
-          ApiV1FollowingsUnfollowDeleteRequestDto body) async {
-    try {
-      final response = await _dio.delete(
-        '/api/v1/followings/unfollow',
-        data: body.toJson(),
-      );
-      final result =
-          ApiV1FollowingsUnfollowDeleteResponseDto.fromJson(response.data);
-      return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
-    }
-  }
-
-  /// post: /api/v1/followings/{userId}/reject
-  Future<Either<ApiError, ApiV1FollowingsUserIdRejectPostResponseDto>>
-      apiV1FollowingsUserIdRejectPost({required String userId}) async {
-    try {
-      final response = await _dio.post('/api/v1/followings/$userId/reject');
-      final result =
-          ApiV1FollowingsUserIdRejectPostResponseDto.fromJson(response.data);
-      return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
-    }
-  }
-
-  /// get: /api/v1/followings/me/followers
-  Future<Either<ApiError, List<UserDetailDto>>> apiV1FollowingsMeFollowersGet({
-    int? page,
-    int? pageSize,
-  }) async {
-    try {
-      final queryParams = <String, dynamic>{};
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/followings/me/followers',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<UserDetailDto>));
-    } catch (e) {
-      return Left(_handleError(e));
-    }
-  }
-
-  /// get: /api/v1/followings/me/followings
-  Future<Either<ApiError, List<UserDetailDto>>> apiV1FollowingsMeFollowingsGet({
-    int? page,
-    int? pageSize,
-  }) async {
-    try {
-      final queryParams = <String, dynamic>{};
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/followings/me/followings',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<UserDetailDto>));
-    } catch (e) {
-      return Left(_handleError(e));
-    }
-  }
-
-  /// get: /api/v1/followings/status/{userId}
-  Future<Either<ApiError, ApiV1FollowingsStatusUserIdGetResponseDto>>
-      apiV1FollowingsStatusUserIdGet({required String userId}) async {
-    try {
-      final response = await _dio.get('/api/v1/followings/status/$userId');
-      final result =
-          ApiV1FollowingsStatusUserIdGetResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));

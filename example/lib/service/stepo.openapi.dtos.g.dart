@@ -165,18 +165,6 @@ Map<String, dynamic> _$$FollowingStatusDtoImplToJson(
       'status': instance.status,
     };
 
-_$FollowRequestDtoImpl _$$FollowRequestDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$FollowRequestDtoImpl(
-      userId: json['userId'] as String,
-    );
-
-Map<String, dynamic> _$$FollowRequestDtoImplToJson(
-        _$FollowRequestDtoImpl instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-    };
-
 _$ImageMetadataDtoImpl _$$ImageMetadataDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$ImageMetadataDtoImpl(
@@ -372,6 +360,32 @@ Map<String, dynamic> _$$JourneyInDetailDtoImplToJson(
       'latestCompanions': instance.latestCompanions,
       'celebratorCount': instance.celebratorCount,
       'latestCelebrators': instance.latestCelebrators,
+    };
+
+_$LoginDtoImpl _$$LoginDtoImplFromJson(Map<String, dynamic> json) =>
+    _$LoginDtoImpl(
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$$LoginDtoImplToJson(_$LoginDtoImpl instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+    };
+
+_$LoginResponseDtoImpl _$$LoginResponseDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LoginResponseDtoImpl(
+      token: json['token'] as String?,
+      uid: json['uid'] as String?,
+    );
+
+Map<String, dynamic> _$$LoginResponseDtoImplToJson(
+        _$LoginResponseDtoImpl instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'uid': instance.uid,
     };
 
 _$NotificationDtoImpl _$$NotificationDtoImplFromJson(
@@ -997,6 +1011,34 @@ Map<String, dynamic> _$$ApiV1AccountAvatarPutResponseDtoImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'profile': instance.profile,
+    };
+
+_$ApiV1AuthLoginPostResponseDtoImpl
+    _$$ApiV1AuthLoginPostResponseDtoImplFromJson(Map<String, dynamic> json) =>
+        _$ApiV1AuthLoginPostResponseDtoImpl(
+          token: json['token'] as String?,
+          uid: json['uid'] as String?,
+        );
+
+Map<String, dynamic> _$$ApiV1AuthLoginPostResponseDtoImplToJson(
+        _$ApiV1AuthLoginPostResponseDtoImpl instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+      'uid': instance.uid,
+    };
+
+_$ApiV1AuthLoginPostRequestDtoImpl _$$ApiV1AuthLoginPostRequestDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ApiV1AuthLoginPostRequestDtoImpl(
+      email: json['email'] as String,
+      password: json['password'] as String,
+    );
+
+Map<String, dynamic> _$$ApiV1AuthLoginPostRequestDtoImplToJson(
+        _$ApiV1AuthLoginPostRequestDtoImpl instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
     };
 
 _$ApiV1UsersIdGetResponseDtoImpl _$$ApiV1UsersIdGetResponseDtoImplFromJson(
@@ -2035,86 +2077,60 @@ Map<String, dynamic>
           'type': instance.type,
         };
 
-_$ApiV1FollowingsFollowPostResponseDtoImpl
-    _$$ApiV1FollowingsFollowPostResponseDtoImplFromJson(
+_$ApiV1UsersUserIdFollowPostResponseDtoImpl
+    _$$ApiV1UsersUserIdFollowPostResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1FollowingsFollowPostResponseDtoImpl(
+        _$ApiV1UsersUserIdFollowPostResponseDtoImpl(
           status: (json['status'] as num).toInt(),
           message: json['message'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1FollowingsFollowPostResponseDtoImplToJson(
-        _$ApiV1FollowingsFollowPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$$ApiV1UsersUserIdFollowPostResponseDtoImplToJson(
+        _$ApiV1UsersUserIdFollowPostResponseDtoImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
     };
 
-_$ApiV1FollowingsFollowPostRequestDtoImpl
-    _$$ApiV1FollowingsFollowPostRequestDtoImplFromJson(
+_$ApiV1UsersUserIdFollowDeleteResponseDtoImpl
+    _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1FollowingsFollowPostRequestDtoImpl(
-          userId: json['userId'] as String,
-        );
-
-Map<String, dynamic> _$$ApiV1FollowingsFollowPostRequestDtoImplToJson(
-        _$ApiV1FollowingsFollowPostRequestDtoImpl instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-    };
-
-_$ApiV1FollowingsUnfollowDeleteResponseDtoImpl
-    _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl(
+        _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl(
           status: (json['status'] as num).toInt(),
           message: json['message'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1FollowingsUnfollowDeleteResponseDtoImplToJson(
-        _$ApiV1FollowingsUnfollowDeleteResponseDtoImpl instance) =>
+Map<String, dynamic> _$$ApiV1UsersUserIdFollowDeleteResponseDtoImplToJson(
+        _$ApiV1UsersUserIdFollowDeleteResponseDtoImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
     };
 
-_$ApiV1FollowingsUnfollowDeleteRequestDtoImpl
-    _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplFromJson(
+_$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl
+    _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl(
-          userId: json['userId'] as String,
-        );
-
-Map<String, dynamic> _$$ApiV1FollowingsUnfollowDeleteRequestDtoImplToJson(
-        _$ApiV1FollowingsUnfollowDeleteRequestDtoImpl instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-    };
-
-_$ApiV1FollowingsUserIdRejectPostResponseDtoImpl
-    _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl(
+        _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl(
           status: (json['status'] as num).toInt(),
           message: json['message'] as String?,
         );
 
-Map<String, dynamic> _$$ApiV1FollowingsUserIdRejectPostResponseDtoImplToJson(
-        _$ApiV1FollowingsUserIdRejectPostResponseDtoImpl instance) =>
+Map<String, dynamic> _$$ApiV1UsersUserIdRejectFollowPostResponseDtoImplToJson(
+        _$ApiV1UsersUserIdRejectFollowPostResponseDtoImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
     };
 
-_$ApiV1FollowingsStatusUserIdGetResponseDtoImpl
-    _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplFromJson(
+_$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl
+    _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
-        _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl(
+        _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl(
           status: (json['status'] as num).toInt(),
         );
 
-Map<String, dynamic> _$$ApiV1FollowingsStatusUserIdGetResponseDtoImplToJson(
-        _$ApiV1FollowingsStatusUserIdGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$$ApiV1UsersUserIdFollowStatusGetResponseDtoImplToJson(
+        _$ApiV1UsersUserIdFollowStatusGetResponseDtoImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
     };

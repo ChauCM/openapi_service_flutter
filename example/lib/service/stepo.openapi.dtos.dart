@@ -133,15 +133,6 @@ sealed class FollowingStatusDto with _$FollowingStatusDto {
 }
 
 @freezed
-sealed class FollowRequestDto with _$FollowRequestDto {
-  factory FollowRequestDto({@JsonKey(name: 'userId') required String userId}) =
-      _FollowRequestDto;
-
-  factory FollowRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$FollowRequestDtoFromJson(json);
-}
-
-@freezed
 sealed class ImageMetadataDto with _$ImageMetadataDto {
   factory ImageMetadataDto({
     @JsonKey(name: 'fileName') String? fileName,
@@ -262,6 +253,28 @@ sealed class JourneyInDetailDto with _$JourneyInDetailDto {
 
   factory JourneyInDetailDto.fromJson(Map<String, dynamic> json) =>
       _$JourneyInDetailDtoFromJson(json);
+}
+
+@freezed
+sealed class LoginDto with _$LoginDto {
+  factory LoginDto({
+    @JsonKey(name: 'email') required String email,
+    @JsonKey(name: 'password') required String password,
+  }) = _LoginDto;
+
+  factory LoginDto.fromJson(Map<String, dynamic> json) =>
+      _$LoginDtoFromJson(json);
+}
+
+@freezed
+sealed class LoginResponseDto with _$LoginResponseDto {
+  factory LoginResponseDto({
+    @JsonKey(name: 'token') String? token,
+    @JsonKey(name: 'uid') String? uid,
+  }) = _LoginResponseDto;
+
+  factory LoginResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseDtoFromJson(json);
 }
 
 @freezed
@@ -650,6 +663,29 @@ sealed class ApiV1AccountAvatarPutResponseDto
   factory ApiV1AccountAvatarPutResponseDto.fromJson(
           Map<String, dynamic> json) =>
       _$ApiV1AccountAvatarPutResponseDtoFromJson(json);
+}
+
+@freezed
+sealed class ApiV1AuthLoginPostResponseDto
+    with _$ApiV1AuthLoginPostResponseDto {
+  factory ApiV1AuthLoginPostResponseDto({
+    @JsonKey(name: 'token') String? token,
+    @JsonKey(name: 'uid') String? uid,
+  }) = _ApiV1AuthLoginPostResponseDto;
+
+  factory ApiV1AuthLoginPostResponseDto.fromJson(Map<String, dynamic> json) =>
+      _$ApiV1AuthLoginPostResponseDtoFromJson(json);
+}
+
+@freezed
+sealed class ApiV1AuthLoginPostRequestDto with _$ApiV1AuthLoginPostRequestDto {
+  factory ApiV1AuthLoginPostRequestDto({
+    @JsonKey(name: 'email') required String email,
+    @JsonKey(name: 'password') required String password,
+  }) = _ApiV1AuthLoginPostRequestDto;
+
+  factory ApiV1AuthLoginPostRequestDto.fromJson(Map<String, dynamic> json) =>
+      _$ApiV1AuthLoginPostRequestDtoFromJson(json);
 }
 
 @freezed
@@ -1305,78 +1341,54 @@ sealed class ApiV1StepsCommentsCommentIdHeartsPostRequestDto
 }
 
 @freezed
-sealed class ApiV1FollowingsFollowPostResponseDto
-    with _$ApiV1FollowingsFollowPostResponseDto {
-  factory ApiV1FollowingsFollowPostResponseDto({
+sealed class ApiV1UsersUserIdFollowPostResponseDto
+    with _$ApiV1UsersUserIdFollowPostResponseDto {
+  factory ApiV1UsersUserIdFollowPostResponseDto({
     @JsonKey(name: 'status') required int status,
     @JsonKey(name: 'message') String? message,
-  }) = _ApiV1FollowingsFollowPostResponseDto;
+  }) = _ApiV1UsersUserIdFollowPostResponseDto;
 
-  factory ApiV1FollowingsFollowPostResponseDto.fromJson(
+  factory ApiV1UsersUserIdFollowPostResponseDto.fromJson(
           Map<String, dynamic> json) =>
-      _$ApiV1FollowingsFollowPostResponseDtoFromJson(json);
+      _$ApiV1UsersUserIdFollowPostResponseDtoFromJson(json);
 }
 
 @freezed
-sealed class ApiV1FollowingsFollowPostRequestDto
-    with _$ApiV1FollowingsFollowPostRequestDto {
-  factory ApiV1FollowingsFollowPostRequestDto(
-          {@JsonKey(name: 'userId') required String userId}) =
-      _ApiV1FollowingsFollowPostRequestDto;
-
-  factory ApiV1FollowingsFollowPostRequestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiV1FollowingsFollowPostRequestDtoFromJson(json);
-}
-
-@freezed
-sealed class ApiV1FollowingsUnfollowDeleteResponseDto
-    with _$ApiV1FollowingsUnfollowDeleteResponseDto {
-  factory ApiV1FollowingsUnfollowDeleteResponseDto({
+sealed class ApiV1UsersUserIdFollowDeleteResponseDto
+    with _$ApiV1UsersUserIdFollowDeleteResponseDto {
+  factory ApiV1UsersUserIdFollowDeleteResponseDto({
     @JsonKey(name: 'status') required int status,
     @JsonKey(name: 'message') String? message,
-  }) = _ApiV1FollowingsUnfollowDeleteResponseDto;
+  }) = _ApiV1UsersUserIdFollowDeleteResponseDto;
 
-  factory ApiV1FollowingsUnfollowDeleteResponseDto.fromJson(
+  factory ApiV1UsersUserIdFollowDeleteResponseDto.fromJson(
           Map<String, dynamic> json) =>
-      _$ApiV1FollowingsUnfollowDeleteResponseDtoFromJson(json);
+      _$ApiV1UsersUserIdFollowDeleteResponseDtoFromJson(json);
 }
 
 @freezed
-sealed class ApiV1FollowingsUnfollowDeleteRequestDto
-    with _$ApiV1FollowingsUnfollowDeleteRequestDto {
-  factory ApiV1FollowingsUnfollowDeleteRequestDto(
-          {@JsonKey(name: 'userId') required String userId}) =
-      _ApiV1FollowingsUnfollowDeleteRequestDto;
-
-  factory ApiV1FollowingsUnfollowDeleteRequestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiV1FollowingsUnfollowDeleteRequestDtoFromJson(json);
-}
-
-@freezed
-sealed class ApiV1FollowingsUserIdRejectPostResponseDto
-    with _$ApiV1FollowingsUserIdRejectPostResponseDto {
-  factory ApiV1FollowingsUserIdRejectPostResponseDto({
+sealed class ApiV1UsersUserIdRejectFollowPostResponseDto
+    with _$ApiV1UsersUserIdRejectFollowPostResponseDto {
+  factory ApiV1UsersUserIdRejectFollowPostResponseDto({
     @JsonKey(name: 'status') required int status,
     @JsonKey(name: 'message') String? message,
-  }) = _ApiV1FollowingsUserIdRejectPostResponseDto;
+  }) = _ApiV1UsersUserIdRejectFollowPostResponseDto;
 
-  factory ApiV1FollowingsUserIdRejectPostResponseDto.fromJson(
+  factory ApiV1UsersUserIdRejectFollowPostResponseDto.fromJson(
           Map<String, dynamic> json) =>
-      _$ApiV1FollowingsUserIdRejectPostResponseDtoFromJson(json);
+      _$ApiV1UsersUserIdRejectFollowPostResponseDtoFromJson(json);
 }
 
 @freezed
-sealed class ApiV1FollowingsStatusUserIdGetResponseDto
-    with _$ApiV1FollowingsStatusUserIdGetResponseDto {
-  factory ApiV1FollowingsStatusUserIdGetResponseDto(
+sealed class ApiV1UsersUserIdFollowStatusGetResponseDto
+    with _$ApiV1UsersUserIdFollowStatusGetResponseDto {
+  factory ApiV1UsersUserIdFollowStatusGetResponseDto(
           {@JsonKey(name: 'status') required int status}) =
-      _ApiV1FollowingsStatusUserIdGetResponseDto;
+      _ApiV1UsersUserIdFollowStatusGetResponseDto;
 
-  factory ApiV1FollowingsStatusUserIdGetResponseDto.fromJson(
+  factory ApiV1UsersUserIdFollowStatusGetResponseDto.fromJson(
           Map<String, dynamic> json) =>
-      _$ApiV1FollowingsStatusUserIdGetResponseDtoFromJson(json);
+      _$ApiV1UsersUserIdFollowStatusGetResponseDtoFromJson(json);
 }
 
 @freezed
