@@ -10,7 +10,7 @@ part 'stepo.openapi.dtos.freezed.dart';
 part 'stepo.openapi.dtos.g.dart';
 
 @freezed
-class ApiError with _$ApiError {
+sealed class ApiError with _$ApiError {
   const factory ApiError({
     required String message,
     int? statusCode,

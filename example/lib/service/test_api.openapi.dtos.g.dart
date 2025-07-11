@@ -6,113 +6,104 @@ part of 'test_api.openapi.dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ApiErrorImpl _$$ApiErrorImplFromJson(Map<String, dynamic> json) =>
-    _$ApiErrorImpl(
+_ApiError _$ApiErrorFromJson(Map<String, dynamic> json) => _ApiError(
       message: json['message'] as String,
       statusCode: (json['statusCode'] as num?)?.toInt(),
       type: json['type'] as String?,
     );
 
-Map<String, dynamic> _$$ApiErrorImplToJson(_$ApiErrorImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiErrorToJson(_ApiError instance) => <String, dynamic>{
       'message': instance.message,
       'statusCode': instance.statusCode,
       'type': instance.type,
     };
 
-_$RegisterRequestDtoImpl _$$RegisterRequestDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$RegisterRequestDtoImpl(
+_RegisterRequestDto _$RegisterRequestDtoFromJson(Map<String, dynamic> json) =>
+    _RegisterRequestDto(
       email: json['email'] as String,
     );
 
-Map<String, dynamic> _$$RegisterRequestDtoImplToJson(
-        _$RegisterRequestDtoImpl instance) =>
+Map<String, dynamic> _$RegisterRequestDtoToJson(_RegisterRequestDto instance) =>
     <String, dynamic>{
       'email': instance.email,
     };
 
-_$HelloRequestDtoImpl _$$HelloRequestDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$HelloRequestDtoImpl(
+_HelloRequestDto _$HelloRequestDtoFromJson(Map<String, dynamic> json) =>
+    _HelloRequestDto(
       salutation: json['salutation'] as String?,
     );
 
-Map<String, dynamic> _$$HelloRequestDtoImplToJson(
-        _$HelloRequestDtoImpl instance) =>
+Map<String, dynamic> _$HelloRequestDtoToJson(_HelloRequestDto instance) =>
     <String, dynamic>{
       'salutation': instance.salutation,
     };
 
-_$HelloResponseDtoImpl _$$HelloResponseDtoImplFromJson(
-        Map<String, dynamic> json) =>
-    _$HelloResponseDtoImpl(
+_HelloResponseDto _$HelloResponseDtoFromJson(Map<String, dynamic> json) =>
+    _HelloResponseDto(
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$HelloResponseDtoImplToJson(
-        _$HelloResponseDtoImpl instance) =>
+Map<String, dynamic> _$HelloResponseDtoToJson(_HelloResponseDto instance) =>
     <String, dynamic>{
       'message': instance.message,
     };
 
-_$UserRegisterPostRequestDtoImpl _$$UserRegisterPostRequestDtoImplFromJson(
+_UserRegisterPostRequestDto _$UserRegisterPostRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$UserRegisterPostRequestDtoImpl(
+    _UserRegisterPostRequestDto(
       email: json['email'] as String,
     );
 
-Map<String, dynamic> _$$UserRegisterPostRequestDtoImplToJson(
-        _$UserRegisterPostRequestDtoImpl instance) =>
+Map<String, dynamic> _$UserRegisterPostRequestDtoToJson(
+        _UserRegisterPostRequestDto instance) =>
     <String, dynamic>{
       'email': instance.email,
     };
 
-_$HelloNameGetResponseDtoImpl _$$HelloNameGetResponseDtoImplFromJson(
+_HelloNameGetResponseDto _$HelloNameGetResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$HelloNameGetResponseDtoImpl(
+    _HelloNameGetResponseDto(
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$HelloNameGetResponseDtoImplToJson(
-        _$HelloNameGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$HelloNameGetResponseDtoToJson(
+        _HelloNameGetResponseDto instance) =>
     <String, dynamic>{
       'message': instance.message,
     };
 
-_$HelloNamePutResponseDtoImpl _$$HelloNamePutResponseDtoImplFromJson(
+_HelloNamePutResponseDto _$HelloNamePutResponseDtoFromJson(
         Map<String, dynamic> json) =>
-    _$HelloNamePutResponseDtoImpl(
+    _HelloNamePutResponseDto(
       message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$$HelloNamePutResponseDtoImplToJson(
-        _$HelloNamePutResponseDtoImpl instance) =>
+Map<String, dynamic> _$HelloNamePutResponseDtoToJson(
+        _HelloNamePutResponseDto instance) =>
     <String, dynamic>{
       'message': instance.message,
     };
 
-_$HelloNamePutRequestDtoImpl _$$HelloNamePutRequestDtoImplFromJson(
+_HelloNamePutRequestDto _$HelloNamePutRequestDtoFromJson(
         Map<String, dynamic> json) =>
-    _$HelloNamePutRequestDtoImpl(
+    _HelloNamePutRequestDto(
       salutation: json['salutation'] as String?,
     );
 
-Map<String, dynamic> _$$HelloNamePutRequestDtoImplToJson(
-        _$HelloNamePutRequestDtoImpl instance) =>
+Map<String, dynamic> _$HelloNamePutRequestDtoToJson(
+        _HelloNamePutRequestDto instance) =>
     <String, dynamic>{
       'salutation': instance.salutation,
     };
 
-_$UuidExampleMessageIdGetResponseDtoImpl
-    _$$UuidExampleMessageIdGetResponseDtoImplFromJson(
-            Map<String, dynamic> json) =>
-        _$UuidExampleMessageIdGetResponseDtoImpl(
+_UuidExampleMessageIdGetResponseDto
+    _$UuidExampleMessageIdGetResponseDtoFromJson(Map<String, dynamic> json) =>
+        _UuidExampleMessageIdGetResponseDto(
           id: json['id'] as String,
         );
 
-Map<String, dynamic> _$$UuidExampleMessageIdGetResponseDtoImplToJson(
-        _$UuidExampleMessageIdGetResponseDtoImpl instance) =>
+Map<String, dynamic> _$UuidExampleMessageIdGetResponseDtoToJson(
+        _UuidExampleMessageIdGetResponseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
     };

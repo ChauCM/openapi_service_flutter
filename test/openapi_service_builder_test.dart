@@ -27,6 +27,7 @@ void main() {
 
         // Verify DTOs file content
         expect(dtosOutput, contains('class ApiError'));
+        expect(dtosOutput, contains('sealed class ApiError'));
         expect(
             dtosOutput, contains('// GENERATED CODE - DO NOT MODIFY BY HAND'));
         expect(dtosOutput,
@@ -711,6 +712,48 @@ components:
         expect(serviceOutput, contains('class EmptyArrayItemsApiService'));
         expect(serviceOutput,
             contains('Future<Either<ApiError, JourneyGetResponseDto>>'));
+      });
+
+      test('generates ApiError class with sealed keyword', () async {
+        final simpleApiYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Simple API
+  x-dart-name: SimpleApi
+
+paths:
+  /hello:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+''';
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(simpleApiYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'SimpleApi',
+          partFileName: 'simple_api.openapi.dtos.g.dart',
+          freezedPartFileName: 'simple_api.openapi.dtos.freezed.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+        );
+
+        // Verify ApiError class has sealed keyword
+        expect(dtosOutput, contains('@freezed'));
+        expect(dtosOutput, contains('sealed class ApiError'));
+        expect(dtosOutput, contains('with _\$ApiError'));
+        expect(dtosOutput, contains('const factory ApiError'));
+        expect(dtosOutput, contains('factory ApiError.fromJson'));
       });
     });
 
