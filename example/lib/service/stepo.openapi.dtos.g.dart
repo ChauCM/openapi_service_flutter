@@ -33,7 +33,8 @@ _BulkNotificationDto _$BulkNotificationDtoFromJson(Map<String, dynamic> json) =>
     _BulkNotificationDto(
       title: json['title'] as String,
       body: json['body'] as String,
-      notificationType: (json['notificationType'] as num).toInt(),
+      notificationType:
+          $enumDecode(_$NotificationTypeDtoEnumMap, json['notificationType']),
       userIds:
           (json['userIds'] as List<dynamic>).map((e) => e as String).toList(),
       relatedEntityId: json['relatedEntityId'] as String?,
@@ -48,24 +49,43 @@ Map<String, dynamic> _$BulkNotificationDtoToJson(
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
-      'notificationType': instance.notificationType,
+      'notificationType':
+          _$NotificationTypeDtoEnumMap[instance.notificationType]!,
       'userIds': instance.userIds,
       'relatedEntityId': instance.relatedEntityId,
       'data': instance.data,
       'priority': instance.priority,
     };
 
+const _$NotificationTypeDtoEnumMap = {
+  NotificationTypeDto.global: 'Global',
+  NotificationTypeDto.userSpecific: 'UserSpecific',
+  NotificationTypeDto.stepComment: 'StepComment',
+  NotificationTypeDto.commentReply: 'CommentReply',
+  NotificationTypeDto.newFollower: 'NewFollower',
+  NotificationTypeDto.journeyUpdate: 'JourneyUpdate',
+  NotificationTypeDto.stepInteraction: 'StepInteraction',
+  NotificationTypeDto.stepWithInteraction: 'StepWithInteraction',
+  NotificationTypeDto.systemAlert: 'SystemAlert',
+};
+
 _CreateCommentInteractionDto _$CreateCommentInteractionDtoFromJson(
         Map<String, dynamic> json) =>
     _CreateCommentInteractionDto(
-      type: (json['type'] as num?)?.toInt(),
+      type: $enumDecodeNullable(_$InteractionTypeDtoEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$CreateCommentInteractionDtoToJson(
         _CreateCommentInteractionDto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InteractionTypeDtoEnumMap[instance.type],
     };
+
+const _$InteractionTypeDtoEnumMap = {
+  InteractionTypeDto.heart: 'Heart',
+  InteractionTypeDto.share: 'Share',
+  InteractionTypeDto.comment: 'Comment',
+};
 
 _CreateReplyCommentDto _$CreateReplyCommentDtoFromJson(
         Map<String, dynamic> json) =>
@@ -110,13 +130,13 @@ Map<String, dynamic> _$CreateStepDtoToJson(_CreateStepDto instance) =>
 _CreateStepInteractionDto _$CreateStepInteractionDtoFromJson(
         Map<String, dynamic> json) =>
     _CreateStepInteractionDto(
-      type: (json['type'] as num?)?.toInt(),
+      type: $enumDecodeNullable(_$InteractionTypeDtoEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$CreateStepInteractionDtoToJson(
         _CreateStepInteractionDto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InteractionTypeDtoEnumMap[instance.type],
     };
 
 _EditUserDto _$EditUserDtoFromJson(Map<String, dynamic> json) => _EditUserDto(
@@ -136,24 +156,30 @@ Map<String, dynamic> _$EditUserDtoToJson(_EditUserDto instance) =>
 
 _FollowingResultDto _$FollowingResultDtoFromJson(Map<String, dynamic> json) =>
     _FollowingResultDto(
-      status: (json['status'] as num).toInt(),
+      status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$FollowingResultDtoToJson(_FollowingResultDto instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
       'message': instance.message,
     };
 
+const _$FollowingStatusEnumDtoEnumMap = {
+  FollowingStatusEnumDto.notFollowing: 'NotFollowing',
+  FollowingStatusEnumDto.following: 'Following',
+  FollowingStatusEnumDto.requested: 'Requested',
+};
+
 _FollowingStatusDto _$FollowingStatusDtoFromJson(Map<String, dynamic> json) =>
     _FollowingStatusDto(
-      status: (json['status'] as num).toInt(),
+      status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$FollowingStatusDtoToJson(_FollowingStatusDto instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
     };
 
 _ImageMetadataDto _$ImageMetadataDtoFromJson(Map<String, dynamic> json) =>
@@ -372,7 +398,8 @@ _NotificationDto _$NotificationDtoFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       title: json['title'] as String?,
       body: json['body'] as String?,
-      notificationType: (json['notificationType'] as num?)?.toInt(),
+      notificationType: $enumDecodeNullable(
+          _$NotificationTypeDtoEnumMap, json['notificationType']),
       isRead: json['isRead'] as bool?,
       createdDate: json['createdDate'] == null
           ? null
@@ -393,7 +420,8 @@ Map<String, dynamic> _$NotificationDtoToJson(_NotificationDto instance) =>
       'id': instance.id,
       'title': instance.title,
       'body': instance.body,
-      'notificationType': instance.notificationType,
+      'notificationType':
+          _$NotificationTypeDtoEnumMap[instance.notificationType],
       'isRead': instance.isRead,
       'createdDate': instance.createdDate?.toIso8601String(),
       'data': instance.data,
@@ -530,7 +558,8 @@ _SendNotificationDto _$SendNotificationDtoFromJson(Map<String, dynamic> json) =>
     _SendNotificationDto(
       title: json['title'] as String,
       body: json['body'] as String,
-      notificationType: (json['notificationType'] as num).toInt(),
+      notificationType:
+          $enumDecode(_$NotificationTypeDtoEnumMap, json['notificationType']),
       targetUserId: json['targetUserId'] as String?,
       relatedEntityId: json['relatedEntityId'] as String?,
       scheduledFor: json['scheduledFor'] == null
@@ -547,7 +576,8 @@ Map<String, dynamic> _$SendNotificationDtoToJson(
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
-      'notificationType': instance.notificationType,
+      'notificationType':
+          _$NotificationTypeDtoEnumMap[instance.notificationType]!,
       'targetUserId': instance.targetUserId,
       'relatedEntityId': instance.relatedEntityId,
       'scheduledFor': instance.scheduledFor?.toIso8601String(),
@@ -690,7 +720,7 @@ _StepMediaDto _$StepMediaDtoFromJson(Map<String, dynamic> json) =>
       height: (json['height'] as num?)?.toInt(),
       size: (json['size'] as num?)?.toInt(),
       duration: json['duration'] as num?,
-      status: (json['status'] as num?)?.toInt(),
+      status: $enumDecodeNullable(_$MediaStatusDtoEnumMap, json['status']),
       isVideo: json['isVideo'] as bool?,
       isImage: json['isImage'] as bool?,
     );
@@ -711,10 +741,17 @@ Map<String, dynamic> _$StepMediaDtoToJson(_StepMediaDto instance) =>
       'height': instance.height,
       'size': instance.size,
       'duration': instance.duration,
-      'status': instance.status,
+      'status': _$MediaStatusDtoEnumMap[instance.status],
       'isVideo': instance.isVideo,
       'isImage': instance.isImage,
     };
+
+const _$MediaStatusDtoEnumMap = {
+  MediaStatusDto.pending: 'Pending',
+  MediaStatusDto.processing: 'Processing',
+  MediaStatusDto.completed: 'Completed',
+  MediaStatusDto.failed: 'Failed',
+};
 
 _StepMediaDto2Dto _$StepMediaDto2DtoFromJson(Map<String, dynamic> json) =>
     _StepMediaDto2Dto(
@@ -732,7 +769,7 @@ _StepMediaDto2Dto _$StepMediaDto2DtoFromJson(Map<String, dynamic> json) =>
       height: (json['height'] as num?)?.toInt(),
       size: (json['size'] as num?)?.toInt(),
       duration: json['duration'] as num?,
-      status: (json['status'] as num?)?.toInt(),
+      status: $enumDecodeNullable(_$MediaStatusDtoEnumMap, json['status']),
       isVideo: json['isVideo'] as bool?,
       isImage: json['isImage'] as bool?,
     );
@@ -753,7 +790,7 @@ Map<String, dynamic> _$StepMediaDto2DtoToJson(_StepMediaDto2Dto instance) =>
       'height': instance.height,
       'size': instance.size,
       'duration': instance.duration,
-      'status': instance.status,
+      'status': _$MediaStatusDtoEnumMap[instance.status],
       'isVideo': instance.isVideo,
       'isImage': instance.isImage,
     };
@@ -783,25 +820,29 @@ Map<String, dynamic> _$UpdateStepDtoToJson(_UpdateStepDto instance) =>
 _UserDetailDto _$UserDetailDtoFromJson(Map<String, dynamic> json) =>
     _UserDetailDto(
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
-      followingStatus: (json['followingStatus'] as num?)?.toInt(),
+      followingStatus: $enumDecodeNullable(
+          _$FollowingStatusEnumDtoEnumMap, json['followingStatus']),
     );
 
 Map<String, dynamic> _$UserDetailDtoToJson(_UserDetailDto instance) =>
     <String, dynamic>{
       'user': instance.user,
-      'followingStatus': instance.followingStatus,
+      'followingStatus':
+          _$FollowingStatusEnumDtoEnumMap[instance.followingStatus],
     };
 
 _UserDetailDto2Dto _$UserDetailDto2DtoFromJson(Map<String, dynamic> json) =>
     _UserDetailDto2Dto(
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
-      followingStatus: (json['followingStatus'] as num?)?.toInt(),
+      followingStatus: $enumDecodeNullable(
+          _$FollowingStatusEnumDtoEnumMap, json['followingStatus']),
     );
 
 Map<String, dynamic> _$UserDetailDto2DtoToJson(_UserDetailDto2Dto instance) =>
     <String, dynamic>{
       'user': instance.user,
-      'followingStatus': instance.followingStatus,
+      'followingStatus':
+          _$FollowingStatusEnumDtoEnumMap[instance.followingStatus],
     };
 
 _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
@@ -1269,7 +1310,7 @@ _ApiV1StepsStepIdImagesPutResponseDto
           height: (json['height'] as num?)?.toInt(),
           size: (json['size'] as num?)?.toInt(),
           duration: json['duration'] as num?,
-          status: (json['status'] as num?)?.toInt(),
+          status: $enumDecodeNullable(_$MediaStatusDtoEnumMap, json['status']),
           isVideo: json['isVideo'] as bool?,
           isImage: json['isImage'] as bool?,
         );
@@ -1291,7 +1332,7 @@ Map<String, dynamic> _$ApiV1StepsStepIdImagesPutResponseDtoToJson(
       'height': instance.height,
       'size': instance.size,
       'duration': instance.duration,
-      'status': instance.status,
+      'status': _$MediaStatusDtoEnumMap[instance.status],
       'isVideo': instance.isVideo,
       'isImage': instance.isImage,
     };
@@ -1416,7 +1457,8 @@ _ApiV1NotificationsPostResponseDto _$ApiV1NotificationsPostResponseDtoFromJson(
       id: json['id'] as String?,
       title: json['title'] as String?,
       body: json['body'] as String?,
-      notificationType: (json['notificationType'] as num?)?.toInt(),
+      notificationType: $enumDecodeNullable(
+          _$NotificationTypeDtoEnumMap, json['notificationType']),
       isRead: json['isRead'] as bool?,
       createdDate: json['createdDate'] == null
           ? null
@@ -1438,7 +1480,8 @@ Map<String, dynamic> _$ApiV1NotificationsPostResponseDtoToJson(
       'id': instance.id,
       'title': instance.title,
       'body': instance.body,
-      'notificationType': instance.notificationType,
+      'notificationType':
+          _$NotificationTypeDtoEnumMap[instance.notificationType],
       'isRead': instance.isRead,
       'createdDate': instance.createdDate?.toIso8601String(),
       'data': instance.data,
@@ -1452,7 +1495,8 @@ _ApiV1NotificationsPostRequestDto _$ApiV1NotificationsPostRequestDtoFromJson(
     _ApiV1NotificationsPostRequestDto(
       title: json['title'] as String,
       body: json['body'] as String,
-      notificationType: (json['notificationType'] as num).toInt(),
+      notificationType:
+          $enumDecode(_$NotificationTypeDtoEnumMap, json['notificationType']),
       targetUserId: json['targetUserId'] as String?,
       relatedEntityId: json['relatedEntityId'] as String?,
       scheduledFor: json['scheduledFor'] == null
@@ -1469,7 +1513,8 @@ Map<String, dynamic> _$ApiV1NotificationsPostRequestDtoToJson(
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
-      'notificationType': instance.notificationType,
+      'notificationType':
+          _$NotificationTypeDtoEnumMap[instance.notificationType]!,
       'targetUserId': instance.targetUserId,
       'relatedEntityId': instance.relatedEntityId,
       'scheduledFor': instance.scheduledFor?.toIso8601String(),
@@ -1482,7 +1527,8 @@ _ApiV1NotificationsBulkPostRequestDto
         _ApiV1NotificationsBulkPostRequestDto(
           title: json['title'] as String,
           body: json['body'] as String,
-          notificationType: (json['notificationType'] as num).toInt(),
+          notificationType: $enumDecode(
+              _$NotificationTypeDtoEnumMap, json['notificationType']),
           userIds: (json['userIds'] as List<dynamic>)
               .map((e) => e as String)
               .toList(),
@@ -1498,7 +1544,8 @@ Map<String, dynamic> _$ApiV1NotificationsBulkPostRequestDtoToJson(
     <String, dynamic>{
       'title': instance.title,
       'body': instance.body,
-      'notificationType': instance.notificationType,
+      'notificationType':
+          _$NotificationTypeDtoEnumMap[instance.notificationType]!,
       'userIds': instance.userIds,
       'relatedEntityId': instance.relatedEntityId,
       'data': instance.data,
@@ -1546,7 +1593,7 @@ _ApiV1MediaImagesPostResponseDto _$ApiV1MediaImagesPostResponseDtoFromJson(
       height: (json['height'] as num?)?.toInt(),
       size: (json['size'] as num?)?.toInt(),
       duration: json['duration'] as num?,
-      status: (json['status'] as num?)?.toInt(),
+      status: $enumDecodeNullable(_$MediaStatusDtoEnumMap, json['status']),
       isVideo: json['isVideo'] as bool?,
       isImage: json['isImage'] as bool?,
     );
@@ -1568,7 +1615,7 @@ Map<String, dynamic> _$ApiV1MediaImagesPostResponseDtoToJson(
       'height': instance.height,
       'size': instance.size,
       'duration': instance.duration,
-      'status': instance.status,
+      'status': _$MediaStatusDtoEnumMap[instance.status],
       'isVideo': instance.isVideo,
       'isImage': instance.isImage,
     };
@@ -1638,7 +1685,7 @@ _ApiV1MediaMediaIdGetResponseDto _$ApiV1MediaMediaIdGetResponseDtoFromJson(
       height: (json['height'] as num?)?.toInt(),
       size: (json['size'] as num?)?.toInt(),
       duration: json['duration'] as num?,
-      status: (json['status'] as num?)?.toInt(),
+      status: $enumDecodeNullable(_$MediaStatusDtoEnumMap, json['status']),
       isVideo: json['isVideo'] as bool?,
       isImage: json['isImage'] as bool?,
     );
@@ -1660,7 +1707,7 @@ Map<String, dynamic> _$ApiV1MediaMediaIdGetResponseDtoToJson(
       'height': instance.height,
       'size': instance.size,
       'duration': instance.duration,
-      'status': instance.status,
+      'status': _$MediaStatusDtoEnumMap[instance.status],
       'isVideo': instance.isVideo,
       'isImage': instance.isImage,
     };
@@ -1933,13 +1980,13 @@ Map<String, dynamic> _$ApiV1StepsStepIdHeartsPostResponseDtoToJson(
 _ApiV1StepsStepIdHeartsPostRequestDto
     _$ApiV1StepsStepIdHeartsPostRequestDtoFromJson(Map<String, dynamic> json) =>
         _ApiV1StepsStepIdHeartsPostRequestDto(
-          type: (json['type'] as num?)?.toInt(),
+          type: $enumDecodeNullable(_$InteractionTypeDtoEnumMap, json['type']),
         );
 
 Map<String, dynamic> _$ApiV1StepsStepIdHeartsPostRequestDtoToJson(
         _ApiV1StepsStepIdHeartsPostRequestDto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InteractionTypeDtoEnumMap[instance.type],
     };
 
 _ApiV1StepsStepIdHeartsDeleteResponseDto
@@ -1979,13 +2026,13 @@ Map<String, dynamic> _$ApiV1StepsStepIdSharesPostResponseDtoToJson(
 _ApiV1StepsStepIdSharesPostRequestDto
     _$ApiV1StepsStepIdSharesPostRequestDtoFromJson(Map<String, dynamic> json) =>
         _ApiV1StepsStepIdSharesPostRequestDto(
-          type: (json['type'] as num?)?.toInt(),
+          type: $enumDecodeNullable(_$InteractionTypeDtoEnumMap, json['type']),
         );
 
 Map<String, dynamic> _$ApiV1StepsStepIdSharesPostRequestDtoToJson(
         _ApiV1StepsStepIdSharesPostRequestDto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InteractionTypeDtoEnumMap[instance.type],
     };
 
 _ApiV1StepsStepIdInteractionsGetResponseDto
@@ -2009,27 +2056,27 @@ _ApiV1StepsCommentsCommentIdHeartsPostRequestDto
     _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoFromJson(
             Map<String, dynamic> json) =>
         _ApiV1StepsCommentsCommentIdHeartsPostRequestDto(
-          type: (json['type'] as num?)?.toInt(),
+          type: $enumDecodeNullable(_$InteractionTypeDtoEnumMap, json['type']),
         );
 
 Map<String, dynamic> _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoToJson(
         _ApiV1StepsCommentsCommentIdHeartsPostRequestDto instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      'type': _$InteractionTypeDtoEnumMap[instance.type],
     };
 
 _ApiV1UsersUserIdFollowPostResponseDto
     _$ApiV1UsersUserIdFollowPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
         _ApiV1UsersUserIdFollowPostResponseDto(
-          status: (json['status'] as num).toInt(),
+          status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
           message: json['message'] as String?,
         );
 
 Map<String, dynamic> _$ApiV1UsersUserIdFollowPostResponseDtoToJson(
         _ApiV1UsersUserIdFollowPostResponseDto instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
       'message': instance.message,
     };
 
@@ -2037,14 +2084,14 @@ _ApiV1UsersUserIdFollowDeleteResponseDto
     _$ApiV1UsersUserIdFollowDeleteResponseDtoFromJson(
             Map<String, dynamic> json) =>
         _ApiV1UsersUserIdFollowDeleteResponseDto(
-          status: (json['status'] as num).toInt(),
+          status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
           message: json['message'] as String?,
         );
 
 Map<String, dynamic> _$ApiV1UsersUserIdFollowDeleteResponseDtoToJson(
         _ApiV1UsersUserIdFollowDeleteResponseDto instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
       'message': instance.message,
     };
 
@@ -2052,14 +2099,14 @@ _ApiV1UsersUserIdRejectFollowPostResponseDto
     _$ApiV1UsersUserIdRejectFollowPostResponseDtoFromJson(
             Map<String, dynamic> json) =>
         _ApiV1UsersUserIdRejectFollowPostResponseDto(
-          status: (json['status'] as num).toInt(),
+          status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
           message: json['message'] as String?,
         );
 
 Map<String, dynamic> _$ApiV1UsersUserIdRejectFollowPostResponseDtoToJson(
         _ApiV1UsersUserIdRejectFollowPostResponseDto instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
       'message': instance.message,
     };
 
@@ -2067,13 +2114,13 @@ _ApiV1UsersUserIdFollowStatusGetResponseDto
     _$ApiV1UsersUserIdFollowStatusGetResponseDtoFromJson(
             Map<String, dynamic> json) =>
         _ApiV1UsersUserIdFollowStatusGetResponseDto(
-          status: (json['status'] as num).toInt(),
+          status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
         );
 
 Map<String, dynamic> _$ApiV1UsersUserIdFollowStatusGetResponseDtoToJson(
         _ApiV1UsersUserIdFollowStatusGetResponseDto instance) =>
     <String, dynamic>{
-      'status': instance.status,
+      'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
     };
 
 _ApiV1CommentsParentCommentIdRepliesPostResponseDto

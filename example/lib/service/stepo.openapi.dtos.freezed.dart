@@ -693,7 +693,7 @@ mixin _$BulkNotificationDto {
   @JsonKey(name: 'body')
   String get body;
   @JsonKey(name: 'notificationType')
-  int get notificationType;
+  NotificationTypeDto get notificationType;
   @JsonKey(name: 'userIds')
   List<String> get userIds;
   @JsonKey(name: 'relatedEntityId')
@@ -758,7 +758,7 @@ abstract mixin class $BulkNotificationDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -798,7 +798,7 @@ class _$BulkNotificationDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       userIds: null == userIds
           ? _self.userIds
           : userIds // ignore: cast_nullable_to_non_nullable
@@ -913,7 +913,8 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -949,7 +950,8 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -981,7 +983,8 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
     TResult? Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -1023,7 +1026,7 @@ class _BulkNotificationDto implements BulkNotificationDto {
   final String body;
   @override
   @JsonKey(name: 'notificationType')
-  final int notificationType;
+  final NotificationTypeDto notificationType;
   final List<String> _userIds;
   @override
   @JsonKey(name: 'userIds')
@@ -1113,7 +1116,7 @@ abstract mixin class _$BulkNotificationDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -1153,7 +1156,7 @@ class __$BulkNotificationDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       userIds: null == userIds
           ? _self._userIds
           : userIds // ignore: cast_nullable_to_non_nullable
@@ -1177,7 +1180,7 @@ class __$BulkNotificationDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$CreateCommentInteractionDto {
   @JsonKey(name: 'type')
-  int? get type;
+  InteractionTypeDto? get type;
 
   /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1216,7 +1219,7 @@ abstract mixin class $CreateCommentInteractionDtoCopyWith<$Res> {
           $Res Function(CreateCommentInteractionDto) _then) =
       _$CreateCommentInteractionDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -1238,7 +1241,7 @@ class _$CreateCommentInteractionDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -1334,7 +1337,8 @@ extension CreateCommentInteractionDtoPatterns on CreateCommentInteractionDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type)? $default, {
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -1361,7 +1365,7 @@ extension CreateCommentInteractionDtoPatterns on CreateCommentInteractionDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type) $default,
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -1384,7 +1388,8 @@ extension CreateCommentInteractionDtoPatterns on CreateCommentInteractionDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'type') int? type)? $default,
+    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -1405,7 +1410,7 @@ class _CreateCommentInteractionDto implements CreateCommentInteractionDto {
 
   @override
   @JsonKey(name: 'type')
-  final int? type;
+  final InteractionTypeDto? type;
 
   /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1450,7 +1455,7 @@ abstract mixin class _$CreateCommentInteractionDtoCopyWith<$Res>
       __$CreateCommentInteractionDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -1472,7 +1477,7 @@ class __$CreateCommentInteractionDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -2474,7 +2479,7 @@ class __$CreateStepDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$CreateStepInteractionDto {
   @JsonKey(name: 'type')
-  int? get type;
+  InteractionTypeDto? get type;
 
   /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -2511,7 +2516,7 @@ abstract mixin class $CreateStepInteractionDtoCopyWith<$Res> {
           $Res Function(CreateStepInteractionDto) _then) =
       _$CreateStepInteractionDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -2533,7 +2538,7 @@ class _$CreateStepInteractionDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -2629,7 +2634,8 @@ extension CreateStepInteractionDtoPatterns on CreateStepInteractionDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type)? $default, {
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -2656,7 +2662,7 @@ extension CreateStepInteractionDtoPatterns on CreateStepInteractionDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type) $default,
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -2679,7 +2685,8 @@ extension CreateStepInteractionDtoPatterns on CreateStepInteractionDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'type') int? type)? $default,
+    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -2700,7 +2707,7 @@ class _CreateStepInteractionDto implements CreateStepInteractionDto {
 
   @override
   @JsonKey(name: 'type')
-  final int? type;
+  final InteractionTypeDto? type;
 
   /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -2744,7 +2751,7 @@ abstract mixin class _$CreateStepInteractionDtoCopyWith<$Res>
       __$CreateStepInteractionDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -2766,7 +2773,7 @@ class __$CreateStepInteractionDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -3161,7 +3168,7 @@ class __$EditUserDtoCopyWithImpl<$Res> implements _$EditUserDtoCopyWith<$Res> {
 /// @nodoc
 mixin _$FollowingResultDto {
   @JsonKey(name: 'status')
-  int get status;
+  FollowingStatusEnumDto get status;
   @JsonKey(name: 'message')
   String? get message;
 
@@ -3202,7 +3209,7 @@ abstract mixin class $FollowingResultDtoCopyWith<$Res> {
       _$FollowingResultDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -3226,7 +3233,7 @@ class _$FollowingResultDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -3326,7 +3333,7 @@ extension FollowingResultDtoPatterns on FollowingResultDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default, {
     required TResult orElse(),
@@ -3355,7 +3362,7 @@ extension FollowingResultDtoPatterns on FollowingResultDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)
         $default,
   ) {
@@ -3380,7 +3387,7 @@ extension FollowingResultDtoPatterns on FollowingResultDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'status') int status,
+    TResult? Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default,
   ) {
@@ -3405,7 +3412,7 @@ class _FollowingResultDto implements FollowingResultDto {
 
   @override
   @JsonKey(name: 'status')
-  final int status;
+  final FollowingStatusEnumDto status;
   @override
   @JsonKey(name: 'message')
   final String? message;
@@ -3453,7 +3460,7 @@ abstract mixin class _$FollowingResultDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -3477,7 +3484,7 @@ class __$FollowingResultDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -3489,7 +3496,7 @@ class __$FollowingResultDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$FollowingStatusDto {
   @JsonKey(name: 'status')
-  int get status;
+  FollowingStatusEnumDto get status;
 
   /// Create a copy of FollowingStatusDto
   /// with the given fields replaced by the non-null parameter values.
@@ -3526,7 +3533,7 @@ abstract mixin class $FollowingStatusDtoCopyWith<$Res> {
           FollowingStatusDto value, $Res Function(FollowingStatusDto) _then) =
       _$FollowingStatusDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'status') int status});
+  $Res call({@JsonKey(name: 'status') FollowingStatusEnumDto status});
 }
 
 /// @nodoc
@@ -3548,7 +3555,7 @@ class _$FollowingStatusDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
     ));
   }
 }
@@ -3644,7 +3651,8 @@ extension FollowingStatusDtoPatterns on FollowingStatusDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status)? $default, {
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -3671,7 +3679,8 @@ extension FollowingStatusDtoPatterns on FollowingStatusDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status) $default,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -3694,7 +3703,8 @@ extension FollowingStatusDtoPatterns on FollowingStatusDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'status') int status)? $default,
+    TResult? Function(@JsonKey(name: 'status') FollowingStatusEnumDto status)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -3715,7 +3725,7 @@ class _FollowingStatusDto implements FollowingStatusDto {
 
   @override
   @JsonKey(name: 'status')
-  final int status;
+  final FollowingStatusEnumDto status;
 
   /// Create a copy of FollowingStatusDto
   /// with the given fields replaced by the non-null parameter values.
@@ -3758,7 +3768,7 @@ abstract mixin class _$FollowingStatusDtoCopyWith<$Res>
       __$FollowingStatusDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'status') int status});
+  $Res call({@JsonKey(name: 'status') FollowingStatusEnumDto status});
 }
 
 /// @nodoc
@@ -3780,7 +3790,7 @@ class __$FollowingStatusDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
     ));
   }
 }
@@ -8239,7 +8249,7 @@ mixin _$NotificationDto {
   @JsonKey(name: 'body')
   String? get body;
   @JsonKey(name: 'notificationType')
-  int? get notificationType;
+  NotificationTypeDto? get notificationType;
   @JsonKey(name: 'isRead')
   bool? get isRead;
   @JsonKey(name: 'createdDate')
@@ -8317,7 +8327,7 @@ abstract mixin class $NotificationDtoCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'notificationType') int? notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -8368,7 +8378,7 @@ class _$NotificationDtoCopyWithImpl<$Res>
       notificationType: freezed == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as NotificationTypeDto?,
       isRead: freezed == isRead
           ? _self.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
@@ -8506,7 +8516,8 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'body') String? body,
-            @JsonKey(name: 'notificationType') int? notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -8554,7 +8565,8 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'body') String? body,
-            @JsonKey(name: 'notificationType') int? notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -8598,7 +8610,8 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'body') String? body,
-            @JsonKey(name: 'notificationType') int? notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -8656,7 +8669,7 @@ class _NotificationDto implements NotificationDto {
   final String? body;
   @override
   @JsonKey(name: 'notificationType')
-  final int? notificationType;
+  final NotificationTypeDto? notificationType;
   @override
   @JsonKey(name: 'isRead')
   final bool? isRead;
@@ -8754,7 +8767,7 @@ abstract mixin class _$NotificationDtoCopyWith<$Res>
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'notificationType') int? notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -8806,7 +8819,7 @@ class __$NotificationDtoCopyWithImpl<$Res>
       notificationType: freezed == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as NotificationTypeDto?,
       isRead: freezed == isRead
           ? _self.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
@@ -11348,7 +11361,7 @@ mixin _$SendNotificationDto {
   @JsonKey(name: 'body')
   String get body;
   @JsonKey(name: 'notificationType')
-  int get notificationType;
+  NotificationTypeDto get notificationType;
   @JsonKey(name: 'targetUserId')
   String? get targetUserId;
   @JsonKey(name: 'relatedEntityId')
@@ -11419,7 +11432,7 @@ abstract mixin class $SendNotificationDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -11461,7 +11474,7 @@ class _$SendNotificationDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       targetUserId: freezed == targetUserId
           ? _self.targetUserId
           : targetUserId // ignore: cast_nullable_to_non_nullable
@@ -11580,7 +11593,8 @@ extension SendNotificationDtoPatterns on SendNotificationDto {
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'targetUserId') String? targetUserId,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -11624,7 +11638,8 @@ extension SendNotificationDtoPatterns on SendNotificationDto {
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'targetUserId') String? targetUserId,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -11664,7 +11679,8 @@ extension SendNotificationDtoPatterns on SendNotificationDto {
     TResult? Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'targetUserId') String? targetUserId,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -11714,7 +11730,7 @@ class _SendNotificationDto implements SendNotificationDto {
   final String body;
   @override
   @JsonKey(name: 'notificationType')
-  final int notificationType;
+  final NotificationTypeDto notificationType;
   @override
   @JsonKey(name: 'targetUserId')
   final String? targetUserId;
@@ -11805,7 +11821,7 @@ abstract mixin class _$SendNotificationDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -11847,7 +11863,7 @@ class __$SendNotificationDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       targetUserId: freezed == targetUserId
           ? _self.targetUserId
           : targetUserId // ignore: cast_nullable_to_non_nullable
@@ -13930,7 +13946,7 @@ mixin _$StepMediaDto {
   @JsonKey(name: 'duration')
   num? get duration;
   @JsonKey(name: 'status')
-  int? get status;
+  MediaStatusDto? get status;
   @JsonKey(name: 'isVideo')
   bool? get isVideo;
   @JsonKey(name: 'isImage')
@@ -14029,7 +14045,7 @@ abstract mixin class $StepMediaDtoCopyWith<$Res> {
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -14124,7 +14140,7 @@ class _$StepMediaDtoCopyWithImpl<$Res> implements $StepMediaDtoCopyWith<$Res> {
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -14243,7 +14259,7 @@ extension StepMediaDtoPatterns on StepMediaDto {
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default, {
@@ -14305,7 +14321,7 @@ extension StepMediaDtoPatterns on StepMediaDto {
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)
         $default,
@@ -14363,7 +14379,7 @@ extension StepMediaDtoPatterns on StepMediaDto {
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default,
@@ -14463,7 +14479,7 @@ class _StepMediaDto implements StepMediaDto {
   final num? duration;
   @override
   @JsonKey(name: 'status')
-  final int? status;
+  final MediaStatusDto? status;
   @override
   @JsonKey(name: 'isVideo')
   final bool? isVideo;
@@ -14570,7 +14586,7 @@ abstract mixin class _$StepMediaDtoCopyWith<$Res>
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -14666,7 +14682,7 @@ class __$StepMediaDtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -14710,7 +14726,7 @@ mixin _$StepMediaDto2Dto {
   @JsonKey(name: 'duration')
   num? get duration;
   @JsonKey(name: 'status')
-  int? get status;
+  MediaStatusDto? get status;
   @JsonKey(name: 'isVideo')
   bool? get isVideo;
   @JsonKey(name: 'isImage')
@@ -14809,7 +14825,7 @@ abstract mixin class $StepMediaDto2DtoCopyWith<$Res> {
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -14905,7 +14921,7 @@ class _$StepMediaDto2DtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -15024,7 +15040,7 @@ extension StepMediaDto2DtoPatterns on StepMediaDto2Dto {
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default, {
@@ -15086,7 +15102,7 @@ extension StepMediaDto2DtoPatterns on StepMediaDto2Dto {
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)
         $default,
@@ -15144,7 +15160,7 @@ extension StepMediaDto2DtoPatterns on StepMediaDto2Dto {
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default,
@@ -15244,7 +15260,7 @@ class _StepMediaDto2Dto implements StepMediaDto2Dto {
   final num? duration;
   @override
   @JsonKey(name: 'status')
-  final int? status;
+  final MediaStatusDto? status;
   @override
   @JsonKey(name: 'isVideo')
   final bool? isVideo;
@@ -15351,7 +15367,7 @@ abstract mixin class _$StepMediaDto2DtoCopyWith<$Res>
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -15447,7 +15463,7 @@ class __$StepMediaDto2DtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -16094,7 +16110,7 @@ mixin _$UserDetailDto {
   @JsonKey(name: 'user')
   UserDto get user;
   @JsonKey(name: 'followingStatus')
-  int? get followingStatus;
+  FollowingStatusEnumDto? get followingStatus;
 
   /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -16135,7 +16151,8 @@ abstract mixin class $UserDetailDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus') int? followingStatus});
+      @JsonKey(name: 'followingStatus')
+      FollowingStatusEnumDto? followingStatus});
 
   $UserDtoCopyWith<$Res> get user;
 }
@@ -16164,7 +16181,7 @@ class _$UserDetailDtoCopyWithImpl<$Res>
       followingStatus: freezed == followingStatus
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as FollowingStatusEnumDto?,
     ));
   }
 
@@ -16270,8 +16287,10 @@ extension UserDetailDtoPatterns on UserDetailDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus') int? followingStatus)?
+    TResult Function(
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'followingStatus')
+            FollowingStatusEnumDto? followingStatus)?
         $default, {
     required TResult orElse(),
   }) {
@@ -16299,8 +16318,10 @@ extension UserDetailDtoPatterns on UserDetailDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus') int? followingStatus)
+    TResult Function(
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'followingStatus')
+            FollowingStatusEnumDto? followingStatus)
         $default,
   ) {
     final _that = this;
@@ -16324,8 +16345,10 @@ extension UserDetailDtoPatterns on UserDetailDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus') int? followingStatus)?
+    TResult? Function(
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'followingStatus')
+            FollowingStatusEnumDto? followingStatus)?
         $default,
   ) {
     final _that = this;
@@ -16352,7 +16375,7 @@ class _UserDetailDto implements UserDetailDto {
   final UserDto user;
   @override
   @JsonKey(name: 'followingStatus')
-  final int? followingStatus;
+  final FollowingStatusEnumDto? followingStatus;
 
   /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -16399,7 +16422,8 @@ abstract mixin class _$UserDetailDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus') int? followingStatus});
+      @JsonKey(name: 'followingStatus')
+      FollowingStatusEnumDto? followingStatus});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -16429,7 +16453,7 @@ class __$UserDetailDtoCopyWithImpl<$Res>
       followingStatus: freezed == followingStatus
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as FollowingStatusEnumDto?,
     ));
   }
 
@@ -16449,7 +16473,7 @@ mixin _$UserDetailDto2Dto {
   @JsonKey(name: 'user')
   UserDto get user;
   @JsonKey(name: 'followingStatus')
-  int? get followingStatus;
+  FollowingStatusEnumDto? get followingStatus;
 
   /// Create a copy of UserDetailDto2Dto
   /// with the given fields replaced by the non-null parameter values.
@@ -16490,7 +16514,8 @@ abstract mixin class $UserDetailDto2DtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus') int? followingStatus});
+      @JsonKey(name: 'followingStatus')
+      FollowingStatusEnumDto? followingStatus});
 
   $UserDtoCopyWith<$Res> get user;
 }
@@ -16519,7 +16544,7 @@ class _$UserDetailDto2DtoCopyWithImpl<$Res>
       followingStatus: freezed == followingStatus
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as FollowingStatusEnumDto?,
     ));
   }
 
@@ -16625,8 +16650,10 @@ extension UserDetailDto2DtoPatterns on UserDetailDto2Dto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus') int? followingStatus)?
+    TResult Function(
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'followingStatus')
+            FollowingStatusEnumDto? followingStatus)?
         $default, {
     required TResult orElse(),
   }) {
@@ -16654,8 +16681,10 @@ extension UserDetailDto2DtoPatterns on UserDetailDto2Dto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus') int? followingStatus)
+    TResult Function(
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'followingStatus')
+            FollowingStatusEnumDto? followingStatus)
         $default,
   ) {
     final _that = this;
@@ -16679,8 +16708,10 @@ extension UserDetailDto2DtoPatterns on UserDetailDto2Dto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus') int? followingStatus)?
+    TResult? Function(
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'followingStatus')
+            FollowingStatusEnumDto? followingStatus)?
         $default,
   ) {
     final _that = this;
@@ -16707,7 +16738,7 @@ class _UserDetailDto2Dto implements UserDetailDto2Dto {
   final UserDto user;
   @override
   @JsonKey(name: 'followingStatus')
-  final int? followingStatus;
+  final FollowingStatusEnumDto? followingStatus;
 
   /// Create a copy of UserDetailDto2Dto
   /// with the given fields replaced by the non-null parameter values.
@@ -16754,7 +16785,8 @@ abstract mixin class _$UserDetailDto2DtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus') int? followingStatus});
+      @JsonKey(name: 'followingStatus')
+      FollowingStatusEnumDto? followingStatus});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -16784,7 +16816,7 @@ class __$UserDetailDto2DtoCopyWithImpl<$Res>
       followingStatus: freezed == followingStatus
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as FollowingStatusEnumDto?,
     ));
   }
 
@@ -25485,7 +25517,7 @@ mixin _$ApiV1StepsStepIdImagesPutResponseDto {
   @JsonKey(name: 'duration')
   num? get duration;
   @JsonKey(name: 'status')
-  int? get status;
+  MediaStatusDto? get status;
   @JsonKey(name: 'isVideo')
   bool? get isVideo;
   @JsonKey(name: 'isImage')
@@ -25587,7 +25619,7 @@ abstract mixin class $ApiV1StepsStepIdImagesPutResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -25683,7 +25715,7 @@ class _$ApiV1StepsStepIdImagesPutResponseDtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -25803,7 +25835,7 @@ extension ApiV1StepsStepIdImagesPutResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default, {
@@ -25865,7 +25897,7 @@ extension ApiV1StepsStepIdImagesPutResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)
         $default,
@@ -25923,7 +25955,7 @@ extension ApiV1StepsStepIdImagesPutResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default,
@@ -26025,7 +26057,7 @@ class _ApiV1StepsStepIdImagesPutResponseDto
   final num? duration;
   @override
   @JsonKey(name: 'status')
-  final int? status;
+  final MediaStatusDto? status;
   @override
   @JsonKey(name: 'isVideo')
   final bool? isVideo;
@@ -26135,7 +26167,7 @@ abstract mixin class _$ApiV1StepsStepIdImagesPutResponseDtoCopyWith<$Res>
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -26231,7 +26263,7 @@ class __$ApiV1StepsStepIdImagesPutResponseDtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -28520,7 +28552,7 @@ mixin _$ApiV1NotificationsPostResponseDto {
   @JsonKey(name: 'body')
   String? get body;
   @JsonKey(name: 'notificationType')
-  int? get notificationType;
+  NotificationTypeDto? get notificationType;
   @JsonKey(name: 'isRead')
   bool? get isRead;
   @JsonKey(name: 'createdDate')
@@ -28600,7 +28632,7 @@ abstract mixin class $ApiV1NotificationsPostResponseDtoCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'notificationType') int? notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -28651,7 +28683,7 @@ class _$ApiV1NotificationsPostResponseDtoCopyWithImpl<$Res>
       notificationType: freezed == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as NotificationTypeDto?,
       isRead: freezed == isRead
           ? _self.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
@@ -28790,7 +28822,8 @@ extension ApiV1NotificationsPostResponseDtoPatterns
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'body') String? body,
-            @JsonKey(name: 'notificationType') int? notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -28838,7 +28871,8 @@ extension ApiV1NotificationsPostResponseDtoPatterns
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'body') String? body,
-            @JsonKey(name: 'notificationType') int? notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -28882,7 +28916,8 @@ extension ApiV1NotificationsPostResponseDtoPatterns
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'body') String? body,
-            @JsonKey(name: 'notificationType') int? notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -28942,7 +28977,7 @@ class _ApiV1NotificationsPostResponseDto
   final String? body;
   @override
   @JsonKey(name: 'notificationType')
-  final int? notificationType;
+  final NotificationTypeDto? notificationType;
   @override
   @JsonKey(name: 'isRead')
   final bool? isRead;
@@ -29043,7 +29078,7 @@ abstract mixin class _$ApiV1NotificationsPostResponseDtoCopyWith<$Res>
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'body') String? body,
-      @JsonKey(name: 'notificationType') int? notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -29095,7 +29130,7 @@ class __$ApiV1NotificationsPostResponseDtoCopyWithImpl<$Res>
       notificationType: freezed == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as NotificationTypeDto?,
       isRead: freezed == isRead
           ? _self.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
@@ -29145,7 +29180,7 @@ mixin _$ApiV1NotificationsPostRequestDto {
   @JsonKey(name: 'body')
   String get body;
   @JsonKey(name: 'notificationType')
-  int get notificationType;
+  NotificationTypeDto get notificationType;
   @JsonKey(name: 'targetUserId')
   String? get targetUserId;
   @JsonKey(name: 'relatedEntityId')
@@ -29218,7 +29253,7 @@ abstract mixin class $ApiV1NotificationsPostRequestDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -29260,7 +29295,7 @@ class _$ApiV1NotificationsPostRequestDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       targetUserId: freezed == targetUserId
           ? _self.targetUserId
           : targetUserId // ignore: cast_nullable_to_non_nullable
@@ -29380,7 +29415,8 @@ extension ApiV1NotificationsPostRequestDtoPatterns
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'targetUserId') String? targetUserId,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -29424,7 +29460,8 @@ extension ApiV1NotificationsPostRequestDtoPatterns
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'targetUserId') String? targetUserId,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -29464,7 +29501,8 @@ extension ApiV1NotificationsPostRequestDtoPatterns
     TResult? Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'targetUserId') String? targetUserId,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -29516,7 +29554,7 @@ class _ApiV1NotificationsPostRequestDto
   final String body;
   @override
   @JsonKey(name: 'notificationType')
-  final int notificationType;
+  final NotificationTypeDto notificationType;
   @override
   @JsonKey(name: 'targetUserId')
   final String? targetUserId;
@@ -29608,7 +29646,7 @@ abstract mixin class _$ApiV1NotificationsPostRequestDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'targetUserId') String? targetUserId,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -29650,7 +29688,7 @@ class __$ApiV1NotificationsPostRequestDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       targetUserId: freezed == targetUserId
           ? _self.targetUserId
           : targetUserId // ignore: cast_nullable_to_non_nullable
@@ -29682,7 +29720,7 @@ mixin _$ApiV1NotificationsBulkPostRequestDto {
   @JsonKey(name: 'body')
   String get body;
   @JsonKey(name: 'notificationType')
-  int get notificationType;
+  NotificationTypeDto get notificationType;
   @JsonKey(name: 'userIds')
   List<String> get userIds;
   @JsonKey(name: 'relatedEntityId')
@@ -29750,7 +29788,7 @@ abstract mixin class $ApiV1NotificationsBulkPostRequestDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -29790,7 +29828,7 @@ class _$ApiV1NotificationsBulkPostRequestDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       userIds: null == userIds
           ? _self.userIds
           : userIds // ignore: cast_nullable_to_non_nullable
@@ -29906,7 +29944,8 @@ extension ApiV1NotificationsBulkPostRequestDtoPatterns
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -29942,7 +29981,8 @@ extension ApiV1NotificationsBulkPostRequestDtoPatterns
     TResult Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -29974,7 +30014,8 @@ extension ApiV1NotificationsBulkPostRequestDtoPatterns
     TResult? Function(
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType') int notificationType,
+            @JsonKey(name: 'notificationType')
+            NotificationTypeDto notificationType,
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
@@ -30018,7 +30059,7 @@ class _ApiV1NotificationsBulkPostRequestDto
   final String body;
   @override
   @JsonKey(name: 'notificationType')
-  final int notificationType;
+  final NotificationTypeDto notificationType;
   final List<String> _userIds;
   @override
   @JsonKey(name: 'userIds')
@@ -30110,7 +30151,7 @@ abstract mixin class _$ApiV1NotificationsBulkPostRequestDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') int notificationType,
+      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
       @JsonKey(name: 'userIds') List<String> userIds,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
@@ -30150,7 +30191,7 @@ class __$ApiV1NotificationsBulkPostRequestDtoCopyWithImpl<$Res>
       notificationType: null == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as NotificationTypeDto,
       userIds: null == userIds
           ? _self._userIds
           : userIds // ignore: cast_nullable_to_non_nullable
@@ -30628,7 +30669,7 @@ mixin _$ApiV1MediaImagesPostResponseDto {
   @JsonKey(name: 'duration')
   num? get duration;
   @JsonKey(name: 'status')
-  int? get status;
+  MediaStatusDto? get status;
   @JsonKey(name: 'isVideo')
   bool? get isVideo;
   @JsonKey(name: 'isImage')
@@ -30729,7 +30770,7 @@ abstract mixin class $ApiV1MediaImagesPostResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -30825,7 +30866,7 @@ class _$ApiV1MediaImagesPostResponseDtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -30945,7 +30986,7 @@ extension ApiV1MediaImagesPostResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default, {
@@ -31007,7 +31048,7 @@ extension ApiV1MediaImagesPostResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)
         $default,
@@ -31065,7 +31106,7 @@ extension ApiV1MediaImagesPostResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default,
@@ -31167,7 +31208,7 @@ class _ApiV1MediaImagesPostResponseDto
   final num? duration;
   @override
   @JsonKey(name: 'status')
-  final int? status;
+  final MediaStatusDto? status;
   @override
   @JsonKey(name: 'isVideo')
   final bool? isVideo;
@@ -31276,7 +31317,7 @@ abstract mixin class _$ApiV1MediaImagesPostResponseDtoCopyWith<$Res>
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -31372,7 +31413,7 @@ class __$ApiV1MediaImagesPostResponseDtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -32376,7 +32417,7 @@ mixin _$ApiV1MediaMediaIdGetResponseDto {
   @JsonKey(name: 'duration')
   num? get duration;
   @JsonKey(name: 'status')
-  int? get status;
+  MediaStatusDto? get status;
   @JsonKey(name: 'isVideo')
   bool? get isVideo;
   @JsonKey(name: 'isImage')
@@ -32477,7 +32518,7 @@ abstract mixin class $ApiV1MediaMediaIdGetResponseDtoCopyWith<$Res> {
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -32573,7 +32614,7 @@ class _$ApiV1MediaMediaIdGetResponseDtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -32693,7 +32734,7 @@ extension ApiV1MediaMediaIdGetResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default, {
@@ -32755,7 +32796,7 @@ extension ApiV1MediaMediaIdGetResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)
         $default,
@@ -32813,7 +32854,7 @@ extension ApiV1MediaMediaIdGetResponseDtoPatterns
             @JsonKey(name: 'height') int? height,
             @JsonKey(name: 'size') int? size,
             @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'status') MediaStatusDto? status,
             @JsonKey(name: 'isVideo') bool? isVideo,
             @JsonKey(name: 'isImage') bool? isImage)?
         $default,
@@ -32915,7 +32956,7 @@ class _ApiV1MediaMediaIdGetResponseDto
   final num? duration;
   @override
   @JsonKey(name: 'status')
-  final int? status;
+  final MediaStatusDto? status;
   @override
   @JsonKey(name: 'isVideo')
   final bool? isVideo;
@@ -33024,7 +33065,7 @@ abstract mixin class _$ApiV1MediaMediaIdGetResponseDtoCopyWith<$Res>
       @JsonKey(name: 'height') int? height,
       @JsonKey(name: 'size') int? size,
       @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'status') MediaStatusDto? status,
       @JsonKey(name: 'isVideo') bool? isVideo,
       @JsonKey(name: 'isImage') bool? isImage});
 }
@@ -33120,7 +33161,7 @@ class __$ApiV1MediaMediaIdGetResponseDtoCopyWithImpl<$Res>
       status: freezed == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as MediaStatusDto?,
       isVideo: freezed == isVideo
           ? _self.isVideo
           : isVideo // ignore: cast_nullable_to_non_nullable
@@ -37955,7 +37996,7 @@ class __$ApiV1StepsStepIdHeartsPostResponseDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$ApiV1StepsStepIdHeartsPostRequestDto {
   @JsonKey(name: 'type')
-  int? get type;
+  InteractionTypeDto? get type;
 
   /// Create a copy of ApiV1StepsStepIdHeartsPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -37995,7 +38036,7 @@ abstract mixin class $ApiV1StepsStepIdHeartsPostRequestDtoCopyWith<$Res> {
           $Res Function(ApiV1StepsStepIdHeartsPostRequestDto) _then) =
       _$ApiV1StepsStepIdHeartsPostRequestDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -38017,7 +38058,7 @@ class _$ApiV1StepsStepIdHeartsPostRequestDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -38114,7 +38155,8 @@ extension ApiV1StepsStepIdHeartsPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type)? $default, {
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -38141,7 +38183,7 @@ extension ApiV1StepsStepIdHeartsPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type) $default,
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -38164,7 +38206,8 @@ extension ApiV1StepsStepIdHeartsPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'type') int? type)? $default,
+    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -38187,7 +38230,7 @@ class _ApiV1StepsStepIdHeartsPostRequestDto
 
   @override
   @JsonKey(name: 'type')
-  final int? type;
+  final InteractionTypeDto? type;
 
   /// Create a copy of ApiV1StepsStepIdHeartsPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -38233,7 +38276,7 @@ abstract mixin class _$ApiV1StepsStepIdHeartsPostRequestDtoCopyWith<$Res>
       __$ApiV1StepsStepIdHeartsPostRequestDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -38255,7 +38298,7 @@ class __$ApiV1StepsStepIdHeartsPostRequestDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -39003,7 +39046,7 @@ class __$ApiV1StepsStepIdSharesPostResponseDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$ApiV1StepsStepIdSharesPostRequestDto {
   @JsonKey(name: 'type')
-  int? get type;
+  InteractionTypeDto? get type;
 
   /// Create a copy of ApiV1StepsStepIdSharesPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -39043,7 +39086,7 @@ abstract mixin class $ApiV1StepsStepIdSharesPostRequestDtoCopyWith<$Res> {
           $Res Function(ApiV1StepsStepIdSharesPostRequestDto) _then) =
       _$ApiV1StepsStepIdSharesPostRequestDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -39065,7 +39108,7 @@ class _$ApiV1StepsStepIdSharesPostRequestDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -39162,7 +39205,8 @@ extension ApiV1StepsStepIdSharesPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type)? $default, {
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -39189,7 +39233,7 @@ extension ApiV1StepsStepIdSharesPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type) $default,
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -39212,7 +39256,8 @@ extension ApiV1StepsStepIdSharesPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'type') int? type)? $default,
+    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -39235,7 +39280,7 @@ class _ApiV1StepsStepIdSharesPostRequestDto
 
   @override
   @JsonKey(name: 'type')
-  final int? type;
+  final InteractionTypeDto? type;
 
   /// Create a copy of ApiV1StepsStepIdSharesPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -39281,7 +39326,7 @@ abstract mixin class _$ApiV1StepsStepIdSharesPostRequestDtoCopyWith<$Res>
       __$ApiV1StepsStepIdSharesPostRequestDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -39303,7 +39348,7 @@ class __$ApiV1StepsStepIdSharesPostRequestDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -39685,7 +39730,7 @@ class __$ApiV1StepsStepIdInteractionsGetResponseDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$ApiV1StepsCommentsCommentIdHeartsPostRequestDto {
   @JsonKey(name: 'type')
-  int? get type;
+  InteractionTypeDto? get type;
 
   /// Create a copy of ApiV1StepsCommentsCommentIdHeartsPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -39727,7 +39772,7 @@ abstract mixin class $ApiV1StepsCommentsCommentIdHeartsPostRequestDtoCopyWith<
               _then) =
       _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -39750,7 +39795,7 @@ class _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -39852,7 +39897,8 @@ extension ApiV1StepsCommentsCommentIdHeartsPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type)? $default, {
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -39880,7 +39926,7 @@ extension ApiV1StepsCommentsCommentIdHeartsPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') int? type) $default,
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -39903,7 +39949,8 @@ extension ApiV1StepsCommentsCommentIdHeartsPostRequestDtoPatterns
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'type') int? type)? $default,
+    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -39928,7 +39975,7 @@ class _ApiV1StepsCommentsCommentIdHeartsPostRequestDto
 
   @override
   @JsonKey(name: 'type')
-  final int? type;
+  final InteractionTypeDto? type;
 
   /// Create a copy of ApiV1StepsCommentsCommentIdHeartsPostRequestDto
   /// with the given fields replaced by the non-null parameter values.
@@ -39978,7 +40025,7 @@ abstract mixin class _$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoCopyWith<
       __$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') int? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
 }
 
 /// @nodoc
@@ -40001,7 +40048,7 @@ class __$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoCopyWithImpl<$Res>
       type: freezed == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as InteractionTypeDto?,
     ));
   }
 }
@@ -40009,7 +40056,7 @@ class __$ApiV1StepsCommentsCommentIdHeartsPostRequestDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$ApiV1UsersUserIdFollowPostResponseDto {
   @JsonKey(name: 'status')
-  int get status;
+  FollowingStatusEnumDto get status;
   @JsonKey(name: 'message')
   String? get message;
 
@@ -40053,7 +40100,7 @@ abstract mixin class $ApiV1UsersUserIdFollowPostResponseDtoCopyWith<$Res> {
       _$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -40077,7 +40124,7 @@ class _$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -40178,7 +40225,7 @@ extension ApiV1UsersUserIdFollowPostResponseDtoPatterns
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default, {
     required TResult orElse(),
@@ -40207,7 +40254,7 @@ extension ApiV1UsersUserIdFollowPostResponseDtoPatterns
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)
         $default,
   ) {
@@ -40232,7 +40279,7 @@ extension ApiV1UsersUserIdFollowPostResponseDtoPatterns
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'status') int status,
+    TResult? Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default,
   ) {
@@ -40259,7 +40306,7 @@ class _ApiV1UsersUserIdFollowPostResponseDto
 
   @override
   @JsonKey(name: 'status')
-  final int status;
+  final FollowingStatusEnumDto status;
   @override
   @JsonKey(name: 'message')
   final String? message;
@@ -40310,7 +40357,7 @@ abstract mixin class _$ApiV1UsersUserIdFollowPostResponseDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -40334,7 +40381,7 @@ class __$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -40346,7 +40393,7 @@ class __$ApiV1UsersUserIdFollowPostResponseDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$ApiV1UsersUserIdFollowDeleteResponseDto {
   @JsonKey(name: 'status')
-  int get status;
+  FollowingStatusEnumDto get status;
   @JsonKey(name: 'message')
   String? get message;
 
@@ -40390,7 +40437,7 @@ abstract mixin class $ApiV1UsersUserIdFollowDeleteResponseDtoCopyWith<$Res> {
       _$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -40414,7 +40461,7 @@ class _$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -40516,7 +40563,7 @@ extension ApiV1UsersUserIdFollowDeleteResponseDtoPatterns
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default, {
     required TResult orElse(),
@@ -40545,7 +40592,7 @@ extension ApiV1UsersUserIdFollowDeleteResponseDtoPatterns
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)
         $default,
   ) {
@@ -40570,7 +40617,7 @@ extension ApiV1UsersUserIdFollowDeleteResponseDtoPatterns
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'status') int status,
+    TResult? Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default,
   ) {
@@ -40597,7 +40644,7 @@ class _ApiV1UsersUserIdFollowDeleteResponseDto
 
   @override
   @JsonKey(name: 'status')
-  final int status;
+  final FollowingStatusEnumDto status;
   @override
   @JsonKey(name: 'message')
   final String? message;
@@ -40648,7 +40695,7 @@ abstract mixin class _$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -40673,7 +40720,7 @@ class __$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -40685,7 +40732,7 @@ class __$ApiV1UsersUserIdFollowDeleteResponseDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$ApiV1UsersUserIdRejectFollowPostResponseDto {
   @JsonKey(name: 'status')
-  int get status;
+  FollowingStatusEnumDto get status;
   @JsonKey(name: 'message')
   String? get message;
 
@@ -40730,7 +40777,7 @@ abstract mixin class $ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWith<
       _$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -40755,7 +40802,7 @@ class _$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -40859,7 +40906,7 @@ extension ApiV1UsersUserIdRejectFollowPostResponseDtoPatterns
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default, {
     required TResult orElse(),
@@ -40888,7 +40935,7 @@ extension ApiV1UsersUserIdRejectFollowPostResponseDtoPatterns
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)
         $default,
   ) {
@@ -40913,7 +40960,7 @@ extension ApiV1UsersUserIdRejectFollowPostResponseDtoPatterns
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'status') int status,
+    TResult? Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
             @JsonKey(name: 'message') String? message)?
         $default,
   ) {
@@ -40940,7 +40987,7 @@ class _ApiV1UsersUserIdRejectFollowPostResponseDto
 
   @override
   @JsonKey(name: 'status')
-  final int status;
+  final FollowingStatusEnumDto status;
   @override
   @JsonKey(name: 'message')
   final String? message;
@@ -40992,7 +41039,7 @@ abstract mixin class _$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') int status,
+      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
       @JsonKey(name: 'message') String? message});
 }
 
@@ -41017,7 +41064,7 @@ class __$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
       message: freezed == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -41029,7 +41076,7 @@ class __$ApiV1UsersUserIdRejectFollowPostResponseDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$ApiV1UsersUserIdFollowStatusGetResponseDto {
   @JsonKey(name: 'status')
-  int get status;
+  FollowingStatusEnumDto get status;
 
   /// Create a copy of ApiV1UsersUserIdFollowStatusGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -41069,7 +41116,7 @@ abstract mixin class $ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWith<$Res> {
           $Res Function(ApiV1UsersUserIdFollowStatusGetResponseDto) _then) =
       _$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'status') int status});
+  $Res call({@JsonKey(name: 'status') FollowingStatusEnumDto status});
 }
 
 /// @nodoc
@@ -41092,7 +41139,7 @@ class _$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
     ));
   }
 }
@@ -41192,7 +41239,8 @@ extension ApiV1UsersUserIdFollowStatusGetResponseDtoPatterns
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status)? $default, {
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
@@ -41219,7 +41267,8 @@ extension ApiV1UsersUserIdFollowStatusGetResponseDtoPatterns
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') int status) $default,
+    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -41242,7 +41291,8 @@ extension ApiV1UsersUserIdFollowStatusGetResponseDtoPatterns
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'status') int status)? $default,
+    TResult? Function(@JsonKey(name: 'status') FollowingStatusEnumDto status)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -41266,7 +41316,7 @@ class _ApiV1UsersUserIdFollowStatusGetResponseDto
 
   @override
   @JsonKey(name: 'status')
-  final int status;
+  final FollowingStatusEnumDto status;
 
   /// Create a copy of ApiV1UsersUserIdFollowStatusGetResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -41312,7 +41362,7 @@ abstract mixin class _$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWith<$Res>
       __$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'status') int status});
+  $Res call({@JsonKey(name: 'status') FollowingStatusEnumDto status});
 }
 
 /// @nodoc
@@ -41335,7 +41385,7 @@ class __$ApiV1UsersUserIdFollowStatusGetResponseDtoCopyWithImpl<$Res>
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as FollowingStatusEnumDto,
     ));
   }
 }

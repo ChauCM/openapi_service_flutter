@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Unused Enum API
+  x-dart-name: UnusedEnumApi
+
+paths:
+  /notifications:
+    post:
+      summary: Send notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+      responses:
+        '200':
+          description: Success
+
+components:
+  schemas:
+    # This enum IS used by the Notification schema
+    UsedNotificationType:
+      type: string
+      enum:
+        - email
+        - sms
+        - push
+    
+    # This enum is NOT used by any schema or endpoint
+    UnusedPriority:
+      type: string
+      enum:
+        - low
+        - medium
+        - high
+        - urgent
+    
+    # Schema that references the used enum
+    Notification:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+        type:
+          $ref: '#/components/schemas/UsedNotificationType'
+      required:
+        - title
+        - body
+        - type

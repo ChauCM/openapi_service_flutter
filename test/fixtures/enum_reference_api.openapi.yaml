@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Enum Reference API
+  x-dart-name: EnumReferenceApi
+
+paths:
+  /notifications:
+    post:
+      summary: Send notification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkNotification'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+
+components:
+  schemas:
+    # Standalone enum schema that should be referenced by others
+    NotificationType:
+      type: string
+      enum:
+        - Global
+        - UserSpecific
+        - StepComment
+        - CommentReply
+        - NewFollower
+        - JourneyUpdate
+        - StepInteraction
+        - StepWithInteraction
+        - SystemAlert
+    
+    # Schema that references the standalone enum
+    BulkNotification:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+        notificationType:
+          $ref: '#/components/schemas/NotificationType'
+        userIds:
+          type: array
+          items:
+            type: string
+        priority:
+          type: integer
+      required:
+        - title
+        - body
+        - notificationType
+        - userIds
+    
+    # Another schema that references the same enum
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        body:
+          type: string
+        notificationType:
+          $ref: '#/components/schemas/NotificationType'
+        isRead:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - body
+        - notificationType
