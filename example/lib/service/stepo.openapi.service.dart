@@ -20,10 +20,10 @@ class StepoService {
   final Dio _dio;
 
   /// get: /api/v1/account
-  Future<Either<ApiError, ApiV1AccountGetResponseDto>> apiV1AccountGet() async {
+  Future<Either<ApiError, AccountDto>> apiV1AccountGet() async {
     try {
       final response = await _dio.get('/api/v1/account');
-      final result = ApiV1AccountGetResponseDto.fromJson(response.data);
+      final result = AccountDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -31,14 +31,13 @@ class StepoService {
   }
 
   /// put: /api/v1/account
-  Future<Either<ApiError, ApiV1AccountPutResponseDto>> apiV1AccountPut(
-      ApiV1AccountPutRequestDto body) async {
+  Future<Either<ApiError, AccountDto>> apiV1AccountPut(EditUserDto body) async {
     try {
       final response = await _dio.put(
         '/api/v1/account',
         data: body.toJson(),
       );
-      final result = ApiV1AccountPutResponseDto.fromJson(response.data);
+      final result = AccountDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -77,14 +76,14 @@ class StepoService {
   }
 
   /// put: /api/v1/account/avatar
-  Future<Either<ApiError, ApiV1AccountAvatarPutResponseDto>>
-      apiV1AccountAvatarPut(String body) async {
+  Future<Either<ApiError, AccountDto>> apiV1AccountAvatarPut(
+      String body) async {
     try {
       final response = await _dio.put(
         '/api/v1/account/avatar',
         data: body,
       );
-      final result = ApiV1AccountAvatarPutResponseDto.fromJson(response.data);
+      final result = AccountDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -152,14 +151,14 @@ class StepoService {
   }
 
   /// post: /api/v1/auth/login
-  Future<Either<ApiError, ApiV1AuthLoginPostResponseDto>> apiV1AuthLoginPost(
-      ApiV1AuthLoginPostRequestDto body) async {
+  Future<Either<ApiError, LoginResponseDto>> apiV1AuthLoginPost(
+      LoginDto body) async {
     try {
       final response = await _dio.post(
         '/api/v1/auth/login',
         data: body.toJson(),
       );
-      final result = ApiV1AuthLoginPostResponseDto.fromJson(response.data);
+      final result = LoginResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -167,11 +166,11 @@ class StepoService {
   }
 
   /// get: /api/v1/users/{id}
-  Future<Either<ApiError, ApiV1UsersIdGetResponseDto>> apiV1UsersIdGet(
+  Future<Either<ApiError, ProfileDto>> apiV1UsersIdGet(
       {required String id}) async {
     try {
       final response = await _dio.get('/api/v1/users/$id');
-      final result = ApiV1UsersIdGetResponseDto.fromJson(response.data);
+      final result = ProfileDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -222,14 +221,14 @@ class StepoService {
 
   /// Create a new step for a journey
   /// post: /api/v1/steps
-  Future<Either<ApiError, ApiV1StepsPostResponseDto>> apiV1StepsPost(
-      ApiV1StepsPostRequestDto body) async {
+  Future<Either<ApiError, StepDetailDto>> apiV1StepsPost(
+      CreateStepDto body) async {
     try {
       final response = await _dio.post(
         '/api/v1/steps',
         data: body.toJson(),
       );
-      final result = ApiV1StepsPostResponseDto.fromJson(response.data);
+      final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -238,11 +237,11 @@ class StepoService {
 
   /// Get step details by ID
   /// get: /api/v1/steps/{stepId}
-  Future<Either<ApiError, ApiV1StepsStepIdGetResponseDto>> apiV1StepsStepIdGet(
+  Future<Either<ApiError, StepDetailDto>> apiV1StepsStepIdGet(
       {required String stepId}) async {
     try {
       final response = await _dio.get('/api/v1/steps/$stepId');
-      final result = ApiV1StepsStepIdGetResponseDto.fromJson(response.data);
+      final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -251,8 +250,8 @@ class StepoService {
 
   /// Update step details
   /// put: /api/v1/steps/{stepId}
-  Future<Either<ApiError, ApiV1StepsStepIdPutResponseDto>> apiV1StepsStepIdPut(
-    ApiV1StepsStepIdPutRequestDto body, {
+  Future<Either<ApiError, StepDetailDto>> apiV1StepsStepIdPut(
+    UpdateStepDto body, {
     required String stepId,
   }) async {
     try {
@@ -260,7 +259,7 @@ class StepoService {
         '/api/v1/steps/$stepId',
         data: body.toJson(),
       );
-      final result = ApiV1StepsStepIdPutResponseDto.fromJson(response.data);
+      final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -281,7 +280,7 @@ class StepoService {
 
   /// Create image upload request for a step
   /// post: /api/v1/steps/{stepId}/media/upload-requests
-  Future<Either<ApiError, ApiV1StepsStepIdMediaUploadRequestsPostResponseDto>>
+  Future<Either<ApiError, ImagePresignedUrlDto>>
       apiV1StepsStepIdMediaUploadRequestsPost({
     required String stepId,
     required String fileName,
@@ -296,9 +295,7 @@ class StepoService {
         '/api/v1/steps/$stepId/media/upload-requests',
         queryParameters: queryParams,
       );
-      final result =
-          ApiV1StepsStepIdMediaUploadRequestsPostResponseDto.fromJson(
-              response.data);
+      final result = ImagePresignedUrlDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -307,9 +304,8 @@ class StepoService {
 
   /// Update step image metadata
   /// put: /api/v1/steps/{stepId}/images
-  Future<Either<ApiError, ApiV1StepsStepIdImagesPutResponseDto>>
-      apiV1StepsStepIdImagesPut(
-    ApiV1StepsStepIdImagesPutRequestDto body, {
+  Future<Either<ApiError, StepMediaDto>> apiV1StepsStepIdImagesPut(
+    ImageMetadataDto body, {
     required String stepId,
   }) async {
     try {
@@ -317,8 +313,7 @@ class StepoService {
         '/api/v1/steps/$stepId/images',
         data: body.toJson(),
       );
-      final result =
-          ApiV1StepsStepIdImagesPutResponseDto.fromJson(response.data);
+      final result = StepMediaDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -327,12 +322,11 @@ class StepoService {
 
   /// Get video upload URL for a step
   /// put: /api/v1/steps/{stepId}/video
-  Future<Either<ApiError, ApiV1StepsStepIdVideoPutResponseDto>>
-      apiV1StepsStepIdVideoPut({required String stepId}) async {
+  Future<Either<ApiError, VideoPreSignedUrlDto>> apiV1StepsStepIdVideoPut(
+      {required String stepId}) async {
     try {
       final response = await _dio.put('/api/v1/steps/$stepId/video');
-      final result =
-          ApiV1StepsStepIdVideoPutResponseDto.fromJson(response.data);
+      final result = VideoPreSignedUrlDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -364,14 +358,14 @@ class StepoService {
 
   /// Create a report for inappropriate content
   /// post: /api/v1/reports
-  Future<Either<ApiError, ApiV1ReportsPostResponseDto>> apiV1ReportsPost(
-      ApiV1ReportsPostRequestDto body) async {
+  Future<Either<ApiError, ReportDto>> apiV1ReportsPost(
+      ReportCreatingDto body) async {
     try {
       final response = await _dio.post(
         '/api/v1/reports',
         data: body.toJson(),
       );
-      final result = ApiV1ReportsPostResponseDto.fromJson(response.data);
+      final result = ReportDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -379,8 +373,7 @@ class StepoService {
   }
 
   /// get: /api/v1/notifications
-  Future<Either<ApiError, ApiV1NotificationsGetResponseDto>>
-      apiV1NotificationsGet({
+  Future<Either<ApiError, NotificationPagedDto>> apiV1NotificationsGet({
     int? page,
     int? pageSize,
   }) async {
@@ -393,7 +386,7 @@ class StepoService {
         '/api/v1/notifications',
         queryParameters: queryParams,
       );
-      final result = ApiV1NotificationsGetResponseDto.fromJson(response.data);
+      final result = NotificationPagedDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -401,14 +394,14 @@ class StepoService {
   }
 
   /// post: /api/v1/notifications
-  Future<Either<ApiError, ApiV1NotificationsPostResponseDto>>
-      apiV1NotificationsPost(ApiV1NotificationsPostRequestDto body) async {
+  Future<Either<ApiError, NotificationDto>> apiV1NotificationsPost(
+      SendNotificationDto body) async {
     try {
       final response = await _dio.post(
         '/api/v1/notifications',
         data: body.toJson(),
       );
-      final result = ApiV1NotificationsPostResponseDto.fromJson(response.data);
+      final result = NotificationDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -460,7 +453,7 @@ class StepoService {
 
   /// post: /api/v1/notifications/bulk
   Future<Either<ApiError, List<NotificationDto>>> apiV1NotificationsBulkPost(
-      ApiV1NotificationsBulkPostRequestDto body) async {
+      BulkNotificationDto body) async {
     try {
       final response = await _dio.post(
         '/api/v1/notifications/bulk',
@@ -475,8 +468,7 @@ class StepoService {
   }
 
   /// post: /api/v1/media/uploads
-  Future<Either<ApiError, ApiV1MediaUploadsPostResponseDto>>
-      apiV1MediaUploadsPost({
+  Future<Either<ApiError, ImagePresignedUrlDto>> apiV1MediaUploadsPost({
     String? fileName,
     String? contentType,
   }) async {
@@ -489,7 +481,7 @@ class StepoService {
         '/api/v1/media/uploads',
         queryParameters: queryParams,
       );
-      final result = ApiV1MediaUploadsPostResponseDto.fromJson(response.data);
+      final result = ImagePresignedUrlDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -497,9 +489,8 @@ class StepoService {
   }
 
   /// post: /api/v1/media/images
-  Future<Either<ApiError, ApiV1MediaImagesPostResponseDto>>
-      apiV1MediaImagesPost(
-    ApiV1MediaImagesPostRequestDto body, {
+  Future<Either<ApiError, StepMediaDto>> apiV1MediaImagesPost(
+    ImageMetadataDto body, {
     String? stepId,
   }) async {
     try {
@@ -511,7 +502,7 @@ class StepoService {
         queryParameters: queryParams,
         data: body.toJson(),
       );
-      final result = ApiV1MediaImagesPostResponseDto.fromJson(response.data);
+      final result = StepMediaDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -519,8 +510,8 @@ class StepoService {
   }
 
   /// post: /api/v1/media/videos
-  Future<Either<ApiError, ApiV1MediaVideosPostResponseDto>>
-      apiV1MediaVideosPost({String? stepId}) async {
+  Future<Either<ApiError, VideoPreSignedUrlDto>> apiV1MediaVideosPost(
+      {String? stepId}) async {
     try {
       final queryParams = <String, dynamic>{};
       if (stepId != null) queryParams['stepId'] = stepId;
@@ -529,7 +520,7 @@ class StepoService {
         '/api/v1/media/videos',
         queryParameters: queryParams,
       );
-      final result = ApiV1MediaVideosPostResponseDto.fromJson(response.data);
+      final result = VideoPreSignedUrlDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -537,11 +528,11 @@ class StepoService {
   }
 
   /// get: /api/v1/media/{mediaId}
-  Future<Either<ApiError, ApiV1MediaMediaIdGetResponseDto>>
-      apiV1MediaMediaIdGet({required String mediaId}) async {
+  Future<Either<ApiError, StepMediaDto>> apiV1MediaMediaIdGet(
+      {required String mediaId}) async {
     try {
       final response = await _dio.get('/api/v1/media/$mediaId');
-      final result = ApiV1MediaMediaIdGetResponseDto.fromJson(response.data);
+      final result = StepMediaDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -550,7 +541,7 @@ class StepoService {
 
   /// post: /api/v1/webhooks/video-updates
   Future<Either<ApiError, void>> apiV1WebhooksVideoUpdatesPost(
-      ApiV1WebhooksVideoUpdatesPostRequestDto body) async {
+      VideoStatusDto body) async {
     try {
       final _ = await _dio.post(
         '/api/v1/webhooks/video-updates',
@@ -574,11 +565,11 @@ class StepoService {
 
   /// Get journey details by ID
   /// get: /api/v1/journeys/{id}
-  Future<Either<ApiError, ApiV1JourneysIdGetResponseDto>> apiV1JourneysIdGet(
+  Future<Either<ApiError, JourneyInDetailDto>> apiV1JourneysIdGet(
       {required String id}) async {
     try {
       final response = await _dio.get('/api/v1/journeys/$id');
-      final result = ApiV1JourneysIdGetResponseDto.fromJson(response.data);
+      final result = JourneyInDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -587,8 +578,8 @@ class StepoService {
 
   /// Update journey details
   /// put: /api/v1/journeys/{id}
-  Future<Either<ApiError, ApiV1JourneysIdPutResponseDto>> apiV1JourneysIdPut(
-    ApiV1JourneysIdPutRequestDto body, {
+  Future<Either<ApiError, JourneyDto2Dto>> apiV1JourneysIdPut(
+    UpdateJourneyDto body, {
     required String id,
   }) async {
     try {
@@ -596,7 +587,7 @@ class StepoService {
         '/api/v1/journeys/$id',
         data: body.toJson(),
       );
-      final result = ApiV1JourneysIdPutResponseDto.fromJson(response.data);
+      final result = JourneyDto2Dto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -617,14 +608,14 @@ class StepoService {
 
   /// Create a new journey
   /// post: /api/v1/journeys
-  Future<Either<ApiError, ApiV1JourneysPostResponseDto>> apiV1JourneysPost(
-      ApiV1JourneysPostRequestDto body) async {
+  Future<Either<ApiError, StepDetailDto>> apiV1JourneysPost(
+      JourneyCreatingDto body) async {
     try {
       final response = await _dio.post(
         '/api/v1/journeys',
         data: body.toJson(),
       );
-      final result = ApiV1JourneysPostResponseDto.fromJson(response.data);
+      final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -633,8 +624,7 @@ class StepoService {
 
   /// Close a journey
   /// post: /api/v1/journeys/{id}/close
-  Future<Either<ApiError, ApiV1JourneysIdClosePostResponseDto>>
-      apiV1JourneysIdClosePost({
+  Future<Either<ApiError, JourneyDto2Dto>> apiV1JourneysIdClosePost({
     required String id,
     String? finalStepId,
   }) async {
@@ -646,8 +636,7 @@ class StepoService {
         '/api/v1/journeys/$id/close',
         queryParameters: queryParams,
       );
-      final result =
-          ApiV1JourneysIdClosePostResponseDto.fromJson(response.data);
+      final result = JourneyDto2Dto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -656,12 +645,11 @@ class StepoService {
 
   /// Reopen a closed journey
   /// post: /api/v1/journeys/{id}/reopen
-  Future<Either<ApiError, ApiV1JourneysIdReopenPostResponseDto>>
-      apiV1JourneysIdReopenPost({required String id}) async {
+  Future<Either<ApiError, JourneyDto2Dto>> apiV1JourneysIdReopenPost(
+      {required String id}) async {
     try {
       final response = await _dio.post('/api/v1/journeys/$id/reopen');
-      final result =
-          ApiV1JourneysIdReopenPostResponseDto.fromJson(response.data);
+      final result = JourneyDto2Dto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -782,9 +770,8 @@ class StepoService {
   }
 
   /// post: /api/v1/steps/{stepId}/hearts
-  Future<Either<ApiError, ApiV1StepsStepIdHeartsPostResponseDto>>
-      apiV1StepsStepIdHeartsPost(
-    ApiV1StepsStepIdHeartsPostRequestDto body, {
+  Future<Either<ApiError, InteractionResultDto>> apiV1StepsStepIdHeartsPost(
+    CreateStepInteractionDto body, {
     required String stepId,
   }) async {
     try {
@@ -792,8 +779,7 @@ class StepoService {
         '/api/v1/steps/$stepId/hearts',
         data: body.toJson(),
       );
-      final result =
-          ApiV1StepsStepIdHeartsPostResponseDto.fromJson(response.data);
+      final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -801,12 +787,11 @@ class StepoService {
   }
 
   /// delete: /api/v1/steps/{stepId}/hearts
-  Future<Either<ApiError, ApiV1StepsStepIdHeartsDeleteResponseDto>>
-      apiV1StepsStepIdHeartsDelete({required String stepId}) async {
+  Future<Either<ApiError, InteractionResultDto>> apiV1StepsStepIdHeartsDelete(
+      {required String stepId}) async {
     try {
       final response = await _dio.delete('/api/v1/steps/$stepId/hearts');
-      final result =
-          ApiV1StepsStepIdHeartsDeleteResponseDto.fromJson(response.data);
+      final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -814,9 +799,8 @@ class StepoService {
   }
 
   /// post: /api/v1/steps/{stepId}/shares
-  Future<Either<ApiError, ApiV1StepsStepIdSharesPostResponseDto>>
-      apiV1StepsStepIdSharesPost(
-    ApiV1StepsStepIdSharesPostRequestDto body, {
+  Future<Either<ApiError, InteractionResultDto>> apiV1StepsStepIdSharesPost(
+    CreateStepInteractionDto body, {
     required String stepId,
   }) async {
     try {
@@ -824,8 +808,7 @@ class StepoService {
         '/api/v1/steps/$stepId/shares',
         data: body.toJson(),
       );
-      final result =
-          ApiV1StepsStepIdSharesPostResponseDto.fromJson(response.data);
+      final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -833,12 +816,11 @@ class StepoService {
   }
 
   /// get: /api/v1/steps/{stepId}/interactions
-  Future<Either<ApiError, ApiV1StepsStepIdInteractionsGetResponseDto>>
+  Future<Either<ApiError, InteractionResultDto>>
       apiV1StepsStepIdInteractionsGet({required String stepId}) async {
     try {
       final response = await _dio.get('/api/v1/steps/$stepId/interactions');
-      final result =
-          ApiV1StepsStepIdInteractionsGetResponseDto.fromJson(response.data);
+      final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -847,7 +829,7 @@ class StepoService {
 
   /// post: /api/v1/steps/comments/{commentId}/hearts
   Future<Either<ApiError, bool>> apiV1StepsCommentsCommentIdHeartsPost(
-    ApiV1StepsCommentsCommentIdHeartsPostRequestDto body, {
+    CreateCommentInteractionDto body, {
     required String commentId,
   }) async {
     try {
@@ -923,12 +905,11 @@ class StepoService {
 
   /// Follow a user
   /// post: /api/v1/users/{userId}/follow
-  Future<Either<ApiError, ApiV1UsersUserIdFollowPostResponseDto>>
-      apiV1UsersUserIdFollowPost({required String userId}) async {
+  Future<Either<ApiError, FollowingResultDto>> apiV1UsersUserIdFollowPost(
+      {required String userId}) async {
     try {
       final response = await _dio.post('/api/v1/users/$userId/follow');
-      final result =
-          ApiV1UsersUserIdFollowPostResponseDto.fromJson(response.data);
+      final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -937,12 +918,11 @@ class StepoService {
 
   /// Unfollow a user
   /// delete: /api/v1/users/{userId}/follow
-  Future<Either<ApiError, ApiV1UsersUserIdFollowDeleteResponseDto>>
-      apiV1UsersUserIdFollowDelete({required String userId}) async {
+  Future<Either<ApiError, FollowingResultDto>> apiV1UsersUserIdFollowDelete(
+      {required String userId}) async {
     try {
       final response = await _dio.delete('/api/v1/users/$userId/follow');
-      final result =
-          ApiV1UsersUserIdFollowDeleteResponseDto.fromJson(response.data);
+      final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -951,12 +931,11 @@ class StepoService {
 
   /// Reject a follow request
   /// post: /api/v1/users/{userId}/reject-follow
-  Future<Either<ApiError, ApiV1UsersUserIdRejectFollowPostResponseDto>>
-      apiV1UsersUserIdRejectFollowPost({required String userId}) async {
+  Future<Either<ApiError, FollowingResultDto>> apiV1UsersUserIdRejectFollowPost(
+      {required String userId}) async {
     try {
       final response = await _dio.post('/api/v1/users/$userId/reject-follow');
-      final result =
-          ApiV1UsersUserIdRejectFollowPostResponseDto.fromJson(response.data);
+      final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -965,12 +944,11 @@ class StepoService {
 
   /// Get following status with a user
   /// get: /api/v1/users/{userId}/follow-status
-  Future<Either<ApiError, ApiV1UsersUserIdFollowStatusGetResponseDto>>
-      apiV1UsersUserIdFollowStatusGet({required String userId}) async {
+  Future<Either<ApiError, FollowingStatusDto>> apiV1UsersUserIdFollowStatusGet(
+      {required String userId}) async {
     try {
       final response = await _dio.get('/api/v1/users/$userId/follow-status');
-      final result =
-          ApiV1UsersUserIdFollowStatusGetResponseDto.fromJson(response.data);
+      final result = FollowingStatusDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -1065,9 +1043,8 @@ class StepoService {
 
   /// Create a reply to a comment
   /// post: /api/v1/comments/{parentCommentId}/replies
-  Future<Either<ApiError, ApiV1CommentsParentCommentIdRepliesPostResponseDto>>
-      apiV1CommentsParentCommentIdRepliesPost(
-    ApiV1CommentsParentCommentIdRepliesPostRequestDto body, {
+  Future<Either<ApiError, ReplyDto>> apiV1CommentsParentCommentIdRepliesPost(
+    CreateReplyCommentDto body, {
     required String parentCommentId,
   }) async {
     try {
@@ -1075,9 +1052,7 @@ class StepoService {
         '/api/v1/comments/$parentCommentId/replies',
         data: body.toJson(),
       );
-      final result =
-          ApiV1CommentsParentCommentIdRepliesPostResponseDto.fromJson(
-              response.data);
+      final result = ReplyDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -1132,9 +1107,8 @@ class StepoService {
   }
 
   /// post: /api/v1/steps/{stepId}/comments
-  Future<Either<ApiError, ApiV1StepsStepIdCommentsPostResponseDto>>
-      apiV1StepsStepIdCommentsPost(
-    ApiV1StepsStepIdCommentsPostRequestDto body, {
+  Future<Either<ApiError, StepCommentDto>> apiV1StepsStepIdCommentsPost(
+    CreateStepCommentDto body, {
     required String stepId,
   }) async {
     try {
@@ -1142,8 +1116,7 @@ class StepoService {
         '/api/v1/steps/$stepId/comments',
         data: body.toJson(),
       );
-      final result =
-          ApiV1StepsStepIdCommentsPostResponseDto.fromJson(response.data);
+      final result = StepCommentDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));

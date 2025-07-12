@@ -501,7 +501,7 @@ components:
         expect(dtosOutput, isNot(contains('class UnusedSchemaDto')));
         expect(dtosOutput, isNot(contains('class AlsoUnusedSchemaDto')));
 
-        // Verify the generated service references the response DTO (not the referenced schema directly)
+        // Verify the generated service references the component schema DTO directly
         final serviceLibrary =
             generator.generateServiceLibrary('unused_schema');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
@@ -509,7 +509,7 @@ components:
           orderDirectives: true,
         );
 
-        expect(serviceOutput, contains('TestGetResponseDto'));
+        expect(serviceOutput, contains('UsedSchemaDto'));
         expect(serviceOutput, isNot(contains('UnusedSchemaDto')));
         expect(serviceOutput, isNot(contains('AlsoUnusedSchemaDto')));
       });
@@ -618,9 +618,11 @@ components:
         // - Referenced by other schemas (UserStatus -> various enum forms)
         expect(dtosOutput, contains('class UserDto'));
         expect(dtosOutput, contains('class CreateUserRequestDto'));
-        expect(dtosOutput, contains('class UsersPostResponseDto'));
-        expect(dtosOutput, contains('class UsersPostRequestDto'));
         expect(dtosOutput, contains('enum UsersGetStatusDto'));
+
+        // Should NOT generate operation-specific DTOs when endpoints reference component schemas
+        expect(dtosOutput, isNot(contains('class UsersPostResponseDto')));
+        expect(dtosOutput, isNot(contains('class UsersPostRequestDto')));
 
         // Should NOT generate DTOs for unused schemas
         expect(dtosOutput, isNot(contains('class UnusedSchemaDto')));
@@ -803,6 +805,115 @@ components:
         expect(serviceOutput, contains('class EmptyArrayItemsApiService'));
         expect(serviceOutput,
             contains('Future<Either<ApiError, JourneyGetResponseDto>>'));
+      });
+
+      test('avoids duplicate DTOs when endpoints reference component schemas', () async {
+        final componentReferenceYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Component Reference API
+  x-dart-name: ComponentReferenceApi
+
+paths:
+  /account:
+    get:
+      responses:
+        '200':
+          description: Get account
+          content:
+            application/json:
+              schema:
+                \$ref: '#/components/schemas/Account'
+    put:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              \$ref: '#/components/schemas/EditUser'
+      responses:
+        '200':
+          description: Update account
+          content:
+            application/json:
+              schema:
+                \$ref: '#/components/schemas/Account'
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        profile:
+          \$ref: '#/components/schemas/Profile'
+      required:
+        - id
+        - profile
+    Profile:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      required:
+        - name
+        - email
+    EditUser:
+      type: object
+      properties:
+        displayName:
+          type: string
+        username:
+          type: string
+      required:
+        - displayName
+        - username
+''';
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(componentReferenceYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'ComponentReferenceApi',
+          partFileName: 'component_reference.openapi.dtos.g.dart',
+          freezedPartFileName: 'component_reference.openapi.dtos.freezed.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+        );
+
+        // Should generate component schema DTOs
+        expect(dtosOutput, contains('class AccountDto'));
+        expect(dtosOutput, contains('class ProfileDto'));
+        expect(dtosOutput, contains('class EditUserDto'));
+
+        // Should NOT generate duplicate operation-specific DTOs for component references
+        expect(dtosOutput, isNot(contains('class AccountGetResponseDto')));
+        expect(dtosOutput, isNot(contains('class AccountPutResponseDto')));
+        expect(dtosOutput, isNot(contains('class AccountPutRequestDto')));
+
+        // Verify service uses component DTOs directly
+        final serviceLibrary = generator.generateServiceLibrary('component_reference');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+        );
+
+        // Service should reference component DTOs, not operation-specific ones
+        expect(serviceOutput, contains('Future<Either<ApiError, AccountDto>>'));
+        expect(serviceOutput, contains('EditUserDto body'));
+        expect(serviceOutput, contains('AccountDto.fromJson'));
+
+        // Should NOT reference non-existent operation-specific DTOs
+        expect(serviceOutput, isNot(contains('AccountGetResponseDto')));
+        expect(serviceOutput, isNot(contains('AccountPutResponseDto')));
+        expect(serviceOutput, isNot(contains('AccountPutRequestDto')));
       });
 
       test('generates ApiError class with sealed keyword', () async {

@@ -74,7 +74,7 @@ Future<void> _callHelloEndpoint(TestApiService apiService) async {
 Future<void> _callUserRegistration(TestApiService apiService) async {
   _logger.info('--- POST /user/register Example ---');
 
-  final requestBody = UserRegisterPostRequestDto(
+  final requestBody = RegisterRequestDto(
     email: 'user@example.com',
   );
 

@@ -22,7 +22,7 @@ class TestApiService {
   /// Create new user
   /// post: /user/register
   Future<Either<ApiError, void>> userRegisterPost(
-      UserRegisterPostRequestDto body) async {
+      RegisterRequestDto body) async {
     try {
       final _ = await _dio.post(
         '/user/register',
@@ -48,7 +48,7 @@ class TestApiService {
 
   /// Say Hello World to {name}
   /// get: /hello/{name}
-  Future<Either<ApiError, HelloNameGetResponseDto>> helloNameGet(
+  Future<Either<ApiError, HelloResponseDto>> helloNameGet(
       {String? salutation}) async {
     try {
       final queryParams = <String, dynamic>{};
@@ -58,7 +58,7 @@ class TestApiService {
         '/hello/{name}',
         queryParameters: queryParams,
       );
-      final result = HelloNameGetResponseDto.fromJson(response.data);
+      final result = HelloResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -67,14 +67,14 @@ class TestApiService {
 
   /// Say Hello World to {name} with some parameters
   /// put: /hello/{name}
-  Future<Either<ApiError, HelloNamePutResponseDto>> helloNamePut(
-      HelloNamePutRequestDto body) async {
+  Future<Either<ApiError, HelloResponseDto>> helloNamePut(
+      HelloRequestDto body) async {
     try {
       final response = await _dio.put(
         '/hello/{name}',
         data: body.toJson(),
       );
-      final result = HelloNamePutResponseDto.fromJson(response.data);
+      final result = HelloResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
