@@ -432,14 +432,6 @@ class OpenApiLibraryGenerator {
   void _generateServiceClassToLibrary(LibraryBuilder targetLb) {
     final serviceClass = ClassBuilder()..name = '${baseName}Service';
 
-    // Add static baseUrl constant
-    serviceClass.fields.add(Field((fb) => fb
-      ..name = 'baseUrl'
-      ..type = refer('String')
-      ..static = true
-      ..modifier = FieldModifier.constant
-      ..assignment = literalString('https://api.example.com').code));
-
     // Constructor with Dio
     serviceClass.constructors.add(Constructor((cb) => cb
       ..requiredParameters.add(Parameter((pb) => pb
@@ -448,18 +440,13 @@ class OpenApiLibraryGenerator {
       ..body = Block.of([
         refer('_dio')
             .property('options')
-            .property('baseUrl')
-            .assign(refer('baseUrl'))
-            .statement,
-        refer('_dio')
-            .property('options')
             .property('connectTimeout')
-            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
+            .assign(refer('Duration')([], {'seconds': literalNum(60)}))
             .statement,
         refer('_dio')
             .property('options')
             .property('receiveTimeout')
-            .assign(refer('Duration')([], {'seconds': literalNum(10)}))
+            .assign(refer('Duration')([], {'seconds': literalNum(60)}))
             .statement,
       ])));
 
@@ -491,7 +478,8 @@ class OpenApiLibraryGenerator {
               // Prefer component schema DTO if it references a component, otherwise use operation-specific DTO
               if (schema.referenceURI != null) {
                 // This references a component schema, use toDartType to get the component DTO
-                successResponseType = toDartType('${operationName}Response', schema);
+                successResponseType =
+                    toDartType('${operationName}Response', schema);
               } else if (shouldGenerateDto(schema)) {
                 // This is an inline schema that we generated an operation-specific DTO for
                 final responseBaseName = '${operationName.pascalCase}Response';
@@ -981,8 +969,8 @@ class OpenApiLibraryGenerator {
         ..optionalParameters.addAll(properties.entries.map((entry) {
           final fieldName = entry.key.camelCase;
           // Use the schema's reference name if it exists, otherwise use parent context
-          final parentContext = entry.value!.referenceURI != null 
-              ? entry.key.pascalCase 
+          final parentContext = entry.value!.referenceURI != null
+              ? entry.key.pascalCase
               : '$className${entry.key.pascalCase}';
           final fieldType = toDartType(parentContext, entry.value!);
           final hasDefaultValue = entry.value!.defaultValue != null;
@@ -1120,8 +1108,8 @@ class EnumSpec extends Spec {
     ctx.write('extension ${name}Ext on $name {');
     ctx.write('static final Map<String, $name> _names = ');
     visitor.visitSpec(
-        literalMap(Map.fromEntries(values!.map((e) =>
-            MapEntry(literalString(e.originalValue!), refer(name!).property(e.name!))))),
+        literalMap(Map.fromEntries(values!.map((e) => MapEntry(
+            literalString(e.originalValue!), refer(name!).property(e.name!))))),
         context);
     ctx.write(';');
     ctx.write('static $name fromName(String name) => _names[name] ??'
