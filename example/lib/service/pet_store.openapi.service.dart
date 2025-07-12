@@ -24,7 +24,7 @@ class PetStoreService {
 
   /// Update an existing pet
   /// put: /pet
-  Future<Either<ApiError, void>> updatePet(UpdatePetRequestDto body) async {
+  Future<Either<ApiError, void>> updatePet(PetDto body) async {
     try {
       final _ = await _dio.put(
         '/pet',
@@ -38,7 +38,7 @@ class PetStoreService {
 
   /// Add a new pet to the store
   /// post: /pet
-  Future<Either<ApiError, void>> addPet(AddPetRequestDto body) async {
+  Future<Either<ApiError, void>> addPet(PetDto body) async {
     try {
       final _ = await _dio.post(
         '/pet',
@@ -95,11 +95,10 @@ class PetStoreService {
   /// Find pet by ID
   /// Returns a single pet
   /// get: /pet/{petId}
-  Future<Either<ApiError, GetPetByIdResponseDto>> getPetById(
-      {required int petId}) async {
+  Future<Either<ApiError, PetDto>> getPetById({required int petId}) async {
     try {
       final response = await _dio.get('/pet/$petId');
-      final result = GetPetByIdResponseDto.fromJson(response.data);
+      final result = PetDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -139,7 +138,7 @@ class PetStoreService {
 
   /// uploads an image
   /// post: /pet/{petId}/uploadImage
-  Future<Either<ApiError, UploadFileResponseDto>> uploadFile(
+  Future<Either<ApiError, ApiResponseDto>> uploadFile(
     _i1.Uint8List body, {
     required int petId,
   }) async {
@@ -148,7 +147,7 @@ class PetStoreService {
         '/pet/$petId/uploadImage',
         data: body,
       );
-      final result = UploadFileResponseDto.fromJson(response.data);
+      final result = ApiResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -170,14 +169,13 @@ class PetStoreService {
 
   /// Place an order for a pet
   /// post: /store/order
-  Future<Either<ApiError, PlaceOrderResponseDto>> placeOrder(
-      PlaceOrderRequestDto body) async {
+  Future<Either<ApiError, OrderDto>> placeOrder(OrderDto body) async {
     try {
       final response = await _dio.post(
         '/store/order',
         data: body.toJson(),
       );
-      final result = PlaceOrderResponseDto.fromJson(response.data);
+      final result = OrderDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -187,11 +185,11 @@ class PetStoreService {
   /// Find purchase order by ID
   /// For valid response try integer IDs with value >= 1 and <= 10.\ \ Other values will generated exceptions
   /// get: /store/order/{orderId}
-  Future<Either<ApiError, GetOrderByIdResponseDto>> getOrderById(
+  Future<Either<ApiError, OrderDto>> getOrderById(
       {required int orderId}) async {
     try {
       final response = await _dio.get('/store/order/$orderId');
-      final result = GetOrderByIdResponseDto.fromJson(response.data);
+      final result = OrderDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -213,7 +211,7 @@ class PetStoreService {
   /// Create user
   /// This can only be done by the logged in user.
   /// post: /user
-  Future<Either<ApiError, void>> createUser(CreateUserRequestDto body) async {
+  Future<Either<ApiError, void>> createUser(UserDto body) async {
     try {
       final _ = await _dio.post(
         '/user',
@@ -290,11 +288,11 @@ class PetStoreService {
 
   /// Get user by user name
   /// get: /user/{username}
-  Future<Either<ApiError, GetUserByNameResponseDto>> getUserByName(
+  Future<Either<ApiError, UserDto>> getUserByName(
       {required String username}) async {
     try {
       final response = await _dio.get('/user/$username');
-      final result = GetUserByNameResponseDto.fromJson(response.data);
+      final result = UserDto.fromJson(response.data);
       return Right(result);
     } catch (e) {
       return Left(_handleError(e));
@@ -305,7 +303,7 @@ class PetStoreService {
   /// This can only be done by the logged in user.
   /// put: /user/{username}
   Future<Either<ApiError, void>> updateUser(
-    UpdateUserRequestDto body, {
+    UserDto body, {
     required String username,
   }) async {
     try {

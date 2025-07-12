@@ -49,44 +49,6 @@ sealed class HelloResponseDto with _$HelloResponseDto {
 }
 
 @freezed
-sealed class UserRegisterPostRequestDto with _$UserRegisterPostRequestDto {
-  factory UserRegisterPostRequestDto(
-          {@JsonKey(name: 'email') required String email}) =
-      _UserRegisterPostRequestDto;
-
-  factory UserRegisterPostRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$UserRegisterPostRequestDtoFromJson(json);
-}
-
-@freezed
-sealed class HelloNameGetResponseDto with _$HelloNameGetResponseDto {
-  factory HelloNameGetResponseDto({@JsonKey(name: 'message') String? message}) =
-      _HelloNameGetResponseDto;
-
-  factory HelloNameGetResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$HelloNameGetResponseDtoFromJson(json);
-}
-
-@freezed
-sealed class HelloNamePutResponseDto with _$HelloNamePutResponseDto {
-  factory HelloNamePutResponseDto({@JsonKey(name: 'message') String? message}) =
-      _HelloNamePutResponseDto;
-
-  factory HelloNamePutResponseDto.fromJson(Map<String, dynamic> json) =>
-      _$HelloNamePutResponseDtoFromJson(json);
-}
-
-@freezed
-sealed class HelloNamePutRequestDto with _$HelloNamePutRequestDto {
-  factory HelloNamePutRequestDto(
-          {@JsonKey(name: 'salutation') String? salutation}) =
-      _HelloNamePutRequestDto;
-
-  factory HelloNamePutRequestDto.fromJson(Map<String, dynamic> json) =>
-      _$HelloNamePutRequestDtoFromJson(json);
-}
-
-@freezed
 sealed class UuidExampleMessageIdGetResponseDto
     with _$UuidExampleMessageIdGetResponseDto {
   factory UuidExampleMessageIdGetResponseDto(

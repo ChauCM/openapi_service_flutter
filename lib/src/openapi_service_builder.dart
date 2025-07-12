@@ -201,7 +201,7 @@ class OpenApiLibraryGenerator {
           final operationName = operation.value!.id?.camelCase ??
               '$pathName${operation.key.pascalCase}';
 
-          // Generate response DTOs (only for non-trivial schemas)
+          // Generate response DTOs (only for non-trivial schemas that don't reference components)
           final successResponse = operation.value!.responses!.entries
               .where((e) => e.key.startsWith('2'))
               .firstOrNull;
@@ -212,7 +212,8 @@ class OpenApiLibraryGenerator {
             if (content?.schema != null) {
               final schema = content!.schema!;
               // Only generate response DTOs for complex schemas with actual properties
-              if (shouldGenerateDto(schema)) {
+              // AND that don't reference component schemas (avoid duplicates)
+              if (shouldGenerateDto(schema) && schema.referenceURI == null) {
                 final responseBaseName = '${operationName.pascalCase}Response';
                 final responseTypeName = responseBaseName.endsWith('Dto')
                     ? responseBaseName
@@ -244,14 +245,15 @@ class OpenApiLibraryGenerator {
             }
           }
 
-          // Generate request body DTOs (only for non-trivial schemas)
+          // Generate request body DTOs (only for non-trivial schemas that don't reference components)
           final body = operation.value!.requestBody;
           if (body != null && body.content!.isNotEmpty) {
             final content = body.content!.values.first;
             if (content?.schema != null) {
               final schema = content!.schema!;
               // Only generate request DTOs for complex schemas with actual properties
-              if (shouldGenerateDto(schema)) {
+              // AND that don't reference component schemas (avoid duplicates)
+              if (shouldGenerateDto(schema) && schema.referenceURI == null) {
                 final requestBaseName = '${operationName.pascalCase}Request';
                 final requestTypeName = requestBaseName.endsWith('Dto')
                     ? requestBaseName
@@ -486,14 +488,19 @@ class OpenApiLibraryGenerator {
             final content = successResponse.value!.content!.values.first;
             if (content?.schema != null) {
               final schema = content!.schema!;
-              // Only use specific DTO type if we generated one for this schema
-              if (shouldGenerateDto(schema)) {
+              // Prefer component schema DTO if it references a component, otherwise use operation-specific DTO
+              if (schema.referenceURI != null) {
+                // This references a component schema, use toDartType to get the component DTO
+                successResponseType = toDartType('${operationName}Response', schema);
+              } else if (shouldGenerateDto(schema)) {
+                // This is an inline schema that we generated an operation-specific DTO for
                 final responseBaseName = '${operationName.pascalCase}Response';
                 final responseTypeName = responseBaseName.endsWith('Dto')
                     ? responseBaseName
                     : '${responseBaseName}Dto';
                 successResponseType = refer(responseTypeName);
               } else {
+                // This is a simple type (string, int, etc.)
                 successResponseType =
                     toDartType('${operationName}Response', schema);
               }
@@ -628,14 +635,19 @@ class OpenApiLibraryGenerator {
       if (content?.schema != null) {
         final schema = content!.schema!;
         Reference bodyType;
-        // Only use specific DTO type if we generated one for this schema
-        if (shouldGenerateDto(schema)) {
+        // Prefer component schema DTO if it references a component, otherwise use operation-specific DTO
+        if (schema.referenceURI != null) {
+          // This references a component schema, use toDartType to get the component DTO
+          bodyType = toDartType('${operationName}Request', schema);
+        } else if (shouldGenerateDto(schema)) {
+          // This is an inline schema that we generated an operation-specific DTO for
           final requestBaseName = '${operationName.pascalCase}Request';
           final requestTypeName = requestBaseName.endsWith('Dto')
               ? requestBaseName
               : '${requestBaseName}Dto';
           bodyType = refer(requestTypeName);
         } else {
+          // This is a simple type (string, int, etc.)
           bodyType = toDartType('${operationName}Request', schema);
         }
 
