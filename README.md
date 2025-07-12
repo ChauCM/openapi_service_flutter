@@ -154,12 +154,10 @@ Generated services use Dio for HTTP requests with Either-based error handling:
 ```dart
 class PetStoreService {
   PetStoreService(this._dio) {
-    _dio.options.baseUrl = baseUrl;
-    _dio.options.connectTimeout = const Duration(seconds: 10);
-    _dio.options.receiveTimeout = const Duration(seconds: 10);
+    _dio.options.connectTimeout = const Duration(seconds: 60);
+    _dio.options.receiveTimeout = const Duration(seconds: 60);
   }
 
-  static const String baseUrl = 'https://api.example.com';
   final Dio _dio;
 
   /// Get all pets

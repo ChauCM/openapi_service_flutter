@@ -10,12 +10,9 @@ import 'test_api.openapi.dtos.dart';
 
 class TestApiService {
   TestApiService(this._dio) {
-    _dio.options.baseUrl = baseUrl;
-    _dio.options.connectTimeout = Duration(seconds: 10);
-    _dio.options.receiveTimeout = Duration(seconds: 10);
+    _dio.options.connectTimeout = Duration(seconds: 60);
+    _dio.options.receiveTimeout = Duration(seconds: 60);
   }
-
-  static const String baseUrl = 'https://api.example.com';
 
   final Dio _dio;
 
