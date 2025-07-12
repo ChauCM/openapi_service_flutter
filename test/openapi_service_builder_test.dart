@@ -82,6 +82,97 @@ void main() {
         expect(serviceOutput, contains('class EnumApiService'));
       });
 
+      test('generates schema reference enums correctly without duplicates', () async {
+        final enumReferenceApiYaml = await File(
+                'test/fixtures/enum_reference_api.openapi.yaml')
+            .readAsString();
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(enumReferenceApiYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'EnumReferenceApi',
+          partFileName: 'enum_reference_api.openapi.dtos.g.dart',
+          freezedPartFileName: 'enum_reference_api.openapi.dtos.freezed.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+        );
+
+        // Verify that a standalone NotificationTypeDto enum is generated
+        expect(dtosOutput, contains('enum NotificationTypeDto {'));
+        expect(dtosOutput, contains("@JsonValue('Global')"));
+        expect(dtosOutput, contains("@JsonValue('UserSpecific')"));
+        expect(dtosOutput, contains("@JsonValue('StepComment')"));
+        expect(dtosOutput, contains('global,'));
+        expect(dtosOutput, contains('userSpecific,'));
+        expect(dtosOutput, contains('stepComment,'));
+
+        // Verify that BulkNotificationDto references the correct enum type
+        expect(dtosOutput, contains('required NotificationTypeDto notificationType'));
+
+        // Verify that NotificationDto also references the same enum type
+        expect(dtosOutput, contains('class NotificationDto'));
+        expect(dtosOutput, contains('required NotificationTypeDto notificationType'));
+
+        // Verify that no duplicate enums are generated
+        // Count occurrences of 'enum' keyword - should only be 1 for NotificationTypeDto
+        final enumMatches = 'enum NotificationTypeDto'.allMatches(dtosOutput);
+        expect(enumMatches.length, equals(1),
+            reason: 'Should have exactly one NotificationTypeDto enum declaration');
+
+        // Verify that there are no wrongly named enums like BulkNotificationDtoNotificationTypeDto
+        expect(dtosOutput, isNot(contains('BulkNotificationDtoNotificationTypeDto')));
+        expect(dtosOutput, isNot(contains('NotificationDtoNotificationTypeDto')));
+
+        // Verify that extension methods are generated correctly
+        expect(dtosOutput, contains('extension NotificationTypeDtoExt on NotificationTypeDto'));
+        expect(dtosOutput, contains('static NotificationTypeDto fromName(String name)'));
+      });
+
+      test('does not generate unused enum schemas', () async {
+        final unusedEnumApiYaml = await File(
+                'test/fixtures/unused_enum_api.openapi.yaml')
+            .readAsString();
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(unusedEnumApiYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'UnusedEnumApi',
+          partFileName: 'unused_enum_api.openapi.dtos.g.dart',
+          freezedPartFileName: 'unused_enum_api.openapi.dtos.freezed.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+        );
+
+        // UsedNotificationType should be generated because it's referenced by Notification
+        expect(dtosOutput, contains('enum UsedNotificationTypeDto {'));
+        expect(dtosOutput, contains("@JsonValue('email')"));
+        expect(dtosOutput, contains("@JsonValue('sms')"));
+        expect(dtosOutput, contains("@JsonValue('push')"));
+        expect(dtosOutput, contains('email,'));
+        expect(dtosOutput, contains('sms,'));
+        expect(dtosOutput, contains('push,'));
+
+        // UnusedPriority should NOT be generated because it's not used anywhere
+        expect(dtosOutput, isNot(contains('enum UnusedPriorityDto')));
+        expect(dtosOutput, isNot(contains("@JsonValue('low')")));
+        expect(dtosOutput, isNot(contains("@JsonValue('urgent')")));
+        expect(dtosOutput, isNot(contains('low,')));
+        expect(dtosOutput, isNot(contains('urgent,')));
+
+        // Notification should use the correct enum type
+        expect(dtosOutput, contains('required UsedNotificationTypeDto type'));
+      });
+
       test('generates array handling correctly', () async {
         final arrayApiYaml =
             await File('test/fixtures/array_api.openapi.yaml').readAsString();

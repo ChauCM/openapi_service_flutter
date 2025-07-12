@@ -186,8 +186,8 @@ class OpenApiLibraryGenerator {
         final isEnum = schema.enumerated?.isNotEmpty == true;
         final shouldGenerate = shouldGenerateDto(schema);
 
-        // Generate if: (used by endpoints OR is an enum) AND should generate DTO
-        if ((isUsed || isEnum) && shouldGenerate) {
+        // Generate if: used by endpoints AND (should generate DTO OR is an enum)
+        if (isUsed && (shouldGenerate || isEnum)) {
           _generateSchemaIntoLibrary(dtosLb, schemaEntry.key, schema);
         }
       }
@@ -360,7 +360,8 @@ class OpenApiLibraryGenerator {
                   annotations: [
                     jsonValue([literalString(e.toString())])
                   ],
-                  name: e.toString(),
+                  name: e.toString().camelCase,
+                  originalValue: e.toString(),
                 ))
             .toList(),
       );
@@ -377,12 +378,14 @@ class OpenApiLibraryGenerator {
       // Store reference for later use
       createdSchema[schemaObject] = refer(componentName);
 
-      // Check for inline enums in properties and generate them
+      // Check for inline enums in properties and generate them (only if they don't reference existing schemas)
       if (schemaObject.properties != null) {
         for (final propEntry in schemaObject.properties!.entries) {
           final propSchema = propEntry.value!;
+          // Only generate inline enums if the property schema doesn't have a referenceURI
           if (propSchema.enumerated != null &&
-              propSchema.enumerated!.isNotEmpty) {
+              propSchema.enumerated!.isNotEmpty &&
+              propSchema.referenceURI == null) {
             final enumBaseName = '$componentName${propEntry.key.pascalCase}';
             final enumName = enumBaseName.endsWith('Dto')
                 ? enumBaseName
@@ -394,7 +397,8 @@ class OpenApiLibraryGenerator {
                         annotations: [
                           jsonValue([literalString(e.toString())])
                         ],
-                        name: e.toString(),
+                        name: e.toString().camelCase,
+                        originalValue: e.toString(),
                       ))
                   .toList(),
             );
@@ -964,8 +968,11 @@ class OpenApiLibraryGenerator {
         ..factory = true
         ..optionalParameters.addAll(properties.entries.map((entry) {
           final fieldName = entry.key.camelCase;
-          final fieldType =
-              toDartType('$className${entry.key.pascalCase}', entry.value!);
+          // Use the schema's reference name if it exists, otherwise use parent context
+          final parentContext = entry.value!.referenceURI != null 
+              ? entry.key.pascalCase 
+              : '$className${entry.key.pascalCase}';
+          final fieldType = toDartType(parentContext, entry.value!);
           final hasDefaultValue = entry.value!.defaultValue != null;
           final isRequired = required.contains(entry.key);
 
@@ -1021,7 +1028,8 @@ class OpenApiLibraryGenerator {
                 annotations: [
                   jsonValue([literalString(e.toString())])
                 ],
-                name: e.toString(),
+                name: e.toString().camelCase,
+                originalValue: e.toString(),
               ),
             )
             .toList(),
@@ -1101,7 +1109,7 @@ class EnumSpec extends Spec {
     ctx.write('static final Map<String, $name> _names = ');
     visitor.visitSpec(
         literalMap(Map.fromEntries(values!.map((e) =>
-            MapEntry(literalString(e.name!), refer(name!).property(e.name!))))),
+            MapEntry(literalString(e.originalValue!), refer(name!).property(e.name!))))),
         context);
     ctx.write(';');
     ctx.write('static $name fromName(String name) => _names[name] ??'
@@ -1113,10 +1121,11 @@ class EnumSpec extends Spec {
 }
 
 class EnumValueSpec extends Spec {
-  EnumValueSpec({this.annotations, this.name});
+  EnumValueSpec({this.annotations, this.name, this.originalValue});
 
   final List<Expression?>? annotations;
   final String? name;
+  final String? originalValue;
 
   @override
   R accept<R>(SpecVisitor<R> visitor, [R? context]) {

@@ -37,7 +37,8 @@ sealed class BulkNotificationDto with _$BulkNotificationDto {
   factory BulkNotificationDto({
     @JsonKey(name: 'title') required String title,
     @JsonKey(name: 'body') required String body,
-    @JsonKey(name: 'notificationType') required int notificationType,
+    @JsonKey(name: 'notificationType')
+    required NotificationTypeDto notificationType,
     @JsonKey(name: 'userIds') required List<String> userIds,
     @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
     @JsonKey(name: 'data') Map<String, String>? data,
@@ -50,7 +51,8 @@ sealed class BulkNotificationDto with _$BulkNotificationDto {
 
 @freezed
 sealed class CreateCommentInteractionDto with _$CreateCommentInteractionDto {
-  factory CreateCommentInteractionDto({@JsonKey(name: 'type') int? type}) =
+  factory CreateCommentInteractionDto(
+          {@JsonKey(name: 'type') InteractionTypeDto? type}) =
       _CreateCommentInteractionDto;
 
   factory CreateCommentInteractionDto.fromJson(Map<String, dynamic> json) =>
@@ -92,7 +94,8 @@ sealed class CreateStepDto with _$CreateStepDto {
 
 @freezed
 sealed class CreateStepInteractionDto with _$CreateStepInteractionDto {
-  factory CreateStepInteractionDto({@JsonKey(name: 'type') int? type}) =
+  factory CreateStepInteractionDto(
+          {@JsonKey(name: 'type') InteractionTypeDto? type}) =
       _CreateStepInteractionDto;
 
   factory CreateStepInteractionDto.fromJson(Map<String, dynamic> json) =>
@@ -115,7 +118,7 @@ sealed class EditUserDto with _$EditUserDto {
 @freezed
 sealed class FollowingResultDto with _$FollowingResultDto {
   factory FollowingResultDto({
-    @JsonKey(name: 'status') required int status,
+    @JsonKey(name: 'status') required FollowingStatusEnumDto status,
     @JsonKey(name: 'message') String? message,
   }) = _FollowingResultDto;
 
@@ -125,11 +128,33 @@ sealed class FollowingResultDto with _$FollowingResultDto {
 
 @freezed
 sealed class FollowingStatusDto with _$FollowingStatusDto {
-  factory FollowingStatusDto({@JsonKey(name: 'status') required int status}) =
+  factory FollowingStatusDto(
+          {@JsonKey(name: 'status') required FollowingStatusEnumDto status}) =
       _FollowingStatusDto;
 
   factory FollowingStatusDto.fromJson(Map<String, dynamic> json) =>
       _$FollowingStatusDtoFromJson(json);
+}
+
+enum FollowingStatusEnumDto {
+  @JsonValue('NotFollowing')
+  notFollowing,
+  @JsonValue('Following')
+  following,
+  @JsonValue('Requested')
+  requested,
+}
+
+extension FollowingStatusEnumDtoExt on FollowingStatusEnumDto {
+  static final Map<String, FollowingStatusEnumDto> _names = {
+    'NotFollowing': FollowingStatusEnumDto.notFollowing,
+    'Following': FollowingStatusEnumDto.following,
+    'Requested': FollowingStatusEnumDto.requested,
+  };
+  static FollowingStatusEnumDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for FollowingStatusEnumDto');
+  String get name => toString().substring(23);
 }
 
 @freezed
@@ -171,6 +196,27 @@ sealed class InteractionResultDto with _$InteractionResultDto {
 
   factory InteractionResultDto.fromJson(Map<String, dynamic> json) =>
       _$InteractionResultDtoFromJson(json);
+}
+
+enum InteractionTypeDto {
+  @JsonValue('Heart')
+  heart,
+  @JsonValue('Share')
+  share,
+  @JsonValue('Comment')
+  comment,
+}
+
+extension InteractionTypeDtoExt on InteractionTypeDto {
+  static final Map<String, InteractionTypeDto> _names = {
+    'Heart': InteractionTypeDto.heart,
+    'Share': InteractionTypeDto.share,
+    'Comment': InteractionTypeDto.comment,
+  };
+  static InteractionTypeDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for InteractionTypeDto');
+  String get name => toString().substring(19);
 }
 
 @freezed
@@ -277,13 +323,37 @@ sealed class LoginResponseDto with _$LoginResponseDto {
       _$LoginResponseDtoFromJson(json);
 }
 
+enum MediaStatusDto {
+  @JsonValue('Pending')
+  pending,
+  @JsonValue('Processing')
+  processing,
+  @JsonValue('Completed')
+  completed,
+  @JsonValue('Failed')
+  failed,
+}
+
+extension MediaStatusDtoExt on MediaStatusDto {
+  static final Map<String, MediaStatusDto> _names = {
+    'Pending': MediaStatusDto.pending,
+    'Processing': MediaStatusDto.processing,
+    'Completed': MediaStatusDto.completed,
+    'Failed': MediaStatusDto.failed,
+  };
+  static MediaStatusDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for MediaStatusDto');
+  String get name => toString().substring(15);
+}
+
 @freezed
 sealed class NotificationDto with _$NotificationDto {
   factory NotificationDto({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'body') String? body,
-    @JsonKey(name: 'notificationType') int? notificationType,
+    @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
     @JsonKey(name: 'isRead') bool? isRead,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
     @JsonKey(name: 'data') Map<String, String>? data,
@@ -309,6 +379,45 @@ sealed class NotificationPagedDto with _$NotificationPagedDto {
 
   factory NotificationPagedDto.fromJson(Map<String, dynamic> json) =>
       _$NotificationPagedDtoFromJson(json);
+}
+
+enum NotificationTypeDto {
+  @JsonValue('Global')
+  global,
+  @JsonValue('UserSpecific')
+  userSpecific,
+  @JsonValue('StepComment')
+  stepComment,
+  @JsonValue('CommentReply')
+  commentReply,
+  @JsonValue('NewFollower')
+  newFollower,
+  @JsonValue('JourneyUpdate')
+  journeyUpdate,
+  @JsonValue('StepInteraction')
+  stepInteraction,
+  @JsonValue('StepWithInteraction')
+  stepWithInteraction,
+  @JsonValue('SystemAlert')
+  systemAlert,
+}
+
+extension NotificationTypeDtoExt on NotificationTypeDto {
+  static final Map<String, NotificationTypeDto> _names = {
+    'Global': NotificationTypeDto.global,
+    'UserSpecific': NotificationTypeDto.userSpecific,
+    'StepComment': NotificationTypeDto.stepComment,
+    'CommentReply': NotificationTypeDto.commentReply,
+    'NewFollower': NotificationTypeDto.newFollower,
+    'JourneyUpdate': NotificationTypeDto.journeyUpdate,
+    'StepInteraction': NotificationTypeDto.stepInteraction,
+    'StepWithInteraction': NotificationTypeDto.stepWithInteraction,
+    'SystemAlert': NotificationTypeDto.systemAlert,
+  };
+  static NotificationTypeDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for NotificationTypeDto');
+  String get name => toString().substring(20);
 }
 
 @freezed
@@ -379,7 +488,8 @@ sealed class SendNotificationDto with _$SendNotificationDto {
   factory SendNotificationDto({
     @JsonKey(name: 'title') required String title,
     @JsonKey(name: 'body') required String body,
-    @JsonKey(name: 'notificationType') required int notificationType,
+    @JsonKey(name: 'notificationType')
+    required NotificationTypeDto notificationType,
     @JsonKey(name: 'targetUserId') String? targetUserId,
     @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
     @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -472,7 +582,7 @@ sealed class StepMediaDto with _$StepMediaDto {
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'size') int? size,
     @JsonKey(name: 'duration') num? duration,
-    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'status') MediaStatusDto? status,
     @JsonKey(name: 'isVideo') bool? isVideo,
     @JsonKey(name: 'isImage') bool? isImage,
   }) = _StepMediaDto;
@@ -498,7 +608,7 @@ sealed class StepMediaDto2Dto with _$StepMediaDto2Dto {
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'size') int? size,
     @JsonKey(name: 'duration') num? duration,
-    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'status') MediaStatusDto? status,
     @JsonKey(name: 'isVideo') bool? isVideo,
     @JsonKey(name: 'isImage') bool? isImage,
   }) = _StepMediaDto2Dto;
@@ -531,7 +641,7 @@ sealed class UpdateStepDto with _$UpdateStepDto {
 sealed class UserDetailDto with _$UserDetailDto {
   factory UserDetailDto({
     @JsonKey(name: 'user') required UserDto user,
-    @JsonKey(name: 'followingStatus') int? followingStatus,
+    @JsonKey(name: 'followingStatus') FollowingStatusEnumDto? followingStatus,
   }) = _UserDetailDto;
 
   factory UserDetailDto.fromJson(Map<String, dynamic> json) =>
@@ -542,7 +652,7 @@ sealed class UserDetailDto with _$UserDetailDto {
 sealed class UserDetailDto2Dto with _$UserDetailDto2Dto {
   factory UserDetailDto2Dto({
     @JsonKey(name: 'user') required UserDto user,
-    @JsonKey(name: 'followingStatus') int? followingStatus,
+    @JsonKey(name: 'followingStatus') FollowingStatusEnumDto? followingStatus,
   }) = _UserDetailDto2Dto;
 
   factory UserDetailDto2Dto.fromJson(Map<String, dynamic> json) =>
@@ -849,7 +959,7 @@ sealed class ApiV1StepsStepIdImagesPutResponseDto
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'size') int? size,
     @JsonKey(name: 'duration') num? duration,
-    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'status') MediaStatusDto? status,
     @JsonKey(name: 'isVideo') bool? isVideo,
     @JsonKey(name: 'isImage') bool? isImage,
   }) = _ApiV1StepsStepIdImagesPutResponseDto;
@@ -945,7 +1055,7 @@ sealed class ApiV1NotificationsPostResponseDto
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'body') String? body,
-    @JsonKey(name: 'notificationType') int? notificationType,
+    @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
     @JsonKey(name: 'isRead') bool? isRead,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
     @JsonKey(name: 'data') Map<String, String>? data,
@@ -965,7 +1075,8 @@ sealed class ApiV1NotificationsPostRequestDto
   factory ApiV1NotificationsPostRequestDto({
     @JsonKey(name: 'title') required String title,
     @JsonKey(name: 'body') required String body,
-    @JsonKey(name: 'notificationType') required int notificationType,
+    @JsonKey(name: 'notificationType')
+    required NotificationTypeDto notificationType,
     @JsonKey(name: 'targetUserId') String? targetUserId,
     @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
     @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
@@ -984,7 +1095,8 @@ sealed class ApiV1NotificationsBulkPostRequestDto
   factory ApiV1NotificationsBulkPostRequestDto({
     @JsonKey(name: 'title') required String title,
     @JsonKey(name: 'body') required String body,
-    @JsonKey(name: 'notificationType') required int notificationType,
+    @JsonKey(name: 'notificationType')
+    required NotificationTypeDto notificationType,
     @JsonKey(name: 'userIds') required List<String> userIds,
     @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
     @JsonKey(name: 'data') Map<String, String>? data,
@@ -1030,7 +1142,7 @@ sealed class ApiV1MediaImagesPostResponseDto
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'size') int? size,
     @JsonKey(name: 'duration') num? duration,
-    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'status') MediaStatusDto? status,
     @JsonKey(name: 'isVideo') bool? isVideo,
     @JsonKey(name: 'isImage') bool? isImage,
   }) = _ApiV1MediaImagesPostResponseDto;
@@ -1090,7 +1202,7 @@ sealed class ApiV1MediaMediaIdGetResponseDto
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'size') int? size,
     @JsonKey(name: 'duration') num? duration,
-    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'status') MediaStatusDto? status,
     @JsonKey(name: 'isVideo') bool? isVideo,
     @JsonKey(name: 'isImage') bool? isImage,
   }) = _ApiV1MediaMediaIdGetResponseDto;
@@ -1266,7 +1378,7 @@ sealed class ApiV1StepsStepIdHeartsPostResponseDto
 sealed class ApiV1StepsStepIdHeartsPostRequestDto
     with _$ApiV1StepsStepIdHeartsPostRequestDto {
   factory ApiV1StepsStepIdHeartsPostRequestDto(
-          {@JsonKey(name: 'type') int? type}) =
+          {@JsonKey(name: 'type') InteractionTypeDto? type}) =
       _ApiV1StepsStepIdHeartsPostRequestDto;
 
   factory ApiV1StepsStepIdHeartsPostRequestDto.fromJson(
@@ -1306,7 +1418,7 @@ sealed class ApiV1StepsStepIdSharesPostResponseDto
 sealed class ApiV1StepsStepIdSharesPostRequestDto
     with _$ApiV1StepsStepIdSharesPostRequestDto {
   factory ApiV1StepsStepIdSharesPostRequestDto(
-          {@JsonKey(name: 'type') int? type}) =
+          {@JsonKey(name: 'type') InteractionTypeDto? type}) =
       _ApiV1StepsStepIdSharesPostRequestDto;
 
   factory ApiV1StepsStepIdSharesPostRequestDto.fromJson(
@@ -1332,7 +1444,7 @@ sealed class ApiV1StepsStepIdInteractionsGetResponseDto
 sealed class ApiV1StepsCommentsCommentIdHeartsPostRequestDto
     with _$ApiV1StepsCommentsCommentIdHeartsPostRequestDto {
   factory ApiV1StepsCommentsCommentIdHeartsPostRequestDto(
-          {@JsonKey(name: 'type') int? type}) =
+          {@JsonKey(name: 'type') InteractionTypeDto? type}) =
       _ApiV1StepsCommentsCommentIdHeartsPostRequestDto;
 
   factory ApiV1StepsCommentsCommentIdHeartsPostRequestDto.fromJson(
@@ -1344,7 +1456,7 @@ sealed class ApiV1StepsCommentsCommentIdHeartsPostRequestDto
 sealed class ApiV1UsersUserIdFollowPostResponseDto
     with _$ApiV1UsersUserIdFollowPostResponseDto {
   factory ApiV1UsersUserIdFollowPostResponseDto({
-    @JsonKey(name: 'status') required int status,
+    @JsonKey(name: 'status') required FollowingStatusEnumDto status,
     @JsonKey(name: 'message') String? message,
   }) = _ApiV1UsersUserIdFollowPostResponseDto;
 
@@ -1357,7 +1469,7 @@ sealed class ApiV1UsersUserIdFollowPostResponseDto
 sealed class ApiV1UsersUserIdFollowDeleteResponseDto
     with _$ApiV1UsersUserIdFollowDeleteResponseDto {
   factory ApiV1UsersUserIdFollowDeleteResponseDto({
-    @JsonKey(name: 'status') required int status,
+    @JsonKey(name: 'status') required FollowingStatusEnumDto status,
     @JsonKey(name: 'message') String? message,
   }) = _ApiV1UsersUserIdFollowDeleteResponseDto;
 
@@ -1370,7 +1482,7 @@ sealed class ApiV1UsersUserIdFollowDeleteResponseDto
 sealed class ApiV1UsersUserIdRejectFollowPostResponseDto
     with _$ApiV1UsersUserIdRejectFollowPostResponseDto {
   factory ApiV1UsersUserIdRejectFollowPostResponseDto({
-    @JsonKey(name: 'status') required int status,
+    @JsonKey(name: 'status') required FollowingStatusEnumDto status,
     @JsonKey(name: 'message') String? message,
   }) = _ApiV1UsersUserIdRejectFollowPostResponseDto;
 
@@ -1383,7 +1495,7 @@ sealed class ApiV1UsersUserIdRejectFollowPostResponseDto
 sealed class ApiV1UsersUserIdFollowStatusGetResponseDto
     with _$ApiV1UsersUserIdFollowStatusGetResponseDto {
   factory ApiV1UsersUserIdFollowStatusGetResponseDto(
-          {@JsonKey(name: 'status') required int status}) =
+          {@JsonKey(name: 'status') required FollowingStatusEnumDto status}) =
       _ApiV1UsersUserIdFollowStatusGetResponseDto;
 
   factory ApiV1UsersUserIdFollowStatusGetResponseDto.fromJson(

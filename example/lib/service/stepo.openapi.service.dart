@@ -220,6 +220,7 @@ class StepoService {
     }
   }
 
+  /// Create a new step for a journey
   /// post: /api/v1/steps
   Future<Either<ApiError, ApiV1StepsPostResponseDto>> apiV1StepsPost(
       ApiV1StepsPostRequestDto body) async {
@@ -235,6 +236,7 @@ class StepoService {
     }
   }
 
+  /// Get step details by ID
   /// get: /api/v1/steps/{stepId}
   Future<Either<ApiError, ApiV1StepsStepIdGetResponseDto>> apiV1StepsStepIdGet(
       {required String stepId}) async {
@@ -247,6 +249,7 @@ class StepoService {
     }
   }
 
+  /// Update step details
   /// put: /api/v1/steps/{stepId}
   Future<Either<ApiError, ApiV1StepsStepIdPutResponseDto>> apiV1StepsStepIdPut(
     ApiV1StepsStepIdPutRequestDto body, {
@@ -264,6 +267,7 @@ class StepoService {
     }
   }
 
+  /// Delete a step
   /// delete: /api/v1/steps/{stepId}
   Future<Either<ApiError, void>> apiV1StepsStepIdDelete(
       {required String stepId}) async {
@@ -275,6 +279,7 @@ class StepoService {
     }
   }
 
+  /// Create image upload request for a step
   /// post: /api/v1/steps/{stepId}/media/upload-requests
   Future<Either<ApiError, ApiV1StepsStepIdMediaUploadRequestsPostResponseDto>>
       apiV1StepsStepIdMediaUploadRequestsPost({
@@ -300,6 +305,7 @@ class StepoService {
     }
   }
 
+  /// Update step image metadata
   /// put: /api/v1/steps/{stepId}/images
   Future<Either<ApiError, ApiV1StepsStepIdImagesPutResponseDto>>
       apiV1StepsStepIdImagesPut(
@@ -319,6 +325,7 @@ class StepoService {
     }
   }
 
+  /// Get video upload URL for a step
   /// put: /api/v1/steps/{stepId}/video
   Future<Either<ApiError, ApiV1StepsStepIdVideoPutResponseDto>>
       apiV1StepsStepIdVideoPut({required String stepId}) async {
@@ -332,6 +339,7 @@ class StepoService {
     }
   }
 
+  /// Get reports for content moderation
   /// get: /api/v1/reports
   Future<Either<ApiError, List<ReportDto>>> apiV1ReportsGet({
     int? page,
@@ -354,6 +362,7 @@ class StepoService {
     }
   }
 
+  /// Create a report for inappropriate content
   /// post: /api/v1/reports
   Future<Either<ApiError, ApiV1ReportsPostResponseDto>> apiV1ReportsPost(
       ApiV1ReportsPostRequestDto body) async {
@@ -563,6 +572,7 @@ class StepoService {
     }
   }
 
+  /// Get journey details by ID
   /// get: /api/v1/journeys/{id}
   Future<Either<ApiError, ApiV1JourneysIdGetResponseDto>> apiV1JourneysIdGet(
       {required String id}) async {
@@ -575,6 +585,7 @@ class StepoService {
     }
   }
 
+  /// Update journey details
   /// put: /api/v1/journeys/{id}
   Future<Either<ApiError, ApiV1JourneysIdPutResponseDto>> apiV1JourneysIdPut(
     ApiV1JourneysIdPutRequestDto body, {
@@ -592,6 +603,7 @@ class StepoService {
     }
   }
 
+  /// Delete a journey
   /// delete: /api/v1/journeys/{id}
   Future<Either<ApiError, void>> apiV1JourneysIdDelete(
       {required String id}) async {
@@ -603,6 +615,7 @@ class StepoService {
     }
   }
 
+  /// Create a new journey
   /// post: /api/v1/journeys
   Future<Either<ApiError, ApiV1JourneysPostResponseDto>> apiV1JourneysPost(
       ApiV1JourneysPostRequestDto body) async {
@@ -618,6 +631,7 @@ class StepoService {
     }
   }
 
+  /// Close a journey
   /// post: /api/v1/journeys/{id}/close
   Future<Either<ApiError, ApiV1JourneysIdClosePostResponseDto>>
       apiV1JourneysIdClosePost({
@@ -640,6 +654,7 @@ class StepoService {
     }
   }
 
+  /// Reopen a closed journey
   /// post: /api/v1/journeys/{id}/reopen
   Future<Either<ApiError, ApiV1JourneysIdReopenPostResponseDto>>
       apiV1JourneysIdReopenPost({required String id}) async {
@@ -653,6 +668,7 @@ class StepoService {
     }
   }
 
+  /// Get detailed steps for a journey (authenticated view)
   /// get: /api/v1/journeys/{journeyId}/steps-detail
   Future<Either<ApiError, List<StepDetailDto>>>
       apiV1JourneysJourneyIdStepsDetailGet({
@@ -677,6 +693,7 @@ class StepoService {
     }
   }
 
+  /// Get steps for a journey (public view)
   /// get: /api/v1/journeys/{journeyId}/steps
   Future<Either<ApiError, List<StepDetailDto>>> apiV1JourneysJourneyIdStepsGet({
     required String journeyId,
@@ -700,6 +717,7 @@ class StepoService {
     }
   }
 
+  /// Get calendar view of journey steps
   /// get: /api/v1/journeys/{journeyId}/calendar
   Future<Either<ApiError, List<JourneyDayCalendarDto>>>
       apiV1JourneysJourneyIdCalendarGet({required String journeyId}) async {
@@ -713,6 +731,7 @@ class StepoService {
     }
   }
 
+  /// Get steps newer than the specified step within its journey
   /// get: /api/v1/journeys/newer-steps/{stepId}
   Future<Either<ApiError, List<StepDetailDto>>>
       apiV1JourneysNewerStepsStepIdGet({
@@ -737,6 +756,7 @@ class StepoService {
     }
   }
 
+  /// Get steps older than the specified step within its journey
   /// get: /api/v1/journeys/older-steps/{stepId}
   Future<Either<ApiError, List<StepDetailDto>>>
       apiV1JourneysOlderStepsStepIdGet({
@@ -855,6 +875,7 @@ class StepoService {
     }
   }
 
+  /// Get my followers list
   /// get: /api/v1/account/followers
   Future<Either<ApiError, List<UserDetailDto>>> apiV1AccountFollowersGet({
     int? page,
@@ -877,6 +898,7 @@ class StepoService {
     }
   }
 
+  /// Get my followings list
   /// get: /api/v1/account/followings
   Future<Either<ApiError, List<UserDetailDto>>> apiV1AccountFollowingsGet({
     int? page,
@@ -899,6 +921,7 @@ class StepoService {
     }
   }
 
+  /// Follow a user
   /// post: /api/v1/users/{userId}/follow
   Future<Either<ApiError, ApiV1UsersUserIdFollowPostResponseDto>>
       apiV1UsersUserIdFollowPost({required String userId}) async {
@@ -912,6 +935,7 @@ class StepoService {
     }
   }
 
+  /// Unfollow a user
   /// delete: /api/v1/users/{userId}/follow
   Future<Either<ApiError, ApiV1UsersUserIdFollowDeleteResponseDto>>
       apiV1UsersUserIdFollowDelete({required String userId}) async {
@@ -925,6 +949,7 @@ class StepoService {
     }
   }
 
+  /// Reject a follow request
   /// post: /api/v1/users/{userId}/reject-follow
   Future<Either<ApiError, ApiV1UsersUserIdRejectFollowPostResponseDto>>
       apiV1UsersUserIdRejectFollowPost({required String userId}) async {
@@ -938,6 +963,7 @@ class StepoService {
     }
   }
 
+  /// Get following status with a user
   /// get: /api/v1/users/{userId}/follow-status
   Future<Either<ApiError, ApiV1UsersUserIdFollowStatusGetResponseDto>>
       apiV1UsersUserIdFollowStatusGet({required String userId}) async {
@@ -951,6 +977,7 @@ class StepoService {
     }
   }
 
+  /// Get user's followers list
   /// get: /api/v1/users/{userId}/followers
   Future<Either<ApiError, List<UserDetailDto>>> apiV1UsersUserIdFollowersGet({
     required String userId,
@@ -974,6 +1001,7 @@ class StepoService {
     }
   }
 
+  /// Get user's followings list
   /// get: /api/v1/users/{userId}/followings
   Future<Either<ApiError, List<UserDetailDto>>> apiV1UsersUserIdFollowingsGet({
     required String userId,
@@ -997,6 +1025,7 @@ class StepoService {
     }
   }
 
+  /// Get user's followers count
   /// get: /api/v1/users/{userId}/followers/count
   Future<Either<ApiError, int>> apiV1UsersUserIdFollowersCountGet(
       {required String userId}) async {
@@ -1009,6 +1038,7 @@ class StepoService {
     }
   }
 
+  /// Get user's followings count
   /// get: /api/v1/users/{userId}/followings/count
   Future<Either<ApiError, int>> apiV1UsersUserIdFollowingsCountGet(
       {required String userId}) async {
@@ -1021,6 +1051,7 @@ class StepoService {
     }
   }
 
+  /// Delete a comment
   /// delete: /api/v1/comments/{commentId}
   Future<Either<ApiError, void>> apiV1CommentsCommentIdDelete(
       {required String commentId}) async {
@@ -1032,6 +1063,7 @@ class StepoService {
     }
   }
 
+  /// Create a reply to a comment
   /// post: /api/v1/comments/{parentCommentId}/replies
   Future<Either<ApiError, ApiV1CommentsParentCommentIdRepliesPostResponseDto>>
       apiV1CommentsParentCommentIdRepliesPost(
@@ -1052,6 +1084,7 @@ class StepoService {
     }
   }
 
+  /// Get replies for a comment
   /// get: /api/v1/comments/{commentId}/replies
   Future<Either<ApiError, List<ReplyDto>>> apiV1CommentsCommentIdRepliesGet({
     required String commentId,
