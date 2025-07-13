@@ -1,9 +1,11 @@
 # Defines a default set of lint rules enforced for
 # projects at Google. For details and rationale,
 # see https://github.com/dart-lang/pedantic#enabled-lints.
-include: package:pedantic/analysis_options.yaml
+include: package:lints/recommended.yaml
 
 analyzer:
+#  enable-experiment:
+#    - non-nullable
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
@@ -26,7 +28,6 @@ linter:
     - always_declare_return_types
     - always_put_control_body_on_new_line
     # - always_put_required_named_parameters_first # we prefer having parameters in the same order as fields https://github.com/flutter/flutter/issues/10219
-    - always_require_non_null_named_parameters
     # - always_specify_types
     - annotate_overrides
     # - avoid_annotating_with_dynamic # not yet tested
@@ -80,12 +81,11 @@ linter:
     - hash_and_equals
     - implementation_imports
     # - invariant_booleans # too many false positives: https://github.com/dart-lang/linter/issues/811
-    - iterable_contains_unrelated_type
+    - collection_methods_unrelated_type
     # - join_return_with_assignment # not yet tested
     - library_names
     - library_prefixes
     # - lines_longer_than_80_chars # not yet tested
-    - list_remove_unrelated_type
     # - literal_only_boolean_expressions # too many false positives: https://github.com/dart-lang/sdk/issues/34181
     - no_adjacent_strings_in_list
     - no_duplicate_case_values
@@ -95,7 +95,6 @@ linter:
     # - one_member_abstracts # too many false positives
     # - only_throw_errors # https://github.com/flutter/flutter/issues/5792
     - overridden_fields
-    - package_api_docs
     - package_names
     - package_prefixed_library_names
     # - parameter_assignments # we do this commonly
@@ -141,7 +140,7 @@ linter:
     - slash_for_doc_comments
     # - sort_child_properties_last # not yet tested
     - sort_constructors_first
-    - sort_pub_dependencies
+    #- sort_pub_dependencies
     - sort_unnamed_constructors_first
     - test_types_in_equals
     - throw_in_finally

@@ -1,9 +1,8 @@
 openapi: 3.0.0
-
 info:
   version: 0.1.0
-  title: AuthPass Cloud Backend
-
+  title: Example Api
+  x-dart-name: TestApi
 
 paths:
   /user/register:
@@ -18,7 +17,93 @@ paths:
       responses:
         '200':
           description: OK
-
+  /hello/{name}/html:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Say Hello World to {name} with a nice html page.
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: string
+  /hello/{name}:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Say Hello World to {name}
+      parameters:
+        - name: salutation
+          description: Optional salutation
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
+    put:
+      summary: Say Hello World to {name} with some parameters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HelloRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
+  /uuidExample/{messageId}:
+    parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      summary: details of uuid.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                required:
+                  - id
+  /hello/integer:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: integer
+              format: int32
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     RegisterRequest:
@@ -28,4 +113,36 @@ components:
           description: 'Email address for the current user.'
       required:
         - email
-
+    HelloRequest:
+      properties:
+        salutation:
+          type: string
+          description: 'Salutation used for greetings.'
+    HelloResponse:
+      properties:
+        message:
+          type: string
+          description: 'The Hello World greeting ;-)'
+    InheritanceBase:
+      properties:
+        test1: { type: string }
+      additionalProperties: true
+    InheritanceChild:
+      allOf:
+        - $ref: "#/components/schemas/InheritanceBase"
+        - properties:
+            test2: { type: string }
+    RecursiveObject:
+      properties:
+        parent:
+          $ref: '#/components/schemas/RecursiveObject'
+    TypedAdditionalProperties:
+      additionalProperties:
+        type: array
+        items:
+          type: object
+          properties:
+            foo:
+              type: integer
+            bar:
+              type: number
