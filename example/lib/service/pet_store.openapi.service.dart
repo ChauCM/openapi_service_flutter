@@ -11,10 +11,33 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'pet_store.openapi.dtos.dart';
 
+class PetStoreServiceConfig {
+  const PetStoreServiceConfig({
+    this.baseUrl = '',
+    this.connectTimeout = const Duration(seconds: 60),
+    this.receiveTimeout = const Duration(seconds: 60),
+    this.interceptors = const [],
+  });
+
+  final String baseUrl;
+
+  final Duration connectTimeout;
+
+  final Duration receiveTimeout;
+
+  final List<Interceptor> interceptors;
+}
+
 class PetStoreService {
-  PetStoreService(this._dio) {
-    _dio.options.connectTimeout = Duration(seconds: 60);
-    _dio.options.receiveTimeout = Duration(seconds: 60);
+  PetStoreService(
+    this._dio, {
+    PetStoreServiceConfig? config,
+  }) {
+    final serviceConfig = config ?? PetStoreServiceConfig();
+    _dio.options.baseUrl = serviceConfig.baseUrl;
+    _dio.options.connectTimeout = serviceConfig.connectTimeout;
+    _dio.options.receiveTimeout = serviceConfig.receiveTimeout;
+    _dio.interceptors.addAll(serviceConfig.interceptors);
   }
 
   final Dio _dio;
@@ -329,29 +352,51 @@ class PetStoreService {
   ApiError _handleError(dynamic error) {
     if (error is DioException) {
       final response = error.response;
-      final statusCode = response?.statusCode;
+      final statusCode = response?.statusCode ?? 0;
 
-      var message = 'An error occurred';
+      final errorType = switch (statusCode) {
+        401 => 'authentication_error',
+        403 => 'authorization_error',
+        404 => 'not_found_error',
+        408 => 'timeout_error',
+        422 => 'validation_error',
+        429 => 'rate_limit_error',
+        >= 500 => 'server_error',
+        _ => error.type.name,
+      };
+
+      String message = error.message ?? 'An error occurred';
       if (response?.data case final data?) {
-        try {
-          if (data is Map<String, dynamic>) {
-            message = data['message'];
-          }
-        } catch (_) {}
+        message = _extractErrorMessage(data) ?? message;
       }
 
-      message = error.message ?? 'An error occurred';
       return ApiError(
         message: message,
         statusCode: statusCode,
-        type: error.type.name,
+        type: errorType,
       );
     }
 
     return ApiError(
       message: error.toString(),
-      type: 'parse_error',
+      type: 'unknown_error',
     );
+  }
+
+  String? _extractErrorMessage(dynamic data) {
+    if (data is Map<String, dynamic>) {
+      // Try common error message fields
+      return data['message'] ??
+          data['error'] ??
+          data['detail'] ??
+          data['error_description'];
+    }
+
+    if (data is String) {
+      return data;
+    }
+
+    return null;
   }
 }
 

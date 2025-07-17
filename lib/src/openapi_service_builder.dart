@@ -430,23 +430,44 @@ class OpenApiLibraryGenerator {
   }
 
   void _generateServiceClassToLibrary(LibraryBuilder targetLb) {
+    // First generate ServiceConfig class
+    _generateServiceConfigClass(targetLb);
+
     final serviceClass = ClassBuilder()..name = '${baseName}Service';
 
-    // Constructor with Dio
+    // Constructor with Dio and optional config
     serviceClass.constructors.add(Constructor((cb) => cb
       ..requiredParameters.add(Parameter((pb) => pb
         ..name = '_dio'
         ..toThis = true))
+      ..optionalParameters.add(Parameter((pb) => pb
+        ..name = 'config'
+        ..type = refer('${baseName}ServiceConfig').asNullable(true)
+        ..named = true))
       ..body = Block.of([
+        declareFinal('serviceConfig')
+            .assign(
+                CodeExpression(Code('config ?? ${baseName}ServiceConfig()')))
+            .statement,
+        refer('_dio')
+            .property('options')
+            .property('baseUrl')
+            .assign(refer('serviceConfig').property('baseUrl'))
+            .statement,
         refer('_dio')
             .property('options')
             .property('connectTimeout')
-            .assign(refer('Duration')([], {'seconds': literalNum(60)}))
+            .assign(refer('serviceConfig').property('connectTimeout'))
             .statement,
         refer('_dio')
             .property('options')
             .property('receiveTimeout')
-            .assign(refer('Duration')([], {'seconds': literalNum(60)}))
+            .assign(refer('serviceConfig').property('receiveTimeout'))
+            .statement,
+        refer('_dio')
+            .property('interceptors')
+            .property('addAll')
+            ([refer('serviceConfig').property('interceptors')])
             .statement,
       ])));
 
@@ -508,10 +529,64 @@ class OpenApiLibraryGenerator {
       }
     }
 
-    // Add error handling method
+    // Add error handling methods
     serviceClass.methods.add(_generateHandleErrorMethod());
+    serviceClass.methods.add(_generateExtractErrorMessageMethod());
 
     targetLb.body.add(serviceClass.build());
+  }
+
+  void _generateServiceConfigClass(LibraryBuilder targetLb) {
+    final configClass = ClassBuilder()..name = '${baseName}ServiceConfig';
+
+    // Constructor
+    configClass.constructors.add(Constructor((cb) => cb
+      ..constant = true
+      ..optionalParameters.addAll([
+        Parameter((pb) => pb
+          ..name = 'baseUrl'
+          ..defaultTo = literalString('').code
+          ..named = true
+          ..toThis = true),
+        Parameter((pb) => pb
+          ..name = 'connectTimeout'
+          ..defaultTo = const Code('const Duration(seconds: 60)')
+          ..named = true
+          ..toThis = true),
+        Parameter((pb) => pb
+          ..name = 'receiveTimeout'
+          ..defaultTo = const Code('const Duration(seconds: 60)')
+          ..named = true
+          ..toThis = true),
+        Parameter((pb) => pb
+          ..name = 'interceptors'
+          ..defaultTo = const Code('const []')
+          ..named = true
+          ..toThis = true),
+      ])));
+
+    // Add fields
+    configClass.fields.addAll([
+      Field((fb) => fb
+        ..name = 'baseUrl'
+        ..type = refer('String')
+        ..modifier = FieldModifier.final$),
+      Field((fb) => fb
+        ..name = 'connectTimeout'
+        ..type = refer('Duration')
+        ..modifier = FieldModifier.final$),
+      Field((fb) => fb
+        ..name = 'receiveTimeout'
+        ..type = refer('Duration')
+        ..modifier = FieldModifier.final$),
+      Field((fb) => fb
+        ..name = 'interceptors'
+        ..type = _referType('List',
+            generics: [refer('Interceptor', 'package:dio/dio.dart')])
+        ..modifier = FieldModifier.final$),
+    ]);
+
+    targetLb.body.add(configClass.build());
   }
 
   Class _generateApiErrorModel() {
@@ -861,28 +936,35 @@ class OpenApiLibraryGenerator {
             .assign(refer('error').property('response'))
             .statement,
         declareFinal('statusCode')
-            .assign(refer('response').nullSafeProperty('statusCode'))
+            .assign(CodeExpression(Code('response?.statusCode ?? 0')))
             .statement,
         const Code(''),
-        declareVar('message')
-            .assign(literalString('An error occurred'))
-            .statement,
+
+        // Enhanced error type mapping based on status codes
+        const Code('final errorType = switch (statusCode) {'),
+        const Code('  401 => \'authentication_error\','),
+        const Code('  403 => \'authorization_error\','),
+        const Code('  404 => \'not_found_error\','),
+        const Code('  408 => \'timeout_error\','),
+        const Code('  422 => \'validation_error\','),
+        const Code('  429 => \'rate_limit_error\','),
+        const Code('  >= 500 => \'server_error\','),
+        const Code('  _ => error.type.name,'),
+        const Code('};'),
+        const Code(''),
+
+        // Enhanced message extraction
+        const Code('String message = error.message ?? \'An error occurred\';'),
         const Code('if (response?.data case final data?) {'),
-        const Code('try {'),
-        const Code('if (data is Map<String, dynamic>) {'),
-        refer('message')
-            .assign(refer('data').index(literalString('message')))
-            .statement,
-        const Code('}'),
-        const Code('} catch (_) {}'),
+        const Code('  message = _extractErrorMessage(data) ?? message;'),
         const Code('}'),
         const Code(''),
-        const Code('message = error.message ?? \'An error occurred\';'),
+
         refer('ApiError')
             .call([], {
               'message': refer('message'),
               'statusCode': refer('statusCode'),
-              'type': refer('error').property('type').property('name'),
+              'type': refer('errorType'),
             })
             .returned
             .statement,
@@ -891,10 +973,34 @@ class OpenApiLibraryGenerator {
         refer('ApiError')
             .call([], {
               'message': refer('error').property('toString')([]),
-              'type': literalString('parse_error'),
+              'type': literalString('unknown_error'),
             })
             .returned
             .statement,
+      ]));
+  }
+
+  Method _generateExtractErrorMessageMethod() {
+    return Method((mb) => mb
+      ..name = '_extractErrorMessage'
+      ..returns = refer('String').asNullable(true)
+      ..requiredParameters.add(Parameter((pb) => pb
+        ..name = 'data'
+        ..type = refer('dynamic')))
+      ..body = Block.of([
+        const Code('if (data is Map<String, dynamic>) {'),
+        const Code('  // Try common error message fields'),
+        const Code('  return data[\'message\'] ?? '),
+        const Code('         data[\'error\'] ?? '),
+        const Code('         data[\'detail\'] ?? '),
+        const Code('         data[\'error_description\'];'),
+        const Code('}'),
+        const Code(''),
+        const Code('if (data is String) {'),
+        const Code('  return data;'),
+        const Code('}'),
+        const Code(''),
+        const Code('return null;'),
       ]));
   }
 

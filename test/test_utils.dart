@@ -1,4 +1,6 @@
 import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+import 'package:openapi_service_flutter/src/openapi_service_builder.dart';
+import 'package:recase/recase.dart';
 
 /// Test utilities for OpenApiServiceBuilder tests
 class TestUtils {
@@ -184,4 +186,23 @@ components:
         - name
 ''';
   }
+}
+
+/// Helper function to generate service library from YAML content
+String generateServiceLibrary(String yamlContent) {
+  final api = OpenApiServiceBuilderUtils.loadApiFromYaml(yamlContent);
+  final baseName = (api.info?.extensions.containsKey('x-dart-name') == true)
+      ? api.info!.extensions['x-dart-name'] as String? ??
+          (api.info?.title ?? 'Test').pascalCase
+      : (api.info?.title ?? 'Test').pascalCase;
+
+  final generator = OpenApiLibraryGenerator(
+    api,
+    baseName: baseName,
+    partFileName: 'test.service.g.dart',
+    freezedPartFileName: 'test.service.freezed.dart',
+  );
+
+  final serviceLibrary = generator.generateServiceLibrary('test');
+  return OpenApiServiceBuilderUtils.formatLibrary(serviceLibrary);
 }
