@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Goal
+
+The goal of `openapi_service_flutter` is to generate clean, type-safe service code and DTOs that can be easily integrated into Flutter projects with well-structured service layers. The generated code follows modern Dart/Flutter patterns and provides:
+
+- **Separation of concerns**: DTOs for data modeling, services for API operations
+- **Type safety**: Compile-time validation through Freezed models and strict typing
+- **Error handling**: Functional error handling with Either types for robust service layers
+- **Configuration**: Flexible service configuration for different environments
+- **Maintainability**: Clean, readable generated code that follows Dart conventions
+
+This enables developers to quickly integrate OpenAPI-based services into their Flutter applications without manual boilerplate, while maintaining code quality and architectural best practices.
+
 ## Project Overview
 
 This is `openapi_service_flutter` - a Dart code generator that creates type-safe client libraries from OpenAPI specifications for Flutter applications. The generator now produces **separate DTO and service files** with Freezed models, JSON serialization, and Either-based error handling using the `either_dart` package.

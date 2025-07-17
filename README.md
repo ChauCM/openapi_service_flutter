@@ -209,6 +209,123 @@ targets:
           ignoreSecuritySchemes: false    # Ignore security schemes
 ```
 
+## Client Usage with Authentication
+
+For apps with authentication, integrate the service with your authentication state management:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dio/dio.dart';
+import 'api/stepo.openapi.service.dart';
+
+class AuthenticationCubit extends Cubit<AuthenticationState> {
+  late final StepoService _service;
+  late final Dio _dio;
+  
+  AuthenticationCubit() : super(AuthenticationState.unauthenticated()) {
+    _dio = Dio();
+    _setupAuthInterceptor();
+    
+    _service = StepoService(
+      _dio,
+      config: StepoServiceConfig(
+        baseUrl: 'https://api.stepo.com',
+      ),
+    );
+  }
+  
+  void _setupAuthInterceptor() {
+    _dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        // Add token to every request if available
+        if (token != null) {
+          options.headers['Authorization'] = 'Bearer $token';
+        }
+        handler.next(options);
+      },
+      onError: (error, handler) {
+        // Handle 401 - token expired
+        if (error.response?.statusCode == 401) {
+          logout(); // Clear invalid token
+        }
+        handler.next(error);
+      },
+    ));
+  }
+  
+  StepoService get service => _service;
+  
+  String? get token => state.maybeWhen(
+    authenticated: (token) => token,
+    orElse: () => null,
+  );
+  
+  Future<void> login(String email, String password) async {
+    final result = await _service.apiV1AuthLoginPost(LoginDto(
+      email: email,
+      password: password,
+    ));
+    
+    result.fold(
+      (error) => emit(AuthenticationState.error(error.message)),
+      (response) => emit(AuthenticationState.authenticated(token: response.token)),
+    );
+  }
+  
+  void logout() {
+    emit(AuthenticationState.unauthenticated());
+  }
+}
+
+// App setup
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AuthenticationCubit()),
+        BlocProvider(create: (context) => FetchStepCubit(
+          context.read<AuthenticationCubit>().service,
+        )),
+      ],
+      child: MaterialApp(
+        home: BlocBuilder<AuthenticationCubit, AuthenticationState>(
+          builder: (context, state) {
+            return state.isAuthenticated ? HomeScreen() : LoginScreen();
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// Feature cubit using the service
+class FetchStepCubit extends Cubit<FetchStepState> {
+  final StepoService _service;
+  
+  FetchStepCubit(this._service) : super(FetchStepInitial());
+  
+  Future<void> fetchSteps() async {
+    emit(FetchStepLoading());
+    
+    // Service automatically adds token if available
+    final result = await _service.apiV1AccountStepsGet();
+    
+    result.fold(
+      (error) => emit(FetchStepError(error.message)),
+      (steps) => emit(FetchStepSuccess(steps)),
+    );
+  }
+}
+```
+
+This setup provides:
+- **Single service instance** for both public and authenticated requests
+- **Automatic token injection** for protected endpoints
+- **Seamless authentication state changes**
+- **Automatic logout** on token expiry (401 errors)
+
 ## Examples
 
 Check the `example/` directory for complete examples with different OpenAPI specifications:
