@@ -4,27 +4,48 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is `openapi_service_flutter` - a Dart code generator that creates type-safe client libraries from OpenAPI specifications for Flutter applications. It generates separate DTO (Data Transfer Object) and service files with Freezed models, JSON serialization, and Either-based error handling.
+This is `openapi_service_flutter` - a Dart code generator that creates type-safe client libraries from OpenAPI specifications for Flutter applications. The generator now produces **separate DTO and service files** with Freezed models, JSON serialization, and Either-based error handling using the `either_dart` package.
 
-## Key Architecture
+## Key Architecture Changes
 
 ### Code Generation Pipeline
 - **Input**: `.openapi.yaml` files containing OpenAPI specifications
 - **Output**: Two separate files per spec:
-  - `.openapi.dtos.dart` - Freezed DTOs with JSON serialization
-  - `.openapi.service.dart` - Service class with HTTP methods using Dio
+  - `.openapi.dtos.dart` - Freezed DTOs with JSON serialization (includes both `.freezed.dart` and `.g.dart` parts)
+  - `.openapi.service.dart` - Service class with HTTP methods using Dio (imports DTOs)
 
 ### Core Components
 - `OpenApiServiceBuilder` - Main builder class that orchestrates code generation
-- `OpenApiLibraryGenerator` - Generates both DTO and service libraries
+- `OpenApiLibraryGenerator` - Generates both DTO and service libraries with separate methods:
+  - `generateDtosLibrary()` - Creates DTO-only library
+  - `generateServiceLibrary()` - Creates service-only library that imports DTOs
 - `CustomAllocator` - Handles import allocation for generated code
 - Build system integration via `build.yaml` configuration
 
 ### Generated Code Structure
-- DTOs use Freezed for immutable data classes with JSON serialization
-- Service classes use Dio for HTTP requests with Either-based error handling
-- API errors are wrapped in `ApiError` class with structured error information
-- Enum support with proper JSON value annotations
+- **DTOs**: Use Freezed with `@freezed` annotation, sealed classes, and JSON serialization
+- **Services**: Use Dio for HTTP requests with Either-based error handling from `either_dart`
+- **API Errors**: Sealed `ApiError` class with enhanced error handling and status code mapping
+- **Service Configuration**: Generated `ServiceConfig` class for each API with baseUrl, timeouts, and interceptors
+- **Enum Support**: Proper JSON value annotations with `@JsonValue` for enum values
+
+## Enhanced Features
+
+### Service Configuration
+Each generated service includes a configuration class:
+- `{BaseName}ServiceConfig` with baseUrl, connectTimeout, receiveTimeout, and interceptors
+- Constructor accepts optional config parameter with sensible defaults
+- Automatic Dio configuration in service constructor
+
+### Enhanced Error Handling
+- Status code to error type mapping (401→authentication_error, 403→authorization_error, etc.)
+- Error message extraction from common API response fields (message, error, detail, error_description)
+- Fallback to DioException message or generic error message
+
+### Improved Code Organization
+- Separate files reduce compilation overhead and improve maintainability
+- DTOs can be imported independently for type definitions
+- Service classes are leaner and focus on HTTP operations
 
 ## Common Development Commands
 
@@ -50,6 +71,9 @@ dart run openapi_service_flutter:openapi_code_builder_cli <path_to_openapi.yaml>
 
 # Run build runner for the example
 cd example && dart run build_runner build
+
+# Clean and regenerate
+cd example && dart run build_runner clean && dart run build_runner build
 ```
 
 ### Analysis and Formatting
@@ -70,27 +94,32 @@ Tests are located in `test/` directory with fixtures in `test/fixtures/`. The te
 - Basic code generation functionality
 - Edge cases and error scenarios
 - Different OpenAPI schema types (arrays, maps, enums, complex types)
+- Service enhancements (configuration, error handling)
 - Generated code validation
 
 Key test files:
 - `openapi_service_builder_test.dart` - Main functionality tests
 - `openapi_service_builder_edge_cases_test.dart` - Edge case handling
 - `openapi_library_generator_test.dart` - Library generation tests
+- `service_enhancements_test.dart` - Service configuration and error handling tests
+- `test_utils.dart` - Shared test utilities and helper functions
 
 ## Dependencies and Generated Code
 
 ### Key Dependencies
 - `build` and `source_gen` for code generation
 - `freezed` and `json_annotation` for DTO generation
-- `dio` and `dartz` for HTTP client and error handling
+- `dio` and `either_dart` for HTTP client and error handling (changed from `dartz`)
 - `open_api_forked` for OpenAPI specification parsing
+- `recase` for string case conversion
+- `dart_style` for code formatting
 
 ### Generated Code Dependencies
 Generated service code depends on:
-- `dio` for HTTP requests
-- `dartz` for Either-based error handling
-- `freezed_annotation` for DTO annotations
-- `json_annotation` for JSON serialization
+- `dio` (^5.3.2) for HTTP requests
+- `either_dart` (^1.0.0) for Either-based error handling
+- `freezed_annotation` (^3.1.0) for DTO annotations
+- `json_annotation` (^4.9.0) for JSON serialization
 
 ## Build Configuration
 
@@ -98,7 +127,7 @@ The package uses `build.yaml` to configure:
 - Builder factories and extensions
 - Output file patterns (`.openapi.yaml` → `.openapi.dtos.dart`, `.openapi.service.dart`)
 - Build order dependencies (runs before freezed and json_serializable)
-- Source generation settings
+- Auto-apply to dependents with source build target
 
 ## Example Usage
 
@@ -107,4 +136,7 @@ Examples are in `example/` directory with various OpenAPI specs:
 - `test_api.openapi.yaml` - Simple test API
 - `stepo.openapi.yaml` - Complex API with nested schemas
 
-Generated files include both DTOs and service classes that can be used directly in Flutter applications.
+Generated files include:
+- **DTOs**: `*.openapi.dtos.dart` with Freezed models and JSON serialization
+- **Services**: `*.openapi.service.dart` with HTTP methods and configuration
+- **Generated files**: `*.freezed.dart` and `*.g.dart` for serialization support
