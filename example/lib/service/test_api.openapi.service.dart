@@ -14,6 +14,7 @@ class TestApiServiceConfig {
     this.connectTimeout = const Duration(seconds: 60),
     this.receiveTimeout = const Duration(seconds: 60),
     this.interceptors = const [],
+    this.onError,
   });
 
   final String baseUrl;
@@ -23,6 +24,14 @@ class TestApiServiceConfig {
   final Duration receiveTimeout;
 
   final List<Interceptor> interceptors;
+
+  final void Function(
+      dynamic error,
+      StackTrace stackTrace,
+      String endpoint,
+      Map<String, dynamic> headers,
+      dynamic requestBody,
+      dynamic responseBody)? onError;
 }
 
 class TestApiService {
@@ -31,6 +40,7 @@ class TestApiService {
     TestApiServiceConfig? config,
   }) {
     final serviceConfig = config ?? TestApiServiceConfig();
+    _onError = serviceConfig.onError;
     _dio.options.baseUrl = serviceConfig.baseUrl;
     _dio.options.connectTimeout = serviceConfig.connectTimeout;
     _dio.options.receiveTimeout = serviceConfig.receiveTimeout;
@@ -38,6 +48,14 @@ class TestApiService {
   }
 
   final Dio _dio;
+
+  late final void Function(
+      dynamic error,
+      StackTrace stackTrace,
+      String endpoint,
+      Map<String, dynamic> headers,
+      dynamic requestBody,
+      dynamic responseBody)? _onError;
 
   /// Create new user
   /// post: /user/register
@@ -49,8 +67,12 @@ class TestApiService {
         data: body.toJson(),
       );
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/user/register',
+      ));
     }
   }
 
@@ -61,8 +83,12 @@ class TestApiService {
       final response = await _dio.get('/hello/{name}/html');
       final result = (response.data as String);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/hello/{name}/html',
+      ));
     }
   }
 
@@ -80,8 +106,12 @@ class TestApiService {
       );
       final result = HelloResponseDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/hello/{name}',
+      ));
     }
   }
 
@@ -96,8 +126,12 @@ class TestApiService {
       );
       final result = HelloResponseDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/hello/{name}',
+      ));
     }
   }
 
@@ -109,8 +143,12 @@ class TestApiService {
       final response = await _dio.get('/uuidExample/{messageId}');
       final result = UuidExampleMessageIdGetResponseDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/uuidExample/{messageId}',
+      ));
     }
   }
 
@@ -122,12 +160,20 @@ class TestApiService {
         data: body,
       );
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/hello/integer',
+      ));
     }
   }
 
-  ApiError _handleError(dynamic error) {
+  ApiError _handleError(
+    dynamic error,
+    StackTrace stackTrace,
+    String endpoint,
+  ) {
     if (error is DioException) {
       final response = error.response;
       final statusCode = response?.statusCode ?? 0;
@@ -148,11 +194,33 @@ class TestApiService {
         message = _extractErrorMessage(data) ?? message;
       }
 
+// Call onError callback if provided
+      if (_onError != null) {
+        try {
+          final headers = response?.headers.map ?? <String, dynamic>{};
+          final requestData = error.requestOptions.data;
+          final responseData = response?.data;
+          _onError(
+              error, stackTrace, endpoint, headers, requestData, responseData);
+        } catch (_) {
+          // Ignore errors in callback to prevent recursive issues
+        }
+      }
+
       return ApiError(
         message: message,
         statusCode: statusCode,
         type: errorType,
       );
+    }
+
+// Call onError callback for unknown errors
+    if (_onError != null) {
+      try {
+        _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);
+      } catch (_) {
+        // Ignore errors in callback to prevent recursive issues
+      }
     }
 
     return ApiError(

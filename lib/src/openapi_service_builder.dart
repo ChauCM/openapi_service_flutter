@@ -456,6 +456,9 @@ class OpenApiLibraryGenerator {
             .assign(
                 CodeExpression(Code('config ?? ${baseName}ServiceConfig()')))
             .statement,
+        refer('_onError')
+            .assign(refer('serviceConfig').property('onError'))
+            .statement,
         refer('_dio')
             .property('options')
             .property('baseUrl')
@@ -482,6 +485,13 @@ class OpenApiLibraryGenerator {
     serviceClass.fields.add(Field((fb) => fb
       ..name = '_dio'
       ..type = _dio
+      ..modifier = FieldModifier.final$));
+
+    // Add _onError field
+    serviceClass.fields.add(Field((fb) => fb
+      ..name = '_onError'
+      ..type = refer('void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)').asNullable(true)
+      ..late = true
       ..modifier = FieldModifier.final$));
 
     // Generate service methods for each API operation
@@ -570,6 +580,10 @@ class OpenApiLibraryGenerator {
           ..defaultTo = const Code('const []')
           ..named = true
           ..toThis = true),
+        Parameter((pb) => pb
+          ..name = 'onError'
+          ..named = true
+          ..toThis = true),
       ])));
 
     // Add fields
@@ -590,6 +604,10 @@ class OpenApiLibraryGenerator {
         ..name = 'interceptors'
         ..type = _referType('List',
             generics: [refer('Interceptor', 'package:dio/dio.dart')])
+        ..modifier = FieldModifier.final$),
+      Field((fb) => fb
+        ..name = 'onError'
+        ..type = refer('void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)').asNullable(true)
         ..modifier = FieldModifier.final$),
     ]);
 
@@ -728,6 +746,15 @@ class OpenApiLibraryGenerator {
     }
 
     // Generate method body
+    // Calculate the actual path with parameters replaced
+    final pathParams =
+        allParameters.where((p) => p!.location == APIParameterLocation.path);
+    var actualPath = path;
+    for (final param in pathParams) {
+      actualPath = actualPath.replaceAll(
+          '{${param!.name}}', '\$${param.name!.camelCase}');
+    }
+
     final methodBody = <Code>[
       const Code('try {'),
       // Build query parameters if any exist
@@ -892,9 +919,9 @@ class OpenApiLibraryGenerator {
         const Code('return const Right(null);'),
       ],
 
-      const Code('} catch (e) {'),
+      const Code('} catch (e, stackTrace) {'),
       _left([
-        refer('_handleError')([refer('e')])
+        refer('_handleError')([refer('e'), refer('stackTrace'), literalString(actualPath)])
       ]).returned.statement,
       const Code('}'),
     ];
@@ -957,9 +984,17 @@ class OpenApiLibraryGenerator {
     return Method((mb) => mb
       ..name = '_handleError'
       ..returns = refer('ApiError')
-      ..requiredParameters.add(Parameter((pb) => pb
-        ..name = 'error'
-        ..type = refer('dynamic')))
+      ..requiredParameters.addAll([
+        Parameter((pb) => pb
+          ..name = 'error'
+          ..type = refer('dynamic')),
+        Parameter((pb) => pb
+          ..name = 'stackTrace'
+          ..type = refer('StackTrace')),
+        Parameter((pb) => pb
+          ..name = 'endpoint'
+          ..type = refer('String')),
+      ])
       ..body = Block.of([
         const Code('if (error is DioException) {'),
         declareFinal('response')
@@ -990,6 +1025,19 @@ class OpenApiLibraryGenerator {
         const Code('}'),
         const Code(''),
 
+        const Code(''),
+        const Code('// Call onError callback if provided'),
+        const Code('if (_onError != null) {'),
+        const Code('  try {'),
+        const Code('    final headers = response?.headers.map ?? <String, dynamic>{};'),
+        const Code('    final requestData = error.requestOptions.data;'),
+        const Code('    final responseData = response?.data;'),
+        const Code('    _onError(error, stackTrace, endpoint, headers, requestData, responseData);'),
+        const Code('  } catch (_) {'),
+        const Code('    // Ignore errors in callback to prevent recursive issues'),
+        const Code('  }'),
+        const Code('}'),
+        const Code(''),
         refer('ApiError')
             .call([], {
               'message': refer('message'),
@@ -998,6 +1046,15 @@ class OpenApiLibraryGenerator {
             })
             .returned
             .statement,
+        const Code('}'),
+        const Code(''),
+        const Code('// Call onError callback for unknown errors'),
+        const Code('if (_onError != null) {'),
+        const Code('  try {'),
+        const Code('    _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);'),
+        const Code('  } catch (_) {'),
+        const Code('    // Ignore errors in callback to prevent recursive issues'),
+        const Code('  }'),
         const Code('}'),
         const Code(''),
         refer('ApiError')

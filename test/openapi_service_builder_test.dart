@@ -1114,6 +1114,95 @@ components:
         expect(serviceOutput, isNot(contains('result.map((item) => item).toList()')));
         expect(serviceOutput, isNot(contains('(mappedResult as List<ItemDto>)')));
       });
+
+      test('generates onError callback in service configuration and error handling', () async {
+        final errorCallbackYaml = '''
+openapi: 3.0.0
+info:
+  title: Error Callback API
+  version: 1.0.0
+  x-dart-name: ErrorCallbackApi
+
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+''';
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(errorCallbackYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'ErrorCallbackApi',
+          partFileName: 'error_callback_api.openapi.dtos.g.dart',
+          freezedPartFileName: 'error_callback_api.openapi.dtos.freezed.dart',
+        );
+
+        final serviceLibrary = generator.generateServiceLibrary('error_callback_api');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+        );
+
+        // Should generate service config with onError callback parameter
+        expect(serviceOutput, contains('class ErrorCallbackApiServiceConfig'));
+        expect(serviceOutput, contains('this.onError'));
+        expect(serviceOutput, contains('void Function('));
+        expect(serviceOutput, contains('dynamic error'));
+        expect(serviceOutput, contains('StackTrace stackTrace'));
+        expect(serviceOutput, contains('String endpoint'));
+        expect(serviceOutput, contains('Map<String, dynamic> headers'));
+        expect(serviceOutput, contains('dynamic requestBody'));
+        expect(serviceOutput, contains('dynamic responseBody'));
+        expect(serviceOutput, contains(')? onError'));
+
+        // Should generate service class with onError field
+        expect(serviceOutput, contains('class ErrorCallbackApiService'));
+        expect(serviceOutput, contains('late final void Function('));
+        expect(serviceOutput, contains(')? _onError'));
+
+        // Should initialize onError field in constructor
+        expect(serviceOutput, contains('_onError = serviceConfig.onError'));
+
+        // Should generate _handleError method with callback invocation
+        expect(serviceOutput, contains('ApiError _handleError'));
+        expect(serviceOutput, contains('if (_onError != null)'));
+        expect(serviceOutput, contains('_onError('));
+        expect(serviceOutput, contains('error, stackTrace, endpoint, headers, requestData, responseData)'));
+        expect(serviceOutput, contains('final headers = response?.headers.map ?? <String, dynamic>{}'));
+        expect(serviceOutput, contains('final requestData = error.requestOptions.data'));
+        expect(serviceOutput, contains('final responseData = response?.data'));
+
+        // Should handle both DioException and unknown errors
+        expect(serviceOutput, contains('if (error is DioException)'));
+        expect(serviceOutput, contains('// Call onError callback if provided'));
+        expect(serviceOutput, contains('// Call onError callback for unknown errors'));
+
+        // Should wrap callback calls in try-catch blocks
+        expect(serviceOutput, contains('try {'));
+        expect(serviceOutput, contains('} catch (_) {'));
+        expect(serviceOutput, contains('// Ignore errors in callback to prevent recursive issues'));
+
+        // Should pass endpoint parameter to _handleError
+        expect(serviceOutput, contains('_handleError('));
+        expect(serviceOutput, contains('e,'));
+        expect(serviceOutput, contains('stackTrace,'));
+        expect(serviceOutput, contains('\'/test\','));
+      });
     });
 
     group('buildExtensions', () {

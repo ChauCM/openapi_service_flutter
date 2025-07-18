@@ -14,6 +14,7 @@ class StepoJson311ServiceConfig {
     this.connectTimeout = const Duration(seconds: 60),
     this.receiveTimeout = const Duration(seconds: 60),
     this.interceptors = const [],
+    this.onError,
   });
 
   final String baseUrl;
@@ -23,6 +24,14 @@ class StepoJson311ServiceConfig {
   final Duration receiveTimeout;
 
   final List<Interceptor> interceptors;
+
+  final void Function(
+      dynamic error,
+      StackTrace stackTrace,
+      String endpoint,
+      Map<String, dynamic> headers,
+      dynamic requestBody,
+      dynamic responseBody)? onError;
 }
 
 class StepoJson311Service {
@@ -31,6 +40,7 @@ class StepoJson311Service {
     StepoJson311ServiceConfig? config,
   }) {
     final serviceConfig = config ?? StepoJson311ServiceConfig();
+    _onError = serviceConfig.onError;
     _dio.options.baseUrl = serviceConfig.baseUrl;
     _dio.options.connectTimeout = serviceConfig.connectTimeout;
     _dio.options.receiveTimeout = serviceConfig.receiveTimeout;
@@ -39,14 +49,26 @@ class StepoJson311Service {
 
   final Dio _dio;
 
+  late final void Function(
+      dynamic error,
+      StackTrace stackTrace,
+      String endpoint,
+      Map<String, dynamic> headers,
+      dynamic requestBody,
+      dynamic responseBody)? _onError;
+
   /// get: /api/v1/account
   Future<Either<ApiError, AccountDto>> apiV1AccountGet() async {
     try {
       final response = await _dio.get('/api/v1/account');
       final result = AccountDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account',
+      ));
     }
   }
 
@@ -59,8 +81,12 @@ class StepoJson311Service {
       );
       final result = AccountDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account',
+      ));
     }
   }
 
@@ -69,8 +95,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.delete('/api/v1/account');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account',
+      ));
     }
   }
 
@@ -90,8 +120,12 @@ class StepoJson311Service {
       );
       final result = (response.data as String);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/avatar/upload-url',
+      ));
     }
   }
 
@@ -105,8 +139,12 @@ class StepoJson311Service {
       );
       final result = AccountDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/avatar',
+      ));
     }
   }
 
@@ -130,8 +168,12 @@ class StepoJson311Service {
               JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/journeys',
+      ));
     }
   }
 
@@ -154,8 +196,12 @@ class StepoJson311Service {
           .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/steps',
+      ));
     }
   }
 
@@ -178,8 +224,12 @@ class StepoJson311Service {
           .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/feed',
+      ));
     }
   }
 
@@ -193,8 +243,12 @@ class StepoJson311Service {
       );
       final result = LoginResponseDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/auth/login',
+      ));
     }
   }
 
@@ -205,8 +259,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/users/$id');
       final result = ProfileDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$id',
+      ));
     }
   }
 
@@ -231,8 +289,12 @@ class StepoJson311Service {
               JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$id/journeys',
+      ));
     }
   }
 
@@ -256,8 +318,12 @@ class StepoJson311Service {
           .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$id/steps',
+      ));
     }
   }
 
@@ -272,8 +338,12 @@ class StepoJson311Service {
       );
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps',
+      ));
     }
   }
 
@@ -285,8 +355,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/steps/$stepId');
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId',
+      ));
     }
   }
 
@@ -303,8 +377,12 @@ class StepoJson311Service {
       );
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId',
+      ));
     }
   }
 
@@ -315,8 +393,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.delete('/api/v1/steps/$stepId');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId',
+      ));
     }
   }
 
@@ -339,8 +421,12 @@ class StepoJson311Service {
       );
       final result = ImagePresignedUrlDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/media/upload-requests',
+      ));
     }
   }
 
@@ -357,8 +443,12 @@ class StepoJson311Service {
       );
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/images',
+      ));
     }
   }
 
@@ -370,8 +460,12 @@ class StepoJson311Service {
       final response = await _dio.put('/api/v1/steps/$stepId/video');
       final result = VideoPreSignedUrlDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/video',
+      ));
     }
   }
 
@@ -395,8 +489,12 @@ class StepoJson311Service {
           .map((item) => ReportDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/reports',
+      ));
     }
   }
 
@@ -411,8 +509,12 @@ class StepoJson311Service {
       );
       final result = ReportDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/reports',
+      ));
     }
   }
 
@@ -432,8 +534,12 @@ class StepoJson311Service {
       );
       final result = NotificationPagedDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications',
+      ));
     }
   }
 
@@ -447,8 +553,12 @@ class StepoJson311Service {
       );
       final result = NotificationDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications',
+      ));
     }
   }
 
@@ -458,8 +568,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/notifications/summary');
       final result = (response.data as int);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/summary',
+      ));
     }
   }
 
@@ -469,8 +583,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.put('/api/v1/notifications/$notificationId/read');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/$notificationId/read',
+      ));
     }
   }
 
@@ -479,8 +597,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.put('/api/v1/notifications/read-status');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/read-status',
+      ));
     }
   }
 
@@ -490,8 +612,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.delete('/api/v1/notifications/$notificationId');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/$notificationId',
+      ));
     }
   }
 
@@ -509,8 +635,12 @@ class StepoJson311Service {
               NotificationDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/bulk',
+      ));
     }
   }
 
@@ -530,8 +660,12 @@ class StepoJson311Service {
       );
       final result = ImagePresignedUrlDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/media/uploads',
+      ));
     }
   }
 
@@ -551,8 +685,12 @@ class StepoJson311Service {
       );
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/media/images',
+      ));
     }
   }
 
@@ -569,8 +707,12 @@ class StepoJson311Service {
       );
       final result = VideoPreSignedUrlDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/media/videos',
+      ));
     }
   }
 
@@ -581,8 +723,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/media/$mediaId');
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/media/$mediaId',
+      ));
     }
   }
 
@@ -595,8 +741,12 @@ class StepoJson311Service {
         data: body.toJson(),
       );
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/webhooks/video-updates',
+      ));
     }
   }
 
@@ -605,8 +755,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.post('/api/v1/video-jobs');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/video-jobs',
+      ));
     }
   }
 
@@ -618,8 +772,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/journeys/$id');
       final result = JourneyInDetailDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$id',
+      ));
     }
   }
 
@@ -636,8 +794,12 @@ class StepoJson311Service {
       );
       final result = JourneyDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$id',
+      ));
     }
   }
 
@@ -648,8 +810,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.delete('/api/v1/journeys/$id');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$id',
+      ));
     }
   }
 
@@ -664,8 +830,12 @@ class StepoJson311Service {
       );
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys',
+      ));
     }
   }
 
@@ -685,8 +855,12 @@ class StepoJson311Service {
       );
       final result = JourneyDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$id/close',
+      ));
     }
   }
 
@@ -698,8 +872,12 @@ class StepoJson311Service {
       final response = await _dio.post('/api/v1/journeys/$id/reopen');
       final result = JourneyDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$id/reopen',
+      ));
     }
   }
 
@@ -725,8 +903,12 @@ class StepoJson311Service {
           .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$journeyId/steps-detail',
+      ));
     }
   }
 
@@ -751,8 +933,12 @@ class StepoJson311Service {
           .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$journeyId/steps',
+      ));
     }
   }
 
@@ -768,8 +954,12 @@ class StepoJson311Service {
               JourneyDayCalendarDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$journeyId/calendar',
+      ));
     }
   }
 
@@ -795,8 +985,12 @@ class StepoJson311Service {
           .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/newer-steps/$stepId',
+      ));
     }
   }
 
@@ -822,8 +1016,12 @@ class StepoJson311Service {
           .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/older-steps/$stepId',
+      ));
     }
   }
 
@@ -839,8 +1037,12 @@ class StepoJson311Service {
       );
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/hearts',
+      ));
     }
   }
 
@@ -851,8 +1053,12 @@ class StepoJson311Service {
       final response = await _dio.delete('/api/v1/steps/$stepId/hearts');
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/hearts',
+      ));
     }
   }
 
@@ -868,8 +1074,12 @@ class StepoJson311Service {
       );
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/shares',
+      ));
     }
   }
 
@@ -880,8 +1090,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/steps/$stepId/interactions');
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/interactions',
+      ));
     }
   }
 
@@ -897,8 +1111,12 @@ class StepoJson311Service {
       );
       final result = (response.data as bool);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/comments/$commentId/hearts',
+      ));
     }
   }
 
@@ -910,8 +1128,12 @@ class StepoJson311Service {
           await _dio.delete('/api/v1/steps/comments/$commentId/hearts');
       final result = (response.data as bool);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/comments/$commentId/hearts',
+      ));
     }
   }
 
@@ -935,8 +1157,12 @@ class StepoJson311Service {
           .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/followers',
+      ));
     }
   }
 
@@ -960,8 +1186,12 @@ class StepoJson311Service {
           .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/followings',
+      ));
     }
   }
 
@@ -973,8 +1203,12 @@ class StepoJson311Service {
       final response = await _dio.post('/api/v1/users/$userId/follow');
       final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/follow',
+      ));
     }
   }
 
@@ -986,8 +1220,12 @@ class StepoJson311Service {
       final response = await _dio.delete('/api/v1/users/$userId/follow');
       final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/follow',
+      ));
     }
   }
 
@@ -999,8 +1237,12 @@ class StepoJson311Service {
       final response = await _dio.post('/api/v1/users/$userId/reject-follow');
       final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/reject-follow',
+      ));
     }
   }
 
@@ -1012,8 +1254,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/users/$userId/follow-status');
       final result = FollowingStatusDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/follow-status',
+      ));
     }
   }
 
@@ -1038,8 +1284,12 @@ class StepoJson311Service {
           .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/followers',
+      ));
     }
   }
 
@@ -1064,8 +1314,12 @@ class StepoJson311Service {
           .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/followings',
+      ));
     }
   }
 
@@ -1077,8 +1331,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/users/$userId/followers/count');
       final result = (response.data as int);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/followers/count',
+      ));
     }
   }
 
@@ -1090,8 +1348,12 @@ class StepoJson311Service {
       final response = await _dio.get('/api/v1/users/$userId/followings/count');
       final result = (response.data as int);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/users/$userId/followings/count',
+      ));
     }
   }
 
@@ -1102,8 +1364,12 @@ class StepoJson311Service {
     try {
       final _ = await _dio.delete('/api/v1/comments/$commentId');
       return const Right(null);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/comments/$commentId',
+      ));
     }
   }
 
@@ -1120,8 +1386,12 @@ class StepoJson311Service {
       );
       final result = ReplyDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/comments/$parentCommentId/replies',
+      ));
     }
   }
 
@@ -1146,8 +1416,12 @@ class StepoJson311Service {
           .map((item) => ReplyDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/comments/$commentId/replies',
+      ));
     }
   }
 
@@ -1172,8 +1446,12 @@ class StepoJson311Service {
               (item) => StepCommentDto.fromJson((item as Map<String, dynamic>)))
           .toList();
       return Right(mappedResult);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/comments',
+      ));
     }
   }
 
@@ -1189,12 +1467,20 @@ class StepoJson311Service {
       );
       final result = StepCommentDto.fromJson(response.data);
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/steps/$stepId/comments',
+      ));
     }
   }
 
-  ApiError _handleError(dynamic error) {
+  ApiError _handleError(
+    dynamic error,
+    StackTrace stackTrace,
+    String endpoint,
+  ) {
     if (error is DioException) {
       final response = error.response;
       final statusCode = response?.statusCode ?? 0;
@@ -1215,11 +1501,33 @@ class StepoJson311Service {
         message = _extractErrorMessage(data) ?? message;
       }
 
+// Call onError callback if provided
+      if (_onError != null) {
+        try {
+          final headers = response?.headers.map ?? <String, dynamic>{};
+          final requestData = error.requestOptions.data;
+          final responseData = response?.data;
+          _onError(
+              error, stackTrace, endpoint, headers, requestData, responseData);
+        } catch (_) {
+          // Ignore errors in callback to prevent recursive issues
+        }
+      }
+
       return ApiError(
         message: message,
         statusCode: statusCode,
         type: errorType,
       );
+    }
+
+// Call onError callback for unknown errors
+    if (_onError != null) {
+      try {
+        _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);
+      } catch (_) {
+        // Ignore errors in callback to prevent recursive issues
+      }
     }
 
     return ApiError(
