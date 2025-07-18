@@ -1,0 +1,32 @@
+openapi: 3.1.1
+info:
+  title: OpenAPI 3.1.1 Test API
+  version: 1.0.0
+  x-dart-name: OpenApi311TestApi
+
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  nullableField:
+                    type: ["null", "string"]
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        value:
+                          type: string
+                required:
+                  - message

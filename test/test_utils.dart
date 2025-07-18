@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:path/path.dart' as path;
 import 'package:openapi_service_flutter/openapi_service_flutter.dart';
 import 'package:openapi_service_flutter/src/openapi_service_builder.dart';
 import 'package:recase/recase.dart';
@@ -186,6 +188,18 @@ components:
         - name
 ''';
   }
+}
+
+/// Helper function to load fixture files from the test/fixtures directory
+Future<String> loadFixture(String filename) async {
+  final fixturesDir = path.join(Directory.current.path, 'test', 'fixtures');
+  final file = File(path.join(fixturesDir, filename));
+  
+  if (!await file.exists()) {
+    throw Exception('Fixture file not found: $filename');
+  }
+  
+  return await file.readAsString();
 }
 
 /// Helper function to generate service library from YAML content

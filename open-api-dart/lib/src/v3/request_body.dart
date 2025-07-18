@@ -11,7 +11,7 @@ class APIRequestBody extends APIObject {
   }
 
   APIRequestBody.schema(APISchemaObject schema,
-      {Iterable<String> contentTypes: const ["application/json"],
+      {Iterable<String> contentTypes = const ["application/json"],
       this.description,
       bool isRequired = false}) {
     this.isRequired = isRequired;

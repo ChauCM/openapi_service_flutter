@@ -190,8 +190,8 @@ void main() {
     test("Security requirement", () {
       expect(doc!.security, isNotNull);
       expect(doc!.security!.length, 2);
-      expect(doc!.security!.first!.requirements!.containsKey("basicAuth"), true);
-      expect(doc!.security!.last!.requirements!.containsKey("bearerAuth"), true);
+      expect(doc!.security!.first!.requirements.containsKey("basicAuth"), true);
+      expect(doc!.security!.last!.requirements.containsKey("bearerAuth"), true);
     });
   });
 
@@ -268,6 +268,214 @@ void main() {
   });
 
   group("Callbacks", () {});
+
+  group("OpenAPI 3.1.1 array type support", () {
+    test("Should maintain backward compatibility with single type strings", () {
+      final doc = APIDocument.fromMap({
+        "openapi": "3.0.0",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "paths": <String, dynamic>{},
+        "components": {
+          "schemas": {
+            "SimpleString": {
+              "type": "string",
+              "description": "A simple string field"
+            }
+          }
+        }
+      });
+
+      // Verify single type still works
+      final schema = doc.components!.schemas!["SimpleString"]!;
+      expect(schema.type, APIType.string);
+      expect(schema.type, isNot(isList));
+      
+      // Test helper methods with single type
+      expect(schema.allowsNull, isFalse);
+      expect(schema.primaryType, APIType.string);
+      expect(schema.hasMultipleTypes, isFalse);
+    });
+
+    test("Should handle encode/decode correctly for array types", () {
+      final doc = APIDocument.fromMap({
+        "openapi": "3.1.1",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "paths": <String, dynamic>{},
+        "components": {
+          "schemas": {
+            "NullableString": {
+              "type": ["null", "string"],
+              "description": "A field that can be null or string"
+            }
+          }
+        }
+      });
+
+      // Encode back to map and verify array format is preserved
+      final encoded = doc.asMap();
+      final typeField = encoded["components"]["schemas"]["NullableString"]["type"];
+      expect(typeField, isList);
+      expect(typeField, contains("null"));
+      expect(typeField, contains("string"));
+    });
+  
+    test("Should handle type array syntax ['null', 'string']", () {
+      final doc = APIDocument.fromMap({
+        "openapi": "3.1.1",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "paths": <String, dynamic>{},
+        "components": {
+          "schemas": {
+            "NullableString": {
+              "type": ["null", "string"],
+              "description": "A field that can be null or string"
+            }
+          }
+        }
+      });
+
+      // Verify the schema was parsed correctly
+      final schema = doc.components!.schemas!["NullableString"]!;
+      expect(schema.type, isNotNull);
+      expect(schema.type, isList);
+      expect((schema.type as List).length, 2);
+      expect((schema.type as List).contains(null), isTrue);
+      expect((schema.type as List).contains(APIType.string), isTrue);
+      
+      // Test helper methods
+      expect(schema.allowsNull, isTrue);
+      expect(schema.primaryType, APIType.string);
+      expect(schema.hasMultipleTypes, isTrue);
+    });
+
+    test("Should handle multiple type array ['integer', 'number']", () {
+      final doc = APIDocument.fromMap({
+        "openapi": "3.1.1",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "paths": <String, dynamic>{},
+        "components": {
+          "schemas": {
+            "NumericValue": {
+              "type": ["integer", "number"],
+              "description": "A field that can be integer or number"
+            }
+          }
+        }
+      });
+
+      final schema = doc.components!.schemas!["NumericValue"]!;
+      expect(schema.type, isNotNull);
+      expect(schema.type, isList);
+      expect((schema.type as List).length, 2);
+      expect((schema.type as List).contains(APIType.integer), isTrue);
+      expect((schema.type as List).contains(APIType.number), isTrue);
+      
+      // Test helper methods
+      expect(schema.allowsNull, isFalse);
+      expect(schema.primaryType, APIType.integer);
+      expect(schema.hasMultipleTypes, isTrue);;
+    });
+
+    test("Should handle complex type array ['string', 'object']", () {
+      final doc = APIDocument.fromMap({
+        "openapi": "3.1.1",
+        "info": {"title": "Test API", "version": "1.0.0"},
+        "paths": <String, dynamic>{},
+        "components": {
+          "schemas": {
+            "MixedType": {
+              "type": ["string", "object"],
+              "description": "A field that can be string or object",
+              "properties": {
+                "id": {"type": "string"}
+              }
+            }
+          }
+        }
+      });
+
+      final schema = doc.components!.schemas!["MixedType"]!;
+      expect(schema.type, isNotNull);
+      expect(schema.type, isList);
+      expect((schema.type as List).length, 2);
+      expect((schema.type as List).contains(APIType.string), isTrue);
+      expect((schema.type as List).contains(APIType.object), isTrue);
+      
+      // Test helper methods
+      expect(schema.allowsNull, isFalse);
+      expect(schema.primaryType, APIType.string);
+      expect(schema.hasMultipleTypes, isTrue);;
+      
+      // Verify properties are still parsed correctly
+      expect(schema.properties, isNotNull);
+      expect(schema.properties!["id"]!.type, APIType.string);
+    });
+
+    test("Should handle full OpenAPI 3.1.1 document with array types", () {
+      // This test replicates the issue from the builder test
+      final doc = APIDocument.fromMap({
+        "openapi": "3.1.1",
+        "info": {
+          "title": "OpenAPI 3.1.1 Test API",
+          "version": "1.0.0",
+          "x-dart-name": "OpenApi311TestApi"
+        },
+        "paths": {
+          "/test": {
+            "get": {
+              "responses": {
+                "200": {
+                  "description": "Success",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": {"type": "string"},
+                          "nullableField": {"type": ["null", "string"]},
+                          "data": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {"type": "string"},
+                                "value": {"type": "string"}
+                              }
+                            }
+                          }
+                        },
+                        "required": ["message"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+
+      expect(doc.version, "3.1.1");
+      expect(doc.info!.title, "OpenAPI 3.1.1 Test API");
+      
+      // Verify the response schema with array type
+      final response = doc.paths!["/test"]!.operations["get"]!.responses!["200"]!;
+      final schema = response.content!["application/json"]!.schema!;
+      
+      expect(schema.type, APIType.object);
+      expect(schema.properties, isNotNull);
+      expect(schema.properties!.length, 3);
+      
+      // Check the nullable field with array type
+      final nullableField = schema.properties!["nullableField"]!;
+      expect(nullableField.type, isList);
+      expect((nullableField.type as List).length, 2);
+      expect((nullableField.type as List).contains(null), isTrue);
+      expect((nullableField.type as List).contains(APIType.string), isTrue);
+      expect(nullableField.allowsNull, isTrue);
+      expect(nullableField.primaryType, APIType.string);
+    });
+  });
 
   group("'add' methods", () {
     test("'addHeader'", () {

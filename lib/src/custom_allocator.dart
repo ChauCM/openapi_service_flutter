@@ -1,7 +1,5 @@
 import 'package:code_builder/code_builder.dart';
 
-/// The same as `Allocator.simplePrefixing` but will also not prefix
-/// `openapi_base`.
 class CustomAllocator implements Allocator {
   static const _doNotPrefix = [
     'dart:core',

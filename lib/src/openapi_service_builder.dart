@@ -10,7 +10,7 @@ import 'package:code_builder/src/visitors.dart'; // ignore: implementation_impor
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:dart_style/dart_style.dart';
 import 'package:logging/logging.dart';
-import 'package:open_api_forked/v3.dart';
+import 'package:open_api_dart/v3.dart';
 import 'package:openapi_service_flutter/src/custom_allocator.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:recase/recase.dart';
@@ -1144,7 +1144,10 @@ class OpenApiLibraryGenerator {
   }
 
   Reference toDartType(String parent, APISchemaObject schema) {
-    switch (schema.type ?? APIType.object) {
+    // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
+    final effectiveType = schema.primaryType ?? APIType.object;
+    
+    switch (effectiveType) {
       case APIType.string:
         if (schema.enumerated != null && schema.enumerated!.isNotEmpty) {
           return _schemaReference(parent, schema);
@@ -1189,8 +1192,8 @@ class OpenApiLibraryGenerator {
           return _schemaReference(parent, schema);
         }
     }
-    // throw StateError(
-    //     'Invalid type ${schema.type} - $schema - ${schema.referenceURI}');
+    throw StateError(
+        'Invalid type ${schema.type} - $schema - ${schema.referenceURI}');
   }
 }
 

@@ -86,6 +86,9 @@ cd example && dart run build_runner build
 
 # Clean and regenerate
 cd example && dart run build_runner clean && dart run build_runner build
+
+# Run a specific test
+dart test test/openapi_service_builder_test.dart
 ```
 
 ### Analysis and Formatting
@@ -122,7 +125,7 @@ Key test files:
 - `build` and `source_gen` for code generation
 - `freezed` and `json_annotation` for DTO generation
 - `dio` and `either_dart` for HTTP client and error handling (changed from `dartz`)
-- `open_api_forked` for OpenAPI specification parsing
+- `open_api_dart` (internal package) for OpenAPI specification parsing
 - `recase` for string case conversion
 - `dart_style` for code formatting
 
@@ -146,9 +149,26 @@ The package uses `build.yaml` to configure:
 Examples are in `example/` directory with various OpenAPI specs:
 - `pet_store.openapi.yaml` - Pet store API example
 - `test_api.openapi.yaml` - Simple test API
-- `stepo.openapi.yaml` - Complex API with nested schemas
+- `stepo.openapi.json` - Complex API with nested schemas (JSON format)
+- `stepo_yaml_311.openapi.yaml` - OpenAPI 3.1.1 specification example
 
 Generated files include:
 - **DTOs**: `*.openapi.dtos.dart` with Freezed models and JSON serialization
 - **Services**: `*.openapi.service.dart` with HTTP methods and configuration
 - **Generated files**: `*.freezed.dart` and `*.g.dart` for serialization support
+
+## Internal Architecture
+
+### open-api-dart Package
+The project includes an internal `open-api-dart` package for OpenAPI specification parsing:
+- Located in `open-api-dart/` directory
+- Supports both OpenAPI 2.0 (v2) and 3.0+ (v3) specifications
+- Handles schema parsing, validation, and type resolution
+- Key classes: `Document`, `Schema`, `Operation`, `Parameter`, `Response`
+
+### Code Generation Flow
+1. `OpenApiServiceBuilder` reads `.openapi.yaml` or `.openapi.json` files
+2. Uses `open-api-dart` to parse OpenAPI specification into document model
+3. `OpenApiLibraryGenerator` transforms document model into Dart code
+4. `CustomAllocator` manages imports and code organization
+5. Outputs separate `.openapi.dtos.dart` and `.openapi.service.dart` files

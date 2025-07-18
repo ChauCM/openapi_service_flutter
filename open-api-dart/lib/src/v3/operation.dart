@@ -140,7 +140,8 @@ class APIOperation extends APIObject {
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    tags = object.decode("tags");
+    final tagsList = object.decode("tags") as List<String?>?;
+    tags = tagsList?.where((item) => item != null).cast<String>().toList();
     summary = object.decode("summary");
     description = object.decode("description");
     id = object.decode("operationId");

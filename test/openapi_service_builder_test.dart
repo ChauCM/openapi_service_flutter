@@ -82,10 +82,11 @@ void main() {
         expect(serviceOutput, contains('class EnumApiService'));
       });
 
-      test('generates schema reference enums correctly without duplicates', () async {
-        final enumReferenceApiYaml = await File(
-                'test/fixtures/enum_reference_api.openapi.yaml')
-            .readAsString();
+      test('generates schema reference enums correctly without duplicates',
+          () async {
+        final enumReferenceApiYaml =
+            await File('test/fixtures/enum_reference_api.openapi.yaml')
+                .readAsString();
         final api =
             OpenApiServiceBuilderUtils.loadApiFromYaml(enumReferenceApiYaml);
 
@@ -112,31 +113,40 @@ void main() {
         expect(dtosOutput, contains('stepComment,'));
 
         // Verify that BulkNotificationDto references the correct enum type
-        expect(dtosOutput, contains('required NotificationTypeDto notificationType'));
+        expect(dtosOutput,
+            contains('required NotificationTypeDto notificationType'));
 
         // Verify that NotificationDto also references the same enum type
         expect(dtosOutput, contains('class NotificationDto'));
-        expect(dtosOutput, contains('required NotificationTypeDto notificationType'));
+        expect(dtosOutput,
+            contains('required NotificationTypeDto notificationType'));
 
         // Verify that no duplicate enums are generated
         // Count occurrences of 'enum' keyword - should only be 1 for NotificationTypeDto
         final enumMatches = 'enum NotificationTypeDto'.allMatches(dtosOutput);
         expect(enumMatches.length, equals(1),
-            reason: 'Should have exactly one NotificationTypeDto enum declaration');
+            reason:
+                'Should have exactly one NotificationTypeDto enum declaration');
 
         // Verify that there are no wrongly named enums like BulkNotificationDtoNotificationTypeDto
-        expect(dtosOutput, isNot(contains('BulkNotificationDtoNotificationTypeDto')));
-        expect(dtosOutput, isNot(contains('NotificationDtoNotificationTypeDto')));
+        expect(dtosOutput,
+            isNot(contains('BulkNotificationDtoNotificationTypeDto')));
+        expect(
+            dtosOutput, isNot(contains('NotificationDtoNotificationTypeDto')));
 
         // Verify that extension methods are generated correctly
-        expect(dtosOutput, contains('extension NotificationTypeDtoExt on NotificationTypeDto'));
-        expect(dtosOutput, contains('static NotificationTypeDto fromName(String name)'));
+        expect(
+            dtosOutput,
+            contains(
+                'extension NotificationTypeDtoExt on NotificationTypeDto'));
+        expect(dtosOutput,
+            contains('static NotificationTypeDto fromName(String name)'));
       });
 
       test('does not generate unused enum schemas', () async {
-        final unusedEnumApiYaml = await File(
-                'test/fixtures/unused_enum_api.openapi.yaml')
-            .readAsString();
+        final unusedEnumApiYaml =
+            await File('test/fixtures/unused_enum_api.openapi.yaml')
+                .readAsString();
         final api =
             OpenApiServiceBuilderUtils.loadApiFromYaml(unusedEnumApiYaml);
 
@@ -807,7 +817,8 @@ components:
             contains('Future<Either<ApiError, JourneyGetResponseDto>>'));
       });
 
-      test('avoids duplicate DTOs when endpoints reference component schemas', () async {
+      test('avoids duplicate DTOs when endpoints reference component schemas',
+          () async {
         final componentReferenceYaml = '''
 openapi: 3.0.0
 info:
@@ -873,7 +884,8 @@ components:
         - displayName
         - username
 ''';
-        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(componentReferenceYaml);
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(componentReferenceYaml);
 
         final generator = OpenApiLibraryGenerator(
           api,
@@ -899,7 +911,8 @@ components:
         expect(dtosOutput, isNot(contains('class AccountPutRequestDto')));
 
         // Verify service uses component DTOs directly
-        final serviceLibrary = generator.generateServiceLibrary('component_reference');
+        final serviceLibrary =
+            generator.generateServiceLibrary('component_reference');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
           orderDirectives: true,
@@ -957,6 +970,18 @@ paths:
         expect(dtosOutput, contains('const factory ApiError'));
         expect(dtosOutput, contains('factory ApiError.fromJson'));
       });
+
+      test('should support OpenAPI 3.1.1 specifications', () async {
+        final openapi311Yaml =
+            await File('test/fixtures/openapi_3_1_1.openapi.yaml')
+                .readAsString();
+        expect(
+          () => OpenApiServiceBuilderUtils.loadApiFromYaml(openapi311Yaml),
+          returnsNormally,
+          reason:
+              'OpenAPI 3.1.1 should be supported - currently fails with ListArchive error',
+        );
+      });
     });
 
     group('buildExtensions', () {
@@ -968,7 +993,8 @@ paths:
         expect(
             builder.buildExtensions,
             equals({
-              '.openapi.yaml': ['.openapi.dtos.dart', '.openapi.service.dart']
+              '.openapi.yaml': ['.openapi.dtos.dart', '.openapi.service.dart'],
+              '.openapi.json': ['.openapi.dtos.dart', '.openapi.service.dart']
             }));
       });
     });
@@ -1012,8 +1038,11 @@ paths:
         expect(api.info?.title, equals('Array API'));
         expect(api.components?.schemas?['Item'], isNotNull);
         final item = api.components!.schemas!['Item']!;
-        expect(item.properties?['tags']?.type?.name, equals('array'));
-        expect(item.properties?['tags']?.items?.type?.name, equals('string'));
+        expect(item.properties?['tags']?.type?.toString().split('.').last,
+            equals('array'));
+        expect(
+            item.properties?['tags']?.items?.type?.toString().split('.').last,
+            equals('string'));
       });
 
       test('loads map YAML correctly', () async {
@@ -1026,7 +1055,9 @@ paths:
             api.paths!['/inventory']!.operations['get']!.responses!['200']!;
         final schema = inventoryResponse.content!['application/json']!.schema!;
         expect(schema.additionalPropertySchema, isNotNull);
-        expect(schema.additionalPropertySchema?.type?.name, equals('integer'));
+        expect(
+            schema.additionalPropertySchema?.type?.toString().split('.').last,
+            equals('integer'));
       });
 
       test('loads UUID YAML correctly', () async {
@@ -1063,6 +1094,109 @@ paths:
         // which is complex to construct manually. The test verifies the method exists and
         // can be called with proper parameters.
         expect(() => OpenApiServiceBuilderUtils.formatLibrary, returnsNormally);
+      });
+    });
+
+    group('content validation', () {
+      test('accepts valid YAML content for .yaml files', () {
+        const yamlContent = '''
+          openapi: 3.0.0
+          info:
+            title: Test API
+            version: 1.0.0
+          paths: {}
+        ''';
+
+        expect(
+          () => OpenApiServiceBuilderUtils.loadApiFromYaml(
+            yamlContent,
+            filePath: 'test.openapi.yaml',
+          ),
+          returnsNormally,
+        );
+      });
+
+      test('rejects JSON content in .yaml files', () {
+        const jsonContent = '''
+          {
+            "openapi": "3.0.0",
+            "info": {
+              "title": "Test API",
+              "version": "1.0.0"
+            },
+            "paths": {}
+          }
+        ''';
+
+        expect(
+          () => OpenApiServiceBuilderUtils.loadApiFromYaml(
+            jsonContent,
+            filePath: 'test.openapi.yaml',
+          ),
+          throwsA(isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains('YAML extension but contains JSON content'),
+          )),
+        );
+      });
+
+      test('accepts valid JSON content for .json files', () {
+        const jsonContent = '''
+          {
+            "openapi": "3.0.0",
+            "info": {
+              "title": "Test API",
+              "version": "1.0.0"
+            },
+            "paths": {}
+          }
+        ''';
+
+        expect(
+          () => OpenApiServiceBuilderUtils.loadApiFromYaml(
+            jsonContent,
+            filePath: 'test.openapi.json',
+          ),
+          returnsNormally,
+        );
+      });
+
+      test('rejects non-JSON content in .json files', () {
+        const yamlContent = '''
+          openapi: 3.0.0
+          info:
+            title: Test API
+            version: 1.0.0
+          paths: {}
+        ''';
+
+        expect(
+          () => OpenApiServiceBuilderUtils.loadApiFromYaml(
+            yamlContent,
+            filePath: 'test.openapi.json',
+          ),
+          throwsA(isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains('JSON extension but does not contain valid JSON content'),
+          )),
+        );
+      });
+
+      test('accepts content without file path validation', () {
+        const yamlContent = '''
+          openapi: 3.0.0
+          info:
+            title: Test API
+            version: 1.0.0
+          paths: {}
+        ''';
+
+        expect(
+          () => OpenApiServiceBuilderUtils.loadApiFromYaml(yamlContent),
+          returnsNormally,
+        );
       });
     });
   });

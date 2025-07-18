@@ -8,7 +8,7 @@ class APIResponse extends APIObject {
   APIResponse.empty();
   APIResponse(this.description, {this.content, this.headers});
   APIResponse.schema(this.description, APISchemaObject schema,
-      {Iterable<String> contentTypes: const ["application/json"],
+      {Iterable<String> contentTypes = const ["application/json"],
       this.headers}) {
     content = contentTypes.fold<Map<String, APIMediaType?>>({}, (prev, elem) {
       prev[elem] = APIMediaType(schema: schema);

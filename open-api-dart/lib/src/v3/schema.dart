@@ -23,7 +23,7 @@ class APISchemaObject extends APIObject {
   APISchemaObject.integer() : type = APIType.integer;
   APISchemaObject.boolean() : type = APIType.boolean;
   APISchemaObject.map(
-      {APIType? ofType, APISchemaObject? ofSchema, bool any: false})
+      {APIType? ofType, APISchemaObject? ofSchema, bool any = false})
       : type = APIType.object {
     if (ofType != null) {
       additionalPropertySchema = APISchemaObject()..type = ofType;
@@ -47,7 +47,7 @@ class APISchemaObject extends APIObject {
     }
   }
   APISchemaObject.object(this.properties) : type = APIType.object;
-  APISchemaObject.file({bool isBase64Encoded: false})
+  APISchemaObject.file({bool isBase64Encoded = false})
       : type = APIType.string,
         format = isBase64Encoded ? "byte" : "binary";
 
@@ -200,7 +200,38 @@ class APISchemaObject extends APIObject {
 
   /* Modified JSON Schema for OpenAPI */
 
-  APIType? type;
+  /// The type of the schema. Can be a single APIType or a list of APIType for OpenAPI 3.1.1
+  dynamic type; // Can be APIType? or List<APIType?>
+  
+  /// Helper method to check if the schema allows null values (for OpenAPI 3.1.1)
+  bool get allowsNull {
+    if (type is List) {
+      return (type as List).contains(null);
+    }
+    return type == null;
+  }
+  
+  /// Helper method to get the primary type (first non-null type in array or single type)
+  APIType? get primaryType {
+    if (type is APIType?) {
+      return type as APIType?;
+    } else if (type is List) {
+      final types = type as List;
+      // Return first non-null type
+      for (var t in types) {
+        if (t != null && t is APIType) {
+          return t;
+        }
+      }
+    }
+    return null;
+  }
+  
+  /// Helper method to check if the schema has multiple types
+  bool get hasMultipleTypes {
+    return type is List && (type as List).length > 1;
+  }
+  
   List<APISchemaObject?>? allOf;
   List<APISchemaObject?>? anyOf;
   List<APISchemaObject?>? oneOf;
@@ -274,7 +305,7 @@ class APISchemaObject extends APIObject {
 
     //
 
-    type = APITypeCodec.decode(object.decode("type"));
+    type = APITypeCodec.decode(object["type"]);
     allOf = object.decodeObjects("allOf", () => APISchemaObject());
     anyOf = object.decodeObjects("anyOf", () => APISchemaObject());
     oneOf = object.decodeObjects("oneOf", () => APISchemaObject());
