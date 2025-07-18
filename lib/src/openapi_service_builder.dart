@@ -13,7 +13,6 @@ import 'package:logging/logging.dart';
 import 'package:open_api_forked/v3.dart';
 import 'package:openapi_service_flutter/src/custom_allocator.dart';
 import 'package:pub_semver/pub_semver.dart';
-import 'package:quiver/check.dart';
 import 'package:recase/recase.dart';
 import 'package:yaml/yaml.dart';
 
@@ -1246,6 +1245,31 @@ class EnumValueSpec extends Spec {
 }
 
 class OpenApiServiceBuilderUtils {
+  static bool _isValidYamlContent(String content) {
+    // Check if content starts with JSON object/array markers
+    final trimmed = content.trim();
+    if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+      return false;
+    }
+
+    // Additional YAML-specific patterns
+    if (trimmed.contains('---') || // YAML document separator
+        RegExp(r'^\s*\w+:\s*').hasMatch(trimmed) || // Key-value pairs at start
+        RegExp(r'^\s*-\s+').hasMatch(trimmed)) {
+      // Array items at start
+      return true;
+    }
+
+    // If it doesn't look like JSON and doesn't have obvious YAML markers,
+    // let the YAML parser determine if it's valid
+    return true;
+  }
+
+  static bool _isValidJsonContent(String content) {
+    final trimmed = content.trim();
+    return trimmed.startsWith('{') || trimmed.startsWith('[');
+  }
+
   static Map<String, dynamic>? _loadYaml(String source) {
     final dynamic tmp = loadYaml(source) as dynamic;
     // return json.decode(json.encode(tmp)) as Map<String, dynamic>?;
@@ -1282,7 +1306,24 @@ class OpenApiServiceBuilderUtils {
     }
   }
 
-  static APIDocument loadApiFromYaml(String yamlSource) {
+  static APIDocument loadApiFromYaml(String yamlSource, {String? filePath}) {
+    // Validate content format matches file extension
+    if (filePath != null) {
+      if (filePath.endsWith('.yaml') || filePath.endsWith('.yml')) {
+        if (!_isValidYamlContent(yamlSource)) {
+          throw ArgumentError(
+              'File $filePath has YAML extension but contains JSON content. '
+              'YAML files should contain YAML formatted content.');
+        }
+      } else if (filePath.endsWith('.json')) {
+        if (!_isValidJsonContent(yamlSource)) {
+          throw ArgumentError(
+              'File $filePath has JSON extension but does not contain valid JSON content. '
+              'JSON files should start with { or [.');
+        }
+      }
+    }
+
     final decoded = _loadYaml(yamlSource)!;
     final api = APIDocument.fromMap(
         Map<String, dynamic>.from(decoded.cast<String, dynamic>()));
@@ -1319,11 +1360,21 @@ class OpenApiServiceBuilder extends Builder {
     try {
       final inputId = buildStep.inputId;
       final source = await buildStep.readAsString(inputId);
-      checkArgument(inputId.pathSegments.last.endsWith('.openapi.yaml'));
-      final inputIdBasename =
-          inputId.pathSegments.last.replaceAll('.openapi.yaml', '');
-      OpenApiServiceBuilderUtils.loadApiFromYaml(source);
-      final api = OpenApiServiceBuilderUtils.loadApiFromYaml(source);
+      final fileName = inputId.pathSegments.last;
+
+      // Support both .openapi.yaml and .openapi.json files
+      String inputIdBasename;
+      if (fileName.endsWith('.openapi.yaml')) {
+        inputIdBasename = fileName.replaceAll('.openapi.yaml', '');
+      } else if (fileName.endsWith('.openapi.json')) {
+        inputIdBasename = fileName.replaceAll('.openapi.json', '');
+      } else {
+        throw ArgumentError(
+            'Input file must have .openapi.yaml or .openapi.json extension');
+      }
+
+      final api = OpenApiServiceBuilderUtils.loadApiFromYaml(source,
+          filePath: inputId.path);
 
       // Safe access to extensions with null checks
       final extensions = api.info?.extensions;
@@ -1377,7 +1428,8 @@ class OpenApiServiceBuilder extends Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        '.openapi.yaml': ['.openapi.dtos.dart', '.openapi.service.dart']
+        '.openapi.yaml': ['.openapi.dtos.dart', '.openapi.service.dart'],
+        '.openapi.json': ['.openapi.dtos.dart', '.openapi.service.dart']
       };
 }
 

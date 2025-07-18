@@ -1,0 +1,122 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "0.1.0",
+    "title": "Example JSON Api",
+    "x-dart-name": "TestJsonApi"
+  },
+  "paths": {
+    "/user/register": {
+      "post": {
+        "summary": "Create new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/hello/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Say Hello World to {name}",
+        "parameters": [
+          {
+            "name": "salutation",
+            "description": "Optional salutation",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Say Hello World to {name} with some parameters",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterRequest": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email address for the current user."
+          }
+        },
+        "required": ["email"]
+      },
+      "HelloRequest": {
+        "properties": {
+          "salutation": {
+            "type": "string",
+            "description": "Salutation used for greetings."
+          }
+        }
+      },
+      "HelloResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The Hello World greeting ;-)"
+          }
+        }
+      }
+    }
+  }
+}

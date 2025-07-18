@@ -2,7 +2,10 @@ builders:
   openapi_service_flutter:
     import: 'package:openapi_service_flutter/openapi_service_flutter.dart'
     builder_factories: [ 'openApiServiceBuilder' ]
-    build_extensions: { ".openapi.yaml": [ ".openapi.dtos.dart", ".openapi.service.dart" ] }
+    build_extensions: { 
+      ".openapi.yaml": [ ".openapi.dtos.dart", ".openapi.service.dart" ],
+      ".openapi.json": [ ".openapi.dtos.dart", ".openapi.service.dart" ]
+    }
     auto_apply: dependents
     #    build_to: cache
     build_to: source
