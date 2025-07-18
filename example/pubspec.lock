@@ -113,14 +113,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.4"
-  chunked_stream:
-    dependency: transitive
-    description:
-      name: chunked_stream
-      sha256: b2fde5f81d780f0c1699b8347cae2e413412ae947fc6e64727cc48c6bb54c95c
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.2"
   clock:
     dependency: transitive
     description:
@@ -129,14 +121,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
-  codable_forked:
-    dependency: transitive
-    description:
-      name: codable_forked
-      sha256: "902e6f90fa4d97be2d02931d0a6e555e83252fd2f8b632e26a6385c50964e473"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0+3"
   code_builder:
     dependency: transitive
     description:
@@ -153,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
+  conduit_codable:
+    dependency: transitive
+    description:
+      name: conduit_codable
+      sha256: e952259ffc5bfecd38403f1ea5af8d85e80a09da982890b570b133ca968bf459
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.5"
   convert:
     dependency: transitive
     description:
@@ -369,22 +361,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  open_api_forked:
+  open_api_dart:
     dependency: transitive
     description:
-      name: open_api_forked
-      sha256: e815a0adbb290b6b460c48808de2b393f95522b1016cdb5d54cc8098cc8d5d2f
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0+6"
-  openapi_base:
-    dependency: transitive
-    description:
-      name: openapi_base
-      sha256: a9f7ef85da91fa68092000bc3d3f96a979ac5ce8b8650d3c8292f67e02cbede2
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
+      path: "../open-api-dart"
+      relative: true
+    source: path
+    version: "3.1.1"
   openapi_service_flutter:
     dependency: "direct dev"
     description:
@@ -488,14 +471,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.1"
-  sprintf:
-    dependency: transitive
-    description:
-      name: sprintf
-      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.0"
   stack_trace:
     dependency: transitive
     description:
@@ -560,22 +535,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  uri:
-    dependency: transitive
-    description:
-      name: uri
-      sha256: "889eea21e953187c6099802b7b4cf5219ba8f3518f604a1033064d45b1b8268a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
-  uuid:
-    dependency: transitive
-    description:
-      name: uuid
-      sha256: a5be9ef6618a7ac1e964353ef476418026db906c4facdedaa299b7a2e71690ff
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.5.1"
   watcher:
     dependency: transitive
     description:

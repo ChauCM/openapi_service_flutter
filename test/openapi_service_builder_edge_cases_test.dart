@@ -336,6 +336,91 @@ paths:
         expect(serviceOutput, contains('textGet'));
         expect(serviceOutput, contains('xmlGet'));
       });
+
+      test('handles native types without fromJson method', () async {
+        final nativeTypeYaml = '''
+openapi: 3.1.1
+info:
+  version: 1.0.0
+  title: Native Type API
+  x-dart-name: NativeTypeApi
+
+paths:
+  /count:
+    get:
+      operationId: getCount
+      responses:
+        '200':
+          description: Returns an integer count
+          content:
+            application/json:
+              schema:
+                type: [integer, "null"]
+  /rating:
+    get:
+      operationId: getRating
+      responses:
+        '200':
+          description: Returns a number rating
+          content:
+            application/json:
+              schema:
+                type: number
+  /flag:
+    get:
+      operationId: getFlag
+      responses:
+        '200':
+          description: Returns a boolean flag
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /name:
+    get:
+      operationId: getName
+      responses:
+        '200':
+          description: Returns a string name
+          content:
+            application/json:
+              schema:
+                type: string
+''';
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(nativeTypeYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'NativeTypeApi',
+          partFileName: 'native_type.openapi.dtos.g.dart',
+          freezedPartFileName: 'native_type.openapi.dtos.freezed.dart',
+        );
+
+        final serviceLibrary = generator.generateServiceLibrary('native_type');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+        );
+
+        // Should NOT contain any fromJson calls for native types
+        expect(serviceOutput, isNot(contains('int.fromJson')));
+        expect(serviceOutput, isNot(contains('double.fromJson')));
+        expect(serviceOutput, isNot(contains('bool.fromJson')));
+        expect(serviceOutput, isNot(contains('String.fromJson')));
+        expect(serviceOutput, isNot(contains('num.fromJson')));
+        
+        // Should contain proper casting instead
+        expect(serviceOutput, contains('(response.data as int)'));
+        expect(serviceOutput, contains('(response.data as num)'));
+        expect(serviceOutput, contains('(response.data as bool)'));
+        expect(serviceOutput, contains('(response.data as String)'));
+        
+        expect(serviceOutput, contains('NativeTypeApiService'));
+        expect(serviceOutput, contains('getCount'));
+        expect(serviceOutput, contains('getRating'));
+        expect(serviceOutput, contains('getFlag'));
+        expect(serviceOutput, contains('getName'));
+      });
     });
   });
 }

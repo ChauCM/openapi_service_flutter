@@ -326,13 +326,21 @@ class OpenApiLibraryGenerator {
   }
 
   bool shouldGenerateDto(APISchemaObject schema) {
+    // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
+    final effectiveType = schema.primaryType;
+    
     // Don't generate DTOs for simple types (string, number, boolean, etc.)
-    if (schema.type != null && schema.type != APIType.object) {
+    if (effectiveType != null && effectiveType != APIType.object) {
       return false;
     }
 
+    // For OpenAPI 3.1.1 compatibility, check if schema has object type in array
+    final hasObjectType = (schema.type is List) 
+        ? (schema.type as List).contains(APIType.object)
+        : (schema.type == APIType.object);
+
     // Don't generate DTOs for empty objects without properties or composition
-    if (schema.type == APIType.object &&
+    if (hasObjectType &&
         (schema.properties?.isEmpty ?? true) &&
         (schema.allOf?.isEmpty ?? true) &&
         (schema.oneOf?.isEmpty ?? true) &&
@@ -341,7 +349,7 @@ class OpenApiLibraryGenerator {
     }
 
     // Generate DTOs for objects with properties or composition
-    return schema.type == APIType.object ||
+    return hasObjectType ||
         (schema.properties?.isNotEmpty == true) ||
         (schema.allOf?.isNotEmpty == true) ||
         (schema.oneOf?.isNotEmpty == true) ||
@@ -760,7 +768,10 @@ class OpenApiLibraryGenerator {
             if (content?.schema != null) {
               final schema = content!.schema!;
 
-              if (schema.type == APIType.string) {
+              // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
+              final effectiveType = schema.primaryType ?? schema.type;
+              
+              if (effectiveType == APIType.string) {
                 return [
                   declareFinal('result')
                       .assign(
@@ -768,7 +779,7 @@ class OpenApiLibraryGenerator {
                       .statement,
                   _right([refer('result')]).returned.statement,
                 ];
-              } else if (schema.type == APIType.integer) {
+              } else if (effectiveType == APIType.integer) {
                 return [
                   declareFinal('result')
                       .assign(
@@ -776,7 +787,7 @@ class OpenApiLibraryGenerator {
                       .statement,
                   _right([refer('result')]).returned.statement,
                 ];
-              } else if (schema.type == APIType.number) {
+              } else if (effectiveType == APIType.number) {
                 return [
                   declareFinal('result')
                       .assign(
@@ -784,7 +795,7 @@ class OpenApiLibraryGenerator {
                       .statement,
                   _right([refer('result')]).returned.statement,
                 ];
-              } else if (schema.type == APIType.boolean) {
+              } else if (effectiveType == APIType.boolean) {
                 return [
                   declareFinal('result')
                       .assign(
@@ -792,7 +803,7 @@ class OpenApiLibraryGenerator {
                       .statement,
                   _right([refer('result')]).returned.statement,
                 ];
-              } else if (schema.type == APIType.array) {
+              } else if (effectiveType == APIType.array) {
                 return [
                   declareFinal('result')
                       .assign(refer('response').property('data').asA(

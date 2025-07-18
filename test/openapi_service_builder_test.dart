@@ -982,6 +982,77 @@ paths:
               'OpenAPI 3.1.1 should be supported - currently fails with ListArchive error',
         );
       });
+
+      test('generates DTOs for OpenAPI 3.1.1 nullable object types', () async {
+        final openapi311Yaml = '''
+openapi: 3.1.1
+info:
+  title: OpenAPI 3.1.1 Test API
+  version: 1.0.0
+  x-dart-name: OpenApi311Test
+
+paths:
+  /journey:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                \$ref: '#/components/schemas/JourneyDto'
+
+components:
+  schemas:
+    JourneyDto:
+      type: ["null", "object"]
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: ["null", "string"]
+        status:
+          type: string
+      required:
+        - id
+        - title
+        - status
+''';
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(openapi311Yaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'OpenApi311Test',
+          partFileName: 'openapi_3_1_1.openapi.dtos.g.dart',
+          freezedPartFileName: 'openapi_3_1_1.openapi.dtos.freezed.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+          orderDirectives: true,
+        );
+
+        // Should generate JourneyDto class even with OpenAPI 3.1.1 array-style nullable type
+        expect(dtosOutput, contains('class JourneyDto'));
+        expect(dtosOutput, contains('required String id'));
+        expect(dtosOutput, contains('required String title'));
+        expect(dtosOutput, contains('required String status'));
+        expect(dtosOutput, contains('String? description'));
+
+        // Should generate service that uses JourneyDto
+        final serviceLibrary = generator.generateServiceLibrary('openapi_3_1_1');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+        );
+
+        expect(serviceOutput, contains('Future<Either<ApiError, JourneyDto>>'));
+        expect(serviceOutput, contains('JourneyDto.fromJson'));
+      });
     });
 
     group('buildExtensions', () {
