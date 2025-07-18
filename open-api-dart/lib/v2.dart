@@ -3,8 +3,8 @@
 
 /// Support for doing something awesome.
 ///
-/// More dartdocs go here.
-library open_api_v2;
+/// More dart docs go here.
+library;
 
 export 'package:open_api_dart/src/v2/document.dart';
 export 'package:open_api_dart/src/v2/header.dart';

@@ -9,10 +9,11 @@ class APIPath extends APIObject {
   List<APIParameter?> parameters = [];
   Map<String, APIOperation?> operations = {};
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
-    object.keys.forEach((k) {
+    for (final k in object.keys) {
       if (k == r"$ref") {
         // todo: reference
       } else if (k == "parameters") {
@@ -20,15 +21,16 @@ class APIPath extends APIObject {
       } else {
         operations[k] = object.decodeObject(k, () => APIOperation());
       }
-    });
+    }
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
     object.encodeObjects("parameters", parameters);
-    operations.forEach((opName, op) {
-      object.encodeObject(opName, op);
-    });
+    for (final entry in operations.entries) {
+      object.encodeObject(entry.key, entry.value);
+    }
   }
 }

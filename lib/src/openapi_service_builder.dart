@@ -328,14 +328,14 @@ class OpenApiLibraryGenerator {
   bool shouldGenerateDto(APISchemaObject schema) {
     // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
     final effectiveType = schema.primaryType;
-    
+
     // Don't generate DTOs for simple types (string, number, boolean, etc.)
     if (effectiveType != null && effectiveType != APIType.object) {
       return false;
     }
 
     // For OpenAPI 3.1.1 compatibility, check if schema has object type in array
-    final hasObjectType = (schema.type is List) 
+    final hasObjectType = (schema.type is List)
         ? (schema.type as List).contains(APIType.object)
         : (schema.type == APIType.object);
 
@@ -770,7 +770,7 @@ class OpenApiLibraryGenerator {
 
               // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
               final effectiveType = schema.primaryType ?? schema.type;
-              
+
               if (effectiveType == APIType.string) {
                 return [
                   declareFinal('result')
@@ -1157,7 +1157,7 @@ class OpenApiLibraryGenerator {
   Reference toDartType(String parent, APISchemaObject schema) {
     // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
     final effectiveType = schema.primaryType ?? APIType.object;
-    
+
     switch (effectiveType) {
       case APIType.string:
         if (schema.enumerated != null && schema.enumerated!.isNotEmpty) {
@@ -1203,8 +1203,6 @@ class OpenApiLibraryGenerator {
           return _schemaReference(parent, schema);
         }
     }
-    throw StateError(
-        'Invalid type ${schema.type} - $schema - ${schema.referenceURI}');
   }
 }
 

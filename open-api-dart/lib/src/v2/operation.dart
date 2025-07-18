@@ -30,6 +30,7 @@ class APIOperation extends APIObject {
   List<Map<String, List<String>>?>? security = [];
   Map<String, APIResponse?>? responses = {};
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -46,6 +47,7 @@ class APIOperation extends APIObject {
     security = object.decode("security");
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 

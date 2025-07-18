@@ -1,4 +1,3 @@
-library open_api_v3;
 
 export 'package:open_api_dart/src/v3/callback.dart';
 export 'package:open_api_dart/src/v3/components.dart';

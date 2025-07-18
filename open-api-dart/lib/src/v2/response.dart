@@ -10,6 +10,7 @@ class APIResponse extends APIObject {
   APISchemaObject? schema;
   Map<String, APIHeader?>? headers = {};
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -18,6 +19,7 @@ class APIResponse extends APIObject {
     headers = object.decodeObjectMap("headers", () => APIHeader());
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 

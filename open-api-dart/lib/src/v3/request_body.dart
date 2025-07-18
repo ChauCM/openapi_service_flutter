@@ -6,17 +6,13 @@ import 'package:open_api_dart/src/v3/schema.dart';
 class APIRequestBody extends APIObject {
   APIRequestBody.empty();
 
-  APIRequestBody(this.content, {this.description, bool isRequired = false}) {
-    this.isRequired = isRequired;
-  }
+  APIRequestBody(this.content, {this.description, this.required = false});
 
   APIRequestBody.schema(APISchemaObject schema,
       {Iterable<String> contentTypes = const ["application/json"],
       this.description,
-      bool isRequired = false}) {
-    this.isRequired = isRequired;
-    this.content =
-        contentTypes.fold<Map<String, APIMediaType?>>({}, (prev, elem) {
+      this.required = false}) {
+    content = contentTypes.fold<Map<String, APIMediaType?>>({}, (prev, elem) {
       prev[elem] = APIMediaType(schema: schema);
       return prev;
     });
@@ -35,22 +31,18 @@ class APIRequestBody extends APIObject {
   /// Determines if the request body is required in the request.
   ///
   /// Defaults to false.
-  bool get isRequired => _required;
+  bool? required;
 
-  set isRequired(bool f) {
-    _required = f;
-  }
-
-  bool _required = false;
-
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
     description = object.decode("description");
-    _required = object.decode("required") ?? _required;
+    required = object.decode("required") ?? required;
     content = object.decodeObjectMap("content", () => APIMediaType())!;
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
@@ -60,7 +52,7 @@ class APIRequestBody extends APIObject {
     }
 
     object.encode("description", description);
-    object.encode("required", _required);
+    object.encode("required", required);
     object.encodeObjectMap("content", content);
   }
 }

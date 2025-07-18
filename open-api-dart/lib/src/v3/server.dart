@@ -20,6 +20,7 @@ class APIServerDescription extends APIObject {
   /// The value is used for substitution in the server's URL template.
   Map<String, APIServerVariable?>? variables;
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -31,6 +32,7 @@ class APIServerDescription extends APIObject {
         object.decodeObjectMap("variables", () => APIServerVariable.empty());
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
@@ -64,6 +66,7 @@ class APIServerVariable extends APIObject {
   /// CommonMark syntax MAY be used for rich text representation.
   String? description;
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -72,6 +75,7 @@ class APIServerVariable extends APIObject {
     description = object.decode("description");
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 

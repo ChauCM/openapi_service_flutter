@@ -51,6 +51,7 @@ class APIPath extends APIObject {
 
   // todo (joeconwaystk): alternative servers not yet implemented
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -68,15 +69,16 @@ class APIPath extends APIObject {
       "patch",
       "trace"
     ];
-    methodNames.forEach((methodName) {
+    for (final methodName in methodNames) {
       if (!object.containsKey(methodName)) {
-        return;
+        continue;
       }
       operations[methodName] =
           object.decodeObject(methodName, () => APIOperation.empty());
-    });
+    }
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
@@ -84,8 +86,8 @@ class APIPath extends APIObject {
     object.encode("description", description);
     object.encodeObjects("parameters", parameters);
 
-    operations.forEach((opName, op) {
-      object.encodeObject(opName.toLowerCase(), op);
-    });
+    for (final entry in operations.entries) {
+      object.encodeObject(entry.key.toLowerCase(), entry.value);
+    }
   }
 }

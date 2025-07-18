@@ -58,40 +58,42 @@ class APIParameter extends APIProperty {
   bool allowEmptyValue = false;
   APIProperty? items;
 
-  void decode(KeyedArchive json) {
-    name = json.decode("name");
-    description = json.decode("description");
-    location = APIParameterLocationCodec.decode(json.decode("in"));
+  @override
+  void decode(KeyedArchive object) {
+    name = object.decode("name");
+    description = object.decode("description");
+    location = APIParameterLocationCodec.decode(object.decode("in"));
     if (location == APIParameterLocation.path) {
       isRequired = true;
     } else {
-      isRequired = json.decode("required") ?? false;
+      isRequired = object.decode("required") ?? false;
     }
 
     if (location == APIParameterLocation.body) {
-      schema = json.decodeObject("schema", () => APISchemaObject());
+      schema = object.decodeObject("schema", () => APISchemaObject());
     } else {
-      super.decode(json);
-      allowEmptyValue = json.decode("allowEmptyValue") ?? false;
+      super.decode(object);
+      allowEmptyValue = object.decode("allowEmptyValue") ?? false;
       if (type == APIType.array) {
-        items = json.decodeObject("items", () => APIProperty());
+        items = object.decodeObject("items", () => APIProperty());
       }
     }
   }
 
-  void encode(KeyedArchive json) {
-    json.encode("name", name);
-    json.encode("description", description);
-    json.encode("in", APIParameterLocationCodec.encode(location));
-    json.encode("required", isRequired);
+  @override
+  void encode(KeyedArchive object) {
+    object.encode("name", name);
+    object.encode("description", description);
+    object.encode("in", APIParameterLocationCodec.encode(location));
+    object.encode("required", isRequired);
 
     if (location == APIParameterLocation.body) {
-      json.encodeObject("schema", schema);
+      object.encodeObject("schema", schema);
     } else {
-      super.encode(json);
-      json.encode("allowEmptyValue", allowEmptyValue);
+      super.encode(object);
+      object.encode("allowEmptyValue", allowEmptyValue);
       if (type == APIType.array) {
-        json.encodeObject("items", items);
+        object.encodeObject("items", items);
       }
     }
   }

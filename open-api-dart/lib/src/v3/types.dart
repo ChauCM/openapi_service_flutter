@@ -78,8 +78,6 @@ class APITypeCodec {
         return "object";
       case null:
         return "null";
-      default:
-        return null;
     }
   }
 }

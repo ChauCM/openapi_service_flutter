@@ -47,6 +47,7 @@ class APIDocument extends APIObject {
             cast.Map(cast.StringCast(), cast.List(cast.StringCast()))),
       };
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -69,6 +70,7 @@ class APIDocument extends APIObject {
         "securityDefinitions", () => APISecurityScheme());
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 

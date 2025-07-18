@@ -55,7 +55,7 @@ class APIComponents extends APIObject {
           "Invalid reference URI: does not begin with /components/");
     }
 
-    var namedMap = null;
+    Map<String, APIObject?>? namedMap;
     switch (segments[1]) {
       case "schemas":
         namedMap = schemas;
@@ -83,7 +83,7 @@ class APIComponents extends APIObject {
             "Invalid reference URI: component type '${segments[1]}' does not exist.");
     }
 
-    return namedMap[segments.last];
+    return namedMap?[segments.last];
   }
 
   T? resolve<T extends APIObject>(T refObject) {
@@ -95,6 +95,7 @@ class APIComponents extends APIObject {
     return resolveUri(referenceURI) as T?;
   }
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -113,6 +114,7 @@ class APIComponents extends APIObject {
     callbacks = object.decodeObjectMap("callbacks", () => APICallback());
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 

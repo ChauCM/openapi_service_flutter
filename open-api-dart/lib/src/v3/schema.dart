@@ -282,6 +282,7 @@ class APISchemaObject extends APIObject {
         "required": cast.List(cast.StringCast()),
       };
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -339,6 +340,7 @@ class APISchemaObject extends APIObject {
     _deprecated = object.decode("deprecated");
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 

@@ -36,6 +36,7 @@ class APIInfo extends APIObject {
   /// The license information for the exposed API.
   APILicense? license;
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -49,6 +50,7 @@ class APIInfo extends APIObject {
     version = object.decode("version");
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
@@ -84,6 +86,7 @@ class APIContact extends APIObject {
   /// MUST be in the format of an email address.
   String? email;
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -94,6 +97,7 @@ class APIContact extends APIObject {
     email = object.decode("email");
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
@@ -118,6 +122,7 @@ class APILicense extends APIObject {
   /// MUST be in the format of a URL.
   Uri? url;
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -125,6 +130,7 @@ class APILicense extends APIObject {
     url = object.decode("url");
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
@@ -155,6 +161,7 @@ class APITag extends APIObject {
   /// CommonMark syntax MAY be used for rich text representation.
   String? description;
 
+  @override
   void decode(KeyedArchive object) {
     super.decode(object);
 
@@ -162,6 +169,7 @@ class APITag extends APIObject {
     description = object.decode("description");
   }
 
+  @override
   void encode(KeyedArchive object) {
     super.encode(object);
 
