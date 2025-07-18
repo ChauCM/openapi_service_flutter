@@ -816,24 +816,44 @@ class OpenApiLibraryGenerator {
                               ..lambda = true
                               ..requiredParameters
                                   .add(Parameter((pb) => pb..name = 'item'))
-                              ..body = returnType.symbol!.startsWith('List<')
-                                  ? refer(returnType.symbol!.substring(
-                                          5, returnType.symbol!.length - 1))
-                                      .property('fromJson')([
-                                        refer('item').asA(_referType('Map',
-                                            generics: [
-                                              refer('String'),
-                                              refer('dynamic')
-                                            ]))
-                                      ])
-                                      .code
-                                  : refer('item').code).closure
+                              ..body = () {
+                                // Check if returnType is a List with generic types
+                                if (returnType.symbol == 'List' &&
+                                    returnType is TypeReference) {
+                                  final typeRef = returnType;
+                                  if (typeRef.types.isNotEmpty) {
+                                    final innerType = typeRef.types.first;
+                                    final innerTypeName = innerType.symbol!;
+
+                                    // Check if inner type is a DTO (contains 'Dto' or is a custom type, but not primitive)
+                                    final primitiveTypes = [
+                                      'String',
+                                      'int',
+                                      'num',
+                                      'bool',
+                                      'double',
+                                      'dynamic'
+                                    ];
+                                    if (!primitiveTypes
+                                        .contains(innerTypeName)) {
+                                      return refer(innerTypeName)
+                                          .property('fromJson')([
+                                            refer('item').asA(_referType('Map',
+                                                generics: [
+                                                  refer('String'),
+                                                  refer('dynamic')
+                                                ]))
+                                          ])
+                                          .code;
+                                    }
+                                  }
+                                }
+                                return refer('item').code;
+                              }()).closure
                           ])
                           .property('toList')([]))
                       .statement,
-                  _right([refer('mappedResult').asA(returnType)])
-                      .returned
-                      .statement,
+                  _right([refer('mappedResult')]).returned.statement,
                 ];
               } else {
                 // Object type - check if it's a Map type

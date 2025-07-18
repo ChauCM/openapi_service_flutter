@@ -369,8 +369,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<ReportDto>));
+      final mappedResult = result
+          .map((item) => ReportDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -480,8 +482,11 @@ class StepoService {
         data: body.toJson(),
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<NotificationDto>));
+      final mappedResult = result
+          .map((item) =>
+              NotificationDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -694,8 +699,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<StepDetailDto>));
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -718,8 +725,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<StepDetailDto>));
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -732,8 +741,11 @@ class StepoService {
     try {
       final response = await _dio.get('/api/v1/journeys/$journeyId/calendar');
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<JourneyDayCalendarDto>));
+      final mappedResult = result
+          .map((item) =>
+              JourneyDayCalendarDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -757,8 +769,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<StepDetailDto>));
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -782,8 +796,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<StepDetailDto>));
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -893,8 +909,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<UserDetailDto>));
+      final mappedResult = result
+          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -916,8 +934,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<UserDetailDto>));
+      final mappedResult = result
+          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -992,8 +1012,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<UserDetailDto>));
+      final mappedResult = result
+          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -1016,8 +1038,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<UserDetailDto>));
+      final mappedResult = result
+          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -1096,8 +1120,10 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<ReplyDto>));
+      final mappedResult = result
+          .map((item) => ReplyDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -1119,8 +1145,11 @@ class StepoService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<StepCommentDto>));
+      final mappedResult = result
+          .map(
+              (item) => StepCommentDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }

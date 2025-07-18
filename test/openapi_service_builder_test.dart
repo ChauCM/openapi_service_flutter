@@ -1053,6 +1053,67 @@ components:
         expect(serviceOutput, contains('Future<Either<ApiError, JourneyDto>>'));
         expect(serviceOutput, contains('JourneyDto.fromJson'));
       });
+
+      test('handles List responses with proper fromJson deserialization', () async {
+        final listResponseYaml = '''
+openapi: 3.0.0
+info:
+  title: List Response API
+  version: 1.0.0
+  x-dart-name: ListResponseApi
+
+paths:
+  /items:
+    get:
+      responses:
+        '200':
+          description: Returns a list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  \$ref: '#/components/schemas/ItemDto'
+
+components:
+  schemas:
+    ItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+''';
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(listResponseYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'ListResponseApi',
+          partFileName: 'list_response_api.openapi.dtos.g.dart',
+          freezedPartFileName: 'list_response_api.openapi.dtos.freezed.dart',
+        );
+
+        final serviceLibrary = generator.generateServiceLibrary('list_response_api');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+          orderDirectives: true,
+        );
+
+        // Should generate service method that returns List<ItemDto>
+        expect(serviceOutput, contains('Future<Either<ApiError, List<ItemDto>>>'));
+        
+        // Should correctly deserialize each item using fromJson
+        expect(serviceOutput, contains('ItemDto.fromJson'));
+        expect(serviceOutput, contains('ItemDto.fromJson((item as Map<String, dynamic>))'));
+        
+        // Should NOT contain the incorrect pattern
+        expect(serviceOutput, isNot(contains('result.map((item) => item).toList()')));
+        expect(serviceOutput, isNot(contains('(mappedResult as List<ItemDto>)')));
+      });
     });
 
     group('buildExtensions', () {

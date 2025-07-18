@@ -84,8 +84,10 @@ class PetStoreService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<PetDto>));
+      final mappedResult = result
+          .map((item) => PetDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -105,8 +107,10 @@ class PetStoreService {
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
-      final mappedResult = result.map((item) => item).toList();
-      return Right((mappedResult as List<PetDto>));
+      final mappedResult = result
+          .map((item) => PetDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e) {
       return Left(_handleError(e));
     }
