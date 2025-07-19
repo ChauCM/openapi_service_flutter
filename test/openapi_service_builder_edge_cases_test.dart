@@ -15,13 +15,11 @@ void main() {
           api,
           baseName: 'ErrorCases',
           partFileName: 'error_cases.openapi.dtos.g.dart',
-          freezedPartFileName: 'error_cases.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         expect(dtosOutput, contains('List<String>'));
@@ -29,7 +27,6 @@ void main() {
         final serviceLibrary = generator.generateServiceLibrary('error_cases');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('Either<ApiError,'));
@@ -59,7 +56,6 @@ info:
           api,
           baseName: 'IncompleteApi',
           partFileName: 'incomplete.openapi.dtos.g.dart',
-          freezedPartFileName: 'incomplete.openapi.dtos.freezed.dart',
         );
 
         // Should generate libraries without errors, even if minimal
@@ -83,13 +79,11 @@ info:
           api,
           baseName: 'ComplexTypes',
           partFileName: 'complex_types.openapi.dtos.g.dart',
-          freezedPartFileName: 'complex_types.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Check for DTO generation - may have different naming
@@ -99,7 +93,6 @@ info:
             generator.generateServiceLibrary('complex_types');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('ComplexTypesService'));
@@ -135,13 +128,11 @@ components:
           api,
           baseName: 'EmptySchemaApi',
           partFileName: 'empty_schema.openapi.dtos.g.dart',
-          freezedPartFileName: 'empty_schema.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary = generator.generateServiceLibrary('empty_schema');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('EmptySchemaApiService'));
@@ -179,13 +170,11 @@ paths:
           api,
           baseName: 'BinaryApi',
           partFileName: 'binary.openapi.dtos.g.dart',
-          freezedPartFileName: 'binary.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary = generator.generateServiceLibrary('binary');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('Uint8List'));
@@ -252,13 +241,11 @@ paths:
           api,
           baseName: 'ParameterApi',
           partFileName: 'parameter.openapi.dtos.g.dart',
-          freezedPartFileName: 'parameter.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         expect(dtosOutput, contains('enum'));
@@ -266,7 +253,6 @@ paths:
         final serviceLibrary = generator.generateServiceLibrary('parameter');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('String? queryParam'));
@@ -322,13 +308,11 @@ paths:
           api,
           baseName: 'ResponseApi',
           partFileName: 'response.openapi.dtos.g.dart',
-          freezedPartFileName: 'response.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary = generator.generateServiceLibrary('response');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('ResponseApiService'));
@@ -393,13 +377,11 @@ paths:
           api,
           baseName: 'NativeTypeApi',
           partFileName: 'native_type.openapi.dtos.g.dart',
-          freezedPartFileName: 'native_type.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary = generator.generateServiceLibrary('native_type');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Should NOT contain any fromJson calls for native types
@@ -408,13 +390,13 @@ paths:
         expect(serviceOutput, isNot(contains('bool.fromJson')));
         expect(serviceOutput, isNot(contains('String.fromJson')));
         expect(serviceOutput, isNot(contains('num.fromJson')));
-        
+
         // Should contain proper casting instead
         expect(serviceOutput, contains('(response.data as int)'));
         expect(serviceOutput, contains('(response.data as num)'));
         expect(serviceOutput, contains('(response.data as bool)'));
         expect(serviceOutput, contains('(response.data as String)'));
-        
+
         expect(serviceOutput, contains('NativeTypeApiService'));
         expect(serviceOutput, contains('getCount'));
         expect(serviceOutput, contains('getRating'));

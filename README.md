@@ -82,8 +82,8 @@ targets:
     builders:
       openapi_service_flutter:
         options:
-          generateProvider: false
-          ignoreSecuritySchemes: false
+          prefixFilter: ''
+          includeFilterPrefix: true
 ```
 
 ### 3. Generate Code
@@ -204,9 +204,8 @@ targets:
     builders:
       openapi_service_flutter:
         options:
-          generateProvider: false          # Generate Riverpod providers
-          providerNamePrefix: ''          # Prefix for provider names
-          ignoreSecuritySchemes: false    # Ignore security schemes
+          prefixFilter: ''
+          includeFilterPrefix: true
 ```
 
 ## Client Usage with Authentication

@@ -8,7 +8,7 @@ export 'package:openapi_service_flutter/src/openapi_service_builder.dart'
 
 Builder openApiServiceBuilder(BuilderOptions options) {
   return OpenApiServiceBuilder(
-    orderDirectives: true,
-    generateProvider: options.config['generateProvider'] as bool? ?? false,
+    prefixFilter: options.config['prefixFilter'] as String? ?? '',
+    includeFilterPrefix: options.config['includeFilterPrefix'] as bool? ?? true,
   );
 }

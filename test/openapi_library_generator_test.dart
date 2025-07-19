@@ -46,8 +46,6 @@ components:
         api,
         baseName: 'TestApi',
         partFileName: 'test_api.openapi.g.dart',
-        freezedPartFileName: 'test_api.openapi.freezed.dart',
-        apiMethodsWithRequest: false,
       );
     });
 
@@ -61,7 +59,6 @@ components:
         // Convert to string to check contents
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           library,
-          orderDirectives: true,
         );
 
         expect(
@@ -80,7 +77,6 @@ components:
 
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         expect(formatted, contains('class ApiError'));
@@ -97,7 +93,6 @@ components:
 
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(formatted, contains('class TestApiService'));
@@ -344,7 +339,6 @@ paths:
           emptyApi,
           baseName: 'EmptyApi',
           partFileName: 'empty.g.dart',
-          freezedPartFileName: 'empty.freezed.dart',
         );
 
         final library = emptyGenerator.generate();
@@ -353,7 +347,6 @@ paths:
 
         final formatted = OpenApiServiceBuilderUtils.formatLibrary(
           library,
-          orderDirectives: true,
         );
 
         expect(formatted, contains('class EmptyApiService'));

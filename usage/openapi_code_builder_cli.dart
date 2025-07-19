@@ -24,7 +24,6 @@ Future<void> main(List<String> args) async {
   ).generate();
   final libraryOutput = OpenApiServiceBuilderUtils.formatLibrary(
     library,
-    orderDirectives: true,
   );
   print(libraryOutput);
 }

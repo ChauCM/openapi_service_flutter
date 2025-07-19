@@ -15,14 +15,12 @@ void main() {
           api,
           baseName: 'SimpleApi',
           partFileName: 'simple_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'simple_api.openapi.dtos.freezed.dart',
         );
 
         // Generate DTOs library
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Verify DTOs file content
@@ -38,7 +36,6 @@ void main() {
         final serviceLibrary = generator.generateServiceLibrary('simple_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Verify service file content
@@ -60,13 +57,11 @@ void main() {
           api,
           baseName: 'EnumApi',
           partFileName: 'enum_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'enum_api.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         expect(dtosOutput, contains('enum'));
@@ -75,7 +70,6 @@ void main() {
         final serviceLibrary = generator.generateServiceLibrary('enum_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Just verify the service was generated - specific enum references depend on the actual API structure
@@ -94,13 +88,11 @@ void main() {
           api,
           baseName: 'EnumReferenceApi',
           partFileName: 'enum_reference_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'enum_reference_api.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Verify that a standalone NotificationTypeDto enum is generated
@@ -154,13 +146,11 @@ void main() {
           api,
           baseName: 'UnusedEnumApi',
           partFileName: 'unused_enum_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'unused_enum_api.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // UsedNotificationType should be generated because it's referenced by Notification
@@ -192,13 +182,11 @@ void main() {
           api,
           baseName: 'ArrayApi',
           partFileName: 'array_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'array_api.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         expect(dtosOutput, contains('List<String>'));
@@ -206,7 +194,6 @@ void main() {
         final serviceLibrary = generator.generateServiceLibrary('array_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('class ArrayApiService'));
@@ -221,13 +208,11 @@ void main() {
           api,
           baseName: 'MapApi',
           partFileName: 'map_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'map_api.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary = generator.generateServiceLibrary('map_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('Map<String, int>'));
@@ -243,13 +228,11 @@ void main() {
           api,
           baseName: 'UuidApi',
           partFileName: 'uuid_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'uuid_api.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         expect(dtosOutput, contains('String'));
@@ -259,7 +242,6 @@ void main() {
         final serviceLibrary = generator.generateServiceLibrary('uuid_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('String'));
@@ -290,13 +272,11 @@ paths:
           api,
           baseName: 'MyCustomApi',
           partFileName: 'custom.openapi.dtos.g.dart',
-          freezedPartFileName: 'custom.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary = generator.generateServiceLibrary('custom');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('MyCustomApiService'));
@@ -326,14 +306,12 @@ paths:
           api,
           baseName: 'FallbackName',
           partFileName: 'fallback_name.openapi.dtos.g.dart',
-          freezedPartFileName: 'fallback_name.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary =
             generator.generateServiceLibrary('fallback_name');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('FallbackNameService'));
@@ -360,13 +338,11 @@ paths:
           api,
           baseName: 'VoidApi',
           partFileName: 'void_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'void_api.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary = generator.generateServiceLibrary('void_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('Either<ApiError, void>'));
@@ -419,13 +395,11 @@ components:
           api,
           baseName: 'DtoNamingTest',
           partFileName: 'dto_naming.openapi.dtos.g.dart',
-          freezedPartFileName: 'dto_naming.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Verify that existing schemas ending with 'Dto' don't get double suffix
@@ -435,7 +409,6 @@ components:
         final serviceLibrary = generator.generateServiceLibrary('dto_naming');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('class DtoNamingTestService'));
@@ -495,13 +468,11 @@ components:
           api,
           baseName: 'UnusedSchemaApi',
           partFileName: 'unused_schema.openapi.dtos.g.dart',
-          freezedPartFileName: 'unused_schema.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Only UsedSchema should be generated since it's referenced by the endpoint
@@ -516,7 +487,6 @@ components:
             generator.generateServiceLibrary('unused_schema');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('UsedSchemaDto'));
@@ -613,13 +583,11 @@ components:
           api,
           baseName: 'ComplexUsageApi',
           partFileName: 'complex_usage.openapi.dtos.g.dart',
-          freezedPartFileName: 'complex_usage.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Should generate DTOs for schemas used in:
@@ -691,14 +659,12 @@ paths:
           api,
           baseName: 'PrimitiveApi',
           partFileName: 'primitive_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'primitive_api.openapi.dtos.freezed.dart',
         );
 
         final serviceLibrary =
             generator.generateServiceLibrary('primitive_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Service should have methods returning primitive types wrapped in Either
@@ -777,14 +743,11 @@ components:
           api,
           baseName: 'EmptyArrayItemsApi',
           partFileName: 'empty_array_items_api.openapi.dtos.g.dart',
-          freezedPartFileName:
-              'empty_array_items_api.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Should generate the Journey DTO
@@ -808,7 +771,6 @@ components:
             generator.generateServiceLibrary('empty_array_items_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Service should compile without errors
@@ -891,13 +853,11 @@ components:
           api,
           baseName: 'ComponentReferenceApi',
           partFileName: 'component_reference.openapi.dtos.g.dart',
-          freezedPartFileName: 'component_reference.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Should generate component schema DTOs
@@ -915,7 +875,6 @@ components:
             generator.generateServiceLibrary('component_reference');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Service should reference component DTOs, not operation-specific ones
@@ -954,13 +913,11 @@ paths:
           api,
           baseName: 'SimpleApi',
           partFileName: 'simple_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'simple_api.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Verify ApiError class has sealed keyword
@@ -1027,13 +984,11 @@ components:
           api,
           baseName: 'OpenApi311Test',
           partFileName: 'openapi_3_1_1.openapi.dtos.g.dart',
-          freezedPartFileName: 'openapi_3_1_1.openapi.dtos.freezed.dart',
         );
 
         final dtosLibrary = generator.generateDtosLibrary();
         final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
           dtosLibrary,
-          orderDirectives: true,
         );
 
         // Should generate JourneyDto class even with OpenAPI 3.1.1 array-style nullable type
@@ -1044,17 +999,18 @@ components:
         expect(dtosOutput, contains('String? description'));
 
         // Should generate service that uses JourneyDto
-        final serviceLibrary = generator.generateServiceLibrary('openapi_3_1_1');
+        final serviceLibrary =
+            generator.generateServiceLibrary('openapi_3_1_1');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         expect(serviceOutput, contains('Future<Either<ApiError, JourneyDto>>'));
         expect(serviceOutput, contains('JourneyDto.fromJson'));
       });
 
-      test('handles List responses with proper fromJson deserialization', () async {
+      test('handles List responses with proper fromJson deserialization',
+          () async {
         final listResponseYaml = '''
 openapi: 3.0.0
 info:
@@ -1088,34 +1044,40 @@ components:
         - id
         - name
 ''';
-        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(listResponseYaml);
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(listResponseYaml);
 
         final generator = OpenApiLibraryGenerator(
           api,
           baseName: 'ListResponseApi',
           partFileName: 'list_response_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'list_response_api.openapi.dtos.freezed.dart',
         );
 
-        final serviceLibrary = generator.generateServiceLibrary('list_response_api');
+        final serviceLibrary =
+            generator.generateServiceLibrary('list_response_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Should generate service method that returns List<ItemDto>
-        expect(serviceOutput, contains('Future<Either<ApiError, List<ItemDto>>>'));
-        
+        expect(
+            serviceOutput, contains('Future<Either<ApiError, List<ItemDto>>>'));
+
         // Should correctly deserialize each item using fromJson
         expect(serviceOutput, contains('ItemDto.fromJson'));
-        expect(serviceOutput, contains('ItemDto.fromJson((item as Map<String, dynamic>))'));
-        
+        expect(serviceOutput,
+            contains('ItemDto.fromJson((item as Map<String, dynamic>))'));
+
         // Should NOT contain the incorrect pattern
-        expect(serviceOutput, isNot(contains('result.map((item) => item).toList()')));
-        expect(serviceOutput, isNot(contains('(mappedResult as List<ItemDto>)')));
+        expect(serviceOutput,
+            isNot(contains('result.map((item) => item).toList()')));
+        expect(
+            serviceOutput, isNot(contains('(mappedResult as List<ItemDto>)')));
       });
 
-      test('generates onError callback in service configuration and error handling', () async {
+      test(
+          'generates onError callback in service configuration and error handling',
+          () async {
         final errorCallbackYaml = '''
 openapi: 3.0.0
 info:
@@ -1143,19 +1105,19 @@ paths:
                   error:
                     type: string
 ''';
-        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(errorCallbackYaml);
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(errorCallbackYaml);
 
         final generator = OpenApiLibraryGenerator(
           api,
           baseName: 'ErrorCallbackApi',
           partFileName: 'error_callback_api.openapi.dtos.g.dart',
-          freezedPartFileName: 'error_callback_api.openapi.dtos.freezed.dart',
         );
 
-        final serviceLibrary = generator.generateServiceLibrary('error_callback_api');
+        final serviceLibrary =
+            generator.generateServiceLibrary('error_callback_api');
         final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
           serviceLibrary,
-          orderDirectives: true,
         );
 
         // Should generate service config with onError callback parameter
@@ -1182,20 +1144,31 @@ paths:
         expect(serviceOutput, contains('ApiError _handleError'));
         expect(serviceOutput, contains('if (_onError != null)'));
         expect(serviceOutput, contains('_onError('));
-        expect(serviceOutput, contains('error, stackTrace, endpoint, headers, requestData, responseData)'));
-        expect(serviceOutput, contains('final headers = response?.headers.map ?? <String, dynamic>{}'));
-        expect(serviceOutput, contains('final requestData = error.requestOptions.data'));
+        expect(
+            serviceOutput,
+            contains(
+                'error, stackTrace, endpoint, headers, requestData, responseData)'));
+        expect(
+            serviceOutput,
+            contains(
+                'final headers = response?.headers.map ?? <String, dynamic>{}'));
+        expect(serviceOutput,
+            contains('final requestData = error.requestOptions.data'));
         expect(serviceOutput, contains('final responseData = response?.data'));
 
         // Should handle both DioException and unknown errors
         expect(serviceOutput, contains('if (error is DioException)'));
         expect(serviceOutput, contains('// Call onError callback if provided'));
-        expect(serviceOutput, contains('// Call onError callback for unknown errors'));
+        expect(serviceOutput,
+            contains('// Call onError callback for unknown errors'));
 
         // Should wrap callback calls in try-catch blocks
         expect(serviceOutput, contains('try {'));
         expect(serviceOutput, contains('} catch (_) {'));
-        expect(serviceOutput, contains('// Ignore errors in callback to prevent recursive issues'));
+        expect(
+            serviceOutput,
+            contains(
+                '// Ignore errors in callback to prevent recursive issues'));
 
         // Should pass endpoint parameter to _handleError
         expect(serviceOutput, contains('_handleError('));
@@ -1242,20 +1215,21 @@ paths:
               schema:
                 type: string
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(defaultBehaviorYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(defaultBehaviorYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'DefaultBehaviorApi',
             partFileName: 'default_behavior_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'default_behavior_api.openapi.dtos.freezed.dart',
+
             // Using default values - no prefixFilter or includeFilterPrefix specified
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('default_behavior_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('default_behavior_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should include ALL endpoints by default (no filtering)
@@ -1326,21 +1300,22 @@ paths:
                   count:
                     type: integer
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(prefixFilterYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(prefixFilterYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'PrefixFilterApi',
             partFileName: 'prefix_filter_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'prefix_filter_api.openapi.dtos.freezed.dart',
+
             prefixFilter: '/api', // explicitly set to test filtering
             includeFilterPrefix: true, // default value
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('prefix_filter_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('prefix_filter_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should include /api endpoints
@@ -1352,8 +1327,10 @@ paths:
           expect(serviceOutput, isNot(contains('metricsGet')));
 
           // Should have correct method signatures for included endpoints
-          expect(serviceOutput, contains('Future<Either<ApiError, List<String>>> apiUsersGet'));
-          expect(serviceOutput, contains('Future<Either<ApiError, String>> apiPostsPost'));
+          expect(serviceOutput,
+              contains('Future<Either<ApiError, List<String>>> apiUsersGet'));
+          expect(serviceOutput,
+              contains('Future<Either<ApiError, String>> apiPostsPost'));
         });
 
         test('includes custom prefix filter', () async {
@@ -1402,21 +1379,21 @@ paths:
               schema:
                 type: string
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(customPrefixYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(customPrefixYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'CustomPrefixApi',
             partFileName: 'custom_prefix_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'custom_prefix_api.openapi.dtos.freezed.dart',
             prefixFilter: '/v1/api',
             includeFilterPrefix: true,
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('custom_prefix_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('custom_prefix_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should only include /v1/api endpoints
@@ -1428,7 +1405,9 @@ paths:
           expect(serviceOutput, isNot(contains('healthGet')));
         });
 
-        test('removes prefix from method names when includeFilterPrefix is false', () async {
+        test(
+            'removes prefix from method names when includeFilterPrefix is false',
+            () async {
           final prefixRemovalYaml = '''
 openapi: 3.0.0
 info:
@@ -1482,21 +1461,22 @@ paths:
               schema:
                 type: string
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(prefixRemovalYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(prefixRemovalYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'PrefixRemovalApi',
             partFileName: 'prefix_removal_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'prefix_removal_api.openapi.dtos.freezed.dart',
+
             prefixFilter: '/api',
             includeFilterPrefix: false, // Remove prefix from method names
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('prefix_removal_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('prefix_removal_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should generate method names without the /api prefix
@@ -1553,15 +1533,15 @@ paths:
             api,
             baseName: 'NoFilterApi',
             partFileName: 'no_filter_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'no_filter_api.openapi.dtos.freezed.dart',
+
             prefixFilter: '', // Empty string means no filtering
             includeFilterPrefix: true,
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('no_filter_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('no_filter_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should include ALL endpoints when prefix filter is empty
@@ -1598,21 +1578,22 @@ paths:
               schema:
                 type: string
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(dotSlashFilterYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(dotSlashFilterYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'DotSlashFilterApi',
             partFileName: 'dot_slash_filter_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'dot_slash_filter_api.openapi.dtos.freezed.dart',
+
             prefixFilter: './', // ./ means no filtering
             includeFilterPrefix: true,
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('dot_slash_filter_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('dot_slash_filter_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should include ALL endpoints when prefix filter is ./
@@ -1648,21 +1629,22 @@ paths:
               schema:
                 type: string
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(rootFilterYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(rootFilterYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'RootFilterApi',
             partFileName: 'root_filter_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'root_filter_api.openapi.dtos.freezed.dart',
+
             prefixFilter: '/', // / means no filtering
             includeFilterPrefix: true,
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('root_filter_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('root_filter_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should include ALL endpoints when prefix filter is /
@@ -1731,13 +1713,13 @@ components:
         - uptime
         - memory
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(dtosFilterYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(dtosFilterYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'DtosFilterApi',
             partFileName: 'dtos_filter_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'dtos_filter_api.openapi.dtos.freezed.dart',
             prefixFilter: '/api',
             includeFilterPrefix: true,
           );
@@ -1745,7 +1727,6 @@ components:
           final dtosLibrary = generator.generateDtosLibrary();
           final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
             dtosLibrary,
-            orderDirectives: true,
           );
 
           // Should generate DTO for User (used by /api endpoint)
@@ -1754,10 +1735,10 @@ components:
           // Should NOT generate DTO for HealthData (used by non-/api endpoint)
           expect(dtosOutput, isNot(contains('class HealthDataDto')));
 
-          final serviceLibrary = generator.generateServiceLibrary('dtos_filter_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('dtos_filter_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should only include /api endpoint
@@ -1811,21 +1792,23 @@ paths:
               schema:
                 type: string
 ''';
-          final api = OpenApiServiceBuilderUtils.loadApiFromYaml(operationIdYaml);
+          final api =
+              OpenApiServiceBuilderUtils.loadApiFromYaml(operationIdYaml);
 
           final generator = OpenApiLibraryGenerator(
             api,
             baseName: 'OperationIdApi',
             partFileName: 'operation_id_api.openapi.dtos.g.dart',
-            freezedPartFileName: 'operation_id_api.openapi.dtos.freezed.dart',
+
             prefixFilter: '/api',
-            includeFilterPrefix: false, // This should have no effect when operationId is present
+            includeFilterPrefix:
+                false, // This should have no effect when operationId is present
           );
 
-          final serviceLibrary = generator.generateServiceLibrary('operation_id_api');
+          final serviceLibrary =
+              generator.generateServiceLibrary('operation_id_api');
           final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
             serviceLibrary,
-            orderDirectives: true,
           );
 
           // Should use operation IDs for method names (ignoring prefix settings)
@@ -1844,9 +1827,7 @@ paths:
 
     group('buildExtensions', () {
       test('returns correct file extensions', () {
-        final builder = OpenApiServiceBuilder(
-          orderDirectives: true,
-        );
+        final builder = OpenApiServiceBuilder();
 
         expect(
             builder.buildExtensions,

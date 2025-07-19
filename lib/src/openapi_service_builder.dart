@@ -23,8 +23,6 @@ class OpenApiLibraryGenerator {
     this.api, {
     required this.baseName,
     required this.partFileName,
-    this.freezedPartFileName = '',
-    this.apiMethodsWithRequest = false,
     this.prefixFilter = '',
     this.includeFilterPrefix = true,
   });
@@ -33,9 +31,7 @@ class OpenApiLibraryGenerator {
 
   /// base name for this API. Should be in `PascalCase`
   final String baseName;
-  final String freezedPartFileName;
   final String partFileName;
-  final bool apiMethodsWithRequest;
 
   /// Filter for endpoints by prefix (default '/api')
   final String prefixFilter;
@@ -112,9 +108,6 @@ class OpenApiLibraryGenerator {
   }
 
   Library _generateServiceStyle() {
-    // Add freezed part file
-    lb.body.insert(1, Directive.part(freezedPartFileName));
-
     // Add API Error model
     lb.body.add(_generateApiErrorModel());
 
@@ -136,7 +129,8 @@ class OpenApiLibraryGenerator {
     final dtosLb = LibraryBuilder();
 
     // Add both part directives for Freezed and JSON serialization
-    dtosLb.body.add(Directive.part(freezedPartFileName));
+    dtosLb.body.add(
+        Directive.part(partFileName.replaceAll('.g.dart', '.freezed.dart')));
     dtosLb.body.add(Directive.part(partFileName));
 
     // Add API Error model
@@ -1484,10 +1478,10 @@ class OpenApiServiceBuilderUtils {
     return api;
   }
 
-  static String formatLibrary(Library library, {bool orderDirectives = false}) {
+  static String formatLibrary(Library library) {
     final emitter = DartEmitter(
       allocator: CustomAllocator(),
-      orderDirectives: orderDirectives,
+      orderDirectives: true,
       useNullSafetySyntax: true,
     );
     final libraryOutput = DartFormatter(
@@ -1502,14 +1496,10 @@ class OpenApiServiceBuilderUtils {
 
 class OpenApiServiceBuilder extends Builder {
   OpenApiServiceBuilder({
-    this.orderDirectives = false,
-    this.generateProvider = false,
-    this.prefixFilter = '/api',
+    this.prefixFilter = '',
     this.includeFilterPrefix = true,
   });
 
-  final bool generateProvider;
-  final bool orderDirectives;
   final String prefixFilter;
   final bool includeFilterPrefix;
 
@@ -1545,8 +1535,6 @@ class OpenApiServiceBuilder extends Builder {
         api,
         baseName: baseName,
         partFileName: inputId.changeExtension('.dtos.g.dart').pathSegments.last,
-        freezedPartFileName:
-            inputId.changeExtension('.dtos.freezed.dart').pathSegments.last,
         prefixFilter: prefixFilter,
         includeFilterPrefix: includeFilterPrefix,
       );
@@ -1556,8 +1544,6 @@ class OpenApiServiceBuilder extends Builder {
         baseName: baseName,
         partFileName:
             inputId.changeExtension('.service.g.dart').pathSegments.last,
-        freezedPartFileName:
-            inputId.changeExtension('.service.freezed.dart').pathSegments.last,
         prefixFilter: prefixFilter,
         includeFilterPrefix: includeFilterPrefix,
       );
@@ -1566,7 +1552,6 @@ class OpenApiServiceBuilder extends Builder {
       final dtosLibrary = dtosGenerator.generateDtosLibrary();
       final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
         dtosLibrary,
-        orderDirectives: true,
       );
       final dtosOutputId = inputId.changeExtension('.dtos.dart');
       await buildStep.writeAsString(dtosOutputId, dtosOutput);
@@ -1576,7 +1561,6 @@ class OpenApiServiceBuilder extends Builder {
           serviceGenerator.generateServiceLibrary(inputIdBasename);
       final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
         serviceLibrary,
-        orderDirectives: true,
       );
       final serviceOutputId = inputId.changeExtension('.service.dart');
       await buildStep.writeAsString(serviceOutputId, serviceOutput);

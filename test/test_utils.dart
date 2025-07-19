@@ -8,22 +8,17 @@ import 'package:recase/recase.dart';
 class TestUtils {
   /// Creates a default OpenApiServiceBuilder instance for testing
   static OpenApiServiceBuilder createDefaultBuilder() {
-    return OpenApiServiceBuilder(
-      orderDirectives: true,
-      generateProvider: false,
-    );
+    return OpenApiServiceBuilder();
   }
 
   /// Creates a builder with custom configuration
   static OpenApiServiceBuilder createCustomBuilder({
-    bool orderDirectives = true,
-    bool generateProvider = false,
-    String providerNamePrefix = '',
-    bool ignoreSecuritySchemes = false,
+    String prefixFilter = '',
+    bool includeFilterPrefix = true,
   }) {
     return OpenApiServiceBuilder(
-      orderDirectives: orderDirectives,
-      generateProvider: generateProvider,
+      prefixFilter: prefixFilter,
+      includeFilterPrefix: includeFilterPrefix,
     );
   }
 
@@ -194,11 +189,11 @@ components:
 Future<String> loadFixture(String filename) async {
   final fixturesDir = path.join(Directory.current.path, 'test', 'fixtures');
   final file = File(path.join(fixturesDir, filename));
-  
+
   if (!await file.exists()) {
     throw Exception('Fixture file not found: $filename');
   }
-  
+
   return await file.readAsString();
 }
 
@@ -214,7 +209,6 @@ String generateServiceLibrary(String yamlContent) {
     api,
     baseName: baseName,
     partFileName: 'test.service.g.dart',
-    freezedPartFileName: 'test.service.freezed.dart',
   );
 
   final serviceLibrary = generator.generateServiceLibrary('test');
