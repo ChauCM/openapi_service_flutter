@@ -262,7 +262,9 @@ class OpenApiLibraryGenerator {
           // Generate request body DTOs (only for non-trivial schemas that don't reference components)
           // Skip multipart/form-data requests as they use File objects directly
           final body = operation.value!.requestBody;
-          if (body != null && body.content!.isNotEmpty && !_isMultipartFormData(body)) {
+          if (body != null &&
+              body.content!.isNotEmpty &&
+              !_isMultipartFormData(body)) {
             final content = body.content!.values.first;
             if (content?.schema != null) {
               final schema = content!.schema!;
@@ -571,7 +573,7 @@ class OpenApiLibraryGenerator {
     // Add error handling methods
     serviceClass.methods.add(_generateHandleErrorMethod());
     serviceClass.methods.add(_generateExtractErrorMessageMethod());
-    
+
     // Add filename extraction helper method
     serviceClass.methods.add(_generateGetFileNameMethod());
 
@@ -751,16 +753,17 @@ class OpenApiLibraryGenerator {
         final multipartContent = _getMultipartContent(body);
         if (multipartContent?.schema?.properties != null) {
           final requiredFields = multipartContent!.schema!.required ?? [];
-          
-          for (final propEntry in multipartContent.schema!.properties!.entries) {
+
+          for (final propEntry
+              in multipartContent.schema!.properties!.entries) {
             final propName = propEntry.key.camelCase;
             final propSchema = propEntry.value!;
             final isRequired = requiredFields.contains(propEntry.key);
-            
+
             // Check if this is a file parameter (binary format or references IFormFile)
-            final isFileParameter = propSchema.format == 'binary' || 
+            final isFileParameter = propSchema.format == 'binary' ||
                 (propSchema.referenceURI?.pathSegments.last == 'IFormFile');
-            
+
             if (isFileParameter) {
               // Add File parameter - always required for files
               method.requiredParameters.add(Parameter((pb) => pb
@@ -768,8 +771,9 @@ class OpenApiLibraryGenerator {
                 ..type = _file));
             } else {
               // Add regular form field parameter
-              final paramType = toDartType('${operationName}${propName.pascalCase}', propSchema);
-              
+              final paramType = toDartType(
+                  '$operationName${propName.pascalCase}', propSchema);
+
               if (isRequired) {
                 method.requiredParameters.add(Parameter((pb) => pb
                   ..name = propName
@@ -783,7 +787,7 @@ class OpenApiLibraryGenerator {
             }
           }
         }
-        
+
         // Add progress callback parameter for file uploads
         method.optionalParameters.add(Parameter((pb) => pb
           ..name = 'onProgress'
@@ -861,33 +865,37 @@ class OpenApiLibraryGenerator {
               declareFinal('formData').assign(_formData.call([])).statement,
               const Code(''),
             ];
-            
-            for (final propEntry in multipartContent!.schema!.properties!.entries) {
+
+            for (final propEntry
+                in multipartContent!.schema!.properties!.entries) {
               final propName = propEntry.key.camelCase;
               final propSchema = propEntry.value!;
-              
+
               // Check if this is a file parameter
-              final isFileParameter = propSchema.format == 'binary' || 
+              final isFileParameter = propSchema.format == 'binary' ||
                   (propSchema.referenceURI?.pathSegments.last == 'IFormFile');
-              
+
               if (isFileParameter) {
                 // Add file as MultipartFile
-                formDataCode.add(Code(
-                  'formData.files.add(MapEntry(\'${propEntry.key}\', '
-                  'await MultipartFile.fromFile($propName.path, '
-                  'filename: _getFileName($propName.path))));'
-                ));
+                formDataCode.add(
+                    Code('formData.files.add(MapEntry(\'${propEntry.key}\', '
+                        'await MultipartFile.fromFile($propName.path, '
+                        'filename: _getFileName($propName.path))));'));
               } else {
                 // Add regular form field - handle optional parameters
-                final required = multipartContent.schema!.required?.contains(propEntry.key) ?? false;
+                final required = multipartContent.schema!.required
+                        ?.contains(propEntry.key) ??
+                    false;
                 if (required) {
-                  formDataCode.add(Code('formData.fields.add(MapEntry(\'${propEntry.key}\', $propName.toString()));'));
+                  formDataCode.add(Code(
+                      'formData.fields.add(MapEntry(\'${propEntry.key}\', $propName.toString()));'));
                 } else {
-                  formDataCode.add(Code('if ($propName != null) formData.fields.add(MapEntry(\'${propEntry.key}\', $propName.toString()));'));
+                  formDataCode.add(Code(
+                      'if ($propName != null) formData.fields.add(MapEntry(\'${propEntry.key}\', $propName.toString()));'));
                 }
               }
             }
-            
+
             formDataCode.add(const Code(''));
             return formDataCode;
           }
@@ -1229,7 +1237,8 @@ class OpenApiLibraryGenerator {
         ..name = 'filePath'
         ..type = refer('String')))
       ..body = Block.of([
-        const Code('// Handle both forward and backward slashes for cross-platform compatibility'),
+        const Code(
+            '// Handle both forward and backward slashes for cross-platform compatibility'),
         const Code(r'final parts = filePath.replaceAll(r"\", "/").split("/");'),
         const Code('return parts.isNotEmpty ? parts.last : \'file\';'),
       ]));
@@ -1281,7 +1290,7 @@ class OpenApiLibraryGenerator {
   /// Checks if a request body has multipart/form-data content type
   bool _isMultipartFormData(APIRequestBody? requestBody) {
     if (requestBody?.content == null) return false;
-    return requestBody!.content!.keys.any((contentType) => 
+    return requestBody!.content!.keys.any((contentType) =>
         contentType.toLowerCase().contains('multipart/form-data'));
   }
 
@@ -1289,7 +1298,8 @@ class OpenApiLibraryGenerator {
   APIMediaType? _getMultipartContent(APIRequestBody? requestBody) {
     if (requestBody?.content == null) return null;
     final multipartKey = requestBody!.content!.keys.firstWhere(
-      (contentType) => contentType.toLowerCase().contains('multipart/form-data'),
+      (contentType) =>
+          contentType.toLowerCase().contains('multipart/form-data'),
       orElse: () => '',
     );
     return multipartKey.isNotEmpty ? requestBody.content![multipartKey] : null;
