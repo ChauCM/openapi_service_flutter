@@ -25,6 +25,8 @@ class OpenApiLibraryGenerator {
     required this.partFileName,
     this.freezedPartFileName = '',
     this.apiMethodsWithRequest = false,
+    this.prefixFilter = '',
+    this.includeFilterPrefix = true,
   });
 
   final APIDocument api;
@@ -34,6 +36,12 @@ class OpenApiLibraryGenerator {
   final String freezedPartFileName;
   final String partFileName;
   final bool apiMethodsWithRequest;
+
+  /// Filter for endpoints by prefix (default '/api')
+  final String prefixFilter;
+
+  /// Whether to include the filter prefix in method names (default true)
+  final bool includeFilterPrefix;
 
   final jsonValue = refer('JsonValue');
   final jsonKey = refer('JsonKey');
@@ -137,9 +145,14 @@ class OpenApiLibraryGenerator {
     // Track which schemas are actually used by endpoints
     final usedSchemas = <String>{};
 
-    // First pass: collect all schema references from endpoints
+    // First pass: collect all schema references from endpoints (filtered by prefix)
     if (api.paths != null) {
       for (final path in api.paths!.entries) {
+        // Skip paths that don't match the prefix filter
+        if (!_shouldIncludePath(path.key)) {
+          continue;
+        }
+
         for (final operation in path.value!.operations.entries) {
           // Check response schemas
           for (final response in operation.value!.responses!.entries) {
@@ -195,10 +208,14 @@ class OpenApiLibraryGenerator {
     // Generate DTOs from API operations (responses, parameters, and request bodies)
     if (api.paths != null) {
       for (final path in api.paths!.entries) {
+        // Skip paths that don't match the prefix filter
+        if (!_shouldIncludePath(path.key)) {
+          continue;
+        }
+
         for (final operation in path.value!.operations.entries) {
-          final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
-          final operationName = operation.value!.id?.camelCase ??
-              '$pathName${operation.key.pascalCase}';
+          final operationName = _generateOperationName(
+              path.key, operation.value!.id, operation.key);
 
           // Generate response DTOs (only for non-trivial schemas that don't reference components)
           final successResponse = operation.value!.responses!.entries
@@ -490,17 +507,23 @@ class OpenApiLibraryGenerator {
     // Add _onError field
     serviceClass.fields.add(Field((fb) => fb
       ..name = '_onError'
-      ..type = refer('void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)').asNullable(true)
+      ..type = refer(
+              'void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)')
+          .asNullable(true)
       ..late = true
       ..modifier = FieldModifier.final$));
 
-    // Generate service methods for each API operation
+    // Generate service methods for each API operation (filtered by prefix)
     if (api.paths != null) {
       for (final path in api.paths!.entries) {
+        // Skip paths that don't match the prefix filter
+        if (!_shouldIncludePath(path.key)) {
+          continue;
+        }
+
         for (final operation in path.value!.operations.entries) {
-          final pathName = path.key.replaceAll(RegExp(r'[{}]'), '').camelCase;
-          final operationName = operation.value!.id?.camelCase ??
-              '$pathName${operation.key.pascalCase}';
+          final operationName = _generateOperationName(
+              path.key, operation.value!.id, operation.key);
 
           // Determine response DTO type
           Reference? successResponseType;
@@ -607,7 +630,9 @@ class OpenApiLibraryGenerator {
         ..modifier = FieldModifier.final$),
       Field((fb) => fb
         ..name = 'onError'
-        ..type = refer('void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)').asNullable(true)
+        ..type = refer(
+                'void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)')
+            .asNullable(true)
         ..modifier = FieldModifier.final$),
     ]);
 
@@ -921,7 +946,8 @@ class OpenApiLibraryGenerator {
 
       const Code('} catch (e, stackTrace) {'),
       _left([
-        refer('_handleError')([refer('e'), refer('stackTrace'), literalString(actualPath)])
+        refer('_handleError')(
+            [refer('e'), refer('stackTrace'), literalString(actualPath)])
       ]).returned.statement,
       const Code('}'),
     ];
@@ -1029,12 +1055,15 @@ class OpenApiLibraryGenerator {
         const Code('// Call onError callback if provided'),
         const Code('if (_onError != null) {'),
         const Code('  try {'),
-        const Code('    final headers = response?.headers.map ?? <String, dynamic>{};'),
+        const Code(
+            '    final headers = response?.headers.map ?? <String, dynamic>{};'),
         const Code('    final requestData = error.requestOptions.data;'),
         const Code('    final responseData = response?.data;'),
-        const Code('    _onError(error, stackTrace, endpoint, headers, requestData, responseData);'),
+        const Code(
+            '    _onError(error, stackTrace, endpoint, headers, requestData, responseData);'),
         const Code('  } catch (_) {'),
-        const Code('    // Ignore errors in callback to prevent recursive issues'),
+        const Code(
+            '    // Ignore errors in callback to prevent recursive issues'),
         const Code('  }'),
         const Code('}'),
         const Code(''),
@@ -1051,9 +1080,11 @@ class OpenApiLibraryGenerator {
         const Code('// Call onError callback for unknown errors'),
         const Code('if (_onError != null) {'),
         const Code('  try {'),
-        const Code('    _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);'),
+        const Code(
+            '    _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);'),
         const Code('  } catch (_) {'),
-        const Code('    // Ignore errors in callback to prevent recursive issues'),
+        const Code(
+            '    // Ignore errors in callback to prevent recursive issues'),
         const Code('  }'),
         const Code('}'),
         const Code(''),
@@ -1098,6 +1129,40 @@ class OpenApiLibraryGenerator {
       return pascalCaseName;
     }
     return '${pascalCaseName}Dto';
+  }
+
+  /// Generates operation name considering prefix filter settings
+  String _generateOperationName(
+      String path, String? operationId, String httpMethod) {
+    String operationName;
+
+    if (operationId != null) {
+      operationName = operationId.camelCase;
+    } else {
+      // Filter path by prefix and optionally remove prefix from method name
+      String filteredPath = path;
+      if (!includeFilterPrefix && path.startsWith(prefixFilter)) {
+        filteredPath = path.substring(prefixFilter.length);
+        // Ensure path starts with '/' if it doesn't after prefix removal
+        if (!filteredPath.startsWith('/')) {
+          filteredPath = '/$filteredPath';
+        }
+      }
+
+      final pathName = filteredPath.replaceAll(RegExp(r'[{}]'), '').camelCase;
+      operationName = '$pathName${httpMethod.pascalCase}';
+    }
+
+    return operationName;
+  }
+
+  /// Checks if a path should be included based on prefix filter
+  bool _shouldIncludePath(String path) {
+    // Handle edge cases for no filtering
+    if (prefixFilter.isEmpty || prefixFilter == './' || prefixFilter == '/') {
+      return true;
+    }
+    return path.startsWith(prefixFilter);
   }
 
   String? _componentNameFromReferenceUri(Uri? referenceUri) {
@@ -1439,10 +1504,14 @@ class OpenApiServiceBuilder extends Builder {
   OpenApiServiceBuilder({
     this.orderDirectives = false,
     this.generateProvider = false,
+    this.prefixFilter = '/api',
+    this.includeFilterPrefix = true,
   });
 
   final bool generateProvider;
   final bool orderDirectives;
+  final String prefixFilter;
+  final bool includeFilterPrefix;
 
   @override
   FutureOr<void> build(BuildStep buildStep) async {
@@ -1478,6 +1547,8 @@ class OpenApiServiceBuilder extends Builder {
         partFileName: inputId.changeExtension('.dtos.g.dart').pathSegments.last,
         freezedPartFileName:
             inputId.changeExtension('.dtos.freezed.dart').pathSegments.last,
+        prefixFilter: prefixFilter,
+        includeFilterPrefix: includeFilterPrefix,
       );
 
       final serviceGenerator = OpenApiLibraryGenerator(
@@ -1487,6 +1558,8 @@ class OpenApiServiceBuilder extends Builder {
             inputId.changeExtension('.service.g.dart').pathSegments.last,
         freezedPartFileName:
             inputId.changeExtension('.service.freezed.dart').pathSegments.last,
+        prefixFilter: prefixFilter,
+        includeFilterPrefix: includeFilterPrefix,
       );
 
       // Generate DTOs library
