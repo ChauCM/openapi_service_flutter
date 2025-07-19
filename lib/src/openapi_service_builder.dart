@@ -53,6 +53,10 @@ class OpenApiLibraryGenerator {
   final _openApiClient = refer('OpenApiClient');
   final _openApiClientBase = refer('OpenApiClientBase');
   final _hasSuccessResponse = refer('HasSuccessResponse');
+  final _file = refer('File', 'dart:io');
+  final _formData = refer('FormData', 'package:dio/dio.dart');
+  final _multipartFile = refer('MultipartFile', 'package:dio/dio.dart');
+  final _platform = refer('Platform', 'dart:io');
 
   final _openApiClientRequestBodyJson = refer('OpenApiClientRequestBodyJson');
   final _openApiClientRequestBodyText = refer('OpenApiClientRequestBodyText');
@@ -256,8 +260,9 @@ class OpenApiLibraryGenerator {
           }
 
           // Generate request body DTOs (only for non-trivial schemas that don't reference components)
+          // Skip multipart/form-data requests as they use File objects directly
           final body = operation.value!.requestBody;
-          if (body != null && body.content!.isNotEmpty) {
+          if (body != null && body.content!.isNotEmpty && !_isMultipartFormData(body)) {
             final content = body.content!.values.first;
             if (content?.schema != null) {
               final schema = content!.schema!;
@@ -566,6 +571,9 @@ class OpenApiLibraryGenerator {
     // Add error handling methods
     serviceClass.methods.add(_generateHandleErrorMethod());
     serviceClass.methods.add(_generateExtractErrorMessageMethod());
+    
+    // Add filename extraction helper method
+    serviceClass.methods.add(_generateGetFileNameMethod());
 
     targetLb.body.add(serviceClass.build());
   }
@@ -738,29 +746,75 @@ class OpenApiLibraryGenerator {
     // Add request body parameter
     final body = operation.requestBody;
     if (body != null && body.content!.isNotEmpty) {
-      final content = body.content!.values.first;
-      if (content?.schema != null) {
-        final schema = content!.schema!;
-        Reference bodyType;
-        // Prefer component schema DTO if it references a component, otherwise use operation-specific DTO
-        if (schema.referenceURI != null) {
-          // This references a component schema, use toDartType to get the component DTO
-          bodyType = toDartType('${operationName}Request', schema);
-        } else if (shouldGenerateDto(schema)) {
-          // This is an inline schema that we generated an operation-specific DTO for
-          final requestBaseName = '${operationName.pascalCase}Request';
-          final requestTypeName = requestBaseName.endsWith('Dto')
-              ? requestBaseName
-              : '${requestBaseName}Dto';
-          bodyType = refer(requestTypeName);
-        } else {
-          // This is a simple type (string, int, etc.)
-          bodyType = toDartType('${operationName}Request', schema);
+      if (_isMultipartFormData(body)) {
+        // Handle multipart/form-data requests differently
+        final multipartContent = _getMultipartContent(body);
+        if (multipartContent?.schema?.properties != null) {
+          final requiredFields = multipartContent!.schema!.required ?? [];
+          
+          for (final propEntry in multipartContent.schema!.properties!.entries) {
+            final propName = propEntry.key.camelCase;
+            final propSchema = propEntry.value!;
+            final isRequired = requiredFields.contains(propEntry.key);
+            
+            // Check if this is a file parameter (binary format or references IFormFile)
+            final isFileParameter = propSchema.format == 'binary' || 
+                (propSchema.referenceURI?.pathSegments.last == 'IFormFile');
+            
+            if (isFileParameter) {
+              // Add File parameter - always required for files
+              method.requiredParameters.add(Parameter((pb) => pb
+                ..name = propName
+                ..type = _file));
+            } else {
+              // Add regular form field parameter
+              final paramType = toDartType('${operationName}${propName.pascalCase}', propSchema);
+              
+              if (isRequired) {
+                method.requiredParameters.add(Parameter((pb) => pb
+                  ..name = propName
+                  ..type = paramType));
+              } else {
+                method.optionalParameters.add(Parameter((pb) => pb
+                  ..name = propName
+                  ..type = paramType.asNullable(true)
+                  ..named = true));
+              }
+            }
+          }
         }
+        
+        // Add progress callback parameter for file uploads
+        method.optionalParameters.add(Parameter((pb) => pb
+          ..name = 'onProgress'
+          ..type = refer('void Function(int sent, int total)').asNullable(true)
+          ..named = true));
+      } else {
+        // Handle regular JSON request bodies
+        final content = body.content!.values.first;
+        if (content?.schema != null) {
+          final schema = content!.schema!;
+          Reference bodyType;
+          // Prefer component schema DTO if it references a component, otherwise use operation-specific DTO
+          if (schema.referenceURI != null) {
+            // This references a component schema, use toDartType to get the component DTO
+            bodyType = toDartType('${operationName}Request', schema);
+          } else if (shouldGenerateDto(schema)) {
+            // This is an inline schema that we generated an operation-specific DTO for
+            final requestBaseName = '${operationName.pascalCase}Request';
+            final requestTypeName = requestBaseName.endsWith('Dto')
+                ? requestBaseName
+                : '${requestBaseName}Dto';
+            bodyType = refer(requestTypeName);
+          } else {
+            // This is a simple type (string, int, etc.)
+            bodyType = toDartType('${operationName}Request', schema);
+          }
 
-        method.requiredParameters.add(Parameter((pb) => pb
-          ..name = 'body'
-          ..type = bodyType));
+          method.requiredParameters.add(Parameter((pb) => pb
+            ..name = 'body'
+            ..type = bodyType));
+        }
       }
     }
 
@@ -794,6 +848,49 @@ class OpenApiLibraryGenerator {
             }),
             const Code(''),
           ];
+        }
+        return <Code>[];
+      }(),
+
+      // Build FormData for multipart requests
+      ...() {
+        if (_isMultipartFormData(operation.requestBody)) {
+          final multipartContent = _getMultipartContent(operation.requestBody);
+          if (multipartContent?.schema?.properties != null) {
+            final formDataCode = <Code>[
+              declareFinal('formData').assign(_formData.call([])).statement,
+              const Code(''),
+            ];
+            
+            for (final propEntry in multipartContent!.schema!.properties!.entries) {
+              final propName = propEntry.key.camelCase;
+              final propSchema = propEntry.value!;
+              
+              // Check if this is a file parameter
+              final isFileParameter = propSchema.format == 'binary' || 
+                  (propSchema.referenceURI?.pathSegments.last == 'IFormFile');
+              
+              if (isFileParameter) {
+                // Add file as MultipartFile
+                formDataCode.add(Code(
+                  'formData.files.add(MapEntry(\'${propEntry.key}\', '
+                  'await MultipartFile.fromFile($propName.path, '
+                  'filename: _getFileName($propName.path))));'
+                ));
+              } else {
+                // Add regular form field - handle optional parameters
+                final required = multipartContent.schema!.required?.contains(propEntry.key) ?? false;
+                if (required) {
+                  formDataCode.add(Code('formData.fields.add(MapEntry(\'${propEntry.key}\', $propName.toString()));'));
+                } else {
+                  formDataCode.add(Code('if ($propName != null) formData.fields.add(MapEntry(\'${propEntry.key}\', $propName.toString()));'));
+                }
+              }
+            }
+            
+            formDataCode.add(const Code(''));
+            return formDataCode;
+          }
         }
         return <Code>[];
       }(),
@@ -978,14 +1075,22 @@ class OpenApiLibraryGenerator {
 
     // Add request body
     if (operation.requestBody != null) {
-      final content = operation.requestBody!.content!.values.first;
-      if (content?.schema != null) {
-        final schema = content!.schema!;
-        final isObject = schema.type == null || schema.type == APIType.object;
-        if (isObject) {
-          requestArgs['data'] = refer('body').property('toJson')([]);
-        } else {
-          requestArgs['data'] = refer('body');
+      if (_isMultipartFormData(operation.requestBody)) {
+        // For multipart requests, use formData variable
+        requestArgs['data'] = refer('formData');
+        // Add progress callback if provided
+        requestArgs['onSendProgress'] = refer('onProgress');
+      } else {
+        // Handle regular JSON request bodies
+        final content = operation.requestBody!.content!.values.first;
+        if (content?.schema != null) {
+          final schema = content!.schema!;
+          final isObject = schema.type == null || schema.type == APIType.object;
+          if (isObject) {
+            requestArgs['data'] = refer('body').property('toJson')([]);
+          } else {
+            requestArgs['data'] = refer('body');
+          }
         }
       }
     }
@@ -1116,6 +1221,20 @@ class OpenApiLibraryGenerator {
       ]));
   }
 
+  Method _generateGetFileNameMethod() {
+    return Method((mb) => mb
+      ..name = '_getFileName'
+      ..returns = refer('String')
+      ..requiredParameters.add(Parameter((pb) => pb
+        ..name = 'filePath'
+        ..type = refer('String')))
+      ..body = Block.of([
+        const Code('// Handle both forward and backward slashes for cross-platform compatibility'),
+        const Code(r'final parts = filePath.replaceAll(r"\", "/").split("/");'),
+        const Code('return parts.isNotEmpty ? parts.last : \'file\';'),
+      ]));
+  }
+
   String classNameForComponent(String componentName) {
     final pascalCaseName = componentName.pascalCase;
     // Avoid double "Dto" suffix
@@ -1157,6 +1276,23 @@ class OpenApiLibraryGenerator {
       return true;
     }
     return path.startsWith(prefixFilter);
+  }
+
+  /// Checks if a request body has multipart/form-data content type
+  bool _isMultipartFormData(APIRequestBody? requestBody) {
+    if (requestBody?.content == null) return false;
+    return requestBody!.content!.keys.any((contentType) => 
+        contentType.toLowerCase().contains('multipart/form-data'));
+  }
+
+  /// Gets the multipart/form-data content from request body
+  APIMediaType? _getMultipartContent(APIRequestBody? requestBody) {
+    if (requestBody?.content == null) return null;
+    final multipartKey = requestBody!.content!.keys.firstWhere(
+      (contentType) => contentType.toLowerCase().contains('multipart/form-data'),
+      orElse: () => '',
+    );
+    return multipartKey.isNotEmpty ? requestBody.content![multipartKey] : null;
   }
 
   String? _componentNameFromReferenceUri(Uri? referenceUri) {

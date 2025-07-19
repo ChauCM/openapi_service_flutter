@@ -3796,858 +3796,6 @@ class __$FollowingStatusDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$ImageMetadataDto {
-  @JsonKey(name: 'fileName')
-  String? get fileName;
-  @JsonKey(name: 'fileUrl')
-  String? get fileUrl;
-  @JsonKey(name: 'width')
-  int? get width;
-  @JsonKey(name: 'height')
-  int? get height;
-  @JsonKey(name: 'size')
-  int? get size;
-  @JsonKey(name: 'contentType')
-  String? get contentType;
-
-  /// Create a copy of ImageMetadataDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $ImageMetadataDtoCopyWith<ImageMetadataDto> get copyWith =>
-      _$ImageMetadataDtoCopyWithImpl<ImageMetadataDto>(
-          this as ImageMetadataDto, _$identity);
-
-  /// Serializes this ImageMetadataDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ImageMetadataDto &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName) &&
-            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
-            (identical(other.width, width) || other.width == width) &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.contentType, contentType) ||
-                other.contentType == contentType));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, fileName, fileUrl, width, height, size, contentType);
-
-  @override
-  String toString() {
-    return 'ImageMetadataDto(fileName: $fileName, fileUrl: $fileUrl, width: $width, height: $height, size: $size, contentType: $contentType)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $ImageMetadataDtoCopyWith<$Res> {
-  factory $ImageMetadataDtoCopyWith(
-          ImageMetadataDto value, $Res Function(ImageMetadataDto) _then) =
-      _$ImageMetadataDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'fileName') String? fileName,
-      @JsonKey(name: 'fileUrl') String? fileUrl,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'size') int? size,
-      @JsonKey(name: 'contentType') String? contentType});
-}
-
-/// @nodoc
-class _$ImageMetadataDtoCopyWithImpl<$Res>
-    implements $ImageMetadataDtoCopyWith<$Res> {
-  _$ImageMetadataDtoCopyWithImpl(this._self, this._then);
-
-  final ImageMetadataDto _self;
-  final $Res Function(ImageMetadataDto) _then;
-
-  /// Create a copy of ImageMetadataDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fileName = freezed,
-    Object? fileUrl = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? size = freezed,
-    Object? contentType = freezed,
-  }) {
-    return _then(_self.copyWith(
-      fileName: freezed == fileName
-          ? _self.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileUrl: freezed == fileUrl
-          ? _self.fileUrl
-          : fileUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: freezed == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      size: freezed == size
-          ? _self.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int?,
-      contentType: freezed == contentType
-          ? _self.contentType
-          : contentType // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [ImageMetadataDto].
-extension ImageMetadataDtoPatterns on ImageMetadataDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ImageMetadataDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ImageMetadataDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ImageMetadataDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImageMetadataDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ImageMetadataDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImageMetadataDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'fileName') String? fileName,
-            @JsonKey(name: 'fileUrl') String? fileUrl,
-            @JsonKey(name: 'width') int? width,
-            @JsonKey(name: 'height') int? height,
-            @JsonKey(name: 'size') int? size,
-            @JsonKey(name: 'contentType') String? contentType)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ImageMetadataDto() when $default != null:
-        return $default(_that.fileName, _that.fileUrl, _that.width,
-            _that.height, _that.size, _that.contentType);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'fileName') String? fileName,
-            @JsonKey(name: 'fileUrl') String? fileUrl,
-            @JsonKey(name: 'width') int? width,
-            @JsonKey(name: 'height') int? height,
-            @JsonKey(name: 'size') int? size,
-            @JsonKey(name: 'contentType') String? contentType)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImageMetadataDto():
-        return $default(_that.fileName, _that.fileUrl, _that.width,
-            _that.height, _that.size, _that.contentType);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'fileName') String? fileName,
-            @JsonKey(name: 'fileUrl') String? fileUrl,
-            @JsonKey(name: 'width') int? width,
-            @JsonKey(name: 'height') int? height,
-            @JsonKey(name: 'size') int? size,
-            @JsonKey(name: 'contentType') String? contentType)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImageMetadataDto() when $default != null:
-        return $default(_that.fileName, _that.fileUrl, _that.width,
-            _that.height, _that.size, _that.contentType);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _ImageMetadataDto implements ImageMetadataDto {
-  _ImageMetadataDto(
-      {@JsonKey(name: 'fileName') this.fileName,
-      @JsonKey(name: 'fileUrl') this.fileUrl,
-      @JsonKey(name: 'width') this.width,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'size') this.size,
-      @JsonKey(name: 'contentType') this.contentType});
-  factory _ImageMetadataDto.fromJson(Map<String, dynamic> json) =>
-      _$ImageMetadataDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'fileName')
-  final String? fileName;
-  @override
-  @JsonKey(name: 'fileUrl')
-  final String? fileUrl;
-  @override
-  @JsonKey(name: 'width')
-  final int? width;
-  @override
-  @JsonKey(name: 'height')
-  final int? height;
-  @override
-  @JsonKey(name: 'size')
-  final int? size;
-  @override
-  @JsonKey(name: 'contentType')
-  final String? contentType;
-
-  /// Create a copy of ImageMetadataDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ImageMetadataDtoCopyWith<_ImageMetadataDto> get copyWith =>
-      __$ImageMetadataDtoCopyWithImpl<_ImageMetadataDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ImageMetadataDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _ImageMetadataDto &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName) &&
-            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
-            (identical(other.width, width) || other.width == width) &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.contentType, contentType) ||
-                other.contentType == contentType));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, fileName, fileUrl, width, height, size, contentType);
-
-  @override
-  String toString() {
-    return 'ImageMetadataDto(fileName: $fileName, fileUrl: $fileUrl, width: $width, height: $height, size: $size, contentType: $contentType)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$ImageMetadataDtoCopyWith<$Res>
-    implements $ImageMetadataDtoCopyWith<$Res> {
-  factory _$ImageMetadataDtoCopyWith(
-          _ImageMetadataDto value, $Res Function(_ImageMetadataDto) _then) =
-      __$ImageMetadataDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'fileName') String? fileName,
-      @JsonKey(name: 'fileUrl') String? fileUrl,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'size') int? size,
-      @JsonKey(name: 'contentType') String? contentType});
-}
-
-/// @nodoc
-class __$ImageMetadataDtoCopyWithImpl<$Res>
-    implements _$ImageMetadataDtoCopyWith<$Res> {
-  __$ImageMetadataDtoCopyWithImpl(this._self, this._then);
-
-  final _ImageMetadataDto _self;
-  final $Res Function(_ImageMetadataDto) _then;
-
-  /// Create a copy of ImageMetadataDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? fileName = freezed,
-    Object? fileUrl = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? size = freezed,
-    Object? contentType = freezed,
-  }) {
-    return _then(_ImageMetadataDto(
-      fileName: freezed == fileName
-          ? _self.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileUrl: freezed == fileUrl
-          ? _self.fileUrl
-          : fileUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: freezed == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      size: freezed == size
-          ? _self.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int?,
-      contentType: freezed == contentType
-          ? _self.contentType
-          : contentType // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-mixin _$ImagePresignedUrlDto {
-  @JsonKey(name: 'uploadUrl')
-  String? get uploadUrl;
-  @JsonKey(name: 'fileUrl')
-  String? get fileUrl;
-  @JsonKey(name: 'fileName')
-  String? get fileName;
-  @JsonKey(name: 'expiresAt')
-  DateTime? get expiresAt;
-  @JsonKey(name: 'headers')
-  Map<String, String>? get headers;
-
-  /// Create a copy of ImagePresignedUrlDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $ImagePresignedUrlDtoCopyWith<ImagePresignedUrlDto> get copyWith =>
-      _$ImagePresignedUrlDtoCopyWithImpl<ImagePresignedUrlDto>(
-          this as ImagePresignedUrlDto, _$identity);
-
-  /// Serializes this ImagePresignedUrlDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ImagePresignedUrlDto &&
-            (identical(other.uploadUrl, uploadUrl) ||
-                other.uploadUrl == uploadUrl) &&
-            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName) &&
-            (identical(other.expiresAt, expiresAt) ||
-                other.expiresAt == expiresAt) &&
-            const DeepCollectionEquality().equals(other.headers, headers));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, uploadUrl, fileUrl, fileName,
-      expiresAt, const DeepCollectionEquality().hash(headers));
-
-  @override
-  String toString() {
-    return 'ImagePresignedUrlDto(uploadUrl: $uploadUrl, fileUrl: $fileUrl, fileName: $fileName, expiresAt: $expiresAt, headers: $headers)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $ImagePresignedUrlDtoCopyWith<$Res> {
-  factory $ImagePresignedUrlDtoCopyWith(ImagePresignedUrlDto value,
-          $Res Function(ImagePresignedUrlDto) _then) =
-      _$ImagePresignedUrlDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'uploadUrl') String? uploadUrl,
-      @JsonKey(name: 'fileUrl') String? fileUrl,
-      @JsonKey(name: 'fileName') String? fileName,
-      @JsonKey(name: 'expiresAt') DateTime? expiresAt,
-      @JsonKey(name: 'headers') Map<String, String>? headers});
-}
-
-/// @nodoc
-class _$ImagePresignedUrlDtoCopyWithImpl<$Res>
-    implements $ImagePresignedUrlDtoCopyWith<$Res> {
-  _$ImagePresignedUrlDtoCopyWithImpl(this._self, this._then);
-
-  final ImagePresignedUrlDto _self;
-  final $Res Function(ImagePresignedUrlDto) _then;
-
-  /// Create a copy of ImagePresignedUrlDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? uploadUrl = freezed,
-    Object? fileUrl = freezed,
-    Object? fileName = freezed,
-    Object? expiresAt = freezed,
-    Object? headers = freezed,
-  }) {
-    return _then(_self.copyWith(
-      uploadUrl: freezed == uploadUrl
-          ? _self.uploadUrl
-          : uploadUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileUrl: freezed == fileUrl
-          ? _self.fileUrl
-          : fileUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileName: freezed == fileName
-          ? _self.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expiresAt: freezed == expiresAt
-          ? _self.expiresAt
-          : expiresAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      headers: freezed == headers
-          ? _self.headers
-          : headers // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [ImagePresignedUrlDto].
-extension ImagePresignedUrlDtoPatterns on ImagePresignedUrlDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_ImagePresignedUrlDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ImagePresignedUrlDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_ImagePresignedUrlDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImagePresignedUrlDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_ImagePresignedUrlDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImagePresignedUrlDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'uploadUrl') String? uploadUrl,
-            @JsonKey(name: 'fileUrl') String? fileUrl,
-            @JsonKey(name: 'fileName') String? fileName,
-            @JsonKey(name: 'expiresAt') DateTime? expiresAt,
-            @JsonKey(name: 'headers') Map<String, String>? headers)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _ImagePresignedUrlDto() when $default != null:
-        return $default(_that.uploadUrl, _that.fileUrl, _that.fileName,
-            _that.expiresAt, _that.headers);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'uploadUrl') String? uploadUrl,
-            @JsonKey(name: 'fileUrl') String? fileUrl,
-            @JsonKey(name: 'fileName') String? fileName,
-            @JsonKey(name: 'expiresAt') DateTime? expiresAt,
-            @JsonKey(name: 'headers') Map<String, String>? headers)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImagePresignedUrlDto():
-        return $default(_that.uploadUrl, _that.fileUrl, _that.fileName,
-            _that.expiresAt, _that.headers);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'uploadUrl') String? uploadUrl,
-            @JsonKey(name: 'fileUrl') String? fileUrl,
-            @JsonKey(name: 'fileName') String? fileName,
-            @JsonKey(name: 'expiresAt') DateTime? expiresAt,
-            @JsonKey(name: 'headers') Map<String, String>? headers)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _ImagePresignedUrlDto() when $default != null:
-        return $default(_that.uploadUrl, _that.fileUrl, _that.fileName,
-            _that.expiresAt, _that.headers);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _ImagePresignedUrlDto implements ImagePresignedUrlDto {
-  _ImagePresignedUrlDto(
-      {@JsonKey(name: 'uploadUrl') this.uploadUrl,
-      @JsonKey(name: 'fileUrl') this.fileUrl,
-      @JsonKey(name: 'fileName') this.fileName,
-      @JsonKey(name: 'expiresAt') this.expiresAt,
-      @JsonKey(name: 'headers') final Map<String, String>? headers})
-      : _headers = headers;
-  factory _ImagePresignedUrlDto.fromJson(Map<String, dynamic> json) =>
-      _$ImagePresignedUrlDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'uploadUrl')
-  final String? uploadUrl;
-  @override
-  @JsonKey(name: 'fileUrl')
-  final String? fileUrl;
-  @override
-  @JsonKey(name: 'fileName')
-  final String? fileName;
-  @override
-  @JsonKey(name: 'expiresAt')
-  final DateTime? expiresAt;
-  final Map<String, String>? _headers;
-  @override
-  @JsonKey(name: 'headers')
-  Map<String, String>? get headers {
-    final value = _headers;
-    if (value == null) return null;
-    if (_headers is EqualUnmodifiableMapView) return _headers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
-  /// Create a copy of ImagePresignedUrlDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$ImagePresignedUrlDtoCopyWith<_ImagePresignedUrlDto> get copyWith =>
-      __$ImagePresignedUrlDtoCopyWithImpl<_ImagePresignedUrlDto>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$ImagePresignedUrlDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _ImagePresignedUrlDto &&
-            (identical(other.uploadUrl, uploadUrl) ||
-                other.uploadUrl == uploadUrl) &&
-            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName) &&
-            (identical(other.expiresAt, expiresAt) ||
-                other.expiresAt == expiresAt) &&
-            const DeepCollectionEquality().equals(other._headers, _headers));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, uploadUrl, fileUrl, fileName,
-      expiresAt, const DeepCollectionEquality().hash(_headers));
-
-  @override
-  String toString() {
-    return 'ImagePresignedUrlDto(uploadUrl: $uploadUrl, fileUrl: $fileUrl, fileName: $fileName, expiresAt: $expiresAt, headers: $headers)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$ImagePresignedUrlDtoCopyWith<$Res>
-    implements $ImagePresignedUrlDtoCopyWith<$Res> {
-  factory _$ImagePresignedUrlDtoCopyWith(_ImagePresignedUrlDto value,
-          $Res Function(_ImagePresignedUrlDto) _then) =
-      __$ImagePresignedUrlDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'uploadUrl') String? uploadUrl,
-      @JsonKey(name: 'fileUrl') String? fileUrl,
-      @JsonKey(name: 'fileName') String? fileName,
-      @JsonKey(name: 'expiresAt') DateTime? expiresAt,
-      @JsonKey(name: 'headers') Map<String, String>? headers});
-}
-
-/// @nodoc
-class __$ImagePresignedUrlDtoCopyWithImpl<$Res>
-    implements _$ImagePresignedUrlDtoCopyWith<$Res> {
-  __$ImagePresignedUrlDtoCopyWithImpl(this._self, this._then);
-
-  final _ImagePresignedUrlDto _self;
-  final $Res Function(_ImagePresignedUrlDto) _then;
-
-  /// Create a copy of ImagePresignedUrlDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? uploadUrl = freezed,
-    Object? fileUrl = freezed,
-    Object? fileName = freezed,
-    Object? expiresAt = freezed,
-    Object? headers = freezed,
-  }) {
-    return _then(_ImagePresignedUrlDto(
-      uploadUrl: freezed == uploadUrl
-          ? _self.uploadUrl
-          : uploadUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileUrl: freezed == fileUrl
-          ? _self.fileUrl
-          : fileUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      fileName: freezed == fileName
-          ? _self.fileName
-          : fileName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      expiresAt: freezed == expiresAt
-          ? _self.expiresAt
-          : expiresAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      headers: freezed == headers
-          ? _self._headers
-          : headers // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-    ));
-  }
-}
-
-/// @nodoc
 mixin _$InteractionResultDto {
   @JsonKey(name: 'isSteppedWith')
   bool? get isSteppedWith;
@@ -6329,588 +5477,9 @@ class __$JourneyDtoCopyWithImpl<$Res> implements _$JourneyDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-mixin _$JourneyDto2Dto {
-  @JsonKey(name: 'id')
-  String? get id;
-  @JsonKey(name: 'title')
-  String? get title;
-  @JsonKey(name: 'description')
-  String? get description;
-  @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
-  @JsonKey(name: 'lastUpdated')
-  DateTime? get lastUpdated;
-  @JsonKey(name: 'status')
-  String? get status;
-  @JsonKey(name: 'completedDate')
-  DateTime? get completedDate;
-  @JsonKey(name: 'userId')
-  String? get userId;
-  @JsonKey(name: 'firstStepId')
-  String? get firstStepId;
-  @JsonKey(name: 'finalStepId')
-  String? get finalStepId;
-
-  /// Create a copy of JourneyDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $JourneyDto2DtoCopyWith<JourneyDto2Dto> get copyWith =>
-      _$JourneyDto2DtoCopyWithImpl<JourneyDto2Dto>(
-          this as JourneyDto2Dto, _$identity);
-
-  /// Serializes this JourneyDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is JourneyDto2Dto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.completedDate, completedDate) ||
-                other.completedDate == completedDate) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.firstStepId, firstStepId) ||
-                other.firstStepId == firstStepId) &&
-            (identical(other.finalStepId, finalStepId) ||
-                other.finalStepId == finalStepId));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      description,
-      createdDate,
-      lastUpdated,
-      status,
-      completedDate,
-      userId,
-      firstStepId,
-      finalStepId);
-
-  @override
-  String toString() {
-    return 'JourneyDto2Dto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $JourneyDto2DtoCopyWith<$Res> {
-  factory $JourneyDto2DtoCopyWith(
-          JourneyDto2Dto value, $Res Function(JourneyDto2Dto) _then) =
-      _$JourneyDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'completedDate') DateTime? completedDate,
-      @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId') String? firstStepId,
-      @JsonKey(name: 'finalStepId') String? finalStepId});
-}
-
-/// @nodoc
-class _$JourneyDto2DtoCopyWithImpl<$Res>
-    implements $JourneyDto2DtoCopyWith<$Res> {
-  _$JourneyDto2DtoCopyWithImpl(this._self, this._then);
-
-  final JourneyDto2Dto _self;
-  final $Res Function(JourneyDto2Dto) _then;
-
-  /// Create a copy of JourneyDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? status = freezed,
-    Object? completedDate = freezed,
-    Object? userId = freezed,
-    Object? firstStepId = freezed,
-    Object? finalStepId = freezed,
-  }) {
-    return _then(_self.copyWith(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
-          ? _self.lastUpdated
-          : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      completedDate: freezed == completedDate
-          ? _self.completedDate
-          : completedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      userId: freezed == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstStepId: freezed == firstStepId
-          ? _self.firstStepId
-          : firstStepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      finalStepId: freezed == finalStepId
-          ? _self.finalStepId
-          : finalStepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [JourneyDto2Dto].
-extension JourneyDto2DtoPatterns on JourneyDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_JourneyDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _JourneyDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_JourneyDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _JourneyDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_JourneyDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _JourneyDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'status') String? status,
-            @JsonKey(name: 'completedDate') DateTime? completedDate,
-            @JsonKey(name: 'userId') String? userId,
-            @JsonKey(name: 'firstStepId') String? firstStepId,
-            @JsonKey(name: 'finalStepId') String? finalStepId)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _JourneyDto2Dto() when $default != null:
-        return $default(
-            _that.id,
-            _that.title,
-            _that.description,
-            _that.createdDate,
-            _that.lastUpdated,
-            _that.status,
-            _that.completedDate,
-            _that.userId,
-            _that.firstStepId,
-            _that.finalStepId);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'status') String? status,
-            @JsonKey(name: 'completedDate') DateTime? completedDate,
-            @JsonKey(name: 'userId') String? userId,
-            @JsonKey(name: 'firstStepId') String? firstStepId,
-            @JsonKey(name: 'finalStepId') String? finalStepId)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _JourneyDto2Dto():
-        return $default(
-            _that.id,
-            _that.title,
-            _that.description,
-            _that.createdDate,
-            _that.lastUpdated,
-            _that.status,
-            _that.completedDate,
-            _that.userId,
-            _that.firstStepId,
-            _that.finalStepId);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'status') String? status,
-            @JsonKey(name: 'completedDate') DateTime? completedDate,
-            @JsonKey(name: 'userId') String? userId,
-            @JsonKey(name: 'firstStepId') String? firstStepId,
-            @JsonKey(name: 'finalStepId') String? finalStepId)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _JourneyDto2Dto() when $default != null:
-        return $default(
-            _that.id,
-            _that.title,
-            _that.description,
-            _that.createdDate,
-            _that.lastUpdated,
-            _that.status,
-            _that.completedDate,
-            _that.userId,
-            _that.firstStepId,
-            _that.finalStepId);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _JourneyDto2Dto implements JourneyDto2Dto {
-  _JourneyDto2Dto(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdated') this.lastUpdated,
-      @JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'completedDate') this.completedDate,
-      @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'firstStepId') this.firstStepId,
-      @JsonKey(name: 'finalStepId') this.finalStepId});
-  factory _JourneyDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$JourneyDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'id')
-  final String? id;
-  @override
-  @JsonKey(name: 'title')
-  final String? title;
-  @override
-  @JsonKey(name: 'description')
-  final String? description;
-  @override
-  @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
-  @override
-  @JsonKey(name: 'lastUpdated')
-  final DateTime? lastUpdated;
-  @override
-  @JsonKey(name: 'status')
-  final String? status;
-  @override
-  @JsonKey(name: 'completedDate')
-  final DateTime? completedDate;
-  @override
-  @JsonKey(name: 'userId')
-  final String? userId;
-  @override
-  @JsonKey(name: 'firstStepId')
-  final String? firstStepId;
-  @override
-  @JsonKey(name: 'finalStepId')
-  final String? finalStepId;
-
-  /// Create a copy of JourneyDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$JourneyDto2DtoCopyWith<_JourneyDto2Dto> get copyWith =>
-      __$JourneyDto2DtoCopyWithImpl<_JourneyDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$JourneyDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _JourneyDto2Dto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.completedDate, completedDate) ||
-                other.completedDate == completedDate) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.firstStepId, firstStepId) ||
-                other.firstStepId == firstStepId) &&
-            (identical(other.finalStepId, finalStepId) ||
-                other.finalStepId == finalStepId));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      description,
-      createdDate,
-      lastUpdated,
-      status,
-      completedDate,
-      userId,
-      firstStepId,
-      finalStepId);
-
-  @override
-  String toString() {
-    return 'JourneyDto2Dto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$JourneyDto2DtoCopyWith<$Res>
-    implements $JourneyDto2DtoCopyWith<$Res> {
-  factory _$JourneyDto2DtoCopyWith(
-          _JourneyDto2Dto value, $Res Function(_JourneyDto2Dto) _then) =
-      __$JourneyDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'status') String? status,
-      @JsonKey(name: 'completedDate') DateTime? completedDate,
-      @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'firstStepId') String? firstStepId,
-      @JsonKey(name: 'finalStepId') String? finalStepId});
-}
-
-/// @nodoc
-class __$JourneyDto2DtoCopyWithImpl<$Res>
-    implements _$JourneyDto2DtoCopyWith<$Res> {
-  __$JourneyDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _JourneyDto2Dto _self;
-  final $Res Function(_JourneyDto2Dto) _then;
-
-  /// Create a copy of JourneyDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? status = freezed,
-    Object? completedDate = freezed,
-    Object? userId = freezed,
-    Object? firstStepId = freezed,
-    Object? finalStepId = freezed,
-  }) {
-    return _then(_JourneyDto2Dto(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
-          ? _self.lastUpdated
-          : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      completedDate: freezed == completedDate
-          ? _self.completedDate
-          : completedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      userId: freezed == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      firstStepId: freezed == firstStepId
-          ? _self.firstStepId
-          : firstStepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      finalStepId: freezed == finalStepId
-          ? _self.finalStepId
-          : finalStepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
 mixin _$JourneyInDetailDto {
   @JsonKey(name: 'journey')
-  JourneyDto2Dto get journey;
+  JourneyDto get journey;
   @JsonKey(name: 'stepsCount')
   int get stepsCount;
   @JsonKey(name: 'lastStepDate')
@@ -6922,15 +5491,15 @@ mixin _$JourneyInDetailDto {
   @JsonKey(name: 'starterCount')
   int? get starterCount;
   @JsonKey(name: 'latestStarters')
-  List<dynamic>? get latestStarters;
+  List<UserDto>? get latestStarters;
   @JsonKey(name: 'companionCount')
   int? get companionCount;
   @JsonKey(name: 'latestCompanions')
-  List<dynamic>? get latestCompanions;
+  List<UserDto>? get latestCompanions;
   @JsonKey(name: 'celebratorCount')
   int? get celebratorCount;
   @JsonKey(name: 'latestCelebrators')
-  List<dynamic>? get latestCelebrators;
+  List<UserDto>? get latestCelebrators;
 
   /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -7000,19 +5569,19 @@ abstract mixin class $JourneyInDetailDtoCopyWith<$Res> {
       _$JourneyInDetailDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'journey') JourneyDto2Dto journey,
+      {@JsonKey(name: 'journey') JourneyDto journey,
       @JsonKey(name: 'stepsCount') int stepsCount,
       @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') int? stepperCount,
       @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') int? starterCount,
-      @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
+      @JsonKey(name: 'latestStarters') List<UserDto>? latestStarters,
       @JsonKey(name: 'companionCount') int? companionCount,
-      @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators') List<dynamic>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<UserDto>? latestCelebrators});
 
-  $JourneyDto2DtoCopyWith<$Res> get journey;
+  $JourneyDtoCopyWith<$Res> get journey;
 }
 
 /// @nodoc
@@ -7044,7 +5613,7 @@ class _$JourneyInDetailDtoCopyWithImpl<$Res>
       journey: null == journey
           ? _self.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDto2Dto,
+              as JourneyDto,
       stepsCount: null == stepsCount
           ? _self.stepsCount
           : stepsCount // ignore: cast_nullable_to_non_nullable
@@ -7068,7 +5637,7 @@ class _$JourneyInDetailDtoCopyWithImpl<$Res>
       latestStarters: freezed == latestStarters
           ? _self.latestStarters
           : latestStarters // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
       companionCount: freezed == companionCount
           ? _self.companionCount
           : companionCount // ignore: cast_nullable_to_non_nullable
@@ -7076,7 +5645,7 @@ class _$JourneyInDetailDtoCopyWithImpl<$Res>
       latestCompanions: freezed == latestCompanions
           ? _self.latestCompanions
           : latestCompanions // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
       celebratorCount: freezed == celebratorCount
           ? _self.celebratorCount
           : celebratorCount // ignore: cast_nullable_to_non_nullable
@@ -7084,7 +5653,7 @@ class _$JourneyInDetailDtoCopyWithImpl<$Res>
       latestCelebrators: freezed == latestCelebrators
           ? _self.latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
     ));
   }
 
@@ -7092,8 +5661,8 @@ class _$JourneyInDetailDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDto2DtoCopyWith<$Res> get journey {
-    return $JourneyDto2DtoCopyWith<$Res>(_self.journey, (value) {
+  $JourneyDtoCopyWith<$Res> get journey {
+    return $JourneyDtoCopyWith<$Res>(_self.journey, (value) {
       return _then(_self.copyWith(journey: value));
     });
   }
@@ -7191,18 +5760,18 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'journey') JourneyDto2Dto journey,
+            @JsonKey(name: 'journey') JourneyDto journey,
             @JsonKey(name: 'stepsCount') int stepsCount,
             @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
             @JsonKey(name: 'stepperCount') int? stepperCount,
             @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
             @JsonKey(name: 'starterCount') int? starterCount,
-            @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
+            @JsonKey(name: 'latestStarters') List<UserDto>? latestStarters,
             @JsonKey(name: 'companionCount') int? companionCount,
-            @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
+            @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
             @JsonKey(name: 'celebratorCount') int? celebratorCount,
             @JsonKey(name: 'latestCelebrators')
-            List<dynamic>? latestCelebrators)?
+            List<UserDto>? latestCelebrators)?
         $default, {
     required TResult orElse(),
   }) {
@@ -7242,18 +5811,18 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'journey') JourneyDto2Dto journey,
+            @JsonKey(name: 'journey') JourneyDto journey,
             @JsonKey(name: 'stepsCount') int stepsCount,
             @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
             @JsonKey(name: 'stepperCount') int? stepperCount,
             @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
             @JsonKey(name: 'starterCount') int? starterCount,
-            @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
+            @JsonKey(name: 'latestStarters') List<UserDto>? latestStarters,
             @JsonKey(name: 'companionCount') int? companionCount,
-            @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
+            @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
             @JsonKey(name: 'celebratorCount') int? celebratorCount,
             @JsonKey(name: 'latestCelebrators')
-            List<dynamic>? latestCelebrators)
+            List<UserDto>? latestCelebrators)
         $default,
   ) {
     final _that = this;
@@ -7289,18 +5858,18 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'journey') JourneyDto2Dto journey,
+            @JsonKey(name: 'journey') JourneyDto journey,
             @JsonKey(name: 'stepsCount') int stepsCount,
             @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
             @JsonKey(name: 'stepperCount') int? stepperCount,
             @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
             @JsonKey(name: 'starterCount') int? starterCount,
-            @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
+            @JsonKey(name: 'latestStarters') List<UserDto>? latestStarters,
             @JsonKey(name: 'companionCount') int? companionCount,
-            @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
+            @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
             @JsonKey(name: 'celebratorCount') int? celebratorCount,
             @JsonKey(name: 'latestCelebrators')
-            List<dynamic>? latestCelebrators)?
+            List<UserDto>? latestCelebrators)?
         $default,
   ) {
     final _that = this;
@@ -7334,12 +5903,12 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
       @JsonKey(name: 'stepperCount') this.stepperCount,
       @JsonKey(name: 'latestSteppers') final List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') this.starterCount,
-      @JsonKey(name: 'latestStarters') final List<dynamic>? latestStarters,
+      @JsonKey(name: 'latestStarters') final List<UserDto>? latestStarters,
       @JsonKey(name: 'companionCount') this.companionCount,
-      @JsonKey(name: 'latestCompanions') final List<dynamic>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') final List<UserDto>? latestCompanions,
       @JsonKey(name: 'celebratorCount') this.celebratorCount,
       @JsonKey(name: 'latestCelebrators')
-      final List<dynamic>? latestCelebrators})
+      final List<UserDto>? latestCelebrators})
       : _latestSteppers = latestSteppers,
         _latestStarters = latestStarters,
         _latestCompanions = latestCompanions,
@@ -7349,7 +5918,7 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
 
   @override
   @JsonKey(name: 'journey')
-  final JourneyDto2Dto journey;
+  final JourneyDto journey;
   @override
   @JsonKey(name: 'stepsCount')
   final int stepsCount;
@@ -7373,10 +5942,10 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
   @override
   @JsonKey(name: 'starterCount')
   final int? starterCount;
-  final List<dynamic>? _latestStarters;
+  final List<UserDto>? _latestStarters;
   @override
   @JsonKey(name: 'latestStarters')
-  List<dynamic>? get latestStarters {
+  List<UserDto>? get latestStarters {
     final value = _latestStarters;
     if (value == null) return null;
     if (_latestStarters is EqualUnmodifiableListView) return _latestStarters;
@@ -7387,10 +5956,10 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
   @override
   @JsonKey(name: 'companionCount')
   final int? companionCount;
-  final List<dynamic>? _latestCompanions;
+  final List<UserDto>? _latestCompanions;
   @override
   @JsonKey(name: 'latestCompanions')
-  List<dynamic>? get latestCompanions {
+  List<UserDto>? get latestCompanions {
     final value = _latestCompanions;
     if (value == null) return null;
     if (_latestCompanions is EqualUnmodifiableListView)
@@ -7402,10 +5971,10 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
   @override
   @JsonKey(name: 'celebratorCount')
   final int? celebratorCount;
-  final List<dynamic>? _latestCelebrators;
+  final List<UserDto>? _latestCelebrators;
   @override
   @JsonKey(name: 'latestCelebrators')
-  List<dynamic>? get latestCelebrators {
+  List<UserDto>? get latestCelebrators {
     final value = _latestCelebrators;
     if (value == null) return null;
     if (_latestCelebrators is EqualUnmodifiableListView)
@@ -7488,20 +6057,20 @@ abstract mixin class _$JourneyInDetailDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'journey') JourneyDto2Dto journey,
+      {@JsonKey(name: 'journey') JourneyDto journey,
       @JsonKey(name: 'stepsCount') int stepsCount,
       @JsonKey(name: 'lastStepDate') DateTime lastStepDate,
       @JsonKey(name: 'stepperCount') int? stepperCount,
       @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
       @JsonKey(name: 'starterCount') int? starterCount,
-      @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
+      @JsonKey(name: 'latestStarters') List<UserDto>? latestStarters,
       @JsonKey(name: 'companionCount') int? companionCount,
-      @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
+      @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators') List<dynamic>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<UserDto>? latestCelebrators});
 
   @override
-  $JourneyDto2DtoCopyWith<$Res> get journey;
+  $JourneyDtoCopyWith<$Res> get journey;
 }
 
 /// @nodoc
@@ -7533,7 +6102,7 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
       journey: null == journey
           ? _self.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDto2Dto,
+              as JourneyDto,
       stepsCount: null == stepsCount
           ? _self.stepsCount
           : stepsCount // ignore: cast_nullable_to_non_nullable
@@ -7557,7 +6126,7 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
       latestStarters: freezed == latestStarters
           ? _self._latestStarters
           : latestStarters // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
       companionCount: freezed == companionCount
           ? _self.companionCount
           : companionCount // ignore: cast_nullable_to_non_nullable
@@ -7565,7 +6134,7 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
       latestCompanions: freezed == latestCompanions
           ? _self._latestCompanions
           : latestCompanions // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
       celebratorCount: freezed == celebratorCount
           ? _self.celebratorCount
           : celebratorCount // ignore: cast_nullable_to_non_nullable
@@ -7573,7 +6142,7 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
       latestCelebrators: freezed == latestCelebrators
           ? _self._latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
     ));
   }
 
@@ -7581,8 +6150,401 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDto2DtoCopyWith<$Res> get journey {
-    return $JourneyDto2DtoCopyWith<$Res>(_self.journey, (value) {
+  $JourneyDtoCopyWith<$Res> get journey {
+    return $JourneyDtoCopyWith<$Res>(_self.journey, (value) {
+      return _then(_self.copyWith(journey: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$JourneyInProfileDto {
+  @JsonKey(name: 'journey')
+  JourneyDto get journey;
+  @JsonKey(name: 'stepsCount')
+  int get stepsCount;
+  @JsonKey(name: 'thumbnailSteps')
+  List<StepMediaDto> get thumbnailSteps;
+
+  /// Create a copy of JourneyInProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $JourneyInProfileDtoCopyWith<JourneyInProfileDto> get copyWith =>
+      _$JourneyInProfileDtoCopyWithImpl<JourneyInProfileDto>(
+          this as JourneyInProfileDto, _$identity);
+
+  /// Serializes this JourneyInProfileDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is JourneyInProfileDto &&
+            (identical(other.journey, journey) || other.journey == journey) &&
+            (identical(other.stepsCount, stepsCount) ||
+                other.stepsCount == stepsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.thumbnailSteps, thumbnailSteps));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, journey, stepsCount,
+      const DeepCollectionEquality().hash(thumbnailSteps));
+
+  @override
+  String toString() {
+    return 'JourneyInProfileDto(journey: $journey, stepsCount: $stepsCount, thumbnailSteps: $thumbnailSteps)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $JourneyInProfileDtoCopyWith<$Res> {
+  factory $JourneyInProfileDtoCopyWith(
+          JourneyInProfileDto value, $Res Function(JourneyInProfileDto) _then) =
+      _$JourneyInProfileDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'journey') JourneyDto journey,
+      @JsonKey(name: 'stepsCount') int stepsCount,
+      @JsonKey(name: 'thumbnailSteps') List<StepMediaDto> thumbnailSteps});
+
+  $JourneyDtoCopyWith<$Res> get journey;
+}
+
+/// @nodoc
+class _$JourneyInProfileDtoCopyWithImpl<$Res>
+    implements $JourneyInProfileDtoCopyWith<$Res> {
+  _$JourneyInProfileDtoCopyWithImpl(this._self, this._then);
+
+  final JourneyInProfileDto _self;
+  final $Res Function(JourneyInProfileDto) _then;
+
+  /// Create a copy of JourneyInProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? journey = null,
+    Object? stepsCount = null,
+    Object? thumbnailSteps = null,
+  }) {
+    return _then(_self.copyWith(
+      journey: null == journey
+          ? _self.journey
+          : journey // ignore: cast_nullable_to_non_nullable
+              as JourneyDto,
+      stepsCount: null == stepsCount
+          ? _self.stepsCount
+          : stepsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      thumbnailSteps: null == thumbnailSteps
+          ? _self.thumbnailSteps
+          : thumbnailSteps // ignore: cast_nullable_to_non_nullable
+              as List<StepMediaDto>,
+    ));
+  }
+
+  /// Create a copy of JourneyInProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $JourneyDtoCopyWith<$Res> get journey {
+    return $JourneyDtoCopyWith<$Res>(_self.journey, (value) {
+      return _then(_self.copyWith(journey: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [JourneyInProfileDto].
+extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_JourneyInProfileDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _JourneyInProfileDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_JourneyInProfileDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _JourneyInProfileDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_JourneyInProfileDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _JourneyInProfileDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'journey') JourneyDto journey,
+            @JsonKey(name: 'stepsCount') int stepsCount,
+            @JsonKey(name: 'thumbnailSteps') List<StepMediaDto> thumbnailSteps)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _JourneyInProfileDto() when $default != null:
+        return $default(_that.journey, _that.stepsCount, _that.thumbnailSteps);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'journey') JourneyDto journey,
+            @JsonKey(name: 'stepsCount') int stepsCount,
+            @JsonKey(name: 'thumbnailSteps') List<StepMediaDto> thumbnailSteps)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _JourneyInProfileDto():
+        return $default(_that.journey, _that.stepsCount, _that.thumbnailSteps);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'journey') JourneyDto journey,
+            @JsonKey(name: 'stepsCount') int stepsCount,
+            @JsonKey(name: 'thumbnailSteps') List<StepMediaDto> thumbnailSteps)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _JourneyInProfileDto() when $default != null:
+        return $default(_that.journey, _that.stepsCount, _that.thumbnailSteps);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _JourneyInProfileDto implements JourneyInProfileDto {
+  _JourneyInProfileDto(
+      {@JsonKey(name: 'journey') required this.journey,
+      @JsonKey(name: 'stepsCount') required this.stepsCount,
+      @JsonKey(name: 'thumbnailSteps')
+      required final List<StepMediaDto> thumbnailSteps})
+      : _thumbnailSteps = thumbnailSteps;
+  factory _JourneyInProfileDto.fromJson(Map<String, dynamic> json) =>
+      _$JourneyInProfileDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'journey')
+  final JourneyDto journey;
+  @override
+  @JsonKey(name: 'stepsCount')
+  final int stepsCount;
+  final List<StepMediaDto> _thumbnailSteps;
+  @override
+  @JsonKey(name: 'thumbnailSteps')
+  List<StepMediaDto> get thumbnailSteps {
+    if (_thumbnailSteps is EqualUnmodifiableListView) return _thumbnailSteps;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_thumbnailSteps);
+  }
+
+  /// Create a copy of JourneyInProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$JourneyInProfileDtoCopyWith<_JourneyInProfileDto> get copyWith =>
+      __$JourneyInProfileDtoCopyWithImpl<_JourneyInProfileDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$JourneyInProfileDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _JourneyInProfileDto &&
+            (identical(other.journey, journey) || other.journey == journey) &&
+            (identical(other.stepsCount, stepsCount) ||
+                other.stepsCount == stepsCount) &&
+            const DeepCollectionEquality()
+                .equals(other._thumbnailSteps, _thumbnailSteps));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, journey, stepsCount,
+      const DeepCollectionEquality().hash(_thumbnailSteps));
+
+  @override
+  String toString() {
+    return 'JourneyInProfileDto(journey: $journey, stepsCount: $stepsCount, thumbnailSteps: $thumbnailSteps)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$JourneyInProfileDtoCopyWith<$Res>
+    implements $JourneyInProfileDtoCopyWith<$Res> {
+  factory _$JourneyInProfileDtoCopyWith(_JourneyInProfileDto value,
+          $Res Function(_JourneyInProfileDto) _then) =
+      __$JourneyInProfileDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'journey') JourneyDto journey,
+      @JsonKey(name: 'stepsCount') int stepsCount,
+      @JsonKey(name: 'thumbnailSteps') List<StepMediaDto> thumbnailSteps});
+
+  @override
+  $JourneyDtoCopyWith<$Res> get journey;
+}
+
+/// @nodoc
+class __$JourneyInProfileDtoCopyWithImpl<$Res>
+    implements _$JourneyInProfileDtoCopyWith<$Res> {
+  __$JourneyInProfileDtoCopyWithImpl(this._self, this._then);
+
+  final _JourneyInProfileDto _self;
+  final $Res Function(_JourneyInProfileDto) _then;
+
+  /// Create a copy of JourneyInProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? journey = null,
+    Object? stepsCount = null,
+    Object? thumbnailSteps = null,
+  }) {
+    return _then(_JourneyInProfileDto(
+      journey: null == journey
+          ? _self.journey
+          : journey // ignore: cast_nullable_to_non_nullable
+              as JourneyDto,
+      stepsCount: null == stepsCount
+          ? _self.stepsCount
+          : stepsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      thumbnailSteps: null == thumbnailSteps
+          ? _self._thumbnailSteps
+          : thumbnailSteps // ignore: cast_nullable_to_non_nullable
+              as List<StepMediaDto>,
+    ));
+  }
+
+  /// Create a copy of JourneyInProfileDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $JourneyDtoCopyWith<$Res> get journey {
+    return $JourneyDtoCopyWith<$Res>(_self.journey, (value) {
       return _then(_self.copyWith(journey: value));
     });
   }
@@ -8261,7 +7223,7 @@ mixin _$NotificationDto {
   @JsonKey(name: 'relatedEntityId')
   String? get relatedEntityId;
   @JsonKey(name: 'sourceUser')
-  UserDetailDto2Dto? get sourceUser;
+  UserDetailDto? get sourceUser;
 
   /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -8333,9 +7295,9 @@ abstract mixin class $NotificationDtoCopyWith<$Res> {
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser});
+      @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser});
 
-  $UserDetailDto2DtoCopyWith<$Res>? get sourceUser;
+  $UserDetailDtoCopyWith<$Res>? get sourceUser;
 }
 
 /// @nodoc
@@ -8402,7 +7364,7 @@ class _$NotificationDtoCopyWithImpl<$Res>
       sourceUser: freezed == sourceUser
           ? _self.sourceUser
           : sourceUser // ignore: cast_nullable_to_non_nullable
-              as UserDetailDto2Dto?,
+              as UserDetailDto?,
     ));
   }
 
@@ -8410,12 +7372,12 @@ class _$NotificationDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDetailDto2DtoCopyWith<$Res>? get sourceUser {
+  $UserDetailDtoCopyWith<$Res>? get sourceUser {
     if (_self.sourceUser == null) {
       return null;
     }
 
-    return $UserDetailDto2DtoCopyWith<$Res>(_self.sourceUser!, (value) {
+    return $UserDetailDtoCopyWith<$Res>(_self.sourceUser!, (value) {
       return _then(_self.copyWith(sourceUser: value));
     });
   }
@@ -8523,7 +7485,7 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser)?
+            @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser)?
         $default, {
     required TResult orElse(),
   }) {
@@ -8572,7 +7534,7 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser)
+            @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser)
         $default,
   ) {
     final _that = this;
@@ -8617,7 +7579,7 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser)?
+            @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser)?
         $default,
   ) {
     final _that = this;
@@ -8695,7 +7657,7 @@ class _NotificationDto implements NotificationDto {
   final String? relatedEntityId;
   @override
   @JsonKey(name: 'sourceUser')
-  final UserDetailDto2Dto? sourceUser;
+  final UserDetailDto? sourceUser;
 
   /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -8773,10 +7735,10 @@ abstract mixin class _$NotificationDtoCopyWith<$Res>
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser});
+      @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser});
 
   @override
-  $UserDetailDto2DtoCopyWith<$Res>? get sourceUser;
+  $UserDetailDtoCopyWith<$Res>? get sourceUser;
 }
 
 /// @nodoc
@@ -8843,7 +7805,7 @@ class __$NotificationDtoCopyWithImpl<$Res>
       sourceUser: freezed == sourceUser
           ? _self.sourceUser
           : sourceUser // ignore: cast_nullable_to_non_nullable
-              as UserDetailDto2Dto?,
+              as UserDetailDto?,
     ));
   }
 
@@ -8851,12 +7813,12 @@ class __$NotificationDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDetailDto2DtoCopyWith<$Res>? get sourceUser {
+  $UserDetailDtoCopyWith<$Res>? get sourceUser {
     if (_self.sourceUser == null) {
       return null;
     }
 
-    return $UserDetailDto2DtoCopyWith<$Res>(_self.sourceUser!, (value) {
+    return $UserDetailDtoCopyWith<$Res>(_self.sourceUser!, (value) {
       return _then(_self.copyWith(sourceUser: value));
     });
   }
@@ -9335,7 +8297,7 @@ mixin _$ProfileDto {
   @JsonKey(name: 'supportersCount')
   int? get supportersCount;
   @JsonKey(name: 'supportersUsers')
-  List<dynamic>? get supportersUsers;
+  List<UserDto>? get supportersUsers;
   @JsonKey(name: 'followersCount')
   int? get followersCount;
   @JsonKey(name: 'followingsCount')
@@ -9401,7 +8363,7 @@ abstract mixin class $ProfileDtoCopyWith<$Res> {
       @JsonKey(name: 'badgesCount') int? badgesCount,
       @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') int? supportersCount,
-      @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
       @JsonKey(name: 'followersCount') int? followersCount,
       @JsonKey(name: 'followingsCount') int? followingsCount});
 
@@ -9448,7 +8410,7 @@ class _$ProfileDtoCopyWithImpl<$Res> implements $ProfileDtoCopyWith<$Res> {
       supportersUsers: freezed == supportersUsers
           ? _self.supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
       followersCount: freezed == followersCount
           ? _self.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
@@ -9567,7 +8529,7 @@ extension ProfileDtoPatterns on ProfileDto {
             @JsonKey(name: 'badgesCount') int? badgesCount,
             @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
             @JsonKey(name: 'supportersCount') int? supportersCount,
-            @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
+            @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
             @JsonKey(name: 'followersCount') int? followersCount,
             @JsonKey(name: 'followingsCount') int? followingsCount)?
         $default, {
@@ -9609,7 +8571,7 @@ extension ProfileDtoPatterns on ProfileDto {
             @JsonKey(name: 'badgesCount') int? badgesCount,
             @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
             @JsonKey(name: 'supportersCount') int? supportersCount,
-            @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
+            @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
             @JsonKey(name: 'followersCount') int? followersCount,
             @JsonKey(name: 'followingsCount') int? followingsCount)
         $default,
@@ -9647,7 +8609,7 @@ extension ProfileDtoPatterns on ProfileDto {
             @JsonKey(name: 'badgesCount') int? badgesCount,
             @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
             @JsonKey(name: 'supportersCount') int? supportersCount,
-            @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
+            @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
             @JsonKey(name: 'followersCount') int? followersCount,
             @JsonKey(name: 'followingsCount') int? followingsCount)?
         $default,
@@ -9677,7 +8639,7 @@ class _ProfileDto implements ProfileDto {
       @JsonKey(name: 'badgesCount') this.badgesCount,
       @JsonKey(name: 'badgesUsers') final List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') this.supportersCount,
-      @JsonKey(name: 'supportersUsers') final List<dynamic>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') final List<UserDto>? supportersUsers,
       @JsonKey(name: 'followersCount') this.followersCount,
       @JsonKey(name: 'followingsCount') this.followingsCount})
       : _badgesUsers = badgesUsers,
@@ -9705,10 +8667,10 @@ class _ProfileDto implements ProfileDto {
   @override
   @JsonKey(name: 'supportersCount')
   final int? supportersCount;
-  final List<dynamic>? _supportersUsers;
+  final List<UserDto>? _supportersUsers;
   @override
   @JsonKey(name: 'supportersUsers')
-  List<dynamic>? get supportersUsers {
+  List<UserDto>? get supportersUsers {
     final value = _supportersUsers;
     if (value == null) return null;
     if (_supportersUsers is EqualUnmodifiableListView) return _supportersUsers;
@@ -9790,7 +8752,7 @@ abstract mixin class _$ProfileDtoCopyWith<$Res>
       @JsonKey(name: 'badgesCount') int? badgesCount,
       @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
       @JsonKey(name: 'supportersCount') int? supportersCount,
-      @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
+      @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
       @JsonKey(name: 'followersCount') int? followersCount,
       @JsonKey(name: 'followingsCount') int? followingsCount});
 
@@ -9838,7 +8800,7 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
       supportersUsers: freezed == supportersUsers
           ? _self._supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
+              as List<UserDto>?,
       followersCount: freezed == followersCount
           ? _self.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
@@ -9878,7 +8840,7 @@ mixin _$ReplyDto {
   @JsonKey(name: 'parentCommentId')
   String? get parentCommentId;
   @JsonKey(name: 'responseToUser')
-  UserDto2Dto? get responseToUser;
+  UserDto? get responseToUser;
   @JsonKey(name: 'responseToCommentId')
   String? get responseToCommentId;
   @JsonKey(name: 'heartCount')
@@ -9957,13 +8919,13 @@ abstract mixin class $ReplyDtoCopyWith<$Res> {
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
       @JsonKey(name: 'user') UserDto? user,
       @JsonKey(name: 'parentCommentId') String? parentCommentId,
-      @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
+      @JsonKey(name: 'responseToUser') UserDto? responseToUser,
       @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser});
 
   $UserDtoCopyWith<$Res>? get user;
-  $UserDto2DtoCopyWith<$Res>? get responseToUser;
+  $UserDtoCopyWith<$Res>? get responseToUser;
 }
 
 /// @nodoc
@@ -10022,7 +8984,7 @@ class _$ReplyDtoCopyWithImpl<$Res> implements $ReplyDtoCopyWith<$Res> {
       responseToUser: freezed == responseToUser
           ? _self.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
-              as UserDto2Dto?,
+              as UserDto?,
       responseToCommentId: freezed == responseToCommentId
           ? _self.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
@@ -10056,12 +9018,12 @@ class _$ReplyDtoCopyWithImpl<$Res> implements $ReplyDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDto2DtoCopyWith<$Res>? get responseToUser {
+  $UserDtoCopyWith<$Res>? get responseToUser {
     if (_self.responseToUser == null) {
       return null;
     }
 
-    return $UserDto2DtoCopyWith<$Res>(_self.responseToUser!, (value) {
+    return $UserDtoCopyWith<$Res>(_self.responseToUser!, (value) {
       return _then(_self.copyWith(responseToUser: value));
     });
   }
@@ -10166,7 +9128,7 @@ extension ReplyDtoPatterns on ReplyDto {
             @JsonKey(name: 'deletedDate') DateTime? deletedDate,
             @JsonKey(name: 'user') UserDto? user,
             @JsonKey(name: 'parentCommentId') String? parentCommentId,
-            @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
+            @JsonKey(name: 'responseToUser') UserDto? responseToUser,
             @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
             @JsonKey(name: 'heartCount') int? heartCount,
             @JsonKey(name: 'heartedByUser') bool? heartedByUser)?
@@ -10216,7 +9178,7 @@ extension ReplyDtoPatterns on ReplyDto {
             @JsonKey(name: 'deletedDate') DateTime? deletedDate,
             @JsonKey(name: 'user') UserDto? user,
             @JsonKey(name: 'parentCommentId') String? parentCommentId,
-            @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
+            @JsonKey(name: 'responseToUser') UserDto? responseToUser,
             @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
             @JsonKey(name: 'heartCount') int? heartCount,
             @JsonKey(name: 'heartedByUser') bool? heartedByUser)
@@ -10262,7 +9224,7 @@ extension ReplyDtoPatterns on ReplyDto {
             @JsonKey(name: 'deletedDate') DateTime? deletedDate,
             @JsonKey(name: 'user') UserDto? user,
             @JsonKey(name: 'parentCommentId') String? parentCommentId,
-            @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
+            @JsonKey(name: 'responseToUser') UserDto? responseToUser,
             @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
             @JsonKey(name: 'heartCount') int? heartCount,
             @JsonKey(name: 'heartedByUser') bool? heartedByUser)?
@@ -10330,7 +9292,7 @@ class _ReplyDto implements ReplyDto {
   final String? parentCommentId;
   @override
   @JsonKey(name: 'responseToUser')
-  final UserDto2Dto? responseToUser;
+  final UserDto? responseToUser;
   @override
   @JsonKey(name: 'responseToCommentId')
   final String? responseToCommentId;
@@ -10419,7 +9381,7 @@ abstract mixin class _$ReplyDtoCopyWith<$Res>
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
       @JsonKey(name: 'user') UserDto? user,
       @JsonKey(name: 'parentCommentId') String? parentCommentId,
-      @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
+      @JsonKey(name: 'responseToUser') UserDto? responseToUser,
       @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
       @JsonKey(name: 'heartCount') int? heartCount,
       @JsonKey(name: 'heartedByUser') bool? heartedByUser});
@@ -10427,7 +9389,7 @@ abstract mixin class _$ReplyDtoCopyWith<$Res>
   @override
   $UserDtoCopyWith<$Res>? get user;
   @override
-  $UserDto2DtoCopyWith<$Res>? get responseToUser;
+  $UserDtoCopyWith<$Res>? get responseToUser;
 }
 
 /// @nodoc
@@ -10486,7 +9448,7 @@ class __$ReplyDtoCopyWithImpl<$Res> implements _$ReplyDtoCopyWith<$Res> {
       responseToUser: freezed == responseToUser
           ? _self.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
-              as UserDto2Dto?,
+              as UserDto?,
       responseToCommentId: freezed == responseToCommentId
           ? _self.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
@@ -10520,12 +9482,12 @@ class __$ReplyDtoCopyWithImpl<$Res> implements _$ReplyDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDto2DtoCopyWith<$Res>? get responseToUser {
+  $UserDtoCopyWith<$Res>? get responseToUser {
     if (_self.responseToUser == null) {
       return null;
     }
 
-    return $UserDto2DtoCopyWith<$Res>(_self.responseToUser!, (value) {
+    return $UserDtoCopyWith<$Res>(_self.responseToUser!, (value) {
       return _then(_self.copyWith(responseToUser: value));
     });
   }
@@ -10898,7 +9860,7 @@ mixin _$ReportDto {
   @JsonKey(name: 'entityId')
   String? get entityId;
   @JsonKey(name: 'reporter')
-  UserDto2Dto? get reporter;
+  UserDto? get reporter;
   @JsonKey(name: 'reason')
   String get reason;
   @JsonKey(name: 'createdDate')
@@ -10951,11 +9913,11 @@ abstract mixin class $ReportDtoCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
       @JsonKey(name: 'entityId') String? entityId,
-      @JsonKey(name: 'reporter') UserDto2Dto? reporter,
+      @JsonKey(name: 'reporter') UserDto? reporter,
       @JsonKey(name: 'reason') String reason,
       @JsonKey(name: 'createdDate') DateTime? createdDate});
 
-  $UserDto2DtoCopyWith<$Res>? get reporter;
+  $UserDtoCopyWith<$Res>? get reporter;
 }
 
 /// @nodoc
@@ -10993,7 +9955,7 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
       reporter: freezed == reporter
           ? _self.reporter
           : reporter // ignore: cast_nullable_to_non_nullable
-              as UserDto2Dto?,
+              as UserDto?,
       reason: null == reason
           ? _self.reason
           : reason // ignore: cast_nullable_to_non_nullable
@@ -11009,12 +9971,12 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDto2DtoCopyWith<$Res>? get reporter {
+  $UserDtoCopyWith<$Res>? get reporter {
     if (_self.reporter == null) {
       return null;
     }
 
-    return $UserDto2DtoCopyWith<$Res>(_self.reporter!, (value) {
+    return $UserDtoCopyWith<$Res>(_self.reporter!, (value) {
       return _then(_self.copyWith(reporter: value));
     });
   }
@@ -11115,7 +10077,7 @@ extension ReportDtoPatterns on ReportDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'entityType') String entityType,
             @JsonKey(name: 'entityId') String? entityId,
-            @JsonKey(name: 'reporter') UserDto2Dto? reporter,
+            @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
             @JsonKey(name: 'createdDate') DateTime? createdDate)?
         $default, {
@@ -11150,7 +10112,7 @@ extension ReportDtoPatterns on ReportDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'entityType') String entityType,
             @JsonKey(name: 'entityId') String? entityId,
-            @JsonKey(name: 'reporter') UserDto2Dto? reporter,
+            @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
             @JsonKey(name: 'createdDate') DateTime? createdDate)
         $default,
@@ -11181,7 +10143,7 @@ extension ReportDtoPatterns on ReportDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'entityType') String entityType,
             @JsonKey(name: 'entityId') String? entityId,
-            @JsonKey(name: 'reporter') UserDto2Dto? reporter,
+            @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
             @JsonKey(name: 'createdDate') DateTime? createdDate)?
         $default,
@@ -11221,7 +10183,7 @@ class _ReportDto implements ReportDto {
   final String? entityId;
   @override
   @JsonKey(name: 'reporter')
-  final UserDto2Dto? reporter;
+  final UserDto? reporter;
   @override
   @JsonKey(name: 'reason')
   final String reason;
@@ -11284,12 +10246,12 @@ abstract mixin class _$ReportDtoCopyWith<$Res>
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
       @JsonKey(name: 'entityId') String? entityId,
-      @JsonKey(name: 'reporter') UserDto2Dto? reporter,
+      @JsonKey(name: 'reporter') UserDto? reporter,
       @JsonKey(name: 'reason') String reason,
       @JsonKey(name: 'createdDate') DateTime? createdDate});
 
   @override
-  $UserDto2DtoCopyWith<$Res>? get reporter;
+  $UserDtoCopyWith<$Res>? get reporter;
 }
 
 /// @nodoc
@@ -11327,7 +10289,7 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
       reporter: freezed == reporter
           ? _self.reporter
           : reporter // ignore: cast_nullable_to_non_nullable
-              as UserDto2Dto?,
+              as UserDto?,
       reason: null == reason
           ? _self.reason
           : reason // ignore: cast_nullable_to_non_nullable
@@ -11343,12 +10305,12 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDto2DtoCopyWith<$Res>? get reporter {
+  $UserDtoCopyWith<$Res>? get reporter {
     if (_self.reporter == null) {
       return null;
     }
 
-    return $UserDto2DtoCopyWith<$Res>(_self.reporter!, (value) {
+    return $UserDtoCopyWith<$Res>(_self.reporter!, (value) {
       return _then(_self.copyWith(reporter: value));
     });
   }
@@ -13446,7 +12408,7 @@ mixin _$StepDto {
   @JsonKey(name: 'journeyId')
   String? get journeyId;
   @JsonKey(name: 'media')
-  StepMediaDto2Dto? get media;
+  StepMediaDto? get media;
 
   /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -13498,9 +12460,9 @@ abstract mixin class $StepDtoCopyWith<$Res> {
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'journeyId') String? journeyId,
-      @JsonKey(name: 'media') StepMediaDto2Dto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
-  $StepMediaDto2DtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -13551,7 +12513,7 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDto2Dto?,
+              as StepMediaDto?,
     ));
   }
 
@@ -13559,12 +12521,12 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StepMediaDto2DtoCopyWith<$Res>? get media {
+  $StepMediaDtoCopyWith<$Res>? get media {
     if (_self.media == null) {
       return null;
     }
 
-    return $StepMediaDto2DtoCopyWith<$Res>(_self.media!, (value) {
+    return $StepMediaDtoCopyWith<$Res>(_self.media!, (value) {
       return _then(_self.copyWith(media: value));
     });
   }
@@ -13668,7 +12630,7 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'journeyId') String? journeyId,
-            @JsonKey(name: 'media') StepMediaDto2Dto? media)?
+            @JsonKey(name: 'media') StepMediaDto? media)?
         $default, {
     required TResult orElse(),
   }) {
@@ -13704,7 +12666,7 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'journeyId') String? journeyId,
-            @JsonKey(name: 'media') StepMediaDto2Dto? media)
+            @JsonKey(name: 'media') StepMediaDto? media)
         $default,
   ) {
     final _that = this;
@@ -13736,7 +12698,7 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'journeyId') String? journeyId,
-            @JsonKey(name: 'media') StepMediaDto2Dto? media)?
+            @JsonKey(name: 'media') StepMediaDto? media)?
         $default,
   ) {
     final _that = this;
@@ -13784,7 +12746,7 @@ class _StepDto implements StepDto {
   final String? journeyId;
   @override
   @JsonKey(name: 'media')
-  final StepMediaDto2Dto? media;
+  final StepMediaDto? media;
 
   /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -13842,10 +12804,10 @@ abstract mixin class _$StepDtoCopyWith<$Res> implements $StepDtoCopyWith<$Res> {
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'journeyId') String? journeyId,
-      @JsonKey(name: 'media') StepMediaDto2Dto? media});
+      @JsonKey(name: 'media') StepMediaDto? media});
 
   @override
-  $StepMediaDto2DtoCopyWith<$Res>? get media;
+  $StepMediaDtoCopyWith<$Res>? get media;
 }
 
 /// @nodoc
@@ -13896,7 +12858,7 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
-              as StepMediaDto2Dto?,
+              as StepMediaDto?,
     ));
   }
 
@@ -13904,12 +12866,12 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StepMediaDto2DtoCopyWith<$Res>? get media {
+  $StepMediaDtoCopyWith<$Res>? get media {
     if (_self.media == null) {
       return null;
     }
 
-    return $StepMediaDto2DtoCopyWith<$Res>(_self.media!, (value) {
+    return $StepMediaDtoCopyWith<$Res>(_self.media!, (value) {
       return _then(_self.copyWith(media: value));
     });
   }
@@ -14623,787 +13585,6 @@ class __$StepMediaDtoCopyWithImpl<$Res>
     Object? isImage = freezed,
   }) {
     return _then(_StepMediaDto(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stepId: freezed == stepId
-          ? _self.stepId
-          : stepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mediaType: freezed == mediaType
-          ? _self.mediaType
-          : mediaType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      originalUrl: freezed == originalUrl
-          ? _self.originalUrl
-          : originalUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      largeUrl: freezed == largeUrl
-          ? _self.largeUrl
-          : largeUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mediumUrl: freezed == mediumUrl
-          ? _self.mediumUrl
-          : mediumUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      smallUrl: freezed == smallUrl
-          ? _self.smallUrl
-          : smallUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      videoThumbnailUrl: freezed == videoThumbnailUrl
-          ? _self.videoThumbnailUrl
-          : videoThumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bunnyVideoId: freezed == bunnyVideoId
-          ? _self.bunnyVideoId
-          : bunnyVideoId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: freezed == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      size: freezed == size
-          ? _self.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int?,
-      duration: freezed == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as num?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as MediaStatusDto?,
-      isVideo: freezed == isVideo
-          ? _self.isVideo
-          : isVideo // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isImage: freezed == isImage
-          ? _self.isImage
-          : isImage // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
-
-/// @nodoc
-mixin _$StepMediaDto2Dto {
-  @JsonKey(name: 'id')
-  String? get id;
-  @JsonKey(name: 'stepId')
-  String? get stepId;
-  @JsonKey(name: 'mediaType')
-  String? get mediaType;
-  @JsonKey(name: 'originalUrl')
-  String? get originalUrl;
-  @JsonKey(name: 'largeUrl')
-  String? get largeUrl;
-  @JsonKey(name: 'mediumUrl')
-  String? get mediumUrl;
-  @JsonKey(name: 'smallUrl')
-  String? get smallUrl;
-  @JsonKey(name: 'thumbnailUrl')
-  String? get thumbnailUrl;
-  @JsonKey(name: 'videoThumbnailUrl')
-  String? get videoThumbnailUrl;
-  @JsonKey(name: 'bunnyVideoId')
-  String? get bunnyVideoId;
-  @JsonKey(name: 'width')
-  int? get width;
-  @JsonKey(name: 'height')
-  int? get height;
-  @JsonKey(name: 'size')
-  int? get size;
-  @JsonKey(name: 'duration')
-  num? get duration;
-  @JsonKey(name: 'status')
-  MediaStatusDto? get status;
-  @JsonKey(name: 'isVideo')
-  bool? get isVideo;
-  @JsonKey(name: 'isImage')
-  bool? get isImage;
-
-  /// Create a copy of StepMediaDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $StepMediaDto2DtoCopyWith<StepMediaDto2Dto> get copyWith =>
-      _$StepMediaDto2DtoCopyWithImpl<StepMediaDto2Dto>(
-          this as StepMediaDto2Dto, _$identity);
-
-  /// Serializes this StepMediaDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is StepMediaDto2Dto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.stepId, stepId) || other.stepId == stepId) &&
-            (identical(other.mediaType, mediaType) ||
-                other.mediaType == mediaType) &&
-            (identical(other.originalUrl, originalUrl) ||
-                other.originalUrl == originalUrl) &&
-            (identical(other.largeUrl, largeUrl) ||
-                other.largeUrl == largeUrl) &&
-            (identical(other.mediumUrl, mediumUrl) ||
-                other.mediumUrl == mediumUrl) &&
-            (identical(other.smallUrl, smallUrl) ||
-                other.smallUrl == smallUrl) &&
-            (identical(other.thumbnailUrl, thumbnailUrl) ||
-                other.thumbnailUrl == thumbnailUrl) &&
-            (identical(other.videoThumbnailUrl, videoThumbnailUrl) ||
-                other.videoThumbnailUrl == videoThumbnailUrl) &&
-            (identical(other.bunnyVideoId, bunnyVideoId) ||
-                other.bunnyVideoId == bunnyVideoId) &&
-            (identical(other.width, width) || other.width == width) &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.isVideo, isVideo) || other.isVideo == isVideo) &&
-            (identical(other.isImage, isImage) || other.isImage == isImage));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      stepId,
-      mediaType,
-      originalUrl,
-      largeUrl,
-      mediumUrl,
-      smallUrl,
-      thumbnailUrl,
-      videoThumbnailUrl,
-      bunnyVideoId,
-      width,
-      height,
-      size,
-      duration,
-      status,
-      isVideo,
-      isImage);
-
-  @override
-  String toString() {
-    return 'StepMediaDto2Dto(id: $id, stepId: $stepId, mediaType: $mediaType, originalUrl: $originalUrl, largeUrl: $largeUrl, mediumUrl: $mediumUrl, smallUrl: $smallUrl, thumbnailUrl: $thumbnailUrl, videoThumbnailUrl: $videoThumbnailUrl, bunnyVideoId: $bunnyVideoId, width: $width, height: $height, size: $size, duration: $duration, status: $status, isVideo: $isVideo, isImage: $isImage)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $StepMediaDto2DtoCopyWith<$Res> {
-  factory $StepMediaDto2DtoCopyWith(
-          StepMediaDto2Dto value, $Res Function(StepMediaDto2Dto) _then) =
-      _$StepMediaDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'stepId') String? stepId,
-      @JsonKey(name: 'mediaType') String? mediaType,
-      @JsonKey(name: 'originalUrl') String? originalUrl,
-      @JsonKey(name: 'largeUrl') String? largeUrl,
-      @JsonKey(name: 'mediumUrl') String? mediumUrl,
-      @JsonKey(name: 'smallUrl') String? smallUrl,
-      @JsonKey(name: 'thumbnailUrl') String? thumbnailUrl,
-      @JsonKey(name: 'videoThumbnailUrl') String? videoThumbnailUrl,
-      @JsonKey(name: 'bunnyVideoId') String? bunnyVideoId,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'size') int? size,
-      @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') MediaStatusDto? status,
-      @JsonKey(name: 'isVideo') bool? isVideo,
-      @JsonKey(name: 'isImage') bool? isImage});
-}
-
-/// @nodoc
-class _$StepMediaDto2DtoCopyWithImpl<$Res>
-    implements $StepMediaDto2DtoCopyWith<$Res> {
-  _$StepMediaDto2DtoCopyWithImpl(this._self, this._then);
-
-  final StepMediaDto2Dto _self;
-  final $Res Function(StepMediaDto2Dto) _then;
-
-  /// Create a copy of StepMediaDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? stepId = freezed,
-    Object? mediaType = freezed,
-    Object? originalUrl = freezed,
-    Object? largeUrl = freezed,
-    Object? mediumUrl = freezed,
-    Object? smallUrl = freezed,
-    Object? thumbnailUrl = freezed,
-    Object? videoThumbnailUrl = freezed,
-    Object? bunnyVideoId = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? size = freezed,
-    Object? duration = freezed,
-    Object? status = freezed,
-    Object? isVideo = freezed,
-    Object? isImage = freezed,
-  }) {
-    return _then(_self.copyWith(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stepId: freezed == stepId
-          ? _self.stepId
-          : stepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mediaType: freezed == mediaType
-          ? _self.mediaType
-          : mediaType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      originalUrl: freezed == originalUrl
-          ? _self.originalUrl
-          : originalUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      largeUrl: freezed == largeUrl
-          ? _self.largeUrl
-          : largeUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mediumUrl: freezed == mediumUrl
-          ? _self.mediumUrl
-          : mediumUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      smallUrl: freezed == smallUrl
-          ? _self.smallUrl
-          : smallUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      thumbnailUrl: freezed == thumbnailUrl
-          ? _self.thumbnailUrl
-          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      videoThumbnailUrl: freezed == videoThumbnailUrl
-          ? _self.videoThumbnailUrl
-          : videoThumbnailUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      bunnyVideoId: freezed == bunnyVideoId
-          ? _self.bunnyVideoId
-          : bunnyVideoId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      width: freezed == width
-          ? _self.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: freezed == height
-          ? _self.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
-      size: freezed == size
-          ? _self.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int?,
-      duration: freezed == duration
-          ? _self.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as num?,
-      status: freezed == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as MediaStatusDto?,
-      isVideo: freezed == isVideo
-          ? _self.isVideo
-          : isVideo // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      isImage: freezed == isImage
-          ? _self.isImage
-          : isImage // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [StepMediaDto2Dto].
-extension StepMediaDto2DtoPatterns on StepMediaDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_StepMediaDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _StepMediaDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_StepMediaDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StepMediaDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_StepMediaDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StepMediaDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'mediaType') String? mediaType,
-            @JsonKey(name: 'originalUrl') String? originalUrl,
-            @JsonKey(name: 'largeUrl') String? largeUrl,
-            @JsonKey(name: 'mediumUrl') String? mediumUrl,
-            @JsonKey(name: 'smallUrl') String? smallUrl,
-            @JsonKey(name: 'thumbnailUrl') String? thumbnailUrl,
-            @JsonKey(name: 'videoThumbnailUrl') String? videoThumbnailUrl,
-            @JsonKey(name: 'bunnyVideoId') String? bunnyVideoId,
-            @JsonKey(name: 'width') int? width,
-            @JsonKey(name: 'height') int? height,
-            @JsonKey(name: 'size') int? size,
-            @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') MediaStatusDto? status,
-            @JsonKey(name: 'isVideo') bool? isVideo,
-            @JsonKey(name: 'isImage') bool? isImage)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _StepMediaDto2Dto() when $default != null:
-        return $default(
-            _that.id,
-            _that.stepId,
-            _that.mediaType,
-            _that.originalUrl,
-            _that.largeUrl,
-            _that.mediumUrl,
-            _that.smallUrl,
-            _that.thumbnailUrl,
-            _that.videoThumbnailUrl,
-            _that.bunnyVideoId,
-            _that.width,
-            _that.height,
-            _that.size,
-            _that.duration,
-            _that.status,
-            _that.isVideo,
-            _that.isImage);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'mediaType') String? mediaType,
-            @JsonKey(name: 'originalUrl') String? originalUrl,
-            @JsonKey(name: 'largeUrl') String? largeUrl,
-            @JsonKey(name: 'mediumUrl') String? mediumUrl,
-            @JsonKey(name: 'smallUrl') String? smallUrl,
-            @JsonKey(name: 'thumbnailUrl') String? thumbnailUrl,
-            @JsonKey(name: 'videoThumbnailUrl') String? videoThumbnailUrl,
-            @JsonKey(name: 'bunnyVideoId') String? bunnyVideoId,
-            @JsonKey(name: 'width') int? width,
-            @JsonKey(name: 'height') int? height,
-            @JsonKey(name: 'size') int? size,
-            @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') MediaStatusDto? status,
-            @JsonKey(name: 'isVideo') bool? isVideo,
-            @JsonKey(name: 'isImage') bool? isImage)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StepMediaDto2Dto():
-        return $default(
-            _that.id,
-            _that.stepId,
-            _that.mediaType,
-            _that.originalUrl,
-            _that.largeUrl,
-            _that.mediumUrl,
-            _that.smallUrl,
-            _that.thumbnailUrl,
-            _that.videoThumbnailUrl,
-            _that.bunnyVideoId,
-            _that.width,
-            _that.height,
-            _that.size,
-            _that.duration,
-            _that.status,
-            _that.isVideo,
-            _that.isImage);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'mediaType') String? mediaType,
-            @JsonKey(name: 'originalUrl') String? originalUrl,
-            @JsonKey(name: 'largeUrl') String? largeUrl,
-            @JsonKey(name: 'mediumUrl') String? mediumUrl,
-            @JsonKey(name: 'smallUrl') String? smallUrl,
-            @JsonKey(name: 'thumbnailUrl') String? thumbnailUrl,
-            @JsonKey(name: 'videoThumbnailUrl') String? videoThumbnailUrl,
-            @JsonKey(name: 'bunnyVideoId') String? bunnyVideoId,
-            @JsonKey(name: 'width') int? width,
-            @JsonKey(name: 'height') int? height,
-            @JsonKey(name: 'size') int? size,
-            @JsonKey(name: 'duration') num? duration,
-            @JsonKey(name: 'status') MediaStatusDto? status,
-            @JsonKey(name: 'isVideo') bool? isVideo,
-            @JsonKey(name: 'isImage') bool? isImage)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StepMediaDto2Dto() when $default != null:
-        return $default(
-            _that.id,
-            _that.stepId,
-            _that.mediaType,
-            _that.originalUrl,
-            _that.largeUrl,
-            _that.mediumUrl,
-            _that.smallUrl,
-            _that.thumbnailUrl,
-            _that.videoThumbnailUrl,
-            _that.bunnyVideoId,
-            _that.width,
-            _that.height,
-            _that.size,
-            _that.duration,
-            _that.status,
-            _that.isVideo,
-            _that.isImage);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _StepMediaDto2Dto implements StepMediaDto2Dto {
-  _StepMediaDto2Dto(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'stepId') this.stepId,
-      @JsonKey(name: 'mediaType') this.mediaType,
-      @JsonKey(name: 'originalUrl') this.originalUrl,
-      @JsonKey(name: 'largeUrl') this.largeUrl,
-      @JsonKey(name: 'mediumUrl') this.mediumUrl,
-      @JsonKey(name: 'smallUrl') this.smallUrl,
-      @JsonKey(name: 'thumbnailUrl') this.thumbnailUrl,
-      @JsonKey(name: 'videoThumbnailUrl') this.videoThumbnailUrl,
-      @JsonKey(name: 'bunnyVideoId') this.bunnyVideoId,
-      @JsonKey(name: 'width') this.width,
-      @JsonKey(name: 'height') this.height,
-      @JsonKey(name: 'size') this.size,
-      @JsonKey(name: 'duration') this.duration,
-      @JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'isVideo') this.isVideo,
-      @JsonKey(name: 'isImage') this.isImage});
-  factory _StepMediaDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$StepMediaDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'id')
-  final String? id;
-  @override
-  @JsonKey(name: 'stepId')
-  final String? stepId;
-  @override
-  @JsonKey(name: 'mediaType')
-  final String? mediaType;
-  @override
-  @JsonKey(name: 'originalUrl')
-  final String? originalUrl;
-  @override
-  @JsonKey(name: 'largeUrl')
-  final String? largeUrl;
-  @override
-  @JsonKey(name: 'mediumUrl')
-  final String? mediumUrl;
-  @override
-  @JsonKey(name: 'smallUrl')
-  final String? smallUrl;
-  @override
-  @JsonKey(name: 'thumbnailUrl')
-  final String? thumbnailUrl;
-  @override
-  @JsonKey(name: 'videoThumbnailUrl')
-  final String? videoThumbnailUrl;
-  @override
-  @JsonKey(name: 'bunnyVideoId')
-  final String? bunnyVideoId;
-  @override
-  @JsonKey(name: 'width')
-  final int? width;
-  @override
-  @JsonKey(name: 'height')
-  final int? height;
-  @override
-  @JsonKey(name: 'size')
-  final int? size;
-  @override
-  @JsonKey(name: 'duration')
-  final num? duration;
-  @override
-  @JsonKey(name: 'status')
-  final MediaStatusDto? status;
-  @override
-  @JsonKey(name: 'isVideo')
-  final bool? isVideo;
-  @override
-  @JsonKey(name: 'isImage')
-  final bool? isImage;
-
-  /// Create a copy of StepMediaDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$StepMediaDto2DtoCopyWith<_StepMediaDto2Dto> get copyWith =>
-      __$StepMediaDto2DtoCopyWithImpl<_StepMediaDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$StepMediaDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _StepMediaDto2Dto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.stepId, stepId) || other.stepId == stepId) &&
-            (identical(other.mediaType, mediaType) ||
-                other.mediaType == mediaType) &&
-            (identical(other.originalUrl, originalUrl) ||
-                other.originalUrl == originalUrl) &&
-            (identical(other.largeUrl, largeUrl) ||
-                other.largeUrl == largeUrl) &&
-            (identical(other.mediumUrl, mediumUrl) ||
-                other.mediumUrl == mediumUrl) &&
-            (identical(other.smallUrl, smallUrl) ||
-                other.smallUrl == smallUrl) &&
-            (identical(other.thumbnailUrl, thumbnailUrl) ||
-                other.thumbnailUrl == thumbnailUrl) &&
-            (identical(other.videoThumbnailUrl, videoThumbnailUrl) ||
-                other.videoThumbnailUrl == videoThumbnailUrl) &&
-            (identical(other.bunnyVideoId, bunnyVideoId) ||
-                other.bunnyVideoId == bunnyVideoId) &&
-            (identical(other.width, width) || other.width == width) &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.duration, duration) ||
-                other.duration == duration) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.isVideo, isVideo) || other.isVideo == isVideo) &&
-            (identical(other.isImage, isImage) || other.isImage == isImage));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      stepId,
-      mediaType,
-      originalUrl,
-      largeUrl,
-      mediumUrl,
-      smallUrl,
-      thumbnailUrl,
-      videoThumbnailUrl,
-      bunnyVideoId,
-      width,
-      height,
-      size,
-      duration,
-      status,
-      isVideo,
-      isImage);
-
-  @override
-  String toString() {
-    return 'StepMediaDto2Dto(id: $id, stepId: $stepId, mediaType: $mediaType, originalUrl: $originalUrl, largeUrl: $largeUrl, mediumUrl: $mediumUrl, smallUrl: $smallUrl, thumbnailUrl: $thumbnailUrl, videoThumbnailUrl: $videoThumbnailUrl, bunnyVideoId: $bunnyVideoId, width: $width, height: $height, size: $size, duration: $duration, status: $status, isVideo: $isVideo, isImage: $isImage)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$StepMediaDto2DtoCopyWith<$Res>
-    implements $StepMediaDto2DtoCopyWith<$Res> {
-  factory _$StepMediaDto2DtoCopyWith(
-          _StepMediaDto2Dto value, $Res Function(_StepMediaDto2Dto) _then) =
-      __$StepMediaDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'stepId') String? stepId,
-      @JsonKey(name: 'mediaType') String? mediaType,
-      @JsonKey(name: 'originalUrl') String? originalUrl,
-      @JsonKey(name: 'largeUrl') String? largeUrl,
-      @JsonKey(name: 'mediumUrl') String? mediumUrl,
-      @JsonKey(name: 'smallUrl') String? smallUrl,
-      @JsonKey(name: 'thumbnailUrl') String? thumbnailUrl,
-      @JsonKey(name: 'videoThumbnailUrl') String? videoThumbnailUrl,
-      @JsonKey(name: 'bunnyVideoId') String? bunnyVideoId,
-      @JsonKey(name: 'width') int? width,
-      @JsonKey(name: 'height') int? height,
-      @JsonKey(name: 'size') int? size,
-      @JsonKey(name: 'duration') num? duration,
-      @JsonKey(name: 'status') MediaStatusDto? status,
-      @JsonKey(name: 'isVideo') bool? isVideo,
-      @JsonKey(name: 'isImage') bool? isImage});
-}
-
-/// @nodoc
-class __$StepMediaDto2DtoCopyWithImpl<$Res>
-    implements _$StepMediaDto2DtoCopyWith<$Res> {
-  __$StepMediaDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _StepMediaDto2Dto _self;
-  final $Res Function(_StepMediaDto2Dto) _then;
-
-  /// Create a copy of StepMediaDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = freezed,
-    Object? stepId = freezed,
-    Object? mediaType = freezed,
-    Object? originalUrl = freezed,
-    Object? largeUrl = freezed,
-    Object? mediumUrl = freezed,
-    Object? smallUrl = freezed,
-    Object? thumbnailUrl = freezed,
-    Object? videoThumbnailUrl = freezed,
-    Object? bunnyVideoId = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-    Object? size = freezed,
-    Object? duration = freezed,
-    Object? status = freezed,
-    Object? isVideo = freezed,
-    Object? isImage = freezed,
-  }) {
-    return _then(_StepMediaDto2Dto(
       id: freezed == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -16469,369 +14650,6 @@ class __$UserDetailDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$UserDetailDto2Dto {
-  @JsonKey(name: 'user')
-  UserDto get user;
-  @JsonKey(name: 'followingStatus')
-  FollowingStatusEnumDto? get followingStatus;
-
-  /// Create a copy of UserDetailDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserDetailDto2DtoCopyWith<UserDetailDto2Dto> get copyWith =>
-      _$UserDetailDto2DtoCopyWithImpl<UserDetailDto2Dto>(
-          this as UserDetailDto2Dto, _$identity);
-
-  /// Serializes this UserDetailDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserDetailDto2Dto &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.followingStatus, followingStatus) ||
-                other.followingStatus == followingStatus));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, user, followingStatus);
-
-  @override
-  String toString() {
-    return 'UserDetailDto2Dto(user: $user, followingStatus: $followingStatus)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $UserDetailDto2DtoCopyWith<$Res> {
-  factory $UserDetailDto2DtoCopyWith(
-          UserDetailDto2Dto value, $Res Function(UserDetailDto2Dto) _then) =
-      _$UserDetailDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus')
-      FollowingStatusEnumDto? followingStatus});
-
-  $UserDtoCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class _$UserDetailDto2DtoCopyWithImpl<$Res>
-    implements $UserDetailDto2DtoCopyWith<$Res> {
-  _$UserDetailDto2DtoCopyWithImpl(this._self, this._then);
-
-  final UserDetailDto2Dto _self;
-  final $Res Function(UserDetailDto2Dto) _then;
-
-  /// Create a copy of UserDetailDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? followingStatus = freezed,
-  }) {
-    return _then(_self.copyWith(
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserDto,
-      followingStatus: freezed == followingStatus
-          ? _self.followingStatus
-          : followingStatus // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto?,
-    ));
-  }
-
-  /// Create a copy of UserDetailDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserDtoCopyWith<$Res> get user {
-    return $UserDtoCopyWith<$Res>(_self.user, (value) {
-      return _then(_self.copyWith(user: value));
-    });
-  }
-}
-
-/// Adds pattern-matching-related methods to [UserDetailDto2Dto].
-extension UserDetailDto2DtoPatterns on UserDetailDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserDetailDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _UserDetailDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserDetailDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDetailDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserDetailDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDetailDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto? followingStatus)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _UserDetailDto2Dto() when $default != null:
-        return $default(_that.user, _that.followingStatus);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto? followingStatus)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDetailDto2Dto():
-        return $default(_that.user, _that.followingStatus);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto? followingStatus)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDetailDto2Dto() when $default != null:
-        return $default(_that.user, _that.followingStatus);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _UserDetailDto2Dto implements UserDetailDto2Dto {
-  _UserDetailDto2Dto(
-      {@JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'followingStatus') this.followingStatus});
-  factory _UserDetailDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$UserDetailDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'user')
-  final UserDto user;
-  @override
-  @JsonKey(name: 'followingStatus')
-  final FollowingStatusEnumDto? followingStatus;
-
-  /// Create a copy of UserDetailDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$UserDetailDto2DtoCopyWith<_UserDetailDto2Dto> get copyWith =>
-      __$UserDetailDto2DtoCopyWithImpl<_UserDetailDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$UserDetailDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _UserDetailDto2Dto &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.followingStatus, followingStatus) ||
-                other.followingStatus == followingStatus));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, user, followingStatus);
-
-  @override
-  String toString() {
-    return 'UserDetailDto2Dto(user: $user, followingStatus: $followingStatus)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$UserDetailDto2DtoCopyWith<$Res>
-    implements $UserDetailDto2DtoCopyWith<$Res> {
-  factory _$UserDetailDto2DtoCopyWith(
-          _UserDetailDto2Dto value, $Res Function(_UserDetailDto2Dto) _then) =
-      __$UserDetailDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus')
-      FollowingStatusEnumDto? followingStatus});
-
-  @override
-  $UserDtoCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class __$UserDetailDto2DtoCopyWithImpl<$Res>
-    implements _$UserDetailDto2DtoCopyWith<$Res> {
-  __$UserDetailDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _UserDetailDto2Dto _self;
-  final $Res Function(_UserDetailDto2Dto) _then;
-
-  /// Create a copy of UserDetailDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? user = null,
-    Object? followingStatus = freezed,
-  }) {
-    return _then(_UserDetailDto2Dto(
-      user: null == user
-          ? _self.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserDto,
-      followingStatus: freezed == followingStatus
-          ? _self.followingStatus
-          : followingStatus // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto?,
-    ));
-  }
-
-  /// Create a copy of UserDetailDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserDtoCopyWith<$Res> get user {
-    return $UserDtoCopyWith<$Res>(_self.user, (value) {
-      return _then(_self.copyWith(user: value));
-    });
-  }
-}
-
-/// @nodoc
 mixin _$UserDto {
   @JsonKey(name: 'id')
   String get id;
@@ -17388,614 +15206,6 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
     Object? lastUpdated = freezed,
   }) {
     return _then(_UserDto(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayName: freezed == displayName
-          ? _self.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profilePictureUrl: freezed == profilePictureUrl
-          ? _self.profilePictureUrl
-          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      age: freezed == age
-          ? _self.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isPrivate: freezed == isPrivate
-          ? _self.isPrivate
-          : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
-          ? _self.lastUpdated
-          : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
-mixin _$UserDto2Dto {
-  @JsonKey(name: 'id')
-  String get id;
-  @JsonKey(name: 'displayName')
-  String? get displayName;
-  @JsonKey(name: 'username')
-  String? get username;
-  @JsonKey(name: 'description')
-  String? get description;
-  @JsonKey(name: 'profilePictureUrl')
-  String? get profilePictureUrl;
-  @JsonKey(name: 'phoneNumber')
-  String? get phoneNumber;
-  @JsonKey(name: 'email')
-  String? get email;
-  @JsonKey(name: 'age')
-  int? get age;
-  @JsonKey(name: 'isPrivate')
-  bool? get isPrivate;
-  @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
-  @JsonKey(name: 'lastUpdated')
-  DateTime? get lastUpdated;
-
-  /// Create a copy of UserDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $UserDto2DtoCopyWith<UserDto2Dto> get copyWith =>
-      _$UserDto2DtoCopyWithImpl<UserDto2Dto>(this as UserDto2Dto, _$identity);
-
-  /// Serializes this UserDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is UserDto2Dto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.profilePictureUrl, profilePictureUrl) ||
-                other.profilePictureUrl == profilePictureUrl) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.age, age) || other.age == age) &&
-            (identical(other.isPrivate, isPrivate) ||
-                other.isPrivate == isPrivate) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      displayName,
-      username,
-      description,
-      profilePictureUrl,
-      phoneNumber,
-      email,
-      age,
-      isPrivate,
-      createdDate,
-      lastUpdated);
-
-  @override
-  String toString() {
-    return 'UserDto2Dto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $UserDto2DtoCopyWith<$Res> {
-  factory $UserDto2DtoCopyWith(
-          UserDto2Dto value, $Res Function(UserDto2Dto) _then) =
-      _$UserDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
-      @JsonKey(name: 'phoneNumber') String? phoneNumber,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'age') int? age,
-      @JsonKey(name: 'isPrivate') bool? isPrivate,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated});
-}
-
-/// @nodoc
-class _$UserDto2DtoCopyWithImpl<$Res> implements $UserDto2DtoCopyWith<$Res> {
-  _$UserDto2DtoCopyWithImpl(this._self, this._then);
-
-  final UserDto2Dto _self;
-  final $Res Function(UserDto2Dto) _then;
-
-  /// Create a copy of UserDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? displayName = freezed,
-    Object? username = freezed,
-    Object? description = freezed,
-    Object? profilePictureUrl = freezed,
-    Object? phoneNumber = freezed,
-    Object? email = freezed,
-    Object? age = freezed,
-    Object? isPrivate = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-  }) {
-    return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      displayName: freezed == displayName
-          ? _self.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
-          ? _self.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _self.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profilePictureUrl: freezed == profilePictureUrl
-          ? _self.profilePictureUrl
-          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phoneNumber: freezed == phoneNumber
-          ? _self.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _self.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
-      age: freezed == age
-          ? _self.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isPrivate: freezed == isPrivate
-          ? _self.isPrivate
-          : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
-          ? _self.lastUpdated
-          : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [UserDto2Dto].
-extension UserDto2DtoPatterns on UserDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_UserDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _UserDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_UserDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_UserDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'displayName') String? displayName,
-            @JsonKey(name: 'username') String? username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
-            @JsonKey(name: 'phoneNumber') String? phoneNumber,
-            @JsonKey(name: 'email') String? email,
-            @JsonKey(name: 'age') int? age,
-            @JsonKey(name: 'isPrivate') bool? isPrivate,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _UserDto2Dto() when $default != null:
-        return $default(
-            _that.id,
-            _that.displayName,
-            _that.username,
-            _that.description,
-            _that.profilePictureUrl,
-            _that.phoneNumber,
-            _that.email,
-            _that.age,
-            _that.isPrivate,
-            _that.createdDate,
-            _that.lastUpdated);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'displayName') String? displayName,
-            @JsonKey(name: 'username') String? username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
-            @JsonKey(name: 'phoneNumber') String? phoneNumber,
-            @JsonKey(name: 'email') String? email,
-            @JsonKey(name: 'age') int? age,
-            @JsonKey(name: 'isPrivate') bool? isPrivate,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDto2Dto():
-        return $default(
-            _that.id,
-            _that.displayName,
-            _that.username,
-            _that.description,
-            _that.profilePictureUrl,
-            _that.phoneNumber,
-            _that.email,
-            _that.age,
-            _that.isPrivate,
-            _that.createdDate,
-            _that.lastUpdated);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'displayName') String? displayName,
-            @JsonKey(name: 'username') String? username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
-            @JsonKey(name: 'phoneNumber') String? phoneNumber,
-            @JsonKey(name: 'email') String? email,
-            @JsonKey(name: 'age') int? age,
-            @JsonKey(name: 'isPrivate') bool? isPrivate,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _UserDto2Dto() when $default != null:
-        return $default(
-            _that.id,
-            _that.displayName,
-            _that.username,
-            _that.description,
-            _that.profilePictureUrl,
-            _that.phoneNumber,
-            _that.email,
-            _that.age,
-            _that.isPrivate,
-            _that.createdDate,
-            _that.lastUpdated);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _UserDto2Dto implements UserDto2Dto {
-  _UserDto2Dto(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'displayName') this.displayName,
-      @JsonKey(name: 'username') this.username,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'profilePictureUrl') this.profilePictureUrl,
-      @JsonKey(name: 'phoneNumber') this.phoneNumber,
-      @JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'age') this.age,
-      @JsonKey(name: 'isPrivate') this.isPrivate,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdated') this.lastUpdated});
-  factory _UserDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$UserDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'id')
-  final String id;
-  @override
-  @JsonKey(name: 'displayName')
-  final String? displayName;
-  @override
-  @JsonKey(name: 'username')
-  final String? username;
-  @override
-  @JsonKey(name: 'description')
-  final String? description;
-  @override
-  @JsonKey(name: 'profilePictureUrl')
-  final String? profilePictureUrl;
-  @override
-  @JsonKey(name: 'phoneNumber')
-  final String? phoneNumber;
-  @override
-  @JsonKey(name: 'email')
-  final String? email;
-  @override
-  @JsonKey(name: 'age')
-  final int? age;
-  @override
-  @JsonKey(name: 'isPrivate')
-  final bool? isPrivate;
-  @override
-  @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
-  @override
-  @JsonKey(name: 'lastUpdated')
-  final DateTime? lastUpdated;
-
-  /// Create a copy of UserDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$UserDto2DtoCopyWith<_UserDto2Dto> get copyWith =>
-      __$UserDto2DtoCopyWithImpl<_UserDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$UserDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _UserDto2Dto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.profilePictureUrl, profilePictureUrl) ||
-                other.profilePictureUrl == profilePictureUrl) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.age, age) || other.age == age) &&
-            (identical(other.isPrivate, isPrivate) ||
-                other.isPrivate == isPrivate) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      displayName,
-      username,
-      description,
-      profilePictureUrl,
-      phoneNumber,
-      email,
-      age,
-      isPrivate,
-      createdDate,
-      lastUpdated);
-
-  @override
-  String toString() {
-    return 'UserDto2Dto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$UserDto2DtoCopyWith<$Res>
-    implements $UserDto2DtoCopyWith<$Res> {
-  factory _$UserDto2DtoCopyWith(
-          _UserDto2Dto value, $Res Function(_UserDto2Dto) _then) =
-      __$UserDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
-      @JsonKey(name: 'phoneNumber') String? phoneNumber,
-      @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'age') int? age,
-      @JsonKey(name: 'isPrivate') bool? isPrivate,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated});
-}
-
-/// @nodoc
-class __$UserDto2DtoCopyWithImpl<$Res> implements _$UserDto2DtoCopyWith<$Res> {
-  __$UserDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _UserDto2Dto _self;
-  final $Res Function(_UserDto2Dto) _then;
-
-  /// Create a copy of UserDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = null,
-    Object? displayName = freezed,
-    Object? username = freezed,
-    Object? description = freezed,
-    Object? profilePictureUrl = freezed,
-    Object? phoneNumber = freezed,
-    Object? email = freezed,
-    Object? age = freezed,
-    Object? isPrivate = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-  }) {
-    return _then(_UserDto2Dto(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable

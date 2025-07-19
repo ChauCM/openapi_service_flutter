@@ -182,50 +182,6 @@ Map<String, dynamic> _$FollowingStatusDtoToJson(_FollowingStatusDto instance) =>
       'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
     };
 
-_ImageMetadataDto _$ImageMetadataDtoFromJson(Map<String, dynamic> json) =>
-    _ImageMetadataDto(
-      fileName: json['fileName'] as String?,
-      fileUrl: json['fileUrl'] as String?,
-      width: (json['width'] as num?)?.toInt(),
-      height: (json['height'] as num?)?.toInt(),
-      size: (json['size'] as num?)?.toInt(),
-      contentType: json['contentType'] as String?,
-    );
-
-Map<String, dynamic> _$ImageMetadataDtoToJson(_ImageMetadataDto instance) =>
-    <String, dynamic>{
-      'fileName': instance.fileName,
-      'fileUrl': instance.fileUrl,
-      'width': instance.width,
-      'height': instance.height,
-      'size': instance.size,
-      'contentType': instance.contentType,
-    };
-
-_ImagePresignedUrlDto _$ImagePresignedUrlDtoFromJson(
-        Map<String, dynamic> json) =>
-    _ImagePresignedUrlDto(
-      uploadUrl: json['uploadUrl'] as String?,
-      fileUrl: json['fileUrl'] as String?,
-      fileName: json['fileName'] as String?,
-      expiresAt: json['expiresAt'] == null
-          ? null
-          : DateTime.parse(json['expiresAt'] as String),
-      headers: (json['headers'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
-    );
-
-Map<String, dynamic> _$ImagePresignedUrlDtoToJson(
-        _ImagePresignedUrlDto instance) =>
-    <String, dynamic>{
-      'uploadUrl': instance.uploadUrl,
-      'fileUrl': instance.fileUrl,
-      'fileName': instance.fileName,
-      'expiresAt': instance.expiresAt?.toIso8601String(),
-      'headers': instance.headers,
-    };
-
 _InteractionResultDto _$InteractionResultDtoFromJson(
         Map<String, dynamic> json) =>
     _InteractionResultDto(
@@ -305,43 +261,9 @@ Map<String, dynamic> _$JourneyDtoToJson(_JourneyDto instance) =>
       'finalStepId': instance.finalStepId,
     };
 
-_JourneyDto2Dto _$JourneyDto2DtoFromJson(Map<String, dynamic> json) =>
-    _JourneyDto2Dto(
-      id: json['id'] as String?,
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
-      lastUpdated: json['lastUpdated'] == null
-          ? null
-          : DateTime.parse(json['lastUpdated'] as String),
-      status: json['status'] as String?,
-      completedDate: json['completedDate'] == null
-          ? null
-          : DateTime.parse(json['completedDate'] as String),
-      userId: json['userId'] as String?,
-      firstStepId: json['firstStepId'] as String?,
-      finalStepId: json['finalStepId'] as String?,
-    );
-
-Map<String, dynamic> _$JourneyDto2DtoToJson(_JourneyDto2Dto instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'description': instance.description,
-      'createdDate': instance.createdDate?.toIso8601String(),
-      'lastUpdated': instance.lastUpdated?.toIso8601String(),
-      'status': instance.status,
-      'completedDate': instance.completedDate?.toIso8601String(),
-      'userId': instance.userId,
-      'firstStepId': instance.firstStepId,
-      'finalStepId': instance.finalStepId,
-    };
-
 _JourneyInDetailDto _$JourneyInDetailDtoFromJson(Map<String, dynamic> json) =>
     _JourneyInDetailDto(
-      journey: JourneyDto2Dto.fromJson(json['journey'] as Map<String, dynamic>),
+      journey: JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
       stepsCount: (json['stepsCount'] as num).toInt(),
       lastStepDate: DateTime.parse(json['lastStepDate'] as String),
       stepperCount: (json['stepperCount'] as num?)?.toInt(),
@@ -349,11 +271,17 @@ _JourneyInDetailDto _$JourneyInDetailDtoFromJson(Map<String, dynamic> json) =>
           ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       starterCount: (json['starterCount'] as num?)?.toInt(),
-      latestStarters: json['latestStarters'] as List<dynamic>?,
+      latestStarters: (json['latestStarters'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
       companionCount: (json['companionCount'] as num?)?.toInt(),
-      latestCompanions: json['latestCompanions'] as List<dynamic>?,
+      latestCompanions: (json['latestCompanions'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
       celebratorCount: (json['celebratorCount'] as num?)?.toInt(),
-      latestCelebrators: json['latestCelebrators'] as List<dynamic>?,
+      latestCelebrators: (json['latestCelebrators'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$JourneyInDetailDtoToJson(_JourneyInDetailDto instance) =>
@@ -369,6 +297,23 @@ Map<String, dynamic> _$JourneyInDetailDtoToJson(_JourneyInDetailDto instance) =>
       'latestCompanions': instance.latestCompanions,
       'celebratorCount': instance.celebratorCount,
       'latestCelebrators': instance.latestCelebrators,
+    };
+
+_JourneyInProfileDto _$JourneyInProfileDtoFromJson(Map<String, dynamic> json) =>
+    _JourneyInProfileDto(
+      journey: JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
+      stepsCount: (json['stepsCount'] as num).toInt(),
+      thumbnailSteps: (json['thumbnailSteps'] as List<dynamic>)
+          .map((e) => StepMediaDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$JourneyInProfileDtoToJson(
+        _JourneyInProfileDto instance) =>
+    <String, dynamic>{
+      'journey': instance.journey,
+      'stepsCount': instance.stepsCount,
+      'thumbnailSteps': instance.thumbnailSteps,
     };
 
 _LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) => _LoginDto(
@@ -411,8 +356,7 @@ _NotificationDto _$NotificationDtoFromJson(Map<String, dynamic> json) =>
       relatedEntityId: json['relatedEntityId'] as String?,
       sourceUser: json['sourceUser'] == null
           ? null
-          : UserDetailDto2Dto.fromJson(
-              json['sourceUser'] as Map<String, dynamic>),
+          : UserDetailDto.fromJson(json['sourceUser'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$NotificationDtoToJson(_NotificationDto instance) =>
@@ -462,7 +406,9 @@ _ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => _ProfileDto(
           ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       supportersCount: (json['supportersCount'] as num?)?.toInt(),
-      supportersUsers: json['supportersUsers'] as List<dynamic>?,
+      supportersUsers: (json['supportersUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
       followersCount: (json['followersCount'] as num?)?.toInt(),
       followingsCount: (json['followingsCount'] as num?)?.toInt(),
     );
@@ -496,8 +442,7 @@ _ReplyDto _$ReplyDtoFromJson(Map<String, dynamic> json) => _ReplyDto(
       parentCommentId: json['parentCommentId'] as String?,
       responseToUser: json['responseToUser'] == null
           ? null
-          : UserDto2Dto.fromJson(
-              json['responseToUser'] as Map<String, dynamic>),
+          : UserDto.fromJson(json['responseToUser'] as Map<String, dynamic>),
       responseToCommentId: json['responseToCommentId'] as String?,
       heartCount: (json['heartCount'] as num?)?.toInt(),
       heartedByUser: json['heartedByUser'] as bool?,
@@ -537,7 +482,7 @@ _ReportDto _$ReportDtoFromJson(Map<String, dynamic> json) => _ReportDto(
       entityId: json['entityId'] as String?,
       reporter: json['reporter'] == null
           ? null
-          : UserDto2Dto.fromJson(json['reporter'] as Map<String, dynamic>),
+          : UserDto.fromJson(json['reporter'] as Map<String, dynamic>),
       reason: json['reason'] as String,
       createdDate: json['createdDate'] == null
           ? null
@@ -691,7 +636,7 @@ _StepDto _$StepDtoFromJson(Map<String, dynamic> json) => _StepDto(
       journeyId: json['journeyId'] as String?,
       media: json['media'] == null
           ? null
-          : StepMediaDto2Dto.fromJson(json['media'] as Map<String, dynamic>),
+          : StepMediaDto.fromJson(json['media'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StepDtoToJson(_StepDto instance) => <String, dynamic>{
@@ -753,48 +698,6 @@ const _$MediaStatusDtoEnumMap = {
   MediaStatusDto.failed: 'Failed',
 };
 
-_StepMediaDto2Dto _$StepMediaDto2DtoFromJson(Map<String, dynamic> json) =>
-    _StepMediaDto2Dto(
-      id: json['id'] as String?,
-      stepId: json['stepId'] as String?,
-      mediaType: json['mediaType'] as String?,
-      originalUrl: json['originalUrl'] as String?,
-      largeUrl: json['largeUrl'] as String?,
-      mediumUrl: json['mediumUrl'] as String?,
-      smallUrl: json['smallUrl'] as String?,
-      thumbnailUrl: json['thumbnailUrl'] as String?,
-      videoThumbnailUrl: json['videoThumbnailUrl'] as String?,
-      bunnyVideoId: json['bunnyVideoId'] as String?,
-      width: (json['width'] as num?)?.toInt(),
-      height: (json['height'] as num?)?.toInt(),
-      size: (json['size'] as num?)?.toInt(),
-      duration: json['duration'] as num?,
-      status: $enumDecodeNullable(_$MediaStatusDtoEnumMap, json['status']),
-      isVideo: json['isVideo'] as bool?,
-      isImage: json['isImage'] as bool?,
-    );
-
-Map<String, dynamic> _$StepMediaDto2DtoToJson(_StepMediaDto2Dto instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'stepId': instance.stepId,
-      'mediaType': instance.mediaType,
-      'originalUrl': instance.originalUrl,
-      'largeUrl': instance.largeUrl,
-      'mediumUrl': instance.mediumUrl,
-      'smallUrl': instance.smallUrl,
-      'thumbnailUrl': instance.thumbnailUrl,
-      'videoThumbnailUrl': instance.videoThumbnailUrl,
-      'bunnyVideoId': instance.bunnyVideoId,
-      'width': instance.width,
-      'height': instance.height,
-      'size': instance.size,
-      'duration': instance.duration,
-      'status': _$MediaStatusDtoEnumMap[instance.status],
-      'isVideo': instance.isVideo,
-      'isImage': instance.isImage,
-    };
-
 _UpdateJourneyDto _$UpdateJourneyDtoFromJson(Map<String, dynamic> json) =>
     _UpdateJourneyDto(
       title: json['title'] as String,
@@ -831,20 +734,6 @@ Map<String, dynamic> _$UserDetailDtoToJson(_UserDetailDto instance) =>
           _$FollowingStatusEnumDtoEnumMap[instance.followingStatus],
     };
 
-_UserDetailDto2Dto _$UserDetailDto2DtoFromJson(Map<String, dynamic> json) =>
-    _UserDetailDto2Dto(
-      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
-      followingStatus: $enumDecodeNullable(
-          _$FollowingStatusEnumDtoEnumMap, json['followingStatus']),
-    );
-
-Map<String, dynamic> _$UserDetailDto2DtoToJson(_UserDetailDto2Dto instance) =>
-    <String, dynamic>{
-      'user': instance.user,
-      'followingStatus':
-          _$FollowingStatusEnumDtoEnumMap[instance.followingStatus],
-    };
-
 _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
       id: json['id'] as String,
       displayName: json['displayName'] as String?,
@@ -864,39 +753,6 @@ _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
     );
 
 Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
-      'id': instance.id,
-      'displayName': instance.displayName,
-      'username': instance.username,
-      'description': instance.description,
-      'profilePictureUrl': instance.profilePictureUrl,
-      'phoneNumber': instance.phoneNumber,
-      'email': instance.email,
-      'age': instance.age,
-      'isPrivate': instance.isPrivate,
-      'createdDate': instance.createdDate?.toIso8601String(),
-      'lastUpdated': instance.lastUpdated?.toIso8601String(),
-    };
-
-_UserDto2Dto _$UserDto2DtoFromJson(Map<String, dynamic> json) => _UserDto2Dto(
-      id: json['id'] as String,
-      displayName: json['displayName'] as String?,
-      username: json['username'] as String?,
-      description: json['description'] as String?,
-      profilePictureUrl: json['profilePictureUrl'] as String?,
-      phoneNumber: json['phoneNumber'] as String?,
-      email: json['email'] as String?,
-      age: (json['age'] as num?)?.toInt(),
-      isPrivate: json['isPrivate'] as bool?,
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
-      lastUpdated: json['lastUpdated'] == null
-          ? null
-          : DateTime.parse(json['lastUpdated'] as String),
-    );
-
-Map<String, dynamic> _$UserDto2DtoToJson(_UserDto2Dto instance) =>
-    <String, dynamic>{
       'id': instance.id,
       'displayName': instance.displayName,
       'username': instance.username,

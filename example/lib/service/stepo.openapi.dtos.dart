@@ -158,35 +158,6 @@ extension FollowingStatusEnumDtoExt on FollowingStatusEnumDto {
 }
 
 @freezed
-sealed class ImageMetadataDto with _$ImageMetadataDto {
-  factory ImageMetadataDto({
-    @JsonKey(name: 'fileName') String? fileName,
-    @JsonKey(name: 'fileUrl') String? fileUrl,
-    @JsonKey(name: 'width') int? width,
-    @JsonKey(name: 'height') int? height,
-    @JsonKey(name: 'size') int? size,
-    @JsonKey(name: 'contentType') String? contentType,
-  }) = _ImageMetadataDto;
-
-  factory ImageMetadataDto.fromJson(Map<String, dynamic> json) =>
-      _$ImageMetadataDtoFromJson(json);
-}
-
-@freezed
-sealed class ImagePresignedUrlDto with _$ImagePresignedUrlDto {
-  factory ImagePresignedUrlDto({
-    @JsonKey(name: 'uploadUrl') String? uploadUrl,
-    @JsonKey(name: 'fileUrl') String? fileUrl,
-    @JsonKey(name: 'fileName') String? fileName,
-    @JsonKey(name: 'expiresAt') DateTime? expiresAt,
-    @JsonKey(name: 'headers') Map<String, String>? headers,
-  }) = _ImagePresignedUrlDto;
-
-  factory ImagePresignedUrlDto.fromJson(Map<String, dynamic> json) =>
-      _$ImagePresignedUrlDtoFromJson(json);
-}
-
-@freezed
 sealed class InteractionResultDto with _$InteractionResultDto {
   factory InteractionResultDto({
     @JsonKey(name: 'isSteppedWith') bool? isSteppedWith,
@@ -263,42 +234,35 @@ sealed class JourneyDto with _$JourneyDto {
 }
 
 @freezed
-sealed class JourneyDto2Dto with _$JourneyDto2Dto {
-  factory JourneyDto2Dto({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-    @JsonKey(name: 'status') String? status,
-    @JsonKey(name: 'completedDate') DateTime? completedDate,
-    @JsonKey(name: 'userId') String? userId,
-    @JsonKey(name: 'firstStepId') String? firstStepId,
-    @JsonKey(name: 'finalStepId') String? finalStepId,
-  }) = _JourneyDto2Dto;
-
-  factory JourneyDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$JourneyDto2DtoFromJson(json);
-}
-
-@freezed
 sealed class JourneyInDetailDto with _$JourneyInDetailDto {
   factory JourneyInDetailDto({
-    @JsonKey(name: 'journey') required JourneyDto2Dto journey,
+    @JsonKey(name: 'journey') required JourneyDto journey,
     @JsonKey(name: 'stepsCount') required int stepsCount,
     @JsonKey(name: 'lastStepDate') required DateTime lastStepDate,
     @JsonKey(name: 'stepperCount') int? stepperCount,
     @JsonKey(name: 'latestSteppers') List<UserDto>? latestSteppers,
     @JsonKey(name: 'starterCount') int? starterCount,
-    @JsonKey(name: 'latestStarters') List<dynamic>? latestStarters,
+    @JsonKey(name: 'latestStarters') List<UserDto>? latestStarters,
     @JsonKey(name: 'companionCount') int? companionCount,
-    @JsonKey(name: 'latestCompanions') List<dynamic>? latestCompanions,
+    @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
     @JsonKey(name: 'celebratorCount') int? celebratorCount,
-    @JsonKey(name: 'latestCelebrators') List<dynamic>? latestCelebrators,
+    @JsonKey(name: 'latestCelebrators') List<UserDto>? latestCelebrators,
   }) = _JourneyInDetailDto;
 
   factory JourneyInDetailDto.fromJson(Map<String, dynamic> json) =>
       _$JourneyInDetailDtoFromJson(json);
+}
+
+@freezed
+sealed class JourneyInProfileDto with _$JourneyInProfileDto {
+  factory JourneyInProfileDto({
+    @JsonKey(name: 'journey') required JourneyDto journey,
+    @JsonKey(name: 'stepsCount') required int stepsCount,
+    @JsonKey(name: 'thumbnailSteps') required List<StepMediaDto> thumbnailSteps,
+  }) = _JourneyInProfileDto;
+
+  factory JourneyInProfileDto.fromJson(Map<String, dynamic> json) =>
+      _$JourneyInProfileDtoFromJson(json);
 }
 
 @freezed
@@ -359,7 +323,7 @@ sealed class NotificationDto with _$NotificationDto {
     @JsonKey(name: 'data') Map<String, String>? data,
     @JsonKey(name: 'priority') int? priority,
     @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-    @JsonKey(name: 'sourceUser') UserDetailDto2Dto? sourceUser,
+    @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser,
   }) = _NotificationDto;
 
   factory NotificationDto.fromJson(Map<String, dynamic> json) =>
@@ -427,7 +391,7 @@ sealed class ProfileDto with _$ProfileDto {
     @JsonKey(name: 'badgesCount') int? badgesCount,
     @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
     @JsonKey(name: 'supportersCount') int? supportersCount,
-    @JsonKey(name: 'supportersUsers') List<dynamic>? supportersUsers,
+    @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
     @JsonKey(name: 'followersCount') int? followersCount,
     @JsonKey(name: 'followingsCount') int? followingsCount,
   }) = _ProfileDto;
@@ -446,7 +410,7 @@ sealed class ReplyDto with _$ReplyDto {
     @JsonKey(name: 'deletedDate') DateTime? deletedDate,
     @JsonKey(name: 'user') UserDto? user,
     @JsonKey(name: 'parentCommentId') String? parentCommentId,
-    @JsonKey(name: 'responseToUser') UserDto2Dto? responseToUser,
+    @JsonKey(name: 'responseToUser') UserDto? responseToUser,
     @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
     @JsonKey(name: 'heartCount') int? heartCount,
     @JsonKey(name: 'heartedByUser') bool? heartedByUser,
@@ -474,7 +438,7 @@ sealed class ReportDto with _$ReportDto {
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'entityType') required String entityType,
     @JsonKey(name: 'entityId') String? entityId,
-    @JsonKey(name: 'reporter') UserDto2Dto? reporter,
+    @JsonKey(name: 'reporter') UserDto? reporter,
     @JsonKey(name: 'reason') required String reason,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
   }) = _ReportDto;
@@ -558,7 +522,7 @@ sealed class StepDto with _$StepDto {
     @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
     @JsonKey(name: 'userId') String? userId,
     @JsonKey(name: 'journeyId') String? journeyId,
-    @JsonKey(name: 'media') StepMediaDto2Dto? media,
+    @JsonKey(name: 'media') StepMediaDto? media,
   }) = _StepDto;
 
   factory StepDto.fromJson(Map<String, dynamic> json) =>
@@ -589,32 +553,6 @@ sealed class StepMediaDto with _$StepMediaDto {
 
   factory StepMediaDto.fromJson(Map<String, dynamic> json) =>
       _$StepMediaDtoFromJson(json);
-}
-
-@freezed
-sealed class StepMediaDto2Dto with _$StepMediaDto2Dto {
-  factory StepMediaDto2Dto({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'stepId') String? stepId,
-    @JsonKey(name: 'mediaType') String? mediaType,
-    @JsonKey(name: 'originalUrl') String? originalUrl,
-    @JsonKey(name: 'largeUrl') String? largeUrl,
-    @JsonKey(name: 'mediumUrl') String? mediumUrl,
-    @JsonKey(name: 'smallUrl') String? smallUrl,
-    @JsonKey(name: 'thumbnailUrl') String? thumbnailUrl,
-    @JsonKey(name: 'videoThumbnailUrl') String? videoThumbnailUrl,
-    @JsonKey(name: 'bunnyVideoId') String? bunnyVideoId,
-    @JsonKey(name: 'width') int? width,
-    @JsonKey(name: 'height') int? height,
-    @JsonKey(name: 'size') int? size,
-    @JsonKey(name: 'duration') num? duration,
-    @JsonKey(name: 'status') MediaStatusDto? status,
-    @JsonKey(name: 'isVideo') bool? isVideo,
-    @JsonKey(name: 'isImage') bool? isImage,
-  }) = _StepMediaDto2Dto;
-
-  factory StepMediaDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$StepMediaDto2DtoFromJson(json);
 }
 
 @freezed
@@ -649,17 +587,6 @@ sealed class UserDetailDto with _$UserDetailDto {
 }
 
 @freezed
-sealed class UserDetailDto2Dto with _$UserDetailDto2Dto {
-  factory UserDetailDto2Dto({
-    @JsonKey(name: 'user') required UserDto user,
-    @JsonKey(name: 'followingStatus') FollowingStatusEnumDto? followingStatus,
-  }) = _UserDetailDto2Dto;
-
-  factory UserDetailDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$UserDetailDto2DtoFromJson(json);
-}
-
-@freezed
 sealed class UserDto with _$UserDto {
   factory UserDto({
     @JsonKey(name: 'id') required String id,
@@ -677,26 +604,6 @@ sealed class UserDto with _$UserDto {
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
-}
-
-@freezed
-sealed class UserDto2Dto with _$UserDto2Dto {
-  factory UserDto2Dto({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'displayName') String? displayName,
-    @JsonKey(name: 'username') String? username,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
-    @JsonKey(name: 'phoneNumber') String? phoneNumber,
-    @JsonKey(name: 'email') String? email,
-    @JsonKey(name: 'age') int? age,
-    @JsonKey(name: 'isPrivate') bool? isPrivate,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-  }) = _UserDto2Dto;
-
-  factory UserDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$UserDto2DtoFromJson(json);
 }
 
 @freezed

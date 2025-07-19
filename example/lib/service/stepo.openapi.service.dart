@@ -2,6 +2,9 @@
 
 // ignore_for_file: unused_element, unnecessary_import, unused_import, invalid_annotation_target
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:io' as _i1;
+
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -104,38 +107,23 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/account/avatar/upload-url
-  Future<Either<ApiError, String>> apiV1AccountAvatarUploadUrlGet({
-    String? fileName,
-    String? contentType,
+  /// post: /api/v1/account/avatar
+  Future<Either<ApiError, AccountDto>> apiV1AccountAvatarPost(
+    _i1.File file, {
+    void Function(int sent, int total)? onProgress,
   }) async {
     try {
-      final queryParams = <String, dynamic>{};
-      if (fileName != null) queryParams['fileName'] = fileName;
-      if (contentType != null) queryParams['contentType'] = contentType;
+      final formData = FormData();
 
-      final response = await _dio.get(
-        '/api/v1/account/avatar/upload-url',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as String);
-      return Right(result);
-    } catch (e, stackTrace) {
-      return Left(_handleError(
-        e,
-        stackTrace,
-        '/api/v1/account/avatar/upload-url',
-      ));
-    }
-  }
+      formData.files.add(MapEntry(
+          'file',
+          await MultipartFile.fromFile(file.path,
+              filename: _getFileName(file.path))));
 
-  /// put: /api/v1/account/avatar
-  Future<Either<ApiError, AccountDto>> apiV1AccountAvatarPut(
-      String body) async {
-    try {
-      final response = await _dio.put(
+      final response = await _dio.post(
         '/api/v1/account/avatar',
-        data: body,
+        data: formData,
+        onSendProgress: onProgress,
       );
       final result = AccountDto.fromJson(response.data);
       return Right(result);
@@ -149,7 +137,7 @@ class StepoService {
   }
 
   /// get: /api/v1/account/journeys
-  Future<Either<ApiError, void>> apiV1AccountJourneysGet({
+  Future<Either<ApiError, List<JourneyInProfileDto>>> apiV1AccountJourneysGet({
     int? page,
     int? pageSize,
   }) async {
@@ -158,11 +146,16 @@ class StepoService {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
-      final _ = await _dio.get(
+      final response = await _dio.get(
         '/api/v1/account/journeys',
         queryParameters: queryParams,
       );
-      return const Right(null);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) =>
+              JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e, stackTrace) {
       return Left(_handleError(
         e,
@@ -173,7 +166,7 @@ class StepoService {
   }
 
   /// get: /api/v1/account/steps
-  Future<Either<ApiError, void>> apiV1AccountStepsGet({
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1AccountStepsGet({
     int? page,
     int? pageSize,
   }) async {
@@ -182,11 +175,15 @@ class StepoService {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
-      final _ = await _dio.get(
+      final response = await _dio.get(
         '/api/v1/account/steps',
         queryParameters: queryParams,
       );
-      return const Right(null);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e, stackTrace) {
       return Left(_handleError(
         e,
@@ -197,7 +194,7 @@ class StepoService {
   }
 
   /// get: /api/v1/account/feed
-  Future<Either<ApiError, void>> apiV1AccountFeedGet({
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1AccountFeedGet({
     int? page,
     int? pageSize,
   }) async {
@@ -206,11 +203,15 @@ class StepoService {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
-      final _ = await _dio.get(
+      final response = await _dio.get(
         '/api/v1/account/feed',
         queryParameters: queryParams,
       );
-      return const Right(null);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e, stackTrace) {
       return Left(_handleError(
         e,
@@ -256,7 +257,7 @@ class StepoService {
   }
 
   /// get: /api/v1/users/{id}/journeys
-  Future<Either<ApiError, void>> apiV1UsersIdJourneysGet({
+  Future<Either<ApiError, List<JourneyInProfileDto>>> apiV1UsersIdJourneysGet({
     required String id,
     int? page,
     int? pageSize,
@@ -266,11 +267,16 @@ class StepoService {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
-      final _ = await _dio.get(
+      final response = await _dio.get(
         '/api/v1/users/$id/journeys',
         queryParameters: queryParams,
       );
-      return const Right(null);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) =>
+              JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e, stackTrace) {
       return Left(_handleError(
         e,
@@ -281,7 +287,7 @@ class StepoService {
   }
 
   /// get: /api/v1/users/{id}/steps
-  Future<Either<ApiError, void>> apiV1UsersIdStepsGet({
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1UsersIdStepsGet({
     required String id,
     int? page,
     int? pageSize,
@@ -291,11 +297,15 @@ class StepoService {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
-      final _ = await _dio.get(
+      final response = await _dio.get(
         '/api/v1/users/$id/steps',
         queryParameters: queryParams,
       );
-      return const Right(null);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e, stackTrace) {
       return Left(_handleError(
         e,
@@ -380,44 +390,25 @@ class StepoService {
     }
   }
 
-  /// Create image upload request for a step
-  /// post: /api/v1/steps/{stepId}/media/upload-requests
-  Future<Either<ApiError, ImagePresignedUrlDto>>
-      apiV1StepsStepIdMediaUploadRequestsPost({
+  /// Upload an image for a step
+  /// post: /api/v1/steps/{stepId}/images
+  Future<Either<ApiError, StepMediaDto>> apiV1StepsStepIdImagesPost(
+    _i1.File file, {
     required String stepId,
-    required String fileName,
-    required String contentType,
+    void Function(int sent, int total)? onProgress,
   }) async {
     try {
-      final queryParams = <String, dynamic>{};
-      queryParams['fileName'] = fileName;
-      queryParams['contentType'] = contentType;
+      final formData = FormData();
+
+      formData.files.add(MapEntry(
+          'file',
+          await MultipartFile.fromFile(file.path,
+              filename: _getFileName(file.path))));
 
       final response = await _dio.post(
-        '/api/v1/steps/$stepId/media/upload-requests',
-        queryParameters: queryParams,
-      );
-      final result = ImagePresignedUrlDto.fromJson(response.data);
-      return Right(result);
-    } catch (e, stackTrace) {
-      return Left(_handleError(
-        e,
-        stackTrace,
-        '/api/v1/steps/$stepId/media/upload-requests',
-      ));
-    }
-  }
-
-  /// Update step image metadata
-  /// put: /api/v1/steps/{stepId}/images
-  Future<Either<ApiError, StepMediaDto>> apiV1StepsStepIdImagesPut(
-    ImageMetadataDto body, {
-    required String stepId,
-  }) async {
-    try {
-      final response = await _dio.put(
         '/api/v1/steps/$stepId/images',
-        data: body.toJson(),
+        data: formData,
+        onSendProgress: onProgress,
       );
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);
@@ -622,44 +613,28 @@ class StepoService {
     }
   }
 
-  /// post: /api/v1/media/uploads
-  Future<Either<ApiError, ImagePresignedUrlDto>> apiV1MediaUploadsPost({
-    String? fileName,
-    String? contentType,
-  }) async {
-    try {
-      final queryParams = <String, dynamic>{};
-      if (fileName != null) queryParams['fileName'] = fileName;
-      if (contentType != null) queryParams['contentType'] = contentType;
-
-      final response = await _dio.post(
-        '/api/v1/media/uploads',
-        queryParameters: queryParams,
-      );
-      final result = ImagePresignedUrlDto.fromJson(response.data);
-      return Right(result);
-    } catch (e, stackTrace) {
-      return Left(_handleError(
-        e,
-        stackTrace,
-        '/api/v1/media/uploads',
-      ));
-    }
-  }
-
-  /// post: /api/v1/media/images
-  Future<Either<ApiError, StepMediaDto>> apiV1MediaImagesPost(
-    ImageMetadataDto body, {
+  /// post: /api/v1/media/images/upload
+  Future<Either<ApiError, StepMediaDto>> apiV1MediaImagesUploadPost(
+    _i1.File file, {
     String? stepId,
+    void Function(int sent, int total)? onProgress,
   }) async {
     try {
       final queryParams = <String, dynamic>{};
       if (stepId != null) queryParams['stepId'] = stepId;
 
+      final formData = FormData();
+
+      formData.files.add(MapEntry(
+          'file',
+          await MultipartFile.fromFile(file.path,
+              filename: _getFileName(file.path))));
+
       final response = await _dio.post(
-        '/api/v1/media/images',
+        '/api/v1/media/images/upload',
         queryParameters: queryParams,
-        data: body.toJson(),
+        data: formData,
+        onSendProgress: onProgress,
       );
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);
@@ -667,7 +642,7 @@ class StepoService {
       return Left(_handleError(
         e,
         stackTrace,
-        '/api/v1/media/images',
+        '/api/v1/media/images/upload',
       ));
     }
   }
@@ -761,7 +736,7 @@ class StepoService {
 
   /// Update journey details
   /// put: /api/v1/journeys/{id}
-  Future<Either<ApiError, JourneyDto2Dto>> apiV1JourneysIdPut(
+  Future<Either<ApiError, JourneyDto>> apiV1JourneysIdPut(
     UpdateJourneyDto body, {
     required String id,
   }) async {
@@ -770,7 +745,7 @@ class StepoService {
         '/api/v1/journeys/$id',
         data: body.toJson(),
       );
-      final result = JourneyDto2Dto.fromJson(response.data);
+      final result = JourneyDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       return Left(_handleError(
@@ -819,7 +794,7 @@ class StepoService {
 
   /// Close a journey
   /// post: /api/v1/journeys/{id}/close
-  Future<Either<ApiError, JourneyDto2Dto>> apiV1JourneysIdClosePost({
+  Future<Either<ApiError, JourneyDto>> apiV1JourneysIdClosePost({
     required String id,
     String? finalStepId,
   }) async {
@@ -831,7 +806,7 @@ class StepoService {
         '/api/v1/journeys/$id/close',
         queryParameters: queryParams,
       );
-      final result = JourneyDto2Dto.fromJson(response.data);
+      final result = JourneyDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       return Left(_handleError(
@@ -844,11 +819,11 @@ class StepoService {
 
   /// Reopen a closed journey
   /// post: /api/v1/journeys/{id}/reopen
-  Future<Either<ApiError, JourneyDto2Dto>> apiV1JourneysIdReopenPost(
+  Future<Either<ApiError, JourneyDto>> apiV1JourneysIdReopenPost(
       {required String id}) async {
     try {
       final response = await _dio.post('/api/v1/journeys/$id/reopen');
-      final result = JourneyDto2Dto.fromJson(response.data);
+      final result = JourneyDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       return Left(_handleError(
@@ -1528,6 +1503,12 @@ class StepoService {
     }
 
     return null;
+  }
+
+  String _getFileName(String filePath) {
+    // Handle both forward and backward slashes for cross-platform compatibility
+    final parts = filePath.replaceAll(r"\", "/").split("/");
+    return parts.isNotEmpty ? parts.last : 'file';
   }
 }
 

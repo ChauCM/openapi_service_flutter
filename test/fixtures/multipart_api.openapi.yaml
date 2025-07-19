@@ -1,0 +1,133 @@
+openapi: 3.0.0
+info:
+  title: Multipart File Upload API
+  version: 1.0.0
+  description: API for testing multipart/form-data file uploads
+
+paths:
+  /upload/avatar:
+    post:
+      summary: Upload user avatar
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  $ref: '#/components/schemas/IFormFile'
+                description:
+                  type: string
+                  description: Optional description for the file
+              required:
+                - file
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+
+  /upload/document:
+    post:
+      summary: Upload document with metadata
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  $ref: '#/components/schemas/IFormFile'
+                title:
+                  type: string
+                category:
+                  type: string
+                  enum: [document, image, video]
+                isPublic:
+                  type: boolean
+                  default: false
+              required:
+                - file
+                - title
+      responses:
+        '200':
+          description: Document uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+
+  /upload/multiple:
+    post:
+      summary: Upload multiple files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/IFormFile'
+                tags:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Files uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UploadResponse'
+
+components:
+  schemas:
+    IFormFile:
+      type: string
+      format: binary
+      description: Binary file data
+
+    UploadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        size:
+          type: integer
+        contentType:
+          type: string
+        url:
+          type: string
+      required:
+        - id
+        - filename
+        - size
+        - url
+
+    DocumentResponse:
+      allOf:
+        - $ref: '#/components/schemas/UploadResponse'
+        - type: object
+          properties:
+            title:
+              type: string
+            category:
+              type: string
+              enum: [document, image, video]
+            isPublic:
+              type: boolean
+          required:
+            - title
+            - category
+            - isPublic
