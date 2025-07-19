@@ -57,6 +57,20 @@ class StepoYaml311Service {
       dynamic requestBody,
       dynamic responseBody)? _onError;
 
+  /// get: /healthz
+  Future<Either<ApiError, void>> healthzGet() async {
+    try {
+      final _ = await _dio.get('/healthz');
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/healthz',
+      ));
+    }
+  }
+
   /// get: /api/v1/account
   Future<Either<ApiError, AccountDto>> apiV1AccountGet() async {
     try {

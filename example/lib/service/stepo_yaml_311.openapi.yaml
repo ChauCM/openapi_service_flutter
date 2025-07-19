@@ -3,6 +3,13 @@ info:
   title: StepoBackend.Api | v1
   version: 1.0.0
 paths:
+  /healthz:
+    get:
+      tags:
+        - Health
+      responses:
+        "200":
+          description: OK
   /api/v1/account:
     get:
       tags:
@@ -2998,6 +3005,7 @@ components:
       scheme: bearer
       bearerFormat: Json Web Token
 tags:
+  - name: Health
   - name: Account
   - name: Auth
   - name: Users
