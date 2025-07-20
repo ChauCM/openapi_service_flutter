@@ -98,6 +98,8 @@ class OpenApiLibraryGenerator {
   final _typeInteger = refer('int');
   final _typeDateTime = refer('DateTime');
   final _literalNullCode = literalNull.code;
+  final _options = refer('Options', 'package:dio/dio.dart');
+  final _lookupMimeType = refer('lookupMimeType', 'package:mime/mime.dart');
 
   final createdSchema = <APISchemaObject, Reference>{};
   final createdEnums = <String, Reference>{};
@@ -446,6 +448,11 @@ class OpenApiLibraryGenerator {
     final dtosFileName = '$inputIdBasename.openapi.dtos.dart';
     serviceLb.body.add(Directive.import(dtosFileName));
 
+    // Add import for mime package if there are binary endpoints
+    if (_hasBinaryEndpoints()) {
+      serviceLb.body.add(Directive.import('package:mime/mime.dart'));
+    }
+
     // Service files don't need .g.dart part directive since they don't use JSON serialization
 
     // Generate service class directly to serviceLb
@@ -748,7 +755,18 @@ class OpenApiLibraryGenerator {
     // Add request body parameter
     final body = operation.requestBody;
     if (body != null && body.content!.isNotEmpty) {
-      if (_isMultipartFormData(body)) {
+      if (_isBinaryRequestBody(body)) {
+        // Handle binary request bodies (image/*, video/*, audio/*, application/octet-stream)
+        method.requiredParameters.add(Parameter((pb) => pb
+          ..name = 'file'
+          ..type = _file));
+        
+        // Add progress callback parameter for binary uploads
+        method.optionalParameters.add(Parameter((pb) => pb
+          ..name = 'onProgress'
+          ..type = refer('void Function(int sent, int total)').asNullable(true)
+          ..named = true));
+      } else if (_isMultipartFormData(body)) {
         // Handle multipart/form-data requests differently
         final multipartContent = _getMultipartContent(body);
         if (multipartContent?.schema?.properties != null) {
@@ -850,6 +868,22 @@ class OpenApiLibraryGenerator {
                   ? 'queryParams[\'${p.name}\'] = $paramName;'
                   : 'if ($paramName != null) queryParams[\'${p.name}\'] = $paramName;');
             }),
+            const Code(''),
+          ];
+        }
+        return <Code>[];
+      }(),
+
+      // Handle binary file uploads
+      ...() {
+        if (_isBinaryRequestBody(operation.requestBody)) {
+          return [
+            declareFinal('length')
+                .assign(refer('file').property('length')([]).awaited)
+                .statement,
+            declareFinal('mime')
+                .assign(CodeExpression(Code("lookupMimeType(file.path) ?? 'application/octet-stream'")))
+                .statement,
             const Code(''),
           ];
         }
@@ -1083,7 +1117,17 @@ class OpenApiLibraryGenerator {
 
     // Add request body
     if (operation.requestBody != null) {
-      if (_isMultipartFormData(operation.requestBody)) {
+      if (_isBinaryRequestBody(operation.requestBody)) {
+        // For binary requests, use file stream
+        requestArgs['data'] = refer('file').property('openRead')([]);
+        requestArgs['onSendProgress'] = refer('onProgress');
+        requestArgs['options'] = _options.call([], {
+          'headers': literalMap({
+            'Content-Length': refer('length').property('toString')([]),
+            'Content-Type': refer('mime'),
+          }, refer('String'), refer('dynamic')),
+        });
+      } else if (_isMultipartFormData(operation.requestBody)) {
         // For multipart requests, use formData variable
         requestArgs['data'] = refer('formData');
         // Add progress callback if provided
@@ -1292,6 +1336,38 @@ class OpenApiLibraryGenerator {
     if (requestBody?.content == null) return false;
     return requestBody!.content!.keys.any((contentType) =>
         contentType.toLowerCase().contains('multipart/form-data'));
+  }
+
+  /// Checks if a request body is binary content (image, video, audio, or application/octet-stream)
+  bool _isBinaryRequestBody(APIRequestBody? requestBody) {
+    if (requestBody?.content == null) return false;
+    return requestBody!.content!.keys.any((contentType) {
+      final lowerType = contentType.toLowerCase();
+      return lowerType.startsWith('image/') ||
+          lowerType.startsWith('video/') ||
+          lowerType.startsWith('audio/') ||
+          lowerType == 'application/octet-stream';
+    });
+  }
+
+
+  /// Checks if the API has any binary endpoints that require mime type detection
+  bool _hasBinaryEndpoints() {
+    if (api.paths == null) return false;
+    
+    for (final path in api.paths!.entries) {
+      // Skip paths that don't match the prefix filter
+      if (!_shouldIncludePath(path.key)) {
+        continue;
+      }
+      
+      for (final operation in path.value!.operations.entries) {
+        if (_isBinaryRequestBody(operation.value!.requestBody)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   /// Gets the multipart/form-data content from request body

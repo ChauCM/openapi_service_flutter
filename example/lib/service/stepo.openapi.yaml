@@ -6,7 +6,7 @@ paths:
   /api/v1/account:
     get:
       tags:
-        - Account
+      - Account
       responses:
         "200":
           description: OK
@@ -22,13 +22,13 @@ paths:
                 $ref: '#/components/schemas/AccountDto'
     delete:
       tags:
-        - Account
+      - Account
       responses:
         "200":
           description: OK
     put:
       tags:
-        - Account
+      - Account
       requestBody:
         content:
           application/json:
@@ -57,15 +57,29 @@ paths:
   /api/v1/account/avatar:
     post:
       tags:
-        - Account
+      - Account
       requestBody:
         content:
-          multipart/form-data:
+          image/jpeg:
             schema:
-              type: object
-              properties:
-                file:
-                  $ref: '#/components/schemas/IFormFile'
+              type: string
+              format: binary
+          image/png:
+            schema:
+              type: string
+              format: binary
+          image/gif:
+            schema:
+              type: string
+              format: binary
+          image/webp:
+            schema:
+              type: string
+              format: binary
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
         required: true
       responses:
         "200":
@@ -83,26 +97,26 @@ paths:
   /api/v1/account/journeys:
     get:
       tags:
-        - Account
+      - Account
       parameters:
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -125,26 +139,26 @@ paths:
   /api/v1/account/steps:
     get:
       tags:
-        - Account
+      - Account
       parameters:
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -167,26 +181,26 @@ paths:
   /api/v1/account/feed:
     get:
       tags:
-        - Account
+      - Account
       parameters:
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -209,7 +223,7 @@ paths:
   /api/v1/auth/login:
     post:
       tags:
-        - Auth
+      - Auth
       requestBody:
         content:
           application/json:
@@ -238,13 +252,13 @@ paths:
   /api/v1/users/{id}:
     get:
       tags:
-        - Users
+      - Users
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -261,31 +275,31 @@ paths:
   /api/v1/users/{id}/journeys:
     get:
       tags:
-        - Users
+      - Users
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -308,31 +322,31 @@ paths:
   /api/v1/users/{id}/steps:
     get:
       tags:
-        - Users
+      - Users
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -355,7 +369,7 @@ paths:
   /api/v1/steps:
     post:
       tags:
-        - Steps
+      - Steps
       summary: Create a new step for a journey
       requestBody:
         content:
@@ -385,15 +399,15 @@ paths:
   /api/v1/steps/{stepId}:
     get:
       tags:
-        - Steps
+      - Steps
       summary: Get step details by ID
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -409,15 +423,15 @@ paths:
                 $ref: '#/components/schemas/StepDetailDto'
     put:
       tags:
-        - Steps
+      - Steps
       summary: Update step details
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -445,38 +459,52 @@ paths:
                 $ref: '#/components/schemas/StepDetailDto'
     delete:
       tags:
-        - Steps
+      - Steps
       summary: Delete a step
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
   /api/v1/steps/{stepId}/images:
     post:
       tags:
-        - Steps
+      - Steps
       summary: Upload an image for a step
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
-          multipart/form-data:
+          image/jpeg:
             schema:
-              type: object
-              properties:
-                file:
-                  $ref: '#/components/schemas/IFormFile'
+              type: string
+              format: binary
+          image/png:
+            schema:
+              type: string
+              format: binary
+          image/gif:
+            schema:
+              type: string
+              format: binary
+          image/webp:
+            schema:
+              type: string
+              format: binary
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
         required: true
       responses:
         "200":
@@ -494,15 +522,15 @@ paths:
   /api/v1/steps/{stepId}/video:
     put:
       tags:
-        - Steps
+      - Steps
       summary: Get video upload URL for a step
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -519,7 +547,7 @@ paths:
   /api/v1/reports:
     post:
       tags:
-        - Reports
+      - Reports
       summary: Create a report for inappropriate content
       requestBody:
         content:
@@ -548,27 +576,27 @@ paths:
                 $ref: '#/components/schemas/ReportDto'
     get:
       tags:
-        - Reports
+      - Reports
       summary: Get reports for content moderation
       parameters:
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 15
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 15
       responses:
         "200":
           description: OK
@@ -591,26 +619,26 @@ paths:
   /api/v1/notifications:
     get:
       tags:
-        - Notifications
+      - Notifications
       parameters:
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 20
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 20
       responses:
         "200":
           description: OK
@@ -626,7 +654,7 @@ paths:
                 $ref: '#/components/schemas/NotificationPagedDto'
     post:
       tags:
-        - Notifications
+      - Notifications
       requestBody:
         content:
           application/json:
@@ -655,7 +683,7 @@ paths:
   /api/v1/notifications/summary:
     get:
       tags:
-        - Notifications
+      - Notifications
       responses:
         "200":
           description: OK
@@ -664,62 +692,62 @@ paths:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
             application/json:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
             text/json:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
   /api/v1/notifications/{notificationId}/read:
     put:
       tags:
-        - Notifications
+      - Notifications
       parameters:
-        - name: notificationId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: notificationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
   /api/v1/notifications/read-status:
     put:
       tags:
-        - Notifications
+      - Notifications
       responses:
         "200":
           description: OK
   /api/v1/notifications/{notificationId}:
     delete:
       tags:
-        - Notifications
+      - Notifications
       parameters:
-        - name: notificationId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: notificationId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
   /api/v1/notifications/bulk:
     post:
       tags:
-        - Notifications
+      - Notifications
       requestBody:
         content:
           application/json:
@@ -754,13 +782,13 @@ paths:
   /api/v1/media/images/upload:
     post:
       tags:
-        - Media
+      - Media
       parameters:
-        - name: stepId
-          in: query
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: query
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           multipart/form-data:
@@ -786,13 +814,13 @@ paths:
   /api/v1/media/videos:
     post:
       tags:
-        - Media
+      - Media
       parameters:
-        - name: stepId
-          in: query
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: query
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -809,14 +837,14 @@ paths:
   /api/v1/media/{mediaId}:
     get:
       tags:
-        - Media
+      - Media
       parameters:
-        - name: mediaId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: mediaId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -833,7 +861,7 @@ paths:
   /api/v1/webhooks/video-updates:
     post:
       tags:
-        - VideoProcessing
+      - VideoProcessing
       requestBody:
         content:
           application/json:
@@ -852,22 +880,22 @@ paths:
   /api/v1/video-jobs:
     post:
       tags:
-        - VideoProcessing
+      - VideoProcessing
       responses:
         "200":
           description: OK
   /api/v1/journeys/{id}:
     get:
       tags:
-        - Journeys
+      - Journeys
       summary: Get journey details by ID
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -883,15 +911,15 @@ paths:
                 $ref: '#/components/schemas/JourneyInDetailDto'
     put:
       tags:
-        - Journeys
+      - Journeys
       summary: Update journey details
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -919,22 +947,22 @@ paths:
                 $ref: '#/components/schemas/JourneyDto'
     delete:
       tags:
-        - Journeys
+      - Journeys
       summary: Delete a journey
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
   /api/v1/journeys:
     post:
       tags:
-        - Journeys
+      - Journeys
       summary: Create a new journey
       requestBody:
         content:
@@ -964,20 +992,20 @@ paths:
   /api/v1/journeys/{id}/close:
     post:
       tags:
-        - Journeys
+      - Journeys
       summary: Close a journey
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: finalStepId
-          in: query
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: finalStepId
+        in: query
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -994,15 +1022,15 @@ paths:
   /api/v1/journeys/{id}/reopen:
     post:
       tags:
-        - Journeys
+      - Journeys
       summary: Reopen a closed journey
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -1019,33 +1047,33 @@ paths:
   /api/v1/journeys/{journeyId}/steps-detail:
     get:
       tags:
-        - Journeys
+      - Journeys
       summary: Get detailed steps for a journey (authenticated view)
       parameters:
-        - name: journeyId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: journeyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1068,33 +1096,33 @@ paths:
   /api/v1/journeys/{journeyId}/steps:
     get:
       tags:
-        - Journeys
+      - Journeys
       summary: Get steps for a journey (public view)
       parameters:
-        - name: journeyId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: journeyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1117,15 +1145,15 @@ paths:
   /api/v1/journeys/{journeyId}/calendar:
     get:
       tags:
-        - Journeys
+      - Journeys
       summary: Get calendar view of journey steps
       parameters:
-        - name: journeyId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: journeyId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -1148,33 +1176,33 @@ paths:
   /api/v1/journeys/newer-steps/{stepId}:
     get:
       tags:
-        - Journeys
+      - Journeys
       summary: Get steps newer than the specified step within its journey
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1197,33 +1225,33 @@ paths:
   /api/v1/journeys/older-steps/{stepId}:
     get:
       tags:
-        - Journeys
+      - Journeys
       summary: Get steps older than the specified step within its journey
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1246,14 +1274,14 @@ paths:
   /api/v1/steps/{stepId}/hearts:
     post:
       tags:
-        - Interactions
+      - Interactions
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -1281,14 +1309,14 @@ paths:
                 $ref: '#/components/schemas/InteractionResultDto'
     delete:
       tags:
-        - Interactions
+      - Interactions
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -1305,14 +1333,14 @@ paths:
   /api/v1/steps/{stepId}/shares:
     post:
       tags:
-        - Interactions
+      - Interactions
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -1341,14 +1369,14 @@ paths:
   /api/v1/steps/{stepId}/interactions:
     get:
       tags:
-        - Interactions
+      - Interactions
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -1365,14 +1393,14 @@ paths:
   /api/v1/steps/comments/{commentId}/hearts:
     post:
       tags:
-        - Interactions
+      - Interactions
       parameters:
-        - name: commentId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -1400,14 +1428,14 @@ paths:
                 type: boolean
     delete:
       tags:
-        - Interactions
+      - Interactions
       parameters:
-        - name: commentId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
@@ -1424,27 +1452,27 @@ paths:
   /api/v1/account/followers:
     get:
       tags:
-        - AccountFollow
+      - AccountFollow
       summary: Get my followers list
       parameters:
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1467,27 +1495,27 @@ paths:
   /api/v1/account/followings:
     get:
       tags:
-        - AccountFollow
+      - AccountFollow
       summary: Get my followings list
       parameters:
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1510,14 +1538,14 @@ paths:
   /api/v1/users/{userId}/follow:
     post:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Follow a user
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -1533,14 +1561,14 @@ paths:
                 $ref: '#/components/schemas/FollowingResultDto'
     delete:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Unfollow a user
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -1557,14 +1585,14 @@ paths:
   /api/v1/users/{userId}/reject-follow:
     post:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Reject a follow request
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -1581,14 +1609,14 @@ paths:
   /api/v1/users/{userId}/follow-status:
     get:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Get following status with a user
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -1605,32 +1633,32 @@ paths:
   /api/v1/users/{userId}/followers:
     get:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Get user's followers list
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1653,32 +1681,32 @@ paths:
   /api/v1/users/{userId}/followings:
     get:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Get user's followings list
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1701,14 +1729,14 @@ paths:
   /api/v1/users/{userId}/followers/count:
     get:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Get user's followers count
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -1717,34 +1745,34 @@ paths:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
             application/json:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
             text/json:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
   /api/v1/users/{userId}/followings/count:
     get:
       tags:
-        - UsersFollow
+      - UsersFollow
       summary: Get user's followings count
       parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         "200":
           description: OK
@@ -1753,50 +1781,50 @@ paths:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
             application/json:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
             text/json:
               schema:
                 pattern: ^-?(?:0|[1-9]\d*)$
                 type:
-                  - integer
-                  - string
+                - integer
+                - string
                 format: int32
   /api/v1/comments/{commentId}:
     delete:
       tags:
-        - Comments
+      - Comments
       summary: Delete a comment
       parameters:
-        - name: commentId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       responses:
         "200":
           description: OK
   /api/v1/comments/{parentCommentId}/replies:
     post:
       tags:
-        - Comments
+      - Comments
       summary: Create a reply to a comment
       parameters:
-        - name: parentCommentId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: parentCommentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -1825,33 +1853,33 @@ paths:
   /api/v1/comments/{commentId}/replies:
     get:
       tags:
-        - Comments
+      - Comments
       summary: Get replies for a comment
       parameters:
-        - name: commentId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: commentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1874,32 +1902,32 @@ paths:
   /api/v1/steps/{stepId}/comments:
     get:
       tags:
-        - StepComments
+      - StepComments
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: page
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 10
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+          - integer
+          - string
+          format: int32
+          default: 10
       responses:
         "200":
           description: OK
@@ -1921,14 +1949,14 @@ paths:
                   $ref: '#/components/schemas/StepCommentDto'
     post:
       tags:
-        - StepComments
+      - StepComments
       parameters:
-        - name: stepId
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
+      - name: stepId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
       requestBody:
         content:
           application/json:
@@ -1958,8 +1986,8 @@ components:
   schemas:
     AccountDto:
       required:
-        - id
-        - profile
+      - id
+      - profile
       type: object
       properties:
         id:
@@ -1968,10 +1996,10 @@ components:
           $ref: '#/components/schemas/ProfileDto'
     BulkNotificationDto:
       required:
-        - title
-        - body
-        - notificationType
-        - userIds
+      - title
+      - body
+      - notificationType
+      - userIds
       type: object
       properties:
         title:
@@ -1989,20 +2017,20 @@ components:
             type: string
         relatedEntityId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: uuid
         data:
           type:
-            - "null"
-            - object
+          - "null"
+          - object
           additionalProperties:
             type: string
         priority:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
     CreateCommentInteractionDto:
       type: object
@@ -2011,7 +2039,7 @@ components:
           $ref: '#/components/schemas/InteractionType'
     CreateReplyCommentDto:
       required:
-        - content
+      - content
       type: object
       properties:
         content:
@@ -2019,16 +2047,16 @@ components:
           type: string
         responseToUserId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         responseToCommentId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: uuid
     CreateStepCommentDto:
       required:
-        - content
+      - content
       type: object
       properties:
         content:
@@ -2036,8 +2064,8 @@ components:
           type: string
     CreateStepDto:
       required:
-        - content
-        - journeyId
+      - content
+      - journeyId
       type: object
       properties:
         content:
@@ -2053,8 +2081,8 @@ components:
           $ref: '#/components/schemas/InteractionType'
     EditUserDto:
       required:
-        - displayName
-        - username
+      - displayName
+      - username
       type: object
       properties:
         displayName:
@@ -2072,27 +2100,27 @@ components:
           type: boolean
     FollowingResultDto:
       required:
-        - status
+      - status
       type: object
       properties:
         status:
           $ref: '#/components/schemas/FollowingStatusEnum'
         message:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
     FollowingStatusDto:
       required:
-        - status
+      - status
       type: object
       properties:
         status:
           $ref: '#/components/schemas/FollowingStatusEnum'
     FollowingStatusEnum:
       enum:
-        - NotFollowing
-        - Following
-        - Requested
+      - NotFollowing
+      - Following
+      - Requested
     IFormFile:
       type: string
       format: binary
@@ -2106,18 +2134,18 @@ components:
         totalLikes:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
     InteractionType:
       enum:
-        - Heart
-        - Share
-        - Comment
+      - Heart
+      - Share
+      - Comment
     JourneyCreatingDto:
       required:
-        - title
-        - firstStepContent
+      - title
+      - firstStepContent
       type: object
       properties:
         title:
@@ -2129,8 +2157,8 @@ components:
           maxLength: 500
           minLength: 0
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         firstStepContent:
           maxLength: 1000
           minLength: 1
@@ -2138,8 +2166,8 @@ components:
           type: string
     JourneyDayCalendarDto:
       required:
-        - lastStep
-        - date
+      - lastStep
+      - date
       type: object
       properties:
         lastStep:
@@ -2147,8 +2175,8 @@ components:
         totalSteps:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
           default: 0
         date:
@@ -2156,8 +2184,8 @@ components:
           format: date-time
     JourneyDto:
       type:
-        - "null"
-        - object
+      - "null"
+      - object
       properties:
         id:
           type: string
@@ -2166,40 +2194,40 @@ components:
           type: string
         description:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         createdDate:
           type: string
           format: date-time
         lastUpdated:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: date-time
         status:
           type: string
         completedDate:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: date-time
         userId:
           type: string
         firstStepId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: uuid
         finalStepId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: uuid
     JourneyInDetailDto:
       required:
-        - journey
-        - stepsCount
-        - lastStepDate
+      - journey
+      - stepsCount
+      - lastStepDate
       type: object
       properties:
         journey:
@@ -2207,8 +2235,8 @@ components:
         stepsCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         lastStepDate:
           type: string
@@ -2216,8 +2244,8 @@ components:
         stepperCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         latestSteppers:
           type: array
@@ -2226,8 +2254,8 @@ components:
         starterCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         latestStarters:
           type: array
@@ -2236,8 +2264,8 @@ components:
         companionCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         latestCompanions:
           type: array
@@ -2246,8 +2274,8 @@ components:
         celebratorCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         latestCelebrators:
           type: array
@@ -2255,9 +2283,9 @@ components:
             $ref: '#/components/schemas/UserDto'
     JourneyInProfileDto:
       required:
-        - journey
-        - stepsCount
-        - thumbnailSteps
+      - journey
+      - stepsCount
+      - thumbnailSteps
       type: object
       properties:
         journey:
@@ -2265,8 +2293,8 @@ components:
         stepsCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         thumbnailSteps:
           type: array
@@ -2274,8 +2302,8 @@ components:
             $ref: '#/components/schemas/StepMediaDto'
     LoginDto:
       required:
-        - email
-        - password
+      - email
+      - password
       type: object
       properties:
         email:
@@ -2291,10 +2319,10 @@ components:
           type: string
     MediaStatus:
       enum:
-        - Pending
-        - Processing
-        - Completed
-        - Failed
+      - Pending
+      - Processing
+      - Completed
+      - Failed
     NotificationDto:
       type: object
       properties:
@@ -2314,20 +2342,20 @@ components:
           format: date-time
         data:
           type:
-            - "null"
-            - object
+          - "null"
+          - object
           additionalProperties:
             type: string
         priority:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         relatedEntityId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: uuid
         sourceUser:
           $ref: '#/components/schemas/UserDetailDto'
@@ -2341,43 +2369,43 @@ components:
         page:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         pageSize:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         totalCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         unreadCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         hasMore:
           type: boolean
     NotificationType:
       enum:
-        - Global
-        - UserSpecific
-        - StepComment
-        - CommentReply
-        - NewFollower
-        - JourneyUpdate
-        - StepInteraction
-        - StepWithInteraction
-        - SystemAlert
+      - Global
+      - UserSpecific
+      - StepComment
+      - CommentReply
+      - NewFollower
+      - JourneyUpdate
+      - StepInteraction
+      - StepWithInteraction
+      - SystemAlert
     ProfileDto:
       required:
-        - userDetail
+      - userDetail
       type: object
       properties:
         userDetail:
@@ -2385,8 +2413,8 @@ components:
         badgesCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         badgesUsers:
           type: array
@@ -2395,8 +2423,8 @@ components:
         supportersCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         supportersUsers:
           type: array
@@ -2405,14 +2433,14 @@ components:
         followersCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         followingsCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
     ReplyDto:
       type: object
@@ -2427,13 +2455,13 @@ components:
           format: date-time
         lastUpdated:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: date-time
         deletedDate:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: date-time
         user:
           $ref: '#/components/schemas/UserDto'
@@ -2444,22 +2472,22 @@ components:
           $ref: '#/components/schemas/UserDto'
         responseToCommentId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: uuid
         heartCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         heartedByUser:
           type: boolean
     ReportCreatingDto:
       required:
-        - entityType
-        - entityId
-        - reason
+      - entityType
+      - entityId
+      - reason
       type: object
       properties:
         entityType:
@@ -2471,8 +2499,8 @@ components:
           type: string
     ReportDto:
       required:
-        - entityType
-        - reason
+      - entityType
+      - reason
       type: object
       properties:
         id:
@@ -2491,9 +2519,9 @@ components:
           format: date-time
     SendNotificationDto:
       required:
-        - title
-        - body
-        - notificationType
+      - title
+      - body
+      - notificationType
       type: object
       properties:
         title:
@@ -2506,29 +2534,29 @@ components:
           $ref: '#/components/schemas/NotificationType'
         targetUserId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         relatedEntityId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: uuid
         scheduledFor:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: date-time
         data:
           type:
-            - "null"
-            - object
+          - "null"
+          - object
           additionalProperties:
             type: string
         priority:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
     StepCommentDto:
       type: object
@@ -2543,13 +2571,13 @@ components:
           format: date-time
         updatedAt:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: date-time
         deletedAt:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
           format: date-time
         user:
           $ref: '#/components/schemas/UserDto'
@@ -2559,21 +2587,21 @@ components:
         heartCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         heartedByUser:
           type: boolean
         replyCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
     StepDetailDto:
       required:
-        - id
-        - user
+      - id
+      - user
       type: object
       properties:
         id:
@@ -2599,38 +2627,38 @@ components:
         hearts:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         heartedByUser:
           type: boolean
         shares:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         sharedByUser:
           type: boolean
         comments:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         commentedByUser:
           type: boolean
         userSteppedWithInteractions:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         othersStepWith:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         othersStepWithUsers:
           type: array
@@ -2638,15 +2666,15 @@ components:
             $ref: '#/components/schemas/UserDto'
         stepTypeString:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         media:
           type: array
           items:
             $ref: '#/components/schemas/StepMediaDto'
     StepDto:
       required:
-        - id
+      - id
       type: object
       properties:
         id:
@@ -2682,55 +2710,55 @@ components:
           type: string
         largeUrl:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         mediumUrl:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         smallUrl:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         thumbnailUrl:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         videoThumbnailUrl:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         bunnyVideoId:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         width:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - "null"
-            - integer
-            - string
+          - "null"
+          - integer
+          - string
           format: int32
         height:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - "null"
-            - integer
-            - string
+          - "null"
+          - integer
+          - string
           format: int32
         size:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - "null"
-            - integer
-            - string
+          - "null"
+          - integer
+          - string
           format: int64
         duration:
           pattern: ^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$
           type:
-            - "null"
-            - number
-            - string
+          - "null"
+          - number
+          - string
           format: double
         status:
           $ref: '#/components/schemas/MediaStatus'
@@ -2738,9 +2766,12 @@ components:
           type: boolean
         isImage:
           type: boolean
+    Stream:
+      type: string
+      format: binary
     UpdateJourneyDto:
       required:
-        - title
+      - title
       type: object
       properties:
         title:
@@ -2752,11 +2783,11 @@ components:
           maxLength: 1000
           minLength: 0
           type:
-            - "null"
-            - string
+          - "null"
+          - string
     UpdateStepDto:
       required:
-        - content
+      - content
       type: object
       properties:
         content:
@@ -2764,7 +2795,7 @@ components:
           type: string
     UserDetailDto:
       required:
-        - user
+      - user
       type: object
       properties:
         user:
@@ -2773,7 +2804,7 @@ components:
           $ref: '#/components/schemas/FollowingStatusEnum'
     UserDto:
       required:
-        - id
+      - id
       type: object
       properties:
         id:
@@ -2786,22 +2817,22 @@ components:
           type: string
         profilePictureUrl:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         phoneNumber:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         email:
           type:
-            - "null"
-            - string
+          - "null"
+          - string
         age:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - "null"
-            - integer
-            - string
+          - "null"
+          - integer
+          - string
           format: int32
         isPrivate:
           type: boolean
@@ -2819,8 +2850,8 @@ components:
         authorizationExpire:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int64
         videoGuid:
           type: string
@@ -2828,8 +2859,8 @@ components:
         libraryId:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         title:
           type: string
@@ -2843,8 +2874,8 @@ components:
         videoLibraryId:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
         videoGuid:
           type: string
@@ -2852,8 +2883,8 @@ components:
         status:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
-            - integer
-            - string
+          - integer
+          - string
           format: int32
   securitySchemes:
     Bearer:
@@ -2861,17 +2892,17 @@ components:
       scheme: bearer
       bearerFormat: Json Web Token
 tags:
-  - name: Account
-  - name: Auth
-  - name: Users
-  - name: Steps
-  - name: Reports
-  - name: Notifications
-  - name: Media
-  - name: VideoProcessing
-  - name: Journeys
-  - name: Interactions
-  - name: AccountFollow
-  - name: UsersFollow
-  - name: Comments
-  - name: StepComments
+- name: Account
+- name: Auth
+- name: Users
+- name: Steps
+- name: Reports
+- name: Notifications
+- name: Media
+- name: VideoProcessing
+- name: Journeys
+- name: Interactions
+- name: AccountFollow
+- name: UsersFollow
+- name: Comments
+- name: StepComments

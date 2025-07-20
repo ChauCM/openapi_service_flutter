@@ -3,13 +3,14 @@
 // ignore_for_file: unused_element, unnecessary_import, unused_import, invalid_annotation_target
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:typed_data' as _i1;
+import 'dart:io' as _i1;
 
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'pet_store.openapi.dtos.dart';
+import 'package:mime/mime.dart';
 
 class PetStoreServiceConfig {
   const PetStoreServiceConfig({
@@ -209,13 +210,22 @@ class PetStoreService {
   /// uploads an image
   /// post: /pet/{petId}/uploadImage
   Future<Either<ApiError, ApiResponseDto>> uploadFile(
-    _i1.Uint8List body, {
+    _i1.File file, {
     required int petId,
+    void Function(int sent, int total)? onProgress,
   }) async {
     try {
+      final length = await file.length();
+      final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
+
       final response = await _dio.post(
         '/pet/$petId/uploadImage',
-        data: body,
+        data: file.openRead(),
+        onSendProgress: onProgress,
+        options: Options(headers: <String, dynamic>{
+          'Content-Length': length.toString(),
+          'Content-Type': mime,
+        }),
       );
       final result = ApiResponseDto.fromJson(response.data);
       return Right(result);

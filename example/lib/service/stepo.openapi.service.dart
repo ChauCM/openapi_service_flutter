@@ -10,6 +10,7 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'stepo.openapi.dtos.dart';
+import 'package:mime/mime.dart';
 
 class StepoServiceConfig {
   const StepoServiceConfig({
@@ -113,17 +114,17 @@ class StepoService {
     void Function(int sent, int total)? onProgress,
   }) async {
     try {
-      final formData = FormData();
-
-      formData.files.add(MapEntry(
-          'file',
-          await MultipartFile.fromFile(file.path,
-              filename: _getFileName(file.path))));
+      final length = await file.length();
+      final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
 
       final response = await _dio.post(
         '/api/v1/account/avatar',
-        data: formData,
+        data: file.openRead(),
         onSendProgress: onProgress,
+        options: Options(headers: <String, dynamic>{
+          'Content-Length': length.toString(),
+          'Content-Type': mime,
+        }),
       );
       final result = AccountDto.fromJson(response.data);
       return Right(result);
@@ -398,17 +399,17 @@ class StepoService {
     void Function(int sent, int total)? onProgress,
   }) async {
     try {
-      final formData = FormData();
-
-      formData.files.add(MapEntry(
-          'file',
-          await MultipartFile.fromFile(file.path,
-              filename: _getFileName(file.path))));
+      final length = await file.length();
+      final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
 
       final response = await _dio.post(
         '/api/v1/steps/$stepId/images',
-        data: formData,
+        data: file.openRead(),
         onSendProgress: onProgress,
+        options: Options(headers: <String, dynamic>{
+          'Content-Length': length.toString(),
+          'Content-Type': mime,
+        }),
       );
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);

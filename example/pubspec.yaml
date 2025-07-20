@@ -13,6 +13,7 @@ dependencies:
   logging_appenders: ^1.0.0
   dio: ^5.3.2
   either_dart: ^1.0.0
+  mime: ^1.0.4
 
 dev_dependencies:
   openapi_service_flutter:
