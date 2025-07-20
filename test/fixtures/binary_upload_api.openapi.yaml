@@ -1,0 +1,192 @@
+openapi: 3.0.0
+info:
+  title: Binary Upload API
+  version: 1.0.0
+  x-dart-name: BinaryUploadApi
+
+paths:
+  /api/v1/account/avatar:
+    post:
+      tags:
+        - Account
+      summary: Upload avatar image
+      requestBody:
+        content:
+          image/jpeg:
+            schema:
+              type: string
+              format: binary
+          image/png:
+            schema:
+              type: string
+              format: binary
+          image/gif:
+            schema:
+              type: string
+              format: binary
+          image/webp:
+            schema:
+              type: string
+              format: binary
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+        required: true
+      responses:
+        "200":
+          description: Avatar uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDto'
+
+  /api/v1/steps/{stepId}/images:
+    post:
+      tags:
+        - Steps
+      summary: Upload step image
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          image/jpeg:
+            schema:
+              type: string
+              format: binary
+          image/png:
+            schema:
+              type: string
+              format: binary
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+        required: true
+      responses:
+        "200":
+          description: Image uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepMediaDto'
+
+  /api/v1/files/upload:
+    post:
+      tags:
+        - Files
+      summary: Upload generic file
+      requestBody:
+        content:
+          video/mp4:
+            schema:
+              type: string
+              format: binary
+          audio/mpeg:
+            schema:
+              type: string
+              format: binary
+          application/pdf:
+            schema:
+              type: string
+              format: binary
+        required: true
+      responses:
+        "200":
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUploadDto'
+
+  /api/v1/documents:
+    post:
+      summary: Upload document (non-binary for comparison)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+              required:
+                - title
+                - content
+      responses:
+        "200":
+          description: Document created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDto'
+
+components:
+  schemas:
+    AccountDto:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        avatarUrl:
+          type: string
+      required:
+        - id
+        - username
+
+    StepMediaDto:
+      type: object
+      properties:
+        id:
+          type: string
+        stepId:
+          type: string
+        mediaType:
+          type: string
+        url:
+          type: string
+      required:
+        - id
+        - stepId
+        - mediaType
+        - url
+
+    FileUploadDto:
+      type: object
+      properties:
+        id:
+          type: string
+        filename:
+          type: string
+        size:
+          type: integer
+        mimeType:
+          type: string
+      required:
+        - id
+        - filename
+        - size
+        - mimeType
+
+    DocumentDto:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+      required:
+        - id
+        - title
+        - content

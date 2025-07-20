@@ -65,6 +65,13 @@ class APIDocument extends APIObject {
     security =
         object.decodeObjects("security", () => APISecurityRequirement.empty());
     tags = object.decodeObjects("tags", () => APITag.empty());
+
+    // Validate required fields after decoding
+    // Only validate complete documents - if info and paths are present, version is required
+    if (info != null && paths != null && version == null) {
+      throw ArgumentError(
+          "APIDocument must have non-null 'version' when 'info' and 'paths' are provided.");
+    }
   }
 
   @override

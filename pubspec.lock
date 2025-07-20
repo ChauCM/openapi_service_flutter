@@ -383,7 +383,7 @@ packages:
       path: open-api-dart
       relative: true
     source: path
-    version: "3.1.1"
+    version: "3.1.2"
   package_config:
     dependency: transitive
     description:
