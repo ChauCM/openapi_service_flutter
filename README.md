@@ -4,77 +4,84 @@ A Dart code generator that creates type-safe client libraries from OpenAPI speci
 
 ## Features
 
-- 🚀 **Type-safe code generation** from OpenAPI 3.0 specifications
+- 🚀 **Type-safe code generation** from OpenAPI 3.0+ specifications
 - 📦 **Separate DTO and Service files** for better organization
 - 🔒 **Freezed integration** for immutable data classes
 - 🌐 **Dio HTTP client** with proper error handling
-- ⚡ **Either-based error handling** using dartz
+- ⚡ **Either-based error handling** using either_dart
 - 🎯 **Enum support** with JSON value annotations
+- 📁 **Binary file upload** support with progress callbacks
 - 🔧 **Build runner integration** for seamless development
 
-## Installation
+## Quick Start
 
-Add this package to your `pubspec.yaml`:
+### 1. Install Required Dependencies
+
+Add all necessary packages to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dio: ^5.3.0
-  dartz: ^0.10.1
+  # HTTP client and functional programming
+  dio: ^5.3.2
+  either_dart: ^1.0.0
+  
+  # Code generation annotations
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
 dev_dependencies:
-  openapi_service_flutter: ^2.0.0
+  # Code generation tools
+  openapi_service_flutter: ^2.0.1
   build_runner: ^2.4.7
   freezed: ^2.4.6
   json_serializable: ^6.7.1
 ```
 
-## Usage
+### 2. Get Your OpenAPI Specification
 
-### 1. Create an OpenAPI Specification
+You need an OpenAPI specification file from your backend API. Here's how to get it:
 
-Create a `.openapi.yaml` file in your project (e.g., `lib/api/petstore.openapi.yaml`):
+#### Option A: Download from Swagger UI
+1. Open your API's Swagger documentation (usually at `https://your-api.com/swagger` or `/docs`)
+2. Look for a "Download" button or link to get the OpenAPI spec
+3. Save as JSON: `openapi.json` or YAML: `openapi.yaml`
 
-```yaml
-openapi: 3.0.0
-info:
-  title: Pet Store API
-  version: 1.0.0
-paths:
-  /pets:
-    get:
-      operationId: getPets
-      responses:
-        '200':
-          description: A list of pets
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-components:
-  schemas:
-    Pet:
-      type: object
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        status:
-          type: string
-          enum: [available, pending, sold]
+#### Option B: Download from Scalar
+1. If your API uses Scalar documentation
+2. Look for export options in the documentation interface
+3. Download the OpenAPI specification
+
+#### Option C: Generate from your backend
+Many frameworks can generate OpenAPI specs:
+- **FastAPI**: Automatically available at `/openapi.json`
+- **Spring Boot**: Use Springdoc OpenAPI
+- **Express.js**: Use swagger-jsdoc and swagger-ui-express
+- **Django**: Use drf-spectacular
+
+### 3. Place Your OpenAPI File
+
+Create the services directory and place your OpenAPI specification:
+
+```bash
+mkdir -p lib/services
 ```
 
-### 2. Configure Build Runner
+Then place your file at:
+- `lib/services/your_backend.openapi.json` (JSON format), or
+- `lib/services/your_backend.openapi.yaml` (YAML format)
 
-Create or update your `build.yaml`:
+**Example structure:**
+```
+lib/
+  services/
+    my_api.openapi.json       # Your OpenAPI specification
+    my_api.openapi.dtos.dart  # Generated DTOs (after build)
+    my_api.openapi.service.dart # Generated service (after build)
+```
+
+### 4. Configure Build Runner
+
+Create `build.yaml` in your project root:
 
 ```yaml
 targets:
@@ -82,43 +89,103 @@ targets:
     builders:
       openapi_service_flutter:
         options:
+          # Optional: filter endpoints by prefix
           prefixFilter: ''
           includeFilterPrefix: true
 ```
 
-### 3. Generate Code
+### 5. Generate Your Client Code
 
-Run the build runner to generate your client code:
+Run the code generator:
 
 ```bash
+# Clean and generate fresh code
+dart run build_runner build --delete-conflicting-outputs
+
+# Or just generate
 dart run build_runner build
 ```
 
-This will generate two files:
-- `petstore.openapi.dtos.dart` - Data Transfer Objects with Freezed models
-- `petstore.openapi.service.dart` - Service class with HTTP methods
+This creates two files for each `.openapi.json/.yaml` file:
+- `your_backend.openapi.dtos.dart` - Data models with Freezed
+- `your_backend.openapi.service.dart` - HTTP service methods
 
-### 4. Use the Generated Code
+### 6. Use Your Generated Client
 
 ```dart
-import 'package:dio/dio.dart';
-import 'api/petstore.openapi.dtos.dart';
-import 'api/petstore.openapi.service.dart';
+class ApiClient {
+  late final MyApiService _apiService;
+  late final Dio _dio;
 
+  ApiClient({String? baseUrl}) {
+    _dio = Dio();
+    _apiService = MyApiService(
+      _dio,
+      config: MyApiServiceConfig(
+        baseUrl: baseUrl ?? 'https://api.yourbackend.com',
+        connectTimeout: Duration(seconds: 30),
+        receiveTimeout: Duration(seconds: 30),
+      ),
+    );
+  }
+
+  MyApiService get api => _apiService;
+}
+
+// Usage
 void main() async {
-  // Create Dio instance
-  final dio = Dio();
-  
-  // Create service
-  final petStoreService = PetStoreService(dio);
-  
-  // Make API call
-  final result = await petStoreService.getPets();
+  final client = ApiClient(baseUrl: 'https://api.yourbackend.com');
+  final result = await client.api.getUsers();
   
   result.fold(
     (error) => print('Error: ${error.message}'),
-    (pets) => print('Found ${pets.length} pets'),
+    (users) => print('Found ${users.length} users'),
   );
+}
+```
+
+## Authentication Setup
+
+```dart
+class AuthenticatedApiClient {
+  late final MyApiService _apiService;
+  String? _token;
+
+  AuthenticatedApiClient({String? baseUrl}) {
+    final dio = Dio();
+    dio.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) {
+        if (_token != null) {
+          options.headers['Authorization'] = 'Bearer $_token';
+        }
+        handler.next(options);
+      },
+      onError: (error, handler) {
+        if (error.response?.statusCode == 401) {
+          _token = null;
+        }
+        handler.next(error);
+      },
+    ));
+    
+    _apiService = MyApiService(dio, config: MyApiServiceConfig(
+      baseUrl: baseUrl ?? 'https://api.yourbackend.com',
+    ));
+  }
+
+  Future<void> login(String email, String password) async {
+    final result = await _apiService.login(LoginRequest(
+      email: email,
+      password: password,
+    ));
+    
+    result.fold(
+      (error) => throw Exception('Login failed: ${error.message}'),
+      (response) => _token = response.accessToken,
+    );
+  }
+
+  MyApiService get api => _apiService;
 }
 ```
 
@@ -126,50 +193,45 @@ void main() async {
 
 ### DTO Files (.openapi.dtos.dart)
 
-Generated DTOs use Freezed for immutable data classes:
-
 ```dart
 @freezed
-class PetDto with _$PetDto {
-  const factory PetDto({
+class UserDto with _$UserDto {
+  const factory UserDto({
     @JsonKey(name: 'id') required int id,
     @JsonKey(name: 'name') required String name,
-    @JsonKey(name: 'status') PetStatus? status,
-  }) = _PetDto;
+    @JsonKey(name: 'email') required String email,
+    @JsonKey(name: 'status') UserStatus? status,
+  }) = _UserDto;
 
-  factory PetDto.fromJson(Map<String, dynamic> json) => _$PetDtoFromJson(json);
+  factory UserDto.fromJson(Map<String, dynamic> json) => 
+      _$UserDtoFromJson(json);
 }
 
-enum PetStatus {
-  @JsonValue('available') available,
+enum UserStatus {
+  @JsonValue('active') active,
+  @JsonValue('inactive') inactive,
   @JsonValue('pending') pending,
-  @JsonValue('sold') sold,
 }
 ```
 
 ### Service Files (.openapi.service.dart)
 
-Generated services use Dio for HTTP requests with Either-based error handling:
-
 ```dart
-class PetStoreService {
-  PetStoreService(this._dio) {
-    _dio.options.connectTimeout = const Duration(seconds: 60);
-    _dio.options.receiveTimeout = const Duration(seconds: 60);
+class MyApiService {
+  MyApiService(this._dio, {MyApiServiceConfig? config}) {
+    final serviceConfig = config ?? MyApiServiceConfig();
+    _dio.options.baseUrl = serviceConfig.baseUrl;
   }
 
   final Dio _dio;
 
-  /// Get all pets
-  /// GET: /pets
-  Future<Either<ApiError, List<PetDto>>> getPets() async {
+  Future<Either<ApiError, List<UserDto>>> getUsers() async {
     try {
-      final response = await _dio.get('/pets');
-      final result = response.data as List<dynamic>;
-      final mappedResult = result.map((item) => 
-        PetDto.fromJson(item as Map<String, dynamic>)
-      ).toList();
-      return Right(mappedResult);
+      final response = await _dio.get('/users');
+      final result = (response.data as List)
+          .map((item) => UserDto.fromJson(item))
+          .toList();
+      return Right(result);
     } catch (e) {
       return Left(_handleError(e));
     }
@@ -177,26 +239,81 @@ class PetStoreService {
 }
 ```
 
-## Error Handling
-
-The generated code includes structured error handling:
+## Binary File Uploads
 
 ```dart
-@freezed
-class ApiError with _$ApiError {
-  const factory ApiError({
-    required String message,
-    int? statusCode,
-    String? type,
-  }) = _ApiError;
+Future<Either<ApiError, UploadResponse>> uploadFile(
+  Stream<List<int>> fileStream, {
+  void Function(int, int)? onSendProgress,
+}) async {
+  try {
+    final response = await _dio.post(
+      '/upload',
+      data: Stream.fromIterable(fileStream),
+      options: Options(
+        headers: {'Content-Type': 'application/octet-stream'},
+      ),
+      onSendProgress: onSendProgress,
+    );
+    return Right(UploadResponse.fromJson(response.data));
+  } catch (e) {
+    return Left(_handleError(e));
+  }
+}
 
-  factory ApiError.fromJson(Map<String, dynamic> json) => _$ApiErrorFromJson(json);
+// Usage
+final file = File('path/to/file.pdf');
+final result = await apiService.uploadFile(
+  file.openRead(),
+  onSendProgress: (sent, total) {
+    print('Upload progress: ${(sent / total * 100).toStringAsFixed(1)}%');
+  },
+);
+```
+
+## Error Handling
+
+```dart
+final result = await apiService.getUser(123);
+
+result.fold(
+  (error) => print('API Error: ${error.message}'),
+  (user) => print('User: ${user.name}'),
+);
+
+// Or use pattern matching
+switch (result) {
+  case Left(value: final error):
+    // Handle error
+    break;
+  case Right(value: final user):
+    // Handle success
+    break;
+}
+```
+
+## Integration with BLoC
+
+```dart
+class UserCubit extends Cubit<UserState> {
+  final MyApiService _apiService;
+  
+  UserCubit(this._apiService) : super(UserInitial());
+  
+  Future<void> loadUsers() async {
+    emit(UserLoading());
+    final result = await _apiService.getUsers();
+    result.fold(
+      (error) => emit(UserError(error.message)),
+      (users) => emit(UserLoaded(users)),
+    );
+  }
 }
 ```
 
 ## Configuration Options
 
-You can customize the code generation through build.yaml options:
+Customize code generation in `build.yaml`:
 
 ```yaml
 targets:
@@ -204,203 +321,53 @@ targets:
     builders:
       openapi_service_flutter:
         options:
-          prefixFilter: ''
+          # Only generate endpoints starting with specific prefix
+          prefixFilter: '/api/v1'
           includeFilterPrefix: true
 ```
 
-## Client Usage with Authentication
+## Troubleshooting
 
-For apps with authentication, integrate the service with your authentication state management:
+### Common Issues
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dio/dio.dart';
-import 'api/stepo.openapi.service.dart';
+1. **Build fails**: Run `dart run build_runner clean` then rebuild
+2. **Import errors**: Ensure all dependencies are in `pubspec.yaml`
+3. **Type errors**: Check your OpenAPI spec for missing required fields
+4. **Network errors**: Verify base URL and network connectivity
 
-class AuthenticationCubit extends Cubit<AuthenticationState> {
-  late final StepoService _service;
-  late final Dio _dio;
-  
-  AuthenticationCubit() : super(AuthenticationState.unauthenticated()) {
-    _dio = Dio();
-    _setupAuthInterceptor();
-    
-    _service = StepoService(
-      _dio,
-      config: StepoServiceConfig(
-        baseUrl: 'https://api.stepo.com',
-      ),
-    );
-  }
-  
-  void _setupAuthInterceptor() {
-    _dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
-        // Add token to every request if available
-        if (token != null) {
-          options.headers['Authorization'] = 'Bearer $token';
-        }
-        handler.next(options);
-      },
-      onError: (error, handler) {
-        // Handle 401 - token expired
-        if (error.response?.statusCode == 401) {
-          logout(); // Clear invalid token
-        }
-        handler.next(error);
-      },
-    ));
-  }
-  
-  StepoService get service => _service;
-  
-  String? get token => state.maybeWhen(
-    authenticated: (token) => token,
-    orElse: () => null,
-  );
-  
-  Future<void> login(String email, String password) async {
-    final result = await _service.apiV1AuthLoginPost(LoginDto(
-      email: email,
-      password: password,
-    ));
-    
-    result.fold(
-      (error) => emit(AuthenticationState.error(error.message)),
-      (response) => emit(AuthenticationState.authenticated(token: response.token)),
-    );
-  }
-  
-  void logout() {
-    emit(AuthenticationState.unauthenticated());
-  }
-}
+### Getting OpenAPI Specs
 
-// App setup
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => AuthenticationCubit()),
-        BlocProvider(create: (context) => FetchStepCubit(
-          context.read<AuthenticationCubit>().service,
-        )),
-      ],
-      child: MaterialApp(
-        home: BlocBuilder<AuthenticationCubit, AuthenticationState>(
-          builder: (context, state) {
-            return state.isAuthenticated ? HomeScreen() : LoginScreen();
-          },
-        ),
-      ),
-    );
-  }
-}
+If you can't find your API's OpenAPI specification:
 
-// Feature cubit using the service
-class FetchStepCubit extends Cubit<FetchStepState> {
-  final StepoService _service;
-  
-  FetchStepCubit(this._service) : super(FetchStepInitial());
-  
-  Future<void> fetchSteps() async {
-    emit(FetchStepLoading());
-    
-    // Service automatically adds token if available
-    final result = await _service.apiV1AccountStepsGet();
-    
-    result.fold(
-      (error) => emit(FetchStepError(error.message)),
-      (steps) => emit(FetchStepSuccess(steps)),
-    );
-  }
-}
-```
+1. **Check common endpoints**:
+   - `/openapi.json`
+   - `/swagger.json`
+   - `/api/openapi.json`
+   - `/docs/openapi.json`
 
-This setup provides:
-- **Single service instance** for both public and authenticated requests
-- **Automatic token injection** for protected endpoints
-- **Seamless authentication state changes**
-- **Automatic logout** on token expiry (401 errors)
+2. **Ask your backend team** for the OpenAPI/Swagger specification
+
+3. **Generate manually** using tools like Postman or Insomnia
+
+### Development Commands
+
+```bash
+# Clean and regenerate all code
+dart run build_runner clean
+dart run build_runner build --delete-conflicting-outputs
+
+# Watch for changes (auto-regenerate)
+dart run build_runner watch
+
 
 ## Examples
 
-Check the `example/` directory for complete examples with different OpenAPI specifications:
-
-- **Pet Store API** - Basic CRUD operations
-- **Complex Types** - Nested objects and arrays
-- **Enum Support** - Various enum types and usage
-
-## Development
-
-### Running Tests
-
-```bash
-# Run all tests
-dart test
-
-# Run tests with coverage
-dart test --coverage
-
-# Run specific test file
-dart test test/openapi_service_builder_test.dart
-```
-
-### Code Generation for Examples
-
-```bash
-# Generate code for examples
-cd example
-dart run build_runner build --delete-conflicting-outputs
-```
-
-### Analysis and Formatting
-
-```bash
-# Analyze code
-dart analyze
-
-# Format code
-dart format .
-```
-
-## Dependencies
-
-### Runtime Dependencies
-- `dio` - HTTP client for making API requests
-- `dartz` - Functional programming utilities (Either type)
-- `freezed_annotation` - Annotations for Freezed
-- `json_annotation` - JSON serialization annotations
-
-### Generated Code Dependencies
-Your generated code will depend on:
-- `dio` - For HTTP requests
-- `dartz` - For Either-based error handling
-- `freezed_annotation` - For DTO annotations
-- `json_annotation` - For JSON serialization
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Run tests and ensure they pass
-6. Submit a pull request
+Check the `example/` directory for complete examples:
+- Basic CRUD operations
+- Authentication flows
+- File uploads
+- Error handling patterns
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues and questions:
-- Create an issue on GitHub
-- Check existing issues for similar problems
-- Provide minimal reproduction examples
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for detailed changes in each version.
+MIT License - see LICENSE file for details.

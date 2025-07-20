@@ -21,7 +21,7 @@ This is `openapi_service_flutter` - a Dart code generator that creates type-safe
 ## Key Architecture Changes
 
 ### Code Generation Pipeline
-- **Input**: `.openapi.yaml` files containing OpenAPI specifications
+- **Input**: `.openapi.yaml` or `.openapi.json` files containing OpenAPI specifications
 - **Output**: Two separate files per spec:
   - `.openapi.dtos.dart` - Freezed DTOs with JSON serialization (includes both `.freezed.dart` and `.g.dart` parts)
   - `.openapi.service.dart` - Service class with HTTP methods using Dio (imports DTOs)
@@ -53,11 +53,23 @@ Each generated service includes a configuration class:
 - Status code to error type mapping (401→authentication_error, 403→authorization_error, etc.)
 - Error message extraction from common API response fields (message, error, detail, error_description)
 - Fallback to DioException message or generic error message
+- Optional `onError` callback for custom error handling with stack trace and endpoint information
 
 ### Improved Code Organization
 - Separate files reduce compilation overhead and improve maintainability
 - DTOs can be imported independently for type definitions
 - Service classes are leaner and focus on HTTP operations
+
+### Binary File Upload Support
+- MIME type detection for binary request bodies
+- Progress callbacks for file uploads with `Stream<List<int>>` support
+- Appropriate headers for content length and type
+- Enhanced error handling for upload operations
+
+### Prefix Filtering
+- Optional prefix filtering to selectively include endpoints
+- Configuration options for `prefixFilter` and `includeFilterPrefix`
+- Allows generating services for specific API subsets
 
 ## Common Development Commands
 
@@ -87,8 +99,14 @@ cd example && dart run build_runner build
 # Clean and regenerate
 cd example && dart run build_runner clean && dart run build_runner build
 
+# Generate with delete conflicting outputs (recommended)
+dart run build_runner build --delete-conflicting-outputs
+
 # Run a specific test
 dart test test/openapi_service_builder_test.dart
+
+# Run specific test file with verbose output
+dart test test/openapi_service_builder_edge_cases_test.dart -v
 ```
 
 ### Analysis and Formatting
@@ -140,9 +158,10 @@ Generated service code depends on:
 
 The package uses `build.yaml` to configure:
 - Builder factories and extensions
-- Output file patterns (`.openapi.yaml` → `.openapi.dtos.dart`, `.openapi.service.dart`)
+- Output file patterns (`.openapi.yaml/.json` → `.openapi.dtos.dart`, `.openapi.service.dart`)
 - Build order dependencies (runs before freezed and json_serializable)
 - Auto-apply to dependents with source build target
+- Configuration options for prefix filtering and other customization
 
 ## Example Usage
 
@@ -172,3 +191,4 @@ The project includes an internal `open-api-dart` package for OpenAPI specificati
 3. `OpenApiLibraryGenerator` transforms document model into Dart code
 4. `CustomAllocator` manages imports and code organization
 5. Outputs separate `.openapi.dtos.dart` and `.openapi.service.dart` files
+
