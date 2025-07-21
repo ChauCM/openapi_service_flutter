@@ -288,6 +288,52 @@ paths:
 
         expect(serviceOutput, contains('String'));
       });
+
+      test('generates enum default values correctly', () async {
+        final enumDefaultValuesApiYaml =
+            await File('test/fixtures/enum_default_values_api.openapi.yaml')
+                .readAsString();
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(enumDefaultValuesApiYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'EnumDefaultValuesApi',
+          partFileName: 'enum_default_values_api.openapi.dtos.g.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+        );
+
+        // Verify that referenced enum schemas are generated
+        expect(dtosOutput, contains('enum UserStatusDto {'));
+        expect(dtosOutput, contains('enum UserRoleDto {'));
+        expect(dtosOutput, contains("@JsonValue('active')"));
+        expect(dtosOutput, contains("@JsonValue('inactive')"));
+        expect(dtosOutput, contains("@JsonValue('pending')"));
+        expect(dtosOutput, contains("@JsonValue('admin')"));
+        expect(dtosOutput, contains("@JsonValue('member')"));
+        expect(dtosOutput, contains("@JsonValue('guest')"));
+
+        // Verify that enum default values use enum values instead of strings
+        expect(dtosOutput, contains('@Default(UserStatusDto.active)'));
+        expect(dtosOutput, contains('@Default(UserRoleDto.member)'));
+        
+        // Verify inline enum default values also use enum values
+        expect(dtosOutput, matches(RegExp(r'@Default\([A-Z][a-zA-Z]*Dto\.[a-z][a-zA-Z]*\)')));
+
+        // Verify that string literals are NOT used for enum defaults
+        expect(dtosOutput, isNot(contains("@Default('active')")));
+        expect(dtosOutput, isNot(contains("@Default('member')")));
+        expect(dtosOutput, isNot(contains("@Default('medium')")));
+
+        // Verify that the DTO classes are generated correctly
+        expect(dtosOutput, contains('class UserRequestDto'));
+        expect(dtosOutput, contains('class UserResponseDto'));
+        expect(dtosOutput, contains('UserStatusDto status'));
+        expect(dtosOutput, contains('UserRoleDto role'));
+      });
     });
 
     group('Response handling', () {

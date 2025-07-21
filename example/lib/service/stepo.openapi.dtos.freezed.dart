@@ -701,7 +701,7 @@ mixin _$BulkNotificationDto {
   @JsonKey(name: 'data')
   Map<String, String>? get data;
   @JsonKey(name: 'priority')
-  int? get priority;
+  int get priority;
 
   /// Create a copy of BulkNotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -762,7 +762,7 @@ abstract mixin class $BulkNotificationDtoCopyWith<$Res> {
       @JsonKey(name: 'userIds') List<String> userIds,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int? priority});
+      @JsonKey(name: 'priority') int priority});
 }
 
 /// @nodoc
@@ -784,7 +784,7 @@ class _$BulkNotificationDtoCopyWithImpl<$Res>
     Object? userIds = null,
     Object? relatedEntityId = freezed,
     Object? data = freezed,
-    Object? priority = freezed,
+    Object? priority = null,
   }) {
     return _then(_self.copyWith(
       title: null == title
@@ -811,10 +811,10 @@ class _$BulkNotificationDtoCopyWithImpl<$Res>
           ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      priority: freezed == priority
+      priority: null == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -918,7 +918,7 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int? priority)?
+            @JsonKey(name: 'priority') int priority)?
         $default, {
     required TResult orElse(),
   }) {
@@ -955,7 +955,7 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int? priority)
+            @JsonKey(name: 'priority') int priority)
         $default,
   ) {
     final _that = this;
@@ -988,7 +988,7 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
             @JsonKey(name: 'userIds') List<String> userIds,
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int? priority)?
+            @JsonKey(name: 'priority') int priority)?
         $default,
   ) {
     final _that = this;
@@ -1012,7 +1012,7 @@ class _BulkNotificationDto implements BulkNotificationDto {
       @JsonKey(name: 'userIds') required final List<String> userIds,
       @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'data') final Map<String, String>? data,
-      @JsonKey(name: 'priority') this.priority})
+      @JsonKey(name: 'priority') this.priority = 0})
       : _userIds = userIds,
         _data = data;
   factory _BulkNotificationDto.fromJson(Map<String, dynamic> json) =>
@@ -1052,7 +1052,7 @@ class _BulkNotificationDto implements BulkNotificationDto {
 
   @override
   @JsonKey(name: 'priority')
-  final int? priority;
+  final int priority;
 
   /// Create a copy of BulkNotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1120,7 +1120,7 @@ abstract mixin class _$BulkNotificationDtoCopyWith<$Res>
       @JsonKey(name: 'userIds') List<String> userIds,
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int? priority});
+      @JsonKey(name: 'priority') int priority});
 }
 
 /// @nodoc
@@ -1142,7 +1142,7 @@ class __$BulkNotificationDtoCopyWithImpl<$Res>
     Object? userIds = null,
     Object? relatedEntityId = freezed,
     Object? data = freezed,
-    Object? priority = freezed,
+    Object? priority = null,
   }) {
     return _then(_BulkNotificationDto(
       title: null == title
@@ -1169,10 +1169,10 @@ class __$BulkNotificationDtoCopyWithImpl<$Res>
           ? _self._data
           : data // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      priority: freezed == priority
+      priority: null == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -1180,7 +1180,7 @@ class __$BulkNotificationDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$CreateCommentInteractionDto {
   @JsonKey(name: 'type')
-  InteractionTypeDto? get type;
+  InteractionTypeDto get type;
 
   /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1219,7 +1219,7 @@ abstract mixin class $CreateCommentInteractionDtoCopyWith<$Res> {
           $Res Function(CreateCommentInteractionDto) _then) =
       _$CreateCommentInteractionDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto type});
 }
 
 /// @nodoc
@@ -1235,13 +1235,13 @@ class _$CreateCommentInteractionDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
+    Object? type = null,
   }) {
     return _then(_self.copyWith(
-      type: freezed == type
+      type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as InteractionTypeDto?,
+              as InteractionTypeDto,
     ));
   }
 }
@@ -1337,7 +1337,7 @@ extension CreateCommentInteractionDtoPatterns on CreateCommentInteractionDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto type)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1365,7 +1365,7 @@ extension CreateCommentInteractionDtoPatterns on CreateCommentInteractionDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type) $default,
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto type) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -1388,8 +1388,7 @@ extension CreateCommentInteractionDtoPatterns on CreateCommentInteractionDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
-        $default,
+    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto type)? $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -1404,13 +1403,14 @@ extension CreateCommentInteractionDtoPatterns on CreateCommentInteractionDto {
 /// @nodoc
 @JsonSerializable()
 class _CreateCommentInteractionDto implements CreateCommentInteractionDto {
-  _CreateCommentInteractionDto({@JsonKey(name: 'type') this.type});
+  _CreateCommentInteractionDto(
+      {@JsonKey(name: 'type') this.type = InteractionTypeDto.heart});
   factory _CreateCommentInteractionDto.fromJson(Map<String, dynamic> json) =>
       _$CreateCommentInteractionDtoFromJson(json);
 
   @override
   @JsonKey(name: 'type')
-  final InteractionTypeDto? type;
+  final InteractionTypeDto type;
 
   /// Create a copy of CreateCommentInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -1455,7 +1455,7 @@ abstract mixin class _$CreateCommentInteractionDtoCopyWith<$Res>
       __$CreateCommentInteractionDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto type});
 }
 
 /// @nodoc
@@ -1471,13 +1471,13 @@ class __$CreateCommentInteractionDtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? type = freezed,
+    Object? type = null,
   }) {
     return _then(_CreateCommentInteractionDto(
-      type: freezed == type
+      type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as InteractionTypeDto?,
+              as InteractionTypeDto,
     ));
   }
 }
@@ -2479,7 +2479,7 @@ class __$CreateStepDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$CreateStepInteractionDto {
   @JsonKey(name: 'type')
-  InteractionTypeDto? get type;
+  InteractionTypeDto get type;
 
   /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -2516,7 +2516,7 @@ abstract mixin class $CreateStepInteractionDtoCopyWith<$Res> {
           $Res Function(CreateStepInteractionDto) _then) =
       _$CreateStepInteractionDtoCopyWithImpl;
   @useResult
-  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto type});
 }
 
 /// @nodoc
@@ -2532,13 +2532,13 @@ class _$CreateStepInteractionDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
+    Object? type = null,
   }) {
     return _then(_self.copyWith(
-      type: freezed == type
+      type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as InteractionTypeDto?,
+              as InteractionTypeDto,
     ));
   }
 }
@@ -2634,7 +2634,7 @@ extension CreateStepInteractionDtoPatterns on CreateStepInteractionDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto type)?
         $default, {
     required TResult orElse(),
   }) {
@@ -2662,7 +2662,7 @@ extension CreateStepInteractionDtoPatterns on CreateStepInteractionDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'type') InteractionTypeDto? type) $default,
+    TResult Function(@JsonKey(name: 'type') InteractionTypeDto type) $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -2685,8 +2685,7 @@ extension CreateStepInteractionDtoPatterns on CreateStepInteractionDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto? type)?
-        $default,
+    TResult? Function(@JsonKey(name: 'type') InteractionTypeDto type)? $default,
   ) {
     final _that = this;
     switch (_that) {
@@ -2701,13 +2700,14 @@ extension CreateStepInteractionDtoPatterns on CreateStepInteractionDto {
 /// @nodoc
 @JsonSerializable()
 class _CreateStepInteractionDto implements CreateStepInteractionDto {
-  _CreateStepInteractionDto({@JsonKey(name: 'type') this.type});
+  _CreateStepInteractionDto(
+      {@JsonKey(name: 'type') this.type = InteractionTypeDto.heart});
   factory _CreateStepInteractionDto.fromJson(Map<String, dynamic> json) =>
       _$CreateStepInteractionDtoFromJson(json);
 
   @override
   @JsonKey(name: 'type')
-  final InteractionTypeDto? type;
+  final InteractionTypeDto type;
 
   /// Create a copy of CreateStepInteractionDto
   /// with the given fields replaced by the non-null parameter values.
@@ -2751,7 +2751,7 @@ abstract mixin class _$CreateStepInteractionDtoCopyWith<$Res>
       __$CreateStepInteractionDtoCopyWithImpl;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'type') InteractionTypeDto? type});
+  $Res call({@JsonKey(name: 'type') InteractionTypeDto type});
 }
 
 /// @nodoc
@@ -2767,13 +2767,13 @@ class __$CreateStepInteractionDtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? type = freezed,
+    Object? type = null,
   }) {
     return _then(_CreateStepInteractionDto(
-      type: freezed == type
+      type: null == type
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
-              as InteractionTypeDto?,
+              as InteractionTypeDto,
     ));
   }
 }
@@ -2785,9 +2785,9 @@ mixin _$EditUserDto {
   @JsonKey(name: 'username')
   String get username;
   @JsonKey(name: 'description')
-  String? get description;
+  String get description;
   @JsonKey(name: 'isPrivate')
-  bool? get isPrivate;
+  bool get isPrivate;
 
   /// Create a copy of EditUserDto
   /// with the given fields replaced by the non-null parameter values.
@@ -2834,8 +2834,8 @@ abstract mixin class $EditUserDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'displayName') String displayName,
       @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'isPrivate') bool? isPrivate});
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'isPrivate') bool isPrivate});
 }
 
 /// @nodoc
@@ -2852,8 +2852,8 @@ class _$EditUserDtoCopyWithImpl<$Res> implements $EditUserDtoCopyWith<$Res> {
   $Res call({
     Object? displayName = null,
     Object? username = null,
-    Object? description = freezed,
-    Object? isPrivate = freezed,
+    Object? description = null,
+    Object? isPrivate = null,
   }) {
     return _then(_self.copyWith(
       displayName: null == displayName
@@ -2864,14 +2864,14 @@ class _$EditUserDtoCopyWithImpl<$Res> implements $EditUserDtoCopyWith<$Res> {
           ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPrivate: freezed == isPrivate
+              as String,
+      isPrivate: null == isPrivate
           ? _self.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 }
@@ -2970,8 +2970,8 @@ extension EditUserDtoPatterns on EditUserDto {
     TResult Function(
             @JsonKey(name: 'displayName') String displayName,
             @JsonKey(name: 'username') String username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'isPrivate') bool? isPrivate)?
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'isPrivate') bool isPrivate)?
         $default, {
     required TResult orElse(),
   }) {
@@ -3003,8 +3003,8 @@ extension EditUserDtoPatterns on EditUserDto {
     TResult Function(
             @JsonKey(name: 'displayName') String displayName,
             @JsonKey(name: 'username') String username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'isPrivate') bool? isPrivate)
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'isPrivate') bool isPrivate)
         $default,
   ) {
     final _that = this;
@@ -3032,8 +3032,8 @@ extension EditUserDtoPatterns on EditUserDto {
     TResult? Function(
             @JsonKey(name: 'displayName') String displayName,
             @JsonKey(name: 'username') String username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'isPrivate') bool? isPrivate)?
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'isPrivate') bool isPrivate)?
         $default,
   ) {
     final _that = this;
@@ -3053,8 +3053,8 @@ class _EditUserDto implements EditUserDto {
   _EditUserDto(
       {@JsonKey(name: 'displayName') required this.displayName,
       @JsonKey(name: 'username') required this.username,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'isPrivate') this.isPrivate});
+      @JsonKey(name: 'description') this.description = '',
+      @JsonKey(name: 'isPrivate') this.isPrivate = false});
   factory _EditUserDto.fromJson(Map<String, dynamic> json) =>
       _$EditUserDtoFromJson(json);
 
@@ -3066,10 +3066,10 @@ class _EditUserDto implements EditUserDto {
   final String username;
   @override
   @JsonKey(name: 'description')
-  final String? description;
+  final String description;
   @override
   @JsonKey(name: 'isPrivate')
-  final bool? isPrivate;
+  final bool isPrivate;
 
   /// Create a copy of EditUserDto
   /// with the given fields replaced by the non-null parameter values.
@@ -3123,8 +3123,8 @@ abstract mixin class _$EditUserDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'displayName') String displayName,
       @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'isPrivate') bool? isPrivate});
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'isPrivate') bool isPrivate});
 }
 
 /// @nodoc
@@ -3141,8 +3141,8 @@ class __$EditUserDtoCopyWithImpl<$Res> implements _$EditUserDtoCopyWith<$Res> {
   $Res call({
     Object? displayName = null,
     Object? username = null,
-    Object? description = freezed,
-    Object? isPrivate = freezed,
+    Object? description = null,
+    Object? isPrivate = null,
   }) {
     return _then(_EditUserDto(
       displayName: null == displayName
@@ -3153,14 +3153,14 @@ class __$EditUserDtoCopyWithImpl<$Res> implements _$EditUserDtoCopyWith<$Res> {
           ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      description: freezed == description
+      description: null == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isPrivate: freezed == isPrivate
+              as String,
+      isPrivate: null == isPrivate
           ? _self.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 }
@@ -4903,21 +4903,21 @@ class __$JourneyDayCalendarDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$JourneyDto {
   @JsonKey(name: 'id')
-  String? get id;
+  String get id;
   @JsonKey(name: 'title')
-  String? get title;
+  String get title;
   @JsonKey(name: 'description')
-  String? get description;
+  String get description;
   @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
+  DateTime get createdDate;
   @JsonKey(name: 'lastUpdated')
-  DateTime? get lastUpdated;
+  DateTime get lastUpdated;
   @JsonKey(name: 'status')
-  String? get status;
+  String get status;
   @JsonKey(name: 'completedDate')
   DateTime? get completedDate;
   @JsonKey(name: 'userId')
-  String? get userId;
+  String get userId;
   @JsonKey(name: 'firstStepId')
   String? get firstStepId;
   @JsonKey(name: 'finalStepId')
@@ -4984,14 +4984,14 @@ abstract mixin class $JourneyDtoCopyWith<$Res> {
       _$JourneyDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'status') String? status,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'status') String status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
-      @JsonKey(name: 'userId') String? userId,
+      @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'firstStepId') String? firstStepId,
       @JsonKey(name: 'finalStepId') String? finalStepId});
 }
@@ -5008,50 +5008,50 @@ class _$JourneyDtoCopyWithImpl<$Res> implements $JourneyDtoCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? status = freezed,
+    Object? id = null,
+    Object? title = null,
+    Object? description = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? status = null,
     Object? completedDate = freezed,
-    Object? userId = freezed,
+    Object? userId = null,
     Object? firstStepId = freezed,
     Object? finalStepId = freezed,
   }) {
     return _then(_self.copyWith(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
+              as String,
+      title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
+              as String,
+      createdDate: null == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
+              as DateTime,
+      lastUpdated: null == lastUpdated
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      status: freezed == status
+              as DateTime,
+      status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       completedDate: freezed == completedDate
           ? _self.completedDate
           : completedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      userId: freezed == userId
+      userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       firstStepId: freezed == firstStepId
           ? _self.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
@@ -5156,14 +5156,14 @@ extension JourneyDtoPatterns on JourneyDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'status') String? status,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'status') String status,
             @JsonKey(name: 'completedDate') DateTime? completedDate,
-            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
             @JsonKey(name: 'finalStepId') String? finalStepId)?
         $default, {
@@ -5204,14 +5204,14 @@ extension JourneyDtoPatterns on JourneyDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'status') String? status,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'status') String status,
             @JsonKey(name: 'completedDate') DateTime? completedDate,
-            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
             @JsonKey(name: 'finalStepId') String? finalStepId)
         $default,
@@ -5248,14 +5248,14 @@ extension JourneyDtoPatterns on JourneyDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'status') String? status,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'status') String status,
             @JsonKey(name: 'completedDate') DateTime? completedDate,
-            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
             @JsonKey(name: 'finalStepId') String? finalStepId)?
         $default,
@@ -5284,14 +5284,14 @@ extension JourneyDtoPatterns on JourneyDto {
 @JsonSerializable()
 class _JourneyDto implements JourneyDto {
   _JourneyDto(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdated') this.lastUpdated,
-      @JsonKey(name: 'status') this.status,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'title') this.title = '',
+      @JsonKey(name: 'description') this.description = '',
+      @JsonKey(name: 'createdDate') required this.createdDate,
+      @JsonKey(name: 'lastUpdated') required this.lastUpdated,
+      @JsonKey(name: 'status') this.status = 'Open',
       @JsonKey(name: 'completedDate') this.completedDate,
-      @JsonKey(name: 'userId') this.userId,
+      @JsonKey(name: 'userId') this.userId = '',
       @JsonKey(name: 'firstStepId') this.firstStepId,
       @JsonKey(name: 'finalStepId') this.finalStepId});
   factory _JourneyDto.fromJson(Map<String, dynamic> json) =>
@@ -5299,28 +5299,28 @@ class _JourneyDto implements JourneyDto {
 
   @override
   @JsonKey(name: 'id')
-  final String? id;
+  final String id;
   @override
   @JsonKey(name: 'title')
-  final String? title;
+  final String title;
   @override
   @JsonKey(name: 'description')
-  final String? description;
+  final String description;
   @override
   @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
+  final DateTime createdDate;
   @override
   @JsonKey(name: 'lastUpdated')
-  final DateTime? lastUpdated;
+  final DateTime lastUpdated;
   @override
   @JsonKey(name: 'status')
-  final String? status;
+  final String status;
   @override
   @JsonKey(name: 'completedDate')
   final DateTime? completedDate;
   @override
   @JsonKey(name: 'userId')
-  final String? userId;
+  final String userId;
   @override
   @JsonKey(name: 'firstStepId')
   final String? firstStepId;
@@ -5396,14 +5396,14 @@ abstract mixin class _$JourneyDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'status') String? status,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'status') String status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
-      @JsonKey(name: 'userId') String? userId,
+      @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'firstStepId') String? firstStepId,
       @JsonKey(name: 'finalStepId') String? finalStepId});
 }
@@ -5420,50 +5420,50 @@ class __$JourneyDtoCopyWithImpl<$Res> implements _$JourneyDtoCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? status = freezed,
+    Object? id = null,
+    Object? title = null,
+    Object? description = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? status = null,
     Object? completedDate = freezed,
-    Object? userId = freezed,
+    Object? userId = null,
     Object? firstStepId = freezed,
     Object? finalStepId = freezed,
   }) {
     return _then(_JourneyDto(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: freezed == title
+              as String,
+      title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
+              as String,
+      createdDate: null == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
+              as DateTime,
+      lastUpdated: null == lastUpdated
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      status: freezed == status
+              as DateTime,
+      status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       completedDate: freezed == completedDate
           ? _self.completedDate
           : completedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      userId: freezed == userId
+      userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       firstStepId: freezed == firstStepId
           ? _self.firstStepId
           : firstStepId // ignore: cast_nullable_to_non_nullable
@@ -6878,9 +6878,9 @@ class __$LoginDtoCopyWithImpl<$Res> implements _$LoginDtoCopyWith<$Res> {
 /// @nodoc
 mixin _$LoginResponseDto {
   @JsonKey(name: 'token')
-  String? get token;
+  String get token;
   @JsonKey(name: 'uid')
-  String? get uid;
+  String get uid;
 
   /// Create a copy of LoginResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -6919,8 +6919,7 @@ abstract mixin class $LoginResponseDtoCopyWith<$Res> {
       _$LoginResponseDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'token') String? token,
-      @JsonKey(name: 'uid') String? uid});
+      {@JsonKey(name: 'token') String token, @JsonKey(name: 'uid') String uid});
 }
 
 /// @nodoc
@@ -6936,18 +6935,18 @@ class _$LoginResponseDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = freezed,
-    Object? uid = freezed,
+    Object? token = null,
+    Object? uid = null,
   }) {
     return _then(_self.copyWith(
-      token: freezed == token
+      token: null == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uid: freezed == uid
+              as String,
+      uid: null == uid
           ? _self.uid
           : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -7043,8 +7042,8 @@ extension LoginResponseDtoPatterns on LoginResponseDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'token') String? token,
-            @JsonKey(name: 'uid') String? uid)?
+    TResult Function(@JsonKey(name: 'token') String token,
+            @JsonKey(name: 'uid') String uid)?
         $default, {
     required TResult orElse(),
   }) {
@@ -7072,8 +7071,8 @@ extension LoginResponseDtoPatterns on LoginResponseDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'token') String? token,
-            @JsonKey(name: 'uid') String? uid)
+    TResult Function(@JsonKey(name: 'token') String token,
+            @JsonKey(name: 'uid') String uid)
         $default,
   ) {
     final _that = this;
@@ -7097,8 +7096,8 @@ extension LoginResponseDtoPatterns on LoginResponseDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'token') String? token,
-            @JsonKey(name: 'uid') String? uid)?
+    TResult? Function(@JsonKey(name: 'token') String token,
+            @JsonKey(name: 'uid') String uid)?
         $default,
   ) {
     final _that = this;
@@ -7115,16 +7114,17 @@ extension LoginResponseDtoPatterns on LoginResponseDto {
 @JsonSerializable()
 class _LoginResponseDto implements LoginResponseDto {
   _LoginResponseDto(
-      {@JsonKey(name: 'token') this.token, @JsonKey(name: 'uid') this.uid});
+      {@JsonKey(name: 'token') this.token = '',
+      @JsonKey(name: 'uid') this.uid = ''});
   factory _LoginResponseDto.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseDtoFromJson(json);
 
   @override
   @JsonKey(name: 'token')
-  final String? token;
+  final String token;
   @override
   @JsonKey(name: 'uid')
-  final String? uid;
+  final String uid;
 
   /// Create a copy of LoginResponseDto
   /// with the given fields replaced by the non-null parameter values.
@@ -7169,8 +7169,7 @@ abstract mixin class _$LoginResponseDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'token') String? token,
-      @JsonKey(name: 'uid') String? uid});
+      {@JsonKey(name: 'token') String token, @JsonKey(name: 'uid') String uid});
 }
 
 /// @nodoc
@@ -7186,18 +7185,18 @@ class __$LoginResponseDtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? token = freezed,
-    Object? uid = freezed,
+    Object? token = null,
+    Object? uid = null,
   }) {
     return _then(_LoginResponseDto(
-      token: freezed == token
+      token: null == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
-              as String?,
-      uid: freezed == uid
+              as String,
+      uid: null == uid
           ? _self.uid
           : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -7207,9 +7206,9 @@ mixin _$NotificationDto {
   @JsonKey(name: 'id')
   String? get id;
   @JsonKey(name: 'title')
-  String? get title;
+  String get title;
   @JsonKey(name: 'body')
-  String? get body;
+  String get body;
   @JsonKey(name: 'notificationType')
   NotificationTypeDto? get notificationType;
   @JsonKey(name: 'isRead')
@@ -7287,8 +7286,8 @@ abstract mixin class $NotificationDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -7314,8 +7313,8 @@ class _$NotificationDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = freezed,
-    Object? body = freezed,
+    Object? title = null,
+    Object? body = null,
     Object? notificationType = freezed,
     Object? isRead = freezed,
     Object? createdDate = freezed,
@@ -7329,14 +7328,14 @@ class _$NotificationDtoCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
+      title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      body: freezed == body
+              as String,
+      body: null == body
           ? _self.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       notificationType: freezed == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
@@ -7476,8 +7475,8 @@ extension NotificationDtoPatterns on NotificationDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'body') String? body,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'body') String body,
             @JsonKey(name: 'notificationType')
             NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
@@ -7525,8 +7524,8 @@ extension NotificationDtoPatterns on NotificationDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'body') String? body,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'body') String body,
             @JsonKey(name: 'notificationType')
             NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
@@ -7570,8 +7569,8 @@ extension NotificationDtoPatterns on NotificationDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'body') String? body,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'body') String body,
             @JsonKey(name: 'notificationType')
             NotificationTypeDto? notificationType,
             @JsonKey(name: 'isRead') bool? isRead,
@@ -7607,8 +7606,8 @@ extension NotificationDtoPatterns on NotificationDto {
 class _NotificationDto implements NotificationDto {
   _NotificationDto(
       {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'body') this.body,
+      @JsonKey(name: 'title') this.title = '',
+      @JsonKey(name: 'body') this.body = '',
       @JsonKey(name: 'notificationType') this.notificationType,
       @JsonKey(name: 'isRead') this.isRead,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -7625,10 +7624,10 @@ class _NotificationDto implements NotificationDto {
   final String? id;
   @override
   @JsonKey(name: 'title')
-  final String? title;
+  final String title;
   @override
   @JsonKey(name: 'body')
-  final String? body;
+  final String body;
   @override
   @JsonKey(name: 'notificationType')
   final NotificationTypeDto? notificationType;
@@ -7727,8 +7726,8 @@ abstract mixin class _$NotificationDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'body') String body,
       @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -7755,8 +7754,8 @@ class __$NotificationDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = freezed,
-    Object? title = freezed,
-    Object? body = freezed,
+    Object? title = null,
+    Object? body = null,
     Object? notificationType = freezed,
     Object? isRead = freezed,
     Object? createdDate = freezed,
@@ -7770,14 +7769,14 @@ class __$NotificationDtoCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
+      title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      body: freezed == body
+              as String,
+      body: null == body
           ? _self.body
           : body // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       notificationType: freezed == notificationType
           ? _self.notificationType
           : notificationType // ignore: cast_nullable_to_non_nullable
@@ -8291,17 +8290,17 @@ mixin _$ProfileDto {
   @JsonKey(name: 'userDetail')
   UserDetailDto get userDetail;
   @JsonKey(name: 'badgesCount')
-  int? get badgesCount;
+  int get badgesCount;
   @JsonKey(name: 'badgesUsers')
   List<UserDto>? get badgesUsers;
   @JsonKey(name: 'supportersCount')
-  int? get supportersCount;
+  int get supportersCount;
   @JsonKey(name: 'supportersUsers')
   List<UserDto>? get supportersUsers;
   @JsonKey(name: 'followersCount')
-  int? get followersCount;
+  int get followersCount;
   @JsonKey(name: 'followingsCount')
-  int? get followingsCount;
+  int get followingsCount;
 
   /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
@@ -8360,12 +8359,12 @@ abstract mixin class $ProfileDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
-      @JsonKey(name: 'badgesCount') int? badgesCount,
+      @JsonKey(name: 'badgesCount') int badgesCount,
       @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-      @JsonKey(name: 'supportersCount') int? supportersCount,
+      @JsonKey(name: 'supportersCount') int supportersCount,
       @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
-      @JsonKey(name: 'followersCount') int? followersCount,
-      @JsonKey(name: 'followingsCount') int? followingsCount});
+      @JsonKey(name: 'followersCount') int followersCount,
+      @JsonKey(name: 'followingsCount') int followingsCount});
 
   $UserDetailDtoCopyWith<$Res> get userDetail;
 }
@@ -8383,42 +8382,42 @@ class _$ProfileDtoCopyWithImpl<$Res> implements $ProfileDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? userDetail = null,
-    Object? badgesCount = freezed,
+    Object? badgesCount = null,
     Object? badgesUsers = freezed,
-    Object? supportersCount = freezed,
+    Object? supportersCount = null,
     Object? supportersUsers = freezed,
-    Object? followersCount = freezed,
-    Object? followingsCount = freezed,
+    Object? followersCount = null,
+    Object? followingsCount = null,
   }) {
     return _then(_self.copyWith(
       userDetail: null == userDetail
           ? _self.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
               as UserDetailDto,
-      badgesCount: freezed == badgesCount
+      badgesCount: null == badgesCount
           ? _self.badgesCount
           : badgesCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       badgesUsers: freezed == badgesUsers
           ? _self.badgesUsers
           : badgesUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      supportersCount: freezed == supportersCount
+      supportersCount: null == supportersCount
           ? _self.supportersCount
           : supportersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       supportersUsers: freezed == supportersUsers
           ? _self.supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      followersCount: freezed == followersCount
+      followersCount: null == followersCount
           ? _self.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      followingsCount: freezed == followingsCount
+              as int,
+      followingsCount: null == followingsCount
           ? _self.followingsCount
           : followingsCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 
@@ -8526,12 +8525,12 @@ extension ProfileDtoPatterns on ProfileDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'userDetail') UserDetailDto userDetail,
-            @JsonKey(name: 'badgesCount') int? badgesCount,
+            @JsonKey(name: 'badgesCount') int badgesCount,
             @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-            @JsonKey(name: 'supportersCount') int? supportersCount,
+            @JsonKey(name: 'supportersCount') int supportersCount,
             @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
-            @JsonKey(name: 'followersCount') int? followersCount,
-            @JsonKey(name: 'followingsCount') int? followingsCount)?
+            @JsonKey(name: 'followersCount') int followersCount,
+            @JsonKey(name: 'followingsCount') int followingsCount)?
         $default, {
     required TResult orElse(),
   }) {
@@ -8568,12 +8567,12 @@ extension ProfileDtoPatterns on ProfileDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'userDetail') UserDetailDto userDetail,
-            @JsonKey(name: 'badgesCount') int? badgesCount,
+            @JsonKey(name: 'badgesCount') int badgesCount,
             @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-            @JsonKey(name: 'supportersCount') int? supportersCount,
+            @JsonKey(name: 'supportersCount') int supportersCount,
             @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
-            @JsonKey(name: 'followersCount') int? followersCount,
-            @JsonKey(name: 'followingsCount') int? followingsCount)
+            @JsonKey(name: 'followersCount') int followersCount,
+            @JsonKey(name: 'followingsCount') int followingsCount)
         $default,
   ) {
     final _that = this;
@@ -8606,12 +8605,12 @@ extension ProfileDtoPatterns on ProfileDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'userDetail') UserDetailDto userDetail,
-            @JsonKey(name: 'badgesCount') int? badgesCount,
+            @JsonKey(name: 'badgesCount') int badgesCount,
             @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-            @JsonKey(name: 'supportersCount') int? supportersCount,
+            @JsonKey(name: 'supportersCount') int supportersCount,
             @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
-            @JsonKey(name: 'followersCount') int? followersCount,
-            @JsonKey(name: 'followingsCount') int? followingsCount)?
+            @JsonKey(name: 'followersCount') int followersCount,
+            @JsonKey(name: 'followingsCount') int followingsCount)?
         $default,
   ) {
     final _that = this;
@@ -8636,12 +8635,12 @@ extension ProfileDtoPatterns on ProfileDto {
 class _ProfileDto implements ProfileDto {
   _ProfileDto(
       {@JsonKey(name: 'userDetail') required this.userDetail,
-      @JsonKey(name: 'badgesCount') this.badgesCount,
+      @JsonKey(name: 'badgesCount') this.badgesCount = 0,
       @JsonKey(name: 'badgesUsers') final List<UserDto>? badgesUsers,
-      @JsonKey(name: 'supportersCount') this.supportersCount,
+      @JsonKey(name: 'supportersCount') this.supportersCount = 0,
       @JsonKey(name: 'supportersUsers') final List<UserDto>? supportersUsers,
-      @JsonKey(name: 'followersCount') this.followersCount,
-      @JsonKey(name: 'followingsCount') this.followingsCount})
+      @JsonKey(name: 'followersCount') this.followersCount = 0,
+      @JsonKey(name: 'followingsCount') this.followingsCount = 0})
       : _badgesUsers = badgesUsers,
         _supportersUsers = supportersUsers;
   factory _ProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -8652,7 +8651,7 @@ class _ProfileDto implements ProfileDto {
   final UserDetailDto userDetail;
   @override
   @JsonKey(name: 'badgesCount')
-  final int? badgesCount;
+  final int badgesCount;
   final List<UserDto>? _badgesUsers;
   @override
   @JsonKey(name: 'badgesUsers')
@@ -8666,7 +8665,7 @@ class _ProfileDto implements ProfileDto {
 
   @override
   @JsonKey(name: 'supportersCount')
-  final int? supportersCount;
+  final int supportersCount;
   final List<UserDto>? _supportersUsers;
   @override
   @JsonKey(name: 'supportersUsers')
@@ -8680,10 +8679,10 @@ class _ProfileDto implements ProfileDto {
 
   @override
   @JsonKey(name: 'followersCount')
-  final int? followersCount;
+  final int followersCount;
   @override
   @JsonKey(name: 'followingsCount')
-  final int? followingsCount;
+  final int followingsCount;
 
   /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
@@ -8749,12 +8748,12 @@ abstract mixin class _$ProfileDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
-      @JsonKey(name: 'badgesCount') int? badgesCount,
+      @JsonKey(name: 'badgesCount') int badgesCount,
       @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-      @JsonKey(name: 'supportersCount') int? supportersCount,
+      @JsonKey(name: 'supportersCount') int supportersCount,
       @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
-      @JsonKey(name: 'followersCount') int? followersCount,
-      @JsonKey(name: 'followingsCount') int? followingsCount});
+      @JsonKey(name: 'followersCount') int followersCount,
+      @JsonKey(name: 'followingsCount') int followingsCount});
 
   @override
   $UserDetailDtoCopyWith<$Res> get userDetail;
@@ -8773,42 +8772,42 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? userDetail = null,
-    Object? badgesCount = freezed,
+    Object? badgesCount = null,
     Object? badgesUsers = freezed,
-    Object? supportersCount = freezed,
+    Object? supportersCount = null,
     Object? supportersUsers = freezed,
-    Object? followersCount = freezed,
-    Object? followingsCount = freezed,
+    Object? followersCount = null,
+    Object? followingsCount = null,
   }) {
     return _then(_ProfileDto(
       userDetail: null == userDetail
           ? _self.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
               as UserDetailDto,
-      badgesCount: freezed == badgesCount
+      badgesCount: null == badgesCount
           ? _self.badgesCount
           : badgesCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       badgesUsers: freezed == badgesUsers
           ? _self._badgesUsers
           : badgesUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      supportersCount: freezed == supportersCount
+      supportersCount: null == supportersCount
           ? _self.supportersCount
           : supportersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       supportersUsers: freezed == supportersUsers
           ? _self._supportersUsers
           : supportersUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      followersCount: freezed == followersCount
+      followersCount: null == followersCount
           ? _self.followersCount
           : followersCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      followingsCount: freezed == followingsCount
+              as int,
+      followingsCount: null == followingsCount
           ? _self.followingsCount
           : followingsCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 
@@ -8826,27 +8825,27 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
 /// @nodoc
 mixin _$ReplyDto {
   @JsonKey(name: 'id')
-  String? get id;
+  String get id;
   @JsonKey(name: 'content')
-  String? get content;
+  String get content;
   @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
+  DateTime get createdDate;
   @JsonKey(name: 'lastUpdated')
-  DateTime? get lastUpdated;
+  DateTime get lastUpdated;
   @JsonKey(name: 'deletedDate')
   DateTime? get deletedDate;
   @JsonKey(name: 'user')
-  UserDto? get user;
+  UserDto get user;
   @JsonKey(name: 'parentCommentId')
-  String? get parentCommentId;
+  String get parentCommentId;
   @JsonKey(name: 'responseToUser')
   UserDto? get responseToUser;
   @JsonKey(name: 'responseToCommentId')
   String? get responseToCommentId;
   @JsonKey(name: 'heartCount')
-  int? get heartCount;
+  int get heartCount;
   @JsonKey(name: 'heartedByUser')
-  bool? get heartedByUser;
+  bool get heartedByUser;
 
   /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
@@ -8912,19 +8911,19 @@ abstract mixin class $ReplyDtoCopyWith<$Res> {
       _$ReplyDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-      @JsonKey(name: 'user') UserDto? user,
-      @JsonKey(name: 'parentCommentId') String? parentCommentId,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'parentCommentId') String parentCommentId,
       @JsonKey(name: 'responseToUser') UserDto? responseToUser,
       @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
-      @JsonKey(name: 'heartCount') int? heartCount,
-      @JsonKey(name: 'heartedByUser') bool? heartedByUser});
+      @JsonKey(name: 'heartCount') int heartCount,
+      @JsonKey(name: 'heartedByUser') bool heartedByUser});
 
-  $UserDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res> get user;
   $UserDtoCopyWith<$Res>? get responseToUser;
 }
 
@@ -8940,47 +8939,47 @@ class _$ReplyDtoCopyWithImpl<$Res> implements $ReplyDtoCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? content = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
+    Object? id = null,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
     Object? deletedDate = freezed,
-    Object? user = freezed,
-    Object? parentCommentId = freezed,
+    Object? user = null,
+    Object? parentCommentId = null,
     Object? responseToUser = freezed,
     Object? responseToCommentId = freezed,
-    Object? heartCount = freezed,
-    Object? heartedByUser = freezed,
+    Object? heartCount = null,
+    Object? heartedByUser = null,
   }) {
     return _then(_self.copyWith(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
+              as String,
+      content: null == content
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
+              as String,
+      createdDate: null == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
+              as DateTime,
+      lastUpdated: null == lastUpdated
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       deletedDate: freezed == deletedDate
           ? _self.deletedDate
           : deletedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      user: freezed == user
+      user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDto?,
-      parentCommentId: freezed == parentCommentId
+              as UserDto,
+      parentCommentId: null == parentCommentId
           ? _self.parentCommentId
           : parentCommentId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       responseToUser: freezed == responseToUser
           ? _self.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
@@ -8989,14 +8988,14 @@ class _$ReplyDtoCopyWithImpl<$Res> implements $ReplyDtoCopyWith<$Res> {
           ? _self.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
               as String?,
-      heartCount: freezed == heartCount
+      heartCount: null == heartCount
           ? _self.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heartedByUser: freezed == heartedByUser
+              as int,
+      heartedByUser: null == heartedByUser
           ? _self.heartedByUser
           : heartedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 
@@ -9004,12 +9003,8 @@ class _$ReplyDtoCopyWithImpl<$Res> implements $ReplyDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoCopyWith<$Res>? get user {
-    if (_self.user == null) {
-      return null;
-    }
-
-    return $UserDtoCopyWith<$Res>(_self.user!, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
       return _then(_self.copyWith(user: value));
     });
   }
@@ -9121,17 +9116,17 @@ extension ReplyDtoPatterns on ReplyDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-            @JsonKey(name: 'user') UserDto? user,
-            @JsonKey(name: 'parentCommentId') String? parentCommentId,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'parentCommentId') String parentCommentId,
             @JsonKey(name: 'responseToUser') UserDto? responseToUser,
             @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
-            @JsonKey(name: 'heartCount') int? heartCount,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser)?
+            @JsonKey(name: 'heartCount') int heartCount,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser)?
         $default, {
     required TResult orElse(),
   }) {
@@ -9171,17 +9166,17 @@ extension ReplyDtoPatterns on ReplyDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-            @JsonKey(name: 'user') UserDto? user,
-            @JsonKey(name: 'parentCommentId') String? parentCommentId,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'parentCommentId') String parentCommentId,
             @JsonKey(name: 'responseToUser') UserDto? responseToUser,
             @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
-            @JsonKey(name: 'heartCount') int? heartCount,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser)
+            @JsonKey(name: 'heartCount') int heartCount,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser)
         $default,
   ) {
     final _that = this;
@@ -9217,17 +9212,17 @@ extension ReplyDtoPatterns on ReplyDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-            @JsonKey(name: 'user') UserDto? user,
-            @JsonKey(name: 'parentCommentId') String? parentCommentId,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'parentCommentId') String parentCommentId,
             @JsonKey(name: 'responseToUser') UserDto? responseToUser,
             @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
-            @JsonKey(name: 'heartCount') int? heartCount,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser)?
+            @JsonKey(name: 'heartCount') int heartCount,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser)?
         $default,
   ) {
     final _that = this;
@@ -9255,41 +9250,41 @@ extension ReplyDtoPatterns on ReplyDto {
 @JsonSerializable()
 class _ReplyDto implements ReplyDto {
   _ReplyDto(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'content') this.content,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdated') this.lastUpdated,
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'content') this.content = '',
+      @JsonKey(name: 'createdDate') required this.createdDate,
+      @JsonKey(name: 'lastUpdated') required this.lastUpdated,
       @JsonKey(name: 'deletedDate') this.deletedDate,
-      @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'parentCommentId') this.parentCommentId,
+      @JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'parentCommentId') required this.parentCommentId,
       @JsonKey(name: 'responseToUser') this.responseToUser,
       @JsonKey(name: 'responseToCommentId') this.responseToCommentId,
-      @JsonKey(name: 'heartCount') this.heartCount,
-      @JsonKey(name: 'heartedByUser') this.heartedByUser});
+      @JsonKey(name: 'heartCount') this.heartCount = 0,
+      @JsonKey(name: 'heartedByUser') this.heartedByUser = false});
   factory _ReplyDto.fromJson(Map<String, dynamic> json) =>
       _$ReplyDtoFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  final String? id;
+  final String id;
   @override
   @JsonKey(name: 'content')
-  final String? content;
+  final String content;
   @override
   @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
+  final DateTime createdDate;
   @override
   @JsonKey(name: 'lastUpdated')
-  final DateTime? lastUpdated;
+  final DateTime lastUpdated;
   @override
   @JsonKey(name: 'deletedDate')
   final DateTime? deletedDate;
   @override
   @JsonKey(name: 'user')
-  final UserDto? user;
+  final UserDto user;
   @override
   @JsonKey(name: 'parentCommentId')
-  final String? parentCommentId;
+  final String parentCommentId;
   @override
   @JsonKey(name: 'responseToUser')
   final UserDto? responseToUser;
@@ -9298,10 +9293,10 @@ class _ReplyDto implements ReplyDto {
   final String? responseToCommentId;
   @override
   @JsonKey(name: 'heartCount')
-  final int? heartCount;
+  final int heartCount;
   @override
   @JsonKey(name: 'heartedByUser')
-  final bool? heartedByUser;
+  final bool heartedByUser;
 
   /// Create a copy of ReplyDto
   /// with the given fields replaced by the non-null parameter values.
@@ -9374,20 +9369,20 @@ abstract mixin class _$ReplyDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
       @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-      @JsonKey(name: 'user') UserDto? user,
-      @JsonKey(name: 'parentCommentId') String? parentCommentId,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'parentCommentId') String parentCommentId,
       @JsonKey(name: 'responseToUser') UserDto? responseToUser,
       @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
-      @JsonKey(name: 'heartCount') int? heartCount,
-      @JsonKey(name: 'heartedByUser') bool? heartedByUser});
+      @JsonKey(name: 'heartCount') int heartCount,
+      @JsonKey(name: 'heartedByUser') bool heartedByUser});
 
   @override
-  $UserDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res> get user;
   @override
   $UserDtoCopyWith<$Res>? get responseToUser;
 }
@@ -9404,47 +9399,47 @@ class __$ReplyDtoCopyWithImpl<$Res> implements _$ReplyDtoCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? id = freezed,
-    Object? content = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
+    Object? id = null,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
     Object? deletedDate = freezed,
-    Object? user = freezed,
-    Object? parentCommentId = freezed,
+    Object? user = null,
+    Object? parentCommentId = null,
     Object? responseToUser = freezed,
     Object? responseToCommentId = freezed,
-    Object? heartCount = freezed,
-    Object? heartedByUser = freezed,
+    Object? heartCount = null,
+    Object? heartedByUser = null,
   }) {
     return _then(_ReplyDto(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
+              as String,
+      content: null == content
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
+              as String,
+      createdDate: null == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
+              as DateTime,
+      lastUpdated: null == lastUpdated
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       deletedDate: freezed == deletedDate
           ? _self.deletedDate
           : deletedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      user: freezed == user
+      user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDto?,
-      parentCommentId: freezed == parentCommentId
+              as UserDto,
+      parentCommentId: null == parentCommentId
           ? _self.parentCommentId
           : parentCommentId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       responseToUser: freezed == responseToUser
           ? _self.responseToUser
           : responseToUser // ignore: cast_nullable_to_non_nullable
@@ -9453,14 +9448,14 @@ class __$ReplyDtoCopyWithImpl<$Res> implements _$ReplyDtoCopyWith<$Res> {
           ? _self.responseToCommentId
           : responseToCommentId // ignore: cast_nullable_to_non_nullable
               as String?,
-      heartCount: freezed == heartCount
+      heartCount: null == heartCount
           ? _self.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heartedByUser: freezed == heartedByUser
+              as int,
+      heartedByUser: null == heartedByUser
           ? _self.heartedByUser
           : heartedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
     ));
   }
 
@@ -9468,12 +9463,8 @@ class __$ReplyDtoCopyWithImpl<$Res> implements _$ReplyDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoCopyWith<$Res>? get user {
-    if (_self.user == null) {
-      return null;
-    }
-
-    return $UserDtoCopyWith<$Res>(_self.user!, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
       return _then(_self.copyWith(user: value));
     });
   }
@@ -9858,7 +9849,7 @@ mixin _$ReportDto {
   @JsonKey(name: 'entityType')
   String get entityType;
   @JsonKey(name: 'entityId')
-  String? get entityId;
+  String get entityId;
   @JsonKey(name: 'reporter')
   UserDto? get reporter;
   @JsonKey(name: 'reason')
@@ -9912,7 +9903,7 @@ abstract mixin class $ReportDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
-      @JsonKey(name: 'entityId') String? entityId,
+      @JsonKey(name: 'entityId') String entityId,
       @JsonKey(name: 'reporter') UserDto? reporter,
       @JsonKey(name: 'reason') String reason,
       @JsonKey(name: 'createdDate') DateTime? createdDate});
@@ -9934,7 +9925,7 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? entityType = null,
-    Object? entityId = freezed,
+    Object? entityId = null,
     Object? reporter = freezed,
     Object? reason = null,
     Object? createdDate = freezed,
@@ -9948,10 +9939,10 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
           ? _self.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
               as String,
-      entityId: freezed == entityId
+      entityId: null == entityId
           ? _self.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       reporter: freezed == reporter
           ? _self.reporter
           : reporter // ignore: cast_nullable_to_non_nullable
@@ -10076,7 +10067,7 @@ extension ReportDtoPatterns on ReportDto {
     TResult Function(
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'entityType') String entityType,
-            @JsonKey(name: 'entityId') String? entityId,
+            @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
             @JsonKey(name: 'createdDate') DateTime? createdDate)?
@@ -10111,7 +10102,7 @@ extension ReportDtoPatterns on ReportDto {
     TResult Function(
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'entityType') String entityType,
-            @JsonKey(name: 'entityId') String? entityId,
+            @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
             @JsonKey(name: 'createdDate') DateTime? createdDate)
@@ -10142,7 +10133,7 @@ extension ReportDtoPatterns on ReportDto {
     TResult? Function(
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'entityType') String entityType,
-            @JsonKey(name: 'entityId') String? entityId,
+            @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
             @JsonKey(name: 'createdDate') DateTime? createdDate)?
@@ -10165,7 +10156,7 @@ class _ReportDto implements ReportDto {
   _ReportDto(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'entityType') required this.entityType,
-      @JsonKey(name: 'entityId') this.entityId,
+      @JsonKey(name: 'entityId') this.entityId = '',
       @JsonKey(name: 'reporter') this.reporter,
       @JsonKey(name: 'reason') required this.reason,
       @JsonKey(name: 'createdDate') this.createdDate});
@@ -10180,7 +10171,7 @@ class _ReportDto implements ReportDto {
   final String entityType;
   @override
   @JsonKey(name: 'entityId')
-  final String? entityId;
+  final String entityId;
   @override
   @JsonKey(name: 'reporter')
   final UserDto? reporter;
@@ -10245,7 +10236,7 @@ abstract mixin class _$ReportDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'entityType') String entityType,
-      @JsonKey(name: 'entityId') String? entityId,
+      @JsonKey(name: 'entityId') String entityId,
       @JsonKey(name: 'reporter') UserDto? reporter,
       @JsonKey(name: 'reason') String reason,
       @JsonKey(name: 'createdDate') DateTime? createdDate});
@@ -10268,7 +10259,7 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? entityType = null,
-    Object? entityId = freezed,
+    Object? entityId = null,
     Object? reporter = freezed,
     Object? reason = null,
     Object? createdDate = freezed,
@@ -10282,10 +10273,10 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
           ? _self.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
               as String,
-      entityId: freezed == entityId
+      entityId: null == entityId
           ? _self.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       reporter: freezed == reporter
           ? _self.reporter
           : reporter // ignore: cast_nullable_to_non_nullable
@@ -10333,7 +10324,7 @@ mixin _$SendNotificationDto {
   @JsonKey(name: 'data')
   Map<String, String>? get data;
   @JsonKey(name: 'priority')
-  int? get priority;
+  int get priority;
 
   /// Create a copy of SendNotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -10399,7 +10390,7 @@ abstract mixin class $SendNotificationDtoCopyWith<$Res> {
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
       @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int? priority});
+      @JsonKey(name: 'priority') int priority});
 }
 
 /// @nodoc
@@ -10422,7 +10413,7 @@ class _$SendNotificationDtoCopyWithImpl<$Res>
     Object? relatedEntityId = freezed,
     Object? scheduledFor = freezed,
     Object? data = freezed,
-    Object? priority = freezed,
+    Object? priority = null,
   }) {
     return _then(_self.copyWith(
       title: null == title
@@ -10453,10 +10444,10 @@ class _$SendNotificationDtoCopyWithImpl<$Res>
           ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      priority: freezed == priority
+      priority: null == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -10561,7 +10552,7 @@ extension SendNotificationDtoPatterns on SendNotificationDto {
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
             @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int? priority)?
+            @JsonKey(name: 'priority') int priority)?
         $default, {
     required TResult orElse(),
   }) {
@@ -10606,7 +10597,7 @@ extension SendNotificationDtoPatterns on SendNotificationDto {
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
             @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int? priority)
+            @JsonKey(name: 'priority') int priority)
         $default,
   ) {
     final _that = this;
@@ -10647,7 +10638,7 @@ extension SendNotificationDtoPatterns on SendNotificationDto {
             @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
             @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
             @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int? priority)?
+            @JsonKey(name: 'priority') int priority)?
         $default,
   ) {
     final _that = this;
@@ -10679,7 +10670,7 @@ class _SendNotificationDto implements SendNotificationDto {
       @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
       @JsonKey(name: 'scheduledFor') this.scheduledFor,
       @JsonKey(name: 'data') final Map<String, String>? data,
-      @JsonKey(name: 'priority') this.priority})
+      @JsonKey(name: 'priority') this.priority = 0})
       : _data = data;
   factory _SendNotificationDto.fromJson(Map<String, dynamic> json) =>
       _$SendNotificationDtoFromJson(json);
@@ -10715,7 +10706,7 @@ class _SendNotificationDto implements SendNotificationDto {
 
   @override
   @JsonKey(name: 'priority')
-  final int? priority;
+  final int priority;
 
   /// Create a copy of SendNotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -10788,7 +10779,7 @@ abstract mixin class _$SendNotificationDtoCopyWith<$Res>
       @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
       @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
       @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int? priority});
+      @JsonKey(name: 'priority') int priority});
 }
 
 /// @nodoc
@@ -10811,7 +10802,7 @@ class __$SendNotificationDtoCopyWithImpl<$Res>
     Object? relatedEntityId = freezed,
     Object? scheduledFor = freezed,
     Object? data = freezed,
-    Object? priority = freezed,
+    Object? priority = null,
   }) {
     return _then(_SendNotificationDto(
       title: null == title
@@ -10842,10 +10833,10 @@ class __$SendNotificationDtoCopyWithImpl<$Res>
           ? _self._data
           : data // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
-      priority: freezed == priority
+      priority: null == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -10853,25 +10844,25 @@ class __$SendNotificationDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$StepCommentDto {
   @JsonKey(name: 'id')
-  String? get id;
+  String get id;
   @JsonKey(name: 'content')
-  String? get content;
-  @JsonKey(name: 'createdAt')
-  DateTime? get createdAt;
-  @JsonKey(name: 'updatedAt')
-  DateTime? get updatedAt;
-  @JsonKey(name: 'deletedAt')
-  DateTime? get deletedAt;
+  String get content;
+  @JsonKey(name: 'createdDate')
+  DateTime get createdDate;
+  @JsonKey(name: 'lastUpdated')
+  DateTime get lastUpdated;
+  @JsonKey(name: 'deletedDate')
+  DateTime? get deletedDate;
   @JsonKey(name: 'user')
-  UserDto? get user;
+  UserDto get user;
   @JsonKey(name: 'stepId')
-  String? get stepId;
+  String get stepId;
   @JsonKey(name: 'heartCount')
-  int? get heartCount;
+  int get heartCount;
   @JsonKey(name: 'heartedByUser')
-  bool? get heartedByUser;
+  bool get heartedByUser;
   @JsonKey(name: 'replyCount')
-  int? get replyCount;
+  int get replyCount;
 
   /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
@@ -10891,12 +10882,12 @@ mixin _$StepCommentDto {
             other is StepCommentDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdated, lastUpdated) ||
+                other.lastUpdated == lastUpdated) &&
+            (identical(other.deletedDate, deletedDate) ||
+                other.deletedDate == deletedDate) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.stepId, stepId) || other.stepId == stepId) &&
             (identical(other.heartCount, heartCount) ||
@@ -10913,9 +10904,9 @@ mixin _$StepCommentDto {
       runtimeType,
       id,
       content,
-      createdAt,
-      updatedAt,
-      deletedAt,
+      createdDate,
+      lastUpdated,
+      deletedDate,
       user,
       stepId,
       heartCount,
@@ -10924,7 +10915,7 @@ mixin _$StepCommentDto {
 
   @override
   String toString() {
-    return 'StepCommentDto(id: $id, content: $content, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
+    return 'StepCommentDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
   }
 }
 
@@ -10935,18 +10926,18 @@ abstract mixin class $StepCommentDtoCopyWith<$Res> {
       _$StepCommentDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdAt') DateTime? createdAt,
-      @JsonKey(name: 'updatedAt') DateTime? updatedAt,
-      @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-      @JsonKey(name: 'user') UserDto? user,
-      @JsonKey(name: 'stepId') String? stepId,
-      @JsonKey(name: 'heartCount') int? heartCount,
-      @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-      @JsonKey(name: 'replyCount') int? replyCount});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'deletedDate') DateTime? deletedDate,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'stepId') String stepId,
+      @JsonKey(name: 'heartCount') int heartCount,
+      @JsonKey(name: 'heartedByUser') bool heartedByUser,
+      @JsonKey(name: 'replyCount') int replyCount});
 
-  $UserDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -10962,58 +10953,58 @@ class _$StepCommentDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? content = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? deletedAt = freezed,
-    Object? user = freezed,
-    Object? stepId = freezed,
-    Object? heartCount = freezed,
-    Object? heartedByUser = freezed,
-    Object? replyCount = freezed,
+    Object? id = null,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? deletedDate = freezed,
+    Object? user = null,
+    Object? stepId = null,
+    Object? heartCount = null,
+    Object? heartedByUser = null,
+    Object? replyCount = null,
   }) {
     return _then(_self.copyWith(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
+              as String,
+      content: null == content
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdDate: null == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastUpdated: null == lastUpdated
+          ? _self.lastUpdated
+          : lastUpdated // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      deletedDate: freezed == deletedDate
+          ? _self.deletedDate
+          : deletedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      deletedAt: freezed == deletedAt
-          ? _self.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      user: freezed == user
+      user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDto?,
-      stepId: freezed == stepId
+              as UserDto,
+      stepId: null == stepId
           ? _self.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      heartCount: freezed == heartCount
+              as String,
+      heartCount: null == heartCount
           ? _self.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heartedByUser: freezed == heartedByUser
+              as int,
+      heartedByUser: null == heartedByUser
           ? _self.heartedByUser
           : heartedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      replyCount: freezed == replyCount
+              as bool,
+      replyCount: null == replyCount
           ? _self.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 
@@ -11021,12 +11012,8 @@ class _$StepCommentDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoCopyWith<$Res>? get user {
-    if (_self.user == null) {
-      return null;
-    }
-
-    return $UserDtoCopyWith<$Res>(_self.user!, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
       return _then(_self.copyWith(user: value));
     });
   }
@@ -11124,16 +11111,16 @@ extension StepCommentDtoPatterns on StepCommentDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdAt') DateTime? createdAt,
-            @JsonKey(name: 'updatedAt') DateTime? updatedAt,
-            @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-            @JsonKey(name: 'user') UserDto? user,
-            @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'heartCount') int? heartCount,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-            @JsonKey(name: 'replyCount') int? replyCount)?
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'deletedDate') DateTime? deletedDate,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'stepId') String stepId,
+            @JsonKey(name: 'heartCount') int heartCount,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser,
+            @JsonKey(name: 'replyCount') int replyCount)?
         $default, {
     required TResult orElse(),
   }) {
@@ -11143,9 +11130,9 @@ extension StepCommentDtoPatterns on StepCommentDto {
         return $default(
             _that.id,
             _that.content,
-            _that.createdAt,
-            _that.updatedAt,
-            _that.deletedAt,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.deletedDate,
             _that.user,
             _that.stepId,
             _that.heartCount,
@@ -11172,16 +11159,16 @@ extension StepCommentDtoPatterns on StepCommentDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdAt') DateTime? createdAt,
-            @JsonKey(name: 'updatedAt') DateTime? updatedAt,
-            @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-            @JsonKey(name: 'user') UserDto? user,
-            @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'heartCount') int? heartCount,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-            @JsonKey(name: 'replyCount') int? replyCount)
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'deletedDate') DateTime? deletedDate,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'stepId') String stepId,
+            @JsonKey(name: 'heartCount') int heartCount,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser,
+            @JsonKey(name: 'replyCount') int replyCount)
         $default,
   ) {
     final _that = this;
@@ -11190,9 +11177,9 @@ extension StepCommentDtoPatterns on StepCommentDto {
         return $default(
             _that.id,
             _that.content,
-            _that.createdAt,
-            _that.updatedAt,
-            _that.deletedAt,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.deletedDate,
             _that.user,
             _that.stepId,
             _that.heartCount,
@@ -11216,16 +11203,16 @@ extension StepCommentDtoPatterns on StepCommentDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdAt') DateTime? createdAt,
-            @JsonKey(name: 'updatedAt') DateTime? updatedAt,
-            @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-            @JsonKey(name: 'user') UserDto? user,
-            @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'heartCount') int? heartCount,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-            @JsonKey(name: 'replyCount') int? replyCount)?
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'deletedDate') DateTime? deletedDate,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'stepId') String stepId,
+            @JsonKey(name: 'heartCount') int heartCount,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser,
+            @JsonKey(name: 'replyCount') int replyCount)?
         $default,
   ) {
     final _that = this;
@@ -11234,9 +11221,9 @@ extension StepCommentDtoPatterns on StepCommentDto {
         return $default(
             _that.id,
             _that.content,
-            _that.createdAt,
-            _that.updatedAt,
-            _that.deletedAt,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.deletedDate,
             _that.user,
             _that.stepId,
             _that.heartCount,
@@ -11252,49 +11239,49 @@ extension StepCommentDtoPatterns on StepCommentDto {
 @JsonSerializable()
 class _StepCommentDto implements StepCommentDto {
   _StepCommentDto(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'content') this.content,
-      @JsonKey(name: 'createdAt') this.createdAt,
-      @JsonKey(name: 'updatedAt') this.updatedAt,
-      @JsonKey(name: 'deletedAt') this.deletedAt,
-      @JsonKey(name: 'user') this.user,
-      @JsonKey(name: 'stepId') this.stepId,
-      @JsonKey(name: 'heartCount') this.heartCount,
-      @JsonKey(name: 'heartedByUser') this.heartedByUser,
-      @JsonKey(name: 'replyCount') this.replyCount});
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'content') this.content = '',
+      @JsonKey(name: 'createdDate') required this.createdDate,
+      @JsonKey(name: 'lastUpdated') required this.lastUpdated,
+      @JsonKey(name: 'deletedDate') this.deletedDate,
+      @JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'stepId') required this.stepId,
+      @JsonKey(name: 'heartCount') this.heartCount = 0,
+      @JsonKey(name: 'heartedByUser') this.heartedByUser = false,
+      @JsonKey(name: 'replyCount') this.replyCount = 0});
   factory _StepCommentDto.fromJson(Map<String, dynamic> json) =>
       _$StepCommentDtoFromJson(json);
 
   @override
   @JsonKey(name: 'id')
-  final String? id;
+  final String id;
   @override
   @JsonKey(name: 'content')
-  final String? content;
+  final String content;
   @override
-  @JsonKey(name: 'createdAt')
-  final DateTime? createdAt;
+  @JsonKey(name: 'createdDate')
+  final DateTime createdDate;
   @override
-  @JsonKey(name: 'updatedAt')
-  final DateTime? updatedAt;
+  @JsonKey(name: 'lastUpdated')
+  final DateTime lastUpdated;
   @override
-  @JsonKey(name: 'deletedAt')
-  final DateTime? deletedAt;
+  @JsonKey(name: 'deletedDate')
+  final DateTime? deletedDate;
   @override
   @JsonKey(name: 'user')
-  final UserDto? user;
+  final UserDto user;
   @override
   @JsonKey(name: 'stepId')
-  final String? stepId;
+  final String stepId;
   @override
   @JsonKey(name: 'heartCount')
-  final int? heartCount;
+  final int heartCount;
   @override
   @JsonKey(name: 'heartedByUser')
-  final bool? heartedByUser;
+  final bool heartedByUser;
   @override
   @JsonKey(name: 'replyCount')
-  final int? replyCount;
+  final int replyCount;
 
   /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
@@ -11318,12 +11305,12 @@ class _StepCommentDto implements StepCommentDto {
             other is _StepCommentDto &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt) &&
-            (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdated, lastUpdated) ||
+                other.lastUpdated == lastUpdated) &&
+            (identical(other.deletedDate, deletedDate) ||
+                other.deletedDate == deletedDate) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.stepId, stepId) || other.stepId == stepId) &&
             (identical(other.heartCount, heartCount) ||
@@ -11340,9 +11327,9 @@ class _StepCommentDto implements StepCommentDto {
       runtimeType,
       id,
       content,
-      createdAt,
-      updatedAt,
-      deletedAt,
+      createdDate,
+      lastUpdated,
+      deletedDate,
       user,
       stepId,
       heartCount,
@@ -11351,7 +11338,7 @@ class _StepCommentDto implements StepCommentDto {
 
   @override
   String toString() {
-    return 'StepCommentDto(id: $id, content: $content, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
+    return 'StepCommentDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
   }
 }
 
@@ -11364,19 +11351,19 @@ abstract mixin class _$StepCommentDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdAt') DateTime? createdAt,
-      @JsonKey(name: 'updatedAt') DateTime? updatedAt,
-      @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-      @JsonKey(name: 'user') UserDto? user,
-      @JsonKey(name: 'stepId') String? stepId,
-      @JsonKey(name: 'heartCount') int? heartCount,
-      @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-      @JsonKey(name: 'replyCount') int? replyCount});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'deletedDate') DateTime? deletedDate,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'stepId') String stepId,
+      @JsonKey(name: 'heartCount') int heartCount,
+      @JsonKey(name: 'heartedByUser') bool heartedByUser,
+      @JsonKey(name: 'replyCount') int replyCount});
 
   @override
-  $UserDtoCopyWith<$Res>? get user;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -11392,58 +11379,58 @@ class __$StepCommentDtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? id = freezed,
-    Object? content = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
-    Object? deletedAt = freezed,
-    Object? user = freezed,
-    Object? stepId = freezed,
-    Object? heartCount = freezed,
-    Object? heartedByUser = freezed,
-    Object? replyCount = freezed,
+    Object? id = null,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? deletedDate = freezed,
+    Object? user = null,
+    Object? stepId = null,
+    Object? heartCount = null,
+    Object? heartedByUser = null,
+    Object? replyCount = null,
   }) {
     return _then(_StepCommentDto(
-      id: freezed == id
+      id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      content: freezed == content
+              as String,
+      content: null == content
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdAt: freezed == createdAt
-          ? _self.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdDate: null == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastUpdated: null == lastUpdated
+          ? _self.lastUpdated
+          : lastUpdated // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      deletedDate: freezed == deletedDate
+          ? _self.deletedDate
+          : deletedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _self.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      deletedAt: freezed == deletedAt
-          ? _self.deletedAt
-          : deletedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      user: freezed == user
+      user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserDto?,
-      stepId: freezed == stepId
+              as UserDto,
+      stepId: null == stepId
           ? _self.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      heartCount: freezed == heartCount
+              as String,
+      heartCount: null == heartCount
           ? _self.heartCount
           : heartCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heartedByUser: freezed == heartedByUser
+              as int,
+      heartedByUser: null == heartedByUser
           ? _self.heartedByUser
           : heartedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      replyCount: freezed == replyCount
+              as bool,
+      replyCount: null == replyCount
           ? _self.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 
@@ -11451,12 +11438,8 @@ class __$StepCommentDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserDtoCopyWith<$Res>? get user {
-    if (_self.user == null) {
-      return null;
-    }
-
-    return $UserDtoCopyWith<$Res>(_self.user!, (value) {
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
       return _then(_self.copyWith(user: value));
     });
   }
@@ -11464,44 +11447,44 @@ class __$StepCommentDtoCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$StepDetailDto {
-  @JsonKey(name: 'id')
-  String get id;
-  @JsonKey(name: 'content')
-  String? get content;
-  @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
-  @JsonKey(name: 'lastUpdated')
-  DateTime? get lastUpdated;
-  @JsonKey(name: 'userId')
-  String? get userId;
   @JsonKey(name: 'user')
   UserDto get user;
-  @JsonKey(name: 'journeyId')
-  String? get journeyId;
   @JsonKey(name: 'journey')
   JourneyDto? get journey;
   @JsonKey(name: 'hearts')
-  int? get hearts;
+  int get hearts;
   @JsonKey(name: 'heartedByUser')
-  bool? get heartedByUser;
+  bool get heartedByUser;
   @JsonKey(name: 'shares')
-  int? get shares;
+  int get shares;
   @JsonKey(name: 'sharedByUser')
-  bool? get sharedByUser;
+  bool get sharedByUser;
   @JsonKey(name: 'comments')
-  int? get comments;
+  int get comments;
   @JsonKey(name: 'commentedByUser')
-  bool? get commentedByUser;
+  bool get commentedByUser;
   @JsonKey(name: 'userSteppedWithInteractions')
-  int? get userSteppedWithInteractions;
+  int get userSteppedWithInteractions;
   @JsonKey(name: 'othersStepWith')
-  int? get othersStepWith;
+  int get othersStepWith;
   @JsonKey(name: 'othersStepWithUsers')
   List<UserDto>? get othersStepWithUsers;
-  @JsonKey(name: 'stepTypeString')
-  String? get stepTypeString;
+  @JsonKey(name: 'stepType')
+  StepTypeDto? get stepType;
   @JsonKey(name: 'media')
   List<StepMediaDto>? get media;
+  @JsonKey(name: 'id')
+  String get id;
+  @JsonKey(name: 'content')
+  String get content;
+  @JsonKey(name: 'createdDate')
+  DateTime get createdDate;
+  @JsonKey(name: 'lastUpdated')
+  DateTime get lastUpdated;
+  @JsonKey(name: 'userId')
+  String get userId;
+  @JsonKey(name: 'journeyId')
+  String get journeyId;
 
   /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -11519,16 +11502,7 @@ mixin _$StepDetailDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is StepDetailDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.journeyId, journeyId) ||
-                other.journeyId == journeyId) &&
             (identical(other.journey, journey) || other.journey == journey) &&
             (identical(other.hearts, hearts) || other.hearts == hearts) &&
             (identical(other.heartedByUser, heartedByUser) ||
@@ -11548,22 +11522,25 @@ mixin _$StepDetailDto {
                 other.othersStepWith == othersStepWith) &&
             const DeepCollectionEquality()
                 .equals(other.othersStepWithUsers, othersStepWithUsers) &&
-            (identical(other.stepTypeString, stepTypeString) ||
-                other.stepTypeString == stepTypeString) &&
-            const DeepCollectionEquality().equals(other.media, media));
+            (identical(other.stepType, stepType) ||
+                other.stepType == stepType) &&
+            const DeepCollectionEquality().equals(other.media, media) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdated, lastUpdated) ||
+                other.lastUpdated == lastUpdated) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.journeyId, journeyId) ||
+                other.journeyId == journeyId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
-        content,
-        createdDate,
-        lastUpdated,
-        userId,
         user,
-        journeyId,
         journey,
         hearts,
         heartedByUser,
@@ -11574,13 +11551,19 @@ mixin _$StepDetailDto {
         userSteppedWithInteractions,
         othersStepWith,
         const DeepCollectionEquality().hash(othersStepWithUsers),
-        stepTypeString,
-        const DeepCollectionEquality().hash(media)
+        stepType,
+        const DeepCollectionEquality().hash(media),
+        id,
+        content,
+        createdDate,
+        lastUpdated,
+        userId,
+        journeyId
       ]);
 
   @override
   String toString() {
-    return 'StepDetailDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, user: $user, journeyId: $journeyId, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepTypeString: $stepTypeString, media: $media)';
+    return 'StepDetailDto(user: $user, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepType: $stepType, media: $media, id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId)';
   }
 }
 
@@ -11591,26 +11574,26 @@ abstract mixin class $StepDetailDtoCopyWith<$Res> {
       _$StepDetailDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'journeyId') String? journeyId,
+      {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'journey') JourneyDto? journey,
-      @JsonKey(name: 'hearts') int? hearts,
-      @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-      @JsonKey(name: 'shares') int? shares,
-      @JsonKey(name: 'sharedByUser') bool? sharedByUser,
-      @JsonKey(name: 'comments') int? comments,
-      @JsonKey(name: 'commentedByUser') bool? commentedByUser,
+      @JsonKey(name: 'hearts') int hearts,
+      @JsonKey(name: 'heartedByUser') bool heartedByUser,
+      @JsonKey(name: 'shares') int shares,
+      @JsonKey(name: 'sharedByUser') bool sharedByUser,
+      @JsonKey(name: 'comments') int comments,
+      @JsonKey(name: 'commentedByUser') bool commentedByUser,
       @JsonKey(name: 'userSteppedWithInteractions')
-      int? userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') int? othersStepWith,
+      int userSteppedWithInteractions,
+      @JsonKey(name: 'othersStepWith') int othersStepWith,
       @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDto>? media});
+      @JsonKey(name: 'stepType') StepTypeDto? stepType,
+      @JsonKey(name: 'media') List<StepMediaDto>? media,
+      @JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'userId') String userId,
+      @JsonKey(name: 'journeyId') String journeyId});
 
   $UserDtoCopyWith<$Res> get user;
   $JourneyDtoCopyWith<$Res>? get journey;
@@ -11629,103 +11612,103 @@ class _$StepDetailDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? content = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? userId = freezed,
     Object? user = null,
-    Object? journeyId = freezed,
     Object? journey = freezed,
-    Object? hearts = freezed,
-    Object? heartedByUser = freezed,
-    Object? shares = freezed,
-    Object? sharedByUser = freezed,
-    Object? comments = freezed,
-    Object? commentedByUser = freezed,
-    Object? userSteppedWithInteractions = freezed,
-    Object? othersStepWith = freezed,
+    Object? hearts = null,
+    Object? heartedByUser = null,
+    Object? shares = null,
+    Object? sharedByUser = null,
+    Object? comments = null,
+    Object? commentedByUser = null,
+    Object? userSteppedWithInteractions = null,
+    Object? othersStepWith = null,
     Object? othersStepWithUsers = freezed,
-    Object? stepTypeString = freezed,
+    Object? stepType = freezed,
     Object? media = freezed,
+    Object? id = null,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? userId = null,
+    Object? journeyId = null,
   }) {
     return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: freezed == content
-          ? _self.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
-          ? _self.lastUpdated
-          : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      userId: freezed == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
-      journeyId: freezed == journeyId
-          ? _self.journeyId
-          : journeyId // ignore: cast_nullable_to_non_nullable
-              as String?,
       journey: freezed == journey
           ? _self.journey
           : journey // ignore: cast_nullable_to_non_nullable
               as JourneyDto?,
-      hearts: freezed == hearts
+      hearts: null == hearts
           ? _self.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heartedByUser: freezed == heartedByUser
+              as int,
+      heartedByUser: null == heartedByUser
           ? _self.heartedByUser
           : heartedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      shares: freezed == shares
+              as bool,
+      shares: null == shares
           ? _self.shares
           : shares // ignore: cast_nullable_to_non_nullable
-              as int?,
-      sharedByUser: freezed == sharedByUser
+              as int,
+      sharedByUser: null == sharedByUser
           ? _self.sharedByUser
           : sharedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      comments: freezed == comments
+              as bool,
+      comments: null == comments
           ? _self.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as int?,
-      commentedByUser: freezed == commentedByUser
+              as int,
+      commentedByUser: null == commentedByUser
           ? _self.commentedByUser
           : commentedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      userSteppedWithInteractions: freezed == userSteppedWithInteractions
+              as bool,
+      userSteppedWithInteractions: null == userSteppedWithInteractions
           ? _self.userSteppedWithInteractions
           : userSteppedWithInteractions // ignore: cast_nullable_to_non_nullable
-              as int?,
-      othersStepWith: freezed == othersStepWith
+              as int,
+      othersStepWith: null == othersStepWith
           ? _self.othersStepWith
           : othersStepWith // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _self.othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      stepTypeString: freezed == stepTypeString
-          ? _self.stepTypeString
-          : stepTypeString // ignore: cast_nullable_to_non_nullable
-              as String?,
+      stepType: freezed == stepType
+          ? _self.stepType
+          : stepType // ignore: cast_nullable_to_non_nullable
+              as StepTypeDto?,
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
               as List<StepMediaDto>?,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdDate: null == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastUpdated: null == lastUpdated
+          ? _self.lastUpdated
+          : lastUpdated // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      journeyId: null == journeyId
+          ? _self.journeyId
+          : journeyId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -11846,27 +11829,27 @@ extension StepDetailDtoPatterns on StepDetailDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'journeyId') String? journeyId,
             @JsonKey(name: 'journey') JourneyDto? journey,
-            @JsonKey(name: 'hearts') int? hearts,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-            @JsonKey(name: 'shares') int? shares,
-            @JsonKey(name: 'sharedByUser') bool? sharedByUser,
-            @JsonKey(name: 'comments') int? comments,
-            @JsonKey(name: 'commentedByUser') bool? commentedByUser,
+            @JsonKey(name: 'hearts') int hearts,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser,
+            @JsonKey(name: 'shares') int shares,
+            @JsonKey(name: 'sharedByUser') bool sharedByUser,
+            @JsonKey(name: 'comments') int comments,
+            @JsonKey(name: 'commentedByUser') bool commentedByUser,
             @JsonKey(name: 'userSteppedWithInteractions')
-            int? userSteppedWithInteractions,
-            @JsonKey(name: 'othersStepWith') int? othersStepWith,
+            int userSteppedWithInteractions,
+            @JsonKey(name: 'othersStepWith') int othersStepWith,
             @JsonKey(name: 'othersStepWithUsers')
             List<UserDto>? othersStepWithUsers,
-            @JsonKey(name: 'stepTypeString') String? stepTypeString,
-            @JsonKey(name: 'media') List<StepMediaDto>? media)?
+            @JsonKey(name: 'stepType') StepTypeDto? stepType,
+            @JsonKey(name: 'media') List<StepMediaDto>? media,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'userId') String userId,
+            @JsonKey(name: 'journeyId') String journeyId)?
         $default, {
     required TResult orElse(),
   }) {
@@ -11874,13 +11857,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
     switch (_that) {
       case _StepDetailDto() when $default != null:
         return $default(
-            _that.id,
-            _that.content,
-            _that.createdDate,
-            _that.lastUpdated,
-            _that.userId,
             _that.user,
-            _that.journeyId,
             _that.journey,
             _that.hearts,
             _that.heartedByUser,
@@ -11891,8 +11868,14 @@ extension StepDetailDtoPatterns on StepDetailDto {
             _that.userSteppedWithInteractions,
             _that.othersStepWith,
             _that.othersStepWithUsers,
-            _that.stepTypeString,
-            _that.media);
+            _that.stepType,
+            _that.media,
+            _that.id,
+            _that.content,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.userId,
+            _that.journeyId);
       case _:
         return orElse();
     }
@@ -11914,40 +11897,34 @@ extension StepDetailDtoPatterns on StepDetailDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'journeyId') String? journeyId,
             @JsonKey(name: 'journey') JourneyDto? journey,
-            @JsonKey(name: 'hearts') int? hearts,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-            @JsonKey(name: 'shares') int? shares,
-            @JsonKey(name: 'sharedByUser') bool? sharedByUser,
-            @JsonKey(name: 'comments') int? comments,
-            @JsonKey(name: 'commentedByUser') bool? commentedByUser,
+            @JsonKey(name: 'hearts') int hearts,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser,
+            @JsonKey(name: 'shares') int shares,
+            @JsonKey(name: 'sharedByUser') bool sharedByUser,
+            @JsonKey(name: 'comments') int comments,
+            @JsonKey(name: 'commentedByUser') bool commentedByUser,
             @JsonKey(name: 'userSteppedWithInteractions')
-            int? userSteppedWithInteractions,
-            @JsonKey(name: 'othersStepWith') int? othersStepWith,
+            int userSteppedWithInteractions,
+            @JsonKey(name: 'othersStepWith') int othersStepWith,
             @JsonKey(name: 'othersStepWithUsers')
             List<UserDto>? othersStepWithUsers,
-            @JsonKey(name: 'stepTypeString') String? stepTypeString,
-            @JsonKey(name: 'media') List<StepMediaDto>? media)
+            @JsonKey(name: 'stepType') StepTypeDto? stepType,
+            @JsonKey(name: 'media') List<StepMediaDto>? media,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'userId') String userId,
+            @JsonKey(name: 'journeyId') String journeyId)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _StepDetailDto():
         return $default(
-            _that.id,
-            _that.content,
-            _that.createdDate,
-            _that.lastUpdated,
-            _that.userId,
             _that.user,
-            _that.journeyId,
             _that.journey,
             _that.hearts,
             _that.heartedByUser,
@@ -11958,8 +11935,14 @@ extension StepDetailDtoPatterns on StepDetailDto {
             _that.userSteppedWithInteractions,
             _that.othersStepWith,
             _that.othersStepWithUsers,
-            _that.stepTypeString,
-            _that.media);
+            _that.stepType,
+            _that.media,
+            _that.id,
+            _that.content,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.userId,
+            _that.journeyId);
     }
   }
 
@@ -11978,40 +11961,34 @@ extension StepDetailDtoPatterns on StepDetailDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'journeyId') String? journeyId,
             @JsonKey(name: 'journey') JourneyDto? journey,
-            @JsonKey(name: 'hearts') int? hearts,
-            @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-            @JsonKey(name: 'shares') int? shares,
-            @JsonKey(name: 'sharedByUser') bool? sharedByUser,
-            @JsonKey(name: 'comments') int? comments,
-            @JsonKey(name: 'commentedByUser') bool? commentedByUser,
+            @JsonKey(name: 'hearts') int hearts,
+            @JsonKey(name: 'heartedByUser') bool heartedByUser,
+            @JsonKey(name: 'shares') int shares,
+            @JsonKey(name: 'sharedByUser') bool sharedByUser,
+            @JsonKey(name: 'comments') int comments,
+            @JsonKey(name: 'commentedByUser') bool commentedByUser,
             @JsonKey(name: 'userSteppedWithInteractions')
-            int? userSteppedWithInteractions,
-            @JsonKey(name: 'othersStepWith') int? othersStepWith,
+            int userSteppedWithInteractions,
+            @JsonKey(name: 'othersStepWith') int othersStepWith,
             @JsonKey(name: 'othersStepWithUsers')
             List<UserDto>? othersStepWithUsers,
-            @JsonKey(name: 'stepTypeString') String? stepTypeString,
-            @JsonKey(name: 'media') List<StepMediaDto>? media)?
+            @JsonKey(name: 'stepType') StepTypeDto? stepType,
+            @JsonKey(name: 'media') List<StepMediaDto>? media,
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'userId') String userId,
+            @JsonKey(name: 'journeyId') String journeyId)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _StepDetailDto() when $default != null:
         return $default(
-            _that.id,
-            _that.content,
-            _that.createdDate,
-            _that.lastUpdated,
-            _that.userId,
             _that.user,
-            _that.journeyId,
             _that.journey,
             _that.hearts,
             _that.heartedByUser,
@@ -12022,8 +11999,14 @@ extension StepDetailDtoPatterns on StepDetailDto {
             _that.userSteppedWithInteractions,
             _that.othersStepWith,
             _that.othersStepWithUsers,
-            _that.stepTypeString,
-            _that.media);
+            _that.stepType,
+            _that.media,
+            _that.id,
+            _that.content,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.userId,
+            _that.journeyId);
       case _:
         return null;
     }
@@ -12034,80 +12017,62 @@ extension StepDetailDtoPatterns on StepDetailDto {
 @JsonSerializable()
 class _StepDetailDto implements StepDetailDto {
   _StepDetailDto(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'content') this.content,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdated') this.lastUpdated,
-      @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'journeyId') this.journeyId,
+      {@JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'journey') this.journey,
-      @JsonKey(name: 'hearts') this.hearts,
-      @JsonKey(name: 'heartedByUser') this.heartedByUser,
-      @JsonKey(name: 'shares') this.shares,
-      @JsonKey(name: 'sharedByUser') this.sharedByUser,
-      @JsonKey(name: 'comments') this.comments,
-      @JsonKey(name: 'commentedByUser') this.commentedByUser,
+      @JsonKey(name: 'hearts') this.hearts = 0,
+      @JsonKey(name: 'heartedByUser') this.heartedByUser = false,
+      @JsonKey(name: 'shares') this.shares = 0,
+      @JsonKey(name: 'sharedByUser') this.sharedByUser = false,
+      @JsonKey(name: 'comments') this.comments = 0,
+      @JsonKey(name: 'commentedByUser') this.commentedByUser = false,
       @JsonKey(name: 'userSteppedWithInteractions')
-      this.userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') this.othersStepWith,
+      this.userSteppedWithInteractions = 0,
+      @JsonKey(name: 'othersStepWith') this.othersStepWith = 0,
       @JsonKey(name: 'othersStepWithUsers')
       final List<UserDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') this.stepTypeString,
-      @JsonKey(name: 'media') final List<StepMediaDto>? media})
+      @JsonKey(name: 'stepType') this.stepType,
+      @JsonKey(name: 'media') final List<StepMediaDto>? media,
+      @JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'content') this.content = '',
+      @JsonKey(name: 'createdDate') required this.createdDate,
+      @JsonKey(name: 'lastUpdated') required this.lastUpdated,
+      @JsonKey(name: 'userId') required this.userId,
+      @JsonKey(name: 'journeyId') required this.journeyId})
       : _othersStepWithUsers = othersStepWithUsers,
         _media = media;
   factory _StepDetailDto.fromJson(Map<String, dynamic> json) =>
       _$StepDetailDtoFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
-  final String id;
-  @override
-  @JsonKey(name: 'content')
-  final String? content;
-  @override
-  @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
-  @override
-  @JsonKey(name: 'lastUpdated')
-  final DateTime? lastUpdated;
-  @override
-  @JsonKey(name: 'userId')
-  final String? userId;
-  @override
   @JsonKey(name: 'user')
   final UserDto user;
-  @override
-  @JsonKey(name: 'journeyId')
-  final String? journeyId;
   @override
   @JsonKey(name: 'journey')
   final JourneyDto? journey;
   @override
   @JsonKey(name: 'hearts')
-  final int? hearts;
+  final int hearts;
   @override
   @JsonKey(name: 'heartedByUser')
-  final bool? heartedByUser;
+  final bool heartedByUser;
   @override
   @JsonKey(name: 'shares')
-  final int? shares;
+  final int shares;
   @override
   @JsonKey(name: 'sharedByUser')
-  final bool? sharedByUser;
+  final bool sharedByUser;
   @override
   @JsonKey(name: 'comments')
-  final int? comments;
+  final int comments;
   @override
   @JsonKey(name: 'commentedByUser')
-  final bool? commentedByUser;
+  final bool commentedByUser;
   @override
   @JsonKey(name: 'userSteppedWithInteractions')
-  final int? userSteppedWithInteractions;
+  final int userSteppedWithInteractions;
   @override
   @JsonKey(name: 'othersStepWith')
-  final int? othersStepWith;
+  final int othersStepWith;
   final List<UserDto>? _othersStepWithUsers;
   @override
   @JsonKey(name: 'othersStepWithUsers')
@@ -12121,8 +12086,8 @@ class _StepDetailDto implements StepDetailDto {
   }
 
   @override
-  @JsonKey(name: 'stepTypeString')
-  final String? stepTypeString;
+  @JsonKey(name: 'stepType')
+  final StepTypeDto? stepType;
   final List<StepMediaDto>? _media;
   @override
   @JsonKey(name: 'media')
@@ -12133,6 +12098,25 @@ class _StepDetailDto implements StepDetailDto {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
+
+  @override
+  @JsonKey(name: 'id')
+  final String id;
+  @override
+  @JsonKey(name: 'content')
+  final String content;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime createdDate;
+  @override
+  @JsonKey(name: 'lastUpdated')
+  final DateTime lastUpdated;
+  @override
+  @JsonKey(name: 'userId')
+  final String userId;
+  @override
+  @JsonKey(name: 'journeyId')
+  final String journeyId;
 
   /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12154,16 +12138,7 @@ class _StepDetailDto implements StepDetailDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _StepDetailDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.journeyId, journeyId) ||
-                other.journeyId == journeyId) &&
             (identical(other.journey, journey) || other.journey == journey) &&
             (identical(other.hearts, hearts) || other.hearts == hearts) &&
             (identical(other.heartedByUser, heartedByUser) ||
@@ -12183,22 +12158,25 @@ class _StepDetailDto implements StepDetailDto {
                 other.othersStepWith == othersStepWith) &&
             const DeepCollectionEquality()
                 .equals(other._othersStepWithUsers, _othersStepWithUsers) &&
-            (identical(other.stepTypeString, stepTypeString) ||
-                other.stepTypeString == stepTypeString) &&
-            const DeepCollectionEquality().equals(other._media, _media));
+            (identical(other.stepType, stepType) ||
+                other.stepType == stepType) &&
+            const DeepCollectionEquality().equals(other._media, _media) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdated, lastUpdated) ||
+                other.lastUpdated == lastUpdated) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.journeyId, journeyId) ||
+                other.journeyId == journeyId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
-        content,
-        createdDate,
-        lastUpdated,
-        userId,
         user,
-        journeyId,
         journey,
         hearts,
         heartedByUser,
@@ -12209,13 +12187,19 @@ class _StepDetailDto implements StepDetailDto {
         userSteppedWithInteractions,
         othersStepWith,
         const DeepCollectionEquality().hash(_othersStepWithUsers),
-        stepTypeString,
-        const DeepCollectionEquality().hash(_media)
+        stepType,
+        const DeepCollectionEquality().hash(_media),
+        id,
+        content,
+        createdDate,
+        lastUpdated,
+        userId,
+        journeyId
       ]);
 
   @override
   String toString() {
-    return 'StepDetailDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, user: $user, journeyId: $journeyId, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepTypeString: $stepTypeString, media: $media)';
+    return 'StepDetailDto(user: $user, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepType: $stepType, media: $media, id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId)';
   }
 }
 
@@ -12228,26 +12212,26 @@ abstract mixin class _$StepDetailDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'journeyId') String? journeyId,
+      {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'journey') JourneyDto? journey,
-      @JsonKey(name: 'hearts') int? hearts,
-      @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-      @JsonKey(name: 'shares') int? shares,
-      @JsonKey(name: 'sharedByUser') bool? sharedByUser,
-      @JsonKey(name: 'comments') int? comments,
-      @JsonKey(name: 'commentedByUser') bool? commentedByUser,
+      @JsonKey(name: 'hearts') int hearts,
+      @JsonKey(name: 'heartedByUser') bool heartedByUser,
+      @JsonKey(name: 'shares') int shares,
+      @JsonKey(name: 'sharedByUser') bool sharedByUser,
+      @JsonKey(name: 'comments') int comments,
+      @JsonKey(name: 'commentedByUser') bool commentedByUser,
       @JsonKey(name: 'userSteppedWithInteractions')
-      int? userSteppedWithInteractions,
-      @JsonKey(name: 'othersStepWith') int? othersStepWith,
+      int userSteppedWithInteractions,
+      @JsonKey(name: 'othersStepWith') int othersStepWith,
       @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
-      @JsonKey(name: 'stepTypeString') String? stepTypeString,
-      @JsonKey(name: 'media') List<StepMediaDto>? media});
+      @JsonKey(name: 'stepType') StepTypeDto? stepType,
+      @JsonKey(name: 'media') List<StepMediaDto>? media,
+      @JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'userId') String userId,
+      @JsonKey(name: 'journeyId') String journeyId});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -12268,103 +12252,103 @@ class __$StepDetailDtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? id = null,
-    Object? content = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? userId = freezed,
     Object? user = null,
-    Object? journeyId = freezed,
     Object? journey = freezed,
-    Object? hearts = freezed,
-    Object? heartedByUser = freezed,
-    Object? shares = freezed,
-    Object? sharedByUser = freezed,
-    Object? comments = freezed,
-    Object? commentedByUser = freezed,
-    Object? userSteppedWithInteractions = freezed,
-    Object? othersStepWith = freezed,
+    Object? hearts = null,
+    Object? heartedByUser = null,
+    Object? shares = null,
+    Object? sharedByUser = null,
+    Object? comments = null,
+    Object? commentedByUser = null,
+    Object? userSteppedWithInteractions = null,
+    Object? othersStepWith = null,
     Object? othersStepWithUsers = freezed,
-    Object? stepTypeString = freezed,
+    Object? stepType = freezed,
     Object? media = freezed,
+    Object? id = null,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? userId = null,
+    Object? journeyId = null,
   }) {
     return _then(_StepDetailDto(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: freezed == content
-          ? _self.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
-          ? _self.lastUpdated
-          : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      userId: freezed == userId
-          ? _self.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
-      journeyId: freezed == journeyId
-          ? _self.journeyId
-          : journeyId // ignore: cast_nullable_to_non_nullable
-              as String?,
       journey: freezed == journey
           ? _self.journey
           : journey // ignore: cast_nullable_to_non_nullable
               as JourneyDto?,
-      hearts: freezed == hearts
+      hearts: null == hearts
           ? _self.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
-              as int?,
-      heartedByUser: freezed == heartedByUser
+              as int,
+      heartedByUser: null == heartedByUser
           ? _self.heartedByUser
           : heartedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      shares: freezed == shares
+              as bool,
+      shares: null == shares
           ? _self.shares
           : shares // ignore: cast_nullable_to_non_nullable
-              as int?,
-      sharedByUser: freezed == sharedByUser
+              as int,
+      sharedByUser: null == sharedByUser
           ? _self.sharedByUser
           : sharedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      comments: freezed == comments
+              as bool,
+      comments: null == comments
           ? _self.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as int?,
-      commentedByUser: freezed == commentedByUser
+              as int,
+      commentedByUser: null == commentedByUser
           ? _self.commentedByUser
           : commentedByUser // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      userSteppedWithInteractions: freezed == userSteppedWithInteractions
+              as bool,
+      userSteppedWithInteractions: null == userSteppedWithInteractions
           ? _self.userSteppedWithInteractions
           : userSteppedWithInteractions // ignore: cast_nullable_to_non_nullable
-              as int?,
-      othersStepWith: freezed == othersStepWith
+              as int,
+      othersStepWith: null == othersStepWith
           ? _self.othersStepWith
           : othersStepWith // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       othersStepWithUsers: freezed == othersStepWithUsers
           ? _self._othersStepWithUsers
           : othersStepWithUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      stepTypeString: freezed == stepTypeString
-          ? _self.stepTypeString
-          : stepTypeString // ignore: cast_nullable_to_non_nullable
-              as String?,
+      stepType: freezed == stepType
+          ? _self.stepType
+          : stepType // ignore: cast_nullable_to_non_nullable
+              as StepTypeDto?,
       media: freezed == media
           ? _self._media
           : media // ignore: cast_nullable_to_non_nullable
               as List<StepMediaDto>?,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdDate: null == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastUpdated: null == lastUpdated
+          ? _self.lastUpdated
+          : lastUpdated // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      journeyId: null == journeyId
+          ? _self.journeyId
+          : journeyId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -12398,15 +12382,15 @@ mixin _$StepDto {
   @JsonKey(name: 'id')
   String get id;
   @JsonKey(name: 'content')
-  String? get content;
+  String get content;
   @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
+  DateTime get createdDate;
   @JsonKey(name: 'lastUpdated')
-  DateTime? get lastUpdated;
+  DateTime get lastUpdated;
   @JsonKey(name: 'userId')
-  String? get userId;
+  String get userId;
   @JsonKey(name: 'journeyId')
-  String? get journeyId;
+  String get journeyId;
   @JsonKey(name: 'media')
   StepMediaDto? get media;
 
@@ -12455,11 +12439,11 @@ abstract mixin class $StepDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'userId') String userId,
+      @JsonKey(name: 'journeyId') String journeyId,
       @JsonKey(name: 'media') StepMediaDto? media});
 
   $StepMediaDtoCopyWith<$Res>? get media;
@@ -12478,11 +12462,11 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? content = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? userId = freezed,
-    Object? journeyId = freezed,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? userId = null,
+    Object? journeyId = null,
     Object? media = freezed,
   }) {
     return _then(_self.copyWith(
@@ -12490,26 +12474,26 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      content: freezed == content
+      content: null == content
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
+              as String,
+      createdDate: null == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
+              as DateTime,
+      lastUpdated: null == lastUpdated
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      userId: freezed == userId
+              as DateTime,
+      userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      journeyId: freezed == journeyId
+              as String,
+      journeyId: null == journeyId
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -12625,11 +12609,11 @@ extension StepDtoPatterns on StepDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'userId') String? userId,
-            @JsonKey(name: 'journeyId') String? journeyId,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'userId') String userId,
+            @JsonKey(name: 'journeyId') String journeyId,
             @JsonKey(name: 'media') StepMediaDto? media)?
         $default, {
     required TResult orElse(),
@@ -12661,11 +12645,11 @@ extension StepDtoPatterns on StepDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'userId') String? userId,
-            @JsonKey(name: 'journeyId') String? journeyId,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'userId') String userId,
+            @JsonKey(name: 'journeyId') String journeyId,
             @JsonKey(name: 'media') StepMediaDto? media)
         $default,
   ) {
@@ -12693,11 +12677,11 @@ extension StepDtoPatterns on StepDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'content') String? content,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-            @JsonKey(name: 'userId') String? userId,
-            @JsonKey(name: 'journeyId') String? journeyId,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+            @JsonKey(name: 'userId') String userId,
+            @JsonKey(name: 'journeyId') String journeyId,
             @JsonKey(name: 'media') StepMediaDto? media)?
         $default,
   ) {
@@ -12717,11 +12701,11 @@ extension StepDtoPatterns on StepDto {
 class _StepDto implements StepDto {
   _StepDto(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'content') this.content,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdated') this.lastUpdated,
-      @JsonKey(name: 'userId') this.userId,
-      @JsonKey(name: 'journeyId') this.journeyId,
+      @JsonKey(name: 'content') this.content = '',
+      @JsonKey(name: 'createdDate') required this.createdDate,
+      @JsonKey(name: 'lastUpdated') required this.lastUpdated,
+      @JsonKey(name: 'userId') required this.userId,
+      @JsonKey(name: 'journeyId') required this.journeyId,
       @JsonKey(name: 'media') this.media});
   factory _StepDto.fromJson(Map<String, dynamic> json) =>
       _$StepDtoFromJson(json);
@@ -12731,19 +12715,19 @@ class _StepDto implements StepDto {
   final String id;
   @override
   @JsonKey(name: 'content')
-  final String? content;
+  final String content;
   @override
   @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
+  final DateTime createdDate;
   @override
   @JsonKey(name: 'lastUpdated')
-  final DateTime? lastUpdated;
+  final DateTime lastUpdated;
   @override
   @JsonKey(name: 'userId')
-  final String? userId;
+  final String userId;
   @override
   @JsonKey(name: 'journeyId')
-  final String? journeyId;
+  final String journeyId;
   @override
   @JsonKey(name: 'media')
   final StepMediaDto? media;
@@ -12799,11 +12783,11 @@ abstract mixin class _$StepDtoCopyWith<$Res> implements $StepDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'content') String? content,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-      @JsonKey(name: 'userId') String? userId,
-      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
+      @JsonKey(name: 'userId') String userId,
+      @JsonKey(name: 'journeyId') String journeyId,
       @JsonKey(name: 'media') StepMediaDto? media});
 
   @override
@@ -12823,11 +12807,11 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? content = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdated = freezed,
-    Object? userId = freezed,
-    Object? journeyId = freezed,
+    Object? content = null,
+    Object? createdDate = null,
+    Object? lastUpdated = null,
+    Object? userId = null,
+    Object? journeyId = null,
     Object? media = freezed,
   }) {
     return _then(_StepDto(
@@ -12835,26 +12819,26 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      content: freezed == content
+      content: null == content
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
+              as String,
+      createdDate: null == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdated: freezed == lastUpdated
+              as DateTime,
+      lastUpdated: null == lastUpdated
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      userId: freezed == userId
+              as DateTime,
+      userId: null == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      journeyId: freezed == journeyId
+              as String,
+      journeyId: null == journeyId
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -12884,9 +12868,9 @@ mixin _$StepMediaDto {
   @JsonKey(name: 'stepId')
   String? get stepId;
   @JsonKey(name: 'mediaType')
-  String? get mediaType;
+  String get mediaType;
   @JsonKey(name: 'originalUrl')
-  String? get originalUrl;
+  String get originalUrl;
   @JsonKey(name: 'largeUrl')
   String? get largeUrl;
   @JsonKey(name: 'mediumUrl')
@@ -12995,8 +12979,8 @@ abstract mixin class $StepMediaDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'stepId') String? stepId,
-      @JsonKey(name: 'mediaType') String? mediaType,
-      @JsonKey(name: 'originalUrl') String? originalUrl,
+      @JsonKey(name: 'mediaType') String mediaType,
+      @JsonKey(name: 'originalUrl') String originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
       @JsonKey(name: 'mediumUrl') String? mediumUrl,
       @JsonKey(name: 'smallUrl') String? smallUrl,
@@ -13026,8 +13010,8 @@ class _$StepMediaDtoCopyWithImpl<$Res> implements $StepMediaDtoCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? stepId = freezed,
-    Object? mediaType = freezed,
-    Object? originalUrl = freezed,
+    Object? mediaType = null,
+    Object? originalUrl = null,
     Object? largeUrl = freezed,
     Object? mediumUrl = freezed,
     Object? smallUrl = freezed,
@@ -13051,14 +13035,14 @@ class _$StepMediaDtoCopyWithImpl<$Res> implements $StepMediaDtoCopyWith<$Res> {
           ? _self.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
               as String?,
-      mediaType: freezed == mediaType
+      mediaType: null == mediaType
           ? _self.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      originalUrl: freezed == originalUrl
+              as String,
+      originalUrl: null == originalUrl
           ? _self.originalUrl
           : originalUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       largeUrl: freezed == largeUrl
           ? _self.largeUrl
           : largeUrl // ignore: cast_nullable_to_non_nullable
@@ -13209,8 +13193,8 @@ extension StepMediaDtoPatterns on StepMediaDto {
     TResult Function(
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'mediaType') String? mediaType,
-            @JsonKey(name: 'originalUrl') String? originalUrl,
+            @JsonKey(name: 'mediaType') String mediaType,
+            @JsonKey(name: 'originalUrl') String originalUrl,
             @JsonKey(name: 'largeUrl') String? largeUrl,
             @JsonKey(name: 'mediumUrl') String? mediumUrl,
             @JsonKey(name: 'smallUrl') String? smallUrl,
@@ -13271,8 +13255,8 @@ extension StepMediaDtoPatterns on StepMediaDto {
     TResult Function(
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'mediaType') String? mediaType,
-            @JsonKey(name: 'originalUrl') String? originalUrl,
+            @JsonKey(name: 'mediaType') String mediaType,
+            @JsonKey(name: 'originalUrl') String originalUrl,
             @JsonKey(name: 'largeUrl') String? largeUrl,
             @JsonKey(name: 'mediumUrl') String? mediumUrl,
             @JsonKey(name: 'smallUrl') String? smallUrl,
@@ -13329,8 +13313,8 @@ extension StepMediaDtoPatterns on StepMediaDto {
     TResult? Function(
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'stepId') String? stepId,
-            @JsonKey(name: 'mediaType') String? mediaType,
-            @JsonKey(name: 'originalUrl') String? originalUrl,
+            @JsonKey(name: 'mediaType') String mediaType,
+            @JsonKey(name: 'originalUrl') String originalUrl,
             @JsonKey(name: 'largeUrl') String? largeUrl,
             @JsonKey(name: 'mediumUrl') String? mediumUrl,
             @JsonKey(name: 'smallUrl') String? smallUrl,
@@ -13379,8 +13363,8 @@ class _StepMediaDto implements StepMediaDto {
   _StepMediaDto(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'stepId') this.stepId,
-      @JsonKey(name: 'mediaType') this.mediaType,
-      @JsonKey(name: 'originalUrl') this.originalUrl,
+      @JsonKey(name: 'mediaType') this.mediaType = '',
+      @JsonKey(name: 'originalUrl') this.originalUrl = '',
       @JsonKey(name: 'largeUrl') this.largeUrl,
       @JsonKey(name: 'mediumUrl') this.mediumUrl,
       @JsonKey(name: 'smallUrl') this.smallUrl,
@@ -13405,10 +13389,10 @@ class _StepMediaDto implements StepMediaDto {
   final String? stepId;
   @override
   @JsonKey(name: 'mediaType')
-  final String? mediaType;
+  final String mediaType;
   @override
   @JsonKey(name: 'originalUrl')
-  final String? originalUrl;
+  final String originalUrl;
   @override
   @JsonKey(name: 'largeUrl')
   final String? largeUrl;
@@ -13536,8 +13520,8 @@ abstract mixin class _$StepMediaDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'stepId') String? stepId,
-      @JsonKey(name: 'mediaType') String? mediaType,
-      @JsonKey(name: 'originalUrl') String? originalUrl,
+      @JsonKey(name: 'mediaType') String mediaType,
+      @JsonKey(name: 'originalUrl') String originalUrl,
       @JsonKey(name: 'largeUrl') String? largeUrl,
       @JsonKey(name: 'mediumUrl') String? mediumUrl,
       @JsonKey(name: 'smallUrl') String? smallUrl,
@@ -13568,8 +13552,8 @@ class __$StepMediaDtoCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? stepId = freezed,
-    Object? mediaType = freezed,
-    Object? originalUrl = freezed,
+    Object? mediaType = null,
+    Object? originalUrl = null,
     Object? largeUrl = freezed,
     Object? mediumUrl = freezed,
     Object? smallUrl = freezed,
@@ -13593,14 +13577,14 @@ class __$StepMediaDtoCopyWithImpl<$Res>
           ? _self.stepId
           : stepId // ignore: cast_nullable_to_non_nullable
               as String?,
-      mediaType: freezed == mediaType
+      mediaType: null == mediaType
           ? _self.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      originalUrl: freezed == originalUrl
+              as String,
+      originalUrl: null == originalUrl
           ? _self.originalUrl
           : originalUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       largeUrl: freezed == largeUrl
           ? _self.largeUrl
           : largeUrl // ignore: cast_nullable_to_non_nullable
@@ -14291,7 +14275,7 @@ mixin _$UserDetailDto {
   @JsonKey(name: 'user')
   UserDto get user;
   @JsonKey(name: 'followingStatus')
-  FollowingStatusEnumDto? get followingStatus;
+  FollowingStatusEnumDto get followingStatus;
 
   /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -14333,7 +14317,7 @@ abstract mixin class $UserDetailDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'followingStatus')
-      FollowingStatusEnumDto? followingStatus});
+      FollowingStatusEnumDto followingStatus});
 
   $UserDtoCopyWith<$Res> get user;
 }
@@ -14352,17 +14336,17 @@ class _$UserDetailDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
-    Object? followingStatus = freezed,
+    Object? followingStatus = null,
   }) {
     return _then(_self.copyWith(
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
-      followingStatus: freezed == followingStatus
+      followingStatus: null == followingStatus
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto?,
+              as FollowingStatusEnumDto,
     ));
   }
 
@@ -14471,7 +14455,7 @@ extension UserDetailDtoPatterns on UserDetailDto {
     TResult Function(
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto? followingStatus)?
+            FollowingStatusEnumDto followingStatus)?
         $default, {
     required TResult orElse(),
   }) {
@@ -14502,7 +14486,7 @@ extension UserDetailDtoPatterns on UserDetailDto {
     TResult Function(
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto? followingStatus)
+            FollowingStatusEnumDto followingStatus)
         $default,
   ) {
     final _that = this;
@@ -14529,7 +14513,7 @@ extension UserDetailDtoPatterns on UserDetailDto {
     TResult? Function(
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto? followingStatus)?
+            FollowingStatusEnumDto followingStatus)?
         $default,
   ) {
     final _that = this;
@@ -14547,7 +14531,8 @@ extension UserDetailDtoPatterns on UserDetailDto {
 class _UserDetailDto implements UserDetailDto {
   _UserDetailDto(
       {@JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'followingStatus') this.followingStatus});
+      @JsonKey(name: 'followingStatus')
+      this.followingStatus = FollowingStatusEnumDto.notFollowing});
   factory _UserDetailDto.fromJson(Map<String, dynamic> json) =>
       _$UserDetailDtoFromJson(json);
 
@@ -14556,7 +14541,7 @@ class _UserDetailDto implements UserDetailDto {
   final UserDto user;
   @override
   @JsonKey(name: 'followingStatus')
-  final FollowingStatusEnumDto? followingStatus;
+  final FollowingStatusEnumDto followingStatus;
 
   /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -14604,7 +14589,7 @@ abstract mixin class _$UserDetailDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'followingStatus')
-      FollowingStatusEnumDto? followingStatus});
+      FollowingStatusEnumDto followingStatus});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -14624,17 +14609,17 @@ class __$UserDetailDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? user = null,
-    Object? followingStatus = freezed,
+    Object? followingStatus = null,
   }) {
     return _then(_UserDetailDto(
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
-      followingStatus: freezed == followingStatus
+      followingStatus: null == followingStatus
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto?,
+              as FollowingStatusEnumDto,
     ));
   }
 
@@ -14654,13 +14639,13 @@ mixin _$UserDto {
   @JsonKey(name: 'id')
   String get id;
   @JsonKey(name: 'displayName')
-  String? get displayName;
+  String get displayName;
   @JsonKey(name: 'username')
-  String? get username;
+  String get username;
   @JsonKey(name: 'description')
-  String? get description;
+  String get description;
   @JsonKey(name: 'profilePictureUrl')
-  String? get profilePictureUrl;
+  String get profilePictureUrl;
   @JsonKey(name: 'phoneNumber')
   String? get phoneNumber;
   @JsonKey(name: 'email')
@@ -14668,7 +14653,7 @@ mixin _$UserDto {
   @JsonKey(name: 'age')
   int? get age;
   @JsonKey(name: 'isPrivate')
-  bool? get isPrivate;
+  bool get isPrivate;
   @JsonKey(name: 'createdDate')
   DateTime? get createdDate;
   @JsonKey(name: 'lastUpdated')
@@ -14739,14 +14724,14 @@ abstract mixin class $UserDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
+      @JsonKey(name: 'displayName') String displayName,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'profilePictureUrl') String profilePictureUrl,
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'age') int? age,
-      @JsonKey(name: 'isPrivate') bool? isPrivate,
+      @JsonKey(name: 'isPrivate') bool isPrivate,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated});
 }
@@ -14764,14 +14749,14 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? displayName = freezed,
-    Object? username = freezed,
-    Object? description = freezed,
-    Object? profilePictureUrl = freezed,
+    Object? displayName = null,
+    Object? username = null,
+    Object? description = null,
+    Object? profilePictureUrl = null,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? age = freezed,
-    Object? isPrivate = freezed,
+    Object? isPrivate = null,
     Object? createdDate = freezed,
     Object? lastUpdated = freezed,
   }) {
@@ -14780,22 +14765,22 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: freezed == displayName
+      displayName: null == displayName
           ? _self.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
+              as String,
+      username: null == username
           ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profilePictureUrl: freezed == profilePictureUrl
+              as String,
+      profilePictureUrl: null == profilePictureUrl
           ? _self.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       phoneNumber: freezed == phoneNumber
           ? _self.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -14808,10 +14793,10 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
           ? _self.age
           : age // ignore: cast_nullable_to_non_nullable
               as int?,
-      isPrivate: freezed == isPrivate
+      isPrivate: null == isPrivate
           ? _self.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       createdDate: freezed == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -14917,14 +14902,14 @@ extension UserDtoPatterns on UserDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'displayName') String? displayName,
-            @JsonKey(name: 'username') String? username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
+            @JsonKey(name: 'displayName') String displayName,
+            @JsonKey(name: 'username') String username,
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'profilePictureUrl') String profilePictureUrl,
             @JsonKey(name: 'phoneNumber') String? phoneNumber,
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'age') int? age,
-            @JsonKey(name: 'isPrivate') bool? isPrivate,
+            @JsonKey(name: 'isPrivate') bool isPrivate,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)?
         $default, {
@@ -14967,14 +14952,14 @@ extension UserDtoPatterns on UserDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'displayName') String? displayName,
-            @JsonKey(name: 'username') String? username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
+            @JsonKey(name: 'displayName') String displayName,
+            @JsonKey(name: 'username') String username,
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'profilePictureUrl') String profilePictureUrl,
             @JsonKey(name: 'phoneNumber') String? phoneNumber,
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'age') int? age,
-            @JsonKey(name: 'isPrivate') bool? isPrivate,
+            @JsonKey(name: 'isPrivate') bool isPrivate,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)
         $default,
@@ -15013,14 +14998,14 @@ extension UserDtoPatterns on UserDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'id') String id,
-            @JsonKey(name: 'displayName') String? displayName,
-            @JsonKey(name: 'username') String? username,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
+            @JsonKey(name: 'displayName') String displayName,
+            @JsonKey(name: 'username') String username,
+            @JsonKey(name: 'description') String description,
+            @JsonKey(name: 'profilePictureUrl') String profilePictureUrl,
             @JsonKey(name: 'phoneNumber') String? phoneNumber,
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'age') int? age,
-            @JsonKey(name: 'isPrivate') bool? isPrivate,
+            @JsonKey(name: 'isPrivate') bool isPrivate,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)?
         $default,
@@ -15051,14 +15036,14 @@ extension UserDtoPatterns on UserDto {
 class _UserDto implements UserDto {
   _UserDto(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'displayName') this.displayName,
-      @JsonKey(name: 'username') this.username,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'profilePictureUrl') this.profilePictureUrl,
+      @JsonKey(name: 'displayName') this.displayName = '',
+      @JsonKey(name: 'username') this.username = '',
+      @JsonKey(name: 'description') this.description = '',
+      @JsonKey(name: 'profilePictureUrl') this.profilePictureUrl = '',
       @JsonKey(name: 'phoneNumber') this.phoneNumber,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'age') this.age,
-      @JsonKey(name: 'isPrivate') this.isPrivate,
+      @JsonKey(name: 'isPrivate') this.isPrivate = false,
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated});
   factory _UserDto.fromJson(Map<String, dynamic> json) =>
@@ -15069,16 +15054,16 @@ class _UserDto implements UserDto {
   final String id;
   @override
   @JsonKey(name: 'displayName')
-  final String? displayName;
+  final String displayName;
   @override
   @JsonKey(name: 'username')
-  final String? username;
+  final String username;
   @override
   @JsonKey(name: 'description')
-  final String? description;
+  final String description;
   @override
   @JsonKey(name: 'profilePictureUrl')
-  final String? profilePictureUrl;
+  final String profilePictureUrl;
   @override
   @JsonKey(name: 'phoneNumber')
   final String? phoneNumber;
@@ -15090,7 +15075,7 @@ class _UserDto implements UserDto {
   final int? age;
   @override
   @JsonKey(name: 'isPrivate')
-  final bool? isPrivate;
+  final bool isPrivate;
   @override
   @JsonKey(name: 'createdDate')
   final DateTime? createdDate;
@@ -15169,14 +15154,14 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'displayName') String? displayName,
-      @JsonKey(name: 'username') String? username,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
+      @JsonKey(name: 'displayName') String displayName,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'description') String description,
+      @JsonKey(name: 'profilePictureUrl') String profilePictureUrl,
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'age') int? age,
-      @JsonKey(name: 'isPrivate') bool? isPrivate,
+      @JsonKey(name: 'isPrivate') bool isPrivate,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated});
 }
@@ -15194,14 +15179,14 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? displayName = freezed,
-    Object? username = freezed,
-    Object? description = freezed,
-    Object? profilePictureUrl = freezed,
+    Object? displayName = null,
+    Object? username = null,
+    Object? description = null,
+    Object? profilePictureUrl = null,
     Object? phoneNumber = freezed,
     Object? email = freezed,
     Object? age = freezed,
-    Object? isPrivate = freezed,
+    Object? isPrivate = null,
     Object? createdDate = freezed,
     Object? lastUpdated = freezed,
   }) {
@@ -15210,22 +15195,22 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      displayName: freezed == displayName
+      displayName: null == displayName
           ? _self.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      username: freezed == username
+              as String,
+      username: null == username
           ? _self.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
+              as String,
+      description: null == description
           ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      profilePictureUrl: freezed == profilePictureUrl
+              as String,
+      profilePictureUrl: null == profilePictureUrl
           ? _self.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       phoneNumber: freezed == phoneNumber
           ? _self.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -15238,10 +15223,10 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
           ? _self.age
           : age // ignore: cast_nullable_to_non_nullable
               as int?,
-      isPrivate: freezed == isPrivate
+      isPrivate: null == isPrivate
           ? _self.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as bool,
       createdDate: freezed == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -15257,7 +15242,7 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
 /// @nodoc
 mixin _$VideoPreSignedUrlDto {
   @JsonKey(name: 'authorizationSignature')
-  String? get authorizationSignature;
+  String get authorizationSignature;
   @JsonKey(name: 'authorizationExpire')
   int? get authorizationExpire;
   @JsonKey(name: 'videoGuid')
@@ -15265,9 +15250,9 @@ mixin _$VideoPreSignedUrlDto {
   @JsonKey(name: 'libraryId')
   int? get libraryId;
   @JsonKey(name: 'title')
-  String? get title;
+  String get title;
   @JsonKey(name: 'collectionId')
-  String? get collectionId;
+  String get collectionId;
   @JsonKey(name: 'media')
   StepMediaDto? get media;
 
@@ -15319,12 +15304,12 @@ abstract mixin class $VideoPreSignedUrlDtoCopyWith<$Res> {
       _$VideoPreSignedUrlDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
+      {@JsonKey(name: 'authorizationSignature') String authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
       @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'collectionId') String? collectionId,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'collectionId') String collectionId,
       @JsonKey(name: 'media') StepMediaDto? media});
 
   $StepMediaDtoCopyWith<$Res>? get media;
@@ -15343,19 +15328,19 @@ class _$VideoPreSignedUrlDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? authorizationSignature = freezed,
+    Object? authorizationSignature = null,
     Object? authorizationExpire = freezed,
     Object? videoGuid = freezed,
     Object? libraryId = freezed,
-    Object? title = freezed,
-    Object? collectionId = freezed,
+    Object? title = null,
+    Object? collectionId = null,
     Object? media = freezed,
   }) {
     return _then(_self.copyWith(
-      authorizationSignature: freezed == authorizationSignature
+      authorizationSignature: null == authorizationSignature
           ? _self.authorizationSignature
           : authorizationSignature // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       authorizationExpire: freezed == authorizationExpire
           ? _self.authorizationExpire
           : authorizationExpire // ignore: cast_nullable_to_non_nullable
@@ -15368,14 +15353,14 @@ class _$VideoPreSignedUrlDtoCopyWithImpl<$Res>
           ? _self.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
               as int?,
-      title: freezed == title
+      title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      collectionId: freezed == collectionId
+              as String,
+      collectionId: null == collectionId
           ? _self.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
@@ -15491,12 +15476,12 @@ extension VideoPreSignedUrlDtoPatterns on VideoPreSignedUrlDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'authorizationSignature')
-            String? authorizationSignature,
+            String authorizationSignature,
             @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
             @JsonKey(name: 'videoGuid') String? videoGuid,
             @JsonKey(name: 'libraryId') int? libraryId,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'collectionId') String? collectionId,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'collectionId') String collectionId,
             @JsonKey(name: 'media') StepMediaDto? media)?
         $default, {
     required TResult orElse(),
@@ -15534,12 +15519,12 @@ extension VideoPreSignedUrlDtoPatterns on VideoPreSignedUrlDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'authorizationSignature')
-            String? authorizationSignature,
+            String authorizationSignature,
             @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
             @JsonKey(name: 'videoGuid') String? videoGuid,
             @JsonKey(name: 'libraryId') int? libraryId,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'collectionId') String? collectionId,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'collectionId') String collectionId,
             @JsonKey(name: 'media') StepMediaDto? media)
         $default,
   ) {
@@ -15573,12 +15558,12 @@ extension VideoPreSignedUrlDtoPatterns on VideoPreSignedUrlDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'authorizationSignature')
-            String? authorizationSignature,
+            String authorizationSignature,
             @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
             @JsonKey(name: 'videoGuid') String? videoGuid,
             @JsonKey(name: 'libraryId') int? libraryId,
-            @JsonKey(name: 'title') String? title,
-            @JsonKey(name: 'collectionId') String? collectionId,
+            @JsonKey(name: 'title') String title,
+            @JsonKey(name: 'collectionId') String collectionId,
             @JsonKey(name: 'media') StepMediaDto? media)?
         $default,
   ) {
@@ -15603,19 +15588,20 @@ extension VideoPreSignedUrlDtoPatterns on VideoPreSignedUrlDto {
 @JsonSerializable()
 class _VideoPreSignedUrlDto implements VideoPreSignedUrlDto {
   _VideoPreSignedUrlDto(
-      {@JsonKey(name: 'authorizationSignature') this.authorizationSignature,
+      {@JsonKey(name: 'authorizationSignature')
+      this.authorizationSignature = '',
       @JsonKey(name: 'authorizationExpire') this.authorizationExpire,
       @JsonKey(name: 'videoGuid') this.videoGuid,
       @JsonKey(name: 'libraryId') this.libraryId,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'collectionId') this.collectionId,
+      @JsonKey(name: 'title') this.title = '',
+      @JsonKey(name: 'collectionId') this.collectionId = '',
       @JsonKey(name: 'media') this.media});
   factory _VideoPreSignedUrlDto.fromJson(Map<String, dynamic> json) =>
       _$VideoPreSignedUrlDtoFromJson(json);
 
   @override
   @JsonKey(name: 'authorizationSignature')
-  final String? authorizationSignature;
+  final String authorizationSignature;
   @override
   @JsonKey(name: 'authorizationExpire')
   final int? authorizationExpire;
@@ -15627,10 +15613,10 @@ class _VideoPreSignedUrlDto implements VideoPreSignedUrlDto {
   final int? libraryId;
   @override
   @JsonKey(name: 'title')
-  final String? title;
+  final String title;
   @override
   @JsonKey(name: 'collectionId')
-  final String? collectionId;
+  final String collectionId;
   @override
   @JsonKey(name: 'media')
   final StepMediaDto? media;
@@ -15690,12 +15676,12 @@ abstract mixin class _$VideoPreSignedUrlDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'authorizationSignature') String? authorizationSignature,
+      {@JsonKey(name: 'authorizationSignature') String authorizationSignature,
       @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
       @JsonKey(name: 'videoGuid') String? videoGuid,
       @JsonKey(name: 'libraryId') int? libraryId,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'collectionId') String? collectionId,
+      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'collectionId') String collectionId,
       @JsonKey(name: 'media') StepMediaDto? media});
 
   @override
@@ -15715,19 +15701,19 @@ class __$VideoPreSignedUrlDtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? authorizationSignature = freezed,
+    Object? authorizationSignature = null,
     Object? authorizationExpire = freezed,
     Object? videoGuid = freezed,
     Object? libraryId = freezed,
-    Object? title = freezed,
-    Object? collectionId = freezed,
+    Object? title = null,
+    Object? collectionId = null,
     Object? media = freezed,
   }) {
     return _then(_VideoPreSignedUrlDto(
-      authorizationSignature: freezed == authorizationSignature
+      authorizationSignature: null == authorizationSignature
           ? _self.authorizationSignature
           : authorizationSignature // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       authorizationExpire: freezed == authorizationExpire
           ? _self.authorizationExpire
           : authorizationExpire // ignore: cast_nullable_to_non_nullable
@@ -15740,14 +15726,14 @@ class __$VideoPreSignedUrlDtoCopyWithImpl<$Res>
           ? _self.libraryId
           : libraryId // ignore: cast_nullable_to_non_nullable
               as int?,
-      title: freezed == title
+      title: null == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      collectionId: freezed == collectionId
+              as String,
+      collectionId: null == collectionId
           ? _self.collectionId
           : collectionId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable

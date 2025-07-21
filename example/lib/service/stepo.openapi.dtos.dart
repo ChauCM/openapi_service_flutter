@@ -42,7 +42,7 @@ sealed class BulkNotificationDto with _$BulkNotificationDto {
     @JsonKey(name: 'userIds') required List<String> userIds,
     @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
     @JsonKey(name: 'data') Map<String, String>? data,
-    @JsonKey(name: 'priority') int? priority,
+    @JsonKey(name: 'priority') @Default(0) int priority,
   }) = _BulkNotificationDto;
 
   factory BulkNotificationDto.fromJson(Map<String, dynamic> json) =>
@@ -52,8 +52,9 @@ sealed class BulkNotificationDto with _$BulkNotificationDto {
 @freezed
 sealed class CreateCommentInteractionDto with _$CreateCommentInteractionDto {
   factory CreateCommentInteractionDto(
-          {@JsonKey(name: 'type') InteractionTypeDto? type}) =
-      _CreateCommentInteractionDto;
+      {@JsonKey(name: 'type')
+      @Default(InteractionTypeDto.heart)
+      InteractionTypeDto type}) = _CreateCommentInteractionDto;
 
   factory CreateCommentInteractionDto.fromJson(Map<String, dynamic> json) =>
       _$CreateCommentInteractionDtoFromJson(json);
@@ -95,8 +96,9 @@ sealed class CreateStepDto with _$CreateStepDto {
 @freezed
 sealed class CreateStepInteractionDto with _$CreateStepInteractionDto {
   factory CreateStepInteractionDto(
-          {@JsonKey(name: 'type') InteractionTypeDto? type}) =
-      _CreateStepInteractionDto;
+      {@JsonKey(name: 'type')
+      @Default(InteractionTypeDto.heart)
+      InteractionTypeDto type}) = _CreateStepInteractionDto;
 
   factory CreateStepInteractionDto.fromJson(Map<String, dynamic> json) =>
       _$CreateStepInteractionDtoFromJson(json);
@@ -107,8 +109,8 @@ sealed class EditUserDto with _$EditUserDto {
   factory EditUserDto({
     @JsonKey(name: 'displayName') required String displayName,
     @JsonKey(name: 'username') required String username,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'isPrivate') bool? isPrivate,
+    @JsonKey(name: 'description') @Default('') String description,
+    @JsonKey(name: 'isPrivate') @Default(false) bool isPrivate,
   }) = _EditUserDto;
 
   factory EditUserDto.fromJson(Map<String, dynamic> json) =>
@@ -217,14 +219,14 @@ sealed class JourneyDayCalendarDto with _$JourneyDayCalendarDto {
 @freezed
 sealed class JourneyDto with _$JourneyDto {
   factory JourneyDto({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-    @JsonKey(name: 'status') String? status,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'title') @Default('') String title,
+    @JsonKey(name: 'description') @Default('') String description,
+    @JsonKey(name: 'createdDate') required DateTime createdDate,
+    @JsonKey(name: 'lastUpdated') required DateTime lastUpdated,
+    @JsonKey(name: 'status') @Default('Open') String status,
     @JsonKey(name: 'completedDate') DateTime? completedDate,
-    @JsonKey(name: 'userId') String? userId,
+    @JsonKey(name: 'userId') @Default('') String userId,
     @JsonKey(name: 'firstStepId') String? firstStepId,
     @JsonKey(name: 'finalStepId') String? finalStepId,
   }) = _JourneyDto;
@@ -279,8 +281,8 @@ sealed class LoginDto with _$LoginDto {
 @freezed
 sealed class LoginResponseDto with _$LoginResponseDto {
   factory LoginResponseDto({
-    @JsonKey(name: 'token') String? token,
-    @JsonKey(name: 'uid') String? uid,
+    @JsonKey(name: 'token') @Default('') String token,
+    @JsonKey(name: 'uid') @Default('') String uid,
   }) = _LoginResponseDto;
 
   factory LoginResponseDto.fromJson(Map<String, dynamic> json) =>
@@ -315,8 +317,8 @@ extension MediaStatusDtoExt on MediaStatusDto {
 sealed class NotificationDto with _$NotificationDto {
   factory NotificationDto({
     @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'body') String? body,
+    @JsonKey(name: 'title') @Default('') String title,
+    @JsonKey(name: 'body') @Default('') String body,
     @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
     @JsonKey(name: 'isRead') bool? isRead,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -388,12 +390,12 @@ extension NotificationTypeDtoExt on NotificationTypeDto {
 sealed class ProfileDto with _$ProfileDto {
   factory ProfileDto({
     @JsonKey(name: 'userDetail') required UserDetailDto userDetail,
-    @JsonKey(name: 'badgesCount') int? badgesCount,
+    @JsonKey(name: 'badgesCount') @Default(0) int badgesCount,
     @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-    @JsonKey(name: 'supportersCount') int? supportersCount,
+    @JsonKey(name: 'supportersCount') @Default(0) int supportersCount,
     @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
-    @JsonKey(name: 'followersCount') int? followersCount,
-    @JsonKey(name: 'followingsCount') int? followingsCount,
+    @JsonKey(name: 'followersCount') @Default(0) int followersCount,
+    @JsonKey(name: 'followingsCount') @Default(0) int followingsCount,
   }) = _ProfileDto;
 
   factory ProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -403,17 +405,17 @@ sealed class ProfileDto with _$ProfileDto {
 @freezed
 sealed class ReplyDto with _$ReplyDto {
   factory ReplyDto({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'content') String? content,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'content') @Default('') String content,
+    @JsonKey(name: 'createdDate') required DateTime createdDate,
+    @JsonKey(name: 'lastUpdated') required DateTime lastUpdated,
     @JsonKey(name: 'deletedDate') DateTime? deletedDate,
-    @JsonKey(name: 'user') UserDto? user,
-    @JsonKey(name: 'parentCommentId') String? parentCommentId,
+    @JsonKey(name: 'user') required UserDto user,
+    @JsonKey(name: 'parentCommentId') required String parentCommentId,
     @JsonKey(name: 'responseToUser') UserDto? responseToUser,
     @JsonKey(name: 'responseToCommentId') String? responseToCommentId,
-    @JsonKey(name: 'heartCount') int? heartCount,
-    @JsonKey(name: 'heartedByUser') bool? heartedByUser,
+    @JsonKey(name: 'heartCount') @Default(0) int heartCount,
+    @JsonKey(name: 'heartedByUser') @Default(false) bool heartedByUser,
   }) = _ReplyDto;
 
   factory ReplyDto.fromJson(Map<String, dynamic> json) =>
@@ -437,7 +439,7 @@ sealed class ReportDto with _$ReportDto {
   factory ReportDto({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'entityType') required String entityType,
-    @JsonKey(name: 'entityId') String? entityId,
+    @JsonKey(name: 'entityId') @Default('') String entityId,
     @JsonKey(name: 'reporter') UserDto? reporter,
     @JsonKey(name: 'reason') required String reason,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -458,7 +460,7 @@ sealed class SendNotificationDto with _$SendNotificationDto {
     @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
     @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
     @JsonKey(name: 'data') Map<String, String>? data,
-    @JsonKey(name: 'priority') int? priority,
+    @JsonKey(name: 'priority') @Default(0) int priority,
   }) = _SendNotificationDto;
 
   factory SendNotificationDto.fromJson(Map<String, dynamic> json) =>
@@ -468,16 +470,16 @@ sealed class SendNotificationDto with _$SendNotificationDto {
 @freezed
 sealed class StepCommentDto with _$StepCommentDto {
   factory StepCommentDto({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'content') String? content,
-    @JsonKey(name: 'createdAt') DateTime? createdAt,
-    @JsonKey(name: 'updatedAt') DateTime? updatedAt,
-    @JsonKey(name: 'deletedAt') DateTime? deletedAt,
-    @JsonKey(name: 'user') UserDto? user,
-    @JsonKey(name: 'stepId') String? stepId,
-    @JsonKey(name: 'heartCount') int? heartCount,
-    @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-    @JsonKey(name: 'replyCount') int? replyCount,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'content') @Default('') String content,
+    @JsonKey(name: 'createdDate') required DateTime createdDate,
+    @JsonKey(name: 'lastUpdated') required DateTime lastUpdated,
+    @JsonKey(name: 'deletedDate') DateTime? deletedDate,
+    @JsonKey(name: 'user') required UserDto user,
+    @JsonKey(name: 'stepId') required String stepId,
+    @JsonKey(name: 'heartCount') @Default(0) int heartCount,
+    @JsonKey(name: 'heartedByUser') @Default(false) bool heartedByUser,
+    @JsonKey(name: 'replyCount') @Default(0) int replyCount,
   }) = _StepCommentDto;
 
   factory StepCommentDto.fromJson(Map<String, dynamic> json) =>
@@ -487,26 +489,27 @@ sealed class StepCommentDto with _$StepCommentDto {
 @freezed
 sealed class StepDetailDto with _$StepDetailDto {
   factory StepDetailDto({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'content') String? content,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-    @JsonKey(name: 'userId') String? userId,
     @JsonKey(name: 'user') required UserDto user,
-    @JsonKey(name: 'journeyId') String? journeyId,
     @JsonKey(name: 'journey') JourneyDto? journey,
-    @JsonKey(name: 'hearts') int? hearts,
-    @JsonKey(name: 'heartedByUser') bool? heartedByUser,
-    @JsonKey(name: 'shares') int? shares,
-    @JsonKey(name: 'sharedByUser') bool? sharedByUser,
-    @JsonKey(name: 'comments') int? comments,
-    @JsonKey(name: 'commentedByUser') bool? commentedByUser,
+    @JsonKey(name: 'hearts') @Default(0) int hearts,
+    @JsonKey(name: 'heartedByUser') @Default(false) bool heartedByUser,
+    @JsonKey(name: 'shares') @Default(0) int shares,
+    @JsonKey(name: 'sharedByUser') @Default(false) bool sharedByUser,
+    @JsonKey(name: 'comments') @Default(0) int comments,
+    @JsonKey(name: 'commentedByUser') @Default(false) bool commentedByUser,
     @JsonKey(name: 'userSteppedWithInteractions')
-    int? userSteppedWithInteractions,
-    @JsonKey(name: 'othersStepWith') int? othersStepWith,
+    @Default(0)
+    int userSteppedWithInteractions,
+    @JsonKey(name: 'othersStepWith') @Default(0) int othersStepWith,
     @JsonKey(name: 'othersStepWithUsers') List<UserDto>? othersStepWithUsers,
-    @JsonKey(name: 'stepTypeString') String? stepTypeString,
+    @JsonKey(name: 'stepType') StepTypeDto? stepType,
     @JsonKey(name: 'media') List<StepMediaDto>? media,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'content') @Default('') String content,
+    @JsonKey(name: 'createdDate') required DateTime createdDate,
+    @JsonKey(name: 'lastUpdated') required DateTime lastUpdated,
+    @JsonKey(name: 'userId') required String userId,
+    @JsonKey(name: 'journeyId') required String journeyId,
   }) = _StepDetailDto;
 
   factory StepDetailDto.fromJson(Map<String, dynamic> json) =>
@@ -517,11 +520,11 @@ sealed class StepDetailDto with _$StepDetailDto {
 sealed class StepDto with _$StepDto {
   factory StepDto({
     @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'content') String? content,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
-    @JsonKey(name: 'userId') String? userId,
-    @JsonKey(name: 'journeyId') String? journeyId,
+    @JsonKey(name: 'content') @Default('') String content,
+    @JsonKey(name: 'createdDate') required DateTime createdDate,
+    @JsonKey(name: 'lastUpdated') required DateTime lastUpdated,
+    @JsonKey(name: 'userId') required String userId,
+    @JsonKey(name: 'journeyId') required String journeyId,
     @JsonKey(name: 'media') StepMediaDto? media,
   }) = _StepDto;
 
@@ -534,8 +537,8 @@ sealed class StepMediaDto with _$StepMediaDto {
   factory StepMediaDto({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'stepId') String? stepId,
-    @JsonKey(name: 'mediaType') String? mediaType,
-    @JsonKey(name: 'originalUrl') String? originalUrl,
+    @JsonKey(name: 'mediaType') @Default('') String mediaType,
+    @JsonKey(name: 'originalUrl') @Default('') String originalUrl,
     @JsonKey(name: 'largeUrl') String? largeUrl,
     @JsonKey(name: 'mediumUrl') String? mediumUrl,
     @JsonKey(name: 'smallUrl') String? smallUrl,
@@ -553,6 +556,27 @@ sealed class StepMediaDto with _$StepMediaDto {
 
   factory StepMediaDto.fromJson(Map<String, dynamic> json) =>
       _$StepMediaDtoFromJson(json);
+}
+
+enum StepTypeDto {
+  @JsonValue('FirstStep')
+  firstStep,
+  @JsonValue('FinalStep')
+  finalStep,
+  @JsonValue('RegularStep')
+  regularStep,
+}
+
+extension StepTypeDtoExt on StepTypeDto {
+  static final Map<String, StepTypeDto> _names = {
+    'FirstStep': StepTypeDto.firstStep,
+    'FinalStep': StepTypeDto.finalStep,
+    'RegularStep': StepTypeDto.regularStep,
+  };
+  static StepTypeDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for StepTypeDto');
+  String get name => toString().substring(12);
 }
 
 @freezed
@@ -579,7 +603,9 @@ sealed class UpdateStepDto with _$UpdateStepDto {
 sealed class UserDetailDto with _$UserDetailDto {
   factory UserDetailDto({
     @JsonKey(name: 'user') required UserDto user,
-    @JsonKey(name: 'followingStatus') FollowingStatusEnumDto? followingStatus,
+    @JsonKey(name: 'followingStatus')
+    @Default(FollowingStatusEnumDto.notFollowing)
+    FollowingStatusEnumDto followingStatus,
   }) = _UserDetailDto;
 
   factory UserDetailDto.fromJson(Map<String, dynamic> json) =>
@@ -590,14 +616,14 @@ sealed class UserDetailDto with _$UserDetailDto {
 sealed class UserDto with _$UserDto {
   factory UserDto({
     @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'displayName') String? displayName,
-    @JsonKey(name: 'username') String? username,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'profilePictureUrl') String? profilePictureUrl,
+    @JsonKey(name: 'displayName') @Default('') String displayName,
+    @JsonKey(name: 'username') @Default('') String username,
+    @JsonKey(name: 'description') @Default('') String description,
+    @JsonKey(name: 'profilePictureUrl') @Default('') String profilePictureUrl,
     @JsonKey(name: 'phoneNumber') String? phoneNumber,
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'age') int? age,
-    @JsonKey(name: 'isPrivate') bool? isPrivate,
+    @JsonKey(name: 'isPrivate') @Default(false) bool isPrivate,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
     @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
   }) = _UserDto;
@@ -609,12 +635,14 @@ sealed class UserDto with _$UserDto {
 @freezed
 sealed class VideoPreSignedUrlDto with _$VideoPreSignedUrlDto {
   factory VideoPreSignedUrlDto({
-    @JsonKey(name: 'authorizationSignature') String? authorizationSignature,
+    @JsonKey(name: 'authorizationSignature')
+    @Default('')
+    String authorizationSignature,
     @JsonKey(name: 'authorizationExpire') int? authorizationExpire,
     @JsonKey(name: 'videoGuid') String? videoGuid,
     @JsonKey(name: 'libraryId') int? libraryId,
-    @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'collectionId') String? collectionId,
+    @JsonKey(name: 'title') @Default('') String title,
+    @JsonKey(name: 'collectionId') @Default('') String collectionId,
     @JsonKey(name: 'media') StepMediaDto? media,
   }) = _VideoPreSignedUrlDto;
 

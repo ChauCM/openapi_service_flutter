@@ -60,6 +60,10 @@ paths:
       - Account
       requestBody:
         content:
+          image/jpg:
+            schema:
+              type: string
+              format: binary
           image/jpeg:
             schema:
               type: string
@@ -73,10 +77,6 @@ paths:
               type: string
               format: binary
           image/webp:
-            schema:
-              type: string
-              format: binary
-          application/octet-stream:
             schema:
               type: string
               format: binary
@@ -485,6 +485,10 @@ paths:
           format: uuid
       requestBody:
         content:
+          image/jpg:
+            schema:
+              type: string
+              format: binary
           image/jpeg:
             schema:
               type: string
@@ -498,10 +502,6 @@ paths:
               type: string
               format: binary
           image/webp:
-            schema:
-              type: string
-              format: binary
-          application/octet-stream:
             schema:
               type: string
               format: binary
@@ -2005,9 +2005,11 @@ components:
         title:
           maxLength: 100
           type: string
+          default: ""
         body:
           maxLength: 500
           type: string
+          default: ""
         notificationType:
           $ref: '#/components/schemas/NotificationType'
         userIds:
@@ -2032,6 +2034,7 @@ components:
           - integer
           - string
           format: int32
+          default: 0
     CreateCommentInteractionDto:
       type: object
       properties:
@@ -2045,6 +2048,7 @@ components:
         content:
           maxLength: 500
           type: string
+          default: ""
         responseToUserId:
           type:
           - "null"
@@ -2062,6 +2066,7 @@ components:
         content:
           maxLength: 500
           type: string
+          default: ""
     CreateStepDto:
       required:
       - content
@@ -2071,6 +2076,7 @@ components:
         content:
           maxLength: 1000
           type: string
+          default: ""
         journeyId:
           type: string
           format: uuid
@@ -2089,15 +2095,19 @@ components:
           maxLength: 50
           minLength: 1
           type: string
+          default: ""
         username:
           maxLength: 20
           minLength: 1
           type: string
+          default: ""
         description:
           maxLength: 160
           type: string
+          default: ""
         isPrivate:
           type: boolean
+          default: false
     FollowingResultDto:
       required:
       - status
@@ -2121,6 +2131,7 @@ components:
       - NotFollowing
       - Following
       - Requested
+      default: NotFollowing
     IFormFile:
       type: string
       format: binary
@@ -2142,6 +2153,7 @@ components:
       - Heart
       - Share
       - Comment
+      default: Heart
     JourneyCreatingDto:
       required:
       - title
@@ -2153,6 +2165,7 @@ components:
           minLength: 1
           pattern: ^(?!\s*$).+
           type: string
+          default: ""
         description:
           maxLength: 500
           minLength: 0
@@ -2164,6 +2177,7 @@ components:
           minLength: 1
           pattern: ^(?!\s*$).+
           type: string
+          default: ""
     JourneyDayCalendarDto:
       required:
       - lastStep
@@ -2183,6 +2197,10 @@ components:
           type: string
           format: date-time
     JourneyDto:
+      required:
+      - id
+      - createdDate
+      - lastUpdated
       type:
       - "null"
       - object
@@ -2192,20 +2210,19 @@ components:
           format: uuid
         title:
           type: string
+          default: ""
         description:
-          type:
-          - "null"
-          - string
+          type: string
+          default: ""
         createdDate:
           type: string
           format: date-time
         lastUpdated:
-          type:
-          - "null"
-          - string
+          type: string
           format: date-time
         status:
           type: string
+          default: Open
         completedDate:
           type:
           - "null"
@@ -2213,6 +2230,7 @@ components:
           format: date-time
         userId:
           type: string
+          default: ""
         firstStepId:
           type:
           - "null"
@@ -2308,15 +2326,19 @@ components:
       properties:
         email:
           type: string
+          default: ""
         password:
           type: string
+          default: ""
     LoginResponseDto:
       type: object
       properties:
         token:
           type: string
+          default: ""
         uid:
           type: string
+          default: ""
     MediaStatus:
       enum:
       - Pending
@@ -2331,8 +2353,10 @@ components:
           format: uuid
         title:
           type: string
+          default: ""
         body:
           type: string
+          default: ""
         notificationType:
           $ref: '#/components/schemas/NotificationType'
         isRead:
@@ -2416,6 +2440,7 @@ components:
           - integer
           - string
           format: int32
+          default: 0
         badgesUsers:
           type: array
           items:
@@ -2426,6 +2451,7 @@ components:
           - integer
           - string
           format: int32
+          default: 0
         supportersUsers:
           type: array
           items:
@@ -2436,13 +2462,21 @@ components:
           - integer
           - string
           format: int32
+          default: 0
         followingsCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
           - integer
           - string
           format: int32
+          default: 0
     ReplyDto:
+      required:
+      - id
+      - createdDate
+      - lastUpdated
+      - user
+      - parentCommentId
       type: object
       properties:
         id:
@@ -2450,13 +2484,12 @@ components:
           format: uuid
         content:
           type: string
+          default: ""
         createdDate:
           type: string
           format: date-time
         lastUpdated:
-          type:
-          - "null"
-          - string
+          type: string
           format: date-time
         deletedDate:
           type:
@@ -2481,8 +2514,10 @@ components:
           - integer
           - string
           format: int32
+          default: 0
         heartedByUser:
           type: boolean
+          default: false
     ReportCreatingDto:
       required:
       - entityType
@@ -2494,6 +2529,7 @@ components:
           type: string
         entityId:
           type: string
+          default: ""
         reason:
           maxLength: 500
           type: string
@@ -2510,6 +2546,7 @@ components:
           type: string
         entityId:
           type: string
+          default: ""
         reporter:
           $ref: '#/components/schemas/UserDto'
         reason:
@@ -2527,9 +2564,11 @@ components:
         title:
           maxLength: 100
           type: string
+          default: ""
         body:
           maxLength: 500
           type: string
+          default: ""
         notificationType:
           $ref: '#/components/schemas/NotificationType'
         targetUserId:
@@ -2558,7 +2597,14 @@ components:
           - integer
           - string
           format: int32
+          default: 0
     StepCommentDto:
+      required:
+      - id
+      - createdDate
+      - lastUpdated
+      - user
+      - stepId
       type: object
       properties:
         id:
@@ -2566,15 +2612,14 @@ components:
           format: uuid
         content:
           type: string
-        createdAt:
+          default: ""
+        createdDate:
           type: string
           format: date-time
-        updatedAt:
-          type:
-          - "null"
-          - string
+        lastUpdated:
+          type: string
           format: date-time
-        deletedAt:
+        deletedDate:
           type:
           - "null"
           - string
@@ -2590,38 +2635,29 @@ components:
           - integer
           - string
           format: int32
+          default: 0
         heartedByUser:
           type: boolean
+          default: false
         replyCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
           - integer
           - string
           format: int32
+          default: 0
     StepDetailDto:
       required:
-      - id
       - user
+      - id
+      - createdDate
+      - lastUpdated
+      - userId
+      - journeyId
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        content:
-          type: string
-        createdDate:
-          type: string
-          format: date-time
-        lastUpdated:
-          type: string
-          format: date-time
-        userId:
-          type: string
         user:
           $ref: '#/components/schemas/UserDto'
-        journeyId:
-          type: string
-          format: uuid
         journey:
           $ref: '#/components/schemas/JourneyDto'
         hearts:
@@ -2630,51 +2666,78 @@ components:
           - integer
           - string
           format: int32
+          default: 0
         heartedByUser:
           type: boolean
+          default: false
         shares:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
           - integer
           - string
           format: int32
+          default: 0
         sharedByUser:
           type: boolean
+          default: false
         comments:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
           - integer
           - string
           format: int32
+          default: 0
         commentedByUser:
           type: boolean
+          default: false
         userSteppedWithInteractions:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
           - integer
           - string
           format: int32
+          default: 0
         othersStepWith:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
           - integer
           - string
           format: int32
+          default: 0
         othersStepWithUsers:
           type: array
           items:
             $ref: '#/components/schemas/UserDto'
-        stepTypeString:
-          type:
-          - "null"
-          - string
+        stepType:
+          $ref: '#/components/schemas/StepType'
         media:
           type: array
           items:
             $ref: '#/components/schemas/StepMediaDto'
+        id:
+          type: string
+          format: uuid
+        content:
+          type: string
+          default: ""
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        userId:
+          type: string
+        journeyId:
+          type: string
+          format: uuid
     StepDto:
       required:
       - id
+      - createdDate
+      - lastUpdated
+      - userId
+      - journeyId
       type: object
       properties:
         id:
@@ -2682,6 +2745,7 @@ components:
           format: uuid
         content:
           type: string
+          default: ""
         createdDate:
           type: string
           format: date-time
@@ -2706,8 +2770,10 @@ components:
           format: uuid
         mediaType:
           type: string
+          default: ""
         originalUrl:
           type: string
+          default: ""
         largeUrl:
           type:
           - "null"
@@ -2766,9 +2832,11 @@ components:
           type: boolean
         isImage:
           type: boolean
-    Stream:
-      type: string
-      format: binary
+    StepType:
+      enum:
+      - FirstStep
+      - FinalStep
+      - RegularStep
     UpdateJourneyDto:
       required:
       - title
@@ -2779,6 +2847,7 @@ components:
           minLength: 1
           pattern: ^(?!\s*$).+
           type: string
+          default: ""
         description:
           maxLength: 1000
           minLength: 0
@@ -2793,6 +2862,7 @@ components:
         content:
           maxLength: 1000
           type: string
+          default: ""
     UserDetailDto:
       required:
       - user
@@ -2811,14 +2881,16 @@ components:
           type: string
         displayName:
           type: string
+          default: ""
         username:
           type: string
+          default: ""
         description:
           type: string
+          default: ""
         profilePictureUrl:
-          type:
-          - "null"
-          - string
+          type: string
+          default: ""
         phoneNumber:
           type:
           - "null"
@@ -2836,6 +2908,7 @@ components:
           format: int32
         isPrivate:
           type: boolean
+          default: false
         createdDate:
           type: string
           format: date-time
@@ -2847,6 +2920,7 @@ components:
       properties:
         authorizationSignature:
           type: string
+          default: ""
         authorizationExpire:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -2864,8 +2938,10 @@ components:
           format: int32
         title:
           type: string
+          default: ""
         collectionId:
           type: string
+          default: ""
         media:
           $ref: '#/components/schemas/StepMediaDto'
     VideoStatusDto:

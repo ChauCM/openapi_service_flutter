@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Enum Default Values API
+  x-dart-name: EnumDefaultValuesApi
+
+paths:
+  /user:
+    post:
+      summary: Create user with defaults
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+components:
+  schemas:
+    UserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/UserStatus'
+          default: active
+        role:
+          $ref: '#/components/schemas/UserRole'
+          default: member
+        priority:
+          type: string
+          enum:
+            - low
+            - medium  
+            - high
+          default: medium
+      required:
+        - name
+
+    UserResponse:
+      type: object  
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/UserStatus'
+          default: active
+        role:
+          $ref: '#/components/schemas/UserRole'
+          default: member
+        priority:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+          default: medium
+      required:
+        - id
+        - name
+
+    UserStatus:
+      type: string
+      enum:
+        - active
+        - inactive
+        - pending
+
+    UserRole:
+      type: string
+      enum:
+        - admin
+        - member
+        - guest

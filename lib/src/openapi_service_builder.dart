@@ -760,7 +760,7 @@ class OpenApiLibraryGenerator {
         method.requiredParameters.add(Parameter((pb) => pb
           ..name = 'file'
           ..type = _file));
-        
+
         // Add progress callback parameter for binary uploads
         method.optionalParameters.add(Parameter((pb) => pb
           ..name = 'onProgress'
@@ -882,7 +882,8 @@ class OpenApiLibraryGenerator {
                 .assign(refer('file').property('length')([]).awaited)
                 .statement,
             declareFinal('mime')
-                .assign(CodeExpression(Code("lookupMimeType(file.path) ?? 'application/octet-stream'")))
+                .assign(CodeExpression(Code(
+                    "lookupMimeType(file.path) ?? 'application/octet-stream'")))
                 .statement,
             const Code(''),
           ];
@@ -1350,17 +1351,16 @@ class OpenApiLibraryGenerator {
     });
   }
 
-
   /// Checks if the API has any binary endpoints that require mime type detection
   bool _hasBinaryEndpoints() {
     if (api.paths == null) return false;
-    
+
     for (final path in api.paths!.entries) {
       // Skip paths that don't match the prefix filter
       if (!_shouldIncludePath(path.key)) {
         continue;
       }
-      
+
       for (final operation in path.value!.operations.entries) {
         if (_isBinaryRequestBody(operation.value!.requestBody)) {
           return true;
@@ -1464,9 +1464,22 @@ class OpenApiLibraryGenerator {
 
             // Add @Default annotation if needed
             if (hasDefaultValue && !isRequired) {
+              final defaultValue = entry.value!.defaultValue;
+              Expression defaultExpression;
+
+              // Check if the field type is an enum
+              if (entry.value!.enumerated?.isNotEmpty == true) {
+                // For enums, use the enum value instead of string literal
+                final enumValueName = defaultValue.toString().camelCase;
+                defaultExpression = fieldType.property(enumValueName);
+              } else {
+                // For non-enum types, use literal value
+                defaultExpression = literal(defaultValue);
+              }
+
               pb.annotations.add(refer('Default',
                       'package:freezed_annotation/freezed_annotation.dart')
-                  .call([literal(entry.value!.defaultValue)]));
+                  .call([defaultExpression]));
             }
 
             // Add ApiUuid converter if needed
