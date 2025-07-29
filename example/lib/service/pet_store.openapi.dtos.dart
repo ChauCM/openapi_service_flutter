@@ -54,7 +54,11 @@ extension OrderDtoStatusDtoExt on OrderDtoStatusDto {
   static OrderDtoStatusDto fromName(String name) =>
       _names[name] ??
       _throwStateError('Invalid enum name: $name for OrderDtoStatusDto');
-  String get name => toString().substring(18);
+  String get name => switch (this) {
+        OrderDtoStatusDto.placed => 'placed',
+        OrderDtoStatusDto.approved => 'approved',
+        OrderDtoStatusDto.delivered => 'delivered',
+      };
 }
 
 @freezed
@@ -127,7 +131,11 @@ extension PetDtoStatusDtoExt on PetDtoStatusDto {
   static PetDtoStatusDto fromName(String name) =>
       _names[name] ??
       _throwStateError('Invalid enum name: $name for PetDtoStatusDto');
-  String get name => toString().substring(16);
+  String get name => switch (this) {
+        PetDtoStatusDto.available => 'available',
+        PetDtoStatusDto.pending => 'pending',
+        PetDtoStatusDto.sold => 'sold',
+      };
 }
 
 @freezed
@@ -161,7 +169,11 @@ extension FindPetsByStatusStatusDtoExt on FindPetsByStatusStatusDto {
       _names[name] ??
       _throwStateError(
           'Invalid enum name: $name for FindPetsByStatusStatusDto');
-  String get name => toString().substring(26);
+  String get name => switch (this) {
+        FindPetsByStatusStatusDto.available => 'available',
+        FindPetsByStatusStatusDto.pending => 'pending',
+        FindPetsByStatusStatusDto.sold => 'sold',
+      };
 }
 
 @freezed

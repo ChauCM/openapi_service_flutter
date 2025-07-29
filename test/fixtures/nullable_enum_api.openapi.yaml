@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Nullable Enum API
+  x-dart-name: NullableEnumApi
+
+paths:
+  /user:
+    get:
+      summary: Get user
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        role:
+          $ref: '#/components/schemas/NullableOfUserRole'
+        status:
+          $ref: '#/components/schemas/NullableOfStatus'
+        priority:
+          $ref: '#/components/schemas/RegularEnum'
+      required:
+        - id
+        - name
+        - role
+        - priority
+    
+    # This simulates C# OpenAPI generator pattern for nullable enums
+    NullableOfUserRole:
+      enum:
+        - Admin
+        - Moderator
+        - User
+        - null
+    
+    # Another nullable enum with different values
+    NullableOfStatus:
+      enum:
+        - Active
+        - Inactive
+        - Suspended
+        - null
+    
+    # Regular enum without null (should remain unchanged)
+    RegularEnum:
+      enum:
+        - Option1
+        - Option2
+        - Option3

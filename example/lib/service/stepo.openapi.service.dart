@@ -194,34 +194,6 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/account/feed
-  Future<Either<ApiError, List<StepDetailDto>>> apiV1AccountFeedGet({
-    int? page,
-    int? pageSize,
-  }) async {
-    try {
-      final queryParams = <String, dynamic>{};
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/account/feed',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
-    } catch (e, stackTrace) {
-      return Left(_handleError(
-        e,
-        stackTrace,
-        '/api/v1/account/feed',
-      ));
-    }
-  }
-
   /// post: /api/v1/auth/login
   Future<Either<ApiError, LoginResponseDto>> apiV1AuthLoginPost(
       LoginDto body) async {
@@ -488,6 +460,139 @@ class StepoService {
     }
   }
 
+  /// Send test notification (Admin only)
+  /// post: /api/v1/admin/notifications/test-send
+  Future<Either<ApiError, TestNotificationResultDto>>
+      apiV1AdminNotificationsTestSendPost(TestNotificationDto body) async {
+    try {
+      final response = await _dio.post(
+        '/api/v1/admin/notifications/test-send',
+        data: body.toJson(),
+      );
+      final result = TestNotificationResultDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/admin/notifications/test-send',
+      ));
+    }
+  }
+
+  /// Register device token for secure notifications
+  /// post: /api/v1/notifications/devices/register
+  Future<Either<ApiError, DeviceTokenDto>>
+      apiV1NotificationsDevicesRegisterPost(RegisterDeviceDto body) async {
+    try {
+      final response = await _dio.post(
+        '/api/v1/notifications/devices/register',
+        data: body.toJson(),
+      );
+      final result = DeviceTokenDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/devices/register',
+      ));
+    }
+  }
+
+  /// Unregister device token
+  /// delete: /api/v1/notifications/devices/{token}
+  Future<Either<ApiError, void>> apiV1NotificationsDevicesTokenDelete(
+      {required String token}) async {
+    try {
+      final _ = await _dio.delete('/api/v1/notifications/devices/$token');
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/devices/$token',
+      ));
+    }
+  }
+
+  /// Get user's registered devices
+  /// get: /api/v1/notifications/devices
+  Future<Either<ApiError, List<DeviceTokenDto>>>
+      apiV1NotificationsDevicesGet() async {
+    try {
+      final response = await _dio.get('/api/v1/notifications/devices');
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map(
+              (item) => DeviceTokenDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/devices',
+      ));
+    }
+  }
+
+  /// Validate and cleanup invalid tokens
+  /// post: /api/v1/notifications/devices/validate
+  Future<Either<ApiError, TokenValidationResultDto>>
+      apiV1NotificationsDevicesValidatePost() async {
+    try {
+      final response =
+          await _dio.post('/api/v1/notifications/devices/validate');
+      final result = TokenValidationResultDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/devices/validate',
+      ));
+    }
+  }
+
+  /// Get user notification preferences
+  /// get: /api/v1/notifications/preferences
+  Future<Either<ApiError, NotificationPreferencesDto>>
+      apiV1NotificationsPreferencesGet() async {
+    try {
+      final response = await _dio.get('/api/v1/notifications/preferences');
+      final result = NotificationPreferencesDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/preferences',
+      ));
+    }
+  }
+
+  /// Update user notification preferences
+  /// put: /api/v1/notifications/preferences
+  Future<Either<ApiError, NotificationPreferencesDto>>
+      apiV1NotificationsPreferencesPut(UpdatePreferencesDto body) async {
+    try {
+      final response = await _dio.put(
+        '/api/v1/notifications/preferences',
+        data: body.toJson(),
+      );
+      final result = NotificationPreferencesDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/notifications/preferences',
+      ));
+    }
+  }
+
+  /// Get user notifications with pagination
   /// get: /api/v1/notifications
   Future<Either<ApiError, NotificationPagedDto>> apiV1NotificationsGet({
     int? page,
@@ -513,25 +618,7 @@ class StepoService {
     }
   }
 
-  /// post: /api/v1/notifications
-  Future<Either<ApiError, NotificationDto>> apiV1NotificationsPost(
-      SendNotificationDto body) async {
-    try {
-      final response = await _dio.post(
-        '/api/v1/notifications',
-        data: body.toJson(),
-      );
-      final result = NotificationDto.fromJson(response.data);
-      return Right(result);
-    } catch (e, stackTrace) {
-      return Left(_handleError(
-        e,
-        stackTrace,
-        '/api/v1/notifications',
-      ));
-    }
-  }
-
+  /// Get unread notifications count
   /// get: /api/v1/notifications/summary
   Future<Either<ApiError, int>> apiV1NotificationsSummaryGet() async {
     try {
@@ -547,6 +634,7 @@ class StepoService {
     }
   }
 
+  /// Mark notification as read
   /// put: /api/v1/notifications/{notificationId}/read
   Future<Either<ApiError, void>> apiV1NotificationsNotificationIdReadPut(
       {required String notificationId}) async {
@@ -562,6 +650,7 @@ class StepoService {
     }
   }
 
+  /// Mark all notifications as read
   /// put: /api/v1/notifications/read-status
   Future<Either<ApiError, void>> apiV1NotificationsReadStatusPut() async {
     try {
@@ -576,6 +665,7 @@ class StepoService {
     }
   }
 
+  /// Delete a notification
   /// delete: /api/v1/notifications/{notificationId}
   Future<Either<ApiError, void>> apiV1NotificationsNotificationIdDelete(
       {required String notificationId}) async {
@@ -591,59 +681,189 @@ class StepoService {
     }
   }
 
-  /// post: /api/v1/notifications/bulk
-  Future<Either<ApiError, List<NotificationDto>>> apiV1NotificationsBulkPost(
-      BulkNotificationDto body) async {
+  /// Remove a comment by moderation
+  /// delete: /api/v1/moderation/comments/{commentId}
+  Future<Either<ApiError, void>> apiV1ModerationCommentsCommentIdDelete(
+    RemoveContentDto body, {
+    required String commentId,
+  }) async {
     try {
-      final response = await _dio.post(
-        '/api/v1/notifications/bulk',
+      final _ = await _dio.delete(
+        '/api/v1/moderation/comments/$commentId',
         data: body.toJson(),
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              NotificationDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      return const Right(null);
     } catch (e, stackTrace) {
       return Left(_handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/bulk',
+        '/api/v1/moderation/comments/$commentId',
       ));
     }
   }
 
-  /// post: /api/v1/media/images/upload
-  Future<Either<ApiError, StepMediaDto>> apiV1MediaImagesUploadPost(
-    _i1.File file, {
-    String? stepId,
-    void Function(int sent, int total)? onProgress,
+  /// Remove a step by moderation
+  /// delete: /api/v1/moderation/steps/{stepId}
+  Future<Either<ApiError, void>> apiV1ModerationStepsStepIdDelete(
+    RemoveContentDto body, {
+    required String stepId,
   }) async {
     try {
-      final queryParams = <String, dynamic>{};
-      if (stepId != null) queryParams['stepId'] = stepId;
-
-      final formData = FormData();
-
-      formData.files.add(MapEntry(
-          'file',
-          await MultipartFile.fromFile(file.path,
-              filename: _getFileName(file.path))));
-
-      final response = await _dio.post(
-        '/api/v1/media/images/upload',
-        queryParameters: queryParams,
-        data: formData,
-        onSendProgress: onProgress,
+      final _ = await _dio.delete(
+        '/api/v1/moderation/steps/$stepId',
+        data: body.toJson(),
       );
-      final result = StepMediaDto.fromJson(response.data);
-      return Right(result);
+      return const Right(null);
     } catch (e, stackTrace) {
       return Left(_handleError(
         e,
         stackTrace,
-        '/api/v1/media/images/upload',
+        '/api/v1/moderation/steps/$stepId',
+      ));
+    }
+  }
+
+  /// Remove a journey by moderation
+  /// delete: /api/v1/moderation/journeys/{journeyId}
+  Future<Either<ApiError, void>> apiV1ModerationJourneysJourneyIdDelete(
+    RemoveContentDto body, {
+    required String journeyId,
+  }) async {
+    try {
+      final _ = await _dio.delete(
+        '/api/v1/moderation/journeys/$journeyId',
+        data: body.toJson(),
+      );
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/moderation/journeys/$journeyId',
+      ));
+    }
+  }
+
+  /// Ban a user
+  /// post: /api/v1/moderation/users/{userId}/ban
+  Future<Either<ApiError, void>> apiV1ModerationUsersUserIdBanPost(
+    BanUserDto body, {
+    required String userId,
+  }) async {
+    try {
+      final _ = await _dio.post(
+        '/api/v1/moderation/users/$userId/ban',
+        data: body.toJson(),
+      );
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/moderation/users/$userId/ban',
+      ));
+    }
+  }
+
+  /// Unban a user
+  /// post: /api/v1/moderation/users/{userId}/unban
+  Future<Either<ApiError, void>> apiV1ModerationUsersUserIdUnbanPost(
+      {required String userId}) async {
+    try {
+      final _ = await _dio.post('/api/v1/moderation/users/$userId/unban');
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/moderation/users/$userId/unban',
+      ));
+    }
+  }
+
+  /// Update user status
+  /// put: /api/v1/moderation/users/{userId}/status
+  Future<Either<ApiError, void>> apiV1ModerationUsersUserIdStatusPut(
+    UpdateUserStatusDto body, {
+    required String userId,
+  }) async {
+    try {
+      final _ = await _dio.put(
+        '/api/v1/moderation/users/$userId/status',
+        data: body.toJson(),
+      );
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/moderation/users/$userId/status',
+      ));
+    }
+  }
+
+  /// Get user moderation details
+  /// get: /api/v1/moderation/users/{userId}
+  Future<Either<ApiError, void>> apiV1ModerationUsersUserIdGet(
+      {required String userId}) async {
+    try {
+      final _ = await _dio.get('/api/v1/moderation/users/$userId');
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/moderation/users/$userId',
+      ));
+    }
+  }
+
+  /// Get list of banned users
+  /// get: /api/v1/moderation/users/banned
+  Future<Either<ApiError, void>> apiV1ModerationUsersBannedGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final _ = await _dio.get(
+        '/api/v1/moderation/users/banned',
+        queryParameters: queryParams,
+      );
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/moderation/users/banned',
+      ));
+    }
+  }
+
+  /// Get list of shadow banned users
+  /// get: /api/v1/moderation/users/shadow-banned
+  Future<Either<ApiError, void>> apiV1ModerationUsersShadowBannedGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final _ = await _dio.get(
+        '/api/v1/moderation/users/shadow-banned',
+        queryParameters: queryParams,
+      );
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/moderation/users/shadow-banned',
       ));
     }
   }
@@ -714,6 +934,40 @@ class StepoService {
         e,
         stackTrace,
         '/api/v1/video-jobs',
+      ));
+    }
+  }
+
+  /// Follow a journey for step notifications
+  /// post: /api/v1/journeys/{journeyId}/follow
+  Future<Either<ApiError, bool>> apiV1JourneysJourneyIdFollowPost(
+      {required String journeyId}) async {
+    try {
+      final response = await _dio.post('/api/v1/journeys/$journeyId/follow');
+      final result = (response.data as bool);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$journeyId/follow',
+      ));
+    }
+  }
+
+  /// Unfollow a journey
+  /// delete: /api/v1/journeys/{journeyId}/follow
+  Future<Either<ApiError, bool>> apiV1JourneysJourneyIdFollowDelete(
+      {required String journeyId}) async {
+    try {
+      final response = await _dio.delete('/api/v1/journeys/$journeyId/follow');
+      final result = (response.data as bool);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/journeys/$journeyId/follow',
       ));
     }
   }
@@ -1149,6 +1403,106 @@ class StepoService {
     }
   }
 
+  /// Get incoming follow requests
+  /// get: /api/v1/account/follow-requests/incoming
+  Future<Either<ApiError, List<FollowRequestDto>>>
+      apiV1AccountFollowRequestsIncomingGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/account/follow-requests/incoming',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) =>
+              FollowRequestDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/follow-requests/incoming',
+      ));
+    }
+  }
+
+  /// Get outgoing follow requests
+  /// get: /api/v1/account/follow-requests/outgoing
+  Future<Either<ApiError, List<FollowRequestDto>>>
+      apiV1AccountFollowRequestsOutgoingGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/account/follow-requests/outgoing',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) =>
+              FollowRequestDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/follow-requests/outgoing',
+      ));
+    }
+  }
+
+  /// Accept a follow request
+  /// post: /api/v1/account/follow-requests/{requesterId}/accept
+  Future<Either<ApiError, FollowRequestResultDto>>
+      apiV1AccountFollowRequestsRequesterIdAcceptPost(
+          {required String requesterId}) async {
+    try {
+      final response = await _dio
+          .post('/api/v1/account/follow-requests/$requesterId/accept');
+      final result = FollowRequestResultDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/follow-requests/$requesterId/accept',
+      ));
+    }
+  }
+
+  /// Reject a follow request
+  /// delete: /api/v1/account/follow-requests/{requesterId}/reject
+  Future<Either<ApiError, FollowRequestResultDto>>
+      apiV1AccountFollowRequestsRequesterIdRejectDelete(
+          {required String requesterId}) async {
+    try {
+      final response = await _dio
+          .delete('/api/v1/account/follow-requests/$requesterId/reject');
+      final result = FollowRequestResultDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/account/follow-requests/$requesterId/reject',
+      ));
+    }
+  }
+
   /// Follow a user
   /// post: /api/v1/users/{userId}/follow
   Future<Either<ApiError, FollowingResultDto>> apiV1UsersUserIdFollowPost(
@@ -1179,23 +1533,6 @@ class StepoService {
         e,
         stackTrace,
         '/api/v1/users/$userId/follow',
-      ));
-    }
-  }
-
-  /// Reject a follow request
-  /// post: /api/v1/users/{userId}/reject-follow
-  Future<Either<ApiError, FollowingResultDto>> apiV1UsersUserIdRejectFollowPost(
-      {required String userId}) async {
-    try {
-      final response = await _dio.post('/api/v1/users/$userId/reject-follow');
-      final result = FollowingResultDto.fromJson(response.data);
-      return Right(result);
-    } catch (e, stackTrace) {
-      return Left(_handleError(
-        e,
-        stackTrace,
-        '/api/v1/users/$userId/reject-follow',
       ));
     }
   }
@@ -1307,6 +1644,105 @@ class StepoService {
         e,
         stackTrace,
         '/api/v1/users/$userId/followings/count',
+      ));
+    }
+  }
+
+  /// get: /api/v1/feed
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/feed',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/feed',
+      ));
+    }
+  }
+
+  /// get: /api/v1/feed/metrics
+  Future<Either<ApiError, FeedMetricsDto>> apiV1FeedMetricsGet() async {
+    try {
+      final response = await _dio.get('/api/v1/feed/metrics');
+      final result = FeedMetricsDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/feed/metrics',
+      ));
+    }
+  }
+
+  /// get: /api/v1/feed/hot
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedHotGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/feed/hot',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/feed/hot',
+      ));
+    }
+  }
+
+  /// get: /api/v1/feed/following
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedFollowingGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/feed/following',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/feed/following',
       ));
     }
   }
@@ -1426,6 +1862,163 @@ class StepoService {
         e,
         stackTrace,
         '/api/v1/steps/$stepId/comments',
+      ));
+    }
+  }
+
+  /// Get all feedback submissions for admin review
+  /// get: /api/v1/admin/feedback
+  Future<Either<ApiError, PageResponseOfAppFeedbackDto>> apiV1AdminFeedbackGet({
+    int? page,
+    int? pageSize,
+    String? type,
+    String? status,
+  }) async {
+    try {
+      final queryParams = <String, dynamic>{};
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+      if (type != null) queryParams['type'] = type;
+      if (status != null) queryParams['status'] = status;
+
+      final response = await _dio.get(
+        '/api/v1/admin/feedback',
+        queryParameters: queryParams,
+      );
+      final result = PageResponseOfAppFeedbackDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/admin/feedback',
+      ));
+    }
+  }
+
+  /// Update feedback status and add admin response
+  /// put: /api/v1/admin/feedback/{id}/status
+  Future<Either<ApiError, AppFeedbackDto>> apiV1AdminFeedbackIdStatusPut(
+    UpdateFeedbackStatusDto body, {
+    required String id,
+  }) async {
+    try {
+      final response = await _dio.put(
+        '/api/v1/admin/feedback/$id/status',
+        data: body.toJson(),
+      );
+      final result = AppFeedbackDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/admin/feedback/$id/status',
+      ));
+    }
+  }
+
+  /// Submit app feedback or bug report
+  /// post: /api/v1/appfeedback
+  Future<Either<ApiError, AppFeedbackDto>> apiV1AppfeedbackPost(
+      CreateAppFeedbackDto body) async {
+    try {
+      final response = await _dio.post(
+        '/api/v1/appfeedback',
+        data: body.toJson(),
+      );
+      final result = AppFeedbackDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/appfeedback',
+      ));
+    }
+  }
+
+  /// Upload an image for feedback
+  /// post: /api/v1/appfeedback/{feedbackId}/image
+  Future<Either<ApiError, AppFeedbackDto>> apiV1AppfeedbackFeedbackIdImagePost(
+    _i1.File file, {
+    required String feedbackId,
+    void Function(int sent, int total)? onProgress,
+  }) async {
+    try {
+      final length = await file.length();
+      final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
+
+      final response = await _dio.post(
+        '/api/v1/appfeedback/$feedbackId/image',
+        data: file.openRead(),
+        onSendProgress: onProgress,
+        options: Options(headers: <String, dynamic>{
+          'Content-Length': length.toString(),
+          'Content-Type': mime,
+        }),
+      );
+      final result = AppFeedbackDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/appfeedback/$feedbackId/image',
+      ));
+    }
+  }
+
+  /// Get feedback by ID
+  /// get: /api/v1/appfeedback/{id}
+  Future<Either<ApiError, AppFeedbackDto>> apiV1AppfeedbackIdGet(
+      {required String id}) async {
+    try {
+      final response = await _dio.get('/api/v1/appfeedback/$id');
+      final result = AppFeedbackDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/appfeedback/$id',
+      ));
+    }
+  }
+
+  /// Delete user's own feedback
+  /// delete: /api/v1/appfeedback/{id}
+  Future<Either<ApiError, void>> apiV1AppfeedbackIdDelete(
+      {required String id}) async {
+    try {
+      final _ = await _dio.delete('/api/v1/appfeedback/$id');
+      return const Right(null);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/appfeedback/$id',
+      ));
+    }
+  }
+
+  /// Get current user's feedback submissions
+  /// get: /api/v1/appfeedback/my-feedback
+  Future<Either<ApiError, List<AppFeedbackDto>>>
+      apiV1AppfeedbackMyFeedbackGet() async {
+    try {
+      final response = await _dio.get('/api/v1/appfeedback/my-feedback');
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map(
+              (item) => AppFeedbackDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      return Left(_handleError(
+        e,
+        stackTrace,
+        '/api/v1/appfeedback/my-feedback',
       ));
     }
   }

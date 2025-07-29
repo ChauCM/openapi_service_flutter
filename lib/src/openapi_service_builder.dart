@@ -113,6 +113,46 @@ class OpenApiLibraryGenerator {
     return _generateServiceStyle();
   }
 
+  /// Sanitizes enum value names to ensure they are valid Dart identifiers
+  String _sanitizeEnumValueName(String value) {
+    // List of Dart reserved words
+    const reservedWords = {
+      'abstract', 'as', 'assert', 'async', 'await', 'break', 'case', 'catch',
+      'class', 'const', 'continue', 'covariant', 'default', 'deferred', 'do',
+      'dynamic', 'else', 'enum', 'export', 'extends', 'extension', 'external',
+      'factory', 'false', 'final', 'finally', 'for', 'Function', 'get', 'hide',
+      'if', 'implements', 'import', 'in', 'interface', 'is', 'late', 'library',
+      'mixin', 'new', 'null', 'on', 'operator', 'part', 'required', 'rethrow',
+      'return', 'sealed', 'set', 'show', 'static', 'super', 'switch', 'sync',
+      'this', 'throw', 'true', 'try', 'typedef', 'var', 'void', 'while', 'with',
+      'yield'
+    };
+    
+    final camelCaseName = value.camelCase;
+    
+    // If the name is a reserved word, prefix with '$'
+    if (reservedWords.contains(camelCaseName)) {
+      return '\$$camelCaseName';
+    }
+    
+    return camelCaseName;
+  }
+
+  /// Checks if this is a NullableOf* enum pattern and extracts the base name
+  String? _extractBaseNameFromNullableEnum(String componentName) {
+    final regex = RegExp(r'^NullableOf(.+)$');
+    final match = regex.firstMatch(componentName);
+    if (match != null) {
+      return match.group(1);
+    }
+    return null;
+  }
+
+  /// Checks if enum values contain 'null' value
+  bool _enumContainsNull(List<dynamic>? values) {
+    return values?.any((v) => v.toString().toLowerCase() == 'null') ?? false;
+  }
+
   Library _generateServiceStyle() {
     // Add API Error model
     lb.body.add(_generateApiErrorModel());
@@ -382,22 +422,30 @@ class OpenApiLibraryGenerator {
 
     // Handle enums
     if (schemaObject.enumerated?.isNotEmpty == true) {
-      final enumSpec = EnumSpec(
-        name: componentName,
-        values: schemaObject.enumerated!
-            .map((dynamic e) => EnumValueSpec(
-                  annotations: [
-                    jsonValue([literalString(e.toString())])
-                  ],
-                  name: e.toString().camelCase,
-                  originalValue: e.toString(),
-                ))
-            .toList(),
-      );
-      targetLb.body.add(enumSpec);
+      // Filter out null values for better Dart enum handling
+      final filteredValues = schemaObject.enumerated!
+          .where((dynamic e) => e.toString().toLowerCase() != 'null')
+          .toList();
+      
+      // Only generate enum if there are non-null values
+      if (filteredValues.isNotEmpty) {
+        final enumSpec = EnumSpec(
+          name: componentName,
+          values: filteredValues
+              .map((dynamic e) => EnumValueSpec(
+                    annotations: [
+                      jsonValue([literalString(e.toString())])
+                    ],
+                    name: _sanitizeEnumValueName(e.toString()),
+                    originalValue: e.toString(),
+                  ))
+              .toList(),
+        );
+        targetLb.body.add(enumSpec);
 
-      // Store reference for later use
-      createdEnums[componentName] = refer(componentName);
+        // Store reference for later use
+        createdEnums[componentName] = refer(componentName);
+      }
     } else {
       // Handle regular schema classes
       final schemaClass =
@@ -426,7 +474,7 @@ class OpenApiLibraryGenerator {
                         annotations: [
                           jsonValue([literalString(e.toString())])
                         ],
-                        name: e.toString().camelCase,
+                        name: _sanitizeEnumValueName(e.toString()),
                         originalValue: e.toString(),
                       ))
                   .toList(),
@@ -1290,7 +1338,11 @@ class OpenApiLibraryGenerator {
   }
 
   String classNameForComponent(String componentName) {
-    final pascalCaseName = componentName.pascalCase;
+    // Handle NullableOf* pattern from C# OpenAPI generators
+    final baseName = _extractBaseNameFromNullableEnum(componentName);
+    final nameToUse = baseName ?? componentName;
+    
+    final pascalCaseName = nameToUse.pascalCase;
     // Avoid double "Dto" suffix
     if (pascalCaseName.endsWith('Dto')) {
       return pascalCaseName;
@@ -1449,12 +1501,20 @@ class OpenApiLibraryGenerator {
           final fieldType = toDartType(parentContext, entry.value!);
           final hasDefaultValue = entry.value!.defaultValue != null;
           final isRequired = required.contains(entry.key);
+          
+          // Check if this property references a NullableOf* enum
+          final referencesNullableEnum = entry.value!.referenceURI != null &&
+              _extractBaseNameFromNullableEnum(
+                  entry.value!.referenceURI!.pathSegments.last) != null;
+          
+          // Make nullable if originally was a NullableOf* enum (which contained null)
+          final shouldBeNullable = !isRequired && !hasDefaultValue || referencesNullableEnum;
 
           return Parameter((pb) {
             pb
               ..name = fieldName
-              ..type = fieldType.asNullable(!isRequired && !hasDefaultValue)
-              ..asRequired(this, isRequired)
+              ..type = fieldType.asNullable(shouldBeNullable)
+              ..asRequired(this, isRequired && !referencesNullableEnum)
               ..named = true;
 
             // Add JsonKey annotation
@@ -1470,7 +1530,7 @@ class OpenApiLibraryGenerator {
               // Check if the field type is an enum
               if (entry.value!.enumerated?.isNotEmpty == true) {
                 // For enums, use the enum value instead of string literal
-                final enumValueName = defaultValue.toString().camelCase;
+                final enumValueName = _sanitizeEnumValueName(defaultValue.toString());
                 defaultExpression = fieldType.property(enumValueName);
               } else {
                 // For non-enum types, use literal value
@@ -1507,20 +1567,28 @@ class OpenApiLibraryGenerator {
 
   Reference _createEnum(String name, List<dynamic>? values) {
     return createdEnums.putIfAbsent(name, () {
-      lb.body.add(EnumSpec(
-        name: name,
-        values: values!
-            .map(
-              (dynamic e) => EnumValueSpec(
-                annotations: [
-                  jsonValue([literalString(e.toString())])
-                ],
-                name: e.toString().camelCase,
-                originalValue: e.toString(),
-              ),
-            )
-            .toList(),
-      ));
+      // Filter out null values for better Dart enum handling
+      final filteredValues = values!
+          .where((dynamic e) => e.toString().toLowerCase() != 'null')
+          .toList();
+          
+      // Only generate enum if there are non-null values
+      if (filteredValues.isNotEmpty) {
+        lb.body.add(EnumSpec(
+          name: name,
+          values: filteredValues
+              .map(
+                (dynamic e) => EnumValueSpec(
+                  annotations: [
+                    jsonValue([literalString(e.toString())])
+                  ],
+                  name: _sanitizeEnumValueName(e.toString()),
+                  originalValue: e.toString(),
+                ),
+              )
+              .toList(),
+        ));
+      }
       return refer(name);
     });
   }
@@ -1602,7 +1670,11 @@ class EnumSpec extends Spec {
     ctx.write(';');
     ctx.write('static $name fromName(String name) => _names[name] ??'
         ' _throwStateError(\'Invalid enum name: \$name for $name\');');
-    ctx.write('String get name => toString().substring(${name!.length + 1});');
+    ctx.write('String get name => switch (this) {');
+    for (final value in values!) {
+      ctx.write('$name.${value.name} => \'${value.originalValue}\',');
+    }
+    ctx.write('};');
     ctx.writeln('}');
     return context;
   }

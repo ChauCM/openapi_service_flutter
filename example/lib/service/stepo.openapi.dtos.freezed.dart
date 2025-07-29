@@ -340,8 +340,8 @@ class __$ApiErrorCopyWithImpl<$Res> implements _$ApiErrorCopyWith<$Res> {
 mixin _$AccountDto {
   @JsonKey(name: 'id')
   String get id;
-  @JsonKey(name: 'profile')
-  ProfileDto get profile;
+  @JsonKey(name: 'user')
+  UserDto get user;
 
   /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
@@ -359,16 +359,16 @@ mixin _$AccountDto {
         (other.runtimeType == runtimeType &&
             other is AccountDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.profile, profile) || other.profile == profile));
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, profile);
+  int get hashCode => Object.hash(runtimeType, id, user);
 
   @override
   String toString() {
-    return 'AccountDto(id: $id, profile: $profile)';
+    return 'AccountDto(id: $id, user: $user)';
   }
 }
 
@@ -379,10 +379,9 @@ abstract mixin class $AccountDtoCopyWith<$Res> {
       _$AccountDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDto profile});
+      {@JsonKey(name: 'id') String id, @JsonKey(name: 'user') UserDto user});
 
-  $ProfileDtoCopyWith<$Res> get profile;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -398,17 +397,17 @@ class _$AccountDtoCopyWithImpl<$Res> implements $AccountDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? id = null,
-    Object? profile = null,
+    Object? user = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      profile: null == profile
-          ? _self.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDto,
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserDto,
     ));
   }
 
@@ -416,9 +415,9 @@ class _$AccountDtoCopyWithImpl<$Res> implements $AccountDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileDtoCopyWith<$Res> get profile {
-    return $ProfileDtoCopyWith<$Res>(_self.profile, (value) {
-      return _then(_self.copyWith(profile: value));
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 }
@@ -515,14 +514,14 @@ extension AccountDtoPatterns on AccountDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(@JsonKey(name: 'id') String id,
-            @JsonKey(name: 'profile') ProfileDto profile)?
+            @JsonKey(name: 'user') UserDto user)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _AccountDto() when $default != null:
-        return $default(_that.id, _that.profile);
+        return $default(_that.id, _that.user);
       case _:
         return orElse();
     }
@@ -543,14 +542,14 @@ extension AccountDtoPatterns on AccountDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'id') String id,
-            @JsonKey(name: 'profile') ProfileDto profile)
+    TResult Function(
+            @JsonKey(name: 'id') String id, @JsonKey(name: 'user') UserDto user)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _AccountDto():
-        return $default(_that.id, _that.profile);
+        return $default(_that.id, _that.user);
     }
   }
 
@@ -569,13 +568,13 @@ extension AccountDtoPatterns on AccountDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(@JsonKey(name: 'id') String id,
-            @JsonKey(name: 'profile') ProfileDto profile)?
+            @JsonKey(name: 'user') UserDto user)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _AccountDto() when $default != null:
-        return $default(_that.id, _that.profile);
+        return $default(_that.id, _that.user);
       case _:
         return null;
     }
@@ -587,7 +586,7 @@ extension AccountDtoPatterns on AccountDto {
 class _AccountDto implements AccountDto {
   _AccountDto(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'profile') required this.profile});
+      @JsonKey(name: 'user') required this.user});
   factory _AccountDto.fromJson(Map<String, dynamic> json) =>
       _$AccountDtoFromJson(json);
 
@@ -595,8 +594,8 @@ class _AccountDto implements AccountDto {
   @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'profile')
-  final ProfileDto profile;
+  @JsonKey(name: 'user')
+  final UserDto user;
 
   /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
@@ -619,16 +618,16 @@ class _AccountDto implements AccountDto {
         (other.runtimeType == runtimeType &&
             other is _AccountDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.profile, profile) || other.profile == profile));
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, profile);
+  int get hashCode => Object.hash(runtimeType, id, user);
 
   @override
   String toString() {
-    return 'AccountDto(id: $id, profile: $profile)';
+    return 'AccountDto(id: $id, user: $user)';
   }
 }
 
@@ -641,11 +640,10 @@ abstract mixin class _$AccountDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'profile') ProfileDto profile});
+      {@JsonKey(name: 'id') String id, @JsonKey(name: 'user') UserDto user});
 
   @override
-  $ProfileDtoCopyWith<$Res> get profile;
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -661,17 +659,17 @@ class __$AccountDtoCopyWithImpl<$Res> implements _$AccountDtoCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? profile = null,
+    Object? user = null,
   }) {
     return _then(_AccountDto(
       id: null == id
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      profile: null == profile
-          ? _self.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as ProfileDto,
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserDto,
     ));
   }
 
@@ -679,148 +677,204 @@ class __$AccountDtoCopyWithImpl<$Res> implements _$AccountDtoCopyWith<$Res> {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ProfileDtoCopyWith<$Res> get profile {
-    return $ProfileDtoCopyWith<$Res>(_self.profile, (value) {
-      return _then(_self.copyWith(profile: value));
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
     });
   }
 }
 
 /// @nodoc
-mixin _$BulkNotificationDto {
-  @JsonKey(name: 'title')
-  String get title;
-  @JsonKey(name: 'body')
-  String get body;
-  @JsonKey(name: 'notificationType')
-  NotificationTypeDto get notificationType;
-  @JsonKey(name: 'userIds')
-  List<String> get userIds;
-  @JsonKey(name: 'relatedEntityId')
-  String? get relatedEntityId;
-  @JsonKey(name: 'data')
-  Map<String, String>? get data;
-  @JsonKey(name: 'priority')
-  int get priority;
+mixin _$AppFeedbackDto {
+  @JsonKey(name: 'id')
+  String get id;
+  @JsonKey(name: 'content')
+  String get content;
+  @JsonKey(name: 'feedbackType')
+  FeedbackTypeDto get feedbackType;
+  @JsonKey(name: 'status')
+  FeedbackStatusDto get status;
+  @JsonKey(name: 'imageUrl')
+  String? get imageUrl;
+  @JsonKey(name: 'deviceInfo')
+  String? get deviceInfo;
+  @JsonKey(name: 'appVersion')
+  String? get appVersion;
+  @JsonKey(name: 'user')
+  UserDto get user;
+  @JsonKey(name: 'createdDate')
+  DateTime get createdDate;
+  @JsonKey(name: 'adminResponse')
+  String? get adminResponse;
+  @JsonKey(name: 'respondedDate')
+  DateTime? get respondedDate;
 
-  /// Create a copy of BulkNotificationDto
+  /// Create a copy of AppFeedbackDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $BulkNotificationDtoCopyWith<BulkNotificationDto> get copyWith =>
-      _$BulkNotificationDtoCopyWithImpl<BulkNotificationDto>(
-          this as BulkNotificationDto, _$identity);
+  $AppFeedbackDtoCopyWith<AppFeedbackDto> get copyWith =>
+      _$AppFeedbackDtoCopyWithImpl<AppFeedbackDto>(
+          this as AppFeedbackDto, _$identity);
 
-  /// Serializes this BulkNotificationDto to a JSON map.
+  /// Serializes this AppFeedbackDto to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is BulkNotificationDto &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.body, body) || other.body == body) &&
-            (identical(other.notificationType, notificationType) ||
-                other.notificationType == notificationType) &&
-            const DeepCollectionEquality().equals(other.userIds, userIds) &&
-            (identical(other.relatedEntityId, relatedEntityId) ||
-                other.relatedEntityId == relatedEntityId) &&
-            const DeepCollectionEquality().equals(other.data, data) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority));
+            other is AppFeedbackDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.feedbackType, feedbackType) ||
+                other.feedbackType == feedbackType) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.deviceInfo, deviceInfo) ||
+                other.deviceInfo == deviceInfo) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.adminResponse, adminResponse) ||
+                other.adminResponse == adminResponse) &&
+            (identical(other.respondedDate, respondedDate) ||
+                other.respondedDate == respondedDate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      title,
-      body,
-      notificationType,
-      const DeepCollectionEquality().hash(userIds),
-      relatedEntityId,
-      const DeepCollectionEquality().hash(data),
-      priority);
+      id,
+      content,
+      feedbackType,
+      status,
+      imageUrl,
+      deviceInfo,
+      appVersion,
+      user,
+      createdDate,
+      adminResponse,
+      respondedDate);
 
   @override
   String toString() {
-    return 'BulkNotificationDto(title: $title, body: $body, notificationType: $notificationType, userIds: $userIds, relatedEntityId: $relatedEntityId, data: $data, priority: $priority)';
+    return 'AppFeedbackDto(id: $id, content: $content, feedbackType: $feedbackType, status: $status, imageUrl: $imageUrl, deviceInfo: $deviceInfo, appVersion: $appVersion, user: $user, createdDate: $createdDate, adminResponse: $adminResponse, respondedDate: $respondedDate)';
   }
 }
 
 /// @nodoc
-abstract mixin class $BulkNotificationDtoCopyWith<$Res> {
-  factory $BulkNotificationDtoCopyWith(
-          BulkNotificationDto value, $Res Function(BulkNotificationDto) _then) =
-      _$BulkNotificationDtoCopyWithImpl;
+abstract mixin class $AppFeedbackDtoCopyWith<$Res> {
+  factory $AppFeedbackDtoCopyWith(
+          AppFeedbackDto value, $Res Function(AppFeedbackDto) _then) =
+      _$AppFeedbackDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
-      @JsonKey(name: 'userIds') List<String> userIds,
-      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int priority});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+      @JsonKey(name: 'status') FeedbackStatusDto status,
+      @JsonKey(name: 'imageUrl') String? imageUrl,
+      @JsonKey(name: 'deviceInfo') String? deviceInfo,
+      @JsonKey(name: 'appVersion') String? appVersion,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'adminResponse') String? adminResponse,
+      @JsonKey(name: 'respondedDate') DateTime? respondedDate});
+
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$BulkNotificationDtoCopyWithImpl<$Res>
-    implements $BulkNotificationDtoCopyWith<$Res> {
-  _$BulkNotificationDtoCopyWithImpl(this._self, this._then);
+class _$AppFeedbackDtoCopyWithImpl<$Res>
+    implements $AppFeedbackDtoCopyWith<$Res> {
+  _$AppFeedbackDtoCopyWithImpl(this._self, this._then);
 
-  final BulkNotificationDto _self;
-  final $Res Function(BulkNotificationDto) _then;
+  final AppFeedbackDto _self;
+  final $Res Function(AppFeedbackDto) _then;
 
-  /// Create a copy of BulkNotificationDto
+  /// Create a copy of AppFeedbackDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? body = null,
-    Object? notificationType = null,
-    Object? userIds = null,
-    Object? relatedEntityId = freezed,
-    Object? data = freezed,
-    Object? priority = null,
+    Object? id = null,
+    Object? content = null,
+    Object? feedbackType = null,
+    Object? status = null,
+    Object? imageUrl = freezed,
+    Object? deviceInfo = freezed,
+    Object? appVersion = freezed,
+    Object? user = null,
+    Object? createdDate = null,
+    Object? adminResponse = freezed,
+    Object? respondedDate = freezed,
   }) {
     return _then(_self.copyWith(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      body: null == body
-          ? _self.body
-          : body // ignore: cast_nullable_to_non_nullable
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String,
-      notificationType: null == notificationType
-          ? _self.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationTypeDto,
-      userIds: null == userIds
-          ? _self.userIds
-          : userIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      relatedEntityId: freezed == relatedEntityId
-          ? _self.relatedEntityId
-          : relatedEntityId // ignore: cast_nullable_to_non_nullable
+      feedbackType: null == feedbackType
+          ? _self.feedbackType
+          : feedbackType // ignore: cast_nullable_to_non_nullable
+              as FeedbackTypeDto,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FeedbackStatusDto,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      priority: null == priority
-          ? _self.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as int,
+      deviceInfo: freezed == deviceInfo
+          ? _self.deviceInfo
+          : deviceInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserDto,
+      createdDate: null == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      adminResponse: freezed == adminResponse
+          ? _self.adminResponse
+          : adminResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      respondedDate: freezed == respondedDate
+          ? _self.respondedDate
+          : respondedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
+  }
+
+  /// Create a copy of AppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
   }
 }
 
-/// Adds pattern-matching-related methods to [BulkNotificationDto].
-extension BulkNotificationDtoPatterns on BulkNotificationDto {
+/// Adds pattern-matching-related methods to [AppFeedbackDto].
+extension AppFeedbackDtoPatterns on AppFeedbackDto {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -835,12 +889,12 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_BulkNotificationDto value)? $default, {
+    TResult Function(_AppFeedbackDto value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _BulkNotificationDto() when $default != null:
+      case _AppFeedbackDto() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -862,11 +916,11 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_BulkNotificationDto value) $default,
+    TResult Function(_AppFeedbackDto value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _BulkNotificationDto():
+      case _AppFeedbackDto():
         return $default(_that);
     }
   }
@@ -885,11 +939,11 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_BulkNotificationDto value)? $default,
+    TResult? Function(_AppFeedbackDto value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _BulkNotificationDto() when $default != null:
+      case _AppFeedbackDto() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -911,22 +965,35 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'title') String title,
-            @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto notificationType,
-            @JsonKey(name: 'userIds') List<String> userIds,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int priority)?
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+            @JsonKey(name: 'status') FeedbackStatusDto status,
+            @JsonKey(name: 'imageUrl') String? imageUrl,
+            @JsonKey(name: 'deviceInfo') String? deviceInfo,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'adminResponse') String? adminResponse,
+            @JsonKey(name: 'respondedDate') DateTime? respondedDate)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _BulkNotificationDto() when $default != null:
-        return $default(_that.title, _that.body, _that.notificationType,
-            _that.userIds, _that.relatedEntityId, _that.data, _that.priority);
+      case _AppFeedbackDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.content,
+            _that.feedbackType,
+            _that.status,
+            _that.imageUrl,
+            _that.deviceInfo,
+            _that.appVersion,
+            _that.user,
+            _that.createdDate,
+            _that.adminResponse,
+            _that.respondedDate);
       case _:
         return orElse();
     }
@@ -948,21 +1015,34 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'title') String title,
-            @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto notificationType,
-            @JsonKey(name: 'userIds') List<String> userIds,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int priority)
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+            @JsonKey(name: 'status') FeedbackStatusDto status,
+            @JsonKey(name: 'imageUrl') String? imageUrl,
+            @JsonKey(name: 'deviceInfo') String? deviceInfo,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'adminResponse') String? adminResponse,
+            @JsonKey(name: 'respondedDate') DateTime? respondedDate)
         $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _BulkNotificationDto():
-        return $default(_that.title, _that.body, _that.notificationType,
-            _that.userIds, _that.relatedEntityId, _that.data, _that.priority);
+      case _AppFeedbackDto():
+        return $default(
+            _that.id,
+            _that.content,
+            _that.feedbackType,
+            _that.status,
+            _that.imageUrl,
+            _that.deviceInfo,
+            _that.appVersion,
+            _that.user,
+            _that.createdDate,
+            _that.adminResponse,
+            _that.respondedDate);
     }
   }
 
@@ -981,21 +1061,34 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'title') String title,
-            @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto notificationType,
-            @JsonKey(name: 'userIds') List<String> userIds,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int priority)?
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+            @JsonKey(name: 'status') FeedbackStatusDto status,
+            @JsonKey(name: 'imageUrl') String? imageUrl,
+            @JsonKey(name: 'deviceInfo') String? deviceInfo,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'createdDate') DateTime createdDate,
+            @JsonKey(name: 'adminResponse') String? adminResponse,
+            @JsonKey(name: 'respondedDate') DateTime? respondedDate)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _BulkNotificationDto() when $default != null:
-        return $default(_that.title, _that.body, _that.notificationType,
-            _that.userIds, _that.relatedEntityId, _that.data, _that.priority);
+      case _AppFeedbackDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.content,
+            _that.feedbackType,
+            _that.status,
+            _that.imageUrl,
+            _that.deviceInfo,
+            _that.appVersion,
+            _that.user,
+            _that.createdDate,
+            _that.adminResponse,
+            _that.respondedDate);
       case _:
         return null;
     }
@@ -1004,68 +1097,67 @@ extension BulkNotificationDtoPatterns on BulkNotificationDto {
 
 /// @nodoc
 @JsonSerializable()
-class _BulkNotificationDto implements BulkNotificationDto {
-  _BulkNotificationDto(
-      {@JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'body') required this.body,
-      @JsonKey(name: 'notificationType') required this.notificationType,
-      @JsonKey(name: 'userIds') required final List<String> userIds,
-      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
-      @JsonKey(name: 'data') final Map<String, String>? data,
-      @JsonKey(name: 'priority') this.priority = 0})
-      : _userIds = userIds,
-        _data = data;
-  factory _BulkNotificationDto.fromJson(Map<String, dynamic> json) =>
-      _$BulkNotificationDtoFromJson(json);
+class _AppFeedbackDto implements AppFeedbackDto {
+  _AppFeedbackDto(
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'content') required this.content,
+      @JsonKey(name: 'feedbackType') required this.feedbackType,
+      @JsonKey(name: 'status') required this.status,
+      @JsonKey(name: 'imageUrl') this.imageUrl,
+      @JsonKey(name: 'deviceInfo') this.deviceInfo,
+      @JsonKey(name: 'appVersion') this.appVersion,
+      @JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'createdDate') required this.createdDate,
+      @JsonKey(name: 'adminResponse') this.adminResponse,
+      @JsonKey(name: 'respondedDate') this.respondedDate});
+  factory _AppFeedbackDto.fromJson(Map<String, dynamic> json) =>
+      _$AppFeedbackDtoFromJson(json);
 
   @override
-  @JsonKey(name: 'title')
-  final String title;
+  @JsonKey(name: 'id')
+  final String id;
   @override
-  @JsonKey(name: 'body')
-  final String body;
+  @JsonKey(name: 'content')
+  final String content;
   @override
-  @JsonKey(name: 'notificationType')
-  final NotificationTypeDto notificationType;
-  final List<String> _userIds;
+  @JsonKey(name: 'feedbackType')
+  final FeedbackTypeDto feedbackType;
   @override
-  @JsonKey(name: 'userIds')
-  List<String> get userIds {
-    if (_userIds is EqualUnmodifiableListView) return _userIds;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_userIds);
-  }
+  @JsonKey(name: 'status')
+  final FeedbackStatusDto status;
+  @override
+  @JsonKey(name: 'imageUrl')
+  final String? imageUrl;
+  @override
+  @JsonKey(name: 'deviceInfo')
+  final String? deviceInfo;
+  @override
+  @JsonKey(name: 'appVersion')
+  final String? appVersion;
+  @override
+  @JsonKey(name: 'user')
+  final UserDto user;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime createdDate;
+  @override
+  @JsonKey(name: 'adminResponse')
+  final String? adminResponse;
+  @override
+  @JsonKey(name: 'respondedDate')
+  final DateTime? respondedDate;
 
-  @override
-  @JsonKey(name: 'relatedEntityId')
-  final String? relatedEntityId;
-  final Map<String, String>? _data;
-  @override
-  @JsonKey(name: 'data')
-  Map<String, String>? get data {
-    final value = _data;
-    if (value == null) return null;
-    if (_data is EqualUnmodifiableMapView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
-  @override
-  @JsonKey(name: 'priority')
-  final int priority;
-
-  /// Create a copy of BulkNotificationDto
+  /// Create a copy of AppFeedbackDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$BulkNotificationDtoCopyWith<_BulkNotificationDto> get copyWith =>
-      __$BulkNotificationDtoCopyWithImpl<_BulkNotificationDto>(
-          this, _$identity);
+  _$AppFeedbackDtoCopyWith<_AppFeedbackDto> get copyWith =>
+      __$AppFeedbackDtoCopyWithImpl<_AppFeedbackDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$BulkNotificationDtoToJson(
+    return _$AppFeedbackDtoToJson(
       this,
     );
   }
@@ -1074,105 +1166,900 @@ class _BulkNotificationDto implements BulkNotificationDto {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BulkNotificationDto &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.body, body) || other.body == body) &&
-            (identical(other.notificationType, notificationType) ||
-                other.notificationType == notificationType) &&
-            const DeepCollectionEquality().equals(other._userIds, _userIds) &&
-            (identical(other.relatedEntityId, relatedEntityId) ||
-                other.relatedEntityId == relatedEntityId) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority));
+            other is _AppFeedbackDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.feedbackType, feedbackType) ||
+                other.feedbackType == feedbackType) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
+            (identical(other.deviceInfo, deviceInfo) ||
+                other.deviceInfo == deviceInfo) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.adminResponse, adminResponse) ||
+                other.adminResponse == adminResponse) &&
+            (identical(other.respondedDate, respondedDate) ||
+                other.respondedDate == respondedDate));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      title,
-      body,
-      notificationType,
-      const DeepCollectionEquality().hash(_userIds),
-      relatedEntityId,
-      const DeepCollectionEquality().hash(_data),
-      priority);
+      id,
+      content,
+      feedbackType,
+      status,
+      imageUrl,
+      deviceInfo,
+      appVersion,
+      user,
+      createdDate,
+      adminResponse,
+      respondedDate);
 
   @override
   String toString() {
-    return 'BulkNotificationDto(title: $title, body: $body, notificationType: $notificationType, userIds: $userIds, relatedEntityId: $relatedEntityId, data: $data, priority: $priority)';
+    return 'AppFeedbackDto(id: $id, content: $content, feedbackType: $feedbackType, status: $status, imageUrl: $imageUrl, deviceInfo: $deviceInfo, appVersion: $appVersion, user: $user, createdDate: $createdDate, adminResponse: $adminResponse, respondedDate: $respondedDate)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$BulkNotificationDtoCopyWith<$Res>
-    implements $BulkNotificationDtoCopyWith<$Res> {
-  factory _$BulkNotificationDtoCopyWith(_BulkNotificationDto value,
-          $Res Function(_BulkNotificationDto) _then) =
-      __$BulkNotificationDtoCopyWithImpl;
+abstract mixin class _$AppFeedbackDtoCopyWith<$Res>
+    implements $AppFeedbackDtoCopyWith<$Res> {
+  factory _$AppFeedbackDtoCopyWith(
+          _AppFeedbackDto value, $Res Function(_AppFeedbackDto) _then) =
+      __$AppFeedbackDtoCopyWithImpl;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
-      @JsonKey(name: 'userIds') List<String> userIds,
-      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int priority});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+      @JsonKey(name: 'status') FeedbackStatusDto status,
+      @JsonKey(name: 'imageUrl') String? imageUrl,
+      @JsonKey(name: 'deviceInfo') String? deviceInfo,
+      @JsonKey(name: 'appVersion') String? appVersion,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'createdDate') DateTime createdDate,
+      @JsonKey(name: 'adminResponse') String? adminResponse,
+      @JsonKey(name: 'respondedDate') DateTime? respondedDate});
+
+  @override
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class __$BulkNotificationDtoCopyWithImpl<$Res>
-    implements _$BulkNotificationDtoCopyWith<$Res> {
-  __$BulkNotificationDtoCopyWithImpl(this._self, this._then);
+class __$AppFeedbackDtoCopyWithImpl<$Res>
+    implements _$AppFeedbackDtoCopyWith<$Res> {
+  __$AppFeedbackDtoCopyWithImpl(this._self, this._then);
 
-  final _BulkNotificationDto _self;
-  final $Res Function(_BulkNotificationDto) _then;
+  final _AppFeedbackDto _self;
+  final $Res Function(_AppFeedbackDto) _then;
 
-  /// Create a copy of BulkNotificationDto
+  /// Create a copy of AppFeedbackDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? title = null,
-    Object? body = null,
-    Object? notificationType = null,
-    Object? userIds = null,
-    Object? relatedEntityId = freezed,
-    Object? data = freezed,
-    Object? priority = null,
+    Object? id = null,
+    Object? content = null,
+    Object? feedbackType = null,
+    Object? status = null,
+    Object? imageUrl = freezed,
+    Object? deviceInfo = freezed,
+    Object? appVersion = freezed,
+    Object? user = null,
+    Object? createdDate = null,
+    Object? adminResponse = freezed,
+    Object? respondedDate = freezed,
   }) {
-    return _then(_BulkNotificationDto(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
+    return _then(_AppFeedbackDto(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      body: null == body
-          ? _self.body
-          : body // ignore: cast_nullable_to_non_nullable
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String,
-      notificationType: null == notificationType
-          ? _self.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationTypeDto,
-      userIds: null == userIds
-          ? _self._userIds
-          : userIds // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      relatedEntityId: freezed == relatedEntityId
-          ? _self.relatedEntityId
-          : relatedEntityId // ignore: cast_nullable_to_non_nullable
+      feedbackType: null == feedbackType
+          ? _self.feedbackType
+          : feedbackType // ignore: cast_nullable_to_non_nullable
+              as FeedbackTypeDto,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FeedbackStatusDto,
+      imageUrl: freezed == imageUrl
+          ? _self.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: freezed == data
-          ? _self._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      priority: null == priority
-          ? _self.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as int,
+      deviceInfo: freezed == deviceInfo
+          ? _self.deviceInfo
+          : deviceInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserDto,
+      createdDate: null == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      adminResponse: freezed == adminResponse
+          ? _self.adminResponse
+          : adminResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      respondedDate: freezed == respondedDate
+          ? _self.respondedDate
+          : respondedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of AppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$BanUserDto {
+  @JsonKey(name: 'reason')
+  String get reason;
+  @JsonKey(name: 'isShadowBan')
+  bool get isShadowBan;
+  @JsonKey(name: 'additionalNotes')
+  String? get additionalNotes;
+
+  /// Create a copy of BanUserDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $BanUserDtoCopyWith<BanUserDto> get copyWith =>
+      _$BanUserDtoCopyWithImpl<BanUserDto>(this as BanUserDto, _$identity);
+
+  /// Serializes this BanUserDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is BanUserDto &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.isShadowBan, isShadowBan) ||
+                other.isShadowBan == isShadowBan) &&
+            (identical(other.additionalNotes, additionalNotes) ||
+                other.additionalNotes == additionalNotes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, reason, isShadowBan, additionalNotes);
+
+  @override
+  String toString() {
+    return 'BanUserDto(reason: $reason, isShadowBan: $isShadowBan, additionalNotes: $additionalNotes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $BanUserDtoCopyWith<$Res> {
+  factory $BanUserDtoCopyWith(
+          BanUserDto value, $Res Function(BanUserDto) _then) =
+      _$BanUserDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'reason') String reason,
+      @JsonKey(name: 'isShadowBan') bool isShadowBan,
+      @JsonKey(name: 'additionalNotes') String? additionalNotes});
+}
+
+/// @nodoc
+class _$BanUserDtoCopyWithImpl<$Res> implements $BanUserDtoCopyWith<$Res> {
+  _$BanUserDtoCopyWithImpl(this._self, this._then);
+
+  final BanUserDto _self;
+  final $Res Function(BanUserDto) _then;
+
+  /// Create a copy of BanUserDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reason = null,
+    Object? isShadowBan = null,
+    Object? additionalNotes = freezed,
+  }) {
+    return _then(_self.copyWith(
+      reason: null == reason
+          ? _self.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+      isShadowBan: null == isShadowBan
+          ? _self.isShadowBan
+          : isShadowBan // ignore: cast_nullable_to_non_nullable
+              as bool,
+      additionalNotes: freezed == additionalNotes
+          ? _self.additionalNotes
+          : additionalNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [BanUserDto].
+extension BanUserDtoPatterns on BanUserDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BanUserDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BanUserDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BanUserDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BanUserDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BanUserDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BanUserDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'reason') String reason,
+            @JsonKey(name: 'isShadowBan') bool isShadowBan,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BanUserDto() when $default != null:
+        return $default(_that.reason, _that.isShadowBan, _that.additionalNotes);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'reason') String reason,
+            @JsonKey(name: 'isShadowBan') bool isShadowBan,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BanUserDto():
+        return $default(_that.reason, _that.isShadowBan, _that.additionalNotes);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'reason') String reason,
+            @JsonKey(name: 'isShadowBan') bool isShadowBan,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BanUserDto() when $default != null:
+        return $default(_that.reason, _that.isShadowBan, _that.additionalNotes);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _BanUserDto implements BanUserDto {
+  _BanUserDto(
+      {@JsonKey(name: 'reason') required this.reason,
+      @JsonKey(name: 'isShadowBan') this.isShadowBan = false,
+      @JsonKey(name: 'additionalNotes') this.additionalNotes});
+  factory _BanUserDto.fromJson(Map<String, dynamic> json) =>
+      _$BanUserDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'reason')
+  final String reason;
+  @override
+  @JsonKey(name: 'isShadowBan')
+  final bool isShadowBan;
+  @override
+  @JsonKey(name: 'additionalNotes')
+  final String? additionalNotes;
+
+  /// Create a copy of BanUserDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BanUserDtoCopyWith<_BanUserDto> get copyWith =>
+      __$BanUserDtoCopyWithImpl<_BanUserDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BanUserDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _BanUserDto &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.isShadowBan, isShadowBan) ||
+                other.isShadowBan == isShadowBan) &&
+            (identical(other.additionalNotes, additionalNotes) ||
+                other.additionalNotes == additionalNotes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, reason, isShadowBan, additionalNotes);
+
+  @override
+  String toString() {
+    return 'BanUserDto(reason: $reason, isShadowBan: $isShadowBan, additionalNotes: $additionalNotes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$BanUserDtoCopyWith<$Res>
+    implements $BanUserDtoCopyWith<$Res> {
+  factory _$BanUserDtoCopyWith(
+          _BanUserDto value, $Res Function(_BanUserDto) _then) =
+      __$BanUserDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'reason') String reason,
+      @JsonKey(name: 'isShadowBan') bool isShadowBan,
+      @JsonKey(name: 'additionalNotes') String? additionalNotes});
+}
+
+/// @nodoc
+class __$BanUserDtoCopyWithImpl<$Res> implements _$BanUserDtoCopyWith<$Res> {
+  __$BanUserDtoCopyWithImpl(this._self, this._then);
+
+  final _BanUserDto _self;
+  final $Res Function(_BanUserDto) _then;
+
+  /// Create a copy of BanUserDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? reason = null,
+    Object? isShadowBan = null,
+    Object? additionalNotes = freezed,
+  }) {
+    return _then(_BanUserDto(
+      reason: null == reason
+          ? _self.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+      isShadowBan: null == isShadowBan
+          ? _self.isShadowBan
+          : isShadowBan // ignore: cast_nullable_to_non_nullable
+              as bool,
+      additionalNotes: freezed == additionalNotes
+          ? _self.additionalNotes
+          : additionalNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$CreateAppFeedbackDto {
+  @JsonKey(name: 'content')
+  String get content;
+  @JsonKey(name: 'feedbackType')
+  FeedbackTypeDto get feedbackType;
+  @JsonKey(name: 'deviceInfo')
+  String? get deviceInfo;
+  @JsonKey(name: 'appVersion')
+  String? get appVersion;
+
+  /// Create a copy of CreateAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CreateAppFeedbackDtoCopyWith<CreateAppFeedbackDto> get copyWith =>
+      _$CreateAppFeedbackDtoCopyWithImpl<CreateAppFeedbackDto>(
+          this as CreateAppFeedbackDto, _$identity);
+
+  /// Serializes this CreateAppFeedbackDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CreateAppFeedbackDto &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.feedbackType, feedbackType) ||
+                other.feedbackType == feedbackType) &&
+            (identical(other.deviceInfo, deviceInfo) ||
+                other.deviceInfo == deviceInfo) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, content, feedbackType, deviceInfo, appVersion);
+
+  @override
+  String toString() {
+    return 'CreateAppFeedbackDto(content: $content, feedbackType: $feedbackType, deviceInfo: $deviceInfo, appVersion: $appVersion)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CreateAppFeedbackDtoCopyWith<$Res> {
+  factory $CreateAppFeedbackDtoCopyWith(CreateAppFeedbackDto value,
+          $Res Function(CreateAppFeedbackDto) _then) =
+      _$CreateAppFeedbackDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'content') String content,
+      @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+      @JsonKey(name: 'deviceInfo') String? deviceInfo,
+      @JsonKey(name: 'appVersion') String? appVersion});
+}
+
+/// @nodoc
+class _$CreateAppFeedbackDtoCopyWithImpl<$Res>
+    implements $CreateAppFeedbackDtoCopyWith<$Res> {
+  _$CreateAppFeedbackDtoCopyWithImpl(this._self, this._then);
+
+  final CreateAppFeedbackDto _self;
+  final $Res Function(CreateAppFeedbackDto) _then;
+
+  /// Create a copy of CreateAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? content = null,
+    Object? feedbackType = null,
+    Object? deviceInfo = freezed,
+    Object? appVersion = freezed,
+  }) {
+    return _then(_self.copyWith(
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      feedbackType: null == feedbackType
+          ? _self.feedbackType
+          : feedbackType // ignore: cast_nullable_to_non_nullable
+              as FeedbackTypeDto,
+      deviceInfo: freezed == deviceInfo
+          ? _self.deviceInfo
+          : deviceInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [CreateAppFeedbackDto].
+extension CreateAppFeedbackDtoPatterns on CreateAppFeedbackDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CreateAppFeedbackDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _CreateAppFeedbackDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CreateAppFeedbackDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreateAppFeedbackDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CreateAppFeedbackDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreateAppFeedbackDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+            @JsonKey(name: 'deviceInfo') String? deviceInfo,
+            @JsonKey(name: 'appVersion') String? appVersion)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _CreateAppFeedbackDto() when $default != null:
+        return $default(_that.content, _that.feedbackType, _that.deviceInfo,
+            _that.appVersion);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+            @JsonKey(name: 'deviceInfo') String? deviceInfo,
+            @JsonKey(name: 'appVersion') String? appVersion)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreateAppFeedbackDto():
+        return $default(_that.content, _that.feedbackType, _that.deviceInfo,
+            _that.appVersion);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+            @JsonKey(name: 'deviceInfo') String? deviceInfo,
+            @JsonKey(name: 'appVersion') String? appVersion)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreateAppFeedbackDto() when $default != null:
+        return $default(_that.content, _that.feedbackType, _that.deviceInfo,
+            _that.appVersion);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _CreateAppFeedbackDto implements CreateAppFeedbackDto {
+  _CreateAppFeedbackDto(
+      {@JsonKey(name: 'content') required this.content,
+      @JsonKey(name: 'feedbackType') required this.feedbackType,
+      @JsonKey(name: 'deviceInfo') this.deviceInfo,
+      @JsonKey(name: 'appVersion') this.appVersion});
+  factory _CreateAppFeedbackDto.fromJson(Map<String, dynamic> json) =>
+      _$CreateAppFeedbackDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'content')
+  final String content;
+  @override
+  @JsonKey(name: 'feedbackType')
+  final FeedbackTypeDto feedbackType;
+  @override
+  @JsonKey(name: 'deviceInfo')
+  final String? deviceInfo;
+  @override
+  @JsonKey(name: 'appVersion')
+  final String? appVersion;
+
+  /// Create a copy of CreateAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CreateAppFeedbackDtoCopyWith<_CreateAppFeedbackDto> get copyWith =>
+      __$CreateAppFeedbackDtoCopyWithImpl<_CreateAppFeedbackDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CreateAppFeedbackDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CreateAppFeedbackDto &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.feedbackType, feedbackType) ||
+                other.feedbackType == feedbackType) &&
+            (identical(other.deviceInfo, deviceInfo) ||
+                other.deviceInfo == deviceInfo) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, content, feedbackType, deviceInfo, appVersion);
+
+  @override
+  String toString() {
+    return 'CreateAppFeedbackDto(content: $content, feedbackType: $feedbackType, deviceInfo: $deviceInfo, appVersion: $appVersion)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$CreateAppFeedbackDtoCopyWith<$Res>
+    implements $CreateAppFeedbackDtoCopyWith<$Res> {
+  factory _$CreateAppFeedbackDtoCopyWith(_CreateAppFeedbackDto value,
+          $Res Function(_CreateAppFeedbackDto) _then) =
+      __$CreateAppFeedbackDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'content') String content,
+      @JsonKey(name: 'feedbackType') FeedbackTypeDto feedbackType,
+      @JsonKey(name: 'deviceInfo') String? deviceInfo,
+      @JsonKey(name: 'appVersion') String? appVersion});
+}
+
+/// @nodoc
+class __$CreateAppFeedbackDtoCopyWithImpl<$Res>
+    implements _$CreateAppFeedbackDtoCopyWith<$Res> {
+  __$CreateAppFeedbackDtoCopyWithImpl(this._self, this._then);
+
+  final _CreateAppFeedbackDto _self;
+  final $Res Function(_CreateAppFeedbackDto) _then;
+
+  /// Create a copy of CreateAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? content = null,
+    Object? feedbackType = null,
+    Object? deviceInfo = freezed,
+    Object? appVersion = freezed,
+  }) {
+    return _then(_CreateAppFeedbackDto(
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      feedbackType: null == feedbackType
+          ? _self.feedbackType
+          : feedbackType // ignore: cast_nullable_to_non_nullable
+              as FeedbackTypeDto,
+      deviceInfo: freezed == deviceInfo
+          ? _self.deviceInfo
+          : deviceInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2152,6 +3039,8 @@ mixin _$CreateStepDto {
   String get content;
   @JsonKey(name: 'journeyId')
   String get journeyId;
+  @JsonKey(name: 'isFinalStep')
+  bool get isFinalStep;
 
   /// Create a copy of CreateStepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -2171,16 +3060,18 @@ mixin _$CreateStepDto {
             other is CreateStepDto &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.journeyId, journeyId) ||
-                other.journeyId == journeyId));
+                other.journeyId == journeyId) &&
+            (identical(other.isFinalStep, isFinalStep) ||
+                other.isFinalStep == isFinalStep));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, content, journeyId);
+  int get hashCode => Object.hash(runtimeType, content, journeyId, isFinalStep);
 
   @override
   String toString() {
-    return 'CreateStepDto(content: $content, journeyId: $journeyId)';
+    return 'CreateStepDto(content: $content, journeyId: $journeyId, isFinalStep: $isFinalStep)';
   }
 }
 
@@ -2192,7 +3083,8 @@ abstract mixin class $CreateStepDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
-      @JsonKey(name: 'journeyId') String journeyId});
+      @JsonKey(name: 'journeyId') String journeyId,
+      @JsonKey(name: 'isFinalStep') bool isFinalStep});
 }
 
 /// @nodoc
@@ -2210,6 +3102,7 @@ class _$CreateStepDtoCopyWithImpl<$Res>
   $Res call({
     Object? content = null,
     Object? journeyId = null,
+    Object? isFinalStep = null,
   }) {
     return _then(_self.copyWith(
       content: null == content
@@ -2220,6 +3113,10 @@ class _$CreateStepDtoCopyWithImpl<$Res>
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
               as String,
+      isFinalStep: null == isFinalStep
+          ? _self.isFinalStep
+          : isFinalStep // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -2315,15 +3212,17 @@ extension CreateStepDtoPatterns on CreateStepDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'content') String content,
-            @JsonKey(name: 'journeyId') String journeyId)?
+    TResult Function(
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'journeyId') String journeyId,
+            @JsonKey(name: 'isFinalStep') bool isFinalStep)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _CreateStepDto() when $default != null:
-        return $default(_that.content, _that.journeyId);
+        return $default(_that.content, _that.journeyId, _that.isFinalStep);
       case _:
         return orElse();
     }
@@ -2344,14 +3243,16 @@ extension CreateStepDtoPatterns on CreateStepDto {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'content') String content,
-            @JsonKey(name: 'journeyId') String journeyId)
+    TResult Function(
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'journeyId') String journeyId,
+            @JsonKey(name: 'isFinalStep') bool isFinalStep)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _CreateStepDto():
-        return $default(_that.content, _that.journeyId);
+        return $default(_that.content, _that.journeyId, _that.isFinalStep);
     }
   }
 
@@ -2369,14 +3270,16 @@ extension CreateStepDtoPatterns on CreateStepDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'content') String content,
-            @JsonKey(name: 'journeyId') String journeyId)?
+    TResult? Function(
+            @JsonKey(name: 'content') String content,
+            @JsonKey(name: 'journeyId') String journeyId,
+            @JsonKey(name: 'isFinalStep') bool isFinalStep)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _CreateStepDto() when $default != null:
-        return $default(_that.content, _that.journeyId);
+        return $default(_that.content, _that.journeyId, _that.isFinalStep);
       case _:
         return null;
     }
@@ -2388,7 +3291,8 @@ extension CreateStepDtoPatterns on CreateStepDto {
 class _CreateStepDto implements CreateStepDto {
   _CreateStepDto(
       {@JsonKey(name: 'content') required this.content,
-      @JsonKey(name: 'journeyId') required this.journeyId});
+      @JsonKey(name: 'journeyId') required this.journeyId,
+      @JsonKey(name: 'isFinalStep') this.isFinalStep = false});
   factory _CreateStepDto.fromJson(Map<String, dynamic> json) =>
       _$CreateStepDtoFromJson(json);
 
@@ -2398,6 +3302,9 @@ class _CreateStepDto implements CreateStepDto {
   @override
   @JsonKey(name: 'journeyId')
   final String journeyId;
+  @override
+  @JsonKey(name: 'isFinalStep')
+  final bool isFinalStep;
 
   /// Create a copy of CreateStepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -2421,16 +3328,18 @@ class _CreateStepDto implements CreateStepDto {
             other is _CreateStepDto &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.journeyId, journeyId) ||
-                other.journeyId == journeyId));
+                other.journeyId == journeyId) &&
+            (identical(other.isFinalStep, isFinalStep) ||
+                other.isFinalStep == isFinalStep));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, content, journeyId);
+  int get hashCode => Object.hash(runtimeType, content, journeyId, isFinalStep);
 
   @override
   String toString() {
-    return 'CreateStepDto(content: $content, journeyId: $journeyId)';
+    return 'CreateStepDto(content: $content, journeyId: $journeyId, isFinalStep: $isFinalStep)';
   }
 }
 
@@ -2444,7 +3353,8 @@ abstract mixin class _$CreateStepDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'content') String content,
-      @JsonKey(name: 'journeyId') String journeyId});
+      @JsonKey(name: 'journeyId') String journeyId,
+      @JsonKey(name: 'isFinalStep') bool isFinalStep});
 }
 
 /// @nodoc
@@ -2462,6 +3372,7 @@ class __$CreateStepDtoCopyWithImpl<$Res>
   $Res call({
     Object? content = null,
     Object? journeyId = null,
+    Object? isFinalStep = null,
   }) {
     return _then(_CreateStepDto(
       content: null == content
@@ -2472,6 +3383,10 @@ class __$CreateStepDtoCopyWithImpl<$Res>
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
               as String,
+      isFinalStep: null == isFinalStep
+          ? _self.isFinalStep
+          : isFinalStep // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -2774,6 +3689,543 @@ class __$CreateStepInteractionDtoCopyWithImpl<$Res>
           ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as InteractionTypeDto,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$DeviceTokenDto {
+  @JsonKey(name: 'id')
+  String? get id;
+  @JsonKey(name: 'deviceToken')
+  String? get deviceToken;
+  @JsonKey(name: 'platform')
+  String? get platform;
+  @JsonKey(name: 'isActive')
+  bool? get isActive;
+  @JsonKey(name: 'lastUsed')
+  DateTime? get lastUsed;
+  @JsonKey(name: 'appVersion')
+  String? get appVersion;
+  @JsonKey(name: 'deviceModel')
+  String? get deviceModel;
+  @JsonKey(name: 'deviceName')
+  String? get deviceName;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+
+  /// Create a copy of DeviceTokenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DeviceTokenDtoCopyWith<DeviceTokenDto> get copyWith =>
+      _$DeviceTokenDtoCopyWithImpl<DeviceTokenDto>(
+          this as DeviceTokenDto, _$identity);
+
+  /// Serializes this DeviceTokenDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DeviceTokenDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.deviceToken, deviceToken) ||
+                other.deviceToken == deviceToken) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
+            (identical(other.lastUsed, lastUsed) ||
+                other.lastUsed == lastUsed) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion) &&
+            (identical(other.deviceModel, deviceModel) ||
+                other.deviceModel == deviceModel) &&
+            (identical(other.deviceName, deviceName) ||
+                other.deviceName == deviceName) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, deviceToken, platform,
+      isActive, lastUsed, appVersion, deviceModel, deviceName, createdDate);
+
+  @override
+  String toString() {
+    return 'DeviceTokenDto(id: $id, deviceToken: $deviceToken, platform: $platform, isActive: $isActive, lastUsed: $lastUsed, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName, createdDate: $createdDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DeviceTokenDtoCopyWith<$Res> {
+  factory $DeviceTokenDtoCopyWith(
+          DeviceTokenDto value, $Res Function(DeviceTokenDto) _then) =
+      _$DeviceTokenDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'deviceToken') String? deviceToken,
+      @JsonKey(name: 'platform') String? platform,
+      @JsonKey(name: 'isActive') bool? isActive,
+      @JsonKey(name: 'lastUsed') DateTime? lastUsed,
+      @JsonKey(name: 'appVersion') String? appVersion,
+      @JsonKey(name: 'deviceModel') String? deviceModel,
+      @JsonKey(name: 'deviceName') String? deviceName,
+      @JsonKey(name: 'createdDate') DateTime? createdDate});
+}
+
+/// @nodoc
+class _$DeviceTokenDtoCopyWithImpl<$Res>
+    implements $DeviceTokenDtoCopyWith<$Res> {
+  _$DeviceTokenDtoCopyWithImpl(this._self, this._then);
+
+  final DeviceTokenDto _self;
+  final $Res Function(DeviceTokenDto) _then;
+
+  /// Create a copy of DeviceTokenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? deviceToken = freezed,
+    Object? platform = freezed,
+    Object? isActive = freezed,
+    Object? lastUsed = freezed,
+    Object? appVersion = freezed,
+    Object? deviceModel = freezed,
+    Object? deviceName = freezed,
+    Object? createdDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceToken: freezed == deviceToken
+          ? _self.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _self.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isActive: freezed == isActive
+          ? _self.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      lastUsed: freezed == lastUsed
+          ? _self.lastUsed
+          : lastUsed // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceModel: freezed == deviceModel
+          ? _self.deviceModel
+          : deviceModel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceName: freezed == deviceName
+          ? _self.deviceName
+          : deviceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [DeviceTokenDto].
+extension DeviceTokenDtoPatterns on DeviceTokenDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DeviceTokenDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _DeviceTokenDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DeviceTokenDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DeviceTokenDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_DeviceTokenDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DeviceTokenDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'deviceToken') String? deviceToken,
+            @JsonKey(name: 'platform') String? platform,
+            @JsonKey(name: 'isActive') bool? isActive,
+            @JsonKey(name: 'lastUsed') DateTime? lastUsed,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'deviceModel') String? deviceModel,
+            @JsonKey(name: 'deviceName') String? deviceName,
+            @JsonKey(name: 'createdDate') DateTime? createdDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _DeviceTokenDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.deviceToken,
+            _that.platform,
+            _that.isActive,
+            _that.lastUsed,
+            _that.appVersion,
+            _that.deviceModel,
+            _that.deviceName,
+            _that.createdDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'deviceToken') String? deviceToken,
+            @JsonKey(name: 'platform') String? platform,
+            @JsonKey(name: 'isActive') bool? isActive,
+            @JsonKey(name: 'lastUsed') DateTime? lastUsed,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'deviceModel') String? deviceModel,
+            @JsonKey(name: 'deviceName') String? deviceName,
+            @JsonKey(name: 'createdDate') DateTime? createdDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DeviceTokenDto():
+        return $default(
+            _that.id,
+            _that.deviceToken,
+            _that.platform,
+            _that.isActive,
+            _that.lastUsed,
+            _that.appVersion,
+            _that.deviceModel,
+            _that.deviceName,
+            _that.createdDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'deviceToken') String? deviceToken,
+            @JsonKey(name: 'platform') String? platform,
+            @JsonKey(name: 'isActive') bool? isActive,
+            @JsonKey(name: 'lastUsed') DateTime? lastUsed,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'deviceModel') String? deviceModel,
+            @JsonKey(name: 'deviceName') String? deviceName,
+            @JsonKey(name: 'createdDate') DateTime? createdDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DeviceTokenDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.deviceToken,
+            _that.platform,
+            _that.isActive,
+            _that.lastUsed,
+            _that.appVersion,
+            _that.deviceModel,
+            _that.deviceName,
+            _that.createdDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _DeviceTokenDto implements DeviceTokenDto {
+  _DeviceTokenDto(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'deviceToken') this.deviceToken,
+      @JsonKey(name: 'platform') this.platform,
+      @JsonKey(name: 'isActive') this.isActive,
+      @JsonKey(name: 'lastUsed') this.lastUsed,
+      @JsonKey(name: 'appVersion') this.appVersion,
+      @JsonKey(name: 'deviceModel') this.deviceModel,
+      @JsonKey(name: 'deviceName') this.deviceName,
+      @JsonKey(name: 'createdDate') this.createdDate});
+  factory _DeviceTokenDto.fromJson(Map<String, dynamic> json) =>
+      _$DeviceTokenDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
+  @override
+  @JsonKey(name: 'deviceToken')
+  final String? deviceToken;
+  @override
+  @JsonKey(name: 'platform')
+  final String? platform;
+  @override
+  @JsonKey(name: 'isActive')
+  final bool? isActive;
+  @override
+  @JsonKey(name: 'lastUsed')
+  final DateTime? lastUsed;
+  @override
+  @JsonKey(name: 'appVersion')
+  final String? appVersion;
+  @override
+  @JsonKey(name: 'deviceModel')
+  final String? deviceModel;
+  @override
+  @JsonKey(name: 'deviceName')
+  final String? deviceName;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+
+  /// Create a copy of DeviceTokenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DeviceTokenDtoCopyWith<_DeviceTokenDto> get copyWith =>
+      __$DeviceTokenDtoCopyWithImpl<_DeviceTokenDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$DeviceTokenDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DeviceTokenDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.deviceToken, deviceToken) ||
+                other.deviceToken == deviceToken) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
+            (identical(other.lastUsed, lastUsed) ||
+                other.lastUsed == lastUsed) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion) &&
+            (identical(other.deviceModel, deviceModel) ||
+                other.deviceModel == deviceModel) &&
+            (identical(other.deviceName, deviceName) ||
+                other.deviceName == deviceName) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, deviceToken, platform,
+      isActive, lastUsed, appVersion, deviceModel, deviceName, createdDate);
+
+  @override
+  String toString() {
+    return 'DeviceTokenDto(id: $id, deviceToken: $deviceToken, platform: $platform, isActive: $isActive, lastUsed: $lastUsed, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName, createdDate: $createdDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$DeviceTokenDtoCopyWith<$Res>
+    implements $DeviceTokenDtoCopyWith<$Res> {
+  factory _$DeviceTokenDtoCopyWith(
+          _DeviceTokenDto value, $Res Function(_DeviceTokenDto) _then) =
+      __$DeviceTokenDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'deviceToken') String? deviceToken,
+      @JsonKey(name: 'platform') String? platform,
+      @JsonKey(name: 'isActive') bool? isActive,
+      @JsonKey(name: 'lastUsed') DateTime? lastUsed,
+      @JsonKey(name: 'appVersion') String? appVersion,
+      @JsonKey(name: 'deviceModel') String? deviceModel,
+      @JsonKey(name: 'deviceName') String? deviceName,
+      @JsonKey(name: 'createdDate') DateTime? createdDate});
+}
+
+/// @nodoc
+class __$DeviceTokenDtoCopyWithImpl<$Res>
+    implements _$DeviceTokenDtoCopyWith<$Res> {
+  __$DeviceTokenDtoCopyWithImpl(this._self, this._then);
+
+  final _DeviceTokenDto _self;
+  final $Res Function(_DeviceTokenDto) _then;
+
+  /// Create a copy of DeviceTokenDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? deviceToken = freezed,
+    Object? platform = freezed,
+    Object? isActive = freezed,
+    Object? lastUsed = freezed,
+    Object? appVersion = freezed,
+    Object? deviceModel = freezed,
+    Object? deviceName = freezed,
+    Object? createdDate = freezed,
+  }) {
+    return _then(_DeviceTokenDto(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceToken: freezed == deviceToken
+          ? _self.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _self.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isActive: freezed == isActive
+          ? _self.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      lastUsed: freezed == lastUsed
+          ? _self.lastUsed
+          : lastUsed // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceModel: freezed == deviceModel
+          ? _self.deviceModel
+          : deviceModel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceName: freezed == deviceName
+          ? _self.deviceName
+          : deviceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -3161,6 +4613,397 @@ class __$EditUserDtoCopyWithImpl<$Res> implements _$EditUserDtoCopyWith<$Res> {
           ? _self.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$FeedMetricsDto {
+  @JsonKey(name: 'followingCount')
+  int get followingCount;
+  @JsonKey(name: 'hotContentRatio')
+  num get hotContentRatio;
+  @JsonKey(name: 'followingContentRatio')
+  num get followingContentRatio;
+  @JsonKey(name: 'lastRefresh')
+  DateTime get lastRefresh;
+
+  /// Create a copy of FeedMetricsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FeedMetricsDtoCopyWith<FeedMetricsDto> get copyWith =>
+      _$FeedMetricsDtoCopyWithImpl<FeedMetricsDto>(
+          this as FeedMetricsDto, _$identity);
+
+  /// Serializes this FeedMetricsDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FeedMetricsDto &&
+            (identical(other.followingCount, followingCount) ||
+                other.followingCount == followingCount) &&
+            (identical(other.hotContentRatio, hotContentRatio) ||
+                other.hotContentRatio == hotContentRatio) &&
+            (identical(other.followingContentRatio, followingContentRatio) ||
+                other.followingContentRatio == followingContentRatio) &&
+            (identical(other.lastRefresh, lastRefresh) ||
+                other.lastRefresh == lastRefresh));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, followingCount, hotContentRatio,
+      followingContentRatio, lastRefresh);
+
+  @override
+  String toString() {
+    return 'FeedMetricsDto(followingCount: $followingCount, hotContentRatio: $hotContentRatio, followingContentRatio: $followingContentRatio, lastRefresh: $lastRefresh)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FeedMetricsDtoCopyWith<$Res> {
+  factory $FeedMetricsDtoCopyWith(
+          FeedMetricsDto value, $Res Function(FeedMetricsDto) _then) =
+      _$FeedMetricsDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'followingCount') int followingCount,
+      @JsonKey(name: 'hotContentRatio') num hotContentRatio,
+      @JsonKey(name: 'followingContentRatio') num followingContentRatio,
+      @JsonKey(name: 'lastRefresh') DateTime lastRefresh});
+}
+
+/// @nodoc
+class _$FeedMetricsDtoCopyWithImpl<$Res>
+    implements $FeedMetricsDtoCopyWith<$Res> {
+  _$FeedMetricsDtoCopyWithImpl(this._self, this._then);
+
+  final FeedMetricsDto _self;
+  final $Res Function(FeedMetricsDto) _then;
+
+  /// Create a copy of FeedMetricsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? followingCount = null,
+    Object? hotContentRatio = null,
+    Object? followingContentRatio = null,
+    Object? lastRefresh = null,
+  }) {
+    return _then(_self.copyWith(
+      followingCount: null == followingCount
+          ? _self.followingCount
+          : followingCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      hotContentRatio: null == hotContentRatio
+          ? _self.hotContentRatio
+          : hotContentRatio // ignore: cast_nullable_to_non_nullable
+              as num,
+      followingContentRatio: null == followingContentRatio
+          ? _self.followingContentRatio
+          : followingContentRatio // ignore: cast_nullable_to_non_nullable
+              as num,
+      lastRefresh: null == lastRefresh
+          ? _self.lastRefresh
+          : lastRefresh // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [FeedMetricsDto].
+extension FeedMetricsDtoPatterns on FeedMetricsDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FeedMetricsDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FeedMetricsDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FeedMetricsDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedMetricsDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FeedMetricsDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedMetricsDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'followingCount') int followingCount,
+            @JsonKey(name: 'hotContentRatio') num hotContentRatio,
+            @JsonKey(name: 'followingContentRatio') num followingContentRatio,
+            @JsonKey(name: 'lastRefresh') DateTime lastRefresh)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FeedMetricsDto() when $default != null:
+        return $default(_that.followingCount, _that.hotContentRatio,
+            _that.followingContentRatio, _that.lastRefresh);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'followingCount') int followingCount,
+            @JsonKey(name: 'hotContentRatio') num hotContentRatio,
+            @JsonKey(name: 'followingContentRatio') num followingContentRatio,
+            @JsonKey(name: 'lastRefresh') DateTime lastRefresh)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedMetricsDto():
+        return $default(_that.followingCount, _that.hotContentRatio,
+            _that.followingContentRatio, _that.lastRefresh);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'followingCount') int followingCount,
+            @JsonKey(name: 'hotContentRatio') num hotContentRatio,
+            @JsonKey(name: 'followingContentRatio') num followingContentRatio,
+            @JsonKey(name: 'lastRefresh') DateTime lastRefresh)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedMetricsDto() when $default != null:
+        return $default(_that.followingCount, _that.hotContentRatio,
+            _that.followingContentRatio, _that.lastRefresh);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FeedMetricsDto implements FeedMetricsDto {
+  _FeedMetricsDto(
+      {@JsonKey(name: 'followingCount') required this.followingCount,
+      @JsonKey(name: 'hotContentRatio') required this.hotContentRatio,
+      @JsonKey(name: 'followingContentRatio')
+      required this.followingContentRatio,
+      @JsonKey(name: 'lastRefresh') required this.lastRefresh});
+  factory _FeedMetricsDto.fromJson(Map<String, dynamic> json) =>
+      _$FeedMetricsDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'followingCount')
+  final int followingCount;
+  @override
+  @JsonKey(name: 'hotContentRatio')
+  final num hotContentRatio;
+  @override
+  @JsonKey(name: 'followingContentRatio')
+  final num followingContentRatio;
+  @override
+  @JsonKey(name: 'lastRefresh')
+  final DateTime lastRefresh;
+
+  /// Create a copy of FeedMetricsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FeedMetricsDtoCopyWith<_FeedMetricsDto> get copyWith =>
+      __$FeedMetricsDtoCopyWithImpl<_FeedMetricsDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FeedMetricsDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FeedMetricsDto &&
+            (identical(other.followingCount, followingCount) ||
+                other.followingCount == followingCount) &&
+            (identical(other.hotContentRatio, hotContentRatio) ||
+                other.hotContentRatio == hotContentRatio) &&
+            (identical(other.followingContentRatio, followingContentRatio) ||
+                other.followingContentRatio == followingContentRatio) &&
+            (identical(other.lastRefresh, lastRefresh) ||
+                other.lastRefresh == lastRefresh));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, followingCount, hotContentRatio,
+      followingContentRatio, lastRefresh);
+
+  @override
+  String toString() {
+    return 'FeedMetricsDto(followingCount: $followingCount, hotContentRatio: $hotContentRatio, followingContentRatio: $followingContentRatio, lastRefresh: $lastRefresh)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FeedMetricsDtoCopyWith<$Res>
+    implements $FeedMetricsDtoCopyWith<$Res> {
+  factory _$FeedMetricsDtoCopyWith(
+          _FeedMetricsDto value, $Res Function(_FeedMetricsDto) _then) =
+      __$FeedMetricsDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'followingCount') int followingCount,
+      @JsonKey(name: 'hotContentRatio') num hotContentRatio,
+      @JsonKey(name: 'followingContentRatio') num followingContentRatio,
+      @JsonKey(name: 'lastRefresh') DateTime lastRefresh});
+}
+
+/// @nodoc
+class __$FeedMetricsDtoCopyWithImpl<$Res>
+    implements _$FeedMetricsDtoCopyWith<$Res> {
+  __$FeedMetricsDtoCopyWithImpl(this._self, this._then);
+
+  final _FeedMetricsDto _self;
+  final $Res Function(_FeedMetricsDto) _then;
+
+  /// Create a copy of FeedMetricsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? followingCount = null,
+    Object? hotContentRatio = null,
+    Object? followingContentRatio = null,
+    Object? lastRefresh = null,
+  }) {
+    return _then(_FeedMetricsDto(
+      followingCount: null == followingCount
+          ? _self.followingCount
+          : followingCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      hotContentRatio: null == hotContentRatio
+          ? _self.hotContentRatio
+          : hotContentRatio // ignore: cast_nullable_to_non_nullable
+              as num,
+      followingContentRatio: null == followingContentRatio
+          ? _self.followingContentRatio
+          : followingContentRatio // ignore: cast_nullable_to_non_nullable
+              as num,
+      lastRefresh: null == lastRefresh
+          ? _self.lastRefresh
+          : lastRefresh // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -3791,6 +5634,750 @@ class __$FollowingStatusDtoCopyWithImpl<$Res>
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as FollowingStatusEnumDto,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$FollowRequestDto {
+  @JsonKey(name: 'requesterId')
+  String get requesterId;
+  @JsonKey(name: 'requester')
+  UserDetailDto get requester;
+  @JsonKey(name: 'requestDate')
+  DateTime get requestDate;
+
+  /// Create a copy of FollowRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FollowRequestDtoCopyWith<FollowRequestDto> get copyWith =>
+      _$FollowRequestDtoCopyWithImpl<FollowRequestDto>(
+          this as FollowRequestDto, _$identity);
+
+  /// Serializes this FollowRequestDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FollowRequestDto &&
+            (identical(other.requesterId, requesterId) ||
+                other.requesterId == requesterId) &&
+            (identical(other.requester, requester) ||
+                other.requester == requester) &&
+            (identical(other.requestDate, requestDate) ||
+                other.requestDate == requestDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, requesterId, requester, requestDate);
+
+  @override
+  String toString() {
+    return 'FollowRequestDto(requesterId: $requesterId, requester: $requester, requestDate: $requestDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FollowRequestDtoCopyWith<$Res> {
+  factory $FollowRequestDtoCopyWith(
+          FollowRequestDto value, $Res Function(FollowRequestDto) _then) =
+      _$FollowRequestDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'requesterId') String requesterId,
+      @JsonKey(name: 'requester') UserDetailDto requester,
+      @JsonKey(name: 'requestDate') DateTime requestDate});
+
+  $UserDetailDtoCopyWith<$Res> get requester;
+}
+
+/// @nodoc
+class _$FollowRequestDtoCopyWithImpl<$Res>
+    implements $FollowRequestDtoCopyWith<$Res> {
+  _$FollowRequestDtoCopyWithImpl(this._self, this._then);
+
+  final FollowRequestDto _self;
+  final $Res Function(FollowRequestDto) _then;
+
+  /// Create a copy of FollowRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? requesterId = null,
+    Object? requester = null,
+    Object? requestDate = null,
+  }) {
+    return _then(_self.copyWith(
+      requesterId: null == requesterId
+          ? _self.requesterId
+          : requesterId // ignore: cast_nullable_to_non_nullable
+              as String,
+      requester: null == requester
+          ? _self.requester
+          : requester // ignore: cast_nullable_to_non_nullable
+              as UserDetailDto,
+      requestDate: null == requestDate
+          ? _self.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+
+  /// Create a copy of FollowRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDetailDtoCopyWith<$Res> get requester {
+    return $UserDetailDtoCopyWith<$Res>(_self.requester, (value) {
+      return _then(_self.copyWith(requester: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [FollowRequestDto].
+extension FollowRequestDtoPatterns on FollowRequestDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FollowRequestDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FollowRequestDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FollowRequestDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'requesterId') String requesterId,
+            @JsonKey(name: 'requester') UserDetailDto requester,
+            @JsonKey(name: 'requestDate') DateTime requestDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestDto() when $default != null:
+        return $default(_that.requesterId, _that.requester, _that.requestDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'requesterId') String requesterId,
+            @JsonKey(name: 'requester') UserDetailDto requester,
+            @JsonKey(name: 'requestDate') DateTime requestDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestDto():
+        return $default(_that.requesterId, _that.requester, _that.requestDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'requesterId') String requesterId,
+            @JsonKey(name: 'requester') UserDetailDto requester,
+            @JsonKey(name: 'requestDate') DateTime requestDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestDto() when $default != null:
+        return $default(_that.requesterId, _that.requester, _that.requestDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FollowRequestDto implements FollowRequestDto {
+  _FollowRequestDto(
+      {@JsonKey(name: 'requesterId') required this.requesterId,
+      @JsonKey(name: 'requester') required this.requester,
+      @JsonKey(name: 'requestDate') required this.requestDate});
+  factory _FollowRequestDto.fromJson(Map<String, dynamic> json) =>
+      _$FollowRequestDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'requesterId')
+  final String requesterId;
+  @override
+  @JsonKey(name: 'requester')
+  final UserDetailDto requester;
+  @override
+  @JsonKey(name: 'requestDate')
+  final DateTime requestDate;
+
+  /// Create a copy of FollowRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FollowRequestDtoCopyWith<_FollowRequestDto> get copyWith =>
+      __$FollowRequestDtoCopyWithImpl<_FollowRequestDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FollowRequestDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FollowRequestDto &&
+            (identical(other.requesterId, requesterId) ||
+                other.requesterId == requesterId) &&
+            (identical(other.requester, requester) ||
+                other.requester == requester) &&
+            (identical(other.requestDate, requestDate) ||
+                other.requestDate == requestDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, requesterId, requester, requestDate);
+
+  @override
+  String toString() {
+    return 'FollowRequestDto(requesterId: $requesterId, requester: $requester, requestDate: $requestDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FollowRequestDtoCopyWith<$Res>
+    implements $FollowRequestDtoCopyWith<$Res> {
+  factory _$FollowRequestDtoCopyWith(
+          _FollowRequestDto value, $Res Function(_FollowRequestDto) _then) =
+      __$FollowRequestDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'requesterId') String requesterId,
+      @JsonKey(name: 'requester') UserDetailDto requester,
+      @JsonKey(name: 'requestDate') DateTime requestDate});
+
+  @override
+  $UserDetailDtoCopyWith<$Res> get requester;
+}
+
+/// @nodoc
+class __$FollowRequestDtoCopyWithImpl<$Res>
+    implements _$FollowRequestDtoCopyWith<$Res> {
+  __$FollowRequestDtoCopyWithImpl(this._self, this._then);
+
+  final _FollowRequestDto _self;
+  final $Res Function(_FollowRequestDto) _then;
+
+  /// Create a copy of FollowRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? requesterId = null,
+    Object? requester = null,
+    Object? requestDate = null,
+  }) {
+    return _then(_FollowRequestDto(
+      requesterId: null == requesterId
+          ? _self.requesterId
+          : requesterId // ignore: cast_nullable_to_non_nullable
+              as String,
+      requester: null == requester
+          ? _self.requester
+          : requester // ignore: cast_nullable_to_non_nullable
+              as UserDetailDto,
+      requestDate: null == requestDate
+          ? _self.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+
+  /// Create a copy of FollowRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDetailDtoCopyWith<$Res> get requester {
+    return $UserDetailDtoCopyWith<$Res>(_self.requester, (value) {
+      return _then(_self.copyWith(requester: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$FollowRequestResultDto {
+  @JsonKey(name: 'result')
+  String get result;
+  @JsonKey(name: 'newStatus')
+  FollowingStatusEnumDto get newStatus;
+  @JsonKey(name: 'message')
+  String? get message;
+
+  /// Create a copy of FollowRequestResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FollowRequestResultDtoCopyWith<FollowRequestResultDto> get copyWith =>
+      _$FollowRequestResultDtoCopyWithImpl<FollowRequestResultDto>(
+          this as FollowRequestResultDto, _$identity);
+
+  /// Serializes this FollowRequestResultDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FollowRequestResultDto &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.newStatus, newStatus) ||
+                other.newStatus == newStatus) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, result, newStatus, message);
+
+  @override
+  String toString() {
+    return 'FollowRequestResultDto(result: $result, newStatus: $newStatus, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FollowRequestResultDtoCopyWith<$Res> {
+  factory $FollowRequestResultDtoCopyWith(FollowRequestResultDto value,
+          $Res Function(FollowRequestResultDto) _then) =
+      _$FollowRequestResultDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'result') String result,
+      @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
+      @JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class _$FollowRequestResultDtoCopyWithImpl<$Res>
+    implements $FollowRequestResultDtoCopyWith<$Res> {
+  _$FollowRequestResultDtoCopyWithImpl(this._self, this._then);
+
+  final FollowRequestResultDto _self;
+  final $Res Function(FollowRequestResultDto) _then;
+
+  /// Create a copy of FollowRequestResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? result = null,
+    Object? newStatus = null,
+    Object? message = freezed,
+  }) {
+    return _then(_self.copyWith(
+      result: null == result
+          ? _self.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String,
+      newStatus: null == newStatus
+          ? _self.newStatus
+          : newStatus // ignore: cast_nullable_to_non_nullable
+              as FollowingStatusEnumDto,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [FollowRequestResultDto].
+extension FollowRequestResultDtoPatterns on FollowRequestResultDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FollowRequestResultDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FollowRequestResultDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestResultDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FollowRequestResultDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'result') String result,
+            @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
+            @JsonKey(name: 'message') String? message)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestResultDto() when $default != null:
+        return $default(_that.result, _that.newStatus, _that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'result') String result,
+            @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
+            @JsonKey(name: 'message') String? message)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestResultDto():
+        return $default(_that.result, _that.newStatus, _that.message);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'result') String result,
+            @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
+            @JsonKey(name: 'message') String? message)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FollowRequestResultDto() when $default != null:
+        return $default(_that.result, _that.newStatus, _that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FollowRequestResultDto implements FollowRequestResultDto {
+  _FollowRequestResultDto(
+      {@JsonKey(name: 'result') required this.result,
+      @JsonKey(name: 'newStatus') required this.newStatus,
+      @JsonKey(name: 'message') this.message});
+  factory _FollowRequestResultDto.fromJson(Map<String, dynamic> json) =>
+      _$FollowRequestResultDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'result')
+  final String result;
+  @override
+  @JsonKey(name: 'newStatus')
+  final FollowingStatusEnumDto newStatus;
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  /// Create a copy of FollowRequestResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FollowRequestResultDtoCopyWith<_FollowRequestResultDto> get copyWith =>
+      __$FollowRequestResultDtoCopyWithImpl<_FollowRequestResultDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FollowRequestResultDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FollowRequestResultDto &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.newStatus, newStatus) ||
+                other.newStatus == newStatus) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, result, newStatus, message);
+
+  @override
+  String toString() {
+    return 'FollowRequestResultDto(result: $result, newStatus: $newStatus, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FollowRequestResultDtoCopyWith<$Res>
+    implements $FollowRequestResultDtoCopyWith<$Res> {
+  factory _$FollowRequestResultDtoCopyWith(_FollowRequestResultDto value,
+          $Res Function(_FollowRequestResultDto) _then) =
+      __$FollowRequestResultDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'result') String result,
+      @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
+      @JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class __$FollowRequestResultDtoCopyWithImpl<$Res>
+    implements _$FollowRequestResultDtoCopyWith<$Res> {
+  __$FollowRequestResultDtoCopyWithImpl(this._self, this._then);
+
+  final _FollowRequestResultDto _self;
+  final $Res Function(_FollowRequestResultDto) _then;
+
+  /// Create a copy of FollowRequestResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? result = null,
+    Object? newStatus = null,
+    Object? message = freezed,
+  }) {
+    return _then(_FollowRequestResultDto(
+      result: null == result
+          ? _self.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as String,
+      newStatus: null == newStatus
+          ? _self.newStatus
+          : newStatus // ignore: cast_nullable_to_non_nullable
+              as FollowingStatusEnumDto,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -4922,6 +7509,12 @@ mixin _$JourneyDto {
   String? get firstStepId;
   @JsonKey(name: 'finalStepId')
   String? get finalStepId;
+  @JsonKey(name: 'isDeleted')
+  bool get isDeleted;
+  @JsonKey(name: 'isUnavailable')
+  bool get isUnavailable;
+  @JsonKey(name: 'unavailableReason')
+  String get unavailableReason;
 
   /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
@@ -4953,7 +7546,13 @@ mixin _$JourneyDto {
             (identical(other.firstStepId, firstStepId) ||
                 other.firstStepId == firstStepId) &&
             (identical(other.finalStepId, finalStepId) ||
-                other.finalStepId == finalStepId));
+                other.finalStepId == finalStepId) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4969,11 +7568,14 @@ mixin _$JourneyDto {
       completedDate,
       userId,
       firstStepId,
-      finalStepId);
+      finalStepId,
+      isDeleted,
+      isUnavailable,
+      unavailableReason);
 
   @override
   String toString() {
-    return 'JourneyDto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId)';
+    return 'JourneyDto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -4993,7 +7595,10 @@ abstract mixin class $JourneyDtoCopyWith<$Res> {
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'firstStepId') String? firstStepId,
-      @JsonKey(name: 'finalStepId') String? finalStepId});
+      @JsonKey(name: 'finalStepId') String? finalStepId,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 }
 
 /// @nodoc
@@ -5018,6 +7623,9 @@ class _$JourneyDtoCopyWithImpl<$Res> implements $JourneyDtoCopyWith<$Res> {
     Object? userId = null,
     Object? firstStepId = freezed,
     Object? finalStepId = freezed,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -5060,6 +7668,18 @@ class _$JourneyDtoCopyWithImpl<$Res> implements $JourneyDtoCopyWith<$Res> {
           ? _self.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
               as String?,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -5165,7 +7785,10 @@ extension JourneyDtoPatterns on JourneyDto {
             @JsonKey(name: 'completedDate') DateTime? completedDate,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
-            @JsonKey(name: 'finalStepId') String? finalStepId)?
+            @JsonKey(name: 'finalStepId') String? finalStepId,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
@@ -5182,7 +7805,10 @@ extension JourneyDtoPatterns on JourneyDto {
             _that.completedDate,
             _that.userId,
             _that.firstStepId,
-            _that.finalStepId);
+            _that.finalStepId,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return orElse();
     }
@@ -5213,7 +7839,10 @@ extension JourneyDtoPatterns on JourneyDto {
             @JsonKey(name: 'completedDate') DateTime? completedDate,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
-            @JsonKey(name: 'finalStepId') String? finalStepId)
+            @JsonKey(name: 'finalStepId') String? finalStepId,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)
         $default,
   ) {
     final _that = this;
@@ -5229,7 +7858,10 @@ extension JourneyDtoPatterns on JourneyDto {
             _that.completedDate,
             _that.userId,
             _that.firstStepId,
-            _that.finalStepId);
+            _that.finalStepId,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
     }
   }
 
@@ -5257,7 +7889,10 @@ extension JourneyDtoPatterns on JourneyDto {
             @JsonKey(name: 'completedDate') DateTime? completedDate,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
-            @JsonKey(name: 'finalStepId') String? finalStepId)?
+            @JsonKey(name: 'finalStepId') String? finalStepId,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default,
   ) {
     final _that = this;
@@ -5273,7 +7908,10 @@ extension JourneyDtoPatterns on JourneyDto {
             _that.completedDate,
             _that.userId,
             _that.firstStepId,
-            _that.finalStepId);
+            _that.finalStepId,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return null;
     }
@@ -5293,7 +7931,10 @@ class _JourneyDto implements JourneyDto {
       @JsonKey(name: 'completedDate') this.completedDate,
       @JsonKey(name: 'userId') this.userId = '',
       @JsonKey(name: 'firstStepId') this.firstStepId,
-      @JsonKey(name: 'finalStepId') this.finalStepId});
+      @JsonKey(name: 'finalStepId') this.finalStepId,
+      @JsonKey(name: 'isDeleted') this.isDeleted = false,
+      @JsonKey(name: 'isUnavailable') this.isUnavailable = false,
+      @JsonKey(name: 'unavailableReason') this.unavailableReason = ''});
   factory _JourneyDto.fromJson(Map<String, dynamic> json) =>
       _$JourneyDtoFromJson(json);
 
@@ -5327,6 +7968,15 @@ class _JourneyDto implements JourneyDto {
   @override
   @JsonKey(name: 'finalStepId')
   final String? finalStepId;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool isDeleted;
+  @override
+  @JsonKey(name: 'isUnavailable')
+  final bool isUnavailable;
+  @override
+  @JsonKey(name: 'unavailableReason')
+  final String unavailableReason;
 
   /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
@@ -5363,7 +8013,13 @@ class _JourneyDto implements JourneyDto {
             (identical(other.firstStepId, firstStepId) ||
                 other.firstStepId == firstStepId) &&
             (identical(other.finalStepId, finalStepId) ||
-                other.finalStepId == finalStepId));
+                other.finalStepId == finalStepId) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -5379,11 +8035,14 @@ class _JourneyDto implements JourneyDto {
       completedDate,
       userId,
       firstStepId,
-      finalStepId);
+      finalStepId,
+      isDeleted,
+      isUnavailable,
+      unavailableReason);
 
   @override
   String toString() {
-    return 'JourneyDto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId)';
+    return 'JourneyDto(id: $id, title: $title, description: $description, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, completedDate: $completedDate, userId: $userId, firstStepId: $firstStepId, finalStepId: $finalStepId, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -5405,7 +8064,10 @@ abstract mixin class _$JourneyDtoCopyWith<$Res>
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'firstStepId') String? firstStepId,
-      @JsonKey(name: 'finalStepId') String? finalStepId});
+      @JsonKey(name: 'finalStepId') String? finalStepId,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 }
 
 /// @nodoc
@@ -5430,6 +8092,9 @@ class __$JourneyDtoCopyWithImpl<$Res> implements _$JourneyDtoCopyWith<$Res> {
     Object? userId = null,
     Object? firstStepId = freezed,
     Object? finalStepId = freezed,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_JourneyDto(
       id: null == id
@@ -5472,6 +8137,18 @@ class __$JourneyDtoCopyWithImpl<$Res> implements _$JourneyDtoCopyWith<$Res> {
           ? _self.finalStepId
           : finalStepId // ignore: cast_nullable_to_non_nullable
               as String?,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -5500,6 +8177,10 @@ mixin _$JourneyInDetailDto {
   int? get celebratorCount;
   @JsonKey(name: 'latestCelebrators')
   List<UserDto>? get latestCelebrators;
+  @JsonKey(name: 'companionProgress')
+  num get companionProgress;
+  @JsonKey(name: 'companionProgressMessage')
+  String? get companionProgressMessage;
 
   /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -5537,7 +8218,12 @@ mixin _$JourneyInDetailDto {
             (identical(other.celebratorCount, celebratorCount) ||
                 other.celebratorCount == celebratorCount) &&
             const DeepCollectionEquality()
-                .equals(other.latestCelebrators, latestCelebrators));
+                .equals(other.latestCelebrators, latestCelebrators) &&
+            (identical(other.companionProgress, companionProgress) ||
+                other.companionProgress == companionProgress) &&
+            (identical(
+                    other.companionProgressMessage, companionProgressMessage) ||
+                other.companionProgressMessage == companionProgressMessage));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -5554,11 +8240,13 @@ mixin _$JourneyInDetailDto {
       companionCount,
       const DeepCollectionEquality().hash(latestCompanions),
       celebratorCount,
-      const DeepCollectionEquality().hash(latestCelebrators));
+      const DeepCollectionEquality().hash(latestCelebrators),
+      companionProgress,
+      companionProgressMessage);
 
   @override
   String toString() {
-    return 'JourneyInDetailDto(journey: $journey, stepsCount: $stepsCount, lastStepDate: $lastStepDate, stepperCount: $stepperCount, latestSteppers: $latestSteppers, starterCount: $starterCount, latestStarters: $latestStarters, companionCount: $companionCount, latestCompanions: $latestCompanions, celebratorCount: $celebratorCount, latestCelebrators: $latestCelebrators)';
+    return 'JourneyInDetailDto(journey: $journey, stepsCount: $stepsCount, lastStepDate: $lastStepDate, stepperCount: $stepperCount, latestSteppers: $latestSteppers, starterCount: $starterCount, latestStarters: $latestStarters, companionCount: $companionCount, latestCompanions: $latestCompanions, celebratorCount: $celebratorCount, latestCelebrators: $latestCelebrators, companionProgress: $companionProgress, companionProgressMessage: $companionProgressMessage)';
   }
 }
 
@@ -5579,7 +8267,10 @@ abstract mixin class $JourneyInDetailDtoCopyWith<$Res> {
       @JsonKey(name: 'companionCount') int? companionCount,
       @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators') List<UserDto>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<UserDto>? latestCelebrators,
+      @JsonKey(name: 'companionProgress') num companionProgress,
+      @JsonKey(name: 'companionProgressMessage')
+      String? companionProgressMessage});
 
   $JourneyDtoCopyWith<$Res> get journey;
 }
@@ -5608,6 +8299,8 @@ class _$JourneyInDetailDtoCopyWithImpl<$Res>
     Object? latestCompanions = freezed,
     Object? celebratorCount = freezed,
     Object? latestCelebrators = freezed,
+    Object? companionProgress = null,
+    Object? companionProgressMessage = freezed,
   }) {
     return _then(_self.copyWith(
       journey: null == journey
@@ -5654,6 +8347,14 @@ class _$JourneyInDetailDtoCopyWithImpl<$Res>
           ? _self.latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
+      companionProgress: null == companionProgress
+          ? _self.companionProgress
+          : companionProgress // ignore: cast_nullable_to_non_nullable
+              as num,
+      companionProgressMessage: freezed == companionProgressMessage
+          ? _self.companionProgressMessage
+          : companionProgressMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -5771,7 +8472,10 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
             @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
             @JsonKey(name: 'celebratorCount') int? celebratorCount,
             @JsonKey(name: 'latestCelebrators')
-            List<UserDto>? latestCelebrators)?
+            List<UserDto>? latestCelebrators,
+            @JsonKey(name: 'companionProgress') num companionProgress,
+            @JsonKey(name: 'companionProgressMessage')
+            String? companionProgressMessage)?
         $default, {
     required TResult orElse(),
   }) {
@@ -5789,7 +8493,9 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
             _that.companionCount,
             _that.latestCompanions,
             _that.celebratorCount,
-            _that.latestCelebrators);
+            _that.latestCelebrators,
+            _that.companionProgress,
+            _that.companionProgressMessage);
       case _:
         return orElse();
     }
@@ -5822,7 +8528,10 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
             @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
             @JsonKey(name: 'celebratorCount') int? celebratorCount,
             @JsonKey(name: 'latestCelebrators')
-            List<UserDto>? latestCelebrators)
+            List<UserDto>? latestCelebrators,
+            @JsonKey(name: 'companionProgress') num companionProgress,
+            @JsonKey(name: 'companionProgressMessage')
+            String? companionProgressMessage)
         $default,
   ) {
     final _that = this;
@@ -5839,7 +8548,9 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
             _that.companionCount,
             _that.latestCompanions,
             _that.celebratorCount,
-            _that.latestCelebrators);
+            _that.latestCelebrators,
+            _that.companionProgress,
+            _that.companionProgressMessage);
     }
   }
 
@@ -5869,7 +8580,10 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
             @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
             @JsonKey(name: 'celebratorCount') int? celebratorCount,
             @JsonKey(name: 'latestCelebrators')
-            List<UserDto>? latestCelebrators)?
+            List<UserDto>? latestCelebrators,
+            @JsonKey(name: 'companionProgress') num companionProgress,
+            @JsonKey(name: 'companionProgressMessage')
+            String? companionProgressMessage)?
         $default,
   ) {
     final _that = this;
@@ -5886,7 +8600,9 @@ extension JourneyInDetailDtoPatterns on JourneyInDetailDto {
             _that.companionCount,
             _that.latestCompanions,
             _that.celebratorCount,
-            _that.latestCelebrators);
+            _that.latestCelebrators,
+            _that.companionProgress,
+            _that.companionProgressMessage);
       case _:
         return null;
     }
@@ -5908,7 +8624,9 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
       @JsonKey(name: 'latestCompanions') final List<UserDto>? latestCompanions,
       @JsonKey(name: 'celebratorCount') this.celebratorCount,
       @JsonKey(name: 'latestCelebrators')
-      final List<UserDto>? latestCelebrators})
+      final List<UserDto>? latestCelebrators,
+      @JsonKey(name: 'companionProgress') this.companionProgress = 0,
+      @JsonKey(name: 'companionProgressMessage') this.companionProgressMessage})
       : _latestSteppers = latestSteppers,
         _latestStarters = latestStarters,
         _latestCompanions = latestCompanions,
@@ -5983,6 +8701,13 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
     return EqualUnmodifiableListView(value);
   }
 
+  @override
+  @JsonKey(name: 'companionProgress')
+  final num companionProgress;
+  @override
+  @JsonKey(name: 'companionProgressMessage')
+  final String? companionProgressMessage;
+
   /// Create a copy of JourneyInDetailDto
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -6023,7 +8748,12 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
             (identical(other.celebratorCount, celebratorCount) ||
                 other.celebratorCount == celebratorCount) &&
             const DeepCollectionEquality()
-                .equals(other._latestCelebrators, _latestCelebrators));
+                .equals(other._latestCelebrators, _latestCelebrators) &&
+            (identical(other.companionProgress, companionProgress) ||
+                other.companionProgress == companionProgress) &&
+            (identical(
+                    other.companionProgressMessage, companionProgressMessage) ||
+                other.companionProgressMessage == companionProgressMessage));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -6040,11 +8770,13 @@ class _JourneyInDetailDto implements JourneyInDetailDto {
       companionCount,
       const DeepCollectionEquality().hash(_latestCompanions),
       celebratorCount,
-      const DeepCollectionEquality().hash(_latestCelebrators));
+      const DeepCollectionEquality().hash(_latestCelebrators),
+      companionProgress,
+      companionProgressMessage);
 
   @override
   String toString() {
-    return 'JourneyInDetailDto(journey: $journey, stepsCount: $stepsCount, lastStepDate: $lastStepDate, stepperCount: $stepperCount, latestSteppers: $latestSteppers, starterCount: $starterCount, latestStarters: $latestStarters, companionCount: $companionCount, latestCompanions: $latestCompanions, celebratorCount: $celebratorCount, latestCelebrators: $latestCelebrators)';
+    return 'JourneyInDetailDto(journey: $journey, stepsCount: $stepsCount, lastStepDate: $lastStepDate, stepperCount: $stepperCount, latestSteppers: $latestSteppers, starterCount: $starterCount, latestStarters: $latestStarters, companionCount: $companionCount, latestCompanions: $latestCompanions, celebratorCount: $celebratorCount, latestCelebrators: $latestCelebrators, companionProgress: $companionProgress, companionProgressMessage: $companionProgressMessage)';
   }
 }
 
@@ -6067,7 +8799,10 @@ abstract mixin class _$JourneyInDetailDtoCopyWith<$Res>
       @JsonKey(name: 'companionCount') int? companionCount,
       @JsonKey(name: 'latestCompanions') List<UserDto>? latestCompanions,
       @JsonKey(name: 'celebratorCount') int? celebratorCount,
-      @JsonKey(name: 'latestCelebrators') List<UserDto>? latestCelebrators});
+      @JsonKey(name: 'latestCelebrators') List<UserDto>? latestCelebrators,
+      @JsonKey(name: 'companionProgress') num companionProgress,
+      @JsonKey(name: 'companionProgressMessage')
+      String? companionProgressMessage});
 
   @override
   $JourneyDtoCopyWith<$Res> get journey;
@@ -6097,6 +8832,8 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
     Object? latestCompanions = freezed,
     Object? celebratorCount = freezed,
     Object? latestCelebrators = freezed,
+    Object? companionProgress = null,
+    Object? companionProgressMessage = freezed,
   }) {
     return _then(_JourneyInDetailDto(
       journey: null == journey
@@ -6143,6 +8880,14 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
           ? _self._latestCelebrators
           : latestCelebrators // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
+      companionProgress: null == companionProgress
+          ? _self.companionProgress
+          : companionProgress // ignore: cast_nullable_to_non_nullable
+              as num,
+      companionProgressMessage: freezed == companionProgressMessage
+          ? _self.companionProgressMessage
+          : companionProgressMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -8286,6 +11031,1053 @@ class __$NotificationPagedDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$NotificationPreferencesDto {
+  @JsonKey(name: 'id')
+  String? get id;
+  @JsonKey(name: 'userId')
+  String? get userId;
+  @JsonKey(name: 'pushNotifications')
+  bool? get pushNotifications;
+  @JsonKey(name: 'mentions')
+  bool? get mentions;
+  @JsonKey(name: 'oldStepNotifications')
+  bool? get oldStepNotifications;
+  @JsonKey(name: 'trendingStepSuggestions')
+  bool? get trendingStepSuggestions;
+  @JsonKey(name: 'trendingJourneySuggestions')
+  bool? get trendingJourneySuggestions;
+  @JsonKey(name: 'followSuggestions')
+  bool? get followSuggestions;
+
+  /// Create a copy of NotificationPreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $NotificationPreferencesDtoCopyWith<NotificationPreferencesDto>
+      get copyWith =>
+          _$NotificationPreferencesDtoCopyWithImpl<NotificationPreferencesDto>(
+              this as NotificationPreferencesDto, _$identity);
+
+  /// Serializes this NotificationPreferencesDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NotificationPreferencesDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.pushNotifications, pushNotifications) ||
+                other.pushNotifications == pushNotifications) &&
+            (identical(other.mentions, mentions) ||
+                other.mentions == mentions) &&
+            (identical(other.oldStepNotifications, oldStepNotifications) ||
+                other.oldStepNotifications == oldStepNotifications) &&
+            (identical(
+                    other.trendingStepSuggestions, trendingStepSuggestions) ||
+                other.trendingStepSuggestions == trendingStepSuggestions) &&
+            (identical(other.trendingJourneySuggestions,
+                    trendingJourneySuggestions) ||
+                other.trendingJourneySuggestions ==
+                    trendingJourneySuggestions) &&
+            (identical(other.followSuggestions, followSuggestions) ||
+                other.followSuggestions == followSuggestions));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      userId,
+      pushNotifications,
+      mentions,
+      oldStepNotifications,
+      trendingStepSuggestions,
+      trendingJourneySuggestions,
+      followSuggestions);
+
+  @override
+  String toString() {
+    return 'NotificationPreferencesDto(id: $id, userId: $userId, pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $NotificationPreferencesDtoCopyWith<$Res> {
+  factory $NotificationPreferencesDtoCopyWith(NotificationPreferencesDto value,
+          $Res Function(NotificationPreferencesDto) _then) =
+      _$NotificationPreferencesDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'userId') String? userId,
+      @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+      @JsonKey(name: 'mentions') bool? mentions,
+      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+      @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
+      @JsonKey(name: 'trendingJourneySuggestions')
+      bool? trendingJourneySuggestions,
+      @JsonKey(name: 'followSuggestions') bool? followSuggestions});
+}
+
+/// @nodoc
+class _$NotificationPreferencesDtoCopyWithImpl<$Res>
+    implements $NotificationPreferencesDtoCopyWith<$Res> {
+  _$NotificationPreferencesDtoCopyWithImpl(this._self, this._then);
+
+  final NotificationPreferencesDto _self;
+  final $Res Function(NotificationPreferencesDto) _then;
+
+  /// Create a copy of NotificationPreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? pushNotifications = freezed,
+    Object? mentions = freezed,
+    Object? oldStepNotifications = freezed,
+    Object? trendingStepSuggestions = freezed,
+    Object? trendingJourneySuggestions = freezed,
+    Object? followSuggestions = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pushNotifications: freezed == pushNotifications
+          ? _self.pushNotifications
+          : pushNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      mentions: freezed == mentions
+          ? _self.mentions
+          : mentions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      oldStepNotifications: freezed == oldStepNotifications
+          ? _self.oldStepNotifications
+          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingStepSuggestions: freezed == trendingStepSuggestions
+          ? _self.trendingStepSuggestions
+          : trendingStepSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingJourneySuggestions: freezed == trendingJourneySuggestions
+          ? _self.trendingJourneySuggestions
+          : trendingJourneySuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      followSuggestions: freezed == followSuggestions
+          ? _self.followSuggestions
+          : followSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [NotificationPreferencesDto].
+extension NotificationPreferencesDtoPatterns on NotificationPreferencesDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_NotificationPreferencesDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationPreferencesDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_NotificationPreferencesDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationPreferencesDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_NotificationPreferencesDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationPreferencesDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+            @JsonKey(name: 'mentions') bool? mentions,
+            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+            @JsonKey(name: 'trendingStepSuggestions')
+            bool? trendingStepSuggestions,
+            @JsonKey(name: 'trendingJourneySuggestions')
+            bool? trendingJourneySuggestions,
+            @JsonKey(name: 'followSuggestions') bool? followSuggestions)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationPreferencesDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.userId,
+            _that.pushNotifications,
+            _that.mentions,
+            _that.oldStepNotifications,
+            _that.trendingStepSuggestions,
+            _that.trendingJourneySuggestions,
+            _that.followSuggestions);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+            @JsonKey(name: 'mentions') bool? mentions,
+            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+            @JsonKey(name: 'trendingStepSuggestions')
+            bool? trendingStepSuggestions,
+            @JsonKey(name: 'trendingJourneySuggestions')
+            bool? trendingJourneySuggestions,
+            @JsonKey(name: 'followSuggestions') bool? followSuggestions)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationPreferencesDto():
+        return $default(
+            _that.id,
+            _that.userId,
+            _that.pushNotifications,
+            _that.mentions,
+            _that.oldStepNotifications,
+            _that.trendingStepSuggestions,
+            _that.trendingJourneySuggestions,
+            _that.followSuggestions);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+            @JsonKey(name: 'mentions') bool? mentions,
+            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+            @JsonKey(name: 'trendingStepSuggestions')
+            bool? trendingStepSuggestions,
+            @JsonKey(name: 'trendingJourneySuggestions')
+            bool? trendingJourneySuggestions,
+            @JsonKey(name: 'followSuggestions') bool? followSuggestions)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationPreferencesDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.userId,
+            _that.pushNotifications,
+            _that.mentions,
+            _that.oldStepNotifications,
+            _that.trendingStepSuggestions,
+            _that.trendingJourneySuggestions,
+            _that.followSuggestions);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _NotificationPreferencesDto implements NotificationPreferencesDto {
+  _NotificationPreferencesDto(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'userId') this.userId,
+      @JsonKey(name: 'pushNotifications') this.pushNotifications,
+      @JsonKey(name: 'mentions') this.mentions,
+      @JsonKey(name: 'oldStepNotifications') this.oldStepNotifications,
+      @JsonKey(name: 'trendingStepSuggestions') this.trendingStepSuggestions,
+      @JsonKey(name: 'trendingJourneySuggestions')
+      this.trendingJourneySuggestions,
+      @JsonKey(name: 'followSuggestions') this.followSuggestions});
+  factory _NotificationPreferencesDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationPreferencesDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
+  @override
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @override
+  @JsonKey(name: 'pushNotifications')
+  final bool? pushNotifications;
+  @override
+  @JsonKey(name: 'mentions')
+  final bool? mentions;
+  @override
+  @JsonKey(name: 'oldStepNotifications')
+  final bool? oldStepNotifications;
+  @override
+  @JsonKey(name: 'trendingStepSuggestions')
+  final bool? trendingStepSuggestions;
+  @override
+  @JsonKey(name: 'trendingJourneySuggestions')
+  final bool? trendingJourneySuggestions;
+  @override
+  @JsonKey(name: 'followSuggestions')
+  final bool? followSuggestions;
+
+  /// Create a copy of NotificationPreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$NotificationPreferencesDtoCopyWith<_NotificationPreferencesDto>
+      get copyWith => __$NotificationPreferencesDtoCopyWithImpl<
+          _NotificationPreferencesDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$NotificationPreferencesDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NotificationPreferencesDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.pushNotifications, pushNotifications) ||
+                other.pushNotifications == pushNotifications) &&
+            (identical(other.mentions, mentions) ||
+                other.mentions == mentions) &&
+            (identical(other.oldStepNotifications, oldStepNotifications) ||
+                other.oldStepNotifications == oldStepNotifications) &&
+            (identical(
+                    other.trendingStepSuggestions, trendingStepSuggestions) ||
+                other.trendingStepSuggestions == trendingStepSuggestions) &&
+            (identical(other.trendingJourneySuggestions,
+                    trendingJourneySuggestions) ||
+                other.trendingJourneySuggestions ==
+                    trendingJourneySuggestions) &&
+            (identical(other.followSuggestions, followSuggestions) ||
+                other.followSuggestions == followSuggestions));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      userId,
+      pushNotifications,
+      mentions,
+      oldStepNotifications,
+      trendingStepSuggestions,
+      trendingJourneySuggestions,
+      followSuggestions);
+
+  @override
+  String toString() {
+    return 'NotificationPreferencesDto(id: $id, userId: $userId, pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$NotificationPreferencesDtoCopyWith<$Res>
+    implements $NotificationPreferencesDtoCopyWith<$Res> {
+  factory _$NotificationPreferencesDtoCopyWith(
+          _NotificationPreferencesDto value,
+          $Res Function(_NotificationPreferencesDto) _then) =
+      __$NotificationPreferencesDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'userId') String? userId,
+      @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+      @JsonKey(name: 'mentions') bool? mentions,
+      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+      @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
+      @JsonKey(name: 'trendingJourneySuggestions')
+      bool? trendingJourneySuggestions,
+      @JsonKey(name: 'followSuggestions') bool? followSuggestions});
+}
+
+/// @nodoc
+class __$NotificationPreferencesDtoCopyWithImpl<$Res>
+    implements _$NotificationPreferencesDtoCopyWith<$Res> {
+  __$NotificationPreferencesDtoCopyWithImpl(this._self, this._then);
+
+  final _NotificationPreferencesDto _self;
+  final $Res Function(_NotificationPreferencesDto) _then;
+
+  /// Create a copy of NotificationPreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? pushNotifications = freezed,
+    Object? mentions = freezed,
+    Object? oldStepNotifications = freezed,
+    Object? trendingStepSuggestions = freezed,
+    Object? trendingJourneySuggestions = freezed,
+    Object? followSuggestions = freezed,
+  }) {
+    return _then(_NotificationPreferencesDto(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      pushNotifications: freezed == pushNotifications
+          ? _self.pushNotifications
+          : pushNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      mentions: freezed == mentions
+          ? _self.mentions
+          : mentions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      oldStepNotifications: freezed == oldStepNotifications
+          ? _self.oldStepNotifications
+          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingStepSuggestions: freezed == trendingStepSuggestions
+          ? _self.trendingStepSuggestions
+          : trendingStepSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingJourneySuggestions: freezed == trendingJourneySuggestions
+          ? _self.trendingJourneySuggestions
+          : trendingJourneySuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      followSuggestions: freezed == followSuggestions
+          ? _self.followSuggestions
+          : followSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$PageResponseOfAppFeedbackDto {
+  @JsonKey(name: 'items')
+  List<AppFeedbackDto>? get items;
+  @JsonKey(name: 'page')
+  int? get page;
+  @JsonKey(name: 'pageSize')
+  int? get pageSize;
+  @JsonKey(name: 'totalCount')
+  int? get totalCount;
+  @JsonKey(name: 'totalPages')
+  int? get totalPages;
+  @JsonKey(name: 'hasNextPage')
+  bool? get hasNextPage;
+  @JsonKey(name: 'hasPreviousPage')
+  bool? get hasPreviousPage;
+
+  /// Create a copy of PageResponseOfAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PageResponseOfAppFeedbackDtoCopyWith<PageResponseOfAppFeedbackDto>
+      get copyWith => _$PageResponseOfAppFeedbackDtoCopyWithImpl<
+              PageResponseOfAppFeedbackDto>(
+          this as PageResponseOfAppFeedbackDto, _$identity);
+
+  /// Serializes this PageResponseOfAppFeedbackDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PageResponseOfAppFeedbackDto &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(items),
+      page,
+      pageSize,
+      totalCount,
+      totalPages,
+      hasNextPage,
+      hasPreviousPage);
+
+  @override
+  String toString() {
+    return 'PageResponseOfAppFeedbackDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, totalPages: $totalPages, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PageResponseOfAppFeedbackDtoCopyWith<$Res> {
+  factory $PageResponseOfAppFeedbackDtoCopyWith(
+          PageResponseOfAppFeedbackDto value,
+          $Res Function(PageResponseOfAppFeedbackDto) _then) =
+      _$PageResponseOfAppFeedbackDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<AppFeedbackDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'totalPages') int? totalPages,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage});
+}
+
+/// @nodoc
+class _$PageResponseOfAppFeedbackDtoCopyWithImpl<$Res>
+    implements $PageResponseOfAppFeedbackDtoCopyWith<$Res> {
+  _$PageResponseOfAppFeedbackDtoCopyWithImpl(this._self, this._then);
+
+  final PageResponseOfAppFeedbackDto _self;
+  final $Res Function(PageResponseOfAppFeedbackDto) _then;
+
+  /// Create a copy of PageResponseOfAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? totalPages = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+  }) {
+    return _then(_self.copyWith(
+      items: freezed == items
+          ? _self.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<AppFeedbackDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [PageResponseOfAppFeedbackDto].
+extension PageResponseOfAppFeedbackDtoPatterns on PageResponseOfAppFeedbackDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PageResponseOfAppFeedbackDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PageResponseOfAppFeedbackDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PageResponseOfAppFeedbackDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageResponseOfAppFeedbackDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PageResponseOfAppFeedbackDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageResponseOfAppFeedbackDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<AppFeedbackDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'totalPages') int? totalPages,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PageResponseOfAppFeedbackDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.totalPages,
+            _that.hasNextPage,
+            _that.hasPreviousPage);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<AppFeedbackDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'totalPages') int? totalPages,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageResponseOfAppFeedbackDto():
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.totalPages,
+            _that.hasNextPage,
+            _that.hasPreviousPage);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'items') List<AppFeedbackDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'totalPages') int? totalPages,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PageResponseOfAppFeedbackDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.totalPages,
+            _that.hasNextPage,
+            _that.hasPreviousPage);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PageResponseOfAppFeedbackDto implements PageResponseOfAppFeedbackDto {
+  _PageResponseOfAppFeedbackDto(
+      {@JsonKey(name: 'items') final List<AppFeedbackDto>? items,
+      @JsonKey(name: 'page') this.page,
+      @JsonKey(name: 'pageSize') this.pageSize,
+      @JsonKey(name: 'totalCount') this.totalCount,
+      @JsonKey(name: 'totalPages') this.totalPages,
+      @JsonKey(name: 'hasNextPage') this.hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') this.hasPreviousPage})
+      : _items = items;
+  factory _PageResponseOfAppFeedbackDto.fromJson(Map<String, dynamic> json) =>
+      _$PageResponseOfAppFeedbackDtoFromJson(json);
+
+  final List<AppFeedbackDto>? _items;
+  @override
+  @JsonKey(name: 'items')
+  List<AppFeedbackDto>? get items {
+    final value = _items;
+    if (value == null) return null;
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'page')
+  final int? page;
+  @override
+  @JsonKey(name: 'pageSize')
+  final int? pageSize;
+  @override
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @override
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+  @override
+  @JsonKey(name: 'hasNextPage')
+  final bool? hasNextPage;
+  @override
+  @JsonKey(name: 'hasPreviousPage')
+  final bool? hasPreviousPage;
+
+  /// Create a copy of PageResponseOfAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PageResponseOfAppFeedbackDtoCopyWith<_PageResponseOfAppFeedbackDto>
+      get copyWith => __$PageResponseOfAppFeedbackDtoCopyWithImpl<
+          _PageResponseOfAppFeedbackDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PageResponseOfAppFeedbackDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PageResponseOfAppFeedbackDto &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      page,
+      pageSize,
+      totalCount,
+      totalPages,
+      hasNextPage,
+      hasPreviousPage);
+
+  @override
+  String toString() {
+    return 'PageResponseOfAppFeedbackDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, totalPages: $totalPages, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PageResponseOfAppFeedbackDtoCopyWith<$Res>
+    implements $PageResponseOfAppFeedbackDtoCopyWith<$Res> {
+  factory _$PageResponseOfAppFeedbackDtoCopyWith(
+          _PageResponseOfAppFeedbackDto value,
+          $Res Function(_PageResponseOfAppFeedbackDto) _then) =
+      __$PageResponseOfAppFeedbackDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<AppFeedbackDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'totalPages') int? totalPages,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage});
+}
+
+/// @nodoc
+class __$PageResponseOfAppFeedbackDtoCopyWithImpl<$Res>
+    implements _$PageResponseOfAppFeedbackDtoCopyWith<$Res> {
+  __$PageResponseOfAppFeedbackDtoCopyWithImpl(this._self, this._then);
+
+  final _PageResponseOfAppFeedbackDto _self;
+  final $Res Function(_PageResponseOfAppFeedbackDto) _then;
+
+  /// Create a copy of PageResponseOfAppFeedbackDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? totalPages = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+  }) {
+    return _then(_PageResponseOfAppFeedbackDto(
+      items: freezed == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<AppFeedbackDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$ProfileDto {
   @JsonKey(name: 'userDetail')
   UserDetailDto get userDetail;
@@ -8819,6 +12611,751 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
     return $UserDetailDtoCopyWith<$Res>(_self.userDetail, (value) {
       return _then(_self.copyWith(userDetail: value));
     });
+  }
+}
+
+/// @nodoc
+mixin _$RegisterDeviceDto {
+  @JsonKey(name: 'deviceToken')
+  String? get deviceToken;
+  @JsonKey(name: 'platform')
+  String? get platform;
+  @JsonKey(name: 'appVersion')
+  String? get appVersion;
+  @JsonKey(name: 'deviceModel')
+  String? get deviceModel;
+  @JsonKey(name: 'deviceName')
+  String? get deviceName;
+
+  /// Create a copy of RegisterDeviceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RegisterDeviceDtoCopyWith<RegisterDeviceDto> get copyWith =>
+      _$RegisterDeviceDtoCopyWithImpl<RegisterDeviceDto>(
+          this as RegisterDeviceDto, _$identity);
+
+  /// Serializes this RegisterDeviceDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is RegisterDeviceDto &&
+            (identical(other.deviceToken, deviceToken) ||
+                other.deviceToken == deviceToken) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion) &&
+            (identical(other.deviceModel, deviceModel) ||
+                other.deviceModel == deviceModel) &&
+            (identical(other.deviceName, deviceName) ||
+                other.deviceName == deviceName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, deviceToken, platform, appVersion, deviceModel, deviceName);
+
+  @override
+  String toString() {
+    return 'RegisterDeviceDto(deviceToken: $deviceToken, platform: $platform, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $RegisterDeviceDtoCopyWith<$Res> {
+  factory $RegisterDeviceDtoCopyWith(
+          RegisterDeviceDto value, $Res Function(RegisterDeviceDto) _then) =
+      _$RegisterDeviceDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'deviceToken') String? deviceToken,
+      @JsonKey(name: 'platform') String? platform,
+      @JsonKey(name: 'appVersion') String? appVersion,
+      @JsonKey(name: 'deviceModel') String? deviceModel,
+      @JsonKey(name: 'deviceName') String? deviceName});
+}
+
+/// @nodoc
+class _$RegisterDeviceDtoCopyWithImpl<$Res>
+    implements $RegisterDeviceDtoCopyWith<$Res> {
+  _$RegisterDeviceDtoCopyWithImpl(this._self, this._then);
+
+  final RegisterDeviceDto _self;
+  final $Res Function(RegisterDeviceDto) _then;
+
+  /// Create a copy of RegisterDeviceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? deviceToken = freezed,
+    Object? platform = freezed,
+    Object? appVersion = freezed,
+    Object? deviceModel = freezed,
+    Object? deviceName = freezed,
+  }) {
+    return _then(_self.copyWith(
+      deviceToken: freezed == deviceToken
+          ? _self.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _self.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceModel: freezed == deviceModel
+          ? _self.deviceModel
+          : deviceModel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceName: freezed == deviceName
+          ? _self.deviceName
+          : deviceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [RegisterDeviceDto].
+extension RegisterDeviceDtoPatterns on RegisterDeviceDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_RegisterDeviceDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RegisterDeviceDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_RegisterDeviceDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RegisterDeviceDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_RegisterDeviceDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RegisterDeviceDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'deviceToken') String? deviceToken,
+            @JsonKey(name: 'platform') String? platform,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'deviceModel') String? deviceModel,
+            @JsonKey(name: 'deviceName') String? deviceName)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RegisterDeviceDto() when $default != null:
+        return $default(_that.deviceToken, _that.platform, _that.appVersion,
+            _that.deviceModel, _that.deviceName);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'deviceToken') String? deviceToken,
+            @JsonKey(name: 'platform') String? platform,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'deviceModel') String? deviceModel,
+            @JsonKey(name: 'deviceName') String? deviceName)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RegisterDeviceDto():
+        return $default(_that.deviceToken, _that.platform, _that.appVersion,
+            _that.deviceModel, _that.deviceName);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'deviceToken') String? deviceToken,
+            @JsonKey(name: 'platform') String? platform,
+            @JsonKey(name: 'appVersion') String? appVersion,
+            @JsonKey(name: 'deviceModel') String? deviceModel,
+            @JsonKey(name: 'deviceName') String? deviceName)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RegisterDeviceDto() when $default != null:
+        return $default(_that.deviceToken, _that.platform, _that.appVersion,
+            _that.deviceModel, _that.deviceName);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _RegisterDeviceDto implements RegisterDeviceDto {
+  _RegisterDeviceDto(
+      {@JsonKey(name: 'deviceToken') this.deviceToken,
+      @JsonKey(name: 'platform') this.platform,
+      @JsonKey(name: 'appVersion') this.appVersion,
+      @JsonKey(name: 'deviceModel') this.deviceModel,
+      @JsonKey(name: 'deviceName') this.deviceName});
+  factory _RegisterDeviceDto.fromJson(Map<String, dynamic> json) =>
+      _$RegisterDeviceDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'deviceToken')
+  final String? deviceToken;
+  @override
+  @JsonKey(name: 'platform')
+  final String? platform;
+  @override
+  @JsonKey(name: 'appVersion')
+  final String? appVersion;
+  @override
+  @JsonKey(name: 'deviceModel')
+  final String? deviceModel;
+  @override
+  @JsonKey(name: 'deviceName')
+  final String? deviceName;
+
+  /// Create a copy of RegisterDeviceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$RegisterDeviceDtoCopyWith<_RegisterDeviceDto> get copyWith =>
+      __$RegisterDeviceDtoCopyWithImpl<_RegisterDeviceDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RegisterDeviceDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _RegisterDeviceDto &&
+            (identical(other.deviceToken, deviceToken) ||
+                other.deviceToken == deviceToken) &&
+            (identical(other.platform, platform) ||
+                other.platform == platform) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion) &&
+            (identical(other.deviceModel, deviceModel) ||
+                other.deviceModel == deviceModel) &&
+            (identical(other.deviceName, deviceName) ||
+                other.deviceName == deviceName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, deviceToken, platform, appVersion, deviceModel, deviceName);
+
+  @override
+  String toString() {
+    return 'RegisterDeviceDto(deviceToken: $deviceToken, platform: $platform, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$RegisterDeviceDtoCopyWith<$Res>
+    implements $RegisterDeviceDtoCopyWith<$Res> {
+  factory _$RegisterDeviceDtoCopyWith(
+          _RegisterDeviceDto value, $Res Function(_RegisterDeviceDto) _then) =
+      __$RegisterDeviceDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'deviceToken') String? deviceToken,
+      @JsonKey(name: 'platform') String? platform,
+      @JsonKey(name: 'appVersion') String? appVersion,
+      @JsonKey(name: 'deviceModel') String? deviceModel,
+      @JsonKey(name: 'deviceName') String? deviceName});
+}
+
+/// @nodoc
+class __$RegisterDeviceDtoCopyWithImpl<$Res>
+    implements _$RegisterDeviceDtoCopyWith<$Res> {
+  __$RegisterDeviceDtoCopyWithImpl(this._self, this._then);
+
+  final _RegisterDeviceDto _self;
+  final $Res Function(_RegisterDeviceDto) _then;
+
+  /// Create a copy of RegisterDeviceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? deviceToken = freezed,
+    Object? platform = freezed,
+    Object? appVersion = freezed,
+    Object? deviceModel = freezed,
+    Object? deviceName = freezed,
+  }) {
+    return _then(_RegisterDeviceDto(
+      deviceToken: freezed == deviceToken
+          ? _self.deviceToken
+          : deviceToken // ignore: cast_nullable_to_non_nullable
+              as String?,
+      platform: freezed == platform
+          ? _self.platform
+          : platform // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceModel: freezed == deviceModel
+          ? _self.deviceModel
+          : deviceModel // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceName: freezed == deviceName
+          ? _self.deviceName
+          : deviceName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$RemoveContentDto {
+  @JsonKey(name: 'reason')
+  String get reason;
+  @JsonKey(name: 'additionalNotes')
+  String? get additionalNotes;
+
+  /// Create a copy of RemoveContentDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RemoveContentDtoCopyWith<RemoveContentDto> get copyWith =>
+      _$RemoveContentDtoCopyWithImpl<RemoveContentDto>(
+          this as RemoveContentDto, _$identity);
+
+  /// Serializes this RemoveContentDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is RemoveContentDto &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.additionalNotes, additionalNotes) ||
+                other.additionalNotes == additionalNotes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, reason, additionalNotes);
+
+  @override
+  String toString() {
+    return 'RemoveContentDto(reason: $reason, additionalNotes: $additionalNotes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $RemoveContentDtoCopyWith<$Res> {
+  factory $RemoveContentDtoCopyWith(
+          RemoveContentDto value, $Res Function(RemoveContentDto) _then) =
+      _$RemoveContentDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'reason') String reason,
+      @JsonKey(name: 'additionalNotes') String? additionalNotes});
+}
+
+/// @nodoc
+class _$RemoveContentDtoCopyWithImpl<$Res>
+    implements $RemoveContentDtoCopyWith<$Res> {
+  _$RemoveContentDtoCopyWithImpl(this._self, this._then);
+
+  final RemoveContentDto _self;
+  final $Res Function(RemoveContentDto) _then;
+
+  /// Create a copy of RemoveContentDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? reason = null,
+    Object? additionalNotes = freezed,
+  }) {
+    return _then(_self.copyWith(
+      reason: null == reason
+          ? _self.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+      additionalNotes: freezed == additionalNotes
+          ? _self.additionalNotes
+          : additionalNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [RemoveContentDto].
+extension RemoveContentDtoPatterns on RemoveContentDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_RemoveContentDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RemoveContentDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_RemoveContentDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RemoveContentDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_RemoveContentDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RemoveContentDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'reason') String reason,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RemoveContentDto() when $default != null:
+        return $default(_that.reason, _that.additionalNotes);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'reason') String reason,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RemoveContentDto():
+        return $default(_that.reason, _that.additionalNotes);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'reason') String reason,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RemoveContentDto() when $default != null:
+        return $default(_that.reason, _that.additionalNotes);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _RemoveContentDto implements RemoveContentDto {
+  _RemoveContentDto(
+      {@JsonKey(name: 'reason') required this.reason,
+      @JsonKey(name: 'additionalNotes') this.additionalNotes});
+  factory _RemoveContentDto.fromJson(Map<String, dynamic> json) =>
+      _$RemoveContentDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'reason')
+  final String reason;
+  @override
+  @JsonKey(name: 'additionalNotes')
+  final String? additionalNotes;
+
+  /// Create a copy of RemoveContentDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$RemoveContentDtoCopyWith<_RemoveContentDto> get copyWith =>
+      __$RemoveContentDtoCopyWithImpl<_RemoveContentDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RemoveContentDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _RemoveContentDto &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.additionalNotes, additionalNotes) ||
+                other.additionalNotes == additionalNotes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, reason, additionalNotes);
+
+  @override
+  String toString() {
+    return 'RemoveContentDto(reason: $reason, additionalNotes: $additionalNotes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$RemoveContentDtoCopyWith<$Res>
+    implements $RemoveContentDtoCopyWith<$Res> {
+  factory _$RemoveContentDtoCopyWith(
+          _RemoveContentDto value, $Res Function(_RemoveContentDto) _then) =
+      __$RemoveContentDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'reason') String reason,
+      @JsonKey(name: 'additionalNotes') String? additionalNotes});
+}
+
+/// @nodoc
+class __$RemoveContentDtoCopyWithImpl<$Res>
+    implements _$RemoveContentDtoCopyWith<$Res> {
+  __$RemoveContentDtoCopyWithImpl(this._self, this._then);
+
+  final _RemoveContentDto _self;
+  final $Res Function(_RemoveContentDto) _then;
+
+  /// Create a copy of RemoveContentDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? reason = null,
+    Object? additionalNotes = freezed,
+  }) {
+    return _then(_RemoveContentDto(
+      reason: null == reason
+          ? _self.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String,
+      additionalNotes: freezed == additionalNotes
+          ? _self.additionalNotes
+          : additionalNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
@@ -10308,540 +14845,6 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-mixin _$SendNotificationDto {
-  @JsonKey(name: 'title')
-  String get title;
-  @JsonKey(name: 'body')
-  String get body;
-  @JsonKey(name: 'notificationType')
-  NotificationTypeDto get notificationType;
-  @JsonKey(name: 'targetUserId')
-  String? get targetUserId;
-  @JsonKey(name: 'relatedEntityId')
-  String? get relatedEntityId;
-  @JsonKey(name: 'scheduledFor')
-  DateTime? get scheduledFor;
-  @JsonKey(name: 'data')
-  Map<String, String>? get data;
-  @JsonKey(name: 'priority')
-  int get priority;
-
-  /// Create a copy of SendNotificationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $SendNotificationDtoCopyWith<SendNotificationDto> get copyWith =>
-      _$SendNotificationDtoCopyWithImpl<SendNotificationDto>(
-          this as SendNotificationDto, _$identity);
-
-  /// Serializes this SendNotificationDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is SendNotificationDto &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.body, body) || other.body == body) &&
-            (identical(other.notificationType, notificationType) ||
-                other.notificationType == notificationType) &&
-            (identical(other.targetUserId, targetUserId) ||
-                other.targetUserId == targetUserId) &&
-            (identical(other.relatedEntityId, relatedEntityId) ||
-                other.relatedEntityId == relatedEntityId) &&
-            (identical(other.scheduledFor, scheduledFor) ||
-                other.scheduledFor == scheduledFor) &&
-            const DeepCollectionEquality().equals(other.data, data) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      title,
-      body,
-      notificationType,
-      targetUserId,
-      relatedEntityId,
-      scheduledFor,
-      const DeepCollectionEquality().hash(data),
-      priority);
-
-  @override
-  String toString() {
-    return 'SendNotificationDto(title: $title, body: $body, notificationType: $notificationType, targetUserId: $targetUserId, relatedEntityId: $relatedEntityId, scheduledFor: $scheduledFor, data: $data, priority: $priority)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $SendNotificationDtoCopyWith<$Res> {
-  factory $SendNotificationDtoCopyWith(
-          SendNotificationDto value, $Res Function(SendNotificationDto) _then) =
-      _$SendNotificationDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
-      @JsonKey(name: 'targetUserId') String? targetUserId,
-      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
-      @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int priority});
-}
-
-/// @nodoc
-class _$SendNotificationDtoCopyWithImpl<$Res>
-    implements $SendNotificationDtoCopyWith<$Res> {
-  _$SendNotificationDtoCopyWithImpl(this._self, this._then);
-
-  final SendNotificationDto _self;
-  final $Res Function(SendNotificationDto) _then;
-
-  /// Create a copy of SendNotificationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? title = null,
-    Object? body = null,
-    Object? notificationType = null,
-    Object? targetUserId = freezed,
-    Object? relatedEntityId = freezed,
-    Object? scheduledFor = freezed,
-    Object? data = freezed,
-    Object? priority = null,
-  }) {
-    return _then(_self.copyWith(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      body: null == body
-          ? _self.body
-          : body // ignore: cast_nullable_to_non_nullable
-              as String,
-      notificationType: null == notificationType
-          ? _self.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationTypeDto,
-      targetUserId: freezed == targetUserId
-          ? _self.targetUserId
-          : targetUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      relatedEntityId: freezed == relatedEntityId
-          ? _self.relatedEntityId
-          : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      scheduledFor: freezed == scheduledFor
-          ? _self.scheduledFor
-          : scheduledFor // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      data: freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      priority: null == priority
-          ? _self.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [SendNotificationDto].
-extension SendNotificationDtoPatterns on SendNotificationDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SendNotificationDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _SendNotificationDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SendNotificationDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _SendNotificationDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SendNotificationDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _SendNotificationDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'title') String title,
-            @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto notificationType,
-            @JsonKey(name: 'targetUserId') String? targetUserId,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
-            @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int priority)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _SendNotificationDto() when $default != null:
-        return $default(
-            _that.title,
-            _that.body,
-            _that.notificationType,
-            _that.targetUserId,
-            _that.relatedEntityId,
-            _that.scheduledFor,
-            _that.data,
-            _that.priority);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'title') String title,
-            @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto notificationType,
-            @JsonKey(name: 'targetUserId') String? targetUserId,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
-            @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int priority)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _SendNotificationDto():
-        return $default(
-            _that.title,
-            _that.body,
-            _that.notificationType,
-            _that.targetUserId,
-            _that.relatedEntityId,
-            _that.scheduledFor,
-            _that.data,
-            _that.priority);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'title') String title,
-            @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto notificationType,
-            @JsonKey(name: 'targetUserId') String? targetUserId,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
-            @JsonKey(name: 'data') Map<String, String>? data,
-            @JsonKey(name: 'priority') int priority)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _SendNotificationDto() when $default != null:
-        return $default(
-            _that.title,
-            _that.body,
-            _that.notificationType,
-            _that.targetUserId,
-            _that.relatedEntityId,
-            _that.scheduledFor,
-            _that.data,
-            _that.priority);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _SendNotificationDto implements SendNotificationDto {
-  _SendNotificationDto(
-      {@JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'body') required this.body,
-      @JsonKey(name: 'notificationType') required this.notificationType,
-      @JsonKey(name: 'targetUserId') this.targetUserId,
-      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
-      @JsonKey(name: 'scheduledFor') this.scheduledFor,
-      @JsonKey(name: 'data') final Map<String, String>? data,
-      @JsonKey(name: 'priority') this.priority = 0})
-      : _data = data;
-  factory _SendNotificationDto.fromJson(Map<String, dynamic> json) =>
-      _$SendNotificationDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'title')
-  final String title;
-  @override
-  @JsonKey(name: 'body')
-  final String body;
-  @override
-  @JsonKey(name: 'notificationType')
-  final NotificationTypeDto notificationType;
-  @override
-  @JsonKey(name: 'targetUserId')
-  final String? targetUserId;
-  @override
-  @JsonKey(name: 'relatedEntityId')
-  final String? relatedEntityId;
-  @override
-  @JsonKey(name: 'scheduledFor')
-  final DateTime? scheduledFor;
-  final Map<String, String>? _data;
-  @override
-  @JsonKey(name: 'data')
-  Map<String, String>? get data {
-    final value = _data;
-    if (value == null) return null;
-    if (_data is EqualUnmodifiableMapView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
-  @override
-  @JsonKey(name: 'priority')
-  final int priority;
-
-  /// Create a copy of SendNotificationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$SendNotificationDtoCopyWith<_SendNotificationDto> get copyWith =>
-      __$SendNotificationDtoCopyWithImpl<_SendNotificationDto>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$SendNotificationDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _SendNotificationDto &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.body, body) || other.body == body) &&
-            (identical(other.notificationType, notificationType) ||
-                other.notificationType == notificationType) &&
-            (identical(other.targetUserId, targetUserId) ||
-                other.targetUserId == targetUserId) &&
-            (identical(other.relatedEntityId, relatedEntityId) ||
-                other.relatedEntityId == relatedEntityId) &&
-            (identical(other.scheduledFor, scheduledFor) ||
-                other.scheduledFor == scheduledFor) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      title,
-      body,
-      notificationType,
-      targetUserId,
-      relatedEntityId,
-      scheduledFor,
-      const DeepCollectionEquality().hash(_data),
-      priority);
-
-  @override
-  String toString() {
-    return 'SendNotificationDto(title: $title, body: $body, notificationType: $notificationType, targetUserId: $targetUserId, relatedEntityId: $relatedEntityId, scheduledFor: $scheduledFor, data: $data, priority: $priority)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$SendNotificationDtoCopyWith<$Res>
-    implements $SendNotificationDtoCopyWith<$Res> {
-  factory _$SendNotificationDtoCopyWith(_SendNotificationDto value,
-          $Res Function(_SendNotificationDto) _then) =
-      __$SendNotificationDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'title') String title,
-      @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') NotificationTypeDto notificationType,
-      @JsonKey(name: 'targetUserId') String? targetUserId,
-      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'scheduledFor') DateTime? scheduledFor,
-      @JsonKey(name: 'data') Map<String, String>? data,
-      @JsonKey(name: 'priority') int priority});
-}
-
-/// @nodoc
-class __$SendNotificationDtoCopyWithImpl<$Res>
-    implements _$SendNotificationDtoCopyWith<$Res> {
-  __$SendNotificationDtoCopyWithImpl(this._self, this._then);
-
-  final _SendNotificationDto _self;
-  final $Res Function(_SendNotificationDto) _then;
-
-  /// Create a copy of SendNotificationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? title = null,
-    Object? body = null,
-    Object? notificationType = null,
-    Object? targetUserId = freezed,
-    Object? relatedEntityId = freezed,
-    Object? scheduledFor = freezed,
-    Object? data = freezed,
-    Object? priority = null,
-  }) {
-    return _then(_SendNotificationDto(
-      title: null == title
-          ? _self.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      body: null == body
-          ? _self.body
-          : body // ignore: cast_nullable_to_non_nullable
-              as String,
-      notificationType: null == notificationType
-          ? _self.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationTypeDto,
-      targetUserId: freezed == targetUserId
-          ? _self.targetUserId
-          : targetUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      relatedEntityId: freezed == relatedEntityId
-          ? _self.relatedEntityId
-          : relatedEntityId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      scheduledFor: freezed == scheduledFor
-          ? _self.scheduledFor
-          : scheduledFor // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      data: freezed == data
-          ? _self._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      priority: null == priority
-          ? _self.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
 mixin _$StepCommentDto {
   @JsonKey(name: 'id')
   String get id;
@@ -10863,6 +14866,12 @@ mixin _$StepCommentDto {
   bool get heartedByUser;
   @JsonKey(name: 'replyCount')
   int get replyCount;
+  @JsonKey(name: 'isDeleted')
+  bool get isDeleted;
+  @JsonKey(name: 'isUnavailable')
+  bool get isUnavailable;
+  @JsonKey(name: 'unavailableReason')
+  String get unavailableReason;
 
   /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
@@ -10895,7 +14904,13 @@ mixin _$StepCommentDto {
             (identical(other.heartedByUser, heartedByUser) ||
                 other.heartedByUser == heartedByUser) &&
             (identical(other.replyCount, replyCount) ||
-                other.replyCount == replyCount));
+                other.replyCount == replyCount) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -10911,11 +14926,14 @@ mixin _$StepCommentDto {
       stepId,
       heartCount,
       heartedByUser,
-      replyCount);
+      replyCount,
+      isDeleted,
+      isUnavailable,
+      unavailableReason);
 
   @override
   String toString() {
-    return 'StepCommentDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
+    return 'StepCommentDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -10935,7 +14953,10 @@ abstract mixin class $StepCommentDtoCopyWith<$Res> {
       @JsonKey(name: 'stepId') String stepId,
       @JsonKey(name: 'heartCount') int heartCount,
       @JsonKey(name: 'heartedByUser') bool heartedByUser,
-      @JsonKey(name: 'replyCount') int replyCount});
+      @JsonKey(name: 'replyCount') int replyCount,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 
   $UserDtoCopyWith<$Res> get user;
 }
@@ -10963,6 +14984,9 @@ class _$StepCommentDtoCopyWithImpl<$Res>
     Object? heartCount = null,
     Object? heartedByUser = null,
     Object? replyCount = null,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -11005,6 +15029,18 @@ class _$StepCommentDtoCopyWithImpl<$Res>
           ? _self.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
               as int,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -11120,7 +15156,10 @@ extension StepCommentDtoPatterns on StepCommentDto {
             @JsonKey(name: 'stepId') String stepId,
             @JsonKey(name: 'heartCount') int heartCount,
             @JsonKey(name: 'heartedByUser') bool heartedByUser,
-            @JsonKey(name: 'replyCount') int replyCount)?
+            @JsonKey(name: 'replyCount') int replyCount,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
@@ -11137,7 +15176,10 @@ extension StepCommentDtoPatterns on StepCommentDto {
             _that.stepId,
             _that.heartCount,
             _that.heartedByUser,
-            _that.replyCount);
+            _that.replyCount,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return orElse();
     }
@@ -11168,7 +15210,10 @@ extension StepCommentDtoPatterns on StepCommentDto {
             @JsonKey(name: 'stepId') String stepId,
             @JsonKey(name: 'heartCount') int heartCount,
             @JsonKey(name: 'heartedByUser') bool heartedByUser,
-            @JsonKey(name: 'replyCount') int replyCount)
+            @JsonKey(name: 'replyCount') int replyCount,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)
         $default,
   ) {
     final _that = this;
@@ -11184,7 +15229,10 @@ extension StepCommentDtoPatterns on StepCommentDto {
             _that.stepId,
             _that.heartCount,
             _that.heartedByUser,
-            _that.replyCount);
+            _that.replyCount,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
     }
   }
 
@@ -11212,7 +15260,10 @@ extension StepCommentDtoPatterns on StepCommentDto {
             @JsonKey(name: 'stepId') String stepId,
             @JsonKey(name: 'heartCount') int heartCount,
             @JsonKey(name: 'heartedByUser') bool heartedByUser,
-            @JsonKey(name: 'replyCount') int replyCount)?
+            @JsonKey(name: 'replyCount') int replyCount,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default,
   ) {
     final _that = this;
@@ -11228,7 +15279,10 @@ extension StepCommentDtoPatterns on StepCommentDto {
             _that.stepId,
             _that.heartCount,
             _that.heartedByUser,
-            _that.replyCount);
+            _that.replyCount,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return null;
     }
@@ -11248,7 +15302,10 @@ class _StepCommentDto implements StepCommentDto {
       @JsonKey(name: 'stepId') required this.stepId,
       @JsonKey(name: 'heartCount') this.heartCount = 0,
       @JsonKey(name: 'heartedByUser') this.heartedByUser = false,
-      @JsonKey(name: 'replyCount') this.replyCount = 0});
+      @JsonKey(name: 'replyCount') this.replyCount = 0,
+      @JsonKey(name: 'isDeleted') this.isDeleted = false,
+      @JsonKey(name: 'isUnavailable') this.isUnavailable = false,
+      @JsonKey(name: 'unavailableReason') this.unavailableReason = ''});
   factory _StepCommentDto.fromJson(Map<String, dynamic> json) =>
       _$StepCommentDtoFromJson(json);
 
@@ -11282,6 +15339,15 @@ class _StepCommentDto implements StepCommentDto {
   @override
   @JsonKey(name: 'replyCount')
   final int replyCount;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool isDeleted;
+  @override
+  @JsonKey(name: 'isUnavailable')
+  final bool isUnavailable;
+  @override
+  @JsonKey(name: 'unavailableReason')
+  final String unavailableReason;
 
   /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
@@ -11318,7 +15384,13 @@ class _StepCommentDto implements StepCommentDto {
             (identical(other.heartedByUser, heartedByUser) ||
                 other.heartedByUser == heartedByUser) &&
             (identical(other.replyCount, replyCount) ||
-                other.replyCount == replyCount));
+                other.replyCount == replyCount) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -11334,11 +15406,14 @@ class _StepCommentDto implements StepCommentDto {
       stepId,
       heartCount,
       heartedByUser,
-      replyCount);
+      replyCount,
+      isDeleted,
+      isUnavailable,
+      unavailableReason);
 
   @override
   String toString() {
-    return 'StepCommentDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount)';
+    return 'StepCommentDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, deletedDate: $deletedDate, user: $user, stepId: $stepId, heartCount: $heartCount, heartedByUser: $heartedByUser, replyCount: $replyCount, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -11360,7 +15435,10 @@ abstract mixin class _$StepCommentDtoCopyWith<$Res>
       @JsonKey(name: 'stepId') String stepId,
       @JsonKey(name: 'heartCount') int heartCount,
       @JsonKey(name: 'heartedByUser') bool heartedByUser,
-      @JsonKey(name: 'replyCount') int replyCount});
+      @JsonKey(name: 'replyCount') int replyCount,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -11389,6 +15467,9 @@ class __$StepCommentDtoCopyWithImpl<$Res>
     Object? heartCount = null,
     Object? heartedByUser = null,
     Object? replyCount = null,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_StepCommentDto(
       id: null == id
@@ -11431,6 +15512,18 @@ class __$StepCommentDtoCopyWithImpl<$Res>
           ? _self.replyCount
           : replyCount // ignore: cast_nullable_to_non_nullable
               as int,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -11450,7 +15543,7 @@ mixin _$StepDetailDto {
   @JsonKey(name: 'user')
   UserDto get user;
   @JsonKey(name: 'journey')
-  JourneyDto? get journey;
+  JourneyDto get journey;
   @JsonKey(name: 'hearts')
   int get hearts;
   @JsonKey(name: 'heartedByUser')
@@ -11485,6 +15578,14 @@ mixin _$StepDetailDto {
   String get userId;
   @JsonKey(name: 'journeyId')
   String get journeyId;
+  @JsonKey(name: 'stepWithWindowHours')
+  num get stepWithWindowHours;
+  @JsonKey(name: 'isDeleted')
+  bool get isDeleted;
+  @JsonKey(name: 'isUnavailable')
+  bool get isUnavailable;
+  @JsonKey(name: 'unavailableReason')
+  String get unavailableReason;
 
   /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -11533,7 +15634,15 @@ mixin _$StepDetailDto {
                 other.lastUpdated == lastUpdated) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.journeyId, journeyId) ||
-                other.journeyId == journeyId));
+                other.journeyId == journeyId) &&
+            (identical(other.stepWithWindowHours, stepWithWindowHours) ||
+                other.stepWithWindowHours == stepWithWindowHours) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -11558,12 +15667,16 @@ mixin _$StepDetailDto {
         createdDate,
         lastUpdated,
         userId,
-        journeyId
+        journeyId,
+        stepWithWindowHours,
+        isDeleted,
+        isUnavailable,
+        unavailableReason
       ]);
 
   @override
   String toString() {
-    return 'StepDetailDto(user: $user, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepType: $stepType, media: $media, id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId)';
+    return 'StepDetailDto(user: $user, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepType: $stepType, media: $media, id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, stepWithWindowHours: $stepWithWindowHours, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -11575,7 +15688,7 @@ abstract mixin class $StepDetailDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'journey') JourneyDto? journey,
+      @JsonKey(name: 'journey') JourneyDto journey,
       @JsonKey(name: 'hearts') int hearts,
       @JsonKey(name: 'heartedByUser') bool heartedByUser,
       @JsonKey(name: 'shares') int shares,
@@ -11593,10 +15706,14 @@ abstract mixin class $StepDetailDtoCopyWith<$Res> {
       @JsonKey(name: 'createdDate') DateTime createdDate,
       @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
       @JsonKey(name: 'userId') String userId,
-      @JsonKey(name: 'journeyId') String journeyId});
+      @JsonKey(name: 'journeyId') String journeyId,
+      @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 
   $UserDtoCopyWith<$Res> get user;
-  $JourneyDtoCopyWith<$Res>? get journey;
+  $JourneyDtoCopyWith<$Res> get journey;
 }
 
 /// @nodoc
@@ -11613,7 +15730,7 @@ class _$StepDetailDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = null,
-    Object? journey = freezed,
+    Object? journey = null,
     Object? hearts = null,
     Object? heartedByUser = null,
     Object? shares = null,
@@ -11631,16 +15748,20 @@ class _$StepDetailDtoCopyWithImpl<$Res>
     Object? lastUpdated = null,
     Object? userId = null,
     Object? journeyId = null,
+    Object? stepWithWindowHours = null,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_self.copyWith(
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
-      journey: freezed == journey
+      journey: null == journey
           ? _self.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDto?,
+              as JourneyDto,
       hearts: null == hearts
           ? _self.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -11709,6 +15830,22 @@ class _$StepDetailDtoCopyWithImpl<$Res>
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
               as String,
+      stepWithWindowHours: null == stepWithWindowHours
+          ? _self.stepWithWindowHours
+          : stepWithWindowHours // ignore: cast_nullable_to_non_nullable
+              as num,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -11726,12 +15863,8 @@ class _$StepDetailDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDtoCopyWith<$Res>? get journey {
-    if (_self.journey == null) {
-      return null;
-    }
-
-    return $JourneyDtoCopyWith<$Res>(_self.journey!, (value) {
+  $JourneyDtoCopyWith<$Res> get journey {
+    return $JourneyDtoCopyWith<$Res>(_self.journey, (value) {
       return _then(_self.copyWith(journey: value));
     });
   }
@@ -11830,7 +15963,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'journey') JourneyDto? journey,
+            @JsonKey(name: 'journey') JourneyDto journey,
             @JsonKey(name: 'hearts') int hearts,
             @JsonKey(name: 'heartedByUser') bool heartedByUser,
             @JsonKey(name: 'shares') int shares,
@@ -11849,7 +15982,11 @@ extension StepDetailDtoPatterns on StepDetailDto {
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'userId') String userId,
-            @JsonKey(name: 'journeyId') String journeyId)?
+            @JsonKey(name: 'journeyId') String journeyId,
+            @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
@@ -11875,7 +16012,11 @@ extension StepDetailDtoPatterns on StepDetailDto {
             _that.createdDate,
             _that.lastUpdated,
             _that.userId,
-            _that.journeyId);
+            _that.journeyId,
+            _that.stepWithWindowHours,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return orElse();
     }
@@ -11898,7 +16039,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'journey') JourneyDto? journey,
+            @JsonKey(name: 'journey') JourneyDto journey,
             @JsonKey(name: 'hearts') int hearts,
             @JsonKey(name: 'heartedByUser') bool heartedByUser,
             @JsonKey(name: 'shares') int shares,
@@ -11917,7 +16058,11 @@ extension StepDetailDtoPatterns on StepDetailDto {
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'userId') String userId,
-            @JsonKey(name: 'journeyId') String journeyId)
+            @JsonKey(name: 'journeyId') String journeyId,
+            @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)
         $default,
   ) {
     final _that = this;
@@ -11942,7 +16087,11 @@ extension StepDetailDtoPatterns on StepDetailDto {
             _that.createdDate,
             _that.lastUpdated,
             _that.userId,
-            _that.journeyId);
+            _that.journeyId,
+            _that.stepWithWindowHours,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
     }
   }
 
@@ -11962,7 +16111,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'user') UserDto user,
-            @JsonKey(name: 'journey') JourneyDto? journey,
+            @JsonKey(name: 'journey') JourneyDto journey,
             @JsonKey(name: 'hearts') int hearts,
             @JsonKey(name: 'heartedByUser') bool heartedByUser,
             @JsonKey(name: 'shares') int shares,
@@ -11981,7 +16130,11 @@ extension StepDetailDtoPatterns on StepDetailDto {
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'userId') String userId,
-            @JsonKey(name: 'journeyId') String journeyId)?
+            @JsonKey(name: 'journeyId') String journeyId,
+            @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default,
   ) {
     final _that = this;
@@ -12006,7 +16159,11 @@ extension StepDetailDtoPatterns on StepDetailDto {
             _that.createdDate,
             _that.lastUpdated,
             _that.userId,
-            _that.journeyId);
+            _that.journeyId,
+            _that.stepWithWindowHours,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return null;
     }
@@ -12018,7 +16175,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
 class _StepDetailDto implements StepDetailDto {
   _StepDetailDto(
       {@JsonKey(name: 'user') required this.user,
-      @JsonKey(name: 'journey') this.journey,
+      @JsonKey(name: 'journey') required this.journey,
       @JsonKey(name: 'hearts') this.hearts = 0,
       @JsonKey(name: 'heartedByUser') this.heartedByUser = false,
       @JsonKey(name: 'shares') this.shares = 0,
@@ -12037,7 +16194,11 @@ class _StepDetailDto implements StepDetailDto {
       @JsonKey(name: 'createdDate') required this.createdDate,
       @JsonKey(name: 'lastUpdated') required this.lastUpdated,
       @JsonKey(name: 'userId') required this.userId,
-      @JsonKey(name: 'journeyId') required this.journeyId})
+      @JsonKey(name: 'journeyId') required this.journeyId,
+      @JsonKey(name: 'stepWithWindowHours') required this.stepWithWindowHours,
+      @JsonKey(name: 'isDeleted') this.isDeleted = false,
+      @JsonKey(name: 'isUnavailable') this.isUnavailable = false,
+      @JsonKey(name: 'unavailableReason') this.unavailableReason = ''})
       : _othersStepWithUsers = othersStepWithUsers,
         _media = media;
   factory _StepDetailDto.fromJson(Map<String, dynamic> json) =>
@@ -12048,7 +16209,7 @@ class _StepDetailDto implements StepDetailDto {
   final UserDto user;
   @override
   @JsonKey(name: 'journey')
-  final JourneyDto? journey;
+  final JourneyDto journey;
   @override
   @JsonKey(name: 'hearts')
   final int hearts;
@@ -12117,6 +16278,18 @@ class _StepDetailDto implements StepDetailDto {
   @override
   @JsonKey(name: 'journeyId')
   final String journeyId;
+  @override
+  @JsonKey(name: 'stepWithWindowHours')
+  final num stepWithWindowHours;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool isDeleted;
+  @override
+  @JsonKey(name: 'isUnavailable')
+  final bool isUnavailable;
+  @override
+  @JsonKey(name: 'unavailableReason')
+  final String unavailableReason;
 
   /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12169,7 +16342,15 @@ class _StepDetailDto implements StepDetailDto {
                 other.lastUpdated == lastUpdated) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.journeyId, journeyId) ||
-                other.journeyId == journeyId));
+                other.journeyId == journeyId) &&
+            (identical(other.stepWithWindowHours, stepWithWindowHours) ||
+                other.stepWithWindowHours == stepWithWindowHours) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -12194,12 +16375,16 @@ class _StepDetailDto implements StepDetailDto {
         createdDate,
         lastUpdated,
         userId,
-        journeyId
+        journeyId,
+        stepWithWindowHours,
+        isDeleted,
+        isUnavailable,
+        unavailableReason
       ]);
 
   @override
   String toString() {
-    return 'StepDetailDto(user: $user, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepType: $stepType, media: $media, id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId)';
+    return 'StepDetailDto(user: $user, journey: $journey, hearts: $hearts, heartedByUser: $heartedByUser, shares: $shares, sharedByUser: $sharedByUser, comments: $comments, commentedByUser: $commentedByUser, userSteppedWithInteractions: $userSteppedWithInteractions, othersStepWith: $othersStepWith, othersStepWithUsers: $othersStepWithUsers, stepType: $stepType, media: $media, id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, stepWithWindowHours: $stepWithWindowHours, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -12213,7 +16398,7 @@ abstract mixin class _$StepDetailDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'journey') JourneyDto? journey,
+      @JsonKey(name: 'journey') JourneyDto journey,
       @JsonKey(name: 'hearts') int hearts,
       @JsonKey(name: 'heartedByUser') bool heartedByUser,
       @JsonKey(name: 'shares') int shares,
@@ -12231,12 +16416,16 @@ abstract mixin class _$StepDetailDtoCopyWith<$Res>
       @JsonKey(name: 'createdDate') DateTime createdDate,
       @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
       @JsonKey(name: 'userId') String userId,
-      @JsonKey(name: 'journeyId') String journeyId});
+      @JsonKey(name: 'journeyId') String journeyId,
+      @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 
   @override
   $UserDtoCopyWith<$Res> get user;
   @override
-  $JourneyDtoCopyWith<$Res>? get journey;
+  $JourneyDtoCopyWith<$Res> get journey;
 }
 
 /// @nodoc
@@ -12253,7 +16442,7 @@ class __$StepDetailDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? user = null,
-    Object? journey = freezed,
+    Object? journey = null,
     Object? hearts = null,
     Object? heartedByUser = null,
     Object? shares = null,
@@ -12271,16 +16460,20 @@ class __$StepDetailDtoCopyWithImpl<$Res>
     Object? lastUpdated = null,
     Object? userId = null,
     Object? journeyId = null,
+    Object? stepWithWindowHours = null,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_StepDetailDto(
       user: null == user
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
-      journey: freezed == journey
+      journey: null == journey
           ? _self.journey
           : journey // ignore: cast_nullable_to_non_nullable
-              as JourneyDto?,
+              as JourneyDto,
       hearts: null == hearts
           ? _self.hearts
           : hearts // ignore: cast_nullable_to_non_nullable
@@ -12349,6 +16542,22 @@ class __$StepDetailDtoCopyWithImpl<$Res>
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
               as String,
+      stepWithWindowHours: null == stepWithWindowHours
+          ? _self.stepWithWindowHours
+          : stepWithWindowHours // ignore: cast_nullable_to_non_nullable
+              as num,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -12366,12 +16575,8 @@ class __$StepDetailDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $JourneyDtoCopyWith<$Res>? get journey {
-    if (_self.journey == null) {
-      return null;
-    }
-
-    return $JourneyDtoCopyWith<$Res>(_self.journey!, (value) {
+  $JourneyDtoCopyWith<$Res> get journey {
+    return $JourneyDtoCopyWith<$Res>(_self.journey, (value) {
       return _then(_self.copyWith(journey: value));
     });
   }
@@ -12391,8 +16596,16 @@ mixin _$StepDto {
   String get userId;
   @JsonKey(name: 'journeyId')
   String get journeyId;
+  @JsonKey(name: 'stepWithWindowHours')
+  num get stepWithWindowHours;
   @JsonKey(name: 'media')
   StepMediaDto? get media;
+  @JsonKey(name: 'isDeleted')
+  bool get isDeleted;
+  @JsonKey(name: 'isUnavailable')
+  bool get isUnavailable;
+  @JsonKey(name: 'unavailableReason')
+  String get unavailableReason;
 
   /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12418,17 +16631,36 @@ mixin _$StepDto {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.journeyId, journeyId) ||
                 other.journeyId == journeyId) &&
-            (identical(other.media, media) || other.media == media));
+            (identical(other.stepWithWindowHours, stepWithWindowHours) ||
+                other.stepWithWindowHours == stepWithWindowHours) &&
+            (identical(other.media, media) || other.media == media) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, content, createdDate,
-      lastUpdated, userId, journeyId, media);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      content,
+      createdDate,
+      lastUpdated,
+      userId,
+      journeyId,
+      stepWithWindowHours,
+      media,
+      isDeleted,
+      isUnavailable,
+      unavailableReason);
 
   @override
   String toString() {
-    return 'StepDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, media: $media)';
+    return 'StepDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, stepWithWindowHours: $stepWithWindowHours, media: $media, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -12444,7 +16676,11 @@ abstract mixin class $StepDtoCopyWith<$Res> {
       @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
       @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'journeyId') String journeyId,
-      @JsonKey(name: 'media') StepMediaDto? media});
+      @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+      @JsonKey(name: 'media') StepMediaDto? media,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 
   $StepMediaDtoCopyWith<$Res>? get media;
 }
@@ -12467,7 +16703,11 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
     Object? lastUpdated = null,
     Object? userId = null,
     Object? journeyId = null,
+    Object? stepWithWindowHours = null,
     Object? media = freezed,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -12494,10 +16734,26 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
               as String,
+      stepWithWindowHours: null == stepWithWindowHours
+          ? _self.stepWithWindowHours
+          : stepWithWindowHours // ignore: cast_nullable_to_non_nullable
+              as num,
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
               as StepMediaDto?,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -12614,15 +16870,29 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'journeyId') String journeyId,
-            @JsonKey(name: 'media') StepMediaDto? media)?
+            @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+            @JsonKey(name: 'media') StepMediaDto? media,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _StepDto() when $default != null:
-        return $default(_that.id, _that.content, _that.createdDate,
-            _that.lastUpdated, _that.userId, _that.journeyId, _that.media);
+        return $default(
+            _that.id,
+            _that.content,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.userId,
+            _that.journeyId,
+            _that.stepWithWindowHours,
+            _that.media,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return orElse();
     }
@@ -12650,14 +16920,28 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'journeyId') String journeyId,
-            @JsonKey(name: 'media') StepMediaDto? media)
+            @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+            @JsonKey(name: 'media') StepMediaDto? media,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _StepDto():
-        return $default(_that.id, _that.content, _that.createdDate,
-            _that.lastUpdated, _that.userId, _that.journeyId, _that.media);
+        return $default(
+            _that.id,
+            _that.content,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.userId,
+            _that.journeyId,
+            _that.stepWithWindowHours,
+            _that.media,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
     }
   }
 
@@ -12682,14 +16966,28 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'journeyId') String journeyId,
-            @JsonKey(name: 'media') StepMediaDto? media)?
+            @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+            @JsonKey(name: 'media') StepMediaDto? media,
+            @JsonKey(name: 'isDeleted') bool isDeleted,
+            @JsonKey(name: 'isUnavailable') bool isUnavailable,
+            @JsonKey(name: 'unavailableReason') String unavailableReason)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _StepDto() when $default != null:
-        return $default(_that.id, _that.content, _that.createdDate,
-            _that.lastUpdated, _that.userId, _that.journeyId, _that.media);
+        return $default(
+            _that.id,
+            _that.content,
+            _that.createdDate,
+            _that.lastUpdated,
+            _that.userId,
+            _that.journeyId,
+            _that.stepWithWindowHours,
+            _that.media,
+            _that.isDeleted,
+            _that.isUnavailable,
+            _that.unavailableReason);
       case _:
         return null;
     }
@@ -12706,7 +17004,11 @@ class _StepDto implements StepDto {
       @JsonKey(name: 'lastUpdated') required this.lastUpdated,
       @JsonKey(name: 'userId') required this.userId,
       @JsonKey(name: 'journeyId') required this.journeyId,
-      @JsonKey(name: 'media') this.media});
+      @JsonKey(name: 'stepWithWindowHours') required this.stepWithWindowHours,
+      @JsonKey(name: 'media') this.media,
+      @JsonKey(name: 'isDeleted') this.isDeleted = false,
+      @JsonKey(name: 'isUnavailable') this.isUnavailable = false,
+      @JsonKey(name: 'unavailableReason') this.unavailableReason = ''});
   factory _StepDto.fromJson(Map<String, dynamic> json) =>
       _$StepDtoFromJson(json);
 
@@ -12729,8 +17031,20 @@ class _StepDto implements StepDto {
   @JsonKey(name: 'journeyId')
   final String journeyId;
   @override
+  @JsonKey(name: 'stepWithWindowHours')
+  final num stepWithWindowHours;
+  @override
   @JsonKey(name: 'media')
   final StepMediaDto? media;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool isDeleted;
+  @override
+  @JsonKey(name: 'isUnavailable')
+  final bool isUnavailable;
+  @override
+  @JsonKey(name: 'unavailableReason')
+  final String unavailableReason;
 
   /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12761,17 +17075,36 @@ class _StepDto implements StepDto {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.journeyId, journeyId) ||
                 other.journeyId == journeyId) &&
-            (identical(other.media, media) || other.media == media));
+            (identical(other.stepWithWindowHours, stepWithWindowHours) ||
+                other.stepWithWindowHours == stepWithWindowHours) &&
+            (identical(other.media, media) || other.media == media) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.isUnavailable, isUnavailable) ||
+                other.isUnavailable == isUnavailable) &&
+            (identical(other.unavailableReason, unavailableReason) ||
+                other.unavailableReason == unavailableReason));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, content, createdDate,
-      lastUpdated, userId, journeyId, media);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      content,
+      createdDate,
+      lastUpdated,
+      userId,
+      journeyId,
+      stepWithWindowHours,
+      media,
+      isDeleted,
+      isUnavailable,
+      unavailableReason);
 
   @override
   String toString() {
-    return 'StepDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, media: $media)';
+    return 'StepDto(id: $id, content: $content, createdDate: $createdDate, lastUpdated: $lastUpdated, userId: $userId, journeyId: $journeyId, stepWithWindowHours: $stepWithWindowHours, media: $media, isDeleted: $isDeleted, isUnavailable: $isUnavailable, unavailableReason: $unavailableReason)';
   }
 }
 
@@ -12788,7 +17121,11 @@ abstract mixin class _$StepDtoCopyWith<$Res> implements $StepDtoCopyWith<$Res> {
       @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
       @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'journeyId') String journeyId,
-      @JsonKey(name: 'media') StepMediaDto? media});
+      @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
+      @JsonKey(name: 'media') StepMediaDto? media,
+      @JsonKey(name: 'isDeleted') bool isDeleted,
+      @JsonKey(name: 'isUnavailable') bool isUnavailable,
+      @JsonKey(name: 'unavailableReason') String unavailableReason});
 
   @override
   $StepMediaDtoCopyWith<$Res>? get media;
@@ -12812,7 +17149,11 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
     Object? lastUpdated = null,
     Object? userId = null,
     Object? journeyId = null,
+    Object? stepWithWindowHours = null,
     Object? media = freezed,
+    Object? isDeleted = null,
+    Object? isUnavailable = null,
+    Object? unavailableReason = null,
   }) {
     return _then(_StepDto(
       id: null == id
@@ -12839,10 +17180,26 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
           ? _self.journeyId
           : journeyId // ignore: cast_nullable_to_non_nullable
               as String,
+      stepWithWindowHours: null == stepWithWindowHours
+          ? _self.stepWithWindowHours
+          : stepWithWindowHours // ignore: cast_nullable_to_non_nullable
+              as num,
       media: freezed == media
           ? _self.media
           : media // ignore: cast_nullable_to_non_nullable
               as StepMediaDto?,
+      isDeleted: null == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUnavailable: null == isUnavailable
+          ? _self.isUnavailable
+          : isUnavailable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      unavailableReason: null == unavailableReason
+          ? _self.unavailableReason
+          : unavailableReason // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
@@ -13642,6 +17999,1529 @@ class __$StepMediaDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$TestNotificationDto {
+  @JsonKey(name: 'title')
+  String? get title;
+  @JsonKey(name: 'body')
+  String? get body;
+  @JsonKey(name: 'userId')
+  String? get userId;
+  @JsonKey(name: 'topic')
+  String? get topic;
+  @JsonKey(name: 'deviceTokens')
+  List<String>? get deviceTokens;
+  @JsonKey(name: 'data')
+  Map<String, String>? get data;
+  @JsonKey(name: 'priority')
+  int? get priority;
+
+  /// Create a copy of TestNotificationDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TestNotificationDtoCopyWith<TestNotificationDto> get copyWith =>
+      _$TestNotificationDtoCopyWithImpl<TestNotificationDto>(
+          this as TestNotificationDto, _$identity);
+
+  /// Serializes this TestNotificationDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TestNotificationDto &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.body, body) || other.body == body) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            const DeepCollectionEquality()
+                .equals(other.deviceTokens, deviceTokens) &&
+            const DeepCollectionEquality().equals(other.data, data) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      body,
+      userId,
+      topic,
+      const DeepCollectionEquality().hash(deviceTokens),
+      const DeepCollectionEquality().hash(data),
+      priority);
+
+  @override
+  String toString() {
+    return 'TestNotificationDto(title: $title, body: $body, userId: $userId, topic: $topic, deviceTokens: $deviceTokens, data: $data, priority: $priority)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TestNotificationDtoCopyWith<$Res> {
+  factory $TestNotificationDtoCopyWith(
+          TestNotificationDto value, $Res Function(TestNotificationDto) _then) =
+      _$TestNotificationDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'userId') String? userId,
+      @JsonKey(name: 'topic') String? topic,
+      @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
+      @JsonKey(name: 'data') Map<String, String>? data,
+      @JsonKey(name: 'priority') int? priority});
+}
+
+/// @nodoc
+class _$TestNotificationDtoCopyWithImpl<$Res>
+    implements $TestNotificationDtoCopyWith<$Res> {
+  _$TestNotificationDtoCopyWithImpl(this._self, this._then);
+
+  final TestNotificationDto _self;
+  final $Res Function(TestNotificationDto) _then;
+
+  /// Create a copy of TestNotificationDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? body = freezed,
+    Object? userId = freezed,
+    Object? topic = freezed,
+    Object? deviceTokens = freezed,
+    Object? data = freezed,
+    Object? priority = freezed,
+  }) {
+    return _then(_self.copyWith(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      body: freezed == body
+          ? _self.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      topic: freezed == topic
+          ? _self.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceTokens: freezed == deviceTokens
+          ? _self.deviceTokens
+          : deviceTokens // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      data: freezed == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      priority: freezed == priority
+          ? _self.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [TestNotificationDto].
+extension TestNotificationDtoPatterns on TestNotificationDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestNotificationDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestNotificationDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TestNotificationDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'body') String? body,
+            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'topic') String? topic,
+            @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
+            @JsonKey(name: 'data') Map<String, String>? data,
+            @JsonKey(name: 'priority') int? priority)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationDto() when $default != null:
+        return $default(_that.title, _that.body, _that.userId, _that.topic,
+            _that.deviceTokens, _that.data, _that.priority);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'body') String? body,
+            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'topic') String? topic,
+            @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
+            @JsonKey(name: 'data') Map<String, String>? data,
+            @JsonKey(name: 'priority') int? priority)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationDto():
+        return $default(_that.title, _that.body, _that.userId, _that.topic,
+            _that.deviceTokens, _that.data, _that.priority);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'body') String? body,
+            @JsonKey(name: 'userId') String? userId,
+            @JsonKey(name: 'topic') String? topic,
+            @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
+            @JsonKey(name: 'data') Map<String, String>? data,
+            @JsonKey(name: 'priority') int? priority)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationDto() when $default != null:
+        return $default(_that.title, _that.body, _that.userId, _that.topic,
+            _that.deviceTokens, _that.data, _that.priority);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _TestNotificationDto implements TestNotificationDto {
+  _TestNotificationDto(
+      {@JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'body') this.body,
+      @JsonKey(name: 'userId') this.userId,
+      @JsonKey(name: 'topic') this.topic,
+      @JsonKey(name: 'deviceTokens') final List<String>? deviceTokens,
+      @JsonKey(name: 'data') final Map<String, String>? data,
+      @JsonKey(name: 'priority') this.priority})
+      : _deviceTokens = deviceTokens,
+        _data = data;
+  factory _TestNotificationDto.fromJson(Map<String, dynamic> json) =>
+      _$TestNotificationDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'title')
+  final String? title;
+  @override
+  @JsonKey(name: 'body')
+  final String? body;
+  @override
+  @JsonKey(name: 'userId')
+  final String? userId;
+  @override
+  @JsonKey(name: 'topic')
+  final String? topic;
+  final List<String>? _deviceTokens;
+  @override
+  @JsonKey(name: 'deviceTokens')
+  List<String>? get deviceTokens {
+    final value = _deviceTokens;
+    if (value == null) return null;
+    if (_deviceTokens is EqualUnmodifiableListView) return _deviceTokens;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final Map<String, String>? _data;
+  @override
+  @JsonKey(name: 'data')
+  Map<String, String>? get data {
+    final value = _data;
+    if (value == null) return null;
+    if (_data is EqualUnmodifiableMapView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  @JsonKey(name: 'priority')
+  final int? priority;
+
+  /// Create a copy of TestNotificationDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TestNotificationDtoCopyWith<_TestNotificationDto> get copyWith =>
+      __$TestNotificationDtoCopyWithImpl<_TestNotificationDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TestNotificationDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _TestNotificationDto &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.body, body) || other.body == body) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            const DeepCollectionEquality()
+                .equals(other._deviceTokens, _deviceTokens) &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.priority, priority) ||
+                other.priority == priority));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      body,
+      userId,
+      topic,
+      const DeepCollectionEquality().hash(_deviceTokens),
+      const DeepCollectionEquality().hash(_data),
+      priority);
+
+  @override
+  String toString() {
+    return 'TestNotificationDto(title: $title, body: $body, userId: $userId, topic: $topic, deviceTokens: $deviceTokens, data: $data, priority: $priority)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$TestNotificationDtoCopyWith<$Res>
+    implements $TestNotificationDtoCopyWith<$Res> {
+  factory _$TestNotificationDtoCopyWith(_TestNotificationDto value,
+          $Res Function(_TestNotificationDto) _then) =
+      __$TestNotificationDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'body') String? body,
+      @JsonKey(name: 'userId') String? userId,
+      @JsonKey(name: 'topic') String? topic,
+      @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
+      @JsonKey(name: 'data') Map<String, String>? data,
+      @JsonKey(name: 'priority') int? priority});
+}
+
+/// @nodoc
+class __$TestNotificationDtoCopyWithImpl<$Res>
+    implements _$TestNotificationDtoCopyWith<$Res> {
+  __$TestNotificationDtoCopyWithImpl(this._self, this._then);
+
+  final _TestNotificationDto _self;
+  final $Res Function(_TestNotificationDto) _then;
+
+  /// Create a copy of TestNotificationDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? title = freezed,
+    Object? body = freezed,
+    Object? userId = freezed,
+    Object? topic = freezed,
+    Object? deviceTokens = freezed,
+    Object? data = freezed,
+    Object? priority = freezed,
+  }) {
+    return _then(_TestNotificationDto(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      body: freezed == body
+          ? _self.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      topic: freezed == topic
+          ? _self.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceTokens: freezed == deviceTokens
+          ? _self._deviceTokens
+          : deviceTokens // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      data: freezed == data
+          ? _self._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      priority: freezed == priority
+          ? _self.priority
+          : priority // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$TestNotificationResultDto {
+  @JsonKey(name: 'success')
+  bool? get success;
+  @JsonKey(name: 'message')
+  String? get message;
+
+  /// Create a copy of TestNotificationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TestNotificationResultDtoCopyWith<TestNotificationResultDto> get copyWith =>
+      _$TestNotificationResultDtoCopyWithImpl<TestNotificationResultDto>(
+          this as TestNotificationResultDto, _$identity);
+
+  /// Serializes this TestNotificationResultDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TestNotificationResultDto &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, message);
+
+  @override
+  String toString() {
+    return 'TestNotificationResultDto(success: $success, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TestNotificationResultDtoCopyWith<$Res> {
+  factory $TestNotificationResultDtoCopyWith(TestNotificationResultDto value,
+          $Res Function(TestNotificationResultDto) _then) =
+      _$TestNotificationResultDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'success') bool? success,
+      @JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class _$TestNotificationResultDtoCopyWithImpl<$Res>
+    implements $TestNotificationResultDtoCopyWith<$Res> {
+  _$TestNotificationResultDtoCopyWithImpl(this._self, this._then);
+
+  final TestNotificationResultDto _self;
+  final $Res Function(TestNotificationResultDto) _then;
+
+  /// Create a copy of TestNotificationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? success = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_self.copyWith(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [TestNotificationResultDto].
+extension TestNotificationResultDtoPatterns on TestNotificationResultDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestNotificationResultDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestNotificationResultDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationResultDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TestNotificationResultDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'success') bool? success,
+            @JsonKey(name: 'message') String? message)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationResultDto() when $default != null:
+        return $default(_that.success, _that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'success') bool? success,
+            @JsonKey(name: 'message') String? message)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationResultDto():
+        return $default(_that.success, _that.message);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'success') bool? success,
+            @JsonKey(name: 'message') String? message)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TestNotificationResultDto() when $default != null:
+        return $default(_that.success, _that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _TestNotificationResultDto implements TestNotificationResultDto {
+  _TestNotificationResultDto(
+      {@JsonKey(name: 'success') this.success,
+      @JsonKey(name: 'message') this.message});
+  factory _TestNotificationResultDto.fromJson(Map<String, dynamic> json) =>
+      _$TestNotificationResultDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'success')
+  final bool? success;
+  @override
+  @JsonKey(name: 'message')
+  final String? message;
+
+  /// Create a copy of TestNotificationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TestNotificationResultDtoCopyWith<_TestNotificationResultDto>
+      get copyWith =>
+          __$TestNotificationResultDtoCopyWithImpl<_TestNotificationResultDto>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TestNotificationResultDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _TestNotificationResultDto &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, success, message);
+
+  @override
+  String toString() {
+    return 'TestNotificationResultDto(success: $success, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$TestNotificationResultDtoCopyWith<$Res>
+    implements $TestNotificationResultDtoCopyWith<$Res> {
+  factory _$TestNotificationResultDtoCopyWith(_TestNotificationResultDto value,
+          $Res Function(_TestNotificationResultDto) _then) =
+      __$TestNotificationResultDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'success') bool? success,
+      @JsonKey(name: 'message') String? message});
+}
+
+/// @nodoc
+class __$TestNotificationResultDtoCopyWithImpl<$Res>
+    implements _$TestNotificationResultDtoCopyWith<$Res> {
+  __$TestNotificationResultDtoCopyWithImpl(this._self, this._then);
+
+  final _TestNotificationResultDto _self;
+  final $Res Function(_TestNotificationResultDto) _then;
+
+  /// Create a copy of TestNotificationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? success = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_TestNotificationResultDto(
+      success: freezed == success
+          ? _self.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$TokenValidationResultDto {
+  @JsonKey(name: 'validatedCount')
+  int? get validatedCount;
+  @JsonKey(name: 'invalidatedCount')
+  int? get invalidatedCount;
+  @JsonKey(name: 'invalidTokens')
+  List<String>? get invalidTokens;
+
+  /// Create a copy of TokenValidationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TokenValidationResultDtoCopyWith<TokenValidationResultDto> get copyWith =>
+      _$TokenValidationResultDtoCopyWithImpl<TokenValidationResultDto>(
+          this as TokenValidationResultDto, _$identity);
+
+  /// Serializes this TokenValidationResultDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TokenValidationResultDto &&
+            (identical(other.validatedCount, validatedCount) ||
+                other.validatedCount == validatedCount) &&
+            (identical(other.invalidatedCount, invalidatedCount) ||
+                other.invalidatedCount == invalidatedCount) &&
+            const DeepCollectionEquality()
+                .equals(other.invalidTokens, invalidTokens));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, validatedCount, invalidatedCount,
+      const DeepCollectionEquality().hash(invalidTokens));
+
+  @override
+  String toString() {
+    return 'TokenValidationResultDto(validatedCount: $validatedCount, invalidatedCount: $invalidatedCount, invalidTokens: $invalidTokens)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TokenValidationResultDtoCopyWith<$Res> {
+  factory $TokenValidationResultDtoCopyWith(TokenValidationResultDto value,
+          $Res Function(TokenValidationResultDto) _then) =
+      _$TokenValidationResultDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'validatedCount') int? validatedCount,
+      @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
+      @JsonKey(name: 'invalidTokens') List<String>? invalidTokens});
+}
+
+/// @nodoc
+class _$TokenValidationResultDtoCopyWithImpl<$Res>
+    implements $TokenValidationResultDtoCopyWith<$Res> {
+  _$TokenValidationResultDtoCopyWithImpl(this._self, this._then);
+
+  final TokenValidationResultDto _self;
+  final $Res Function(TokenValidationResultDto) _then;
+
+  /// Create a copy of TokenValidationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? validatedCount = freezed,
+    Object? invalidatedCount = freezed,
+    Object? invalidTokens = freezed,
+  }) {
+    return _then(_self.copyWith(
+      validatedCount: freezed == validatedCount
+          ? _self.validatedCount
+          : validatedCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invalidatedCount: freezed == invalidatedCount
+          ? _self.invalidatedCount
+          : invalidatedCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invalidTokens: freezed == invalidTokens
+          ? _self.invalidTokens
+          : invalidTokens // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [TokenValidationResultDto].
+extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TokenValidationResultDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TokenValidationResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TokenValidationResultDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TokenValidationResultDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TokenValidationResultDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TokenValidationResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'validatedCount') int? validatedCount,
+            @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
+            @JsonKey(name: 'invalidTokens') List<String>? invalidTokens)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TokenValidationResultDto() when $default != null:
+        return $default(
+            _that.validatedCount, _that.invalidatedCount, _that.invalidTokens);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'validatedCount') int? validatedCount,
+            @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
+            @JsonKey(name: 'invalidTokens') List<String>? invalidTokens)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TokenValidationResultDto():
+        return $default(
+            _that.validatedCount, _that.invalidatedCount, _that.invalidTokens);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'validatedCount') int? validatedCount,
+            @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
+            @JsonKey(name: 'invalidTokens') List<String>? invalidTokens)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TokenValidationResultDto() when $default != null:
+        return $default(
+            _that.validatedCount, _that.invalidatedCount, _that.invalidTokens);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _TokenValidationResultDto implements TokenValidationResultDto {
+  _TokenValidationResultDto(
+      {@JsonKey(name: 'validatedCount') this.validatedCount,
+      @JsonKey(name: 'invalidatedCount') this.invalidatedCount,
+      @JsonKey(name: 'invalidTokens') final List<String>? invalidTokens})
+      : _invalidTokens = invalidTokens;
+  factory _TokenValidationResultDto.fromJson(Map<String, dynamic> json) =>
+      _$TokenValidationResultDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'validatedCount')
+  final int? validatedCount;
+  @override
+  @JsonKey(name: 'invalidatedCount')
+  final int? invalidatedCount;
+  final List<String>? _invalidTokens;
+  @override
+  @JsonKey(name: 'invalidTokens')
+  List<String>? get invalidTokens {
+    final value = _invalidTokens;
+    if (value == null) return null;
+    if (_invalidTokens is EqualUnmodifiableListView) return _invalidTokens;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of TokenValidationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TokenValidationResultDtoCopyWith<_TokenValidationResultDto> get copyWith =>
+      __$TokenValidationResultDtoCopyWithImpl<_TokenValidationResultDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TokenValidationResultDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _TokenValidationResultDto &&
+            (identical(other.validatedCount, validatedCount) ||
+                other.validatedCount == validatedCount) &&
+            (identical(other.invalidatedCount, invalidatedCount) ||
+                other.invalidatedCount == invalidatedCount) &&
+            const DeepCollectionEquality()
+                .equals(other._invalidTokens, _invalidTokens));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, validatedCount, invalidatedCount,
+      const DeepCollectionEquality().hash(_invalidTokens));
+
+  @override
+  String toString() {
+    return 'TokenValidationResultDto(validatedCount: $validatedCount, invalidatedCount: $invalidatedCount, invalidTokens: $invalidTokens)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$TokenValidationResultDtoCopyWith<$Res>
+    implements $TokenValidationResultDtoCopyWith<$Res> {
+  factory _$TokenValidationResultDtoCopyWith(_TokenValidationResultDto value,
+          $Res Function(_TokenValidationResultDto) _then) =
+      __$TokenValidationResultDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'validatedCount') int? validatedCount,
+      @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
+      @JsonKey(name: 'invalidTokens') List<String>? invalidTokens});
+}
+
+/// @nodoc
+class __$TokenValidationResultDtoCopyWithImpl<$Res>
+    implements _$TokenValidationResultDtoCopyWith<$Res> {
+  __$TokenValidationResultDtoCopyWithImpl(this._self, this._then);
+
+  final _TokenValidationResultDto _self;
+  final $Res Function(_TokenValidationResultDto) _then;
+
+  /// Create a copy of TokenValidationResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? validatedCount = freezed,
+    Object? invalidatedCount = freezed,
+    Object? invalidTokens = freezed,
+  }) {
+    return _then(_TokenValidationResultDto(
+      validatedCount: freezed == validatedCount
+          ? _self.validatedCount
+          : validatedCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invalidatedCount: freezed == invalidatedCount
+          ? _self.invalidatedCount
+          : invalidatedCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invalidTokens: freezed == invalidTokens
+          ? _self._invalidTokens
+          : invalidTokens // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$UpdateFeedbackStatusDto {
+  @JsonKey(name: 'status')
+  FeedbackStatusDto get status;
+  @JsonKey(name: 'adminResponse')
+  String? get adminResponse;
+
+  /// Create a copy of UpdateFeedbackStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UpdateFeedbackStatusDtoCopyWith<UpdateFeedbackStatusDto> get copyWith =>
+      _$UpdateFeedbackStatusDtoCopyWithImpl<UpdateFeedbackStatusDto>(
+          this as UpdateFeedbackStatusDto, _$identity);
+
+  /// Serializes this UpdateFeedbackStatusDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UpdateFeedbackStatusDto &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.adminResponse, adminResponse) ||
+                other.adminResponse == adminResponse));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, adminResponse);
+
+  @override
+  String toString() {
+    return 'UpdateFeedbackStatusDto(status: $status, adminResponse: $adminResponse)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UpdateFeedbackStatusDtoCopyWith<$Res> {
+  factory $UpdateFeedbackStatusDtoCopyWith(UpdateFeedbackStatusDto value,
+          $Res Function(UpdateFeedbackStatusDto) _then) =
+      _$UpdateFeedbackStatusDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') FeedbackStatusDto status,
+      @JsonKey(name: 'adminResponse') String? adminResponse});
+}
+
+/// @nodoc
+class _$UpdateFeedbackStatusDtoCopyWithImpl<$Res>
+    implements $UpdateFeedbackStatusDtoCopyWith<$Res> {
+  _$UpdateFeedbackStatusDtoCopyWithImpl(this._self, this._then);
+
+  final UpdateFeedbackStatusDto _self;
+  final $Res Function(UpdateFeedbackStatusDto) _then;
+
+  /// Create a copy of UpdateFeedbackStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? adminResponse = freezed,
+  }) {
+    return _then(_self.copyWith(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FeedbackStatusDto,
+      adminResponse: freezed == adminResponse
+          ? _self.adminResponse
+          : adminResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [UpdateFeedbackStatusDto].
+extension UpdateFeedbackStatusDtoPatterns on UpdateFeedbackStatusDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UpdateFeedbackStatusDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateFeedbackStatusDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UpdateFeedbackStatusDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateFeedbackStatusDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UpdateFeedbackStatusDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateFeedbackStatusDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'status') FeedbackStatusDto status,
+            @JsonKey(name: 'adminResponse') String? adminResponse)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateFeedbackStatusDto() when $default != null:
+        return $default(_that.status, _that.adminResponse);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'status') FeedbackStatusDto status,
+            @JsonKey(name: 'adminResponse') String? adminResponse)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateFeedbackStatusDto():
+        return $default(_that.status, _that.adminResponse);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'status') FeedbackStatusDto status,
+            @JsonKey(name: 'adminResponse') String? adminResponse)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateFeedbackStatusDto() when $default != null:
+        return $default(_that.status, _that.adminResponse);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _UpdateFeedbackStatusDto implements UpdateFeedbackStatusDto {
+  _UpdateFeedbackStatusDto(
+      {@JsonKey(name: 'status') required this.status,
+      @JsonKey(name: 'adminResponse') this.adminResponse});
+  factory _UpdateFeedbackStatusDto.fromJson(Map<String, dynamic> json) =>
+      _$UpdateFeedbackStatusDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'status')
+  final FeedbackStatusDto status;
+  @override
+  @JsonKey(name: 'adminResponse')
+  final String? adminResponse;
+
+  /// Create a copy of UpdateFeedbackStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UpdateFeedbackStatusDtoCopyWith<_UpdateFeedbackStatusDto> get copyWith =>
+      __$UpdateFeedbackStatusDtoCopyWithImpl<_UpdateFeedbackStatusDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UpdateFeedbackStatusDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UpdateFeedbackStatusDto &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.adminResponse, adminResponse) ||
+                other.adminResponse == adminResponse));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, adminResponse);
+
+  @override
+  String toString() {
+    return 'UpdateFeedbackStatusDto(status: $status, adminResponse: $adminResponse)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$UpdateFeedbackStatusDtoCopyWith<$Res>
+    implements $UpdateFeedbackStatusDtoCopyWith<$Res> {
+  factory _$UpdateFeedbackStatusDtoCopyWith(_UpdateFeedbackStatusDto value,
+          $Res Function(_UpdateFeedbackStatusDto) _then) =
+      __$UpdateFeedbackStatusDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') FeedbackStatusDto status,
+      @JsonKey(name: 'adminResponse') String? adminResponse});
+}
+
+/// @nodoc
+class __$UpdateFeedbackStatusDtoCopyWithImpl<$Res>
+    implements _$UpdateFeedbackStatusDtoCopyWith<$Res> {
+  __$UpdateFeedbackStatusDtoCopyWithImpl(this._self, this._then);
+
+  final _UpdateFeedbackStatusDto _self;
+  final $Res Function(_UpdateFeedbackStatusDto) _then;
+
+  /// Create a copy of UpdateFeedbackStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? status = null,
+    Object? adminResponse = freezed,
+  }) {
+    return _then(_UpdateFeedbackStatusDto(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FeedbackStatusDto,
+      adminResponse: freezed == adminResponse
+          ? _self.adminResponse
+          : adminResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$UpdateJourneyDto {
   @JsonKey(name: 'title')
   String get title;
@@ -13972,6 +19852,489 @@ class __$UpdateJourneyDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$UpdatePreferencesDto {
+  @JsonKey(name: 'pushNotifications')
+  bool? get pushNotifications;
+  @JsonKey(name: 'mentions')
+  bool? get mentions;
+  @JsonKey(name: 'oldStepNotifications')
+  bool? get oldStepNotifications;
+  @JsonKey(name: 'trendingStepSuggestions')
+  bool? get trendingStepSuggestions;
+  @JsonKey(name: 'trendingJourneySuggestions')
+  bool? get trendingJourneySuggestions;
+  @JsonKey(name: 'followSuggestions')
+  bool? get followSuggestions;
+
+  /// Create a copy of UpdatePreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UpdatePreferencesDtoCopyWith<UpdatePreferencesDto> get copyWith =>
+      _$UpdatePreferencesDtoCopyWithImpl<UpdatePreferencesDto>(
+          this as UpdatePreferencesDto, _$identity);
+
+  /// Serializes this UpdatePreferencesDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UpdatePreferencesDto &&
+            (identical(other.pushNotifications, pushNotifications) ||
+                other.pushNotifications == pushNotifications) &&
+            (identical(other.mentions, mentions) ||
+                other.mentions == mentions) &&
+            (identical(other.oldStepNotifications, oldStepNotifications) ||
+                other.oldStepNotifications == oldStepNotifications) &&
+            (identical(
+                    other.trendingStepSuggestions, trendingStepSuggestions) ||
+                other.trendingStepSuggestions == trendingStepSuggestions) &&
+            (identical(other.trendingJourneySuggestions,
+                    trendingJourneySuggestions) ||
+                other.trendingJourneySuggestions ==
+                    trendingJourneySuggestions) &&
+            (identical(other.followSuggestions, followSuggestions) ||
+                other.followSuggestions == followSuggestions));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      pushNotifications,
+      mentions,
+      oldStepNotifications,
+      trendingStepSuggestions,
+      trendingJourneySuggestions,
+      followSuggestions);
+
+  @override
+  String toString() {
+    return 'UpdatePreferencesDto(pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UpdatePreferencesDtoCopyWith<$Res> {
+  factory $UpdatePreferencesDtoCopyWith(UpdatePreferencesDto value,
+          $Res Function(UpdatePreferencesDto) _then) =
+      _$UpdatePreferencesDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'pushNotifications') bool? pushNotifications,
+      @JsonKey(name: 'mentions') bool? mentions,
+      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+      @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
+      @JsonKey(name: 'trendingJourneySuggestions')
+      bool? trendingJourneySuggestions,
+      @JsonKey(name: 'followSuggestions') bool? followSuggestions});
+}
+
+/// @nodoc
+class _$UpdatePreferencesDtoCopyWithImpl<$Res>
+    implements $UpdatePreferencesDtoCopyWith<$Res> {
+  _$UpdatePreferencesDtoCopyWithImpl(this._self, this._then);
+
+  final UpdatePreferencesDto _self;
+  final $Res Function(UpdatePreferencesDto) _then;
+
+  /// Create a copy of UpdatePreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pushNotifications = freezed,
+    Object? mentions = freezed,
+    Object? oldStepNotifications = freezed,
+    Object? trendingStepSuggestions = freezed,
+    Object? trendingJourneySuggestions = freezed,
+    Object? followSuggestions = freezed,
+  }) {
+    return _then(_self.copyWith(
+      pushNotifications: freezed == pushNotifications
+          ? _self.pushNotifications
+          : pushNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      mentions: freezed == mentions
+          ? _self.mentions
+          : mentions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      oldStepNotifications: freezed == oldStepNotifications
+          ? _self.oldStepNotifications
+          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingStepSuggestions: freezed == trendingStepSuggestions
+          ? _self.trendingStepSuggestions
+          : trendingStepSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingJourneySuggestions: freezed == trendingJourneySuggestions
+          ? _self.trendingJourneySuggestions
+          : trendingJourneySuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      followSuggestions: freezed == followSuggestions
+          ? _self.followSuggestions
+          : followSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [UpdatePreferencesDto].
+extension UpdatePreferencesDtoPatterns on UpdatePreferencesDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UpdatePreferencesDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpdatePreferencesDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UpdatePreferencesDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdatePreferencesDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UpdatePreferencesDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdatePreferencesDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+            @JsonKey(name: 'mentions') bool? mentions,
+            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+            @JsonKey(name: 'trendingStepSuggestions')
+            bool? trendingStepSuggestions,
+            @JsonKey(name: 'trendingJourneySuggestions')
+            bool? trendingJourneySuggestions,
+            @JsonKey(name: 'followSuggestions') bool? followSuggestions)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpdatePreferencesDto() when $default != null:
+        return $default(
+            _that.pushNotifications,
+            _that.mentions,
+            _that.oldStepNotifications,
+            _that.trendingStepSuggestions,
+            _that.trendingJourneySuggestions,
+            _that.followSuggestions);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+            @JsonKey(name: 'mentions') bool? mentions,
+            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+            @JsonKey(name: 'trendingStepSuggestions')
+            bool? trendingStepSuggestions,
+            @JsonKey(name: 'trendingJourneySuggestions')
+            bool? trendingJourneySuggestions,
+            @JsonKey(name: 'followSuggestions') bool? followSuggestions)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdatePreferencesDto():
+        return $default(
+            _that.pushNotifications,
+            _that.mentions,
+            _that.oldStepNotifications,
+            _that.trendingStepSuggestions,
+            _that.trendingJourneySuggestions,
+            _that.followSuggestions);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'pushNotifications') bool? pushNotifications,
+            @JsonKey(name: 'mentions') bool? mentions,
+            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+            @JsonKey(name: 'trendingStepSuggestions')
+            bool? trendingStepSuggestions,
+            @JsonKey(name: 'trendingJourneySuggestions')
+            bool? trendingJourneySuggestions,
+            @JsonKey(name: 'followSuggestions') bool? followSuggestions)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdatePreferencesDto() when $default != null:
+        return $default(
+            _that.pushNotifications,
+            _that.mentions,
+            _that.oldStepNotifications,
+            _that.trendingStepSuggestions,
+            _that.trendingJourneySuggestions,
+            _that.followSuggestions);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _UpdatePreferencesDto implements UpdatePreferencesDto {
+  _UpdatePreferencesDto(
+      {@JsonKey(name: 'pushNotifications') this.pushNotifications,
+      @JsonKey(name: 'mentions') this.mentions,
+      @JsonKey(name: 'oldStepNotifications') this.oldStepNotifications,
+      @JsonKey(name: 'trendingStepSuggestions') this.trendingStepSuggestions,
+      @JsonKey(name: 'trendingJourneySuggestions')
+      this.trendingJourneySuggestions,
+      @JsonKey(name: 'followSuggestions') this.followSuggestions});
+  factory _UpdatePreferencesDto.fromJson(Map<String, dynamic> json) =>
+      _$UpdatePreferencesDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'pushNotifications')
+  final bool? pushNotifications;
+  @override
+  @JsonKey(name: 'mentions')
+  final bool? mentions;
+  @override
+  @JsonKey(name: 'oldStepNotifications')
+  final bool? oldStepNotifications;
+  @override
+  @JsonKey(name: 'trendingStepSuggestions')
+  final bool? trendingStepSuggestions;
+  @override
+  @JsonKey(name: 'trendingJourneySuggestions')
+  final bool? trendingJourneySuggestions;
+  @override
+  @JsonKey(name: 'followSuggestions')
+  final bool? followSuggestions;
+
+  /// Create a copy of UpdatePreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UpdatePreferencesDtoCopyWith<_UpdatePreferencesDto> get copyWith =>
+      __$UpdatePreferencesDtoCopyWithImpl<_UpdatePreferencesDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UpdatePreferencesDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UpdatePreferencesDto &&
+            (identical(other.pushNotifications, pushNotifications) ||
+                other.pushNotifications == pushNotifications) &&
+            (identical(other.mentions, mentions) ||
+                other.mentions == mentions) &&
+            (identical(other.oldStepNotifications, oldStepNotifications) ||
+                other.oldStepNotifications == oldStepNotifications) &&
+            (identical(
+                    other.trendingStepSuggestions, trendingStepSuggestions) ||
+                other.trendingStepSuggestions == trendingStepSuggestions) &&
+            (identical(other.trendingJourneySuggestions,
+                    trendingJourneySuggestions) ||
+                other.trendingJourneySuggestions ==
+                    trendingJourneySuggestions) &&
+            (identical(other.followSuggestions, followSuggestions) ||
+                other.followSuggestions == followSuggestions));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      pushNotifications,
+      mentions,
+      oldStepNotifications,
+      trendingStepSuggestions,
+      trendingJourneySuggestions,
+      followSuggestions);
+
+  @override
+  String toString() {
+    return 'UpdatePreferencesDto(pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$UpdatePreferencesDtoCopyWith<$Res>
+    implements $UpdatePreferencesDtoCopyWith<$Res> {
+  factory _$UpdatePreferencesDtoCopyWith(_UpdatePreferencesDto value,
+          $Res Function(_UpdatePreferencesDto) _then) =
+      __$UpdatePreferencesDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'pushNotifications') bool? pushNotifications,
+      @JsonKey(name: 'mentions') bool? mentions,
+      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
+      @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
+      @JsonKey(name: 'trendingJourneySuggestions')
+      bool? trendingJourneySuggestions,
+      @JsonKey(name: 'followSuggestions') bool? followSuggestions});
+}
+
+/// @nodoc
+class __$UpdatePreferencesDtoCopyWithImpl<$Res>
+    implements _$UpdatePreferencesDtoCopyWith<$Res> {
+  __$UpdatePreferencesDtoCopyWithImpl(this._self, this._then);
+
+  final _UpdatePreferencesDto _self;
+  final $Res Function(_UpdatePreferencesDto) _then;
+
+  /// Create a copy of UpdatePreferencesDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? pushNotifications = freezed,
+    Object? mentions = freezed,
+    Object? oldStepNotifications = freezed,
+    Object? trendingStepSuggestions = freezed,
+    Object? trendingJourneySuggestions = freezed,
+    Object? followSuggestions = freezed,
+  }) {
+    return _then(_UpdatePreferencesDto(
+      pushNotifications: freezed == pushNotifications
+          ? _self.pushNotifications
+          : pushNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      mentions: freezed == mentions
+          ? _self.mentions
+          : mentions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      oldStepNotifications: freezed == oldStepNotifications
+          ? _self.oldStepNotifications
+          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingStepSuggestions: freezed == trendingStepSuggestions
+          ? _self.trendingStepSuggestions
+          : trendingStepSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      trendingJourneySuggestions: freezed == trendingJourneySuggestions
+          ? _self.trendingJourneySuggestions
+          : trendingJourneySuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      followSuggestions: freezed == followSuggestions
+          ? _self.followSuggestions
+          : followSuggestions // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$UpdateStepDto {
   @JsonKey(name: 'content')
   String get content;
@@ -14266,6 +20629,363 @@ class __$UpdateStepDtoCopyWithImpl<$Res>
           ? _self.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$UpdateUserStatusDto {
+  @JsonKey(name: 'status')
+  UserStatusDto get status;
+  @JsonKey(name: 'reason')
+  String? get reason;
+  @JsonKey(name: 'additionalNotes')
+  String? get additionalNotes;
+
+  /// Create a copy of UpdateUserStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UpdateUserStatusDtoCopyWith<UpdateUserStatusDto> get copyWith =>
+      _$UpdateUserStatusDtoCopyWithImpl<UpdateUserStatusDto>(
+          this as UpdateUserStatusDto, _$identity);
+
+  /// Serializes this UpdateUserStatusDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is UpdateUserStatusDto &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.additionalNotes, additionalNotes) ||
+                other.additionalNotes == additionalNotes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, reason, additionalNotes);
+
+  @override
+  String toString() {
+    return 'UpdateUserStatusDto(status: $status, reason: $reason, additionalNotes: $additionalNotes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UpdateUserStatusDtoCopyWith<$Res> {
+  factory $UpdateUserStatusDtoCopyWith(
+          UpdateUserStatusDto value, $Res Function(UpdateUserStatusDto) _then) =
+      _$UpdateUserStatusDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') UserStatusDto status,
+      @JsonKey(name: 'reason') String? reason,
+      @JsonKey(name: 'additionalNotes') String? additionalNotes});
+}
+
+/// @nodoc
+class _$UpdateUserStatusDtoCopyWithImpl<$Res>
+    implements $UpdateUserStatusDtoCopyWith<$Res> {
+  _$UpdateUserStatusDtoCopyWithImpl(this._self, this._then);
+
+  final UpdateUserStatusDto _self;
+  final $Res Function(UpdateUserStatusDto) _then;
+
+  /// Create a copy of UpdateUserStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? reason = freezed,
+    Object? additionalNotes = freezed,
+  }) {
+    return _then(_self.copyWith(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as UserStatusDto,
+      reason: freezed == reason
+          ? _self.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      additionalNotes: freezed == additionalNotes
+          ? _self.additionalNotes
+          : additionalNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [UpdateUserStatusDto].
+extension UpdateUserStatusDtoPatterns on UpdateUserStatusDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UpdateUserStatusDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserStatusDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UpdateUserStatusDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserStatusDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UpdateUserStatusDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserStatusDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'status') UserStatusDto status,
+            @JsonKey(name: 'reason') String? reason,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserStatusDto() when $default != null:
+        return $default(_that.status, _that.reason, _that.additionalNotes);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'status') UserStatusDto status,
+            @JsonKey(name: 'reason') String? reason,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserStatusDto():
+        return $default(_that.status, _that.reason, _that.additionalNotes);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'status') UserStatusDto status,
+            @JsonKey(name: 'reason') String? reason,
+            @JsonKey(name: 'additionalNotes') String? additionalNotes)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpdateUserStatusDto() when $default != null:
+        return $default(_that.status, _that.reason, _that.additionalNotes);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _UpdateUserStatusDto implements UpdateUserStatusDto {
+  _UpdateUserStatusDto(
+      {@JsonKey(name: 'status') required this.status,
+      @JsonKey(name: 'reason') this.reason,
+      @JsonKey(name: 'additionalNotes') this.additionalNotes});
+  factory _UpdateUserStatusDto.fromJson(Map<String, dynamic> json) =>
+      _$UpdateUserStatusDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'status')
+  final UserStatusDto status;
+  @override
+  @JsonKey(name: 'reason')
+  final String? reason;
+  @override
+  @JsonKey(name: 'additionalNotes')
+  final String? additionalNotes;
+
+  /// Create a copy of UpdateUserStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UpdateUserStatusDtoCopyWith<_UpdateUserStatusDto> get copyWith =>
+      __$UpdateUserStatusDtoCopyWithImpl<_UpdateUserStatusDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$UpdateUserStatusDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UpdateUserStatusDto &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.additionalNotes, additionalNotes) ||
+                other.additionalNotes == additionalNotes));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, reason, additionalNotes);
+
+  @override
+  String toString() {
+    return 'UpdateUserStatusDto(status: $status, reason: $reason, additionalNotes: $additionalNotes)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$UpdateUserStatusDtoCopyWith<$Res>
+    implements $UpdateUserStatusDtoCopyWith<$Res> {
+  factory _$UpdateUserStatusDtoCopyWith(_UpdateUserStatusDto value,
+          $Res Function(_UpdateUserStatusDto) _then) =
+      __$UpdateUserStatusDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'status') UserStatusDto status,
+      @JsonKey(name: 'reason') String? reason,
+      @JsonKey(name: 'additionalNotes') String? additionalNotes});
+}
+
+/// @nodoc
+class __$UpdateUserStatusDtoCopyWithImpl<$Res>
+    implements _$UpdateUserStatusDtoCopyWith<$Res> {
+  __$UpdateUserStatusDtoCopyWithImpl(this._self, this._then);
+
+  final _UpdateUserStatusDto _self;
+  final $Res Function(_UpdateUserStatusDto) _then;
+
+  /// Create a copy of UpdateUserStatusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? status = null,
+    Object? reason = freezed,
+    Object? additionalNotes = freezed,
+  }) {
+    return _then(_UpdateUserStatusDto(
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as UserStatusDto,
+      reason: freezed == reason
+          ? _self.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      additionalNotes: freezed == additionalNotes
+          ? _self.additionalNotes
+          : additionalNotes // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -14658,6 +21378,12 @@ mixin _$UserDto {
   DateTime? get createdDate;
   @JsonKey(name: 'lastUpdated')
   DateTime? get lastUpdated;
+  @JsonKey(name: 'status')
+  UserStatusDto get status;
+  @JsonKey(name: 'isRestricted')
+  bool get isRestricted;
+  @JsonKey(name: 'role')
+  UserRoleDto? get role;
 
   /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
@@ -14692,7 +21418,11 @@ mixin _$UserDto {
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
             (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated));
+                other.lastUpdated == lastUpdated) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isRestricted, isRestricted) ||
+                other.isRestricted == isRestricted) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -14709,11 +21439,14 @@ mixin _$UserDto {
       age,
       isPrivate,
       createdDate,
-      lastUpdated);
+      lastUpdated,
+      status,
+      isRestricted,
+      role);
 
   @override
   String toString() {
-    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated)';
+    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, isRestricted: $isRestricted, role: $role)';
   }
 }
 
@@ -14733,7 +21466,10 @@ abstract mixin class $UserDtoCopyWith<$Res> {
       @JsonKey(name: 'age') int? age,
       @JsonKey(name: 'isPrivate') bool isPrivate,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated});
+      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+      @JsonKey(name: 'status') UserStatusDto status,
+      @JsonKey(name: 'isRestricted') bool isRestricted,
+      @JsonKey(name: 'role') UserRoleDto? role});
 }
 
 /// @nodoc
@@ -14759,6 +21495,9 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
     Object? isPrivate = null,
     Object? createdDate = freezed,
     Object? lastUpdated = freezed,
+    Object? status = null,
+    Object? isRestricted = null,
+    Object? role = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -14805,6 +21544,18 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as UserStatusDto,
+      isRestricted: null == isRestricted
+          ? _self.isRestricted
+          : isRestricted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      role: freezed == role
+          ? _self.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as UserRoleDto?,
     ));
   }
 }
@@ -14911,7 +21662,10 @@ extension UserDtoPatterns on UserDto {
             @JsonKey(name: 'age') int? age,
             @JsonKey(name: 'isPrivate') bool isPrivate,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)?
+            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+            @JsonKey(name: 'status') UserStatusDto status,
+            @JsonKey(name: 'isRestricted') bool isRestricted,
+            @JsonKey(name: 'role') UserRoleDto? role)?
         $default, {
     required TResult orElse(),
   }) {
@@ -14929,7 +21683,10 @@ extension UserDtoPatterns on UserDto {
             _that.age,
             _that.isPrivate,
             _that.createdDate,
-            _that.lastUpdated);
+            _that.lastUpdated,
+            _that.status,
+            _that.isRestricted,
+            _that.role);
       case _:
         return orElse();
     }
@@ -14961,7 +21718,10 @@ extension UserDtoPatterns on UserDto {
             @JsonKey(name: 'age') int? age,
             @JsonKey(name: 'isPrivate') bool isPrivate,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)
+            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+            @JsonKey(name: 'status') UserStatusDto status,
+            @JsonKey(name: 'isRestricted') bool isRestricted,
+            @JsonKey(name: 'role') UserRoleDto? role)
         $default,
   ) {
     final _that = this;
@@ -14978,7 +21738,10 @@ extension UserDtoPatterns on UserDto {
             _that.age,
             _that.isPrivate,
             _that.createdDate,
-            _that.lastUpdated);
+            _that.lastUpdated,
+            _that.status,
+            _that.isRestricted,
+            _that.role);
     }
   }
 
@@ -15007,7 +21770,10 @@ extension UserDtoPatterns on UserDto {
             @JsonKey(name: 'age') int? age,
             @JsonKey(name: 'isPrivate') bool isPrivate,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated)?
+            @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+            @JsonKey(name: 'status') UserStatusDto status,
+            @JsonKey(name: 'isRestricted') bool isRestricted,
+            @JsonKey(name: 'role') UserRoleDto? role)?
         $default,
   ) {
     final _that = this;
@@ -15024,7 +21790,10 @@ extension UserDtoPatterns on UserDto {
             _that.age,
             _that.isPrivate,
             _that.createdDate,
-            _that.lastUpdated);
+            _that.lastUpdated,
+            _that.status,
+            _that.isRestricted,
+            _that.role);
       case _:
         return null;
     }
@@ -15045,7 +21814,10 @@ class _UserDto implements UserDto {
       @JsonKey(name: 'age') this.age,
       @JsonKey(name: 'isPrivate') this.isPrivate = false,
       @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdated') this.lastUpdated});
+      @JsonKey(name: 'lastUpdated') this.lastUpdated,
+      @JsonKey(name: 'status') this.status = UserStatusDto.active,
+      @JsonKey(name: 'isRestricted') this.isRestricted = false,
+      @JsonKey(name: 'role') this.role});
   factory _UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
 
@@ -15082,6 +21854,15 @@ class _UserDto implements UserDto {
   @override
   @JsonKey(name: 'lastUpdated')
   final DateTime? lastUpdated;
+  @override
+  @JsonKey(name: 'status')
+  final UserStatusDto status;
+  @override
+  @JsonKey(name: 'isRestricted')
+  final bool isRestricted;
+  @override
+  @JsonKey(name: 'role')
+  final UserRoleDto? role;
 
   /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
@@ -15121,7 +21902,11 @@ class _UserDto implements UserDto {
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
             (identical(other.lastUpdated, lastUpdated) ||
-                other.lastUpdated == lastUpdated));
+                other.lastUpdated == lastUpdated) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isRestricted, isRestricted) ||
+                other.isRestricted == isRestricted) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -15138,11 +21923,14 @@ class _UserDto implements UserDto {
       age,
       isPrivate,
       createdDate,
-      lastUpdated);
+      lastUpdated,
+      status,
+      isRestricted,
+      role);
 
   @override
   String toString() {
-    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated)';
+    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, isRestricted: $isRestricted, role: $role)';
   }
 }
 
@@ -15163,7 +21951,10 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       @JsonKey(name: 'age') int? age,
       @JsonKey(name: 'isPrivate') bool isPrivate,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated});
+      @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
+      @JsonKey(name: 'status') UserStatusDto status,
+      @JsonKey(name: 'isRestricted') bool isRestricted,
+      @JsonKey(name: 'role') UserRoleDto? role});
 }
 
 /// @nodoc
@@ -15189,6 +21980,9 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
     Object? isPrivate = null,
     Object? createdDate = freezed,
     Object? lastUpdated = freezed,
+    Object? status = null,
+    Object? isRestricted = null,
+    Object? role = freezed,
   }) {
     return _then(_UserDto(
       id: null == id
@@ -15235,6 +22029,18 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
           ? _self.lastUpdated
           : lastUpdated // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as UserStatusDto,
+      isRestricted: null == isRestricted
+          ? _self.isRestricted
+          : isRestricted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      role: freezed == role
+          ? _self.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as UserRoleDto?,
     ));
   }
 }

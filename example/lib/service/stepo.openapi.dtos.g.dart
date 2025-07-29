@@ -20,54 +20,94 @@ Map<String, dynamic> _$ApiErrorToJson(_ApiError instance) => <String, dynamic>{
 
 _AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) => _AccountDto(
       id: json['id'] as String,
-      profile: ProfileDto.fromJson(json['profile'] as Map<String, dynamic>),
+      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AccountDtoToJson(_AccountDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'profile': instance.profile,
+      'user': instance.user,
     };
 
-_BulkNotificationDto _$BulkNotificationDtoFromJson(Map<String, dynamic> json) =>
-    _BulkNotificationDto(
-      title: json['title'] as String,
-      body: json['body'] as String,
-      notificationType:
-          $enumDecode(_$NotificationTypeDtoEnumMap, json['notificationType']),
-      userIds:
-          (json['userIds'] as List<dynamic>).map((e) => e as String).toList(),
-      relatedEntityId: json['relatedEntityId'] as String?,
-      data: (json['data'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
-      priority: (json['priority'] as num?)?.toInt() ?? 0,
+_AppFeedbackDto _$AppFeedbackDtoFromJson(Map<String, dynamic> json) =>
+    _AppFeedbackDto(
+      id: json['id'] as String,
+      content: json['content'] as String,
+      feedbackType: $enumDecode(_$FeedbackTypeDtoEnumMap, json['feedbackType']),
+      status: $enumDecode(_$FeedbackStatusDtoEnumMap, json['status']),
+      imageUrl: json['imageUrl'] as String?,
+      deviceInfo: json['deviceInfo'] as String?,
+      appVersion: json['appVersion'] as String?,
+      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      createdDate: DateTime.parse(json['createdDate'] as String),
+      adminResponse: json['adminResponse'] as String?,
+      respondedDate: json['respondedDate'] == null
+          ? null
+          : DateTime.parse(json['respondedDate'] as String),
     );
 
-Map<String, dynamic> _$BulkNotificationDtoToJson(
-        _BulkNotificationDto instance) =>
+Map<String, dynamic> _$AppFeedbackDtoToJson(_AppFeedbackDto instance) =>
     <String, dynamic>{
-      'title': instance.title,
-      'body': instance.body,
-      'notificationType':
-          _$NotificationTypeDtoEnumMap[instance.notificationType]!,
-      'userIds': instance.userIds,
-      'relatedEntityId': instance.relatedEntityId,
-      'data': instance.data,
-      'priority': instance.priority,
+      'id': instance.id,
+      'content': instance.content,
+      'feedbackType': _$FeedbackTypeDtoEnumMap[instance.feedbackType]!,
+      'status': _$FeedbackStatusDtoEnumMap[instance.status]!,
+      'imageUrl': instance.imageUrl,
+      'deviceInfo': instance.deviceInfo,
+      'appVersion': instance.appVersion,
+      'user': instance.user,
+      'createdDate': instance.createdDate.toIso8601String(),
+      'adminResponse': instance.adminResponse,
+      'respondedDate': instance.respondedDate?.toIso8601String(),
     };
 
-const _$NotificationTypeDtoEnumMap = {
-  NotificationTypeDto.global: 'Global',
-  NotificationTypeDto.userSpecific: 'UserSpecific',
-  NotificationTypeDto.stepComment: 'StepComment',
-  NotificationTypeDto.commentReply: 'CommentReply',
-  NotificationTypeDto.newFollower: 'NewFollower',
-  NotificationTypeDto.journeyUpdate: 'JourneyUpdate',
-  NotificationTypeDto.stepInteraction: 'StepInteraction',
-  NotificationTypeDto.stepWithInteraction: 'StepWithInteraction',
-  NotificationTypeDto.systemAlert: 'SystemAlert',
+const _$FeedbackTypeDtoEnumMap = {
+  FeedbackTypeDto.bugReport: 'BugReport',
+  FeedbackTypeDto.featureRequest: 'FeatureRequest',
+  FeedbackTypeDto.generalFeedback: 'GeneralFeedback',
+  FeedbackTypeDto.uiUxIssue: 'UiUxIssue',
+  FeedbackTypeDto.performance: 'Performance',
+  FeedbackTypeDto.other: 'Other',
 };
+
+const _$FeedbackStatusDtoEnumMap = {
+  FeedbackStatusDto.open: 'Open',
+  FeedbackStatusDto.inProgress: 'InProgress',
+  FeedbackStatusDto.resolved: 'Resolved',
+  FeedbackStatusDto.closed: 'Closed',
+  FeedbackStatusDto.duplicate: 'Duplicate',
+};
+
+_BanUserDto _$BanUserDtoFromJson(Map<String, dynamic> json) => _BanUserDto(
+      reason: json['reason'] as String,
+      isShadowBan: json['isShadowBan'] as bool? ?? false,
+      additionalNotes: json['additionalNotes'] as String?,
+    );
+
+Map<String, dynamic> _$BanUserDtoToJson(_BanUserDto instance) =>
+    <String, dynamic>{
+      'reason': instance.reason,
+      'isShadowBan': instance.isShadowBan,
+      'additionalNotes': instance.additionalNotes,
+    };
+
+_CreateAppFeedbackDto _$CreateAppFeedbackDtoFromJson(
+        Map<String, dynamic> json) =>
+    _CreateAppFeedbackDto(
+      content: json['content'] as String,
+      feedbackType: $enumDecode(_$FeedbackTypeDtoEnumMap, json['feedbackType']),
+      deviceInfo: json['deviceInfo'] as String?,
+      appVersion: json['appVersion'] as String?,
+    );
+
+Map<String, dynamic> _$CreateAppFeedbackDtoToJson(
+        _CreateAppFeedbackDto instance) =>
+    <String, dynamic>{
+      'content': instance.content,
+      'feedbackType': _$FeedbackTypeDtoEnumMap[instance.feedbackType]!,
+      'deviceInfo': instance.deviceInfo,
+      'appVersion': instance.appVersion,
+    };
 
 _CreateCommentInteractionDto _$CreateCommentInteractionDtoFromJson(
         Map<String, dynamic> json) =>
@@ -120,12 +160,14 @@ _CreateStepDto _$CreateStepDtoFromJson(Map<String, dynamic> json) =>
     _CreateStepDto(
       content: json['content'] as String,
       journeyId: json['journeyId'] as String,
+      isFinalStep: json['isFinalStep'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$CreateStepDtoToJson(_CreateStepDto instance) =>
     <String, dynamic>{
       'content': instance.content,
       'journeyId': instance.journeyId,
+      'isFinalStep': instance.isFinalStep,
     };
 
 _CreateStepInteractionDto _$CreateStepInteractionDtoFromJson(
@@ -141,6 +183,36 @@ Map<String, dynamic> _$CreateStepInteractionDtoToJson(
       'type': _$InteractionTypeDtoEnumMap[instance.type]!,
     };
 
+_DeviceTokenDto _$DeviceTokenDtoFromJson(Map<String, dynamic> json) =>
+    _DeviceTokenDto(
+      id: json['id'] as String?,
+      deviceToken: json['deviceToken'] as String?,
+      platform: json['platform'] as String?,
+      isActive: json['isActive'] as bool?,
+      lastUsed: json['lastUsed'] == null
+          ? null
+          : DateTime.parse(json['lastUsed'] as String),
+      appVersion: json['appVersion'] as String?,
+      deviceModel: json['deviceModel'] as String?,
+      deviceName: json['deviceName'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+    );
+
+Map<String, dynamic> _$DeviceTokenDtoToJson(_DeviceTokenDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'deviceToken': instance.deviceToken,
+      'platform': instance.platform,
+      'isActive': instance.isActive,
+      'lastUsed': instance.lastUsed?.toIso8601String(),
+      'appVersion': instance.appVersion,
+      'deviceModel': instance.deviceModel,
+      'deviceName': instance.deviceName,
+      'createdDate': instance.createdDate?.toIso8601String(),
+    };
+
 _EditUserDto _$EditUserDtoFromJson(Map<String, dynamic> json) => _EditUserDto(
       displayName: json['displayName'] as String,
       username: json['username'] as String,
@@ -154,6 +226,22 @@ Map<String, dynamic> _$EditUserDtoToJson(_EditUserDto instance) =>
       'username': instance.username,
       'description': instance.description,
       'isPrivate': instance.isPrivate,
+    };
+
+_FeedMetricsDto _$FeedMetricsDtoFromJson(Map<String, dynamic> json) =>
+    _FeedMetricsDto(
+      followingCount: (json['followingCount'] as num).toInt(),
+      hotContentRatio: json['hotContentRatio'] as num,
+      followingContentRatio: json['followingContentRatio'] as num,
+      lastRefresh: DateTime.parse(json['lastRefresh'] as String),
+    );
+
+Map<String, dynamic> _$FeedMetricsDtoToJson(_FeedMetricsDto instance) =>
+    <String, dynamic>{
+      'followingCount': instance.followingCount,
+      'hotContentRatio': instance.hotContentRatio,
+      'followingContentRatio': instance.followingContentRatio,
+      'lastRefresh': instance.lastRefresh.toIso8601String(),
     };
 
 _FollowingResultDto _$FollowingResultDtoFromJson(Map<String, dynamic> json) =>
@@ -182,6 +270,38 @@ _FollowingStatusDto _$FollowingStatusDtoFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$FollowingStatusDtoToJson(_FollowingStatusDto instance) =>
     <String, dynamic>{
       'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
+    };
+
+_FollowRequestDto _$FollowRequestDtoFromJson(Map<String, dynamic> json) =>
+    _FollowRequestDto(
+      requesterId: json['requesterId'] as String,
+      requester:
+          UserDetailDto.fromJson(json['requester'] as Map<String, dynamic>),
+      requestDate: DateTime.parse(json['requestDate'] as String),
+    );
+
+Map<String, dynamic> _$FollowRequestDtoToJson(_FollowRequestDto instance) =>
+    <String, dynamic>{
+      'requesterId': instance.requesterId,
+      'requester': instance.requester,
+      'requestDate': instance.requestDate.toIso8601String(),
+    };
+
+_FollowRequestResultDto _$FollowRequestResultDtoFromJson(
+        Map<String, dynamic> json) =>
+    _FollowRequestResultDto(
+      result: json['result'] as String,
+      newStatus:
+          $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['newStatus']),
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$FollowRequestResultDtoToJson(
+        _FollowRequestResultDto instance) =>
+    <String, dynamic>{
+      'result': instance.result,
+      'newStatus': _$FollowingStatusEnumDtoEnumMap[instance.newStatus]!,
+      'message': instance.message,
     };
 
 _InteractionResultDto _$InteractionResultDtoFromJson(
@@ -243,6 +363,9 @@ _JourneyDto _$JourneyDtoFromJson(Map<String, dynamic> json) => _JourneyDto(
       userId: json['userId'] as String? ?? '',
       firstStepId: json['firstStepId'] as String?,
       finalStepId: json['finalStepId'] as String?,
+      isDeleted: json['isDeleted'] as bool? ?? false,
+      isUnavailable: json['isUnavailable'] as bool? ?? false,
+      unavailableReason: json['unavailableReason'] as String? ?? '',
     );
 
 Map<String, dynamic> _$JourneyDtoToJson(_JourneyDto instance) =>
@@ -257,6 +380,9 @@ Map<String, dynamic> _$JourneyDtoToJson(_JourneyDto instance) =>
       'userId': instance.userId,
       'firstStepId': instance.firstStepId,
       'finalStepId': instance.finalStepId,
+      'isDeleted': instance.isDeleted,
+      'isUnavailable': instance.isUnavailable,
+      'unavailableReason': instance.unavailableReason,
     };
 
 _JourneyInDetailDto _$JourneyInDetailDtoFromJson(Map<String, dynamic> json) =>
@@ -280,6 +406,8 @@ _JourneyInDetailDto _$JourneyInDetailDtoFromJson(Map<String, dynamic> json) =>
       latestCelebrators: (json['latestCelebrators'] as List<dynamic>?)
           ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      companionProgress: json['companionProgress'] as num? ?? 0,
+      companionProgressMessage: json['companionProgressMessage'] as String?,
     );
 
 Map<String, dynamic> _$JourneyInDetailDtoToJson(_JourneyInDetailDto instance) =>
@@ -295,6 +423,8 @@ Map<String, dynamic> _$JourneyInDetailDtoToJson(_JourneyInDetailDto instance) =>
       'latestCompanions': instance.latestCompanions,
       'celebratorCount': instance.celebratorCount,
       'latestCelebrators': instance.latestCelebrators,
+      'companionProgress': instance.companionProgress,
+      'companionProgressMessage': instance.companionProgressMessage,
     };
 
 _JourneyInProfileDto _$JourneyInProfileDtoFromJson(Map<String, dynamic> json) =>
@@ -372,6 +502,28 @@ Map<String, dynamic> _$NotificationDtoToJson(_NotificationDto instance) =>
       'sourceUser': instance.sourceUser,
     };
 
+const _$NotificationTypeDtoEnumMap = {
+  NotificationTypeDto.stepWithHeart: 'StepWithHeart',
+  NotificationTypeDto.stepWithShare: 'StepWithShare',
+  NotificationTypeDto.stepWithComment: 'StepWithComment',
+  NotificationTypeDto.regularHeart: 'RegularHeart',
+  NotificationTypeDto.regularShare: 'RegularShare',
+  NotificationTypeDto.regularComment: 'RegularComment',
+  NotificationTypeDto.commentReply: 'CommentReply',
+  NotificationTypeDto.commentMention: 'CommentMention',
+  NotificationTypeDto.newFollower: 'NewFollower',
+  NotificationTypeDto.followRequestAccepted: 'FollowRequestAccepted',
+  NotificationTypeDto.journeyAchievement: 'JourneyAchievement',
+  NotificationTypeDto.journeyFirstStep: 'JourneyFirstStep',
+  NotificationTypeDto.newStepAlert: 'NewStepAlert',
+  NotificationTypeDto.systemAnnouncement: 'SystemAnnouncement',
+  NotificationTypeDto.systemMaintenance: 'SystemMaintenance',
+  NotificationTypeDto.systemUpdate: 'SystemUpdate',
+  NotificationTypeDto.moderationAlert: 'ModerationAlert',
+  NotificationTypeDto.accountWarning: 'AccountWarning',
+  NotificationTypeDto.securityAlert: 'SecurityAlert',
+};
+
 _NotificationPagedDto _$NotificationPagedDtoFromJson(
         Map<String, dynamic> json) =>
     _NotificationPagedDto(
@@ -394,6 +546,58 @@ Map<String, dynamic> _$NotificationPagedDtoToJson(
       'totalCount': instance.totalCount,
       'unreadCount': instance.unreadCount,
       'hasMore': instance.hasMore,
+    };
+
+_NotificationPreferencesDto _$NotificationPreferencesDtoFromJson(
+        Map<String, dynamic> json) =>
+    _NotificationPreferencesDto(
+      id: json['id'] as String?,
+      userId: json['userId'] as String?,
+      pushNotifications: json['pushNotifications'] as bool?,
+      mentions: json['mentions'] as bool?,
+      oldStepNotifications: json['oldStepNotifications'] as bool?,
+      trendingStepSuggestions: json['trendingStepSuggestions'] as bool?,
+      trendingJourneySuggestions: json['trendingJourneySuggestions'] as bool?,
+      followSuggestions: json['followSuggestions'] as bool?,
+    );
+
+Map<String, dynamic> _$NotificationPreferencesDtoToJson(
+        _NotificationPreferencesDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'pushNotifications': instance.pushNotifications,
+      'mentions': instance.mentions,
+      'oldStepNotifications': instance.oldStepNotifications,
+      'trendingStepSuggestions': instance.trendingStepSuggestions,
+      'trendingJourneySuggestions': instance.trendingJourneySuggestions,
+      'followSuggestions': instance.followSuggestions,
+    };
+
+_PageResponseOfAppFeedbackDto _$PageResponseOfAppFeedbackDtoFromJson(
+        Map<String, dynamic> json) =>
+    _PageResponseOfAppFeedbackDto(
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => AppFeedbackDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
+      totalCount: (json['totalCount'] as num?)?.toInt(),
+      totalPages: (json['totalPages'] as num?)?.toInt(),
+      hasNextPage: json['hasNextPage'] as bool?,
+      hasPreviousPage: json['hasPreviousPage'] as bool?,
+    );
+
+Map<String, dynamic> _$PageResponseOfAppFeedbackDtoToJson(
+        _PageResponseOfAppFeedbackDto instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+      'page': instance.page,
+      'pageSize': instance.pageSize,
+      'totalCount': instance.totalCount,
+      'totalPages': instance.totalPages,
+      'hasNextPage': instance.hasNextPage,
+      'hasPreviousPage': instance.hasPreviousPage,
     };
 
 _ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => _ProfileDto(
@@ -420,6 +624,36 @@ Map<String, dynamic> _$ProfileDtoToJson(_ProfileDto instance) =>
       'supportersUsers': instance.supportersUsers,
       'followersCount': instance.followersCount,
       'followingsCount': instance.followingsCount,
+    };
+
+_RegisterDeviceDto _$RegisterDeviceDtoFromJson(Map<String, dynamic> json) =>
+    _RegisterDeviceDto(
+      deviceToken: json['deviceToken'] as String?,
+      platform: json['platform'] as String?,
+      appVersion: json['appVersion'] as String?,
+      deviceModel: json['deviceModel'] as String?,
+      deviceName: json['deviceName'] as String?,
+    );
+
+Map<String, dynamic> _$RegisterDeviceDtoToJson(_RegisterDeviceDto instance) =>
+    <String, dynamic>{
+      'deviceToken': instance.deviceToken,
+      'platform': instance.platform,
+      'appVersion': instance.appVersion,
+      'deviceModel': instance.deviceModel,
+      'deviceName': instance.deviceName,
+    };
+
+_RemoveContentDto _$RemoveContentDtoFromJson(Map<String, dynamic> json) =>
+    _RemoveContentDto(
+      reason: json['reason'] as String,
+      additionalNotes: json['additionalNotes'] as String?,
+    );
+
+Map<String, dynamic> _$RemoveContentDtoToJson(_RemoveContentDto instance) =>
+    <String, dynamic>{
+      'reason': instance.reason,
+      'additionalNotes': instance.additionalNotes,
     };
 
 _ReplyDto _$ReplyDtoFromJson(Map<String, dynamic> json) => _ReplyDto(
@@ -491,37 +725,6 @@ Map<String, dynamic> _$ReportDtoToJson(_ReportDto instance) =>
       'createdDate': instance.createdDate?.toIso8601String(),
     };
 
-_SendNotificationDto _$SendNotificationDtoFromJson(Map<String, dynamic> json) =>
-    _SendNotificationDto(
-      title: json['title'] as String,
-      body: json['body'] as String,
-      notificationType:
-          $enumDecode(_$NotificationTypeDtoEnumMap, json['notificationType']),
-      targetUserId: json['targetUserId'] as String?,
-      relatedEntityId: json['relatedEntityId'] as String?,
-      scheduledFor: json['scheduledFor'] == null
-          ? null
-          : DateTime.parse(json['scheduledFor'] as String),
-      data: (json['data'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
-      priority: (json['priority'] as num?)?.toInt() ?? 0,
-    );
-
-Map<String, dynamic> _$SendNotificationDtoToJson(
-        _SendNotificationDto instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'body': instance.body,
-      'notificationType':
-          _$NotificationTypeDtoEnumMap[instance.notificationType]!,
-      'targetUserId': instance.targetUserId,
-      'relatedEntityId': instance.relatedEntityId,
-      'scheduledFor': instance.scheduledFor?.toIso8601String(),
-      'data': instance.data,
-      'priority': instance.priority,
-    };
-
 _StepCommentDto _$StepCommentDtoFromJson(Map<String, dynamic> json) =>
     _StepCommentDto(
       id: json['id'] as String,
@@ -536,6 +739,9 @@ _StepCommentDto _$StepCommentDtoFromJson(Map<String, dynamic> json) =>
       heartCount: (json['heartCount'] as num?)?.toInt() ?? 0,
       heartedByUser: json['heartedByUser'] as bool? ?? false,
       replyCount: (json['replyCount'] as num?)?.toInt() ?? 0,
+      isDeleted: json['isDeleted'] as bool? ?? false,
+      isUnavailable: json['isUnavailable'] as bool? ?? false,
+      unavailableReason: json['unavailableReason'] as String? ?? '',
     );
 
 Map<String, dynamic> _$StepCommentDtoToJson(_StepCommentDto instance) =>
@@ -550,14 +756,15 @@ Map<String, dynamic> _$StepCommentDtoToJson(_StepCommentDto instance) =>
       'heartCount': instance.heartCount,
       'heartedByUser': instance.heartedByUser,
       'replyCount': instance.replyCount,
+      'isDeleted': instance.isDeleted,
+      'isUnavailable': instance.isUnavailable,
+      'unavailableReason': instance.unavailableReason,
     };
 
 _StepDetailDto _$StepDetailDtoFromJson(Map<String, dynamic> json) =>
     _StepDetailDto(
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
-      journey: json['journey'] == null
-          ? null
-          : JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
+      journey: JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
       hearts: (json['hearts'] as num?)?.toInt() ?? 0,
       heartedByUser: json['heartedByUser'] as bool? ?? false,
       shares: (json['shares'] as num?)?.toInt() ?? 0,
@@ -580,6 +787,10 @@ _StepDetailDto _$StepDetailDtoFromJson(Map<String, dynamic> json) =>
       lastUpdated: DateTime.parse(json['lastUpdated'] as String),
       userId: json['userId'] as String,
       journeyId: json['journeyId'] as String,
+      stepWithWindowHours: json['stepWithWindowHours'] as num,
+      isDeleted: json['isDeleted'] as bool? ?? false,
+      isUnavailable: json['isUnavailable'] as bool? ?? false,
+      unavailableReason: json['unavailableReason'] as String? ?? '',
     );
 
 Map<String, dynamic> _$StepDetailDtoToJson(_StepDetailDto instance) =>
@@ -603,6 +814,10 @@ Map<String, dynamic> _$StepDetailDtoToJson(_StepDetailDto instance) =>
       'lastUpdated': instance.lastUpdated.toIso8601String(),
       'userId': instance.userId,
       'journeyId': instance.journeyId,
+      'stepWithWindowHours': instance.stepWithWindowHours,
+      'isDeleted': instance.isDeleted,
+      'isUnavailable': instance.isUnavailable,
+      'unavailableReason': instance.unavailableReason,
     };
 
 const _$StepTypeDtoEnumMap = {
@@ -618,9 +833,13 @@ _StepDto _$StepDtoFromJson(Map<String, dynamic> json) => _StepDto(
       lastUpdated: DateTime.parse(json['lastUpdated'] as String),
       userId: json['userId'] as String,
       journeyId: json['journeyId'] as String,
+      stepWithWindowHours: json['stepWithWindowHours'] as num,
       media: json['media'] == null
           ? null
           : StepMediaDto.fromJson(json['media'] as Map<String, dynamic>),
+      isDeleted: json['isDeleted'] as bool? ?? false,
+      isUnavailable: json['isUnavailable'] as bool? ?? false,
+      unavailableReason: json['unavailableReason'] as String? ?? '',
     );
 
 Map<String, dynamic> _$StepDtoToJson(_StepDto instance) => <String, dynamic>{
@@ -630,7 +849,11 @@ Map<String, dynamic> _$StepDtoToJson(_StepDto instance) => <String, dynamic>{
       'lastUpdated': instance.lastUpdated.toIso8601String(),
       'userId': instance.userId,
       'journeyId': instance.journeyId,
+      'stepWithWindowHours': instance.stepWithWindowHours,
       'media': instance.media,
+      'isDeleted': instance.isDeleted,
+      'isUnavailable': instance.isUnavailable,
+      'unavailableReason': instance.unavailableReason,
     };
 
 _StepMediaDto _$StepMediaDtoFromJson(Map<String, dynamic> json) =>
@@ -682,6 +905,79 @@ const _$MediaStatusDtoEnumMap = {
   MediaStatusDto.failed: 'Failed',
 };
 
+_TestNotificationDto _$TestNotificationDtoFromJson(Map<String, dynamic> json) =>
+    _TestNotificationDto(
+      title: json['title'] as String?,
+      body: json['body'] as String?,
+      userId: json['userId'] as String?,
+      topic: json['topic'] as String?,
+      deviceTokens: (json['deviceTokens'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      data: (json['data'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, e as String),
+      ),
+      priority: (json['priority'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$TestNotificationDtoToJson(
+        _TestNotificationDto instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'body': instance.body,
+      'userId': instance.userId,
+      'topic': instance.topic,
+      'deviceTokens': instance.deviceTokens,
+      'data': instance.data,
+      'priority': instance.priority,
+    };
+
+_TestNotificationResultDto _$TestNotificationResultDtoFromJson(
+        Map<String, dynamic> json) =>
+    _TestNotificationResultDto(
+      success: json['success'] as bool?,
+      message: json['message'] as String?,
+    );
+
+Map<String, dynamic> _$TestNotificationResultDtoToJson(
+        _TestNotificationResultDto instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'message': instance.message,
+    };
+
+_TokenValidationResultDto _$TokenValidationResultDtoFromJson(
+        Map<String, dynamic> json) =>
+    _TokenValidationResultDto(
+      validatedCount: (json['validatedCount'] as num?)?.toInt(),
+      invalidatedCount: (json['invalidatedCount'] as num?)?.toInt(),
+      invalidTokens: (json['invalidTokens'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
+
+Map<String, dynamic> _$TokenValidationResultDtoToJson(
+        _TokenValidationResultDto instance) =>
+    <String, dynamic>{
+      'validatedCount': instance.validatedCount,
+      'invalidatedCount': instance.invalidatedCount,
+      'invalidTokens': instance.invalidTokens,
+    };
+
+_UpdateFeedbackStatusDto _$UpdateFeedbackStatusDtoFromJson(
+        Map<String, dynamic> json) =>
+    _UpdateFeedbackStatusDto(
+      status: $enumDecode(_$FeedbackStatusDtoEnumMap, json['status']),
+      adminResponse: json['adminResponse'] as String?,
+    );
+
+Map<String, dynamic> _$UpdateFeedbackStatusDtoToJson(
+        _UpdateFeedbackStatusDto instance) =>
+    <String, dynamic>{
+      'status': _$FeedbackStatusDtoEnumMap[instance.status]!,
+      'adminResponse': instance.adminResponse,
+    };
+
 _UpdateJourneyDto _$UpdateJourneyDtoFromJson(Map<String, dynamic> json) =>
     _UpdateJourneyDto(
       title: json['title'] as String,
@@ -694,6 +990,28 @@ Map<String, dynamic> _$UpdateJourneyDtoToJson(_UpdateJourneyDto instance) =>
       'description': instance.description,
     };
 
+_UpdatePreferencesDto _$UpdatePreferencesDtoFromJson(
+        Map<String, dynamic> json) =>
+    _UpdatePreferencesDto(
+      pushNotifications: json['pushNotifications'] as bool?,
+      mentions: json['mentions'] as bool?,
+      oldStepNotifications: json['oldStepNotifications'] as bool?,
+      trendingStepSuggestions: json['trendingStepSuggestions'] as bool?,
+      trendingJourneySuggestions: json['trendingJourneySuggestions'] as bool?,
+      followSuggestions: json['followSuggestions'] as bool?,
+    );
+
+Map<String, dynamic> _$UpdatePreferencesDtoToJson(
+        _UpdatePreferencesDto instance) =>
+    <String, dynamic>{
+      'pushNotifications': instance.pushNotifications,
+      'mentions': instance.mentions,
+      'oldStepNotifications': instance.oldStepNotifications,
+      'trendingStepSuggestions': instance.trendingStepSuggestions,
+      'trendingJourneySuggestions': instance.trendingJourneySuggestions,
+      'followSuggestions': instance.followSuggestions,
+    };
+
 _UpdateStepDto _$UpdateStepDtoFromJson(Map<String, dynamic> json) =>
     _UpdateStepDto(
       content: json['content'] as String,
@@ -703,6 +1021,28 @@ Map<String, dynamic> _$UpdateStepDtoToJson(_UpdateStepDto instance) =>
     <String, dynamic>{
       'content': instance.content,
     };
+
+_UpdateUserStatusDto _$UpdateUserStatusDtoFromJson(Map<String, dynamic> json) =>
+    _UpdateUserStatusDto(
+      status: $enumDecode(_$UserStatusDtoEnumMap, json['status']),
+      reason: json['reason'] as String?,
+      additionalNotes: json['additionalNotes'] as String?,
+    );
+
+Map<String, dynamic> _$UpdateUserStatusDtoToJson(
+        _UpdateUserStatusDto instance) =>
+    <String, dynamic>{
+      'status': _$UserStatusDtoEnumMap[instance.status]!,
+      'reason': instance.reason,
+      'additionalNotes': instance.additionalNotes,
+    };
+
+const _$UserStatusDtoEnumMap = {
+  UserStatusDto.active: 'Active',
+  UserStatusDto.shadowBanned: 'ShadowBanned',
+  UserStatusDto.hardBanned: 'HardBanned',
+  UserStatusDto.deactivated: 'Deactivated',
+};
 
 _UserDetailDto _$UserDetailDtoFromJson(Map<String, dynamic> json) =>
     _UserDetailDto(
@@ -735,6 +1075,10 @@ _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
       lastUpdated: json['lastUpdated'] == null
           ? null
           : DateTime.parse(json['lastUpdated'] as String),
+      status: $enumDecodeNullable(_$UserStatusDtoEnumMap, json['status']) ??
+          UserStatusDto.active,
+      isRestricted: json['isRestricted'] as bool? ?? false,
+      role: $enumDecodeNullable(_$UserRoleDtoEnumMap, json['role']),
     );
 
 Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
@@ -749,7 +1093,16 @@ Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
       'isPrivate': instance.isPrivate,
       'createdDate': instance.createdDate?.toIso8601String(),
       'lastUpdated': instance.lastUpdated?.toIso8601String(),
+      'status': _$UserStatusDtoEnumMap[instance.status]!,
+      'isRestricted': instance.isRestricted,
+      'role': _$UserRoleDtoEnumMap[instance.role],
     };
+
+const _$UserRoleDtoEnumMap = {
+  UserRoleDto.moderator: 'Moderator',
+  UserRoleDto.admin: 'Admin',
+  UserRoleDto.superAdmin: 'SuperAdmin',
+};
 
 _VideoPreSignedUrlDto _$VideoPreSignedUrlDtoFromJson(
         Map<String, dynamic> json) =>

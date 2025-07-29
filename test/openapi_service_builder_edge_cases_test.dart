@@ -404,5 +404,205 @@ paths:
         expect(serviceOutput, contains('getName'));
       });
     });
+
+    group('NullableOf enum handling', () {
+      test('handles NullableOf* enums correctly', () async {
+        final nullableEnumYaml =
+            await File('test/fixtures/nullable_enum_api.openapi.yaml')
+                .readAsString();
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(nullableEnumYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'NullableEnumApi',
+          partFileName: 'nullable_enum_api.openapi.dtos.g.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+        );
+
+        // Should rename NullableOfUserRole to UserRoleDto
+        expect(dtosOutput, contains('enum UserRoleDto'));
+        expect(dtosOutput, isNot(contains('enum NullableOfUserRoleDto')));
+
+        // Should rename NullableOfStatus to StatusDto
+        expect(dtosOutput, contains('enum StatusDto'));
+        expect(dtosOutput, isNot(contains('enum NullableOfStatusDto')));
+
+        // Should not contain null values in enum definitions
+        expect(dtosOutput, isNot(contains('@JsonValue(\'null\')')));
+        expect(dtosOutput, isNot(contains('\$null')));
+
+        // Should contain the actual enum values
+        expect(dtosOutput, contains('@JsonValue(\'Admin\')'));
+        expect(dtosOutput, contains('@JsonValue(\'Moderator\')'));
+        expect(dtosOutput, contains('@JsonValue(\'User\')'));
+        expect(dtosOutput, contains('@JsonValue(\'Active\')'));
+        expect(dtosOutput, contains('@JsonValue(\'Inactive\')'));
+        expect(dtosOutput, contains('@JsonValue(\'Suspended\')'));
+
+        // Should keep regular enums unchanged
+        expect(dtosOutput, contains('enum RegularEnumDto'));
+        expect(dtosOutput, contains('@JsonValue(\'Option1\')'));
+
+        // Properties should be nullable for NullableOf* enums but required for regular enums
+        expect(dtosOutput, contains('UserRoleDto? role'));
+        expect(dtosOutput, contains('StatusDto? status'));
+        expect(dtosOutput, contains('required RegularEnumDto priority'));
+
+        // Extension methods should not include null in the switch statement
+        expect(dtosOutput, contains('String get name => switch (this)'));
+        expect(dtosOutput, contains('UserRoleDto.admin => \'Admin\''));
+        expect(dtosOutput, isNot(contains('=> \'null\'')));
+      });
+
+      test('handles reserved keywords in enum values', () async {
+        final reservedKeywordYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Reserved Keyword API
+  x-dart-name: ReservedKeywordApi
+
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                \$ref: '#/components/schemas/TestObject'
+
+components:
+  schemas:
+    TestObject:
+      type: object
+      properties:
+        keywordField:
+          \$ref: '#/components/schemas/NullableOfKeyword'
+      required:
+        - keywordField
+    
+    NullableOfKeyword:
+      enum:
+        - class
+        - enum
+        - null
+        - true
+        - false
+        ''';
+
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(reservedKeywordYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'ReservedKeywordApi',
+          partFileName: 'reserved_keyword_api.openapi.dtos.g.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+        );
+
+        // Should rename to KeywordDto and handle reserved words
+        expect(dtosOutput, contains('enum KeywordDto'));
+        expect(dtosOutput,
+            contains('\$class')); // class is reserved, should be prefixed
+        expect(dtosOutput,
+            contains('\$enum')); // enum is reserved, should be prefixed
+        expect(dtosOutput,
+            contains('\$true')); // true is reserved, should be prefixed
+        expect(dtosOutput,
+            contains('\$false')); // false is reserved, should be prefixed
+
+        // Should not contain null value
+        expect(dtosOutput, isNot(contains('@JsonValue(\'null\')')));
+
+        // Should contain proper JSON annotations
+        expect(dtosOutput, contains('@JsonValue(\'class\')'));
+        expect(dtosOutput, contains('@JsonValue(\'enum\')'));
+        expect(dtosOutput, contains('@JsonValue(\'true\')'));
+        expect(dtosOutput, contains('@JsonValue(\'false\')'));
+
+        // Property should be nullable due to NullableOf pattern
+        expect(dtosOutput, contains('KeywordDto? keywordField'));
+      });
+
+      test('handles mixed enum types in same spec', () async {
+        final mixedEnumYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Mixed Enum API
+  x-dart-name: MixedEnumApi
+
+paths:
+  /test:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                \$ref: '#/components/schemas/MixedObject'
+
+components:
+  schemas:
+    MixedObject:
+      type: object
+      properties:
+        nullableRole:
+          \$ref: '#/components/schemas/NullableOfRole'
+        regularStatus:
+          \$ref: '#/components/schemas/Status'
+      required:
+        - nullableRole
+        - regularStatus
+    
+    NullableOfRole:
+      enum:
+        - Admin
+        - User
+        - null
+    
+    Status:
+      enum:
+        - Active
+        - Inactive
+        ''';
+
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(mixedEnumYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'MixedEnumApi',
+          partFileName: 'mixed_enum_api.openapi.dtos.g.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+        );
+
+        // NullableOf* enum should be renamed and made nullable
+        expect(dtosOutput, contains('enum RoleDto'));
+        expect(dtosOutput, contains('RoleDto? nullableRole'));
+
+        // Regular enum should remain unchanged and required
+        expect(dtosOutput, contains('enum StatusDto'));
+        expect(dtosOutput, contains('required StatusDto regularStatus'));
+
+        // Should not contain null values
+        expect(dtosOutput, isNot(contains('@JsonValue(\'null\')')));
+      });
+    });
   });
 }
