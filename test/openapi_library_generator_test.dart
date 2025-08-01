@@ -51,7 +51,7 @@ components:
 
     group('library generation', () {
       test('generates service style library', () {
-        final library = generator.generate();
+        final library = generator.generateServiceLibrary('test_api');
 
         expect(library, isNotNull);
         expect(library.body, isNotEmpty);
@@ -63,7 +63,7 @@ components:
 
         expect(
             formatted, contains('// GENERATED CODE - DO NOT MODIFY BY HAND'));
-        expect(formatted, contains('class ApiError'));
+        expect(formatted, contains('import \'package:openapi_service_flutter/runtime.dart\';'));
         expect(formatted, contains('class TestApiService'));
         expect(formatted, contains('Dio'));
         expect(formatted, contains('Either<ApiError,'));
@@ -79,7 +79,8 @@ components:
           dtosLibrary,
         );
 
-        expect(formatted, contains('class ApiError'));
+        // DTOs library should NOT import runtime (only service library does)
+        expect(formatted, isNot(contains('import \'package:openapi_service_flutter/runtime.dart\';')));
         expect(formatted, contains('part \'test_api.openapi.freezed.dart\''));
         expect(formatted, contains('part \'test_api.openapi.g.dart\''));
         expect(formatted, contains('HelloGetResponseDto'));
@@ -341,7 +342,7 @@ paths:
           partFileName: 'empty.g.dart',
         );
 
-        final library = emptyGenerator.generate();
+        final library = emptyGenerator.generateServiceLibrary('empty');
         expect(library, isNotNull);
         expect(library.body, isNotEmpty);
 
@@ -350,7 +351,7 @@ paths:
         );
 
         expect(formatted, contains('class EmptyApiService'));
-        expect(formatted, contains('class ApiError'));
+        expect(formatted, contains('import \'package:openapi_service_flutter/runtime.dart\';'));
       });
     });
   });

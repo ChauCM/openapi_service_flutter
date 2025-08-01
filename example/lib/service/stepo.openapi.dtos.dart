@@ -10,18 +10,6 @@ part 'stepo.openapi.dtos.freezed.dart';
 part 'stepo.openapi.dtos.g.dart';
 
 @freezed
-sealed class ApiError with _$ApiError {
-  const factory ApiError({
-    required String message,
-    int? statusCode,
-    String? type,
-  }) = _ApiError;
-
-  factory ApiError.fromJson(Map<String, dynamic> json) =>
-      _$ApiErrorFromJson(json);
-}
-
-@freezed
 sealed class AccountDto with _$AccountDto {
   factory AccountDto({
     @JsonKey(name: 'id') required String id,

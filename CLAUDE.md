@@ -90,7 +90,7 @@ dart run build_runner clean
 
 ### Code Generation
 ```bash
-# Generate code for a specific OpenAPI spec
+# Generate code for a specific OpenAPI spec using the CLI tool (alternative to build_runner)
 dart run openapi_service_flutter:openapi_code_builder_cli <path_to_openapi.yaml>
 
 # Run build runner for the example
@@ -102,11 +102,23 @@ cd example && dart run build_runner clean && dart run build_runner build
 # Generate with delete conflicting outputs (recommended)
 dart run build_runner build --delete-conflicting-outputs
 
+# Watch for changes and auto-regenerate
+dart run build_runner watch
+
 # Run a specific test
 dart test test/openapi_service_builder_test.dart
 
 # Run specific test file with verbose output
 dart test test/openapi_service_builder_edge_cases_test.dart -v
+
+# Run all tests with coverage
+dart test --coverage
+
+# Run runtime error handler tests specifically
+dart test test/runtime_error_handler_test.dart
+
+# Run all tests in verbose mode for debugging
+dart test -v
 ```
 
 ### Analysis and Formatting
@@ -135,11 +147,25 @@ Key test files:
 - `openapi_service_builder_edge_cases_test.dart` - Edge case handling
 - `openapi_library_generator_test.dart` - Library generation tests
 - `service_enhancements_test.dart` - Service configuration and error handling tests
+- `runtime_error_handler_test.dart` - Runtime error handling and DefaultErrorHandler tests
 - `test_utils.dart` - Shared test utilities and helper functions
 
-## Dependencies and Generated Code
+## Runtime Architecture
 
-### Key Dependencies
+### Runtime Library
+The package now includes a dedicated runtime library (`lib/runtime.dart`) that provides:
+- **Error Handling**: `DefaultErrorHandler`, `ApiError`, and `RequestContext` classes
+- **Dio Utilities**: `DefaultDio` for opinionated HTTP client setup
+- **Type Safety**: Runtime components that generated code depends on
+
+Runtime components are located in `lib/src/runtime/`:
+- `error/` - Error handling infrastructure
+- `dio/` - HTTP client utilities
+- `openapi_runtime.dart` - Main runtime exports
+
+### Dependencies and Generated Code
+
+#### Key Dependencies
 - `build` and `source_gen` for code generation
 - `freezed` and `json_annotation` for DTO generation
 - `dio` and `either_dart` for HTTP client and error handling (changed from `dartz`)
@@ -147,12 +173,13 @@ Key test files:
 - `recase` for string case conversion
 - `dart_style` for code formatting
 
-### Generated Code Dependencies
+#### Generated Code Dependencies
 Generated service code depends on:
-- `dio` (^5.3.2) for HTTP requests
-- `either_dart` (^1.0.0) for Either-based error handling
-- `freezed_annotation` (^3.1.0) for DTO annotations
-- `json_annotation` (^4.9.0) for JSON serialization
+- `dio` (>=5.0.0) for HTTP requests
+- `either_dart` (>=1.0.0) for Either-based error handling
+- `freezed_annotation` (>=2.4.0) for DTO annotations
+- `json_annotation` (>=4.0.1) for JSON serialization
+- `openapi_service_flutter/runtime.dart` for runtime error handling and utilities
 
 ## Build Configuration
 

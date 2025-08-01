@@ -245,10 +245,11 @@ void main() {
         expect(serviceOutput, contains('try {'));
         expect(serviceOutput, contains('} catch (e, stackTrace) {'));
         
-        // Should return Left with error for exceptions
-        expect(serviceOutput, contains('return Left(_handleError('));
+        // Should return Left with error for exceptions using ErrorHandler
+        expect(serviceOutput, contains('return Left(_errorHandler.handleError('));
         expect(serviceOutput, contains('e,'));
         expect(serviceOutput, contains('stackTrace,'));
+        expect(serviceOutput, contains('requestContext,'));
         
         // Should include endpoint path in error handling
         expect(serviceOutput, contains('\'/api/v1/account/avatar\','));

@@ -10,56 +10,18 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'pet_store.openapi.dtos.dart';
+import 'package:openapi_service_flutter/runtime.dart';
 import 'package:mime/mime.dart';
-
-class PetStoreServiceConfig {
-  const PetStoreServiceConfig({
-    this.baseUrl = '',
-    this.connectTimeout = const Duration(seconds: 60),
-    this.receiveTimeout = const Duration(seconds: 60),
-    this.interceptors = const [],
-    this.onError,
-  });
-
-  final String baseUrl;
-
-  final Duration connectTimeout;
-
-  final Duration receiveTimeout;
-
-  final List<Interceptor> interceptors;
-
-  final void Function(
-      dynamic error,
-      StackTrace stackTrace,
-      String endpoint,
-      Map<String, dynamic> headers,
-      dynamic requestBody,
-      dynamic responseBody)? onError;
-}
 
 class PetStoreService {
   PetStoreService(
     this._dio, {
-    PetStoreServiceConfig? config,
-  }) {
-    final serviceConfig = config ?? PetStoreServiceConfig();
-    _onError = serviceConfig.onError;
-    _dio.options.baseUrl = serviceConfig.baseUrl;
-    _dio.options.connectTimeout = serviceConfig.connectTimeout;
-    _dio.options.receiveTimeout = serviceConfig.receiveTimeout;
-    _dio.interceptors.addAll(serviceConfig.interceptors);
-  }
+    ErrorHandler? errorHandler,
+  }) : _errorHandler = errorHandler ?? const DefaultErrorHandler();
 
   final Dio _dio;
 
-  late final void Function(
-      dynamic error,
-      StackTrace stackTrace,
-      String endpoint,
-      Map<String, dynamic> headers,
-      dynamic requestBody,
-      dynamic responseBody)? _onError;
+  late final ErrorHandler _errorHandler;
 
   /// Update an existing pet
   /// put: /pet
@@ -71,10 +33,15 @@ class PetStoreService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/pet',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet',
+        requestContext,
       ));
     }
   }
@@ -89,10 +56,15 @@ class PetStoreService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/pet',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet',
+        requestContext,
       ));
     }
   }
@@ -102,8 +74,8 @@ class PetStoreService {
   /// get: /pet/findByStatus
   Future<Either<ApiError, List<PetDto>>> findPetsByStatus(
       {required List<FindPetsByStatusStatusDto> status}) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       queryParams['status'] = status;
 
       final response = await _dio.get(
@@ -116,10 +88,15 @@ class PetStoreService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/pet/findByStatus',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet/findByStatus',
+        requestContext,
       ));
     }
   }
@@ -129,8 +106,8 @@ class PetStoreService {
   /// get: /pet/findByTags
   Future<Either<ApiError, List<PetDto>>> findPetsByTags(
       {required List<String> tags}) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       queryParams['tags'] = tags;
 
       final response = await _dio.get(
@@ -143,10 +120,15 @@ class PetStoreService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/pet/findByTags',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet/findByTags',
+        requestContext,
       ));
     }
   }
@@ -160,10 +142,14 @@ class PetStoreService {
       final result = PetDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/pet/$petId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet/$petId',
+        requestContext,
       ));
     }
   }
@@ -181,10 +167,15 @@ class PetStoreService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/pet/$petId',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet/$petId',
+        requestContext,
       ));
     }
   }
@@ -199,10 +190,14 @@ class PetStoreService {
       final _ = await _dio.delete('/pet/$petId');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/pet/$petId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet/$petId',
+        requestContext,
       ));
     }
   }
@@ -230,10 +225,15 @@ class PetStoreService {
       final result = ApiResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/pet/$petId/uploadImage',
+        requestBody: file,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/pet/$petId/uploadImage',
+        requestContext,
       ));
     }
   }
@@ -247,10 +247,14 @@ class PetStoreService {
       final result = (response.data as Map<String, int>);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/store/inventory',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/store/inventory',
+        requestContext,
       ));
     }
   }
@@ -266,10 +270,15 @@ class PetStoreService {
       final result = OrderDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/store/order',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/store/order',
+        requestContext,
       ));
     }
   }
@@ -284,10 +293,14 @@ class PetStoreService {
       final result = OrderDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/store/order/$orderId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/store/order/$orderId',
+        requestContext,
       ));
     }
   }
@@ -300,10 +313,14 @@ class PetStoreService {
       final _ = await _dio.delete('/store/order/$orderId');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/store/order/$orderId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/store/order/$orderId',
+        requestContext,
       ));
     }
   }
@@ -319,10 +336,15 @@ class PetStoreService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/user',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user',
+        requestContext,
       ));
     }
   }
@@ -338,10 +360,15 @@ class PetStoreService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/user/createWithArray',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/createWithArray',
+        requestContext,
       ));
     }
   }
@@ -357,10 +384,15 @@ class PetStoreService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/user/createWithList',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/createWithList',
+        requestContext,
       ));
     }
   }
@@ -371,8 +403,8 @@ class PetStoreService {
     required String username,
     required String password,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       queryParams['username'] = username;
       queryParams['password'] = password;
 
@@ -383,10 +415,15 @@ class PetStoreService {
       final result = (response.data as String);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/user/login',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/login',
+        requestContext,
       ));
     }
   }
@@ -398,10 +435,14 @@ class PetStoreService {
       final _ = await _dio.get('/user/logout');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/user/logout',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/logout',
+        requestContext,
       ));
     }
   }
@@ -415,10 +456,14 @@ class PetStoreService {
       final result = UserDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/user/$username',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/$username',
+        requestContext,
       ));
     }
   }
@@ -437,10 +482,15 @@ class PetStoreService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/user/$username',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/$username',
+        requestContext,
       ));
     }
   }
@@ -453,88 +503,16 @@ class PetStoreService {
       final _ = await _dio.delete('/user/$username');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/user/$username',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/$username',
+        requestContext,
       ));
     }
-  }
-
-  ApiError _handleError(
-    dynamic error,
-    StackTrace stackTrace,
-    String endpoint,
-  ) {
-    if (error is DioException) {
-      final response = error.response;
-      final statusCode = response?.statusCode ?? 0;
-
-      final errorType = switch (statusCode) {
-        401 => 'authentication_error',
-        403 => 'authorization_error',
-        404 => 'not_found_error',
-        408 => 'timeout_error',
-        422 => 'validation_error',
-        429 => 'rate_limit_error',
-        >= 500 => 'server_error',
-        _ => error.type.name,
-      };
-
-      String message = error.message ?? 'An error occurred';
-      if (response?.data case final data?) {
-        message = _extractErrorMessage(data) ?? message;
-      }
-
-// Call onError callback if provided
-      if (_onError != null) {
-        try {
-          final headers = response?.headers.map ?? <String, dynamic>{};
-          final requestData = error.requestOptions.data;
-          final responseData = response?.data;
-          _onError(
-              error, stackTrace, endpoint, headers, requestData, responseData);
-        } catch (_) {
-          // Ignore errors in callback to prevent recursive issues
-        }
-      }
-
-      return ApiError(
-        message: message,
-        statusCode: statusCode,
-        type: errorType,
-      );
-    }
-
-// Call onError callback for unknown errors
-    if (_onError != null) {
-      try {
-        _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);
-      } catch (_) {
-        // Ignore errors in callback to prevent recursive issues
-      }
-    }
-
-    return ApiError(
-      message: error.toString(),
-      type: 'unknown_error',
-    );
-  }
-
-  String? _extractErrorMessage(dynamic data) {
-    if (data is Map<String, dynamic>) {
-      // Try common error message fields
-      return data['message'] ??
-          data['error'] ??
-          data['detail'] ??
-          data['error_description'];
-    }
-
-    if (data is String) {
-      return data;
-    }
-
-    return null;
   }
 
   String _getFileName(String filePath) {

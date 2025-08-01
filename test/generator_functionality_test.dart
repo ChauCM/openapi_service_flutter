@@ -23,9 +23,9 @@ void main() {
           dtosLibrary,
         );
 
-        // Verify DTOs file content
-        expect(dtosOutput, contains('class ApiError'));
-        expect(dtosOutput, contains('sealed class ApiError'));
+        // Verify DTOs file content - ApiError is now imported from runtime
+        expect(dtosOutput, isNot(contains('class ApiError')));
+        expect(dtosOutput, isNot(contains('sealed class ApiError')));
         expect(
             dtosOutput, contains('// GENERATED CODE - DO NOT MODIFY BY HAND'));
         expect(dtosOutput,
@@ -48,7 +48,7 @@ void main() {
         expect(serviceOutput, contains('Dio'));
       });
 
-      test('generates ApiError class with sealed keyword', () async {
+      test('uses runtime ApiError from openapi_service_flutter/runtime', () async {
         final simpleApiYaml = '''
 openapi: 3.0.0
 info:
@@ -75,17 +75,16 @@ paths:
           partFileName: 'simple_api.openapi.dtos.g.dart',
         );
 
-        final dtosLibrary = generator.generateDtosLibrary();
-        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
-          dtosLibrary,
+        final serviceLibrary = generator.generateServiceLibrary('simple_api');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
         );
 
-        // Verify ApiError class has sealed keyword
-        expect(dtosOutput, contains('@freezed'));
-        expect(dtosOutput, contains('sealed class ApiError'));
-        expect(dtosOutput, contains('with _\$ApiError'));
-        expect(dtosOutput, contains('const factory ApiError'));
-        expect(dtosOutput, contains('factory ApiError.fromJson'));
+        // Verify service uses runtime ApiError instead of generating it
+        expect(serviceOutput, contains('import \'package:openapi_service_flutter/runtime.dart\';'));
+        expect(serviceOutput, contains('Future<Either<ApiError,'));
+        expect(serviceOutput, contains('ErrorHandler'));
+        expect(serviceOutput, contains('_errorHandler.handleError'));
       });
     });
 

@@ -7,55 +7,17 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'test_api_json.openapi.dtos.dart';
-
-class TestJsonApiServiceConfig {
-  const TestJsonApiServiceConfig({
-    this.baseUrl = '',
-    this.connectTimeout = const Duration(seconds: 60),
-    this.receiveTimeout = const Duration(seconds: 60),
-    this.interceptors = const [],
-    this.onError,
-  });
-
-  final String baseUrl;
-
-  final Duration connectTimeout;
-
-  final Duration receiveTimeout;
-
-  final List<Interceptor> interceptors;
-
-  final void Function(
-      dynamic error,
-      StackTrace stackTrace,
-      String endpoint,
-      Map<String, dynamic> headers,
-      dynamic requestBody,
-      dynamic responseBody)? onError;
-}
+import 'package:openapi_service_flutter/runtime.dart';
 
 class TestJsonApiService {
   TestJsonApiService(
     this._dio, {
-    TestJsonApiServiceConfig? config,
-  }) {
-    final serviceConfig = config ?? TestJsonApiServiceConfig();
-    _onError = serviceConfig.onError;
-    _dio.options.baseUrl = serviceConfig.baseUrl;
-    _dio.options.connectTimeout = serviceConfig.connectTimeout;
-    _dio.options.receiveTimeout = serviceConfig.receiveTimeout;
-    _dio.interceptors.addAll(serviceConfig.interceptors);
-  }
+    ErrorHandler? errorHandler,
+  }) : _errorHandler = errorHandler ?? const DefaultErrorHandler();
 
   final Dio _dio;
 
-  late final void Function(
-      dynamic error,
-      StackTrace stackTrace,
-      String endpoint,
-      Map<String, dynamic> headers,
-      dynamic requestBody,
-      dynamic responseBody)? _onError;
+  late final ErrorHandler _errorHandler;
 
   /// Create new user
   /// post: /user/register
@@ -68,10 +30,15 @@ class TestJsonApiService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/user/register',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/user/register',
+        requestContext,
       ));
     }
   }
@@ -80,8 +47,8 @@ class TestJsonApiService {
   /// get: /hello/{name}
   Future<Either<ApiError, HelloResponseDto>> helloNameGet(
       {String? salutation}) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (salutation != null) queryParams['salutation'] = salutation;
 
       final response = await _dio.get(
@@ -91,10 +58,15 @@ class TestJsonApiService {
       final result = HelloResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/hello/{name}',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/hello/{name}',
+        requestContext,
       ));
     }
   }
@@ -111,88 +83,17 @@ class TestJsonApiService {
       final result = HelloResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/hello/{name}',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/hello/{name}',
+        requestContext,
       ));
     }
-  }
-
-  ApiError _handleError(
-    dynamic error,
-    StackTrace stackTrace,
-    String endpoint,
-  ) {
-    if (error is DioException) {
-      final response = error.response;
-      final statusCode = response?.statusCode ?? 0;
-
-      final errorType = switch (statusCode) {
-        401 => 'authentication_error',
-        403 => 'authorization_error',
-        404 => 'not_found_error',
-        408 => 'timeout_error',
-        422 => 'validation_error',
-        429 => 'rate_limit_error',
-        >= 500 => 'server_error',
-        _ => error.type.name,
-      };
-
-      String message = error.message ?? 'An error occurred';
-      if (response?.data case final data?) {
-        message = _extractErrorMessage(data) ?? message;
-      }
-
-// Call onError callback if provided
-      if (_onError != null) {
-        try {
-          final headers = response?.headers.map ?? <String, dynamic>{};
-          final requestData = error.requestOptions.data;
-          final responseData = response?.data;
-          _onError(
-              error, stackTrace, endpoint, headers, requestData, responseData);
-        } catch (_) {
-          // Ignore errors in callback to prevent recursive issues
-        }
-      }
-
-      return ApiError(
-        message: message,
-        statusCode: statusCode,
-        type: errorType,
-      );
-    }
-
-// Call onError callback for unknown errors
-    if (_onError != null) {
-      try {
-        _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);
-      } catch (_) {
-        // Ignore errors in callback to prevent recursive issues
-      }
-    }
-
-    return ApiError(
-      message: error.toString(),
-      type: 'unknown_error',
-    );
-  }
-
-  String? _extractErrorMessage(dynamic data) {
-    if (data is Map<String, dynamic>) {
-      // Try common error message fields
-      return data['message'] ??
-          data['error'] ??
-          data['detail'] ??
-          data['error_description'];
-    }
-
-    if (data is String) {
-      return data;
-    }
-
-    return null;
   }
 
   String _getFileName(String filePath) {

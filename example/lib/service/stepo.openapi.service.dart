@@ -10,56 +10,18 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'stepo.openapi.dtos.dart';
+import 'package:openapi_service_flutter/runtime.dart';
 import 'package:mime/mime.dart';
-
-class StepoServiceConfig {
-  const StepoServiceConfig({
-    this.baseUrl = '',
-    this.connectTimeout = const Duration(seconds: 60),
-    this.receiveTimeout = const Duration(seconds: 60),
-    this.interceptors = const [],
-    this.onError,
-  });
-
-  final String baseUrl;
-
-  final Duration connectTimeout;
-
-  final Duration receiveTimeout;
-
-  final List<Interceptor> interceptors;
-
-  final void Function(
-      dynamic error,
-      StackTrace stackTrace,
-      String endpoint,
-      Map<String, dynamic> headers,
-      dynamic requestBody,
-      dynamic responseBody)? onError;
-}
 
 class StepoService {
   StepoService(
     this._dio, {
-    StepoServiceConfig? config,
-  }) {
-    final serviceConfig = config ?? StepoServiceConfig();
-    _onError = serviceConfig.onError;
-    _dio.options.baseUrl = serviceConfig.baseUrl;
-    _dio.options.connectTimeout = serviceConfig.connectTimeout;
-    _dio.options.receiveTimeout = serviceConfig.receiveTimeout;
-    _dio.interceptors.addAll(serviceConfig.interceptors);
-  }
+    ErrorHandler? errorHandler,
+  }) : _errorHandler = errorHandler ?? const DefaultErrorHandler();
 
   final Dio _dio;
 
-  late final void Function(
-      dynamic error,
-      StackTrace stackTrace,
-      String endpoint,
-      Map<String, dynamic> headers,
-      dynamic requestBody,
-      dynamic responseBody)? _onError;
+  late final ErrorHandler _errorHandler;
 
   /// get: /api/v1/account
   Future<Either<ApiError, AccountDto>> apiV1AccountGet() async {
@@ -68,10 +30,14 @@ class StepoService {
       final result = AccountDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account',
+        requestContext,
       ));
     }
   }
@@ -86,10 +52,15 @@ class StepoService {
       final result = AccountDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/account',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account',
+        requestContext,
       ));
     }
   }
@@ -100,10 +71,14 @@ class StepoService {
       final _ = await _dio.delete('/api/v1/account');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/account',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account',
+        requestContext,
       ));
     }
   }
@@ -129,10 +104,15 @@ class StepoService {
       final result = AccountDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/account/avatar',
+        requestBody: file,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/avatar',
+        requestContext,
       ));
     }
   }
@@ -142,8 +122,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -158,10 +138,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account/journeys',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/journeys',
+        requestContext,
       ));
     }
   }
@@ -171,8 +156,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -186,10 +171,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account/steps',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/steps',
+        requestContext,
       ));
     }
   }
@@ -205,10 +195,15 @@ class StepoService {
       final result = LoginResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/auth/login',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/auth/login',
+        requestContext,
       ));
     }
   }
@@ -221,10 +216,14 @@ class StepoService {
       final result = ProfileDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$id',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$id',
+        requestContext,
       ));
     }
   }
@@ -235,8 +234,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -251,10 +250,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$id/journeys',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$id/journeys',
+        requestContext,
       ));
     }
   }
@@ -265,8 +269,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -280,10 +284,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$id/steps',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$id/steps',
+        requestContext,
       ));
     }
   }
@@ -300,10 +309,15 @@ class StepoService {
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/steps',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps',
+        requestContext,
       ));
     }
   }
@@ -317,10 +331,14 @@ class StepoService {
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/steps/$stepId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId',
+        requestContext,
       ));
     }
   }
@@ -339,10 +357,15 @@ class StepoService {
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/steps/$stepId',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId',
+        requestContext,
       ));
     }
   }
@@ -355,10 +378,14 @@ class StepoService {
       final _ = await _dio.delete('/api/v1/steps/$stepId');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/steps/$stepId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId',
+        requestContext,
       ));
     }
   }
@@ -386,10 +413,15 @@ class StepoService {
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/steps/$stepId/images',
+        requestBody: file,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/images',
+        requestContext,
       ));
     }
   }
@@ -403,10 +435,14 @@ class StepoService {
       final result = VideoPreSignedUrlDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/steps/$stepId/video',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/video',
+        requestContext,
       ));
     }
   }
@@ -417,8 +453,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -432,10 +468,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/reports',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/reports',
+        requestContext,
       ));
     }
   }
@@ -452,10 +493,15 @@ class StepoService {
       final result = ReportDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/reports',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/reports',
+        requestContext,
       ));
     }
   }
@@ -472,10 +518,15 @@ class StepoService {
       final result = TestNotificationResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/admin/notifications/test-send',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/admin/notifications/test-send',
+        requestContext,
       ));
     }
   }
@@ -492,10 +543,15 @@ class StepoService {
       final result = DeviceTokenDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/notifications/devices/register',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/devices/register',
+        requestContext,
       ));
     }
   }
@@ -508,10 +564,14 @@ class StepoService {
       final _ = await _dio.delete('/api/v1/notifications/devices/$token');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/notifications/devices/$token',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/devices/$token',
+        requestContext,
       ));
     }
   }
@@ -529,10 +589,14 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/notifications/devices',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/devices',
+        requestContext,
       ));
     }
   }
@@ -547,10 +611,14 @@ class StepoService {
       final result = TokenValidationResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/notifications/devices/validate',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/devices/validate',
+        requestContext,
       ));
     }
   }
@@ -564,10 +632,14 @@ class StepoService {
       final result = NotificationPreferencesDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/notifications/preferences',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/preferences',
+        requestContext,
       ));
     }
   }
@@ -584,10 +656,15 @@ class StepoService {
       final result = NotificationPreferencesDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/notifications/preferences',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/preferences',
+        requestContext,
       ));
     }
   }
@@ -598,8 +675,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -610,10 +687,15 @@ class StepoService {
       final result = NotificationPagedDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/notifications',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications',
+        requestContext,
       ));
     }
   }
@@ -626,10 +708,14 @@ class StepoService {
       final result = (response.data as int);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/notifications/summary',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/summary',
+        requestContext,
       ));
     }
   }
@@ -642,10 +728,14 @@ class StepoService {
       final _ = await _dio.put('/api/v1/notifications/$notificationId/read');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/notifications/$notificationId/read',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/$notificationId/read',
+        requestContext,
       ));
     }
   }
@@ -657,10 +747,14 @@ class StepoService {
       final _ = await _dio.put('/api/v1/notifications/read-status');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/notifications/read-status',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/read-status',
+        requestContext,
       ));
     }
   }
@@ -673,10 +767,14 @@ class StepoService {
       final _ = await _dio.delete('/api/v1/notifications/$notificationId');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/notifications/$notificationId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/notifications/$notificationId',
+        requestContext,
       ));
     }
   }
@@ -694,10 +792,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/moderation/comments/$commentId',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/comments/$commentId',
+        requestContext,
       ));
     }
   }
@@ -715,10 +818,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/moderation/steps/$stepId',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/steps/$stepId',
+        requestContext,
       ));
     }
   }
@@ -736,10 +844,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/moderation/journeys/$journeyId',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/journeys/$journeyId',
+        requestContext,
       ));
     }
   }
@@ -757,10 +870,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/moderation/users/$userId/ban',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/users/$userId/ban',
+        requestContext,
       ));
     }
   }
@@ -773,10 +891,14 @@ class StepoService {
       final _ = await _dio.post('/api/v1/moderation/users/$userId/unban');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/moderation/users/$userId/unban',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/users/$userId/unban',
+        requestContext,
       ));
     }
   }
@@ -794,10 +916,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/moderation/users/$userId/status',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/users/$userId/status',
+        requestContext,
       ));
     }
   }
@@ -810,10 +937,14 @@ class StepoService {
       final _ = await _dio.get('/api/v1/moderation/users/$userId');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/moderation/users/$userId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/users/$userId',
+        requestContext,
       ));
     }
   }
@@ -824,8 +955,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -835,10 +966,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/moderation/users/banned',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/users/banned',
+        requestContext,
       ));
     }
   }
@@ -849,8 +985,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -860,10 +996,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/moderation/users/shadow-banned',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/moderation/users/shadow-banned',
+        requestContext,
       ));
     }
   }
@@ -871,8 +1012,8 @@ class StepoService {
   /// post: /api/v1/media/videos
   Future<Either<ApiError, VideoPreSignedUrlDto>> apiV1MediaVideosPost(
       {String? stepId}) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (stepId != null) queryParams['stepId'] = stepId;
 
       final response = await _dio.post(
@@ -882,10 +1023,15 @@ class StepoService {
       final result = VideoPreSignedUrlDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/media/videos',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/media/videos',
+        requestContext,
       ));
     }
   }
@@ -898,10 +1044,14 @@ class StepoService {
       final result = StepMediaDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/media/$mediaId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/media/$mediaId',
+        requestContext,
       ));
     }
   }
@@ -916,10 +1066,15 @@ class StepoService {
       );
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/webhooks/video-updates',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/webhooks/video-updates',
+        requestContext,
       ));
     }
   }
@@ -930,10 +1085,14 @@ class StepoService {
       final _ = await _dio.post('/api/v1/video-jobs');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/video-jobs',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/video-jobs',
+        requestContext,
       ));
     }
   }
@@ -947,10 +1106,14 @@ class StepoService {
       final result = (response.data as bool);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/journeys/$journeyId/follow',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$journeyId/follow',
+        requestContext,
       ));
     }
   }
@@ -964,10 +1127,14 @@ class StepoService {
       final result = (response.data as bool);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/journeys/$journeyId/follow',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$journeyId/follow',
+        requestContext,
       ));
     }
   }
@@ -981,10 +1148,14 @@ class StepoService {
       final result = JourneyInDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/journeys/$id',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$id',
+        requestContext,
       ));
     }
   }
@@ -1003,10 +1174,15 @@ class StepoService {
       final result = JourneyDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/journeys/$id',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$id',
+        requestContext,
       ));
     }
   }
@@ -1019,10 +1195,14 @@ class StepoService {
       final _ = await _dio.delete('/api/v1/journeys/$id');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/journeys/$id',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$id',
+        requestContext,
       ));
     }
   }
@@ -1039,10 +1219,15 @@ class StepoService {
       final result = StepDetailDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/journeys',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys',
+        requestContext,
       ));
     }
   }
@@ -1053,8 +1238,8 @@ class StepoService {
     required String id,
     String? finalStepId,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (finalStepId != null) queryParams['finalStepId'] = finalStepId;
 
       final response = await _dio.post(
@@ -1064,10 +1249,15 @@ class StepoService {
       final result = JourneyDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/journeys/$id/close',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$id/close',
+        requestContext,
       ));
     }
   }
@@ -1081,10 +1271,14 @@ class StepoService {
       final result = JourneyDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/journeys/$id/reopen',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$id/reopen',
+        requestContext,
       ));
     }
   }
@@ -1097,8 +1291,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1112,10 +1306,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/journeys/$journeyId/steps-detail',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$journeyId/steps-detail',
+        requestContext,
       ));
     }
   }
@@ -1127,8 +1326,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1142,10 +1341,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/journeys/$journeyId/steps',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$journeyId/steps',
+        requestContext,
       ));
     }
   }
@@ -1163,10 +1367,14 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/journeys/$journeyId/calendar',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/$journeyId/calendar',
+        requestContext,
       ));
     }
   }
@@ -1179,8 +1387,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1194,10 +1402,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/journeys/newer-steps/$stepId',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/newer-steps/$stepId',
+        requestContext,
       ));
     }
   }
@@ -1210,8 +1423,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1225,10 +1438,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/journeys/older-steps/$stepId',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/journeys/older-steps/$stepId',
+        requestContext,
       ));
     }
   }
@@ -1246,10 +1464,15 @@ class StepoService {
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/steps/$stepId/hearts',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/hearts',
+        requestContext,
       ));
     }
   }
@@ -1262,10 +1485,14 @@ class StepoService {
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/steps/$stepId/hearts',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/hearts',
+        requestContext,
       ));
     }
   }
@@ -1283,10 +1510,15 @@ class StepoService {
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/steps/$stepId/shares',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/shares',
+        requestContext,
       ));
     }
   }
@@ -1299,10 +1531,14 @@ class StepoService {
       final result = InteractionResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/steps/$stepId/interactions',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/interactions',
+        requestContext,
       ));
     }
   }
@@ -1320,10 +1556,15 @@ class StepoService {
       final result = (response.data as bool);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/steps/comments/$commentId/hearts',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/comments/$commentId/hearts',
+        requestContext,
       ));
     }
   }
@@ -1337,10 +1578,14 @@ class StepoService {
       final result = (response.data as bool);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/steps/comments/$commentId/hearts',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/comments/$commentId/hearts',
+        requestContext,
       ));
     }
   }
@@ -1351,8 +1596,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1366,10 +1611,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account/followers',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/followers',
+        requestContext,
       ));
     }
   }
@@ -1380,8 +1630,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1395,10 +1645,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account/followings',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/followings',
+        requestContext,
       ));
     }
   }
@@ -1410,8 +1665,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1426,10 +1681,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account/follow-requests/incoming',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/follow-requests/incoming',
+        requestContext,
       ));
     }
   }
@@ -1441,8 +1701,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1457,10 +1717,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account/follow-requests/outgoing',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/follow-requests/outgoing',
+        requestContext,
       ));
     }
   }
@@ -1476,10 +1741,14 @@ class StepoService {
       final result = FollowRequestResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/account/follow-requests/$requesterId/accept',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/follow-requests/$requesterId/accept',
+        requestContext,
       ));
     }
   }
@@ -1495,10 +1764,14 @@ class StepoService {
       final result = FollowRequestResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/account/follow-requests/$requesterId/reject',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/account/follow-requests/$requesterId/reject',
+        requestContext,
       ));
     }
   }
@@ -1512,10 +1785,14 @@ class StepoService {
       final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/users/$userId/follow',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$userId/follow',
+        requestContext,
       ));
     }
   }
@@ -1529,10 +1806,14 @@ class StepoService {
       final result = FollowingResultDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/users/$userId/follow',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$userId/follow',
+        requestContext,
       ));
     }
   }
@@ -1546,10 +1827,14 @@ class StepoService {
       final result = FollowingStatusDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$userId/follow-status',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$userId/follow-status',
+        requestContext,
       ));
     }
   }
@@ -1561,8 +1846,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1576,10 +1861,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$userId/followers',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$userId/followers',
+        requestContext,
       ));
     }
   }
@@ -1591,8 +1881,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1606,10 +1896,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$userId/followings',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$userId/followings',
+        requestContext,
       ));
     }
   }
@@ -1623,10 +1918,14 @@ class StepoService {
       final result = (response.data as int);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$userId/followers/count',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$userId/followers/count',
+        requestContext,
       ));
     }
   }
@@ -1640,10 +1939,14 @@ class StepoService {
       final result = (response.data as int);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/$userId/followings/count',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/users/$userId/followings/count',
+        requestContext,
       ));
     }
   }
@@ -1653,8 +1956,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1668,10 +1971,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/feed',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/feed',
+        requestContext,
       ));
     }
   }
@@ -1683,10 +1991,14 @@ class StepoService {
       final result = FeedMetricsDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/feed/metrics',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/feed/metrics',
+        requestContext,
       ));
     }
   }
@@ -1696,8 +2008,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1711,10 +2023,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/feed/hot',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/feed/hot',
+        requestContext,
       ));
     }
   }
@@ -1724,8 +2041,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1739,10 +2056,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/feed/following',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/feed/following',
+        requestContext,
       ));
     }
   }
@@ -1755,10 +2077,14 @@ class StepoService {
       final _ = await _dio.delete('/api/v1/comments/$commentId');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/comments/$commentId',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/comments/$commentId',
+        requestContext,
       ));
     }
   }
@@ -1777,10 +2103,15 @@ class StepoService {
       final result = ReplyDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/comments/$parentCommentId/replies',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/comments/$parentCommentId/replies',
+        requestContext,
       ));
     }
   }
@@ -1792,8 +2123,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1807,10 +2138,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/comments/$commentId/replies',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/comments/$commentId/replies',
+        requestContext,
       ));
     }
   }
@@ -1821,8 +2157,8 @@ class StepoService {
     int? page,
     int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
@@ -1837,10 +2173,15 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/steps/$stepId/comments',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/comments',
+        requestContext,
       ));
     }
   }
@@ -1858,10 +2199,15 @@ class StepoService {
       final result = StepCommentDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/steps/$stepId/comments',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/steps/$stepId/comments',
+        requestContext,
       ));
     }
   }
@@ -1874,8 +2220,8 @@ class StepoService {
     String? type,
     String? status,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final queryParams = <String, dynamic>{};
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
       if (type != null) queryParams['type'] = type;
@@ -1888,10 +2234,15 @@ class StepoService {
       final result = PageResponseOfAppFeedbackDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/admin/feedback',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/admin/feedback',
+        requestContext,
       ));
     }
   }
@@ -1910,10 +2261,15 @@ class StepoService {
       final result = AppFeedbackDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/admin/feedback/$id/status',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/admin/feedback/$id/status',
+        requestContext,
       ));
     }
   }
@@ -1930,10 +2286,15 @@ class StepoService {
       final result = AppFeedbackDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/appfeedback',
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/appfeedback',
+        requestContext,
       ));
     }
   }
@@ -1961,10 +2322,15 @@ class StepoService {
       final result = AppFeedbackDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/appfeedback/$feedbackId/image',
+        requestBody: file,
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/appfeedback/$feedbackId/image',
+        requestContext,
       ));
     }
   }
@@ -1978,10 +2344,14 @@ class StepoService {
       final result = AppFeedbackDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/appfeedback/$id',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/appfeedback/$id',
+        requestContext,
       ));
     }
   }
@@ -1994,10 +2364,14 @@ class StepoService {
       final _ = await _dio.delete('/api/v1/appfeedback/$id');
       return const Right(null);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/appfeedback/$id',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/appfeedback/$id',
+        requestContext,
       ));
     }
   }
@@ -2015,88 +2389,16 @@ class StepoService {
           .toList();
       return Right(mappedResult);
     } catch (e, stackTrace) {
-      return Left(_handleError(
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/appfeedback/my-feedback',
+      );
+      return Left(_errorHandler.handleError(
         e,
         stackTrace,
-        '/api/v1/appfeedback/my-feedback',
+        requestContext,
       ));
     }
-  }
-
-  ApiError _handleError(
-    dynamic error,
-    StackTrace stackTrace,
-    String endpoint,
-  ) {
-    if (error is DioException) {
-      final response = error.response;
-      final statusCode = response?.statusCode ?? 0;
-
-      final errorType = switch (statusCode) {
-        401 => 'authentication_error',
-        403 => 'authorization_error',
-        404 => 'not_found_error',
-        408 => 'timeout_error',
-        422 => 'validation_error',
-        429 => 'rate_limit_error',
-        >= 500 => 'server_error',
-        _ => error.type.name,
-      };
-
-      String message = error.message ?? 'An error occurred';
-      if (response?.data case final data?) {
-        message = _extractErrorMessage(data) ?? message;
-      }
-
-// Call onError callback if provided
-      if (_onError != null) {
-        try {
-          final headers = response?.headers.map ?? <String, dynamic>{};
-          final requestData = error.requestOptions.data;
-          final responseData = response?.data;
-          _onError(
-              error, stackTrace, endpoint, headers, requestData, responseData);
-        } catch (_) {
-          // Ignore errors in callback to prevent recursive issues
-        }
-      }
-
-      return ApiError(
-        message: message,
-        statusCode: statusCode,
-        type: errorType,
-      );
-    }
-
-// Call onError callback for unknown errors
-    if (_onError != null) {
-      try {
-        _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);
-      } catch (_) {
-        // Ignore errors in callback to prevent recursive issues
-      }
-    }
-
-    return ApiError(
-      message: error.toString(),
-      type: 'unknown_error',
-    );
-  }
-
-  String? _extractErrorMessage(dynamic data) {
-    if (data is Map<String, dynamic>) {
-      // Try common error message fields
-      return data['message'] ??
-          data['error'] ??
-          data['detail'] ??
-          data['error_description'];
-    }
-
-    if (data is String) {
-      return data;
-    }
-
-    return null;
   }
 
   String _getFileName(String filePath) {

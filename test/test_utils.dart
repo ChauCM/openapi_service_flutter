@@ -30,8 +30,7 @@ class TestUtils {
     assert(dtosOutput.contains('.freezed.dart\''));
     assert(dtosOutput.contains('.g.dart\''));
 
-    // Check for ApiError model
-    assert(dtosOutput.contains('class ApiError'));
+    // Check for Freezed annotations (DTOs use Freezed)
     assert(dtosOutput.contains('@freezed'));
   }
 
@@ -42,11 +41,12 @@ class TestUtils {
     assert(serviceOutput.contains('import \''));
     assert(serviceOutput.contains('.openapi.dtos.dart\''));
 
-    // Check for service class structure
+    // Check for service class structure with runtime error handling
     assert(serviceOutput.contains('Service'));
     assert(serviceOutput.contains('Dio'));
     assert(serviceOutput.contains('Either<ApiError,'));
-    assert(serviceOutput.contains('_handleError'));
+    assert(serviceOutput.contains('ErrorHandler'));
+    assert(serviceOutput.contains('_errorHandler.handleError'));
   }
 
   /// Creates a minimal valid OpenAPI YAML for testing

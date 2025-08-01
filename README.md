@@ -7,11 +7,13 @@ A Dart code generator that creates type-safe client libraries from OpenAPI speci
 - 🚀 **Type-safe code generation** from OpenAPI 3.0+ specifications
 - 📦 **Separate DTO and Service files** for better organization
 - 🔒 **Freezed integration** for immutable data classes
-- 🌐 **Dio HTTP client** with proper error handling
+- 🌐 **Dio HTTP client** with DefaultDio opinionated setup
 - ⚡ **Either-based error handling** using either_dart
+- 🛡️ **Robust error handling** with user-friendly messages and extensible ErrorHandler
 - 🎯 **Enum support** with JSON value annotations
 - 📁 **Binary file upload** support with progress callbacks
 - 🔧 **Build runner integration** for seamless development
+- 🔍 **Debug-friendly** with comprehensive error context and logging
 
 ## Quick Start
 
@@ -25,13 +27,15 @@ dependencies:
   dio: ^5.3.2
   either_dart: ^1.0.0
   
+  # Runtime error handling (now a runtime dependency)
+  openapi_service_flutter: ^3.0.0
+  
   # Code generation annotations
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
 
 dev_dependencies:
   # Code generation tools
-  openapi_service_flutter: ^2.0.1
   build_runner: ^2.4.7
   freezed: ^2.4.6
   json_serializable: ^6.7.1
@@ -113,20 +117,24 @@ This creates two files for each `.openapi.json/.yaml` file:
 ### 6. Use Your Generated Client
 
 ```dart
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+
 class ApiClient {
   late final MyApiService _apiService;
   late final Dio _dio;
 
   ApiClient({String? baseUrl}) {
-    _dio = Dio();
-    _apiService = MyApiService(
-      _dio,
-      config: MyApiServiceConfig(
-        baseUrl: baseUrl ?? 'https://api.yourbackend.com',
-        connectTimeout: Duration(seconds: 30),
-        receiveTimeout: Duration(seconds: 30),
-      ),
+    // Use DefaultDio for sensible defaults
+    _dio = DefaultDio.create(
+      baseUrl: baseUrl ?? 'https://api.yourbackend.com',
+      connectTimeout: Duration(seconds: 30),
+      receiveTimeout: Duration(seconds: 30),
     );
+    
+    // Generated service with default error handler
+    _apiService = MyApiService(_dio);
+    // Or with custom error handler:
+    // _apiService = MyApiService(_dio, errorHandler: MyCustomErrorHandler());
   }
 
   MyApiService get api => _apiService;
@@ -138,7 +146,7 @@ void main() async {
   final result = await client.api.getUsers();
   
   result.fold(
-    (error) => print('Error: ${error.message}'),
+    (error) => print('Error: ${error.message}'),  // User-friendly message
     (users) => print('Found ${users.length} users'),
   );
 }
@@ -147,30 +155,34 @@ void main() async {
 ## Authentication Setup
 
 ```dart
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+
 class AuthenticatedApiClient {
   late final MyApiService _apiService;
   String? _token;
 
   AuthenticatedApiClient({String? baseUrl}) {
-    final dio = Dio();
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
-        if (_token != null) {
-          options.headers['Authorization'] = 'Bearer $_token';
-        }
-        handler.next(options);
-      },
-      onError: (error, handler) {
-        if (error.response?.statusCode == 401) {
-          _token = null;
-        }
-        handler.next(error);
-      },
-    ));
-    
-    _apiService = MyApiService(dio, config: MyApiServiceConfig(
+    final dio = DefaultDio.create(
       baseUrl: baseUrl ?? 'https://api.yourbackend.com',
-    ));
+      interceptors: [
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            if (_token != null) {
+              options.headers['Authorization'] = 'Bearer $_token';
+            }
+            handler.next(options);
+          },
+          onError: (error, handler) {
+            if (error.response?.statusCode == 401) {
+              _token = null;
+            }
+            handler.next(error);
+          },
+        ),
+      ],
+    );
+    
+    _apiService = MyApiService(dio);
   }
 
   Future<void> login(String email, String password) async {
@@ -218,12 +230,11 @@ enum UserStatus {
 
 ```dart
 class MyApiService {
-  MyApiService(this._dio, {MyApiServiceConfig? config}) {
-    final serviceConfig = config ?? MyApiServiceConfig();
-    _dio.options.baseUrl = serviceConfig.baseUrl;
-  }
+  MyApiService(this._dio, {ErrorHandler? errorHandler})
+      : _errorHandler = errorHandler ?? const DefaultErrorHandler();
 
   final Dio _dio;
+  final ErrorHandler _errorHandler;
 
   Future<Either<ApiError, List<UserDto>>> getUsers() async {
     try {
@@ -232,8 +243,12 @@ class MyApiService {
           .map((item) => UserDto.fromJson(item))
           .toList();
       return Right(result);
-    } catch (e) {
-      return Left(_handleError(e));
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/users',
+      );
+      return Left(_errorHandler.handleError(e, stackTrace, requestContext));
     }
   }
 }
@@ -273,23 +288,236 @@ final result = await apiService.uploadFile(
 
 ## Error Handling
 
+OpenAPI Service Flutter provides robust, user-friendly error handling out of the box with the ability to customize for your specific needs.
+
+### Default Error Handling
+
+The generated services use `DefaultErrorHandler` which provides:
+
+- **User-friendly messages**: Converts technical errors to readable messages
+- **Backend message priority**: Uses server error messages when available
+- **Status code mapping**: Maps HTTP codes to semantic error types
+- **Debug information**: Preserves technical details for debugging
+
 ```dart
 final result = await apiService.getUser(123);
 
 result.fold(
-  (error) => print('API Error: ${error.message}'),
+  (error) {
+    print('Error: ${error.message}');  // "Error 404 - Content not found"
+    print('Status: ${error.statusCode}');  // 404
+    print('Type: ${error.type}');  // "not_found_error"
+  },
   (user) => print('User: ${user.name}'),
 );
 
 // Or use pattern matching
 switch (result) {
   case Left(value: final error):
-    // Handle error
+    if (error.isNetworkError) {
+      showNetworkError();
+    } else if (error.isAuthenticationError) {
+      redirectToLogin();
+    }
     break;
   case Right(value: final user):
-    // Handle success
+    displayUser(user);
     break;
 }
+```
+
+### Custom Error Handler
+
+Create custom error handlers by extending `DefaultErrorHandler`:
+
+```dart
+class LoggingErrorHandler extends DefaultErrorHandler {
+  @override
+  ApiError handleError(dynamic error, StackTrace stackTrace, RequestContext requestContext) {
+    final apiError = super.handleError(error, stackTrace, requestContext);
+    
+    // Log error details
+    if (kDebugMode) {
+      print('API Error: ${apiError.message}');
+      print('Endpoint: ${requestContext.method} ${requestContext.endpoint}');
+      print('Status: ${apiError.statusCode}');
+    }
+    
+    // Send to crash reporting
+    FirebaseCrashlytics.instance.recordError(
+      error,
+      stackTrace,
+      reason: 'API Error at ${requestContext.endpoint}',
+    );
+    
+    return apiError;
+  }
+}
+
+// Use custom error handler
+final service = MyApiService(
+  dio,
+  errorHandler: LoggingErrorHandler(),
+);
+```
+
+### API-Specific Error Handling
+
+Handle specific API error formats:
+
+```dart
+class CustomApiErrorHandler extends DefaultErrorHandler {
+  @override
+  String? extractErrorMessage(dynamic data) {
+    // Handle your API's specific error format
+    if (data is Map<String, dynamic>) {
+      if (data['user_message'] != null) {
+        return data['user_message'];
+      }
+      if (data['display_message'] != null) {
+        return data['display_message'];
+      }
+    }
+    
+    // Fall back to default extraction
+    return super.extractErrorMessage(data);
+  }
+  
+  @override
+  ApiError handleError(dynamic error, StackTrace stackTrace, RequestContext requestContext) {
+    // Handle specific error codes
+    if (error is DioException && error.response?.data is Map) {
+      final data = error.response!.data as Map<String, dynamic>;
+      
+      if (data['error_code'] == 'MAINTENANCE_MODE') {
+        return ApiError(
+          message: 'Service is temporarily down for maintenance. Please try again later.',
+          statusCode: error.response?.statusCode,
+          type: 'maintenance_error',
+          technicalDetails: error.toString(),
+        );
+      }
+    }
+    
+    return super.handleError(error, stackTrace, requestContext);
+  }
+}
+```
+
+### UI Error Display
+
+Display user-friendly errors in your Flutter UI:
+
+```dart
+result.fold(
+  (error) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(error.message),
+        backgroundColor: error.isNetworkError ? Colors.orange : Colors.red,
+        action: error.isNetworkError
+          ? SnackBarAction(
+              label: 'Retry',
+              onPressed: () => _retryRequest(),
+            )
+          : null,
+      ),
+    );
+  },
+  (data) => _handleSuccess(data),
+);
+```
+
+### Development and Debug Mode
+
+Access detailed error information during development:
+
+```dart
+if (kDebugMode && error.debugInfo != null) {
+  final requestContext = error.debugInfo!.requestContext;
+  print('Method: ${requestContext.method}');
+  print('Endpoint: ${requestContext.endpoint}');
+  print('Request Body: ${requestContext.requestBody}');
+  print('Query Parameters: ${requestContext.queryParameters}');
+  print('Response Body: ${error.debugInfo!.responseBody}');
+  print('Stack Trace: ${error.stackTrace}');
+}
+```
+
+## DefaultDio Client
+
+OpenAPI Service Flutter provides `DefaultDio` for opinionated, production-ready HTTP client setup:
+
+### Basic Usage
+
+```dart
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+
+// Simple setup with sensible defaults
+final dio = DefaultDio.create(
+  baseUrl: 'https://api.yourbackend.com',
+);
+
+// With custom configuration
+final dio = DefaultDio.create(
+  baseUrl: 'https://api.yourbackend.com',
+  connectTimeout: Duration(seconds: 10),
+  receiveTimeout: Duration(seconds: 15),
+  headers: {
+    'X-API-Version': '1.0',
+    'Accept-Language': 'en-US',
+  },
+  interceptors: [
+    AuthInterceptor(),
+    LoggingInterceptor(),
+  ],
+);
+```
+
+### Development Setup with Logging
+
+```dart
+// Automatically adds request/response logging in debug mode
+final dio = DefaultDio.createWithLogging(
+  baseUrl: 'https://api.yourbackend.com',
+);
+
+// All HTTP requests and responses will be logged to console
+final service = MyApiService(dio);
+```
+
+### DefaultDio Features
+
+- **Sensible Timeouts**: 30-second defaults for connect/receive/send operations
+- **JSON Headers**: Automatically sets `Content-Type` and `Accept` to `application/json`
+- **Redirect Handling**: Follows redirects up to 3 times automatically
+- **Debug Logging**: Easy one-line setup with `createWithLogging()`
+- **Extensible**: Add custom headers and interceptors easily
+
+### Manual Dio Setup (Alternative)
+
+If you prefer manual setup instead of DefaultDio:
+
+```dart
+final dio = Dio();
+dio.options = BaseOptions(
+  baseUrl: 'https://api.yourbackend.com',
+  connectTimeout: Duration(seconds: 30),
+  receiveTimeout: Duration(seconds: 30),
+  sendTimeout: Duration(seconds: 30),
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+);
+
+// Add interceptors manually
+dio.interceptors.add(LogInterceptor(
+  requestBody: true,
+  responseBody: true,
+));
+
+final service = MyApiService(dio);
 ```
 
 ## Integration with BLoC

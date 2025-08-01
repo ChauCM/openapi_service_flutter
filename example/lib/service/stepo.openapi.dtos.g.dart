@@ -6,18 +6,6 @@ part of 'stepo.openapi.dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ApiError _$ApiErrorFromJson(Map<String, dynamic> json) => _ApiError(
-      message: json['message'] as String,
-      statusCode: (json['statusCode'] as num?)?.toInt(),
-      type: json['type'] as String?,
-    );
-
-Map<String, dynamic> _$ApiErrorToJson(_ApiError instance) => <String, dynamic>{
-      'message': instance.message,
-      'statusCode': instance.statusCode,
-      'type': instance.type,
-    };
-
 _AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) => _AccountDto(
       id: json['id'] as String,
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),

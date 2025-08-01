@@ -10,18 +10,6 @@ part 'test_api_json.openapi.dtos.freezed.dart';
 part 'test_api_json.openapi.dtos.g.dart';
 
 @freezed
-sealed class ApiError with _$ApiError {
-  const factory ApiError({
-    required String message,
-    int? statusCode,
-    String? type,
-  }) = _ApiError;
-
-  factory ApiError.fromJson(Map<String, dynamic> json) =>
-      _$ApiErrorFromJson(json);
-}
-
-@freezed
 sealed class RegisterRequestDto with _$RegisterRequestDto {
   factory RegisterRequestDto({@JsonKey(name: 'email') required String email}) =
       _RegisterRequestDto;

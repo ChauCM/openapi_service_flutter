@@ -30,7 +30,7 @@ void main() {
         );
 
         expect(serviceOutput, contains('Either<ApiError,'));
-        expect(serviceOutput, contains('_handleError'));
+        expect(serviceOutput, contains('_errorHandler.handleError'));
       });
 
       test('handles invalid YAML gracefully', () async {

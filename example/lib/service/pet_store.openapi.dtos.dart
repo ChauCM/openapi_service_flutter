@@ -10,18 +10,6 @@ part 'pet_store.openapi.dtos.freezed.dart';
 part 'pet_store.openapi.dtos.g.dart';
 
 @freezed
-sealed class ApiError with _$ApiError {
-  const factory ApiError({
-    required String message,
-    int? statusCode,
-    String? type,
-  }) = _ApiError;
-
-  factory ApiError.fromJson(Map<String, dynamic> json) =>
-      _$ApiErrorFromJson(json);
-}
-
-@freezed
 sealed class OrderDto with _$OrderDto {
   factory OrderDto({
     @JsonKey(name: 'id') int? id,

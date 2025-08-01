@@ -117,24 +117,79 @@ class OpenApiLibraryGenerator {
   String _sanitizeEnumValueName(String value) {
     // List of Dart reserved words
     const reservedWords = {
-      'abstract', 'as', 'assert', 'async', 'await', 'break', 'case', 'catch',
-      'class', 'const', 'continue', 'covariant', 'default', 'deferred', 'do',
-      'dynamic', 'else', 'enum', 'export', 'extends', 'extension', 'external',
-      'factory', 'false', 'final', 'finally', 'for', 'Function', 'get', 'hide',
-      'if', 'implements', 'import', 'in', 'interface', 'is', 'late', 'library',
-      'mixin', 'new', 'null', 'on', 'operator', 'part', 'required', 'rethrow',
-      'return', 'sealed', 'set', 'show', 'static', 'super', 'switch', 'sync',
-      'this', 'throw', 'true', 'try', 'typedef', 'var', 'void', 'while', 'with',
+      'abstract',
+      'as',
+      'assert',
+      'async',
+      'await',
+      'break',
+      'case',
+      'catch',
+      'class',
+      'const',
+      'continue',
+      'covariant',
+      'default',
+      'deferred',
+      'do',
+      'dynamic',
+      'else',
+      'enum',
+      'export',
+      'extends',
+      'extension',
+      'external',
+      'factory',
+      'false',
+      'final',
+      'finally',
+      'for',
+      'Function',
+      'get',
+      'hide',
+      'if',
+      'implements',
+      'import',
+      'in',
+      'interface',
+      'is',
+      'late',
+      'library',
+      'mixin',
+      'new',
+      'null',
+      'on',
+      'operator',
+      'part',
+      'required',
+      'rethrow',
+      'return',
+      'sealed',
+      'set',
+      'show',
+      'static',
+      'super',
+      'switch',
+      'sync',
+      'this',
+      'throw',
+      'true',
+      'try',
+      'typedef',
+      'var',
+      'void',
+      'while',
+      'with',
       'yield'
     };
-    
+
     final camelCaseName = value.camelCase;
-    
+
     // If the name is a reserved word, prefix with '$'
     if (reservedWords.contains(camelCaseName)) {
       return '\$$camelCaseName';
     }
-    
+
     return camelCaseName;
   }
 
@@ -148,15 +203,7 @@ class OpenApiLibraryGenerator {
     return null;
   }
 
-  /// Checks if enum values contain 'null' value
-  bool _enumContainsNull(List<dynamic>? values) {
-    return values?.any((v) => v.toString().toLowerCase() == 'null') ?? false;
-  }
-
   Library _generateServiceStyle() {
-    // Add API Error model
-    lb.body.add(_generateApiErrorModel());
-
     // Generate freezed DTOs for schemas
     final components = api.components;
     if (components?.schemas != null) {
@@ -178,9 +225,6 @@ class OpenApiLibraryGenerator {
     dtosLb.body.add(
         Directive.part(partFileName.replaceAll('.g.dart', '.freezed.dart')));
     dtosLb.body.add(Directive.part(partFileName));
-
-    // Add API Error model
-    dtosLb.body.add(_generateApiErrorModel());
 
     // Track which schemas are actually used by endpoints
     final usedSchemas = <String>{};
@@ -426,7 +470,7 @@ class OpenApiLibraryGenerator {
       final filteredValues = schemaObject.enumerated!
           .where((dynamic e) => e.toString().toLowerCase() != 'null')
           .toList();
-      
+
       // Only generate enum if there are non-null values
       if (filteredValues.isNotEmpty) {
         final enumSpec = EnumSpec(
@@ -496,6 +540,10 @@ class OpenApiLibraryGenerator {
     final dtosFileName = '$inputIdBasename.openapi.dtos.dart';
     serviceLb.body.add(Directive.import(dtosFileName));
 
+    // Add import for runtime error handling
+    serviceLb.body
+        .add(Directive.import('package:openapi_service_flutter/runtime.dart'));
+
     // Add import for mime package if there are binary endpoints
     if (_hasBinaryEndpoints()) {
       serviceLb.body.add(Directive.import('package:mime/mime.dart'));
@@ -510,49 +558,19 @@ class OpenApiLibraryGenerator {
   }
 
   void _generateServiceClassToLibrary(LibraryBuilder targetLb) {
-    // First generate ServiceConfig class
-    _generateServiceConfigClass(targetLb);
-
     final serviceClass = ClassBuilder()..name = '${baseName}Service';
 
-    // Constructor with Dio and optional config
+    // Simplified constructor with Dio and optional ErrorHandler
     serviceClass.constructors.add(Constructor((cb) => cb
       ..requiredParameters.add(Parameter((pb) => pb
         ..name = '_dio'
         ..toThis = true))
       ..optionalParameters.add(Parameter((pb) => pb
-        ..name = 'config'
-        ..type = refer('${baseName}ServiceConfig').asNullable(true)
+        ..name = 'errorHandler'
+        ..type = refer('ErrorHandler').asNullable(true)
         ..named = true))
-      ..body = Block.of([
-        declareFinal('serviceConfig')
-            .assign(
-                CodeExpression(Code('config ?? ${baseName}ServiceConfig()')))
-            .statement,
-        refer('_onError')
-            .assign(refer('serviceConfig').property('onError'))
-            .statement,
-        refer('_dio')
-            .property('options')
-            .property('baseUrl')
-            .assign(refer('serviceConfig').property('baseUrl'))
-            .statement,
-        refer('_dio')
-            .property('options')
-            .property('connectTimeout')
-            .assign(refer('serviceConfig').property('connectTimeout'))
-            .statement,
-        refer('_dio')
-            .property('options')
-            .property('receiveTimeout')
-            .assign(refer('serviceConfig').property('receiveTimeout'))
-            .statement,
-        refer('_dio')
-            .property('interceptors')
-            .property('addAll')
-            ([refer('serviceConfig').property('interceptors')])
-            .statement,
-      ])));
+      ..initializers.add(Code(
+          '_errorHandler = errorHandler ?? const DefaultErrorHandler()'))));
 
     // Add _dio field
     serviceClass.fields.add(Field((fb) => fb
@@ -560,12 +578,10 @@ class OpenApiLibraryGenerator {
       ..type = _dio
       ..modifier = FieldModifier.final$));
 
-    // Add _onError field
+    // Add _errorHandler field
     serviceClass.fields.add(Field((fb) => fb
-      ..name = '_onError'
-      ..type = refer(
-              'void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)')
-          .asNullable(true)
+      ..name = '_errorHandler'
+      ..type = refer('ErrorHandler')
       ..late = true
       ..modifier = FieldModifier.final$));
 
@@ -625,115 +641,10 @@ class OpenApiLibraryGenerator {
       }
     }
 
-    // Add error handling methods
-    serviceClass.methods.add(_generateHandleErrorMethod());
-    serviceClass.methods.add(_generateExtractErrorMessageMethod());
-
-    // Add filename extraction helper method
+    // Add filename extraction helper method for file uploads
     serviceClass.methods.add(_generateGetFileNameMethod());
 
     targetLb.body.add(serviceClass.build());
-  }
-
-  void _generateServiceConfigClass(LibraryBuilder targetLb) {
-    final configClass = ClassBuilder()..name = '${baseName}ServiceConfig';
-
-    // Constructor
-    configClass.constructors.add(Constructor((cb) => cb
-      ..constant = true
-      ..optionalParameters.addAll([
-        Parameter((pb) => pb
-          ..name = 'baseUrl'
-          ..defaultTo = literalString('').code
-          ..named = true
-          ..toThis = true),
-        Parameter((pb) => pb
-          ..name = 'connectTimeout'
-          ..defaultTo = const Code('const Duration(seconds: 60)')
-          ..named = true
-          ..toThis = true),
-        Parameter((pb) => pb
-          ..name = 'receiveTimeout'
-          ..defaultTo = const Code('const Duration(seconds: 60)')
-          ..named = true
-          ..toThis = true),
-        Parameter((pb) => pb
-          ..name = 'interceptors'
-          ..defaultTo = const Code('const []')
-          ..named = true
-          ..toThis = true),
-        Parameter((pb) => pb
-          ..name = 'onError'
-          ..named = true
-          ..toThis = true),
-      ])));
-
-    // Add fields
-    configClass.fields.addAll([
-      Field((fb) => fb
-        ..name = 'baseUrl'
-        ..type = refer('String')
-        ..modifier = FieldModifier.final$),
-      Field((fb) => fb
-        ..name = 'connectTimeout'
-        ..type = refer('Duration')
-        ..modifier = FieldModifier.final$),
-      Field((fb) => fb
-        ..name = 'receiveTimeout'
-        ..type = refer('Duration')
-        ..modifier = FieldModifier.final$),
-      Field((fb) => fb
-        ..name = 'interceptors'
-        ..type = _referType('List',
-            generics: [refer('Interceptor', 'package:dio/dio.dart')])
-        ..modifier = FieldModifier.final$),
-      Field((fb) => fb
-        ..name = 'onError'
-        ..type = refer(
-                'void Function(dynamic error, StackTrace stackTrace, String endpoint, Map<String, dynamic> headers, dynamic requestBody, dynamic responseBody)')
-            .asNullable(true)
-        ..modifier = FieldModifier.final$),
-    ]);
-
-    targetLb.body.add(configClass.build());
-  }
-
-  Class _generateApiErrorModel() {
-    return Class((cb) {
-      cb
-        ..name = 'ApiError'
-        ..sealed = true
-        ..annotations.add(_freezed)
-        ..mixins.add(refer('_\$ApiError'))
-        ..constructors.add(Constructor((ccb) => ccb
-          ..factory = true
-          ..constant = true
-          ..optionalParameters.addAll([
-            Parameter((pb) => pb
-              ..name = 'message'
-              ..type = refer('String')
-              ..asRequired(this, true)
-              ..named = true),
-            Parameter((pb) => pb
-              ..name = 'statusCode'
-              ..type = refer('int').asNullable(true)
-              ..named = true),
-            Parameter((pb) => pb
-              ..name = 'type'
-              ..type = refer('String').asNullable(true)
-              ..named = true),
-          ])
-          ..redirect = refer('_ApiError')))
-        ..constructors.add(Constructor((ccb) => ccb
-          ..factory = true
-          ..name = 'fromJson'
-          ..requiredParameters.add(Parameter((pb) => pb
-            ..name = 'json'
-            ..type = _referType('Map',
-                generics: [refer('String'), refer('dynamic')])))
-          ..lambda = true
-          ..body = refer('_\$ApiErrorFromJson')([refer('json')]).code));
-    });
   }
 
   void _generateServiceClass() {
@@ -898,7 +809,24 @@ class OpenApiLibraryGenerator {
           '{${param!.name}}', '\$${param.name!.camelCase}');
     }
 
+    // Declare queryParams outside try block if needed for error handling
+    final hasQueryParams = allParameters
+        .where((p) => p!.location == APIParameterLocation.query)
+        .isNotEmpty;
+
     final methodBody = <Code>[
+      // Declare queryParams outside try block if needed
+      ...() {
+        if (hasQueryParams) {
+          return [
+            declareFinal('queryParams')
+                .assign(literalMap({}, refer('String'), refer('dynamic')))
+                .statement,
+          ];
+        }
+        return <Code>[];
+      }(),
+
       const Code('try {'),
       // Build query parameters if any exist
       ...() {
@@ -906,9 +834,6 @@ class OpenApiLibraryGenerator {
             .where((p) => p!.location == APIParameterLocation.query);
         if (queryParams.isNotEmpty) {
           return [
-            declareFinal('queryParams')
-                .assign(literalMap({}, refer('String'), refer('dynamic')))
-                .statement,
             ...queryParams.map((p) {
               final paramName = p!.name!.camelCase;
               final isRequired = p.isRequired;
@@ -1127,9 +1052,44 @@ class OpenApiLibraryGenerator {
       ],
 
       const Code('} catch (e, stackTrace) {'),
+      // Create RequestContext for error handling
+      declareFinal('requestContext')
+          .assign(refer('RequestContext').call([], {
+            'method': literalString(httpMethod.toUpperCase()),
+            'endpoint': literalString(actualPath),
+            ...() {
+              // Add request body based on the request type
+              final requestBodyMap = <String, Expression>{};
+
+              if (operation.requestBody != null) {
+                if (_isBinaryRequestBody(operation.requestBody)) {
+                  // For binary uploads, the request body is the file
+                  requestBodyMap['requestBody'] = refer('file');
+                } else if (_isMultipartFormData(operation.requestBody)) {
+                  // For multipart, we don't have a single request body variable
+                  // The form data is constructed inline, so we'll skip requestBody
+                } else {
+                  // For regular JSON request bodies
+                  requestBodyMap['requestBody'] = refer('body');
+                }
+              }
+
+              return requestBodyMap;
+            }(),
+            ...() {
+              final queryParamsExist = allParameters
+                  .where((p) => p!.location == APIParameterLocation.query)
+                  .isNotEmpty;
+              if (queryParamsExist) {
+                return {'queryParameters': refer('queryParams')};
+              }
+              return <String, Expression>{};
+            }(),
+          }))
+          .statement,
       _left([
-        refer('_handleError')(
-            [refer('e'), refer('stackTrace'), literalString(actualPath)])
+        refer('_errorHandler').property('handleError')(
+            [refer('e'), refer('stackTrace'), refer('requestContext')])
       ]).returned.statement,
       const Code('}'),
     ];
@@ -1206,122 +1166,6 @@ class OpenApiLibraryGenerator {
         .statement;
   }
 
-  Method _generateHandleErrorMethod() {
-    return Method((mb) => mb
-      ..name = '_handleError'
-      ..returns = refer('ApiError')
-      ..requiredParameters.addAll([
-        Parameter((pb) => pb
-          ..name = 'error'
-          ..type = refer('dynamic')),
-        Parameter((pb) => pb
-          ..name = 'stackTrace'
-          ..type = refer('StackTrace')),
-        Parameter((pb) => pb
-          ..name = 'endpoint'
-          ..type = refer('String')),
-      ])
-      ..body = Block.of([
-        const Code('if (error is DioException) {'),
-        declareFinal('response')
-            .assign(refer('error').property('response'))
-            .statement,
-        declareFinal('statusCode')
-            .assign(CodeExpression(Code('response?.statusCode ?? 0')))
-            .statement,
-        const Code(''),
-
-        // Enhanced error type mapping based on status codes
-        const Code('final errorType = switch (statusCode) {'),
-        const Code('  401 => \'authentication_error\','),
-        const Code('  403 => \'authorization_error\','),
-        const Code('  404 => \'not_found_error\','),
-        const Code('  408 => \'timeout_error\','),
-        const Code('  422 => \'validation_error\','),
-        const Code('  429 => \'rate_limit_error\','),
-        const Code('  >= 500 => \'server_error\','),
-        const Code('  _ => error.type.name,'),
-        const Code('};'),
-        const Code(''),
-
-        // Enhanced message extraction
-        const Code('String message = error.message ?? \'An error occurred\';'),
-        const Code('if (response?.data case final data?) {'),
-        const Code('  message = _extractErrorMessage(data) ?? message;'),
-        const Code('}'),
-        const Code(''),
-
-        const Code(''),
-        const Code('// Call onError callback if provided'),
-        const Code('if (_onError != null) {'),
-        const Code('  try {'),
-        const Code(
-            '    final headers = response?.headers.map ?? <String, dynamic>{};'),
-        const Code('    final requestData = error.requestOptions.data;'),
-        const Code('    final responseData = response?.data;'),
-        const Code(
-            '    _onError(error, stackTrace, endpoint, headers, requestData, responseData);'),
-        const Code('  } catch (_) {'),
-        const Code(
-            '    // Ignore errors in callback to prevent recursive issues'),
-        const Code('  }'),
-        const Code('}'),
-        const Code(''),
-        refer('ApiError')
-            .call([], {
-              'message': refer('message'),
-              'statusCode': refer('statusCode'),
-              'type': refer('errorType'),
-            })
-            .returned
-            .statement,
-        const Code('}'),
-        const Code(''),
-        const Code('// Call onError callback for unknown errors'),
-        const Code('if (_onError != null) {'),
-        const Code('  try {'),
-        const Code(
-            '    _onError(error, stackTrace, endpoint, <String, dynamic>{}, null, null);'),
-        const Code('  } catch (_) {'),
-        const Code(
-            '    // Ignore errors in callback to prevent recursive issues'),
-        const Code('  }'),
-        const Code('}'),
-        const Code(''),
-        refer('ApiError')
-            .call([], {
-              'message': refer('error').property('toString')([]),
-              'type': literalString('unknown_error'),
-            })
-            .returned
-            .statement,
-      ]));
-  }
-
-  Method _generateExtractErrorMessageMethod() {
-    return Method((mb) => mb
-      ..name = '_extractErrorMessage'
-      ..returns = refer('String').asNullable(true)
-      ..requiredParameters.add(Parameter((pb) => pb
-        ..name = 'data'
-        ..type = refer('dynamic')))
-      ..body = Block.of([
-        const Code('if (data is Map<String, dynamic>) {'),
-        const Code('  // Try common error message fields'),
-        const Code('  return data[\'message\'] ?? '),
-        const Code('         data[\'error\'] ?? '),
-        const Code('         data[\'detail\'] ?? '),
-        const Code('         data[\'error_description\'];'),
-        const Code('}'),
-        const Code(''),
-        const Code('if (data is String) {'),
-        const Code('  return data;'),
-        const Code('}'),
-        const Code(''),
-        const Code('return null;'),
-      ]));
-  }
-
   Method _generateGetFileNameMethod() {
     return Method((mb) => mb
       ..name = '_getFileName'
@@ -1341,7 +1185,7 @@ class OpenApiLibraryGenerator {
     // Handle NullableOf* pattern from C# OpenAPI generators
     final baseName = _extractBaseNameFromNullableEnum(componentName);
     final nameToUse = baseName ?? componentName;
-    
+
     final pascalCaseName = nameToUse.pascalCase;
     // Avoid double "Dto" suffix
     if (pascalCaseName.endsWith('Dto')) {
@@ -1501,14 +1345,16 @@ class OpenApiLibraryGenerator {
           final fieldType = toDartType(parentContext, entry.value!);
           final hasDefaultValue = entry.value!.defaultValue != null;
           final isRequired = required.contains(entry.key);
-          
+
           // Check if this property references a NullableOf* enum
           final referencesNullableEnum = entry.value!.referenceURI != null &&
               _extractBaseNameFromNullableEnum(
-                  entry.value!.referenceURI!.pathSegments.last) != null;
-          
+                      entry.value!.referenceURI!.pathSegments.last) !=
+                  null;
+
           // Make nullable if originally was a NullableOf* enum (which contained null)
-          final shouldBeNullable = !isRequired && !hasDefaultValue || referencesNullableEnum;
+          final shouldBeNullable =
+              !isRequired && !hasDefaultValue || referencesNullableEnum;
 
           return Parameter((pb) {
             pb
@@ -1530,7 +1376,8 @@ class OpenApiLibraryGenerator {
               // Check if the field type is an enum
               if (entry.value!.enumerated?.isNotEmpty == true) {
                 // For enums, use the enum value instead of string literal
-                final enumValueName = _sanitizeEnumValueName(defaultValue.toString());
+                final enumValueName =
+                    _sanitizeEnumValueName(defaultValue.toString());
                 defaultExpression = fieldType.property(enumValueName);
               } else {
                 // For non-enum types, use literal value
@@ -1571,7 +1418,7 @@ class OpenApiLibraryGenerator {
       final filteredValues = values!
           .where((dynamic e) => e.toString().toLowerCase() != 'null')
           .toList();
-          
+
       // Only generate enum if there are non-null values
       if (filteredValues.isNotEmpty) {
         lb.body.add(EnumSpec(
