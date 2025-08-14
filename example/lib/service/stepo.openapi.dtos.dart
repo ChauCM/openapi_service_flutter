@@ -14,6 +14,7 @@ sealed class AccountDto with _$AccountDto {
   factory AccountDto({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'user') required UserDto user,
+    @JsonKey(name: 'role') UserRoleDto? role,
   }) = _AccountDto;
 
   factory AccountDto.fromJson(Map<String, dynamic> json) =>
@@ -33,6 +34,7 @@ sealed class AppFeedbackDto with _$AppFeedbackDto {
     @JsonKey(name: 'user') required UserDto user,
     @JsonKey(name: 'createdDate') required DateTime createdDate,
     @JsonKey(name: 'adminResponse') String? adminResponse,
+    @JsonKey(name: 'adminUserId') String? adminUserId,
     @JsonKey(name: 'respondedDate') DateTime? respondedDate,
   }) = _AppFeedbackDto;
 
@@ -236,17 +238,6 @@ sealed class FeedMetricsDto with _$FeedMetricsDto {
 }
 
 @freezed
-sealed class FollowingResultDto with _$FollowingResultDto {
-  factory FollowingResultDto({
-    @JsonKey(name: 'status') required FollowingStatusEnumDto status,
-    @JsonKey(name: 'message') String? message,
-  }) = _FollowingResultDto;
-
-  factory FollowingResultDto.fromJson(Map<String, dynamic> json) =>
-      _$FollowingResultDtoFromJson(json);
-}
-
-@freezed
 sealed class FollowingStatusDto with _$FollowingStatusDto {
   factory FollowingStatusDto(
           {@JsonKey(name: 'status') required FollowingStatusEnumDto status}) =
@@ -291,18 +282,6 @@ sealed class FollowRequestDto with _$FollowRequestDto {
 
   factory FollowRequestDto.fromJson(Map<String, dynamic> json) =>
       _$FollowRequestDtoFromJson(json);
-}
-
-@freezed
-sealed class FollowRequestResultDto with _$FollowRequestResultDto {
-  factory FollowRequestResultDto({
-    @JsonKey(name: 'result') required String result,
-    @JsonKey(name: 'newStatus') required FollowingStatusEnumDto newStatus,
-    @JsonKey(name: 'message') String? message,
-  }) = _FollowRequestResultDto;
-
-  factory FollowRequestResultDto.fromJson(Map<String, dynamic> json) =>
-      _$FollowRequestResultDtoFromJson(json);
 }
 
 @freezed
@@ -665,6 +644,9 @@ sealed class ProfileDto with _$ProfileDto {
     @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
     @JsonKey(name: 'followersCount') @Default(0) int followersCount,
     @JsonKey(name: 'followingsCount') @Default(0) int followingsCount,
+    @JsonKey(name: 'hasPendingFollowRequestToMe')
+    @Default(false)
+    bool hasPendingFollowRequestToMe,
   }) = _ProfileDto;
 
   factory ProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -975,6 +957,7 @@ sealed class UserDetailDto with _$UserDetailDto {
     @JsonKey(name: 'followingStatus')
     @Default(FollowingStatusEnumDto.notFollowing)
     FollowingStatusEnumDto followingStatus,
+    @JsonKey(name: 'isFollowingMe') @Default(false) bool isFollowingMe,
   }) = _UserDetailDto;
 
   factory UserDetailDto.fromJson(Map<String, dynamic> json) =>
@@ -999,7 +982,6 @@ sealed class UserDto with _$UserDto {
     @Default(UserStatusDto.active)
     UserStatusDto status,
     @JsonKey(name: 'isRestricted') @Default(false) bool isRestricted,
-    @JsonKey(name: 'role') UserRoleDto? role,
   }) = _UserDto;
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
@@ -1063,6 +1045,78 @@ sealed class VideoStatusDto with _$VideoStatusDto {
 
   factory VideoStatusDto.fromJson(Map<String, dynamic> json) =>
       _$VideoStatusDtoFromJson(json);
+}
+
+enum ApiV1AdminFeedbackGetTypeDto {
+  @JsonValue('BugReport')
+  bugReport,
+  @JsonValue('FeatureRequest')
+  featureRequest,
+  @JsonValue('GeneralFeedback')
+  generalFeedback,
+  @JsonValue('UiUxIssue')
+  uiUxIssue,
+  @JsonValue('Performance')
+  performance,
+  @JsonValue('Other')
+  other,
+}
+
+extension ApiV1AdminFeedbackGetTypeDtoExt on ApiV1AdminFeedbackGetTypeDto {
+  static final Map<String, ApiV1AdminFeedbackGetTypeDto> _names = {
+    'BugReport': ApiV1AdminFeedbackGetTypeDto.bugReport,
+    'FeatureRequest': ApiV1AdminFeedbackGetTypeDto.featureRequest,
+    'GeneralFeedback': ApiV1AdminFeedbackGetTypeDto.generalFeedback,
+    'UiUxIssue': ApiV1AdminFeedbackGetTypeDto.uiUxIssue,
+    'Performance': ApiV1AdminFeedbackGetTypeDto.performance,
+    'Other': ApiV1AdminFeedbackGetTypeDto.other,
+  };
+  static ApiV1AdminFeedbackGetTypeDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError(
+          'Invalid enum name: $name for ApiV1AdminFeedbackGetTypeDto');
+  String get name => switch (this) {
+        ApiV1AdminFeedbackGetTypeDto.bugReport => 'BugReport',
+        ApiV1AdminFeedbackGetTypeDto.featureRequest => 'FeatureRequest',
+        ApiV1AdminFeedbackGetTypeDto.generalFeedback => 'GeneralFeedback',
+        ApiV1AdminFeedbackGetTypeDto.uiUxIssue => 'UiUxIssue',
+        ApiV1AdminFeedbackGetTypeDto.performance => 'Performance',
+        ApiV1AdminFeedbackGetTypeDto.other => 'Other',
+      };
+}
+
+enum ApiV1AdminFeedbackGetStatusDto {
+  @JsonValue('Open')
+  open,
+  @JsonValue('InProgress')
+  inProgress,
+  @JsonValue('Resolved')
+  resolved,
+  @JsonValue('Closed')
+  closed,
+  @JsonValue('Duplicate')
+  duplicate,
+}
+
+extension ApiV1AdminFeedbackGetStatusDtoExt on ApiV1AdminFeedbackGetStatusDto {
+  static final Map<String, ApiV1AdminFeedbackGetStatusDto> _names = {
+    'Open': ApiV1AdminFeedbackGetStatusDto.open,
+    'InProgress': ApiV1AdminFeedbackGetStatusDto.inProgress,
+    'Resolved': ApiV1AdminFeedbackGetStatusDto.resolved,
+    'Closed': ApiV1AdminFeedbackGetStatusDto.closed,
+    'Duplicate': ApiV1AdminFeedbackGetStatusDto.duplicate,
+  };
+  static ApiV1AdminFeedbackGetStatusDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError(
+          'Invalid enum name: $name for ApiV1AdminFeedbackGetStatusDto');
+  String get name => switch (this) {
+        ApiV1AdminFeedbackGetStatusDto.open => 'Open',
+        ApiV1AdminFeedbackGetStatusDto.inProgress => 'InProgress',
+        ApiV1AdminFeedbackGetStatusDto.resolved => 'Resolved',
+        ApiV1AdminFeedbackGetStatusDto.closed => 'Closed',
+        ApiV1AdminFeedbackGetStatusDto.duplicate => 'Duplicate',
+      };
 }
 
 T _throwStateError<T>(String message) => throw StateError(message);

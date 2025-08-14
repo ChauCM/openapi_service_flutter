@@ -1732,14 +1732,13 @@ class StepoService {
 
   /// Accept a follow request
   /// post: /api/v1/account/follow-requests/{requesterId}/accept
-  Future<Either<ApiError, FollowRequestResultDto>>
+  Future<Either<ApiError, void>>
       apiV1AccountFollowRequestsRequesterIdAcceptPost(
           {required String requesterId}) async {
     try {
-      final response = await _dio
+      final _ = await _dio
           .post('/api/v1/account/follow-requests/$requesterId/accept');
-      final result = FollowRequestResultDto.fromJson(response.data);
-      return Right(result);
+      return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1755,14 +1754,13 @@ class StepoService {
 
   /// Reject a follow request
   /// delete: /api/v1/account/follow-requests/{requesterId}/reject
-  Future<Either<ApiError, FollowRequestResultDto>>
+  Future<Either<ApiError, void>>
       apiV1AccountFollowRequestsRequesterIdRejectDelete(
           {required String requesterId}) async {
     try {
-      final response = await _dio
+      final _ = await _dio
           .delete('/api/v1/account/follow-requests/$requesterId/reject');
-      final result = FollowRequestResultDto.fromJson(response.data);
-      return Right(result);
+      return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
@@ -1776,14 +1774,34 @@ class StepoService {
     }
   }
 
+  /// Remove a follower (make someone unfollow you)
+  /// delete: /api/v1/account/followers/{followerId}/remove
+  Future<Either<ApiError, void>> apiV1AccountFollowersFollowerIdRemoveDelete(
+      {required String followerId}) async {
+    try {
+      final _ =
+          await _dio.delete('/api/v1/account/followers/$followerId/remove');
+      return const Right(null);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/account/followers/$followerId/remove',
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
   /// Follow a user
   /// post: /api/v1/users/{userId}/follow
-  Future<Either<ApiError, FollowingResultDto>> apiV1UsersUserIdFollowPost(
+  Future<Either<ApiError, void>> apiV1UsersUserIdFollowPost(
       {required String userId}) async {
     try {
-      final response = await _dio.post('/api/v1/users/$userId/follow');
-      final result = FollowingResultDto.fromJson(response.data);
-      return Right(result);
+      final _ = await _dio.post('/api/v1/users/$userId/follow');
+      return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1799,12 +1817,11 @@ class StepoService {
 
   /// Unfollow a user
   /// delete: /api/v1/users/{userId}/follow
-  Future<Either<ApiError, FollowingResultDto>> apiV1UsersUserIdFollowDelete(
+  Future<Either<ApiError, void>> apiV1UsersUserIdFollowDelete(
       {required String userId}) async {
     try {
-      final response = await _dio.delete('/api/v1/users/$userId/follow');
-      final result = FollowingResultDto.fromJson(response.data);
-      return Right(result);
+      final _ = await _dio.delete('/api/v1/users/$userId/follow');
+      return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
@@ -1951,6 +1968,7 @@ class StepoService {
     }
   }
 
+  /// Get user's personalized feed with following and discovery content
   /// get: /api/v1/feed
   Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedGet({
     int? page,
@@ -1984,6 +2002,7 @@ class StepoService {
     }
   }
 
+  /// Get user's feed composition metrics
   /// get: /api/v1/feed/metrics
   Future<Either<ApiError, FeedMetricsDto>> apiV1FeedMetricsGet() async {
     try {
@@ -2003,6 +2022,7 @@ class StepoService {
     }
   }
 
+  /// Get hot trending content from the platform
   /// get: /api/v1/feed/hot
   Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedHotGet({
     int? page,
@@ -2036,6 +2056,7 @@ class StepoService {
     }
   }
 
+  /// Get latest content from followed users
   /// get: /api/v1/feed/following
   Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedFollowingGet({
     int? page,
@@ -2217,8 +2238,8 @@ class StepoService {
   Future<Either<ApiError, PageResponseOfAppFeedbackDto>> apiV1AdminFeedbackGet({
     int? page,
     int? pageSize,
-    String? type,
-    String? status,
+    ApiV1AdminFeedbackGetTypeDto? type,
+    ApiV1AdminFeedbackGetStatusDto? status,
   }) async {
     final queryParams = <String, dynamic>{};
     try {

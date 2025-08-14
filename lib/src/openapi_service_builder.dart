@@ -273,6 +273,9 @@ class OpenApiLibraryGenerator {
       }
     }
 
+    // Track generated DTO names to prevent duplicates
+    final generatedDtoNames = <String>{};
+
     // Generate DTOs only for used schemas (either used directly by endpoints or enums)
     final components = api.components;
     if (components?.schemas != null) {
@@ -284,7 +287,14 @@ class OpenApiLibraryGenerator {
 
         // Generate if: used by endpoints AND (should generate DTO OR is an enum)
         if (isUsed && (shouldGenerate || isEnum)) {
-          _generateSchemaIntoLibrary(dtosLb, schemaEntry.key, schema);
+          final dtoName = classNameForComponent(schemaEntry.key);
+
+          // Skip if we've already generated a DTO with this name
+          // This prevents duplicates from NullableOf* patterns
+          if (!generatedDtoNames.contains(dtoName)) {
+            _generateSchemaIntoLibrary(dtosLb, schemaEntry.key, schema);
+            generatedDtoNames.add(dtoName);
+          }
         }
       }
     }
@@ -318,7 +328,12 @@ class OpenApiLibraryGenerator {
                 final responseTypeName = responseBaseName.endsWith('Dto')
                     ? responseBaseName
                     : '${responseBaseName}Dto';
-                _generateSchemaIntoLibrary(dtosLb, responseTypeName, schema);
+
+                // Skip if we've already generated a DTO with this name
+                if (!generatedDtoNames.contains(responseTypeName)) {
+                  _generateSchemaIntoLibrary(dtosLb, responseTypeName, schema);
+                  generatedDtoNames.add(responseTypeName);
+                }
               }
             }
           }
@@ -333,15 +348,28 @@ class OpenApiLibraryGenerator {
             if (param!.schema?.enumerated != null &&
                 param.schema!.enumerated!.isNotEmpty) {
               final paramTypeName = '$operationName${param.name!.pascalCase}';
-              _generateSchemaIntoLibrary(dtosLb, paramTypeName, param.schema!);
+              final dtoName = classNameForComponent(paramTypeName);
+
+              // Skip if we've already generated a DTO with this name
+              if (!generatedDtoNames.contains(dtoName)) {
+                _generateSchemaIntoLibrary(
+                    dtosLb, paramTypeName, param.schema!);
+                generatedDtoNames.add(dtoName);
+              }
             }
             // Handle array parameters with enum items
             else if (param.schema?.type == APIType.array &&
                 param.schema!.items?.enumerated != null &&
                 param.schema!.items!.enumerated!.isNotEmpty) {
               final paramTypeName = '$operationName${param.name!.pascalCase}';
-              _generateSchemaIntoLibrary(
-                  dtosLb, paramTypeName, param.schema!.items!);
+              final dtoName = classNameForComponent(paramTypeName);
+
+              // Skip if we've already generated a DTO with this name
+              if (!generatedDtoNames.contains(dtoName)) {
+                _generateSchemaIntoLibrary(
+                    dtosLb, paramTypeName, param.schema!.items!);
+                generatedDtoNames.add(dtoName);
+              }
             }
           }
 
@@ -361,7 +389,12 @@ class OpenApiLibraryGenerator {
                 final requestTypeName = requestBaseName.endsWith('Dto')
                     ? requestBaseName
                     : '${requestBaseName}Dto';
-                _generateSchemaIntoLibrary(dtosLb, requestTypeName, schema);
+
+                // Skip if we've already generated a DTO with this name
+                if (!generatedDtoNames.contains(requestTypeName)) {
+                  _generateSchemaIntoLibrary(dtosLb, requestTypeName, schema);
+                  generatedDtoNames.add(requestTypeName);
+                }
               }
             }
           }

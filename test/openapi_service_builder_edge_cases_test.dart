@@ -603,6 +603,56 @@ components:
         // Should not contain null values
         expect(dtosOutput, isNot(contains('@JsonValue(\'null\')')));
       });
+
+      test(
+          'prevents duplicate enum generation for base and NullableOf patterns',
+          () async {
+        final duplicateEnumYaml =
+            await File('test/fixtures/duplicate_enum_api.openapi.yaml')
+                .readAsString();
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(duplicateEnumYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'DuplicateEnumApi',
+          partFileName: 'duplicate_enum_api.openapi.dtos.g.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+        );
+
+        // Count occurrences of each enum to ensure no duplicates
+        final feedbackStatusMatches =
+            'enum FeedbackStatusDto'.allMatches(dtosOutput).length;
+        final feedbackTypeMatches =
+            'enum FeedbackTypeDto'.allMatches(dtosOutput).length;
+
+        // Should have exactly one occurrence of each enum
+        expect(feedbackStatusMatches, equals(1),
+            reason:
+                'Should have exactly one FeedbackStatusDto enum, found $feedbackStatusMatches');
+        expect(feedbackTypeMatches, equals(1),
+            reason:
+                'Should have exactly one FeedbackTypeDto enum, found $feedbackTypeMatches');
+
+        // Should contain the enum values
+        expect(dtosOutput, contains('enum FeedbackStatusDto'));
+        expect(dtosOutput, contains('@JsonValue(\'Open\')'));
+        expect(dtosOutput, contains('@JsonValue(\'InProgress\')'));
+        expect(dtosOutput, contains('enum FeedbackTypeDto'));
+        expect(dtosOutput, contains('@JsonValue(\'BugReport\')'));
+        expect(dtosOutput, contains('@JsonValue(\'FeatureRequest\')'));
+
+        // Should not contain the NullableOf prefix in generated enum names
+        expect(dtosOutput, isNot(contains('enum NullableOfFeedbackStatusDto')));
+        expect(dtosOutput, isNot(contains('enum NullableOfFeedbackTypeDto')));
+
+        // Should not contain null values in enum definitions
+        expect(dtosOutput, isNot(contains('@JsonValue(\'null\')')));
+      });
     });
   });
 }

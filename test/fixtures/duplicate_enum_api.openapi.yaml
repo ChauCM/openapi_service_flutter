@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Duplicate Enum API Test
+  x-dart-name: DuplicateEnumApi
+
+paths:
+  /feedback:
+    get:
+      summary: Get feedback with filtering
+      parameters:
+        - name: type
+          in: query
+          schema:
+            $ref: '#/components/schemas/NullableOfFeedbackType'
+        - name: status
+          in: query
+          schema:
+            $ref: '#/components/schemas/NullableOfFeedbackStatus'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+
+components:
+  schemas:
+    # Regular base enums (these exist first)
+    FeedbackStatus:
+      enum:
+        - Open
+        - InProgress
+        - Resolved
+        - Closed
+        - Duplicate
+
+    FeedbackType:
+      enum:
+        - BugReport
+        - FeatureRequest
+        - GeneralFeedback
+        - UiUxIssue
+        - Performance
+        - Other
+
+    # Nullable variants of the same enums (C# generator pattern)
+    NullableOfFeedbackStatus:
+      enum:
+        - Open
+        - InProgress
+        - Resolved
+        - Closed
+        - Duplicate
+        - null
+
+    NullableOfFeedbackType:
+      enum:
+        - BugReport
+        - FeatureRequest
+        - GeneralFeedback
+        - UiUxIssue
+        - Performance
+        - Other
+        - null
+
+    # Schema that uses the base enums
+    Feedback:
+      type: object
+      properties:
+        id:
+          type: string
+        content:
+          type: string
+        feedbackType:
+          $ref: '#/components/schemas/FeedbackType'
+        status:
+          $ref: '#/components/schemas/FeedbackStatus'
+        imageUrl:
+          type: string
+        deviceInfo:
+          type: string
+        appVersion:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+      required:
+        - id
+        - content
+        - feedbackType
+        - status

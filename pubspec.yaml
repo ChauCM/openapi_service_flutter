@@ -1,11 +1,11 @@
 name: openapi_service_flutter
 description: Generate type-safe Dart client libraries from OpenAPI specifications for Flutter apps.
-version: 2.1.0+7
+version: 2.1.1+8
 homepage: https://github.com/ChauCM/openapi_service_flutter
 publish_to: none
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   # Code generation dependencies

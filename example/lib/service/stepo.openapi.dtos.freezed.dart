@@ -18,6 +18,8 @@ mixin _$AccountDto {
   String get id;
   @JsonKey(name: 'user')
   UserDto get user;
+  @JsonKey(name: 'role')
+  UserRoleDto? get role;
 
   /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
@@ -35,16 +37,17 @@ mixin _$AccountDto {
         (other.runtimeType == runtimeType &&
             other is AccountDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, user);
+  int get hashCode => Object.hash(runtimeType, id, user, role);
 
   @override
   String toString() {
-    return 'AccountDto(id: $id, user: $user)';
+    return 'AccountDto(id: $id, user: $user, role: $role)';
   }
 }
 
@@ -55,7 +58,9 @@ abstract mixin class $AccountDtoCopyWith<$Res> {
       _$AccountDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id, @JsonKey(name: 'user') UserDto user});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'role') UserRoleDto? role});
 
   $UserDtoCopyWith<$Res> get user;
 }
@@ -74,6 +79,7 @@ class _$AccountDtoCopyWithImpl<$Res> implements $AccountDtoCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? user = null,
+    Object? role = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -84,6 +90,10 @@ class _$AccountDtoCopyWithImpl<$Res> implements $AccountDtoCopyWith<$Res> {
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
+      role: freezed == role
+          ? _self.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as UserRoleDto?,
     ));
   }
 
@@ -189,15 +199,17 @@ extension AccountDtoPatterns on AccountDto {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'id') String id,
-            @JsonKey(name: 'user') UserDto user)?
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'role') UserRoleDto? role)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _AccountDto() when $default != null:
-        return $default(_that.id, _that.user);
+        return $default(_that.id, _that.user, _that.role);
       case _:
         return orElse();
     }
@@ -219,13 +231,15 @@ extension AccountDtoPatterns on AccountDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'id') String id, @JsonKey(name: 'user') UserDto user)
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'role') UserRoleDto? role)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _AccountDto():
-        return $default(_that.id, _that.user);
+        return $default(_that.id, _that.user, _that.role);
     }
   }
 
@@ -243,14 +257,16 @@ extension AccountDtoPatterns on AccountDto {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'id') String id,
-            @JsonKey(name: 'user') UserDto user)?
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'role') UserRoleDto? role)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _AccountDto() when $default != null:
-        return $default(_that.id, _that.user);
+        return $default(_that.id, _that.user, _that.role);
       case _:
         return null;
     }
@@ -262,7 +278,8 @@ extension AccountDtoPatterns on AccountDto {
 class _AccountDto implements AccountDto {
   _AccountDto(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'user') required this.user});
+      @JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'role') this.role});
   factory _AccountDto.fromJson(Map<String, dynamic> json) =>
       _$AccountDtoFromJson(json);
 
@@ -272,6 +289,9 @@ class _AccountDto implements AccountDto {
   @override
   @JsonKey(name: 'user')
   final UserDto user;
+  @override
+  @JsonKey(name: 'role')
+  final UserRoleDto? role;
 
   /// Create a copy of AccountDto
   /// with the given fields replaced by the non-null parameter values.
@@ -294,16 +314,17 @@ class _AccountDto implements AccountDto {
         (other.runtimeType == runtimeType &&
             other is _AccountDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, user);
+  int get hashCode => Object.hash(runtimeType, id, user, role);
 
   @override
   String toString() {
-    return 'AccountDto(id: $id, user: $user)';
+    return 'AccountDto(id: $id, user: $user, role: $role)';
   }
 }
 
@@ -316,7 +337,9 @@ abstract mixin class _$AccountDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id, @JsonKey(name: 'user') UserDto user});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'role') UserRoleDto? role});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -336,6 +359,7 @@ class __$AccountDtoCopyWithImpl<$Res> implements _$AccountDtoCopyWith<$Res> {
   $Res call({
     Object? id = null,
     Object? user = null,
+    Object? role = freezed,
   }) {
     return _then(_AccountDto(
       id: null == id
@@ -346,6 +370,10 @@ class __$AccountDtoCopyWithImpl<$Res> implements _$AccountDtoCopyWith<$Res> {
           ? _self.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserDto,
+      role: freezed == role
+          ? _self.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as UserRoleDto?,
     ));
   }
 
@@ -382,6 +410,8 @@ mixin _$AppFeedbackDto {
   DateTime get createdDate;
   @JsonKey(name: 'adminResponse')
   String? get adminResponse;
+  @JsonKey(name: 'adminUserId')
+  String? get adminUserId;
   @JsonKey(name: 'respondedDate')
   DateTime? get respondedDate;
 
@@ -417,6 +447,8 @@ mixin _$AppFeedbackDto {
                 other.createdDate == createdDate) &&
             (identical(other.adminResponse, adminResponse) ||
                 other.adminResponse == adminResponse) &&
+            (identical(other.adminUserId, adminUserId) ||
+                other.adminUserId == adminUserId) &&
             (identical(other.respondedDate, respondedDate) ||
                 other.respondedDate == respondedDate));
   }
@@ -435,11 +467,12 @@ mixin _$AppFeedbackDto {
       user,
       createdDate,
       adminResponse,
+      adminUserId,
       respondedDate);
 
   @override
   String toString() {
-    return 'AppFeedbackDto(id: $id, content: $content, feedbackType: $feedbackType, status: $status, imageUrl: $imageUrl, deviceInfo: $deviceInfo, appVersion: $appVersion, user: $user, createdDate: $createdDate, adminResponse: $adminResponse, respondedDate: $respondedDate)';
+    return 'AppFeedbackDto(id: $id, content: $content, feedbackType: $feedbackType, status: $status, imageUrl: $imageUrl, deviceInfo: $deviceInfo, appVersion: $appVersion, user: $user, createdDate: $createdDate, adminResponse: $adminResponse, adminUserId: $adminUserId, respondedDate: $respondedDate)';
   }
 }
 
@@ -460,6 +493,7 @@ abstract mixin class $AppFeedbackDtoCopyWith<$Res> {
       @JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'createdDate') DateTime createdDate,
       @JsonKey(name: 'adminResponse') String? adminResponse,
+      @JsonKey(name: 'adminUserId') String? adminUserId,
       @JsonKey(name: 'respondedDate') DateTime? respondedDate});
 
   $UserDtoCopyWith<$Res> get user;
@@ -488,6 +522,7 @@ class _$AppFeedbackDtoCopyWithImpl<$Res>
     Object? user = null,
     Object? createdDate = null,
     Object? adminResponse = freezed,
+    Object? adminUserId = freezed,
     Object? respondedDate = freezed,
   }) {
     return _then(_self.copyWith(
@@ -530,6 +565,10 @@ class _$AppFeedbackDtoCopyWithImpl<$Res>
       adminResponse: freezed == adminResponse
           ? _self.adminResponse
           : adminResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      adminUserId: freezed == adminUserId
+          ? _self.adminUserId
+          : adminUserId // ignore: cast_nullable_to_non_nullable
               as String?,
       respondedDate: freezed == respondedDate
           ? _self.respondedDate
@@ -651,6 +690,7 @@ extension AppFeedbackDtoPatterns on AppFeedbackDto {
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'adminResponse') String? adminResponse,
+            @JsonKey(name: 'adminUserId') String? adminUserId,
             @JsonKey(name: 'respondedDate') DateTime? respondedDate)?
         $default, {
     required TResult orElse(),
@@ -669,6 +709,7 @@ extension AppFeedbackDtoPatterns on AppFeedbackDto {
             _that.user,
             _that.createdDate,
             _that.adminResponse,
+            _that.adminUserId,
             _that.respondedDate);
       case _:
         return orElse();
@@ -701,6 +742,7 @@ extension AppFeedbackDtoPatterns on AppFeedbackDto {
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'adminResponse') String? adminResponse,
+            @JsonKey(name: 'adminUserId') String? adminUserId,
             @JsonKey(name: 'respondedDate') DateTime? respondedDate)
         $default,
   ) {
@@ -718,6 +760,7 @@ extension AppFeedbackDtoPatterns on AppFeedbackDto {
             _that.user,
             _that.createdDate,
             _that.adminResponse,
+            _that.adminUserId,
             _that.respondedDate);
     }
   }
@@ -747,6 +790,7 @@ extension AppFeedbackDtoPatterns on AppFeedbackDto {
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'adminResponse') String? adminResponse,
+            @JsonKey(name: 'adminUserId') String? adminUserId,
             @JsonKey(name: 'respondedDate') DateTime? respondedDate)?
         $default,
   ) {
@@ -764,6 +808,7 @@ extension AppFeedbackDtoPatterns on AppFeedbackDto {
             _that.user,
             _that.createdDate,
             _that.adminResponse,
+            _that.adminUserId,
             _that.respondedDate);
       case _:
         return null;
@@ -785,6 +830,7 @@ class _AppFeedbackDto implements AppFeedbackDto {
       @JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'createdDate') required this.createdDate,
       @JsonKey(name: 'adminResponse') this.adminResponse,
+      @JsonKey(name: 'adminUserId') this.adminUserId,
       @JsonKey(name: 'respondedDate') this.respondedDate});
   factory _AppFeedbackDto.fromJson(Map<String, dynamic> json) =>
       _$AppFeedbackDtoFromJson(json);
@@ -819,6 +865,9 @@ class _AppFeedbackDto implements AppFeedbackDto {
   @override
   @JsonKey(name: 'adminResponse')
   final String? adminResponse;
+  @override
+  @JsonKey(name: 'adminUserId')
+  final String? adminUserId;
   @override
   @JsonKey(name: 'respondedDate')
   final DateTime? respondedDate;
@@ -859,6 +908,8 @@ class _AppFeedbackDto implements AppFeedbackDto {
                 other.createdDate == createdDate) &&
             (identical(other.adminResponse, adminResponse) ||
                 other.adminResponse == adminResponse) &&
+            (identical(other.adminUserId, adminUserId) ||
+                other.adminUserId == adminUserId) &&
             (identical(other.respondedDate, respondedDate) ||
                 other.respondedDate == respondedDate));
   }
@@ -877,11 +928,12 @@ class _AppFeedbackDto implements AppFeedbackDto {
       user,
       createdDate,
       adminResponse,
+      adminUserId,
       respondedDate);
 
   @override
   String toString() {
-    return 'AppFeedbackDto(id: $id, content: $content, feedbackType: $feedbackType, status: $status, imageUrl: $imageUrl, deviceInfo: $deviceInfo, appVersion: $appVersion, user: $user, createdDate: $createdDate, adminResponse: $adminResponse, respondedDate: $respondedDate)';
+    return 'AppFeedbackDto(id: $id, content: $content, feedbackType: $feedbackType, status: $status, imageUrl: $imageUrl, deviceInfo: $deviceInfo, appVersion: $appVersion, user: $user, createdDate: $createdDate, adminResponse: $adminResponse, adminUserId: $adminUserId, respondedDate: $respondedDate)';
   }
 }
 
@@ -904,6 +956,7 @@ abstract mixin class _$AppFeedbackDtoCopyWith<$Res>
       @JsonKey(name: 'user') UserDto user,
       @JsonKey(name: 'createdDate') DateTime createdDate,
       @JsonKey(name: 'adminResponse') String? adminResponse,
+      @JsonKey(name: 'adminUserId') String? adminUserId,
       @JsonKey(name: 'respondedDate') DateTime? respondedDate});
 
   @override
@@ -933,6 +986,7 @@ class __$AppFeedbackDtoCopyWithImpl<$Res>
     Object? user = null,
     Object? createdDate = null,
     Object? adminResponse = freezed,
+    Object? adminUserId = freezed,
     Object? respondedDate = freezed,
   }) {
     return _then(_AppFeedbackDto(
@@ -975,6 +1029,10 @@ class __$AppFeedbackDtoCopyWithImpl<$Res>
       adminResponse: freezed == adminResponse
           ? _self.adminResponse
           : adminResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+      adminUserId: freezed == adminUserId
+          ? _self.adminUserId
+          : adminUserId // ignore: cast_nullable_to_non_nullable
               as String?,
       respondedDate: freezed == respondedDate
           ? _self.respondedDate
@@ -4685,334 +4743,6 @@ class __$FeedMetricsDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$FollowingResultDto {
-  @JsonKey(name: 'status')
-  FollowingStatusEnumDto get status;
-  @JsonKey(name: 'message')
-  String? get message;
-
-  /// Create a copy of FollowingResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $FollowingResultDtoCopyWith<FollowingResultDto> get copyWith =>
-      _$FollowingResultDtoCopyWithImpl<FollowingResultDto>(
-          this as FollowingResultDto, _$identity);
-
-  /// Serializes this FollowingResultDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is FollowingResultDto &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message);
-
-  @override
-  String toString() {
-    return 'FollowingResultDto(status: $status, message: $message)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $FollowingResultDtoCopyWith<$Res> {
-  factory $FollowingResultDtoCopyWith(
-          FollowingResultDto value, $Res Function(FollowingResultDto) _then) =
-      _$FollowingResultDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
-      @JsonKey(name: 'message') String? message});
-}
-
-/// @nodoc
-class _$FollowingResultDtoCopyWithImpl<$Res>
-    implements $FollowingResultDtoCopyWith<$Res> {
-  _$FollowingResultDtoCopyWithImpl(this._self, this._then);
-
-  final FollowingResultDto _self;
-  final $Res Function(FollowingResultDto) _then;
-
-  /// Create a copy of FollowingResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-  }) {
-    return _then(_self.copyWith(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [FollowingResultDto].
-extension FollowingResultDtoPatterns on FollowingResultDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_FollowingResultDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _FollowingResultDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_FollowingResultDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowingResultDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_FollowingResultDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowingResultDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
-            @JsonKey(name: 'message') String? message)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _FollowingResultDto() when $default != null:
-        return $default(_that.status, _that.message);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
-            @JsonKey(name: 'message') String? message)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowingResultDto():
-        return $default(_that.status, _that.message);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'status') FollowingStatusEnumDto status,
-            @JsonKey(name: 'message') String? message)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowingResultDto() when $default != null:
-        return $default(_that.status, _that.message);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _FollowingResultDto implements FollowingResultDto {
-  _FollowingResultDto(
-      {@JsonKey(name: 'status') required this.status,
-      @JsonKey(name: 'message') this.message});
-  factory _FollowingResultDto.fromJson(Map<String, dynamic> json) =>
-      _$FollowingResultDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'status')
-  final FollowingStatusEnumDto status;
-  @override
-  @JsonKey(name: 'message')
-  final String? message;
-
-  /// Create a copy of FollowingResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$FollowingResultDtoCopyWith<_FollowingResultDto> get copyWith =>
-      __$FollowingResultDtoCopyWithImpl<_FollowingResultDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$FollowingResultDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _FollowingResultDto &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, status, message);
-
-  @override
-  String toString() {
-    return 'FollowingResultDto(status: $status, message: $message)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$FollowingResultDtoCopyWith<$Res>
-    implements $FollowingResultDtoCopyWith<$Res> {
-  factory _$FollowingResultDtoCopyWith(
-          _FollowingResultDto value, $Res Function(_FollowingResultDto) _then) =
-      __$FollowingResultDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'status') FollowingStatusEnumDto status,
-      @JsonKey(name: 'message') String? message});
-}
-
-/// @nodoc
-class __$FollowingResultDtoCopyWithImpl<$Res>
-    implements _$FollowingResultDtoCopyWith<$Res> {
-  __$FollowingResultDtoCopyWithImpl(this._self, this._then);
-
-  final _FollowingResultDto _self;
-  final $Res Function(_FollowingResultDto) _then;
-
-  /// Create a copy of FollowingResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? status = null,
-    Object? message = freezed,
-  }) {
-    return _then(_FollowingResultDto(
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
 mixin _$FollowingStatusDto {
   @JsonKey(name: 'status')
   FollowingStatusEnumDto get status;
@@ -5698,363 +5428,6 @@ class __$FollowRequestDtoCopyWithImpl<$Res>
     return $UserDetailDtoCopyWith<$Res>(_self.requester, (value) {
       return _then(_self.copyWith(requester: value));
     });
-  }
-}
-
-/// @nodoc
-mixin _$FollowRequestResultDto {
-  @JsonKey(name: 'result')
-  String get result;
-  @JsonKey(name: 'newStatus')
-  FollowingStatusEnumDto get newStatus;
-  @JsonKey(name: 'message')
-  String? get message;
-
-  /// Create a copy of FollowRequestResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $FollowRequestResultDtoCopyWith<FollowRequestResultDto> get copyWith =>
-      _$FollowRequestResultDtoCopyWithImpl<FollowRequestResultDto>(
-          this as FollowRequestResultDto, _$identity);
-
-  /// Serializes this FollowRequestResultDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is FollowRequestResultDto &&
-            (identical(other.result, result) || other.result == result) &&
-            (identical(other.newStatus, newStatus) ||
-                other.newStatus == newStatus) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, result, newStatus, message);
-
-  @override
-  String toString() {
-    return 'FollowRequestResultDto(result: $result, newStatus: $newStatus, message: $message)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $FollowRequestResultDtoCopyWith<$Res> {
-  factory $FollowRequestResultDtoCopyWith(FollowRequestResultDto value,
-          $Res Function(FollowRequestResultDto) _then) =
-      _$FollowRequestResultDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'result') String result,
-      @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
-      @JsonKey(name: 'message') String? message});
-}
-
-/// @nodoc
-class _$FollowRequestResultDtoCopyWithImpl<$Res>
-    implements $FollowRequestResultDtoCopyWith<$Res> {
-  _$FollowRequestResultDtoCopyWithImpl(this._self, this._then);
-
-  final FollowRequestResultDto _self;
-  final $Res Function(FollowRequestResultDto) _then;
-
-  /// Create a copy of FollowRequestResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? result = null,
-    Object? newStatus = null,
-    Object? message = freezed,
-  }) {
-    return _then(_self.copyWith(
-      result: null == result
-          ? _self.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as String,
-      newStatus: null == newStatus
-          ? _self.newStatus
-          : newStatus // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [FollowRequestResultDto].
-extension FollowRequestResultDtoPatterns on FollowRequestResultDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_FollowRequestResultDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _FollowRequestResultDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_FollowRequestResultDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowRequestResultDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_FollowRequestResultDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowRequestResultDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'result') String result,
-            @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
-            @JsonKey(name: 'message') String? message)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _FollowRequestResultDto() when $default != null:
-        return $default(_that.result, _that.newStatus, _that.message);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'result') String result,
-            @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
-            @JsonKey(name: 'message') String? message)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowRequestResultDto():
-        return $default(_that.result, _that.newStatus, _that.message);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'result') String result,
-            @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
-            @JsonKey(name: 'message') String? message)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FollowRequestResultDto() when $default != null:
-        return $default(_that.result, _that.newStatus, _that.message);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _FollowRequestResultDto implements FollowRequestResultDto {
-  _FollowRequestResultDto(
-      {@JsonKey(name: 'result') required this.result,
-      @JsonKey(name: 'newStatus') required this.newStatus,
-      @JsonKey(name: 'message') this.message});
-  factory _FollowRequestResultDto.fromJson(Map<String, dynamic> json) =>
-      _$FollowRequestResultDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'result')
-  final String result;
-  @override
-  @JsonKey(name: 'newStatus')
-  final FollowingStatusEnumDto newStatus;
-  @override
-  @JsonKey(name: 'message')
-  final String? message;
-
-  /// Create a copy of FollowRequestResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$FollowRequestResultDtoCopyWith<_FollowRequestResultDto> get copyWith =>
-      __$FollowRequestResultDtoCopyWithImpl<_FollowRequestResultDto>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$FollowRequestResultDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _FollowRequestResultDto &&
-            (identical(other.result, result) || other.result == result) &&
-            (identical(other.newStatus, newStatus) ||
-                other.newStatus == newStatus) &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, result, newStatus, message);
-
-  @override
-  String toString() {
-    return 'FollowRequestResultDto(result: $result, newStatus: $newStatus, message: $message)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$FollowRequestResultDtoCopyWith<$Res>
-    implements $FollowRequestResultDtoCopyWith<$Res> {
-  factory _$FollowRequestResultDtoCopyWith(_FollowRequestResultDto value,
-          $Res Function(_FollowRequestResultDto) _then) =
-      __$FollowRequestResultDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'result') String result,
-      @JsonKey(name: 'newStatus') FollowingStatusEnumDto newStatus,
-      @JsonKey(name: 'message') String? message});
-}
-
-/// @nodoc
-class __$FollowRequestResultDtoCopyWithImpl<$Res>
-    implements _$FollowRequestResultDtoCopyWith<$Res> {
-  __$FollowRequestResultDtoCopyWithImpl(this._self, this._then);
-
-  final _FollowRequestResultDto _self;
-  final $Res Function(_FollowRequestResultDto) _then;
-
-  /// Create a copy of FollowRequestResultDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? result = null,
-    Object? newStatus = null,
-    Object? message = freezed,
-  }) {
-    return _then(_FollowRequestResultDto(
-      result: null == result
-          ? _self.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as String,
-      newStatus: null == newStatus
-          ? _self.newStatus
-          : newStatus // ignore: cast_nullable_to_non_nullable
-              as FollowingStatusEnumDto,
-      message: freezed == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
   }
 }
 
@@ -11769,6 +11142,8 @@ mixin _$ProfileDto {
   int get followersCount;
   @JsonKey(name: 'followingsCount')
   int get followingsCount;
+  @JsonKey(name: 'hasPendingFollowRequestToMe')
+  bool get hasPendingFollowRequestToMe;
 
   /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
@@ -11798,7 +11173,11 @@ mixin _$ProfileDto {
             (identical(other.followersCount, followersCount) ||
                 other.followersCount == followersCount) &&
             (identical(other.followingsCount, followingsCount) ||
-                other.followingsCount == followingsCount));
+                other.followingsCount == followingsCount) &&
+            (identical(other.hasPendingFollowRequestToMe,
+                    hasPendingFollowRequestToMe) ||
+                other.hasPendingFollowRequestToMe ==
+                    hasPendingFollowRequestToMe));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -11811,11 +11190,12 @@ mixin _$ProfileDto {
       supportersCount,
       const DeepCollectionEquality().hash(supportersUsers),
       followersCount,
-      followingsCount);
+      followingsCount,
+      hasPendingFollowRequestToMe);
 
   @override
   String toString() {
-    return 'ProfileDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount)';
+    return 'ProfileDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount, hasPendingFollowRequestToMe: $hasPendingFollowRequestToMe)';
   }
 }
 
@@ -11832,7 +11212,9 @@ abstract mixin class $ProfileDtoCopyWith<$Res> {
       @JsonKey(name: 'supportersCount') int supportersCount,
       @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
       @JsonKey(name: 'followersCount') int followersCount,
-      @JsonKey(name: 'followingsCount') int followingsCount});
+      @JsonKey(name: 'followingsCount') int followingsCount,
+      @JsonKey(name: 'hasPendingFollowRequestToMe')
+      bool hasPendingFollowRequestToMe});
 
   $UserDetailDtoCopyWith<$Res> get userDetail;
 }
@@ -11856,6 +11238,7 @@ class _$ProfileDtoCopyWithImpl<$Res> implements $ProfileDtoCopyWith<$Res> {
     Object? supportersUsers = freezed,
     Object? followersCount = null,
     Object? followingsCount = null,
+    Object? hasPendingFollowRequestToMe = null,
   }) {
     return _then(_self.copyWith(
       userDetail: null == userDetail
@@ -11886,6 +11269,10 @@ class _$ProfileDtoCopyWithImpl<$Res> implements $ProfileDtoCopyWith<$Res> {
           ? _self.followingsCount
           : followingsCount // ignore: cast_nullable_to_non_nullable
               as int,
+      hasPendingFollowRequestToMe: null == hasPendingFollowRequestToMe
+          ? _self.hasPendingFollowRequestToMe
+          : hasPendingFollowRequestToMe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -11998,7 +11385,9 @@ extension ProfileDtoPatterns on ProfileDto {
             @JsonKey(name: 'supportersCount') int supportersCount,
             @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
             @JsonKey(name: 'followersCount') int followersCount,
-            @JsonKey(name: 'followingsCount') int followingsCount)?
+            @JsonKey(name: 'followingsCount') int followingsCount,
+            @JsonKey(name: 'hasPendingFollowRequestToMe')
+            bool hasPendingFollowRequestToMe)?
         $default, {
     required TResult orElse(),
   }) {
@@ -12012,7 +11401,8 @@ extension ProfileDtoPatterns on ProfileDto {
             _that.supportersCount,
             _that.supportersUsers,
             _that.followersCount,
-            _that.followingsCount);
+            _that.followingsCount,
+            _that.hasPendingFollowRequestToMe);
       case _:
         return orElse();
     }
@@ -12040,7 +11430,9 @@ extension ProfileDtoPatterns on ProfileDto {
             @JsonKey(name: 'supportersCount') int supportersCount,
             @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
             @JsonKey(name: 'followersCount') int followersCount,
-            @JsonKey(name: 'followingsCount') int followingsCount)
+            @JsonKey(name: 'followingsCount') int followingsCount,
+            @JsonKey(name: 'hasPendingFollowRequestToMe')
+            bool hasPendingFollowRequestToMe)
         $default,
   ) {
     final _that = this;
@@ -12053,7 +11445,8 @@ extension ProfileDtoPatterns on ProfileDto {
             _that.supportersCount,
             _that.supportersUsers,
             _that.followersCount,
-            _that.followingsCount);
+            _that.followingsCount,
+            _that.hasPendingFollowRequestToMe);
     }
   }
 
@@ -12078,7 +11471,9 @@ extension ProfileDtoPatterns on ProfileDto {
             @JsonKey(name: 'supportersCount') int supportersCount,
             @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
             @JsonKey(name: 'followersCount') int followersCount,
-            @JsonKey(name: 'followingsCount') int followingsCount)?
+            @JsonKey(name: 'followingsCount') int followingsCount,
+            @JsonKey(name: 'hasPendingFollowRequestToMe')
+            bool hasPendingFollowRequestToMe)?
         $default,
   ) {
     final _that = this;
@@ -12091,7 +11486,8 @@ extension ProfileDtoPatterns on ProfileDto {
             _that.supportersCount,
             _that.supportersUsers,
             _that.followersCount,
-            _that.followingsCount);
+            _that.followingsCount,
+            _that.hasPendingFollowRequestToMe);
       case _:
         return null;
     }
@@ -12108,7 +11504,9 @@ class _ProfileDto implements ProfileDto {
       @JsonKey(name: 'supportersCount') this.supportersCount = 0,
       @JsonKey(name: 'supportersUsers') final List<UserDto>? supportersUsers,
       @JsonKey(name: 'followersCount') this.followersCount = 0,
-      @JsonKey(name: 'followingsCount') this.followingsCount = 0})
+      @JsonKey(name: 'followingsCount') this.followingsCount = 0,
+      @JsonKey(name: 'hasPendingFollowRequestToMe')
+      this.hasPendingFollowRequestToMe = false})
       : _badgesUsers = badgesUsers,
         _supportersUsers = supportersUsers;
   factory _ProfileDto.fromJson(Map<String, dynamic> json) =>
@@ -12151,6 +11549,9 @@ class _ProfileDto implements ProfileDto {
   @override
   @JsonKey(name: 'followingsCount')
   final int followingsCount;
+  @override
+  @JsonKey(name: 'hasPendingFollowRequestToMe')
+  final bool hasPendingFollowRequestToMe;
 
   /// Create a copy of ProfileDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12185,7 +11586,11 @@ class _ProfileDto implements ProfileDto {
             (identical(other.followersCount, followersCount) ||
                 other.followersCount == followersCount) &&
             (identical(other.followingsCount, followingsCount) ||
-                other.followingsCount == followingsCount));
+                other.followingsCount == followingsCount) &&
+            (identical(other.hasPendingFollowRequestToMe,
+                    hasPendingFollowRequestToMe) ||
+                other.hasPendingFollowRequestToMe ==
+                    hasPendingFollowRequestToMe));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -12198,11 +11603,12 @@ class _ProfileDto implements ProfileDto {
       supportersCount,
       const DeepCollectionEquality().hash(_supportersUsers),
       followersCount,
-      followingsCount);
+      followingsCount,
+      hasPendingFollowRequestToMe);
 
   @override
   String toString() {
-    return 'ProfileDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount)';
+    return 'ProfileDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount, hasPendingFollowRequestToMe: $hasPendingFollowRequestToMe)';
   }
 }
 
@@ -12221,7 +11627,9 @@ abstract mixin class _$ProfileDtoCopyWith<$Res>
       @JsonKey(name: 'supportersCount') int supportersCount,
       @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
       @JsonKey(name: 'followersCount') int followersCount,
-      @JsonKey(name: 'followingsCount') int followingsCount});
+      @JsonKey(name: 'followingsCount') int followingsCount,
+      @JsonKey(name: 'hasPendingFollowRequestToMe')
+      bool hasPendingFollowRequestToMe});
 
   @override
   $UserDetailDtoCopyWith<$Res> get userDetail;
@@ -12246,6 +11654,7 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
     Object? supportersUsers = freezed,
     Object? followersCount = null,
     Object? followingsCount = null,
+    Object? hasPendingFollowRequestToMe = null,
   }) {
     return _then(_ProfileDto(
       userDetail: null == userDetail
@@ -12276,6 +11685,10 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
           ? _self.followingsCount
           : followingsCount // ignore: cast_nullable_to_non_nullable
               as int,
+      hasPendingFollowRequestToMe: null == hasPendingFollowRequestToMe
+          ? _self.hasPendingFollowRequestToMe
+          : hasPendingFollowRequestToMe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -20672,6 +20085,8 @@ mixin _$UserDetailDto {
   UserDto get user;
   @JsonKey(name: 'followingStatus')
   FollowingStatusEnumDto get followingStatus;
+  @JsonKey(name: 'isFollowingMe')
+  bool get isFollowingMe;
 
   /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -20691,16 +20106,19 @@ mixin _$UserDetailDto {
             other is UserDetailDto &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.followingStatus, followingStatus) ||
-                other.followingStatus == followingStatus));
+                other.followingStatus == followingStatus) &&
+            (identical(other.isFollowingMe, isFollowingMe) ||
+                other.isFollowingMe == isFollowingMe));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user, followingStatus);
+  int get hashCode =>
+      Object.hash(runtimeType, user, followingStatus, isFollowingMe);
 
   @override
   String toString() {
-    return 'UserDetailDto(user: $user, followingStatus: $followingStatus)';
+    return 'UserDetailDto(user: $user, followingStatus: $followingStatus, isFollowingMe: $isFollowingMe)';
   }
 }
 
@@ -20712,8 +20130,8 @@ abstract mixin class $UserDetailDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus')
-      FollowingStatusEnumDto followingStatus});
+      @JsonKey(name: 'followingStatus') FollowingStatusEnumDto followingStatus,
+      @JsonKey(name: 'isFollowingMe') bool isFollowingMe});
 
   $UserDtoCopyWith<$Res> get user;
 }
@@ -20733,6 +20151,7 @@ class _$UserDetailDtoCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
     Object? followingStatus = null,
+    Object? isFollowingMe = null,
   }) {
     return _then(_self.copyWith(
       user: null == user
@@ -20743,6 +20162,10 @@ class _$UserDetailDtoCopyWithImpl<$Res>
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
               as FollowingStatusEnumDto,
+      isFollowingMe: null == isFollowingMe
+          ? _self.isFollowingMe
+          : isFollowingMe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -20851,14 +20274,15 @@ extension UserDetailDtoPatterns on UserDetailDto {
     TResult Function(
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto followingStatus)?
+            FollowingStatusEnumDto followingStatus,
+            @JsonKey(name: 'isFollowingMe') bool isFollowingMe)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _UserDetailDto() when $default != null:
-        return $default(_that.user, _that.followingStatus);
+        return $default(_that.user, _that.followingStatus, _that.isFollowingMe);
       case _:
         return orElse();
     }
@@ -20882,13 +20306,14 @@ extension UserDetailDtoPatterns on UserDetailDto {
     TResult Function(
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto followingStatus)
+            FollowingStatusEnumDto followingStatus,
+            @JsonKey(name: 'isFollowingMe') bool isFollowingMe)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserDetailDto():
-        return $default(_that.user, _that.followingStatus);
+        return $default(_that.user, _that.followingStatus, _that.isFollowingMe);
     }
   }
 
@@ -20909,13 +20334,14 @@ extension UserDetailDtoPatterns on UserDetailDto {
     TResult? Function(
             @JsonKey(name: 'user') UserDto user,
             @JsonKey(name: 'followingStatus')
-            FollowingStatusEnumDto followingStatus)?
+            FollowingStatusEnumDto followingStatus,
+            @JsonKey(name: 'isFollowingMe') bool isFollowingMe)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserDetailDto() when $default != null:
-        return $default(_that.user, _that.followingStatus);
+        return $default(_that.user, _that.followingStatus, _that.isFollowingMe);
       case _:
         return null;
     }
@@ -20928,7 +20354,8 @@ class _UserDetailDto implements UserDetailDto {
   _UserDetailDto(
       {@JsonKey(name: 'user') required this.user,
       @JsonKey(name: 'followingStatus')
-      this.followingStatus = FollowingStatusEnumDto.notFollowing});
+      this.followingStatus = FollowingStatusEnumDto.notFollowing,
+      @JsonKey(name: 'isFollowingMe') this.isFollowingMe = false});
   factory _UserDetailDto.fromJson(Map<String, dynamic> json) =>
       _$UserDetailDtoFromJson(json);
 
@@ -20938,6 +20365,9 @@ class _UserDetailDto implements UserDetailDto {
   @override
   @JsonKey(name: 'followingStatus')
   final FollowingStatusEnumDto followingStatus;
+  @override
+  @JsonKey(name: 'isFollowingMe')
+  final bool isFollowingMe;
 
   /// Create a copy of UserDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -20961,16 +20391,19 @@ class _UserDetailDto implements UserDetailDto {
             other is _UserDetailDto &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.followingStatus, followingStatus) ||
-                other.followingStatus == followingStatus));
+                other.followingStatus == followingStatus) &&
+            (identical(other.isFollowingMe, isFollowingMe) ||
+                other.isFollowingMe == isFollowingMe));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user, followingStatus);
+  int get hashCode =>
+      Object.hash(runtimeType, user, followingStatus, isFollowingMe);
 
   @override
   String toString() {
-    return 'UserDetailDto(user: $user, followingStatus: $followingStatus)';
+    return 'UserDetailDto(user: $user, followingStatus: $followingStatus, isFollowingMe: $isFollowingMe)';
   }
 }
 
@@ -20984,8 +20417,8 @@ abstract mixin class _$UserDetailDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'user') UserDto user,
-      @JsonKey(name: 'followingStatus')
-      FollowingStatusEnumDto followingStatus});
+      @JsonKey(name: 'followingStatus') FollowingStatusEnumDto followingStatus,
+      @JsonKey(name: 'isFollowingMe') bool isFollowingMe});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -21006,6 +20439,7 @@ class __$UserDetailDtoCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
     Object? followingStatus = null,
+    Object? isFollowingMe = null,
   }) {
     return _then(_UserDetailDto(
       user: null == user
@@ -21016,6 +20450,10 @@ class __$UserDetailDtoCopyWithImpl<$Res>
           ? _self.followingStatus
           : followingStatus // ignore: cast_nullable_to_non_nullable
               as FollowingStatusEnumDto,
+      isFollowingMe: null == isFollowingMe
+          ? _self.isFollowingMe
+          : isFollowingMe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -21058,8 +20496,6 @@ mixin _$UserDto {
   UserStatusDto get status;
   @JsonKey(name: 'isRestricted')
   bool get isRestricted;
-  @JsonKey(name: 'role')
-  UserRoleDto? get role;
 
   /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
@@ -21097,8 +20533,7 @@ mixin _$UserDto {
                 other.lastUpdated == lastUpdated) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.isRestricted, isRestricted) ||
-                other.isRestricted == isRestricted) &&
-            (identical(other.role, role) || other.role == role));
+                other.isRestricted == isRestricted));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -21117,12 +20552,11 @@ mixin _$UserDto {
       createdDate,
       lastUpdated,
       status,
-      isRestricted,
-      role);
+      isRestricted);
 
   @override
   String toString() {
-    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, isRestricted: $isRestricted, role: $role)';
+    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, isRestricted: $isRestricted)';
   }
 }
 
@@ -21144,8 +20578,7 @@ abstract mixin class $UserDtoCopyWith<$Res> {
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'status') UserStatusDto status,
-      @JsonKey(name: 'isRestricted') bool isRestricted,
-      @JsonKey(name: 'role') UserRoleDto? role});
+      @JsonKey(name: 'isRestricted') bool isRestricted});
 }
 
 /// @nodoc
@@ -21173,7 +20606,6 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
     Object? lastUpdated = freezed,
     Object? status = null,
     Object? isRestricted = null,
-    Object? role = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -21228,10 +20660,6 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
           ? _self.isRestricted
           : isRestricted // ignore: cast_nullable_to_non_nullable
               as bool,
-      role: freezed == role
-          ? _self.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as UserRoleDto?,
     ));
   }
 }
@@ -21340,8 +20768,7 @@ extension UserDtoPatterns on UserDto {
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
             @JsonKey(name: 'status') UserStatusDto status,
-            @JsonKey(name: 'isRestricted') bool isRestricted,
-            @JsonKey(name: 'role') UserRoleDto? role)?
+            @JsonKey(name: 'isRestricted') bool isRestricted)?
         $default, {
     required TResult orElse(),
   }) {
@@ -21361,8 +20788,7 @@ extension UserDtoPatterns on UserDto {
             _that.createdDate,
             _that.lastUpdated,
             _that.status,
-            _that.isRestricted,
-            _that.role);
+            _that.isRestricted);
       case _:
         return orElse();
     }
@@ -21396,8 +20822,7 @@ extension UserDtoPatterns on UserDto {
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
             @JsonKey(name: 'status') UserStatusDto status,
-            @JsonKey(name: 'isRestricted') bool isRestricted,
-            @JsonKey(name: 'role') UserRoleDto? role)
+            @JsonKey(name: 'isRestricted') bool isRestricted)
         $default,
   ) {
     final _that = this;
@@ -21416,8 +20841,7 @@ extension UserDtoPatterns on UserDto {
             _that.createdDate,
             _that.lastUpdated,
             _that.status,
-            _that.isRestricted,
-            _that.role);
+            _that.isRestricted);
     }
   }
 
@@ -21448,8 +20872,7 @@ extension UserDtoPatterns on UserDto {
             @JsonKey(name: 'createdDate') DateTime? createdDate,
             @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
             @JsonKey(name: 'status') UserStatusDto status,
-            @JsonKey(name: 'isRestricted') bool isRestricted,
-            @JsonKey(name: 'role') UserRoleDto? role)?
+            @JsonKey(name: 'isRestricted') bool isRestricted)?
         $default,
   ) {
     final _that = this;
@@ -21468,8 +20891,7 @@ extension UserDtoPatterns on UserDto {
             _that.createdDate,
             _that.lastUpdated,
             _that.status,
-            _that.isRestricted,
-            _that.role);
+            _that.isRestricted);
       case _:
         return null;
     }
@@ -21492,8 +20914,7 @@ class _UserDto implements UserDto {
       @JsonKey(name: 'createdDate') this.createdDate,
       @JsonKey(name: 'lastUpdated') this.lastUpdated,
       @JsonKey(name: 'status') this.status = UserStatusDto.active,
-      @JsonKey(name: 'isRestricted') this.isRestricted = false,
-      @JsonKey(name: 'role') this.role});
+      @JsonKey(name: 'isRestricted') this.isRestricted = false});
   factory _UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
 
@@ -21536,9 +20957,6 @@ class _UserDto implements UserDto {
   @override
   @JsonKey(name: 'isRestricted')
   final bool isRestricted;
-  @override
-  @JsonKey(name: 'role')
-  final UserRoleDto? role;
 
   /// Create a copy of UserDto
   /// with the given fields replaced by the non-null parameter values.
@@ -21581,8 +20999,7 @@ class _UserDto implements UserDto {
                 other.lastUpdated == lastUpdated) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.isRestricted, isRestricted) ||
-                other.isRestricted == isRestricted) &&
-            (identical(other.role, role) || other.role == role));
+                other.isRestricted == isRestricted));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -21601,12 +21018,11 @@ class _UserDto implements UserDto {
       createdDate,
       lastUpdated,
       status,
-      isRestricted,
-      role);
+      isRestricted);
 
   @override
   String toString() {
-    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, isRestricted: $isRestricted, role: $role)';
+    return 'UserDto(id: $id, displayName: $displayName, username: $username, description: $description, profilePictureUrl: $profilePictureUrl, phoneNumber: $phoneNumber, email: $email, age: $age, isPrivate: $isPrivate, createdDate: $createdDate, lastUpdated: $lastUpdated, status: $status, isRestricted: $isRestricted)';
   }
 }
 
@@ -21629,8 +21045,7 @@ abstract mixin class _$UserDtoCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdated') DateTime? lastUpdated,
       @JsonKey(name: 'status') UserStatusDto status,
-      @JsonKey(name: 'isRestricted') bool isRestricted,
-      @JsonKey(name: 'role') UserRoleDto? role});
+      @JsonKey(name: 'isRestricted') bool isRestricted});
 }
 
 /// @nodoc
@@ -21658,7 +21073,6 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
     Object? lastUpdated = freezed,
     Object? status = null,
     Object? isRestricted = null,
-    Object? role = freezed,
   }) {
     return _then(_UserDto(
       id: null == id
@@ -21713,10 +21127,6 @@ class __$UserDtoCopyWithImpl<$Res> implements _$UserDtoCopyWith<$Res> {
           ? _self.isRestricted
           : isRestricted // ignore: cast_nullable_to_non_nullable
               as bool,
-      role: freezed == role
-          ? _self.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as UserRoleDto?,
     ));
   }
 }

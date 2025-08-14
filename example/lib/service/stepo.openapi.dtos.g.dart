@@ -9,13 +9,21 @@ part of 'stepo.openapi.dtos.dart';
 _AccountDto _$AccountDtoFromJson(Map<String, dynamic> json) => _AccountDto(
       id: json['id'] as String,
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      role: $enumDecodeNullable(_$UserRoleDtoEnumMap, json['role']),
     );
 
 Map<String, dynamic> _$AccountDtoToJson(_AccountDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user': instance.user,
+      'role': _$UserRoleDtoEnumMap[instance.role],
     };
+
+const _$UserRoleDtoEnumMap = {
+  UserRoleDto.moderator: 'Moderator',
+  UserRoleDto.admin: 'Admin',
+  UserRoleDto.superAdmin: 'SuperAdmin',
+};
 
 _AppFeedbackDto _$AppFeedbackDtoFromJson(Map<String, dynamic> json) =>
     _AppFeedbackDto(
@@ -29,6 +37,7 @@ _AppFeedbackDto _$AppFeedbackDtoFromJson(Map<String, dynamic> json) =>
       user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
       createdDate: DateTime.parse(json['createdDate'] as String),
       adminResponse: json['adminResponse'] as String?,
+      adminUserId: json['adminUserId'] as String?,
       respondedDate: json['respondedDate'] == null
           ? null
           : DateTime.parse(json['respondedDate'] as String),
@@ -46,6 +55,7 @@ Map<String, dynamic> _$AppFeedbackDtoToJson(_AppFeedbackDto instance) =>
       'user': instance.user,
       'createdDate': instance.createdDate.toIso8601String(),
       'adminResponse': instance.adminResponse,
+      'adminUserId': instance.adminUserId,
       'respondedDate': instance.respondedDate?.toIso8601String(),
     };
 
@@ -232,24 +242,6 @@ Map<String, dynamic> _$FeedMetricsDtoToJson(_FeedMetricsDto instance) =>
       'lastRefresh': instance.lastRefresh.toIso8601String(),
     };
 
-_FollowingResultDto _$FollowingResultDtoFromJson(Map<String, dynamic> json) =>
-    _FollowingResultDto(
-      status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
-      message: json['message'] as String?,
-    );
-
-Map<String, dynamic> _$FollowingResultDtoToJson(_FollowingResultDto instance) =>
-    <String, dynamic>{
-      'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
-      'message': instance.message,
-    };
-
-const _$FollowingStatusEnumDtoEnumMap = {
-  FollowingStatusEnumDto.notFollowing: 'NotFollowing',
-  FollowingStatusEnumDto.following: 'Following',
-  FollowingStatusEnumDto.requested: 'Requested',
-};
-
 _FollowingStatusDto _$FollowingStatusDtoFromJson(Map<String, dynamic> json) =>
     _FollowingStatusDto(
       status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
@@ -259,6 +251,12 @@ Map<String, dynamic> _$FollowingStatusDtoToJson(_FollowingStatusDto instance) =>
     <String, dynamic>{
       'status': _$FollowingStatusEnumDtoEnumMap[instance.status]!,
     };
+
+const _$FollowingStatusEnumDtoEnumMap = {
+  FollowingStatusEnumDto.notFollowing: 'NotFollowing',
+  FollowingStatusEnumDto.following: 'Following',
+  FollowingStatusEnumDto.requested: 'Requested',
+};
 
 _FollowRequestDto _$FollowRequestDtoFromJson(Map<String, dynamic> json) =>
     _FollowRequestDto(
@@ -273,23 +271,6 @@ Map<String, dynamic> _$FollowRequestDtoToJson(_FollowRequestDto instance) =>
       'requesterId': instance.requesterId,
       'requester': instance.requester,
       'requestDate': instance.requestDate.toIso8601String(),
-    };
-
-_FollowRequestResultDto _$FollowRequestResultDtoFromJson(
-        Map<String, dynamic> json) =>
-    _FollowRequestResultDto(
-      result: json['result'] as String,
-      newStatus:
-          $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['newStatus']),
-      message: json['message'] as String?,
-    );
-
-Map<String, dynamic> _$FollowRequestResultDtoToJson(
-        _FollowRequestResultDto instance) =>
-    <String, dynamic>{
-      'result': instance.result,
-      'newStatus': _$FollowingStatusEnumDtoEnumMap[instance.newStatus]!,
-      'message': instance.message,
     };
 
 _InteractionResultDto _$InteractionResultDtoFromJson(
@@ -601,6 +582,8 @@ _ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => _ProfileDto(
           .toList(),
       followersCount: (json['followersCount'] as num?)?.toInt() ?? 0,
       followingsCount: (json['followingsCount'] as num?)?.toInt() ?? 0,
+      hasPendingFollowRequestToMe:
+          json['hasPendingFollowRequestToMe'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$ProfileDtoToJson(_ProfileDto instance) =>
@@ -612,6 +595,7 @@ Map<String, dynamic> _$ProfileDtoToJson(_ProfileDto instance) =>
       'supportersUsers': instance.supportersUsers,
       'followersCount': instance.followersCount,
       'followingsCount': instance.followingsCount,
+      'hasPendingFollowRequestToMe': instance.hasPendingFollowRequestToMe,
     };
 
 _RegisterDeviceDto _$RegisterDeviceDtoFromJson(Map<String, dynamic> json) =>
@@ -1038,6 +1022,7 @@ _UserDetailDto _$UserDetailDtoFromJson(Map<String, dynamic> json) =>
       followingStatus: $enumDecodeNullable(
               _$FollowingStatusEnumDtoEnumMap, json['followingStatus']) ??
           FollowingStatusEnumDto.notFollowing,
+      isFollowingMe: json['isFollowingMe'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$UserDetailDtoToJson(_UserDetailDto instance) =>
@@ -1045,6 +1030,7 @@ Map<String, dynamic> _$UserDetailDtoToJson(_UserDetailDto instance) =>
       'user': instance.user,
       'followingStatus':
           _$FollowingStatusEnumDtoEnumMap[instance.followingStatus]!,
+      'isFollowingMe': instance.isFollowingMe,
     };
 
 _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
@@ -1066,7 +1052,6 @@ _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
       status: $enumDecodeNullable(_$UserStatusDtoEnumMap, json['status']) ??
           UserStatusDto.active,
       isRestricted: json['isRestricted'] as bool? ?? false,
-      role: $enumDecodeNullable(_$UserRoleDtoEnumMap, json['role']),
     );
 
 Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
@@ -1083,14 +1068,7 @@ Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
       'lastUpdated': instance.lastUpdated?.toIso8601String(),
       'status': _$UserStatusDtoEnumMap[instance.status]!,
       'isRestricted': instance.isRestricted,
-      'role': _$UserRoleDtoEnumMap[instance.role],
     };
-
-const _$UserRoleDtoEnumMap = {
-  UserRoleDto.moderator: 'Moderator',
-  UserRoleDto.admin: 'Admin',
-  UserRoleDto.superAdmin: 'SuperAdmin',
-};
 
 _VideoPreSignedUrlDto _$VideoPreSignedUrlDtoFromJson(
         Map<String, dynamic> json) =>

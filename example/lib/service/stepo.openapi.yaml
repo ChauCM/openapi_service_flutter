@@ -2,6 +2,8 @@ openapi: 3.1.1
 info:
   title: StepoBackend.Api | v1
   version: 1.0.0
+servers:
+  - url: http://stepobackend.onrender.com/
 paths:
   /api/v1/account:
     get:
@@ -13,13 +15,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
     delete:
       tags:
         - Account
@@ -33,13 +35,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EditUserDto'
+              $ref: "#/components/schemas/EditUserDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/EditUserDto'
+              $ref: "#/components/schemas/EditUserDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/EditUserDto'
+              $ref: "#/components/schemas/EditUserDto"
         required: true
       responses:
         "200":
@@ -47,13 +49,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
   /api/v1/account/avatar:
     post:
       tags:
@@ -87,13 +89,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/AccountDto'
+                $ref: "#/components/schemas/AccountDto"
   /api/v1/account/journeys:
     get:
       tags:
@@ -125,17 +127,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyInProfileDto'
+                  $ref: "#/components/schemas/JourneyInProfileDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyInProfileDto'
+                  $ref: "#/components/schemas/JourneyInProfileDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyInProfileDto'
+                  $ref: "#/components/schemas/JourneyInProfileDto"
   /api/v1/account/steps:
     get:
       tags:
@@ -167,17 +169,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/auth/login:
     post:
       tags:
@@ -186,13 +188,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginDto'
+              $ref: "#/components/schemas/LoginDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/LoginDto'
+              $ref: "#/components/schemas/LoginDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/LoginDto'
+              $ref: "#/components/schemas/LoginDto"
         required: true
       responses:
         "200":
@@ -200,13 +202,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/LoginResponseDto'
+                $ref: "#/components/schemas/LoginResponseDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponseDto'
+                $ref: "#/components/schemas/LoginResponseDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/LoginResponseDto'
+                $ref: "#/components/schemas/LoginResponseDto"
   /api/v1/users/{id}:
     get:
       tags:
@@ -223,13 +225,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/ProfileDto'
+                $ref: "#/components/schemas/ProfileDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/ProfileDto'
+                $ref: "#/components/schemas/ProfileDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/ProfileDto'
+                $ref: "#/components/schemas/ProfileDto"
   /api/v1/users/{id}/journeys:
     get:
       tags:
@@ -266,17 +268,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyInProfileDto'
+                  $ref: "#/components/schemas/JourneyInProfileDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyInProfileDto'
+                  $ref: "#/components/schemas/JourneyInProfileDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyInProfileDto'
+                  $ref: "#/components/schemas/JourneyInProfileDto"
   /api/v1/users/{id}/steps:
     get:
       tags:
@@ -313,17 +315,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/steps:
     post:
       tags:
@@ -333,13 +335,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateStepDto'
+              $ref: "#/components/schemas/CreateStepDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/CreateStepDto'
+              $ref: "#/components/schemas/CreateStepDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateStepDto'
+              $ref: "#/components/schemas/CreateStepDto"
         required: true
       responses:
         "200":
@@ -347,13 +349,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
   /api/v1/steps/{stepId}:
     get:
       tags:
@@ -372,13 +374,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
     put:
       tags:
         - Steps
@@ -394,13 +396,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateStepDto'
+              $ref: "#/components/schemas/UpdateStepDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/UpdateStepDto'
+              $ref: "#/components/schemas/UpdateStepDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateStepDto'
+              $ref: "#/components/schemas/UpdateStepDto"
         required: true
       responses:
         "200":
@@ -408,13 +410,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
     delete:
       tags:
         - Steps
@@ -470,13 +472,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StepMediaDto'
+                $ref: "#/components/schemas/StepMediaDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/StepMediaDto'
+                $ref: "#/components/schemas/StepMediaDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/StepMediaDto'
+                $ref: "#/components/schemas/StepMediaDto"
   /api/v1/steps/{stepId}/video:
     put:
       tags:
@@ -495,13 +497,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/VideoPreSignedUrlDto'
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/VideoPreSignedUrlDto'
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/VideoPreSignedUrlDto'
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
   /api/v1/reports:
     post:
       tags:
@@ -511,13 +513,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ReportCreatingDto'
+              $ref: "#/components/schemas/ReportCreatingDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/ReportCreatingDto'
+              $ref: "#/components/schemas/ReportCreatingDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ReportCreatingDto'
+              $ref: "#/components/schemas/ReportCreatingDto"
         required: true
       responses:
         "200":
@@ -525,13 +527,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/ReportDto'
+                $ref: "#/components/schemas/ReportDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/ReportDto'
+                $ref: "#/components/schemas/ReportDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/ReportDto'
+                $ref: "#/components/schemas/ReportDto"
     get:
       tags:
         - Reports
@@ -563,17 +565,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ReportDto'
+                  $ref: "#/components/schemas/ReportDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ReportDto'
+                  $ref: "#/components/schemas/ReportDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ReportDto'
+                  $ref: "#/components/schemas/ReportDto"
   /api/v1/admin/notifications/test-send:
     post:
       tags:
@@ -583,13 +585,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TestNotificationDto'
+              $ref: "#/components/schemas/TestNotificationDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/TestNotificationDto'
+              $ref: "#/components/schemas/TestNotificationDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/TestNotificationDto'
+              $ref: "#/components/schemas/TestNotificationDto"
         required: true
       responses:
         "200":
@@ -597,13 +599,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/TestNotificationResultDto'
+                $ref: "#/components/schemas/TestNotificationResultDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/TestNotificationResultDto'
+                $ref: "#/components/schemas/TestNotificationResultDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/TestNotificationResultDto'
+                $ref: "#/components/schemas/TestNotificationResultDto"
   /api/v1/notifications/devices/register:
     post:
       tags:
@@ -613,13 +615,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterDeviceDto'
+              $ref: "#/components/schemas/RegisterDeviceDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/RegisterDeviceDto'
+              $ref: "#/components/schemas/RegisterDeviceDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/RegisterDeviceDto'
+              $ref: "#/components/schemas/RegisterDeviceDto"
         required: true
       responses:
         "200":
@@ -627,13 +629,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/DeviceTokenDto'
+                $ref: "#/components/schemas/DeviceTokenDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/DeviceTokenDto'
+                $ref: "#/components/schemas/DeviceTokenDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/DeviceTokenDto'
+                $ref: "#/components/schemas/DeviceTokenDto"
   /api/v1/notifications/devices/{token}:
     delete:
       tags:
@@ -661,17 +663,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceTokenDto'
+                  $ref: "#/components/schemas/DeviceTokenDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceTokenDto'
+                  $ref: "#/components/schemas/DeviceTokenDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DeviceTokenDto'
+                  $ref: "#/components/schemas/DeviceTokenDto"
   /api/v1/notifications/devices/validate:
     post:
       tags:
@@ -683,13 +685,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/TokenValidationResultDto'
+                $ref: "#/components/schemas/TokenValidationResultDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/TokenValidationResultDto'
+                $ref: "#/components/schemas/TokenValidationResultDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/TokenValidationResultDto'
+                $ref: "#/components/schemas/TokenValidationResultDto"
   /api/v1/notifications/preferences:
     get:
       tags:
@@ -701,13 +703,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/NotificationPreferencesDto'
+                $ref: "#/components/schemas/NotificationPreferencesDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationPreferencesDto'
+                $ref: "#/components/schemas/NotificationPreferencesDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/NotificationPreferencesDto'
+                $ref: "#/components/schemas/NotificationPreferencesDto"
     put:
       tags:
         - NotificationPreferences
@@ -716,13 +718,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdatePreferencesDto'
+              $ref: "#/components/schemas/UpdatePreferencesDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/UpdatePreferencesDto'
+              $ref: "#/components/schemas/UpdatePreferencesDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdatePreferencesDto'
+              $ref: "#/components/schemas/UpdatePreferencesDto"
         required: true
       responses:
         "200":
@@ -730,13 +732,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/NotificationPreferencesDto'
+                $ref: "#/components/schemas/NotificationPreferencesDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationPreferencesDto'
+                $ref: "#/components/schemas/NotificationPreferencesDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/NotificationPreferencesDto'
+                $ref: "#/components/schemas/NotificationPreferencesDto"
   /api/v1/notifications:
     get:
       tags:
@@ -767,13 +769,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/NotificationPagedDto'
+                $ref: "#/components/schemas/NotificationPagedDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/NotificationPagedDto'
+                $ref: "#/components/schemas/NotificationPagedDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/NotificationPagedDto'
+                $ref: "#/components/schemas/NotificationPagedDto"
   /api/v1/notifications/summary:
     get:
       tags:
@@ -858,13 +860,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
         required: true
       responses:
         "200":
@@ -885,13 +887,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
         required: true
       responses:
         "200":
@@ -912,13 +914,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/RemoveContentDto'
+              $ref: "#/components/schemas/RemoveContentDto"
         required: true
       responses:
         "200":
@@ -938,13 +940,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BanUserDto'
+              $ref: "#/components/schemas/BanUserDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/BanUserDto'
+              $ref: "#/components/schemas/BanUserDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/BanUserDto'
+              $ref: "#/components/schemas/BanUserDto"
         required: true
       responses:
         "200":
@@ -978,13 +980,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserStatusDto'
+              $ref: "#/components/schemas/UpdateUserStatusDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserStatusDto'
+              $ref: "#/components/schemas/UpdateUserStatusDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateUserStatusDto'
+              $ref: "#/components/schemas/UpdateUserStatusDto"
         required: true
       responses:
         "200":
@@ -1073,13 +1075,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/VideoPreSignedUrlDto'
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/VideoPreSignedUrlDto'
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/VideoPreSignedUrlDto'
+                $ref: "#/components/schemas/VideoPreSignedUrlDto"
   /api/v1/media/{mediaId}:
     get:
       tags:
@@ -1097,13 +1099,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StepMediaDto'
+                $ref: "#/components/schemas/StepMediaDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/StepMediaDto'
+                $ref: "#/components/schemas/StepMediaDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/StepMediaDto'
+                $ref: "#/components/schemas/StepMediaDto"
   /api/v1/webhooks/video-updates:
     post:
       tags:
@@ -1112,13 +1114,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/VideoStatusDto'
+              $ref: "#/components/schemas/VideoStatusDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/VideoStatusDto'
+              $ref: "#/components/schemas/VideoStatusDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/VideoStatusDto'
+              $ref: "#/components/schemas/VideoStatusDto"
         required: true
       responses:
         "200":
@@ -1197,13 +1199,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/JourneyInDetailDto'
+                $ref: "#/components/schemas/JourneyInDetailDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/JourneyInDetailDto'
+                $ref: "#/components/schemas/JourneyInDetailDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/JourneyInDetailDto'
+                $ref: "#/components/schemas/JourneyInDetailDto"
     put:
       tags:
         - Journeys
@@ -1219,13 +1221,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateJourneyDto'
+              $ref: "#/components/schemas/UpdateJourneyDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/UpdateJourneyDto'
+              $ref: "#/components/schemas/UpdateJourneyDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateJourneyDto'
+              $ref: "#/components/schemas/UpdateJourneyDto"
         required: true
       responses:
         "200":
@@ -1233,13 +1235,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
     delete:
       tags:
         - Journeys
@@ -1263,13 +1265,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/JourneyCreatingDto'
+              $ref: "#/components/schemas/JourneyCreatingDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/JourneyCreatingDto'
+              $ref: "#/components/schemas/JourneyCreatingDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/JourneyCreatingDto'
+              $ref: "#/components/schemas/JourneyCreatingDto"
         required: true
       responses:
         "200":
@@ -1277,13 +1279,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/StepDetailDto'
+                $ref: "#/components/schemas/StepDetailDto"
   /api/v1/journeys/{id}/close:
     post:
       tags:
@@ -1307,13 +1309,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
   /api/v1/journeys/{id}/reopen:
     post:
       tags:
@@ -1332,13 +1334,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/JourneyDto'
+                $ref: "#/components/schemas/JourneyDto"
   /api/v1/journeys/{journeyId}/steps-detail:
     get:
       tags:
@@ -1377,17 +1379,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/journeys/{journeyId}/steps:
     get:
       tags:
@@ -1426,17 +1428,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/journeys/{journeyId}/calendar:
     get:
       tags:
@@ -1457,17 +1459,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyDayCalendarDto'
+                  $ref: "#/components/schemas/JourneyDayCalendarDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyDayCalendarDto'
+                  $ref: "#/components/schemas/JourneyDayCalendarDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/JourneyDayCalendarDto'
+                  $ref: "#/components/schemas/JourneyDayCalendarDto"
   /api/v1/journeys/newer-steps/{stepId}:
     get:
       tags:
@@ -1506,17 +1508,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/journeys/older-steps/{stepId}:
     get:
       tags:
@@ -1555,17 +1557,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/steps/{stepId}/hearts:
     post:
       tags:
@@ -1581,13 +1583,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateStepInteractionDto'
+              $ref: "#/components/schemas/CreateStepInteractionDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/CreateStepInteractionDto'
+              $ref: "#/components/schemas/CreateStepInteractionDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateStepInteractionDto'
+              $ref: "#/components/schemas/CreateStepInteractionDto"
         required: true
       responses:
         "200":
@@ -1595,13 +1597,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
     delete:
       tags:
         - Interactions
@@ -1618,13 +1620,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
   /api/v1/steps/{stepId}/shares:
     post:
       tags:
@@ -1640,13 +1642,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateStepInteractionDto'
+              $ref: "#/components/schemas/CreateStepInteractionDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/CreateStepInteractionDto'
+              $ref: "#/components/schemas/CreateStepInteractionDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateStepInteractionDto'
+              $ref: "#/components/schemas/CreateStepInteractionDto"
         required: true
       responses:
         "200":
@@ -1654,13 +1656,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
   /api/v1/steps/{stepId}/interactions:
     get:
       tags:
@@ -1678,13 +1680,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/InteractionResultDto'
+                $ref: "#/components/schemas/InteractionResultDto"
   /api/v1/steps/comments/{commentId}/hearts:
     post:
       tags:
@@ -1700,13 +1702,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCommentInteractionDto'
+              $ref: "#/components/schemas/CreateCommentInteractionDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/CreateCommentInteractionDto'
+              $ref: "#/components/schemas/CreateCommentInteractionDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateCommentInteractionDto'
+              $ref: "#/components/schemas/CreateCommentInteractionDto"
         required: true
       responses:
         "200":
@@ -1776,17 +1778,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
   /api/v1/account/followings:
     get:
       tags:
@@ -1819,17 +1821,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
   /api/v1/account/follow-requests/incoming:
     get:
       tags:
@@ -1862,17 +1864,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FollowRequestDto'
+                  $ref: "#/components/schemas/FollowRequestDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FollowRequestDto'
+                  $ref: "#/components/schemas/FollowRequestDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FollowRequestDto'
+                  $ref: "#/components/schemas/FollowRequestDto"
   /api/v1/account/follow-requests/outgoing:
     get:
       tags:
@@ -1905,17 +1907,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FollowRequestDto'
+                  $ref: "#/components/schemas/FollowRequestDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FollowRequestDto'
+                  $ref: "#/components/schemas/FollowRequestDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FollowRequestDto'
+                  $ref: "#/components/schemas/FollowRequestDto"
   /api/v1/account/follow-requests/{requesterId}/accept:
     post:
       tags:
@@ -1930,16 +1932,6 @@ paths:
       responses:
         "200":
           description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/FollowRequestResultDto'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FollowRequestResultDto'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/FollowRequestResultDto'
   /api/v1/account/follow-requests/{requesterId}/reject:
     delete:
       tags:
@@ -1954,16 +1946,20 @@ paths:
       responses:
         "200":
           description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/FollowRequestResultDto'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FollowRequestResultDto'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/FollowRequestResultDto'
+  /api/v1/account/followers/{followerId}/remove:
+    delete:
+      tags:
+        - AccountFollow
+      summary: Remove a follower (make someone unfollow you)
+      parameters:
+        - name: followerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
   /api/v1/users/{userId}/follow:
     post:
       tags:
@@ -1978,16 +1974,6 @@ paths:
       responses:
         "200":
           description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/FollowingResultDto'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FollowingResultDto'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/FollowingResultDto'
     delete:
       tags:
         - UsersFollow
@@ -2001,16 +1987,6 @@ paths:
       responses:
         "200":
           description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/FollowingResultDto'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/FollowingResultDto'
-            text/json:
-              schema:
-                $ref: '#/components/schemas/FollowingResultDto'
   /api/v1/users/{userId}/follow-status:
     get:
       tags:
@@ -2028,13 +2004,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/FollowingStatusDto'
+                $ref: "#/components/schemas/FollowingStatusDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/FollowingStatusDto'
+                $ref: "#/components/schemas/FollowingStatusDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/FollowingStatusDto'
+                $ref: "#/components/schemas/FollowingStatusDto"
   /api/v1/users/{userId}/followers:
     get:
       tags:
@@ -2072,17 +2048,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
   /api/v1/users/{userId}/followings:
     get:
       tags:
@@ -2120,17 +2096,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UserDetailDto'
+                  $ref: "#/components/schemas/UserDetailDto"
   /api/v1/users/{userId}/followers/count:
     get:
       tags:
@@ -2207,6 +2183,7 @@ paths:
     get:
       tags:
         - Feed
+      summary: Get user's personalized feed with following and discovery content
       parameters:
         - name: page
           in: query
@@ -2234,38 +2211,40 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/feed/metrics:
     get:
       tags:
         - Feed
+      summary: Get user's feed composition metrics
       responses:
         "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/FeedMetricsDto'
+                $ref: "#/components/schemas/FeedMetricsDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/FeedMetricsDto'
+                $ref: "#/components/schemas/FeedMetricsDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/FeedMetricsDto'
+                $ref: "#/components/schemas/FeedMetricsDto"
   /api/v1/feed/hot:
     get:
       tags:
         - Feed
+      summary: Get hot trending content from the platform
       parameters:
         - name: page
           in: query
@@ -2293,21 +2272,22 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/feed/following:
     get:
       tags:
         - Feed
+      summary: Get latest content from followed users
       parameters:
         - name: page
           in: query
@@ -2335,17 +2315,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepDetailDto'
+                  $ref: "#/components/schemas/StepDetailDto"
   /api/v1/comments/{commentId}:
     delete:
       tags:
@@ -2377,13 +2357,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateReplyCommentDto'
+              $ref: "#/components/schemas/CreateReplyCommentDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/CreateReplyCommentDto'
+              $ref: "#/components/schemas/CreateReplyCommentDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateReplyCommentDto'
+              $ref: "#/components/schemas/CreateReplyCommentDto"
         required: true
       responses:
         "200":
@@ -2391,13 +2371,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/ReplyDto'
+                $ref: "#/components/schemas/ReplyDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/ReplyDto'
+                $ref: "#/components/schemas/ReplyDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/ReplyDto'
+                $ref: "#/components/schemas/ReplyDto"
   /api/v1/comments/{commentId}/replies:
     get:
       tags:
@@ -2436,17 +2416,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ReplyDto'
+                  $ref: "#/components/schemas/ReplyDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ReplyDto'
+                  $ref: "#/components/schemas/ReplyDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ReplyDto'
+                  $ref: "#/components/schemas/ReplyDto"
   /api/v1/steps/{stepId}/comments:
     get:
       tags:
@@ -2484,17 +2464,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepCommentDto'
+                  $ref: "#/components/schemas/StepCommentDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepCommentDto'
+                  $ref: "#/components/schemas/StepCommentDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/StepCommentDto'
+                  $ref: "#/components/schemas/StepCommentDto"
     post:
       tags:
         - StepComments
@@ -2509,13 +2489,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateStepCommentDto'
+              $ref: "#/components/schemas/CreateStepCommentDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/CreateStepCommentDto'
+              $ref: "#/components/schemas/CreateStepCommentDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateStepCommentDto'
+              $ref: "#/components/schemas/CreateStepCommentDto"
         required: true
       responses:
         "200":
@@ -2523,13 +2503,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StepCommentDto'
+                $ref: "#/components/schemas/StepCommentDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/StepCommentDto'
+                $ref: "#/components/schemas/StepCommentDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/StepCommentDto'
+                $ref: "#/components/schemas/StepCommentDto"
   /api/v1/admin/feedback:
     get:
       tags:
@@ -2557,24 +2537,24 @@ paths:
         - name: type
           in: query
           schema:
-            type: string
+            $ref: "#/components/schemas/NullableOfFeedbackType"
         - name: status
           in: query
           schema:
-            type: string
+            $ref: "#/components/schemas/NullableOfFeedbackStatus"
       responses:
         "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/PageResponseOfAppFeedbackDto'
+                $ref: "#/components/schemas/PageResponseOfAppFeedbackDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/PageResponseOfAppFeedbackDto'
+                $ref: "#/components/schemas/PageResponseOfAppFeedbackDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/PageResponseOfAppFeedbackDto'
+                $ref: "#/components/schemas/PageResponseOfAppFeedbackDto"
   /api/v1/admin/feedback/{id}/status:
     put:
       tags:
@@ -2591,13 +2571,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateFeedbackStatusDto'
+              $ref: "#/components/schemas/UpdateFeedbackStatusDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/UpdateFeedbackStatusDto'
+              $ref: "#/components/schemas/UpdateFeedbackStatusDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/UpdateFeedbackStatusDto'
+              $ref: "#/components/schemas/UpdateFeedbackStatusDto"
         required: true
       responses:
         "200":
@@ -2605,13 +2585,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
   /api/v1/appfeedback:
     post:
       tags:
@@ -2621,13 +2601,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateAppFeedbackDto'
+              $ref: "#/components/schemas/CreateAppFeedbackDto"
           text/json:
             schema:
-              $ref: '#/components/schemas/CreateAppFeedbackDto'
+              $ref: "#/components/schemas/CreateAppFeedbackDto"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/CreateAppFeedbackDto'
+              $ref: "#/components/schemas/CreateAppFeedbackDto"
         required: true
       responses:
         "200":
@@ -2635,13 +2615,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
   /api/v1/appfeedback/{feedbackId}/image:
     post:
       tags:
@@ -2683,13 +2663,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
   /api/v1/appfeedback/{id}:
     get:
       tags:
@@ -2708,13 +2688,13 @@ paths:
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             application/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
             text/json:
               schema:
-                $ref: '#/components/schemas/AppFeedbackDto'
+                $ref: "#/components/schemas/AppFeedbackDto"
     delete:
       tags:
         - AppFeedback
@@ -2742,17 +2722,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AppFeedbackDto'
+                  $ref: "#/components/schemas/AppFeedbackDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AppFeedbackDto'
+                  $ref: "#/components/schemas/AppFeedbackDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AppFeedbackDto'
+                  $ref: "#/components/schemas/AppFeedbackDto"
 components:
   schemas:
     AccountDto:
@@ -2764,7 +2744,9 @@ components:
         id:
           type: string
         user:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
+        role:
+          $ref: "#/components/schemas/NullableOfUserRole"
     AppFeedbackDto:
       required:
         - id
@@ -2781,9 +2763,9 @@ components:
         content:
           type: string
         feedbackType:
-          $ref: '#/components/schemas/FeedbackType'
+          $ref: "#/components/schemas/FeedbackType"
         status:
-          $ref: '#/components/schemas/FeedbackStatus'
+          $ref: "#/components/schemas/FeedbackStatus"
         imageUrl:
           type:
             - "null"
@@ -2797,11 +2779,15 @@ components:
             - "null"
             - string
         user:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
         createdDate:
           type: string
           format: date-time
         adminResponse:
+          type:
+            - "null"
+            - string
+        adminUserId:
           type:
             - "null"
             - string
@@ -2836,7 +2822,7 @@ components:
           maxLength: 1000
           type: string
         feedbackType:
-          $ref: '#/components/schemas/FeedbackType'
+          $ref: "#/components/schemas/FeedbackType"
         deviceInfo:
           type:
             - "null"
@@ -2850,7 +2836,7 @@ components:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/InteractionType'
+          $ref: "#/components/schemas/InteractionType"
     CreateReplyCommentDto:
       required:
         - content
@@ -2898,7 +2884,7 @@ components:
       type: object
       properties:
         type:
-          $ref: '#/components/schemas/InteractionType'
+          $ref: "#/components/schemas/InteractionType"
     DeviceTokenDto:
       type: object
       properties:
@@ -2996,24 +2982,13 @@ components:
         lastRefresh:
           type: string
           format: date-time
-    FollowingResultDto:
-      required:
-        - status
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/FollowingStatusEnum'
-        message:
-          type:
-            - "null"
-            - string
     FollowingStatusDto:
       required:
         - status
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/FollowingStatusEnum'
+          $ref: "#/components/schemas/FollowingStatusEnum"
     FollowingStatusEnum:
       enum:
         - NotFollowing
@@ -3030,24 +3005,10 @@ components:
         requesterId:
           type: string
         requester:
-          $ref: '#/components/schemas/UserDetailDto'
+          $ref: "#/components/schemas/UserDetailDto"
         requestDate:
           type: string
           format: date-time
-    FollowRequestResultDto:
-      required:
-        - result
-        - newStatus
-      type: object
-      properties:
-        result:
-          type: string
-        newStatus:
-          $ref: '#/components/schemas/FollowingStatusEnum'
-        message:
-          type:
-            - "null"
-            - string
     InteractionResultDto:
       type: object
       properties:
@@ -3098,7 +3059,7 @@ components:
       type: object
       properties:
         lastStep:
-          $ref: '#/components/schemas/StepDto'
+          $ref: "#/components/schemas/StepDto"
         totalSteps:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3171,7 +3132,7 @@ components:
       type: object
       properties:
         journey:
-          $ref: '#/components/schemas/JourneyDto'
+          $ref: "#/components/schemas/JourneyDto"
         stepsCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3191,7 +3152,7 @@ components:
         latestSteppers:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: "#/components/schemas/UserDto"
         starterCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3201,7 +3162,7 @@ components:
         latestStarters:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: "#/components/schemas/UserDto"
         companionCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3211,7 +3172,7 @@ components:
         latestCompanions:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: "#/components/schemas/UserDto"
         celebratorCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3221,7 +3182,7 @@ components:
         latestCelebrators:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: "#/components/schemas/UserDto"
         companionProgress:
           pattern: ^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$
           type:
@@ -3241,7 +3202,7 @@ components:
       type: object
       properties:
         journey:
-          $ref: '#/components/schemas/JourneyDto'
+          $ref: "#/components/schemas/JourneyDto"
         stepsCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3251,7 +3212,7 @@ components:
         thumbnailSteps:
           type: array
           items:
-            $ref: '#/components/schemas/StepMediaDto'
+            $ref: "#/components/schemas/StepMediaDto"
     LoginDto:
       required:
         - email
@@ -3292,7 +3253,7 @@ components:
           type: string
           default: ""
         notificationType:
-          $ref: '#/components/schemas/NotificationType'
+          $ref: "#/components/schemas/NotificationType"
         isRead:
           type: boolean
         createdDate:
@@ -3316,14 +3277,14 @@ components:
             - string
           format: uuid
         sourceUser:
-          $ref: '#/components/schemas/UserDetailDto'
+          $ref: "#/components/schemas/UserDetailDto"
     NotificationPagedDto:
       type: object
       properties:
         notifications:
           type: array
           items:
-            $ref: '#/components/schemas/NotificationDto'
+            $ref: "#/components/schemas/NotificationDto"
         page:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3391,6 +3352,23 @@ components:
         - ModerationAlert
         - AccountWarning
         - SecurityAlert
+    NullableOfFeedbackStatus:
+      enum:
+        - Open
+        - InProgress
+        - Resolved
+        - Closed
+        - Duplicate
+        - null
+    NullableOfFeedbackType:
+      enum:
+        - BugReport
+        - FeatureRequest
+        - GeneralFeedback
+        - UiUxIssue
+        - Performance
+        - Other
+        - null
     NullableOfUserRole:
       enum:
         - Moderator
@@ -3403,7 +3381,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/AppFeedbackDto'
+            $ref: "#/components/schemas/AppFeedbackDto"
         page:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3438,7 +3416,7 @@ components:
       type: object
       properties:
         userDetail:
-          $ref: '#/components/schemas/UserDetailDto'
+          $ref: "#/components/schemas/UserDetailDto"
         badgesCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3449,7 +3427,7 @@ components:
         badgesUsers:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: "#/components/schemas/UserDto"
         supportersCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3460,7 +3438,7 @@ components:
         supportersUsers:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: "#/components/schemas/UserDto"
         followersCount:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3475,6 +3453,9 @@ components:
             - string
           format: int32
           default: 0
+        hasPendingFollowRequestToMe:
+          type: boolean
+          default: false
     RegisterDeviceDto:
       type: object
       properties:
@@ -3534,12 +3515,12 @@ components:
             - string
           format: date-time
         user:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
         parentCommentId:
           type: string
           format: uuid
         responseToUser:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
         responseToCommentId:
           type:
             - "null"
@@ -3585,7 +3566,7 @@ components:
           type: string
           default: ""
         reporter:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
         reason:
           type: string
         createdDate:
@@ -3618,7 +3599,7 @@ components:
             - string
           format: date-time
         user:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
         stepId:
           type: string
           format: uuid
@@ -3663,9 +3644,9 @@ components:
       type: object
       properties:
         user:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
         journey:
-          $ref: '#/components/schemas/JourneyDto'
+          $ref: "#/components/schemas/JourneyDto"
         hearts:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
@@ -3713,13 +3694,13 @@ components:
         othersStepWithUsers:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
+            $ref: "#/components/schemas/UserDto"
         stepType:
-          $ref: '#/components/schemas/StepType'
+          $ref: "#/components/schemas/StepType"
         media:
           type: array
           items:
-            $ref: '#/components/schemas/StepMediaDto'
+            $ref: "#/components/schemas/StepMediaDto"
         id:
           type: string
           format: uuid
@@ -3788,7 +3769,7 @@ components:
             - string
           format: double
         media:
-          $ref: '#/components/schemas/StepMediaDto'
+          $ref: "#/components/schemas/StepMediaDto"
         isDeleted:
           type: boolean
           default: false
@@ -3868,7 +3849,7 @@ components:
             - string
           format: double
         status:
-          $ref: '#/components/schemas/MediaStatus'
+          $ref: "#/components/schemas/MediaStatus"
         isVideo:
           type: boolean
         isImage:
@@ -3943,7 +3924,7 @@ components:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/FeedbackStatus'
+          $ref: "#/components/schemas/FeedbackStatus"
         adminResponse:
           maxLength: 2000
           type:
@@ -3996,7 +3977,7 @@ components:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/UserStatus'
+          $ref: "#/components/schemas/UserStatus"
         reason:
           maxLength: 500
           type:
@@ -4013,9 +3994,12 @@ components:
       type: object
       properties:
         user:
-          $ref: '#/components/schemas/UserDto'
+          $ref: "#/components/schemas/UserDto"
         followingStatus:
-          $ref: '#/components/schemas/FollowingStatusEnum'
+          $ref: "#/components/schemas/FollowingStatusEnum"
+        isFollowingMe:
+          type: boolean
+          default: false
     UserDto:
       required:
         - id
@@ -4060,12 +4044,10 @@ components:
           type: string
           format: date-time
         status:
-          $ref: '#/components/schemas/UserStatus'
+          $ref: "#/components/schemas/UserStatus"
         isRestricted:
           type: boolean
           default: false
-        role:
-          $ref: '#/components/schemas/NullableOfUserRole'
     UserStatus:
       enum:
         - Active
@@ -4101,7 +4083,7 @@ components:
           type: string
           default: ""
         media:
-          $ref: '#/components/schemas/StepMediaDto'
+          $ref: "#/components/schemas/StepMediaDto"
     VideoStatusDto:
       type: object
       properties:
