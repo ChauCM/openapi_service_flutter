@@ -1,0 +1,6658 @@
+openapi: 3.0.4
+info:
+  title: API V1
+  version: v1
+servers:
+  - url: ""
+    description: vvv
+paths:
+  /Accounts/{accountId}:
+    get:
+      tags:
+        - Accounts
+      operationId: GetWithDetails-188
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/Attendances:
+    post:
+      tags:
+        - Attendances
+      operationId: LogAttendance-189
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attendance'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Attendance'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Attendance'
+      responses:
+        "200":
+          description: OK
+    get:
+      tags:
+        - Attendances
+      operationId: GetAttendanceById-190
+      parameters:
+        - name: Id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DailyLogAttendance'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyLogAttendance'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DailyLogAttendance'
+  /v2/Attendances/{yyyymmdd}:
+    post:
+      tags:
+        - Attendances
+      operationId: MarkMassAttendance-191
+      parameters:
+        - name: yyyymmdd
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkMassAttendanceParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkMassAttendanceParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkMassAttendanceParameter'
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attendance'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attendance'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attendance'
+  /v2/Attendances/{studentid}/{logDate}:
+    get:
+      tags:
+        - Attendances
+      operationId: GetAttendanceByStudentId-192
+      parameters:
+        - name: studentid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: logDate
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DailyLogAttendance'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DailyLogAttendance'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DailyLogAttendance'
+  /Auth/Token:
+    post:
+      tags:
+        - Auth
+      operationId: Token-193
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LoginParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LoginParameter'
+      responses:
+        "200":
+          description: OK
+  /Auth/Action/Refresh:
+    post:
+      tags:
+        - Auth
+      operationId: Refresh-194
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenParameter'
+      responses:
+        "200":
+          description: OK
+  /Auth/Schools/{schoolId}:
+    post:
+      tags:
+        - Auth
+      operationId: SwitchSchool-195
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/Error:
+    get:
+      tags:
+        - Calendars
+      operationId: GetError-196
+      responses:
+        "200":
+          description: OK
+  /Calendars/Schools/{schoolId}/{from_yyyyMMdd}/{to_yyyyMMdd}:
+    get:
+      tags:
+        - Calendars
+      operationId: GetAcademicCalendar-197
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: from_yyyyMMdd
+          in: path
+          required: true
+          schema:
+            type: string
+            default: ""
+        - name: to_yyyyMMdd
+          in: path
+          required: true
+          schema:
+            type: string
+            default: ""
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/AvailableSlots/{schoolId}/{teacherAccountId}:
+    get:
+      tags:
+        - Calendars
+      operationId: GetPTCAvailableSlotsByUser-198
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: teacherAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/Slots/{schoolId}/{teacherAccountId}:
+    get:
+      tags:
+        - Calendars
+      operationId: GetPTCSlotsByUser-199
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: teacherAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/Slots/{schoolId}/{teacherAccountId}/{from_yyyyMMdd}/{to_yyyyMMdd}:
+    get:
+      tags:
+        - Calendars
+      operationId: GetPTCSlotsByUserAndDate-200
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: teacherAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: from_yyyyMMdd
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: to_yyyyMMdd
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/Slots/{schoolId}/{teacherAccountId}/{eventIds}:
+    delete:
+      tags:
+        - Calendars
+      operationId: DeleteEventByUser-201
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: teacherAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: eventIds
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/MyBookings/{schoolId}/{studentId}/{parentAccountId}:
+    get:
+      tags:
+        - Calendars
+      operationId: GetPTCBookingsByUser-202
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: parentAccountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/GetTeachersWithPTCSlots/{schoolId}/{studentId}:
+    get:
+      tags:
+        - Calendars
+      operationId: GetTeachersWithPTCSlots-203
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/MyBookings/Teachers/{teacherId}:
+    get:
+      tags:
+        - Calendars
+      operationId: GetPTCBookingsByTeacherId-204
+      parameters:
+        - name: teacherId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC:
+    post:
+      tags:
+        - Calendars
+      operationId: BookEvent-205
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookEventRequestParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BookEventRequestParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BookEventRequestParameter'
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/Cancel:
+    post:
+      tags:
+        - Calendars
+      operationId: UnBookEvent-206
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookEventRequestParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BookEventRequestParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BookEventRequestParameter'
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/Update:
+    post:
+      tags:
+        - Calendars
+      operationId: UpdateBookingEvent-207
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditBookEventParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EditBookEventParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EditBookEventParameter'
+      responses:
+        "200":
+          description: OK
+  /Calendars/PTC/Create/{id}:
+    post:
+      tags:
+        - Calendars
+      operationId: CreateEvent-208
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarItemParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CalendarItemParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CalendarItemParameter'
+      responses:
+        "200":
+          description: OK
+  /CheckInsOuts:
+    post:
+      tags:
+        - CheckInsOuts
+      operationId: LogCheckInOut-209
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckInOut'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CheckInOut'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CheckInOut'
+      responses:
+        "200":
+          description: OK
+  /v2/CheckInsOuts:
+    post:
+      tags:
+        - CheckInsOuts
+      operationId: LogCheckInOut-210
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckInOutParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CheckInOutParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CheckInOutParameter'
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+    get:
+      tags:
+        - CheckInsOuts
+      operationId: GetCheckInOutById-211
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+  /v2/CheckInsOuts/{studentid}/{logDate}:
+    get:
+      tags:
+        - CheckInsOuts
+      operationId: GetCheckInOutByStudentId-212
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: logDate
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CheckInOut'
+  /Classes/{id}/Students:
+    get:
+      tags:
+        - Classes
+      operationId: GetStudentsByClassId-213
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Classes/{id}/Teachers:
+    get:
+      tags:
+        - Classes
+      operationId: GetTeachersByClassId-214
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Classes/{classid}/Attendances/{yyyyMMdd_start}/{yyyyMMdd_end}:
+    get:
+      tags:
+        - Classes
+      operationId: GetAttendancesByClassIdByDateRange-215
+      parameters:
+        - name: classid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd_start
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd_end
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Classes/{id}:
+    get:
+      tags:
+        - Classes
+      operationId: GetById-216
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/Classes/{id}:
+    get:
+      tags:
+        - Classes
+      operationId: GetById-217
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/Classes/{id}/Students:
+    get:
+      tags:
+        - Classes
+      operationId: GetStudentsByClassId-218
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /v2/Classes/{id}/Teachers:
+    get:
+      tags:
+        - Classes
+      operationId: GetTeachersByClassId-219
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /v2/Classes/{classid}/Attendances/{yyyymmdd}:
+    get:
+      tags:
+        - Classes
+      operationId: GetAttendancesByClassIdByDate-220
+      parameters:
+        - name: classid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/Classes/{classid}/Attendances/{yyyyMMdd_start}/{yyyyMMdd_end}:
+    get:
+      tags:
+        - Classes
+      operationId: GetAttendancesByClassIdByDateRange-221
+      parameters:
+        - name: classid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd_start
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd_end
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/Classes/{classid}/CheckInOuts/{date}:
+    get:
+      tags:
+        - Classes
+      operationId: GetCheckInOutsByClassIdByDate-222
+      parameters:
+        - name: classid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/Classes/{schoolid}/StudentSearch/{searchstring}:
+    get:
+      tags:
+        - Classes
+      operationId: GetCheckInOutsBySearch-223
+      parameters:
+        - name: schoolid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: searchstring
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentMiniDailyLogVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentMiniDailyLogVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentMiniDailyLogVO'
+  /v2/Classes/{classid}/Status/{date}:
+    get:
+      tags:
+        - Classes
+      operationId: GetStatusByClassIdByDate-224
+      parameters:
+        - name: classid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentMiniDailyLogVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentMiniDailyLogVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentMiniDailyLogVO'
+  /Communications/Action/SendNotification:
+    post:
+      tags:
+        - Communications
+      operationId: SendNotification-225
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommunicationsParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CommunicationsParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CommunicationsParameter'
+      responses:
+        "200":
+          description: OK
+  /Communications/Action/GetNotifications/{topic}:
+    get:
+      tags:
+        - Communications
+      operationId: GetNotifications-226
+      parameters:
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+      responses:
+        "200":
+          description: OK
+  /Communications/Action/UpdateNotificationStatus/{topic}:
+    put:
+      tags:
+        - Communications
+      operationId: UpdateNotificationStatus-227
+      parameters:
+        - name: topic
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Communications/Action/SendTeacherReminderNotification/{TeacherReminderTypes}:
+    post:
+      tags:
+        - Communications
+      operationId: SendTeacherReminderNotification-228
+      parameters:
+        - name: TeacherReminderTypes
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Communications/Action/SendPrincipalNotification/{NotificationType}:
+    post:
+      tags:
+        - Communications
+      operationId: SendPrincipalNotification-229
+      parameters:
+        - name: NotificationType
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Communications/Action/SendCustomNotification:
+    post:
+      tags:
+        - Communications
+      operationId: SendCustomNotification-230
+      responses:
+        "200":
+          description: OK
+  /Communications/Action/SendPushNotification/{entityType}/{entityId}:
+    post:
+      tags:
+        - Communications
+      operationId: SendWebNotification-231
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: entityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Communications/Action/SendPTCNotification/{entityType}:
+    post:
+      tags:
+        - Communications
+      operationId: SendPTCNotification-232
+      parameters:
+        - name: entityType
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomNotificationParameters'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CustomNotificationParameters'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CustomNotificationParameters'
+      responses:
+        "200":
+          description: OK
+  /Countries:
+    get:
+      tags:
+        - Countries
+      operationId: Get-233
+      parameters:
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /CourseComponents/{schoolId}/{levelId}:
+    get:
+      tags:
+        - CourseComponents
+      operationId: GetCourseComponents-234
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: levelId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /CourseComponents/{courseComponentId}/{academicYearId}/{yyyyMMdd}:
+    get:
+      tags:
+        - CourseComponents
+      operationId: GetAttendance-235
+      parameters:
+        - name: courseComponentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: academicYearId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /CourseComponents/{userId}:
+    post:
+      tags:
+        - CourseComponents
+      operationId: MarkAttendance-236
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentAttendance'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentAttendance'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentAttendance'
+      responses:
+        "200":
+          description: OK
+  /CourseComponents/{courseComponentId}/students:
+    post:
+      tags:
+        - CourseComponents
+      operationId: UpdateStudent-237
+      parameters:
+        - name: courseComponentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentStudentParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentStudentParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentStudentParameter'
+      responses:
+        "200":
+          description: OK
+  /Courses:
+    get:
+      tags:
+        - Courses
+      operationId: Get-238
+      parameters:
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Courses/{id}:
+    get:
+      tags:
+        - Courses
+      operationId: GetById-239
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Courses/{id}/classes:
+    get:
+      tags:
+        - Courses
+      operationId: GetClassesByCourseId-240
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: ShowActiveOnly
+          in: query
+          schema:
+            type: boolean
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Courses/{id}/students:
+    get:
+      tags:
+        - Courses
+      operationId: GetStudentsByCourseId-241
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /DailyLogs/{studentid}/{year}/{month}:
+    get:
+      tags:
+        - DailyLogs
+      operationId: GetByStudentIdByMongth-242
+      parameters:
+        - name: studentid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /v2/DailyLogs/{studentid}/{logDate}:
+    get:
+      tags:
+        - DailyLogs
+      operationId: GetByStudentId-243
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: logDate
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/DailyLogs/{studentid}/{year}/{month}:
+    get:
+      tags:
+        - DailyLogs
+      operationId: GetByStudentIdByMongth-244
+      parameters:
+        - name: studentid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: month
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /v2/DailyLogs/{studentid}/daterange/{dateFrom}/{dateTo}:
+    get:
+      tags:
+        - DailyLogs
+      operationId: GetByStudentIdByDateRange-245
+      parameters:
+        - name: studentid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dateFrom
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dateTo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/DailyLogs/DailyLogMonitoring/{SchoolId}/{Month}/{Year}:
+    get:
+      tags:
+        - DailyLogs
+      operationId: GetDailyLogMonitoring-246
+      parameters:
+        - name: SchoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Month
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: Year
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /v2/DailyLogs/DailyLogMonitoring/Absences/{SchoolId}/{Month}/{Year}/{ClassId}:
+    get:
+      tags:
+        - DailyLogs
+      operationId: GetDailyLogMonitoringAttendance-247
+      parameters:
+        - name: SchoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Month
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: Year
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/DailyLogs/DailyLogMonitoring/IncompleteTemperature/{SchoolId}/{Month}/{Year}/{ClassId}:
+    get:
+      tags:
+        - DailyLogs
+      operationId: GetDailyLogMonitoringIncompleteTemperature-248
+      parameters:
+        - name: SchoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Month
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: Year
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Files/{filename}:
+    put:
+      tags:
+        - Files
+      operationId: FileUpload-249
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Files/{entity}/{entityId}:
+    put:
+      tags:
+        - Files
+      operationId: GetFileByFileName-250
+      parameters:
+        - name: entityId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: entity
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Files/{id}:
+    get:
+      tags:
+        - Files
+      operationId: GetFileById-251
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Files/Images:
+    get:
+      tags:
+        - Files
+      operationId: ShowImage-252
+      parameters:
+        - name: e
+          in: query
+          schema:
+            type: string
+        - name: f
+          in: query
+          schema:
+            type: string
+        - name: args
+          in: query
+          schema:
+            type: string
+        - name: h
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: w
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 0
+      responses:
+        "200":
+          description: OK
+  /Fs/{path}:
+    get:
+      tags:
+        - Fs
+      operationId: Get-253
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Goals/post:
+    get:
+      tags:
+        - Goals
+      operationId: getGoalsByParam-254
+      parameters:
+        - name: studentList
+          in: query
+          schema:
+            type: string
+        - name: classList
+          in: query
+          schema:
+            type: string
+        - name: courseList
+          in: query
+          schema:
+            type: string
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: TermId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Goals/goallevels:
+    get:
+      tags:
+        - Goals
+      operationId: getGoalsByParamV2-255
+      parameters:
+        - name: studentList
+          in: query
+          schema:
+            type: string
+        - name: classList
+          in: query
+          schema:
+            type: string
+        - name: courseList
+          in: query
+          schema:
+            type: string
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: TermId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Invoices/{id}:
+    get:
+      tags:
+        - Invoices
+      operationId: Get-256
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Invoices/{id}/Household:
+    get:
+      tags:
+        - Invoices
+      operationId: GetInvoicesByHouseHoldId-257
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Invoices/{id}/Parent/History:
+    get:
+      tags:
+        - Invoices
+      operationId: GetInvoicesByParentId-258
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Invoices/{id}/Parent/Outstanding:
+    get:
+      tags:
+        - Invoices
+      operationId: GetInvoicesOutstandingByParentId-259
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Invoices/OutstandingItems/{studentId}/{invoiceName}:
+    get:
+      tags:
+        - Invoices
+      operationId: GetOutstandingItemsByInvoiceName-260
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: invoiceName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Invoices/OutstandingAR/{universityId}/{yyyyMMdd_InvoiceStartDate}/{yyyyMMdd_InvoiceEndDate}/{yyyyMMdd_ReceiptCutOffDate}:
+    get:
+      tags:
+        - Invoices
+      operationId: GetOutstandingAR-261
+      parameters:
+        - name: universityId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd_InvoiceStartDate
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd_InvoiceEndDate
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyyMMdd_ReceiptCutOffDate
+          in: path
+          required: true
+          schema:
+            type: string
+            default: ""
+      responses:
+        "200":
+          description: OK
+  /MedicineAuditTrails/{id}:
+    get:
+      tags:
+        - MedicineAuditTrails
+      operationId: GetById-262
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+  /MedicineAuditTrails/schools/{schoolId}/allAudits:
+    get:
+      tags:
+        - MedicineAuditTrails
+      operationId: GetAllAuditsBySchoolId-263
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filterDateFrom
+          in: query
+          schema:
+            type: string
+        - name: filterDateEnd
+          in: query
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 1
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            maximum: 50
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineAuditWebViewVOPaginationDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineAuditWebViewVOPaginationDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineAuditWebViewVOPaginationDto'
+  /MedicineAuditTrails:
+    delete:
+      tags:
+        - MedicineAuditTrails
+      operationId: Delete-264
+      parameters:
+        - name: medicineAuditId
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+    post:
+      tags:
+        - MedicineAuditTrails
+      operationId: SaveMedicineAudit-265
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineAuditTrails/ByMedicineFormId/{medicineFormId}:
+    get:
+      tags:
+        - MedicineAuditTrails
+      operationId: GetListByMedicineFormId-266
+      parameters:
+        - name: medicineFormId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+  /MedicineAuditTrails/user/{userId}:
+    post:
+      tags:
+        - MedicineAuditTrails
+      operationId: SaveMedicineAudit-267
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineAuditTrails/verify:
+    post:
+      tags:
+        - MedicineAuditTrails
+      operationId: VerifyByMedicineFormId-268
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineAuditTrails/verify/{userId}:
+    post:
+      tags:
+        - MedicineAuditTrails
+      operationId: VerifyByMedicineFormId-269
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineAuditTrails/reject:
+    post:
+      tags:
+        - MedicineAuditTrails
+      operationId: RejectByMedicineFormId-270
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineAuditTrailsVerifierDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineDetails/{id}:
+    get:
+      tags:
+        - MedicineDetails
+      operationId: GetById-271
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /MedicineForm:
+    delete:
+      tags:
+        - MedicineForm
+      operationId: Delete-272
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetMedicines-273
+      parameters:
+        - name: Page
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 1
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            maximum: 50
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineForm'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineForm'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineForm'
+    post:
+      tags:
+        - MedicineForm
+      operationId: SaveMedicineForm-274
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{id}:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetFullMedicineForm-275
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVO'
+  /MedicineForm/parents/{parentId}/students:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetStudentWithMedicineDataByParentId-276
+      parameters:
+        - name: parentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+  /MedicineForm/{medicineFormId}/student:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetStudentWithMedicineDataByMedicineFormId-277
+      parameters:
+        - name: medicineFormId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineDataStudentVO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineDataStudentVO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineDataStudentVO'
+  /MedicineForm/classes/{classId}/students:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetStudentsWithMedicineDataByClassId-278
+      parameters:
+        - name: classId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+  /MedicineForm/schools/{schoolId}/students:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetStudentsWithMedicineDataByClassId-279
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: searchString
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineDataStudentVO'
+  /MedicineForm/schools/{schoolId}/homePageInfo:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetHomePageInfoBySchoolId-280
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+  /MedicineForm/schools/{schoolId}/todayMedicine:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetTodayMedicineBySchoolId-281
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: date
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+  /MedicineForm/schools/{schoolId}/allActiveMedicine:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetAllActiveMedicineBySchoolId-282
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 1
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            maximum: 50
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+  /MedicineForm/schools/{schoolId}/allRequestMedicine:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetAllRequestMedicineBySchoolId-283
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: classId
+          in: query
+          schema:
+            type: string
+        - name: filterDateFrom
+          in: query
+          schema:
+            type: string
+        - name: filterDateEnd
+          in: query
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 1
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            maximum: 50
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+  /MedicineForm/schools/{schoolId}/request/{status}:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetMedicineByUserIdandStatus-284
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Search
+          in: query
+          schema:
+            type: string
+        - name: LevelId
+          in: query
+          schema:
+            type: string
+        - name: ClassId
+          in: query
+          schema:
+            type: string
+        - name: FilterDateFrom
+          in: query
+          schema:
+            type: string
+        - name: FilterDateEnd
+          in: query
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 1
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            maximum: 50
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+  /MedicineForm/schools/{schoolId}/medicinerequests:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetAllMedicineBySchoolId-285
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Search
+          in: query
+          schema:
+            type: string
+        - name: LevelId
+          in: query
+          schema:
+            type: string
+        - name: ClassId
+          in: query
+          schema:
+            type: string
+        - name: FilterDateFrom
+          in: query
+          schema:
+            type: string
+        - name: FilterDateEnd
+          in: query
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            maximum: 2147483647
+            minimum: 1
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            maximum: 50
+            minimum: 1
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormFullVOPaginationDto'
+  /MedicineForm/schools/{schoolId}/actionMedicine:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetActionMedicineBySchoolId-286
+      parameters:
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+  /MedicineForm/students/{studentId}/validMedicines:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetValidMedicineFormByStudentId-287
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+  /MedicineForm/students/{studentId}/expiredMedicines:
+    get:
+      tags:
+        - MedicineForm
+      operationId: GetExpiredMedicineFormByStudentId-288
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 50
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MedicineFormFullVO'
+  /MedicineForm/{medicineFormId}:
+    put:
+      tags:
+        - MedicineForm
+      operationId: UpdateMedicineForm-289
+      parameters:
+        - name: medicineFormId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormUpdateDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormUpdateDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormUpdateDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{id}/cancel:
+    post:
+      tags:
+        - MedicineForm
+      operationId: CancelMedicineForm-290
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{id}/cancel/{userid}:
+    post:
+      tags:
+        - MedicineForm
+      operationId: CancelMedicineForm-291
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: userid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{id}/reject:
+    post:
+      tags:
+        - MedicineForm
+      operationId: RejectMedicineForm-292
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormRejectDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormRejectDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormRejectDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{id}/reject/{userid}:
+    post:
+      tags:
+        - MedicineForm
+      operationId: RejectMedicineForm-293
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: userid
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormRejectDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormRejectDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MedicineFormRejectDto'
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{medicineFormId}/acknowledge:
+    post:
+      tags:
+        - MedicineForm
+      operationId: AcknowledgeMedicineForm-294
+      parameters:
+        - name: medicineFormId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{medicineFormId}/acknowledge/{userId}:
+    post:
+      tags:
+        - MedicineForm
+      operationId: AcknowledgeMedicineForm-295
+      parameters:
+        - name: medicineFormId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{id}/acknowledge/cancel:
+    post:
+      tags:
+        - MedicineForm
+      operationId: AcknowledgeCancelMedicineForm-296
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /MedicineForm/{id}/acknowledge/cancel/{userid}:
+    post:
+      tags:
+        - MedicineForm
+      operationId: AcknowledgeCancelMedicineForm-297
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: userid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Menu/Action/GetMenus:
+    get:
+      tags:
+        - Menu
+      operationId: GetMenus-298
+      responses:
+        "200":
+          description: OK
+  /OTP:
+    post:
+      tags:
+        - OTP
+      operationId: GenerateAndSendOTP-299
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OTPParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/OTPParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/OTPParameter'
+      responses:
+        "200":
+          description: OK
+  /OTP/Action/Validate:
+    post:
+      tags:
+        - OTP
+      operationId: ValidateOtp-300
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OTPValidateParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/OTPValidateParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/OTPValidateParameter'
+      responses:
+        "200":
+          description: OK
+  /Parents/{id}/Students:
+    get:
+      tags:
+        - Parents
+      operationId: GetStudentDetailByParentId-301
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentWithConfigVO'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentWithConfigVO'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StudentWithConfigVO'
+  /Posts/{id}:
+    get:
+      tags:
+        - Posts
+      operationId: Get-302
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Posts/Teacher/{id}:
+    get:
+      tags:
+        - Posts
+      operationId: GetTeacher-303
+      parameters:
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: StudentId
+          in: query
+          schema:
+            type: string
+        - name: PostType
+          in: query
+          schema:
+            pattern: M|N|I|B|A
+            type: string
+        - name: Status
+          in: query
+          schema:
+            type: string
+        - name: CourseId
+          in: query
+          schema:
+            type: string
+        - name: ClassId
+          in: query
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          schema:
+            type: string
+        - name: StartDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: EndDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: SearchString
+          in: query
+          schema:
+            type: string
+        - name: GetMarkedDays
+          in: query
+          schema:
+            type: string
+        - name: TeacherIdFilter
+          in: query
+          schema:
+            type: string
+        - name: IsFilterSearch
+          in: query
+          schema:
+            type: boolean
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Posts/{id}/Files:
+    get:
+      tags:
+        - Posts
+      operationId: GetFiles-304
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    post:
+      tags:
+        - Posts
+      operationId: FileUpdateSequence-305
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        "200":
+          description: OK
+  /Posts:
+    get:
+      tags:
+        - Posts
+      operationId: Get-306
+      parameters:
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: StudentId
+          in: query
+          schema:
+            type: string
+        - name: PostType
+          in: query
+          schema:
+            pattern: M|N|I|B|A
+            type: string
+        - name: Status
+          in: query
+          schema:
+            type: string
+        - name: CourseId
+          in: query
+          schema:
+            type: string
+        - name: ClassId
+          in: query
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          schema:
+            type: string
+        - name: StartDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: EndDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: SearchString
+          in: query
+          schema:
+            type: string
+        - name: GetMarkedDays
+          in: query
+          schema:
+            type: string
+        - name: TeacherIdFilter
+          in: query
+          schema:
+            type: string
+        - name: IsFilterSearch
+          in: query
+          schema:
+            type: boolean
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+    post:
+      tags:
+        - Posts
+      operationId: CreatePost-307
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        "200":
+          description: OK
+    put:
+      tags:
+        - Posts
+      operationId: UpdatePost-308
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        "200":
+          description: OK
+  /Posts/Search:
+    post:
+      tags:
+        - Posts
+      operationId: Search-309
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostQueryStringParameters'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostQueryStringParameters'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostQueryStringParameters'
+      responses:
+        "200":
+          description: OK
+  /Posts/Student/{studentId}:
+    get:
+      tags:
+        - Posts
+      operationId: ParentGetStudentPosts-310
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PostType
+          in: query
+          schema:
+            pattern: M|N|I|B|A
+            type: string
+        - name: StartDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: EndDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: SearchString
+          in: query
+          schema:
+            type: string
+        - name: GetMarkedDays
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Posts/Actions/GeneratePdf:
+    post:
+      tags:
+        - Posts
+      operationId: GeneratePdf-311
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostToPDFParameters'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostToPDFParameters'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostToPDFParameters'
+      responses:
+        "200":
+          description: OK
+  /Posts/Actions/GeneratePdf/{PostId}/{StudentId}:
+    get:
+      tags:
+        - Posts
+      operationId: GeneratePdfById-312
+      parameters:
+        - name: PostId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: StudentId
+          in: path
+          required: true
+          schema:
+            type: string
+            default: ""
+      responses:
+        "200":
+          description: OK
+  /Posts/v2/Actions/GeneratePdf/{postId}:
+    get:
+      tags:
+        - Posts
+      operationId: GeneratePdfByIdAsync2-313
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Posts/{id}/Files/{filename}/{SchoolId}:
+    put:
+      tags:
+        - Posts
+      operationId: FileUpload-314
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: SchoolId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Posts/{id}/Files/{fileId}:
+    delete:
+      tags:
+        - Posts
+      operationId: DeleteFile-315
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Posts/{id}/Comments:
+    get:
+      tags:
+        - Posts
+      operationId: GetComments-316
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+    post:
+      tags:
+        - Posts
+      operationId: UpdateComments-317
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostComment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostComment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostComment'
+      responses:
+        "200":
+          description: OK
+  /Posts/Comments:
+    post:
+      tags:
+        - Posts
+      operationId: CreateComments-318
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostComment'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostComment'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostComment'
+      responses:
+        "200":
+          description: OK
+  /Posts/{id}/Views:
+    get:
+      tags:
+        - Posts
+      operationId: GetViews-319
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Posts/{id}/Views/{ParentAccount}:
+    post:
+      tags:
+        - Posts
+      operationId: InsertViewsViews-320
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: ParentAccount
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Posts/{SchoolId}/TeacherFilter:
+    get:
+      tags:
+        - Posts
+      operationId: GetTeachersForFilter-321
+      parameters:
+        - name: SchoolId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Programmes/{id}:
+    get:
+      tags:
+        - Programmes
+      operationId: GetById-322
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Programmes/{id}/courses:
+    get:
+      tags:
+        - Programmes
+      operationId: GetCoursesByProgrammeId-323
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Reaction/{id}/GetReaction:
+    get:
+      tags:
+        - Reaction
+      operationId: GetLikes-324
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Reaction/CreateReaction:
+    post:
+      tags:
+        - Reaction
+      operationId: CreateLikes-325
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+      responses:
+        "200":
+          description: OK
+  /Reaction/UpdateReaction:
+    post:
+      tags:
+        - Reaction
+      operationId: UpdateLikes-326
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+      responses:
+        "200":
+          description: OK
+  /Reaction/DeleteReaction:
+    post:
+      tags:
+        - Reaction
+      operationId: DeleteLikes-327
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PostReaction'
+      responses:
+        "200":
+          description: OK
+  /Schools:
+    get:
+      tags:
+        - Schools
+      operationId: GetAllWithDetails-328
+      responses:
+        "200":
+          description: OK
+  /Schools/{id}:
+    get:
+      tags:
+        - Schools
+      operationId: GetById-329
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Schools/{id}/programmes:
+    get:
+      tags:
+        - Schools
+      operationId: GetProgrammesBySchoolId-330
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Schools/{id}/Classes:
+    get:
+      tags:
+        - Schools
+      operationId: GetClassesBySchoolId-331
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: ShowActiveOnly
+          in: query
+          schema:
+            type: boolean
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Schools/{id}/MedicineConfig:
+    get:
+      tags:
+        - Schools
+      operationId: GetMedicineConfigBySchoolId-332
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MedicineFormSchoolConfigVO'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormSchoolConfigVO'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MedicineFormSchoolConfigVO'
+  /Settings:
+    post:
+      tags:
+        - Settings
+      operationId: EditSetting-333
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserConfig'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UserConfig'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UserConfig'
+      responses:
+        "200":
+          description: OK
+  /Students/{id}:
+    get:
+      tags:
+        - Students
+      operationId: Get-334
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/QR/{studentNo}:
+    get:
+      tags:
+        - Students
+      operationId: GetByStudentNumber-335
+      parameters:
+        - name: studentNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/Posts:
+    get:
+      tags:
+        - Students
+      operationId: GetPostsByStudentId-336
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: StudentId
+          in: query
+          schema:
+            type: string
+        - name: PostType
+          in: query
+          schema:
+            pattern: M|N|I|B|A
+            type: string
+        - name: Status
+          in: query
+          schema:
+            type: string
+        - name: CourseId
+          in: query
+          schema:
+            type: string
+        - name: ClassId
+          in: query
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          schema:
+            type: string
+        - name: StartDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: EndDate_yyyMMdd
+          in: query
+          schema:
+            type: string
+        - name: SearchString
+          in: query
+          schema:
+            type: string
+        - name: GetMarkedDays
+          in: query
+          schema:
+            type: string
+        - name: TeacherIdFilter
+          in: query
+          schema:
+            type: string
+        - name: IsFilterSearch
+          in: query
+          schema:
+            type: boolean
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/attendances/{yyyymmdd}:
+    post:
+      tags:
+        - Students
+      operationId: MarkAttendance-337
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyymmdd
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkAttendanceParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkAttendanceParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkAttendanceParameter'
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/CheckInOutsWithPhoto/{dateTimeString}:
+    post:
+      tags:
+        - Students
+      operationId: MarkCheckInOutWithPhoto-338
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dateTimeString
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/{academicYear}/goals:
+    get:
+      tags:
+        - Students
+      operationId: GetGoalssByStudentId-339
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: academicYear
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/CheckInsOuts/{checkInsOutsId}/Files/{filename}:
+    put:
+      tags:
+        - Students
+      operationId: FileUpload-340
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: checkInsOutsId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/AuthorisedPickUp/{id}:
+    get:
+      tags:
+        - Students
+      operationId: GetAuthorisedPickUp-341
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/AuthorisedPickUp/{AuthPickID}/Files/{filename}:
+    put:
+      tags:
+        - Students
+      operationId: FileUploadAuthPickUp-342
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: AuthPickID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/AuthorisedPickUp:
+    post:
+      tags:
+        - Students
+      operationId: createAuthorisedPickUp-343
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorisedPickUp'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AuthorisedPickUp'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AuthorisedPickUp'
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/AuthorisedPickUp/{ConId}:
+    post:
+      tags:
+        - Students
+      operationId: createAuthorisedPickUp-344
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: ConId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorisedPickUp'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/AuthorisedPickUp'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/AuthorisedPickUp'
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/DeleteAuthorisedPickUp/{authPickupId}:
+    delete:
+      tags:
+        - Students
+      operationId: DeleteAuthorisedPickUpMobile-345
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: authPickupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/AuthorisedPickUp/{authPickupId}:
+    delete:
+      tags:
+        - Students
+      operationId: DeleteAuthorisedPickUp-346
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: authPickupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/AuthorisedPickUp/{authPickupId}/{ConId}:
+    delete:
+      tags:
+        - Students
+      operationId: DeleteAuthorisedPickUp-347
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: authPickupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: ConId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/Teachers:
+    get:
+      tags:
+        - Students
+      operationId: getStudentclass-348
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/TermlyReport/{id}:
+    get:
+      tags:
+        - Students
+      operationId: getStudenttermlyreport-349
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{StudentId}/Statistics:
+    post:
+      tags:
+        - Students
+      operationId: updateStudentStatics-350
+      parameters:
+        - name: StudentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/StudentStatistic'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/StudentStatistic'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/StudentStatistic'
+      responses:
+        "200":
+          description: OK
+  /Students/{StudentId}/Statistics/AcademicYear/{AcademiYearID}:
+    get:
+      tags:
+        - Students
+      operationId: getStudentStatistics-351
+      parameters:
+        - name: StudentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: AcademiYearID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{StudentId}/Statistics/GetAcademicYears:
+    get:
+      tags:
+        - Students
+      operationId: getStudentAcademicYears-352
+      parameters:
+        - name: StudentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Students/{id}/MedicineDetails/Files/{filename}:
+    put:
+      tags:
+        - Students
+      operationId: FileUploadMedicineDetails-353
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /v2/Students/{id}/CheckInOuts/{dateTimeString}:
+    post:
+      tags:
+        - Students
+      operationId: MarkCheckInOut-354
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dateTimeString
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+      responses:
+        "200":
+          description: OK
+  /v2/Students/{id}/attendances/{yyyymmdd}:
+    post:
+      tags:
+        - Students
+      operationId: MarkAttendance-355
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyymmdd
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkAttendanceParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkAttendanceParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkAttendanceParameter'
+      responses:
+        "200":
+          description: OK
+  /v2/Students/{id}/CheckInOutsWithPhoto/{dateTimeString}:
+    post:
+      tags:
+        - Students
+      operationId: MarkCheckInOutWithPhoto-356
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dateTimeString
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkCheckInOutParameter'
+      responses:
+        "200":
+          description: OK
+  /v2/Students/{id}/TemperatureChecks/{dateTimeString}:
+    post:
+      tags:
+        - Students
+      operationId: MarkTemperatureCheck-357
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: dateTimeString
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkTemperatureCheckParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkTemperatureCheckParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkTemperatureCheckParameter'
+      responses:
+        "200":
+          description: OK
+  /v2/Students/{id}/DailyRoutines:
+    post:
+      tags:
+        - Students
+      operationId: MarkDailyRoutine-358
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkDailyRoutineParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/MarkDailyRoutineParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/MarkDailyRoutineParameter'
+      responses:
+        "200":
+          description: OK
+  /Subjects/Attendances/{componentId}/{academicYearId}/{yyyymmdd}:
+    get:
+      tags:
+        - Subjects
+      operationId: GetAttendance-359
+      parameters:
+        - name: componentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: academicYearId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: yyyymmdd
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Subjects/Attendances:
+    post:
+      tags:
+        - Subjects
+      operationId: MarkAttendance-360
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentAttendanceParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentAttendanceParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CourseComponentAttendanceParameter'
+      responses:
+        "200":
+          description: OK
+  /Teachers/{id}:
+    get:
+      tags:
+        - Teachers
+      operationId: Get-361
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+  /Teachers/{id}/Classes:
+    get:
+      tags:
+        - Teachers
+      operationId: GetClassesByTeacherId-362
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: IsActive
+          in: query
+          schema:
+            type: boolean
+        - name: OverrideIsAciveFilter
+          in: query
+          schema:
+            type: boolean
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Teachers/{id}/ManagedClasses:
+    get:
+      tags:
+        - Teachers
+      operationId: GetManagedClassesByTeacherIdasync-363
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: IsActive
+          in: query
+          schema:
+            type: boolean
+        - name: OverrideIsAciveFilter
+          in: query
+          schema:
+            type: boolean
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Teachers/{id}/ManagedClassesWithStudents/{AcademicYearID}/{SchoolId}:
+    get:
+      tags:
+        - Teachers
+      operationId: GetManagedClassesByTeacherIdWithStudentsasync-364
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: AcademicYearId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: SchoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: IsActive
+          in: query
+          schema:
+            type: boolean
+        - name: OverrideIsAciveFilter
+          in: query
+          schema:
+            type: boolean
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Teachers/{id}/Courses:
+    get:
+      tags:
+        - Teachers
+      operationId: GetCoursesByTeacherId-365
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: IsActive
+          in: query
+          schema:
+            type: boolean
+        - name: OverrideIsAciveFilter
+          in: query
+          schema:
+            type: boolean
+        - name: AcademicYearId
+          in: query
+          schema:
+            type: string
+        - name: SchoolId
+          in: query
+          schema:
+            type: string
+        - name: PageNumber
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+  /Teachers/{id}/CoursesBySchool/{schoolId}:
+    get:
+      tags:
+        - Teachers
+      operationId: GetCoursesByTeacherIdSchoolId-366
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeacherServiceQueryParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TeacherServiceQueryParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TeacherServiceQueryParameter'
+      responses:
+        "200":
+          description: OK
+  /TemperatureChecks:
+    post:
+      tags:
+        - TemperatureChecks
+      operationId: LogTemperatureCheck-367
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemperatureCheck'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TemperatureCheck'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TemperatureCheck'
+      responses:
+        "200":
+          description: OK
+  /v2/TemperatureChecks:
+    post:
+      tags:
+        - TemperatureChecks
+      operationId: LogTemperatureCheck-368
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemperatureCheckParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TemperatureCheckParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TemperatureCheckParameter'
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+    get:
+      tags:
+        - TemperatureChecks
+      operationId: GetTemperatureById-369
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+  /v2/TemperatureChecks/{studentid}/{logDate}:
+    get:
+      tags:
+        - TemperatureChecks
+      operationId: GetTemperature-370
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: logDate
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureCheck'
+  /Users/Action/ResetPassword:
+    post:
+      tags:
+        - Users
+      operationId: ResetPassword-371
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordParameter'
+      responses:
+        "200":
+          description: OK
+  /Users/{userId}/Password:
+    post:
+      tags:
+        - Users
+      operationId: ChangePassword-372
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordParameter'
+      responses:
+        "200":
+          description: OK
+  /Users/Action/ResetPasswordV2:
+    post:
+      tags:
+        - Users
+      operationId: ResetPasswordV2-373
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordParameter'
+      responses:
+        "200":
+          description: OK
+  /Users/{userId}/PasswordV2:
+    post:
+      tags:
+        - Users
+      operationId: ChangePasswordV2-374
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordParameter'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordParameter'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordParameter'
+      responses:
+        "200":
+          description: OK
+  /Users/{userId}:
+    get:
+      tags:
+        - Users
+      operationId: GetUserById-375
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    Account:
+      required:
+        - accountType
+        - id
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        accountType:
+          minLength: 1
+          type: string
+        contactInfo:
+          $ref: '#/components/schemas/ContactInfo'
+        personalInfo:
+          $ref: '#/components/schemas/PersonalInfo'
+        addressList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressInfo'
+          nullable: true
+      additionalProperties: false
+    AddressInfo:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        accountID:
+          type: string
+          nullable: true
+        address1:
+          type: string
+          nullable: true
+        address2:
+          type: string
+          nullable: true
+        address3:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        postalCode:
+          type: string
+          nullable: true
+        addressType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Attendance:
+      required:
+        - date
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        attendanceStatus:
+          pattern: P|A|L|S
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        utcDate:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    AttendanceVO:
+      required:
+        - date
+        - studentId
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        studentId:
+          minLength: 1
+          type: string
+        date:
+          type: string
+          format: date-time
+        attendanceStatus:
+          pattern: P|A|L|S
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        utcDate:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    Attendee:
+      type: object
+      properties:
+        emailAddress:
+          $ref: '#/components/schemas/EmailAddress'
+        '@odata.type':
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/AttendeeType'
+        proposedNewTime:
+          $ref: '#/components/schemas/TimeSlot'
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+      additionalProperties: {}
+    AttendeeType:
+      enum:
+        - Required
+        - Optional
+        - Resource
+      type: string
+    AuthorisedPickUp:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        studentId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        indentifyNo:
+          type: string
+          nullable: true
+        relationship:
+          type: string
+          nullable: true
+        contactNumber:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        image:
+          type: string
+          nullable: true
+      additionalProperties: false
+    BookEventRequestParameter:
+      type: object
+      properties:
+        teacherAccountId:
+          type: string
+          nullable: true
+        organiserEmail:
+          type: string
+          nullable: true
+        eventId:
+          type: string
+          nullable: true
+        studentName:
+          type: string
+          nullable: true
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarInviteRecipient'
+          nullable: true
+      additionalProperties: false
+    CalendarInviteRecipient:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CalendarItemParameter:
+      type: object
+      properties:
+        eventId:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        subject:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        attendees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attendee'
+          nullable: true
+        isOnlineMeeting:
+          type: boolean
+        resourcePermission:
+          $ref: '#/components/schemas/ResourcePermission'
+      additionalProperties: false
+    ChangePasswordParameter:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+          nullable: true
+        newPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CheckInOut:
+      required:
+        - date
+        - studentId
+      type: object
+      properties:
+        studentId:
+          minLength: 1
+          type: string
+        date:
+          type: string
+          format: date-time
+        checkType:
+          pattern: IN|OUT
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        photo:
+          type: string
+          nullable: true
+        utcDate:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    CheckInOutParameter:
+      required:
+        - date
+        - studentId
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        studentId:
+          minLength: 1
+          type: string
+        date:
+          type: string
+          format: date-time
+        checkType:
+          pattern: IN|OUT
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        photo:
+          type: string
+          nullable: true
+        utcDate:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    CheckInOutVO:
+      required:
+        - date
+        - studentId
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        studentId:
+          minLength: 1
+          type: string
+        date:
+          type: string
+          format: date-time
+        checkType:
+          pattern: IN|OUT
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        photo:
+          type: string
+          nullable: true
+        utcDate:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    ChildConfigVO:
+      type: object
+      properties:
+        showBilling:
+          type: boolean
+        showDailyRoutine:
+          type: boolean
+        enablePTCBooking:
+          type: boolean
+        enableMedication:
+          type: boolean
+        medicationAcceptDays:
+          type: integer
+          format: int32
+        medicationAllowBeforeHour:
+          type: integer
+          format: int32
+        medicationLimit:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CommunicationsParameter:
+      type: object
+      properties:
+        topic:
+          type: string
+          nullable: true
+        notificationType:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        body:
+          type: string
+          nullable: true
+        referenceId:
+          type: string
+          nullable: true
+        notificationIds:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContactInfo:
+      required:
+        - accountId
+      type: object
+      properties:
+        accountId:
+          minLength: 1
+          type: string
+        mobilePhone:
+          type: string
+          nullable: true
+        homePhone:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CourseComponentAttendance:
+      type: object
+      properties:
+        createdById:
+          type: string
+          nullable: true
+        createdDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastModifiedById:
+          type: string
+          nullable: true
+        lastModifiedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        createdByName:
+          type: string
+          nullable: true
+        lastModifiedByName:
+          type: string
+          nullable: true
+        courseComponentId:
+          type: integer
+          format: int32
+        studentId:
+          type: string
+          nullable: true
+        attendanceDate:
+          type: string
+          format: date-time
+        attendanceStatus:
+          type: string
+          nullable: true
+        attendanceRemarks:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CourseComponentAttendanceParameter:
+      type: object
+      properties:
+        courseComponentId:
+          type: integer
+          format: int32
+        studentId:
+          type: string
+          nullable: true
+        attendanceDate:
+          type: string
+          format: date-time
+        attendanceStatus:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CourseComponentStudentParameter:
+      type: object
+      properties:
+        courseComponentId:
+          type: integer
+          format: int32
+        academicYearId:
+          type: string
+          nullable: true
+        studentId:
+          type: string
+          nullable: true
+        isActive:
+          type: boolean
+      additionalProperties: false
+    CustomNotificationParameters:
+      type: object
+      properties:
+        teacherId:
+          type: string
+          nullable: true
+        schoolId:
+          type: string
+          nullable: true
+        ptcInfo:
+          type: string
+          nullable: true
+        tagStudents:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagStudents'
+          nullable: true
+        tagClasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagClass'
+          nullable: true
+        tagLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagLevel'
+          nullable: true
+      additionalProperties: false
+    DailyLogAttendance:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        studentId:
+          type: string
+          nullable: true
+        attendanceDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        createdBy:
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    DateTimeTimeZone:
+      type: object
+      properties:
+        dateTime:
+          type: string
+          nullable: true
+        timeZone:
+          type: string
+          nullable: true
+        '@odata.type':
+          type: string
+          nullable: true
+      additionalProperties: {}
+    EditBookEventParameter:
+      type: object
+      properties:
+        oldOrganiserEmail:
+          type: string
+          nullable: true
+        oldEventId:
+          type: string
+          nullable: true
+        newOrganiserEmail:
+          type: string
+          nullable: true
+        newEventId:
+          type: string
+          nullable: true
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalendarInviteRecipient'
+          nullable: true
+      additionalProperties: false
+    EmailAddress:
+      type: object
+      properties:
+        address:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        '@odata.type':
+          type: string
+          nullable: true
+      additionalProperties: {}
+    LastTemperatureVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        lastTimeStamp:
+          type: string
+          format: date-time
+          nullable: true
+        lastTempCheck:
+          type: string
+          nullable: true
+      additionalProperties: false
+    LoginParameter:
+      required:
+        - loginId
+        - organisation
+        - password
+      type: object
+      properties:
+        loginId:
+          minLength: 1
+          type: string
+        password:
+          minLength: 1
+          type: string
+        organisation:
+          minLength: 1
+          type: string
+        deviceToken:
+          type: string
+          nullable: true
+        accountType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MarkAttendanceParameter:
+      type: object
+      properties:
+        attendanceStatus:
+          pattern: P|A|L|S
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        optionalDateTime:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MarkCheckInOutParameter:
+      type: object
+      properties:
+        checkType:
+          pattern: IN|OUT
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        optionalDateTime:
+          type: string
+          nullable: true
+        fileName:
+          type: string
+          nullable: true
+        file64BitString:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MarkDailyRoutineParameter:
+      type: object
+      properties:
+        referenceType:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          nullable: true
+        endTime:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MarkMassAttendanceParameter:
+      type: object
+      properties:
+        attendanceStatus:
+          pattern: P|A|L|S
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        studentIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        optionalDateTime:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MarkTemperatureCheckParameter:
+      type: object
+      properties:
+        temperature:
+          type: number
+          format: double
+        remarks:
+          type: string
+          nullable: true
+        optionalDateTime:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MedicineAuditDetailVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        medicineFormId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        dosage:
+          type: string
+          nullable: true
+        administrationManner:
+          type: string
+          nullable: true
+        medicineExpirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        entityFileRefId:
+          type: string
+          nullable: true
+        entityFileUrl:
+          type: string
+          nullable: true
+        fileUrl:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        isTaken:
+          type: boolean
+      additionalProperties: false
+    MedicineAuditTrailsDto:
+      type: object
+      properties:
+        medicineFormId:
+          type: integer
+          format: int32
+        photoUrl:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        medicineDetailTakenIds:
+          type: string
+          nullable: true
+        administratorDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    MedicineAuditTrailsVerifierDto:
+      required:
+        - medicineAuditId
+      type: object
+      properties:
+        medicineAuditId:
+          type: integer
+          format: int32
+        remark:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MedicineAuditWebViewVO:
+      required:
+        - audit
+      type: object
+      properties:
+        audit:
+          $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+        formStartDate:
+          type: string
+          format: date-time
+          nullable: true
+        formEndDate:
+          type: string
+          format: date-time
+          nullable: true
+        student:
+          $ref: '#/components/schemas/StudentBaseInfoVO'
+      additionalProperties: false
+    MedicineAuditWebViewVOPaginationDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicineAuditWebViewVO'
+          nullable: true
+        totalRecords:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
+        hasNext:
+          type: boolean
+        hasPrevious:
+          type: boolean
+      additionalProperties: false
+    MedicineAuditWithDetailVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        medicineFormId:
+          type: integer
+          format: int32
+        administratorDate:
+          type: string
+          format: date-time
+        administratorConId:
+          type: string
+          nullable: true
+        administratorName:
+          type: string
+          nullable: true
+        administratorRemark:
+          type: string
+          nullable: true
+        photoUrl:
+          type: string
+          nullable: true
+        verifierDate:
+          type: string
+          format: date-time
+          nullable: true
+        verifierConId:
+          type: string
+          nullable: true
+        verifierName:
+          type: string
+          nullable: true
+        verifierRemark:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        medicineDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicineAuditDetailVO'
+          nullable: true
+      additionalProperties: false
+    MedicineDataStudentVO:
+      type: object
+      properties:
+        student:
+          $ref: '#/components/schemas/StudentBaseInfoVO'
+        activeRequestCount:
+          type: integer
+          format: int32
+        expiredRequestCount:
+          type: integer
+          format: int32
+      additionalProperties: false
+    MedicineDetailsDto:
+      required:
+        - dosage
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          minLength: 1
+          type: string
+        dosage:
+          minLength: 1
+          type: string
+        administrationManner:
+          type: string
+          nullable: true
+        entityFileRefId:
+          type: string
+          nullable: true
+        fileUrl:
+          type: string
+          nullable: true
+        medicineExpirationDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    MedicineDetailsVO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        medicineFormId:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        dosage:
+          type: string
+          nullable: true
+        administrationManner:
+          type: string
+          nullable: true
+        medicineExpirationDate:
+          type: string
+          format: date-time
+          nullable: true
+        entityFileRefId:
+          type: string
+          nullable: true
+        entityFileUrl:
+          type: string
+          nullable: true
+        fileUrl:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MedicineForm:
+      required:
+        - studentId
+      type: object
+      properties:
+        medicineFormId:
+          type: integer
+          format: int32
+          nullable: true
+        applicationDate:
+          type: string
+          format: date-time
+          nullable: true
+        studentId:
+          minLength: 1
+          type: string
+        parentType:
+          type: string
+          nullable: true
+        parentEmail:
+          type: string
+          nullable: true
+        studentCourseId:
+          type: string
+          nullable: true
+        administrationTime:
+          type: string
+          format: date-span
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        acknowledgedBy:
+          type: string
+          nullable: true
+        acknowledgedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        rejectedBy:
+          type: string
+          nullable: true
+        rejectedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        acknowledgeCancelBy:
+          type: string
+          nullable: true
+        acknowledgeCancelDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        updatedBy:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+        schoolId:
+          type: string
+          nullable: true
+        classId:
+          type: string
+          nullable: true
+        rejectRemarks:
+          type: string
+          nullable: true
+        previousStatus:
+          type: string
+          nullable: true
+        previousUpdatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    MedicineFormDto:
+      required:
+        - administrationTime
+        - classId
+        - schoolId
+        - startDate
+        - studentId
+      type: object
+      properties:
+        medicineFormId:
+          type: integer
+          format: int32
+          nullable: true
+        studentId:
+          minLength: 1
+          type: string
+        classId:
+          minLength: 1
+          type: string
+        schoolId:
+          minLength: 1
+          type: string
+        administrationTime:
+          type: string
+          format: date-span
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        medicineDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicineDetailsDto'
+          nullable: true
+      additionalProperties: false
+    MedicineFormFullVO:
+      type: object
+      properties:
+        medicineFormId:
+          type: integer
+          format: int32
+        applicationDate:
+          type: string
+          format: date-time
+        studentId:
+          type: string
+          nullable: true
+        parentType:
+          type: string
+          nullable: true
+        parentEmail:
+          type: string
+          nullable: true
+        studentCourseId:
+          type: string
+          nullable: true
+        administrationTime:
+          type: string
+          format: date-span
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        remarks:
+          type: string
+          nullable: true
+        medicineFormStatus:
+          type: string
+          nullable: true
+        createdBy:
+          type: string
+          nullable: true
+        createdByName:
+          type: string
+          nullable: true
+        acknowledgedBy:
+          type: string
+          nullable: true
+        acknowledgedByName:
+          type: string
+          nullable: true
+        acknowledgedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        rejectedBy:
+          type: string
+          nullable: true
+        rejectedByName:
+          type: string
+          nullable: true
+        rejectedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        acknowledgeCancelBy:
+          type: string
+          nullable: true
+        acknowledgeCancelByName:
+          type: string
+          nullable: true
+        acknowledgeCancelDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        rejectRemarks:
+          type: string
+          nullable: true
+        medicineDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicineDetailsVO'
+          nullable: true
+        latestAudit:
+          $ref: '#/components/schemas/MedicineAuditWithDetailVO'
+        student:
+          $ref: '#/components/schemas/StudentBaseInfoVO'
+      additionalProperties: false
+    MedicineFormFullVOPaginationDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicineFormFullVO'
+          nullable: true
+        totalRecords:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
+        hasNext:
+          type: boolean
+        hasPrevious:
+          type: boolean
+      additionalProperties: false
+    MedicineFormRejectDto:
+      type: object
+      properties:
+        remarks:
+          type: string
+          nullable: true
+      additionalProperties: false
+    MedicineFormSchoolConfigVO:
+      type: object
+      properties:
+        medicationEnable:
+          type: boolean
+          nullable: true
+        medicationTakePhotoEnable:
+          type: boolean
+          nullable: true
+        medicationAcceptDays:
+          type: integer
+          format: int32
+        medicationAllowBeforeHour:
+          type: integer
+          format: int32
+      additionalProperties: false
+    MedicineFormUpdateDto:
+      required:
+        - administrationTime
+        - startDate
+      type: object
+      properties:
+        administrationTime:
+          type: string
+          format: date-span
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        medicineDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/MedicineDetailsDto'
+          nullable: true
+      additionalProperties: false
+    OTPParameter:
+      type: object
+      properties:
+        emailAddress:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OTPValidateParameter:
+      type: object
+      properties:
+        otpNumber:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PersonalInfo:
+      required:
+        - accountId
+      type: object
+      properties:
+        accountId:
+          minLength: 1
+          type: string
+        firstName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        firstNameOther:
+          type: string
+          nullable: true
+        lastNameOther:
+          type: string
+          nullable: true
+        dob:
+          type: string
+          format: date-time
+          nullable: true
+        idType:
+          type: string
+          nullable: true
+        idExpiryDate:
+          type: string
+          format: date-time
+          nullable: true
+        nationality:
+          type: string
+          nullable: true
+        photoURL:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Post:
+      required:
+        - id
+        - postType
+        - publishDate
+        - status
+      type: object
+      properties:
+        createdById:
+          type: string
+          nullable: true
+        createdDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastModifiedById:
+          type: string
+          nullable: true
+        lastModifiedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastModifiedByName:
+          type: string
+          nullable: true
+        id:
+          minLength: 1
+          type: string
+        postType:
+          minLength: 1
+          type: string
+        status:
+          minLength: 1
+          type: string
+        publishDate:
+          type: string
+          format: date-time
+        academicYearId:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        isAllClass:
+          type: boolean
+        isAllLevel:
+          type: boolean
+        postTags:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostTag'
+          nullable: true
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostFile'
+          nullable: true
+        postAssociatedWithStudents:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostAssociatedWithStudents'
+          nullable: true
+        postStudents:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostStudent'
+          nullable: true
+        postClasses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostClass'
+          nullable: true
+        postCourses:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostCourse'
+          nullable: true
+        postGoals:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostGoal'
+          nullable: true
+        postReactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostReaction'
+          nullable: true
+        postClassString:
+          type: string
+          nullable: true
+        postStudentString:
+          type: string
+          nullable: true
+        allowComment:
+          type: boolean
+        viewCount:
+          type: integer
+          format: int32
+          nullable: true
+        createdByName:
+          type: string
+          nullable: true
+        markedDate:
+          type: string
+          format: date-time
+          nullable: true
+        schoolId:
+          type: string
+          nullable: true
+        homeSchool:
+          type: string
+          nullable: true
+        literacy:
+          type: string
+          nullable: true
+        numeracy:
+          type: string
+          nullable: true
+        observation:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostAssociatedWithStudents:
+      required:
+        - academicYearId
+        - classId
+        - courseId
+        - id
+        - postId
+        - studentId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        postId:
+          minLength: 1
+          type: string
+        studentId:
+          minLength: 1
+          type: string
+        academicYearId:
+          minLength: 1
+          type: string
+        courseId:
+          minLength: 1
+          type: string
+        classId:
+          minLength: 1
+          type: string
+        studentName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostClass:
+      required:
+        - classId
+        - id
+        - postId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        postId:
+          minLength: 1
+          type: string
+        classId:
+          minLength: 1
+          type: string
+        classname:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostComment:
+      required:
+        - commentBy
+        - content
+        - id
+        - postId
+        - publishedDate
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        postId:
+          minLength: 1
+          type: string
+        content:
+          minLength: 1
+          type: string
+        publishedDate:
+          type: string
+          format: date-time
+        commentBy:
+          minLength: 1
+          type: string
+        threadId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        replies:
+          type: array
+          items:
+            $ref: '#/components/schemas/PostComment'
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostCourse:
+      required:
+        - academicYearId
+        - courseId
+        - id
+        - postId
+        - schoolId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        postId:
+          minLength: 1
+          type: string
+        courseId:
+          minLength: 1
+          type: string
+        schoolId:
+          minLength: 1
+          type: string
+        academicYearId:
+          minLength: 1
+          type: string
+        courseName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostFile:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        postId:
+          type: string
+          nullable: true
+        fileName:
+          type: string
+          nullable: true
+        contentType:
+          type: string
+          nullable: true
+        fileUrl:
+          type: string
+          nullable: true
+        thumbnailUrl:
+          type: string
+          nullable: true
+        sequenceNo:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    PostGoal:
+      required:
+        - id
+        - postId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        postId:
+          minLength: 1
+          type: string
+        domain:
+          type: string
+          nullable: true
+        goal:
+          type: string
+          nullable: true
+        indicator:
+          type: string
+          nullable: true
+        masId:
+          type: string
+          nullable: true
+        masOrder:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostQueryStringParameters:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        schoolId:
+          type: string
+          nullable: true
+        academicYearId:
+          type: string
+          nullable: true
+        studentId:
+          type: string
+          nullable: true
+        postType:
+          pattern: M|N|I|B|A
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+        classId:
+          type: string
+          nullable: true
+        teacherId:
+          type: string
+          nullable: true
+        startDate_yyyMMdd:
+          type: string
+          nullable: true
+        endDate_yyyMMdd:
+          type: string
+          nullable: true
+        searchString:
+          type: string
+          nullable: true
+        getMarkedDays:
+          type: string
+          nullable: true
+        teacherIdFilter:
+          type: string
+          nullable: true
+        isFilterSearch:
+          type: boolean
+      additionalProperties: false
+    PostReaction:
+      required:
+        - id
+        - postId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        postId:
+          minLength: 1
+          type: string
+        reactionType:
+          type: string
+          nullable: true
+        reactionUserId:
+          type: string
+          nullable: true
+        reactionUserName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostStudent:
+      required:
+        - academicYearId
+        - id
+        - postId
+        - studentId
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        postId:
+          minLength: 1
+          type: string
+        studentId:
+          minLength: 1
+          type: string
+        academicYearId:
+          minLength: 1
+          type: string
+        studentName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostTag:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        tag:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PostToPDFParameters:
+      required:
+        - schoolId
+      type: object
+      properties:
+        schoolId:
+          minLength: 1
+          type: string
+        academicYearId:
+          type: string
+          nullable: true
+        studentIds:
+          type: array
+          items:
+            type: string
+          nullable: true
+        postType:
+          pattern: M|N|I
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        courseId:
+          type: string
+          nullable: true
+        classId:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        separateFilePerStudent:
+          type: boolean
+      additionalProperties: false
+    RefreshTokenParameter:
+      required:
+        - refreshToken
+        - token
+      type: object
+      properties:
+        token:
+          minLength: 1
+          type: string
+        refreshToken:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ResetPasswordParameter:
+      type: object
+      properties:
+        otpNumber:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResourcePermission:
+      type: object
+      properties:
+        levels:
+          type: string
+          nullable: true
+        classes:
+          type: string
+          nullable: true
+        students:
+          type: string
+          nullable: true
+        batchNumber:
+          type: string
+          nullable: true
+        attendeeReference:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ResponseStatus:
+      type: object
+      properties:
+        response:
+          $ref: '#/components/schemas/ResponseType'
+        time:
+          type: string
+          format: date-time
+          nullable: true
+        '@odata.type':
+          type: string
+          nullable: true
+      additionalProperties: {}
+    ResponseType:
+      enum:
+        - None
+        - Organizer
+        - TentativelyAccepted
+        - Accepted
+        - Declined
+        - NotResponded
+      type: string
+    Student:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          minLength: 1
+          type: string
+        studentNo:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        schoolId:
+          type: string
+          nullable: true
+        account:
+          $ref: '#/components/schemas/Account'
+        photo:
+          type: string
+          nullable: true
+        registrationDate:
+          type: string
+          format: date-time
+          nullable: true
+        schoolName:
+          type: string
+          nullable: true
+        studentLevelId:
+          type: string
+          nullable: true
+        levelId:
+          type: string
+          nullable: true
+        levelName:
+          type: string
+          nullable: true
+        classId:
+          type: string
+          nullable: true
+        className:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StudentBaseInfoVO:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        schoolId:
+          type: string
+          nullable: true
+        schoolName:
+          type: string
+          nullable: true
+        classId:
+          type: string
+          nullable: true
+        className:
+          type: string
+          nullable: true
+        photo:
+          type: string
+          nullable: true
+        levelId:
+          type: string
+          nullable: true
+        levelName:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        registrationDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    StudentMiniDailyLogVO:
+      type: object
+      properties:
+        student:
+          $ref: '#/components/schemas/Student'
+        attendanceStatus:
+          $ref: '#/components/schemas/AttendanceVO'
+        lastTemperatureStatus:
+          $ref: '#/components/schemas/LastTemperatureVO'
+        signInOutStatus:
+          $ref: '#/components/schemas/CheckInOutVO'
+      additionalProperties: false
+    StudentStatistic:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        studentId:
+          type: string
+          nullable: true
+        academicYearId:
+          type: string
+          nullable: true
+        academicYear:
+          type: string
+          nullable: true
+        termId:
+          type: string
+          nullable: true
+        term:
+          type: string
+          nullable: true
+        weightInKg:
+          type: number
+          format: double
+          nullable: true
+        heightInCm:
+          type: number
+          format: double
+          nullable: true
+        status:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StudentWithConfigVO:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        schoolId:
+          type: string
+          nullable: true
+        schoolName:
+          type: string
+          nullable: true
+        classId:
+          type: string
+          nullable: true
+        className:
+          type: string
+          nullable: true
+        photo:
+          type: string
+          nullable: true
+        levelId:
+          type: string
+          nullable: true
+        levelName:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        registrationDate:
+          type: string
+          format: date-time
+          nullable: true
+        config:
+          $ref: '#/components/schemas/ChildConfigVO'
+      additionalProperties: false
+    TagClass:
+      type: object
+      properties:
+        teacherId:
+          type: string
+          nullable: true
+        classId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TagLevel:
+      type: object
+      properties:
+        teacherId:
+          type: string
+          nullable: true
+        levelId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TagStudents:
+      type: object
+      properties:
+        teacherId:
+          type: string
+          nullable: true
+        studentId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TeacherServiceQueryParameter:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        isActive:
+          type: boolean
+        overrideIsAciveFilter:
+          type: boolean
+        academicYearId:
+          type: string
+          nullable: true
+        schoolId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TemperatureCheck:
+      required:
+        - date
+        - temperature
+      type: object
+      properties:
+        date:
+          type: string
+          format: date-time
+        temperature:
+          type: number
+          format: double
+        remarks:
+          type: string
+          nullable: true
+        utcDate:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    TemperatureCheckParameter:
+      required:
+        - date
+        - studentId
+        - temperature
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        studentId:
+          minLength: 1
+          type: string
+        date:
+          type: string
+          format: date-time
+        temperature:
+          type: number
+          format: double
+        remarks:
+          type: string
+          nullable: true
+        utcDate:
+          type: string
+          format: date-time
+          readOnly: true
+      additionalProperties: false
+    TimeSlot:
+      type: object
+      properties:
+        end:
+          $ref: '#/components/schemas/DateTimeTimeZone'
+        start:
+          $ref: '#/components/schemas/DateTimeTimeZone'
+        '@odata.type':
+          type: string
+          nullable: true
+      additionalProperties: {}
+    UserConfig:
+      type: object
+      properties:
+        notificationFrequent:
+          type: string
+          nullable: true
+        showDailyRoutine:
+          type: boolean
+          nullable: true
+        enablePTCBooking:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: please input token,format Bearer xxxxxxxx
+      name: Authorization
+      in: header
+security:
+  - Bearer: []

@@ -117,73 +117,6 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/account/journeys
-  Future<Either<ApiError, List<JourneyInProfileDto>>> apiV1AccountJourneysGet({
-    int? page,
-    int? pageSize,
-  }) async {
-    final queryParams = <String, dynamic>{};
-    try {
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/account/journeys',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'GET',
-        endpoint: '/api/v1/account/journeys',
-        queryParameters: queryParams,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// get: /api/v1/account/steps
-  Future<Either<ApiError, List<StepDetailDto>>> apiV1AccountStepsGet({
-    int? page,
-    int? pageSize,
-  }) async {
-    final queryParams = <String, dynamic>{};
-    try {
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/account/steps',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'GET',
-        endpoint: '/api/v1/account/steps',
-        queryParameters: queryParams,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
   /// post: /api/v1/auth/login
   Future<Either<ApiError, LoginResponseDto>> apiV1AuthLoginPost(
       LoginDto body) async {
@@ -218,7 +151,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$id',
+        endpoint: '/api/v1/users/{id}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -228,32 +161,17 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/users/{id}/journeys
-  Future<Either<ApiError, List<JourneyInProfileDto>>> apiV1UsersIdJourneysGet({
-    required String id,
-    int? page,
-    int? pageSize,
-  }) async {
-    final queryParams = <String, dynamic>{};
+  /// get: /api/v1/users/{id}/badges-earned
+  Future<Either<ApiError, BadgesEarnedDetailDto>> apiV1UsersIdBadgesEarnedGet(
+      {required String id}) async {
     try {
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/users/$id/journeys',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      final response = await _dio.get('/api/v1/users/$id/badges-earned');
+      final result = BadgesEarnedDetailDto.fromJson(response.data);
+      return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$id/journeys',
-        queryParameters: queryParams,
+        endpoint: '/api/v1/users/{id}/badges-earned',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -263,31 +181,17 @@ class StepoService {
     }
   }
 
-  /// get: /api/v1/users/{id}/steps
-  Future<Either<ApiError, List<StepDetailDto>>> apiV1UsersIdStepsGet({
-    required String id,
-    int? page,
-    int? pageSize,
-  }) async {
-    final queryParams = <String, dynamic>{};
+  /// get: /api/v1/users/{id}/support-received
+  Future<Either<ApiError, SupportReceivedDetailDto>>
+      apiV1UsersIdSupportReceivedGet({required String id}) async {
     try {
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/users/$id/steps',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      final response = await _dio.get('/api/v1/users/$id/support-received');
+      final result = SupportReceivedDetailDto.fromJson(response.data);
+      return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$id/steps',
-        queryParameters: queryParams,
+        endpoint: '/api/v1/users/{id}/support-received',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -333,7 +237,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/steps/$stepId',
+        endpoint: '/api/v1/steps/{stepId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -359,7 +263,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/api/v1/steps/$stepId',
+        endpoint: '/api/v1/steps/{stepId}',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -380,7 +284,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/steps/$stepId',
+        endpoint: '/api/v1/steps/{stepId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -390,33 +294,32 @@ class StepoService {
     }
   }
 
-  /// Upload an image for a step
-  /// post: /api/v1/steps/{stepId}/images
-  Future<Either<ApiError, StepMediaDto>> apiV1StepsStepIdImagesPost(
-    _i1.File file, {
-    required String stepId,
-    void Function(int sent, int total)? onProgress,
+  /// Get steps for a specific user
+  /// get: /api/v1/users/{userId}/steps
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1UsersUserIdStepsGet({
+    required String userId,
+    int? page,
+    int? pageSize,
   }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final length = await file.length();
-      final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
 
-      final response = await _dio.post(
-        '/api/v1/steps/$stepId/images',
-        data: file.openRead(),
-        onSendProgress: onProgress,
-        options: Options(headers: <String, dynamic>{
-          'Content-Length': length.toString(),
-          'Content-Type': mime,
-        }),
+      final response = await _dio.get(
+        '/api/v1/users/$userId/steps',
+        queryParameters: queryParams,
       );
-      final result = StepMediaDto.fromJson(response.data);
-      return Right(result);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
-        method: 'POST',
-        endpoint: '/api/v1/steps/$stepId/images',
-        requestBody: file,
+        method: 'GET',
+        endpoint: '/api/v1/users/{userId}/steps',
+        queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -426,18 +329,31 @@ class StepoService {
     }
   }
 
-  /// Get video upload URL for a step
-  /// put: /api/v1/steps/{stepId}/video
-  Future<Either<ApiError, VideoPreSignedUrlDto>> apiV1StepsStepIdVideoPut(
-      {required String stepId}) async {
+  /// Get current user's steps
+  /// get: /api/v1/account/steps
+  Future<Either<ApiError, List<StepDetailDto>>> apiV1AccountStepsGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    final queryParams = <String, dynamic>{};
     try {
-      final response = await _dio.put('/api/v1/steps/$stepId/video');
-      final result = VideoPreSignedUrlDto.fromJson(response.data);
-      return Right(result);
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/account/steps',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
-        method: 'PUT',
-        endpoint: '/api/v1/steps/$stepId/video',
+        method: 'GET',
+        endpoint: '/api/v1/account/steps',
+        queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -522,98 +438,6 @@ class StepoService {
         method: 'POST',
         endpoint: '/api/v1/admin/notifications/test-send',
         requestBody: body,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// Register device token for secure notifications
-  /// post: /api/v1/notifications/devices/register
-  Future<Either<ApiError, DeviceTokenDto>>
-      apiV1NotificationsDevicesRegisterPost(RegisterDeviceDto body) async {
-    try {
-      final response = await _dio.post(
-        '/api/v1/notifications/devices/register',
-        data: body.toJson(),
-      );
-      final result = DeviceTokenDto.fromJson(response.data);
-      return Right(result);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'POST',
-        endpoint: '/api/v1/notifications/devices/register',
-        requestBody: body,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// Unregister device token
-  /// delete: /api/v1/notifications/devices/{token}
-  Future<Either<ApiError, void>> apiV1NotificationsDevicesTokenDelete(
-      {required String token}) async {
-    try {
-      final _ = await _dio.delete('/api/v1/notifications/devices/$token');
-      return const Right(null);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'DELETE',
-        endpoint: '/api/v1/notifications/devices/$token',
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// Get user's registered devices
-  /// get: /api/v1/notifications/devices
-  Future<Either<ApiError, List<DeviceTokenDto>>>
-      apiV1NotificationsDevicesGet() async {
-    try {
-      final response = await _dio.get('/api/v1/notifications/devices');
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map(
-              (item) => DeviceTokenDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'GET',
-        endpoint: '/api/v1/notifications/devices',
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// Validate and cleanup invalid tokens
-  /// post: /api/v1/notifications/devices/validate
-  Future<Either<ApiError, TokenValidationResultDto>>
-      apiV1NotificationsDevicesValidatePost() async {
-    try {
-      final response =
-          await _dio.post('/api/v1/notifications/devices/validate');
-      final result = TokenValidationResultDto.fromJson(response.data);
-      return Right(result);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'POST',
-        endpoint: '/api/v1/notifications/devices/validate',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -730,7 +554,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/api/v1/notifications/$notificationId/read',
+        endpoint: '/api/v1/notifications/{notificationId}/read',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -769,7 +593,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/notifications/$notificationId',
+        endpoint: '/api/v1/notifications/{notificationId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -794,7 +618,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/moderation/comments/$commentId',
+        endpoint: '/api/v1/moderation/comments/{commentId}',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -820,7 +644,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/moderation/steps/$stepId',
+        endpoint: '/api/v1/moderation/steps/{stepId}',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -846,7 +670,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/moderation/journeys/$journeyId',
+        endpoint: '/api/v1/moderation/journeys/{journeyId}',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -872,7 +696,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/moderation/users/$userId/ban',
+        endpoint: '/api/v1/moderation/users/{userId}/ban',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -893,7 +717,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/moderation/users/$userId/unban',
+        endpoint: '/api/v1/moderation/users/{userId}/unban',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -918,7 +742,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/api/v1/moderation/users/$userId/status',
+        endpoint: '/api/v1/moderation/users/{userId}/status',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -939,7 +763,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/moderation/users/$userId',
+        endpoint: '/api/v1/moderation/users/{userId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1046,7 +870,64 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/media/$mediaId',
+        endpoint: '/api/v1/media/{mediaId}',
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// Upload an image for a step
+  /// post: /api/v1/steps/{stepId}/images
+  Future<Either<ApiError, StepMediaDto>> apiV1StepsStepIdImagesPost(
+    _i1.File file, {
+    required String stepId,
+    void Function(int sent, int total)? onProgress,
+  }) async {
+    try {
+      final length = await file.length();
+      final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
+
+      final response = await _dio.post(
+        '/api/v1/steps/$stepId/images',
+        data: file.openRead(),
+        onSendProgress: onProgress,
+        options: Options(headers: <String, dynamic>{
+          'Content-Length': length.toString(),
+          'Content-Type': mime,
+        }),
+      );
+      final result = StepMediaDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/steps/{stepId}/images',
+        requestBody: file,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// Get video upload URL for a step
+  /// put: /api/v1/steps/{stepId}/video
+  Future<Either<ApiError, VideoPreSignedUrlDto>> apiV1StepsStepIdVideoPut(
+      {required String stepId}) async {
+    try {
+      final response = await _dio.put('/api/v1/steps/$stepId/video');
+      final result = VideoPreSignedUrlDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: '/api/v1/steps/{stepId}/video',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1097,48 +978,6 @@ class StepoService {
     }
   }
 
-  /// Follow a journey for step notifications
-  /// post: /api/v1/journeys/{journeyId}/follow
-  Future<Either<ApiError, bool>> apiV1JourneysJourneyIdFollowPost(
-      {required String journeyId}) async {
-    try {
-      final response = await _dio.post('/api/v1/journeys/$journeyId/follow');
-      final result = (response.data as bool);
-      return Right(result);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'POST',
-        endpoint: '/api/v1/journeys/$journeyId/follow',
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// Unfollow a journey
-  /// delete: /api/v1/journeys/{journeyId}/follow
-  Future<Either<ApiError, bool>> apiV1JourneysJourneyIdFollowDelete(
-      {required String journeyId}) async {
-    try {
-      final response = await _dio.delete('/api/v1/journeys/$journeyId/follow');
-      final result = (response.data as bool);
-      return Right(result);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'DELETE',
-        endpoint: '/api/v1/journeys/$journeyId/follow',
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
   /// Get journey details by ID
   /// get: /api/v1/journeys/{id}
   Future<Either<ApiError, JourneyInDetailDto>> apiV1JourneysIdGet(
@@ -1150,7 +989,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/journeys/$id',
+        endpoint: '/api/v1/journeys/{id}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1176,7 +1015,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/api/v1/journeys/$id',
+        endpoint: '/api/v1/journeys/{id}',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1197,7 +1036,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/journeys/$id',
+        endpoint: '/api/v1/journeys/{id}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1251,7 +1090,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/journeys/$id/close',
+        endpoint: '/api/v1/journeys/{id}/close',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1273,7 +1112,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/journeys/$id/reopen',
+        endpoint: '/api/v1/journeys/{id}/reopen',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1308,7 +1147,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/journeys/$journeyId/steps-detail',
+        endpoint: '/api/v1/journeys/{journeyId}/steps-detail',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1343,7 +1182,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/journeys/$journeyId/steps',
+        endpoint: '/api/v1/journeys/{journeyId}/steps',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1369,7 +1208,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/journeys/$journeyId/calendar',
+        endpoint: '/api/v1/journeys/{journeyId}/calendar',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1404,7 +1243,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/journeys/newer-steps/$stepId',
+        endpoint: '/api/v1/journeys/newer-steps/{stepId}',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1440,8 +1279,122 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/journeys/older-steps/$stepId',
+        endpoint: '/api/v1/journeys/older-steps/{stepId}',
         queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// Get journeys for a specific user
+  /// get: /api/v1/users/{userId}/journeys
+  Future<Either<ApiError, List<JourneyInProfileDto>>>
+      apiV1UsersUserIdJourneysGet({
+    required String userId,
+    int? page,
+    int? pageSize,
+  }) async {
+    final queryParams = <String, dynamic>{};
+    try {
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/users/$userId/journeys',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) =>
+              JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/users/{userId}/journeys',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// Get current user's journeys
+  /// get: /api/v1/account/journeys
+  Future<Either<ApiError, List<JourneyInProfileDto>>> apiV1AccountJourneysGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    final queryParams = <String, dynamic>{};
+    try {
+      if (page != null) queryParams['page'] = page;
+      if (pageSize != null) queryParams['pageSize'] = pageSize;
+
+      final response = await _dio.get(
+        '/api/v1/account/journeys',
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) =>
+              JourneyInProfileDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: '/api/v1/account/journeys',
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// Follow a journey for step notifications
+  /// post: /api/v1/journeys/{journeyId}/follow
+  Future<Either<ApiError, bool>> apiV1JourneysJourneyIdFollowPost(
+      {required String journeyId}) async {
+    try {
+      final response = await _dio.post('/api/v1/journeys/$journeyId/follow');
+      final result = (response.data as bool);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: '/api/v1/journeys/{journeyId}/follow',
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// Unfollow a journey
+  /// delete: /api/v1/journeys/{journeyId}/follow
+  Future<Either<ApiError, bool>> apiV1JourneysJourneyIdFollowDelete(
+      {required String journeyId}) async {
+    try {
+      final response = await _dio.delete('/api/v1/journeys/$journeyId/follow');
+      final result = (response.data as bool);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'DELETE',
+        endpoint: '/api/v1/journeys/{journeyId}/follow',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1466,7 +1419,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/steps/$stepId/hearts',
+        endpoint: '/api/v1/steps/{stepId}/hearts',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1487,7 +1440,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/steps/$stepId/hearts',
+        endpoint: '/api/v1/steps/{stepId}/hearts',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1512,7 +1465,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/steps/$stepId/shares',
+        endpoint: '/api/v1/steps/{stepId}/shares',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1533,7 +1486,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/steps/$stepId/interactions',
+        endpoint: '/api/v1/steps/{stepId}/interactions',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1558,7 +1511,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/steps/comments/$commentId/hearts',
+        endpoint: '/api/v1/steps/comments/{commentId}/hearts',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1580,7 +1533,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/steps/comments/$commentId/hearts',
+        endpoint: '/api/v1/steps/comments/{commentId}/hearts',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1742,7 +1695,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/account/follow-requests/$requesterId/accept',
+        endpoint: '/api/v1/account/follow-requests/{requesterId}/accept',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1764,7 +1717,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/account/follow-requests/$requesterId/reject',
+        endpoint: '/api/v1/account/follow-requests/{requesterId}/reject',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1785,7 +1738,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/account/followers/$followerId/remove',
+        endpoint: '/api/v1/account/followers/{followerId}/remove',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1805,7 +1758,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/users/$userId/follow',
+        endpoint: '/api/v1/users/{userId}/follow',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1825,7 +1778,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/users/$userId/follow',
+        endpoint: '/api/v1/users/{userId}/follow',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1846,7 +1799,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$userId/follow-status',
+        endpoint: '/api/v1/users/{userId}/follow-status',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1880,7 +1833,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$userId/followers',
+        endpoint: '/api/v1/users/{userId}/followers',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1915,7 +1868,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$userId/followings',
+        endpoint: '/api/v1/users/{userId}/followings',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1937,7 +1890,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$userId/followers/count',
+        endpoint: '/api/v1/users/{userId}/followers/count',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1958,7 +1911,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/users/$userId/followings/count',
+        endpoint: '/api/v1/users/{userId}/followings/count',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2002,94 +1955,6 @@ class StepoService {
     }
   }
 
-  /// Get user's feed composition metrics
-  /// get: /api/v1/feed/metrics
-  Future<Either<ApiError, FeedMetricsDto>> apiV1FeedMetricsGet() async {
-    try {
-      final response = await _dio.get('/api/v1/feed/metrics');
-      final result = FeedMetricsDto.fromJson(response.data);
-      return Right(result);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'GET',
-        endpoint: '/api/v1/feed/metrics',
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// Get hot trending content from the platform
-  /// get: /api/v1/feed/hot
-  Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedHotGet({
-    int? page,
-    int? pageSize,
-  }) async {
-    final queryParams = <String, dynamic>{};
-    try {
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/feed/hot',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'GET',
-        endpoint: '/api/v1/feed/hot',
-        queryParameters: queryParams,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// Get latest content from followed users
-  /// get: /api/v1/feed/following
-  Future<Either<ApiError, List<StepDetailDto>>> apiV1FeedFollowingGet({
-    int? page,
-    int? pageSize,
-  }) async {
-    final queryParams = <String, dynamic>{};
-    try {
-      if (page != null) queryParams['page'] = page;
-      if (pageSize != null) queryParams['pageSize'] = pageSize;
-
-      final response = await _dio.get(
-        '/api/v1/feed/following',
-        queryParameters: queryParams,
-      );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'GET',
-        endpoint: '/api/v1/feed/following',
-        queryParameters: queryParams,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
   /// Delete a comment
   /// delete: /api/v1/comments/{commentId}
   Future<Either<ApiError, void>> apiV1CommentsCommentIdDelete(
@@ -2100,7 +1965,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/comments/$commentId',
+        endpoint: '/api/v1/comments/{commentId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2126,7 +1991,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/comments/$parentCommentId/replies',
+        endpoint: '/api/v1/comments/{parentCommentId}/replies',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2161,7 +2026,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/comments/$commentId/replies',
+        endpoint: '/api/v1/comments/{commentId}/replies',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2172,6 +2037,7 @@ class StepoService {
     }
   }
 
+  /// Get comments for a step
   /// get: /api/v1/steps/{stepId}/comments
   Future<Either<ApiError, List<StepCommentDto>>> apiV1StepsStepIdCommentsGet({
     required String stepId,
@@ -2196,7 +2062,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/steps/$stepId/comments',
+        endpoint: '/api/v1/steps/{stepId}/comments',
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2207,6 +2073,7 @@ class StepoService {
     }
   }
 
+  /// Create a comment on a step
   /// post: /api/v1/steps/{stepId}/comments
   Future<Either<ApiError, StepCommentDto>> apiV1StepsStepIdCommentsPost(
     CreateStepCommentDto body, {
@@ -2222,7 +2089,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/steps/$stepId/comments',
+        endpoint: '/api/v1/steps/{stepId}/comments',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2238,8 +2105,8 @@ class StepoService {
   Future<Either<ApiError, PageResponseOfAppFeedbackDto>> apiV1AdminFeedbackGet({
     int? page,
     int? pageSize,
-    ApiV1AdminFeedbackGetTypeDto? type,
-    ApiV1AdminFeedbackGetStatusDto? status,
+    String? type,
+    String? status,
   }) async {
     final queryParams = <String, dynamic>{};
     try {
@@ -2284,7 +2151,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/api/v1/admin/feedback/$id/status',
+        endpoint: '/api/v1/admin/feedback/{id}/status',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2345,7 +2212,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/api/v1/appfeedback/$feedbackId/image',
+        endpoint: '/api/v1/appfeedback/{feedbackId}/image',
         requestBody: file,
       );
       return Left(_errorHandler.handleError(
@@ -2367,7 +2234,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/api/v1/appfeedback/$id',
+        endpoint: '/api/v1/appfeedback/{id}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2387,7 +2254,7 @@ class StepoService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/api/v1/appfeedback/$id',
+        endpoint: '/api/v1/appfeedback/{id}',
       );
       return Left(_errorHandler.handleError(
         e,

@@ -76,6 +76,46 @@ const _$FeedbackStatusDtoEnumMap = {
   FeedbackStatusDto.duplicate: 'Duplicate',
 };
 
+_BadgesEarnedDetailDto _$BadgesEarnedDetailDtoFromJson(
+        Map<String, dynamic> json) =>
+    _BadgesEarnedDetailDto(
+      totalBadgesEarned: (json['totalBadgesEarned'] as num?)?.toInt() ?? 0,
+      companionsCount: (json['companionsCount'] as num?)?.toInt() ?? 0,
+      companionUsers: (json['companionUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      startersCount: (json['startersCount'] as num?)?.toInt() ?? 0,
+      starterUsers: (json['starterUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      celebratorsCount: (json['celebratorsCount'] as num?)?.toInt() ?? 0,
+      celebratorUsers: (json['celebratorUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      stepWithCount: (json['stepWithCount'] as num?)?.toInt() ?? 0,
+      stepWithUsers: (json['stepWithUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      topSupportedUsers: (json['topSupportedUsers'] as List<dynamic>?)
+          ?.map((e) => TopSupportUserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$BadgesEarnedDetailDtoToJson(
+        _BadgesEarnedDetailDto instance) =>
+    <String, dynamic>{
+      'totalBadgesEarned': instance.totalBadgesEarned,
+      'companionsCount': instance.companionsCount,
+      'companionUsers': instance.companionUsers,
+      'startersCount': instance.startersCount,
+      'starterUsers': instance.starterUsers,
+      'celebratorsCount': instance.celebratorsCount,
+      'celebratorUsers': instance.celebratorUsers,
+      'stepWithCount': instance.stepWithCount,
+      'stepWithUsers': instance.stepWithUsers,
+      'topSupportedUsers': instance.topSupportedUsers,
+    };
+
 _BanUserDto _$BanUserDtoFromJson(Map<String, dynamic> json) => _BanUserDto(
       reason: json['reason'] as String,
       isShadowBan: json['isShadowBan'] as bool? ?? false,
@@ -181,36 +221,6 @@ Map<String, dynamic> _$CreateStepInteractionDtoToJson(
       'type': _$InteractionTypeDtoEnumMap[instance.type]!,
     };
 
-_DeviceTokenDto _$DeviceTokenDtoFromJson(Map<String, dynamic> json) =>
-    _DeviceTokenDto(
-      id: json['id'] as String?,
-      deviceToken: json['deviceToken'] as String?,
-      platform: json['platform'] as String?,
-      isActive: json['isActive'] as bool?,
-      lastUsed: json['lastUsed'] == null
-          ? null
-          : DateTime.parse(json['lastUsed'] as String),
-      appVersion: json['appVersion'] as String?,
-      deviceModel: json['deviceModel'] as String?,
-      deviceName: json['deviceName'] as String?,
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
-    );
-
-Map<String, dynamic> _$DeviceTokenDtoToJson(_DeviceTokenDto instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'deviceToken': instance.deviceToken,
-      'platform': instance.platform,
-      'isActive': instance.isActive,
-      'lastUsed': instance.lastUsed?.toIso8601String(),
-      'appVersion': instance.appVersion,
-      'deviceModel': instance.deviceModel,
-      'deviceName': instance.deviceName,
-      'createdDate': instance.createdDate?.toIso8601String(),
-    };
-
 _EditUserDto _$EditUserDtoFromJson(Map<String, dynamic> json) => _EditUserDto(
       displayName: json['displayName'] as String,
       username: json['username'] as String,
@@ -224,22 +234,6 @@ Map<String, dynamic> _$EditUserDtoToJson(_EditUserDto instance) =>
       'username': instance.username,
       'description': instance.description,
       'isPrivate': instance.isPrivate,
-    };
-
-_FeedMetricsDto _$FeedMetricsDtoFromJson(Map<String, dynamic> json) =>
-    _FeedMetricsDto(
-      followingCount: (json['followingCount'] as num).toInt(),
-      hotContentRatio: json['hotContentRatio'] as num,
-      followingContentRatio: json['followingContentRatio'] as num,
-      lastRefresh: DateTime.parse(json['lastRefresh'] as String),
-    );
-
-Map<String, dynamic> _$FeedMetricsDtoToJson(_FeedMetricsDto instance) =>
-    <String, dynamic>{
-      'followingCount': instance.followingCount,
-      'hotContentRatio': instance.hotContentRatio,
-      'followingContentRatio': instance.followingContentRatio,
-      'lastRefresh': instance.lastRefresh.toIso8601String(),
     };
 
 _FollowingStatusDto _$FollowingStatusDtoFromJson(Map<String, dynamic> json) =>
@@ -572,12 +566,12 @@ Map<String, dynamic> _$PageResponseOfAppFeedbackDtoToJson(
 _ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => _ProfileDto(
       userDetail:
           UserDetailDto.fromJson(json['userDetail'] as Map<String, dynamic>),
-      badgesCount: (json['badgesCount'] as num?)?.toInt() ?? 0,
-      badgesUsers: (json['badgesUsers'] as List<dynamic>?)
+      badgesEarned: (json['badgesEarned'] as num?)?.toInt() ?? 0,
+      latestSupportedUsers: (json['latestSupportedUsers'] as List<dynamic>?)
           ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
           .toList(),
-      supportersCount: (json['supportersCount'] as num?)?.toInt() ?? 0,
-      supportersUsers: (json['supportersUsers'] as List<dynamic>?)
+      supportReceived: (json['supportReceived'] as num?)?.toInt() ?? 0,
+      latestSupporters: (json['latestSupporters'] as List<dynamic>?)
           ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       followersCount: (json['followersCount'] as num?)?.toInt() ?? 0,
@@ -589,31 +583,13 @@ _ProfileDto _$ProfileDtoFromJson(Map<String, dynamic> json) => _ProfileDto(
 Map<String, dynamic> _$ProfileDtoToJson(_ProfileDto instance) =>
     <String, dynamic>{
       'userDetail': instance.userDetail,
-      'badgesCount': instance.badgesCount,
-      'badgesUsers': instance.badgesUsers,
-      'supportersCount': instance.supportersCount,
-      'supportersUsers': instance.supportersUsers,
+      'badgesEarned': instance.badgesEarned,
+      'latestSupportedUsers': instance.latestSupportedUsers,
+      'supportReceived': instance.supportReceived,
+      'latestSupporters': instance.latestSupporters,
       'followersCount': instance.followersCount,
       'followingsCount': instance.followingsCount,
       'hasPendingFollowRequestToMe': instance.hasPendingFollowRequestToMe,
-    };
-
-_RegisterDeviceDto _$RegisterDeviceDtoFromJson(Map<String, dynamic> json) =>
-    _RegisterDeviceDto(
-      deviceToken: json['deviceToken'] as String?,
-      platform: json['platform'] as String?,
-      appVersion: json['appVersion'] as String?,
-      deviceModel: json['deviceModel'] as String?,
-      deviceName: json['deviceName'] as String?,
-    );
-
-Map<String, dynamic> _$RegisterDeviceDtoToJson(_RegisterDeviceDto instance) =>
-    <String, dynamic>{
-      'deviceToken': instance.deviceToken,
-      'platform': instance.platform,
-      'appVersion': instance.appVersion,
-      'deviceModel': instance.deviceModel,
-      'deviceName': instance.deviceName,
     };
 
 _RemoveContentDto _$RemoveContentDtoFromJson(Map<String, dynamic> json) =>
@@ -877,15 +853,53 @@ const _$MediaStatusDtoEnumMap = {
   MediaStatusDto.failed: 'Failed',
 };
 
+_SupportReceivedDetailDto _$SupportReceivedDetailDtoFromJson(
+        Map<String, dynamic> json) =>
+    _SupportReceivedDetailDto(
+      totalSupportReceived:
+          (json['totalSupportReceived'] as num?)?.toInt() ?? 0,
+      companionsCount: (json['companionsCount'] as num?)?.toInt() ?? 0,
+      companionUsers: (json['companionUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      startersCount: (json['startersCount'] as num?)?.toInt() ?? 0,
+      starterUsers: (json['starterUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      celebratorsCount: (json['celebratorsCount'] as num?)?.toInt() ?? 0,
+      celebratorUsers: (json['celebratorUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      stepWithCount: (json['stepWithCount'] as num?)?.toInt() ?? 0,
+      stepWithUsers: (json['stepWithUsers'] as List<dynamic>?)
+          ?.map((e) => UserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      topActiveSupporters: (json['topActiveSupporters'] as List<dynamic>?)
+          ?.map((e) => TopSupportUserDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$SupportReceivedDetailDtoToJson(
+        _SupportReceivedDetailDto instance) =>
+    <String, dynamic>{
+      'totalSupportReceived': instance.totalSupportReceived,
+      'companionsCount': instance.companionsCount,
+      'companionUsers': instance.companionUsers,
+      'startersCount': instance.startersCount,
+      'starterUsers': instance.starterUsers,
+      'celebratorsCount': instance.celebratorsCount,
+      'celebratorUsers': instance.celebratorUsers,
+      'stepWithCount': instance.stepWithCount,
+      'stepWithUsers': instance.stepWithUsers,
+      'topActiveSupporters': instance.topActiveSupporters,
+    };
+
 _TestNotificationDto _$TestNotificationDtoFromJson(Map<String, dynamic> json) =>
     _TestNotificationDto(
       title: json['title'] as String?,
       body: json['body'] as String?,
       userId: json['userId'] as String?,
       topic: json['topic'] as String?,
-      deviceTokens: (json['deviceTokens'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
       data: (json['data'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
@@ -899,7 +913,6 @@ Map<String, dynamic> _$TestNotificationDtoToJson(
       'body': instance.body,
       'userId': instance.userId,
       'topic': instance.topic,
-      'deviceTokens': instance.deviceTokens,
       'data': instance.data,
       'priority': instance.priority,
     };
@@ -918,22 +931,24 @@ Map<String, dynamic> _$TestNotificationResultDtoToJson(
       'message': instance.message,
     };
 
-_TokenValidationResultDto _$TokenValidationResultDtoFromJson(
-        Map<String, dynamic> json) =>
-    _TokenValidationResultDto(
-      validatedCount: (json['validatedCount'] as num?)?.toInt(),
-      invalidatedCount: (json['invalidatedCount'] as num?)?.toInt(),
-      invalidTokens: (json['invalidTokens'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+_TopSupportUserDto _$TopSupportUserDtoFromJson(Map<String, dynamic> json) =>
+    _TopSupportUserDto(
+      user: UserDto.fromJson(json['user'] as Map<String, dynamic>),
+      companionsGiven: (json['companionsGiven'] as num?)?.toInt() ?? 0,
+      startersGiven: (json['startersGiven'] as num?)?.toInt() ?? 0,
+      celebratorsGiven: (json['celebratorsGiven'] as num?)?.toInt() ?? 0,
+      stepWithGiven: (json['stepWithGiven'] as num?)?.toInt() ?? 0,
+      totalSupport: (json['totalSupport'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$TokenValidationResultDtoToJson(
-        _TokenValidationResultDto instance) =>
+Map<String, dynamic> _$TopSupportUserDtoToJson(_TopSupportUserDto instance) =>
     <String, dynamic>{
-      'validatedCount': instance.validatedCount,
-      'invalidatedCount': instance.invalidatedCount,
-      'invalidTokens': instance.invalidTokens,
+      'user': instance.user,
+      'companionsGiven': instance.companionsGiven,
+      'startersGiven': instance.startersGiven,
+      'celebratorsGiven': instance.celebratorsGiven,
+      'stepWithGiven': instance.stepWithGiven,
+      'totalSupport': instance.totalSupport,
     };
 
 _UpdateFeedbackStatusDto _$UpdateFeedbackStatusDtoFromJson(

@@ -712,6 +712,9 @@ class OpenApiLibraryGenerator {
       ...?operation.parameters,
     ];
 
+    // Track parameter names to avoid duplicates
+    final usedParameterNames = <String>{};
+
     for (final param in allParameters) {
       Reference paramType;
       // Use correct parameter DTO naming for enums
@@ -735,7 +738,29 @@ class OpenApiLibraryGenerator {
       } else {
         paramType = toDartType(operationName, param.schema!);
       }
-      final paramNameCamelCase = param.name!.camelCase;
+
+      // Generate unique parameter name to avoid duplicates
+      var paramNameCamelCase = param.name!.camelCase;
+      if (usedParameterNames.contains(paramNameCamelCase)) {
+        // If duplicate, add location suffix to make it unique
+        if (param.location == APIParameterLocation.path) {
+          paramNameCamelCase = '${paramNameCamelCase}Path';
+        } else if (param.location == APIParameterLocation.query) {
+          paramNameCamelCase = '${paramNameCamelCase}Query';
+        } else if (param.location == APIParameterLocation.header) {
+          paramNameCamelCase = '${paramNameCamelCase}Header';
+        }
+
+        // If still duplicate, add counter
+        var counter = 2;
+        var uniqueName = paramNameCamelCase;
+        while (usedParameterNames.contains(uniqueName)) {
+          uniqueName = '$paramNameCamelCase$counter';
+          counter++;
+        }
+        paramNameCamelCase = uniqueName;
+      }
+      usedParameterNames.add(paramNameCamelCase);
 
       method.optionalParameters.add(Parameter((pb) => pb
         ..name = paramNameCamelCase
@@ -833,13 +858,40 @@ class OpenApiLibraryGenerator {
     }
 
     // Generate method body
+    // Build a map of original param names to their possibly modified names
+    final paramNameMap = <String, String>{};
+    final tempUsedNames = <String>{};
+    for (final param in allParameters) {
+      var paramNameCamelCase = param!.name!.camelCase;
+      if (tempUsedNames.contains(paramNameCamelCase)) {
+        // Apply same logic as above for duplicate names
+        if (param.location == APIParameterLocation.path) {
+          paramNameCamelCase = '${paramNameCamelCase}Path';
+        } else if (param.location == APIParameterLocation.query) {
+          paramNameCamelCase = '${paramNameCamelCase}Query';
+        } else if (param.location == APIParameterLocation.header) {
+          paramNameCamelCase = '${paramNameCamelCase}Header';
+        }
+
+        var counter = 2;
+        var uniqueName = paramNameCamelCase;
+        while (tempUsedNames.contains(uniqueName)) {
+          uniqueName = '$paramNameCamelCase$counter';
+          counter++;
+        }
+        paramNameCamelCase = uniqueName;
+      }
+      tempUsedNames.add(paramNameCamelCase);
+      paramNameMap[param.name!] = paramNameCamelCase;
+    }
+
     // Calculate the actual path with parameters replaced
     final pathParams =
         allParameters.where((p) => p!.location == APIParameterLocation.path);
     var actualPath = path;
     for (final param in pathParams) {
-      actualPath = actualPath.replaceAll(
-          '{${param!.name}}', '\$${param.name!.camelCase}');
+      final paramName = paramNameMap[param!.name!] ?? param.name!.camelCase;
+      actualPath = actualPath.replaceAll('{${param.name}}', '\$$paramName');
     }
 
     // Declare queryParams outside try block if needed for error handling
@@ -868,7 +920,7 @@ class OpenApiLibraryGenerator {
         if (queryParams.isNotEmpty) {
           return [
             ...queryParams.map((p) {
-              final paramName = p!.name!.camelCase;
+              final paramName = paramNameMap[p!.name!] ?? p.name!.camelCase;
               final isRequired = p.isRequired;
               return Code(isRequired
                   ? 'queryParams[\'${p.name}\'] = $paramName;'
@@ -1089,7 +1141,7 @@ class OpenApiLibraryGenerator {
       declareFinal('requestContext')
           .assign(refer('RequestContext').call([], {
             'method': literalString(httpMethod.toUpperCase()),
-            'endpoint': literalString(actualPath),
+            'endpoint': literalString(path),
             ...() {
               // Add request body based on the request type
               final requestBodyMap = <String, Expression>{};
@@ -1370,7 +1422,94 @@ class OpenApiLibraryGenerator {
       final constructor = Constructor((ccb) => ccb
         ..factory = true
         ..optionalParameters.addAll(properties.entries.map((entry) {
-          final fieldName = entry.key.camelCase;
+          // Sanitize field names that start with '@' or contain invalid characters
+          String sanitizedFieldName;
+          if (entry.key.startsWith('@')) {
+            // Remove @ and camelCase the rest
+            sanitizedFieldName = entry.key.substring(1).camelCase;
+            // Add prefix if the result is still problematic
+            if (sanitizedFieldName.isEmpty ||
+                sanitizedFieldName == 'override') {
+              sanitizedFieldName = 'at${entry.key.substring(1).pascalCase}';
+            }
+          } else {
+            sanitizedFieldName = entry.key.camelCase;
+          }
+
+          // Check if the field name is a Dart reserved keyword
+          const reservedWords = {
+            'abstract',
+            'as',
+            'assert',
+            'async',
+            'await',
+            'break',
+            'case',
+            'catch',
+            'class',
+            'const',
+            'continue',
+            'covariant',
+            'default',
+            'deferred',
+            'do',
+            'dynamic',
+            'else',
+            'enum',
+            'export',
+            'extends',
+            'extension',
+            'external',
+            'factory',
+            'false',
+            'final',
+            'finally',
+            'for',
+            'Function',
+            'get',
+            'hide',
+            'if',
+            'implements',
+            'import',
+            'in',
+            'interface',
+            'is',
+            'late',
+            'library',
+            'mixin',
+            'new',
+            'null',
+            'on',
+            'operator',
+            'part',
+            'required',
+            'rethrow',
+            'return',
+            'sealed',
+            'set',
+            'show',
+            'static',
+            'super',
+            'switch',
+            'sync',
+            'this',
+            'throw',
+            'true',
+            'try',
+            'typedef',
+            'var',
+            'void',
+            'while',
+            'with',
+            'yield'
+          };
+
+          // If it's a reserved word, add a suffix
+          if (reservedWords.contains(sanitizedFieldName)) {
+            sanitizedFieldName = '${sanitizedFieldName}Field';
+          }
+
+          final fieldName = sanitizedFieldName;
           // Use the schema's reference name if it exists, otherwise use parent context
           final parentContext = entry.value!.referenceURI != null
               ? entry.key.pascalCase
@@ -1396,7 +1535,7 @@ class OpenApiLibraryGenerator {
               ..asRequired(this, isRequired && !referencesNullableEnum)
               ..named = true;
 
-            // Add JsonKey annotation
+            // Add JsonKey annotation - always use the original key name for JSON
             pb.annotations.add(jsonKey([], {
               'name': literalString(entry.key),
             }));
@@ -1790,6 +1929,10 @@ extension on Reference {
 
   Reference asNullable(bool isNullable) {
     if (!isNullable) {
+      return this;
+    }
+    // dynamic is already nullable, don't add ?
+    if (symbol == 'dynamic') {
       return this;
     }
     return ((type as TypeReference).toBuilder()..isNullable = true).build();

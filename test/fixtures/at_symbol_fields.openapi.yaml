@@ -1,0 +1,142 @@
+openapi: 3.0.0
+info:
+  title: API with @ Symbol Fields
+  version: 1.0.0
+  description: Test API for handling fields with @ symbols like @odata.type
+servers:
+  - url: https://api.example.com
+paths:
+  /calendar/events:
+    get:
+      operationId: getCalendarEvents
+      summary: Get calendar events with OData fields
+      responses:
+        '200':
+          description: List of calendar events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CalendarEvent'
+    post:
+      operationId: createCalendarEvent
+      summary: Create a calendar event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalendarEvent'
+      responses:
+        '201':
+          description: Created event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarEvent'
+  /users/{userId}/profile:
+    get:
+      operationId: getUserProfile
+      summary: Get user profile with metadata
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+components:
+  schemas:
+    CalendarEvent:
+      type: object
+      required:
+        - id
+        - subject
+      properties:
+        id:
+          type: string
+        subject:
+          type: string
+        '@odata.type':
+          type: string
+          description: OData type identifier
+        '@odata.etag':
+          type: string
+          description: OData entity tag
+        location:
+          $ref: '#/components/schemas/Location'
+        attendees:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attendee'
+    Location:
+      type: object
+      properties:
+        displayName:
+          type: string
+        '@odata.type':
+          type: string
+        '@metadata.source':
+          type: string
+          description: Metadata source information
+    Attendee:
+      type: object
+      properties:
+        emailAddress:
+          $ref: '#/components/schemas/EmailAddress'
+        type:
+          type: string
+          enum: [required, optional, resource]
+        '@odata.type':
+          type: string
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+    EmailAddress:
+      type: object
+      properties:
+        address:
+          type: string
+        name:
+          type: string
+        '@odata.type':
+          type: string
+    ResponseStatus:
+      type: object
+      properties:
+        response:
+          type: string
+          enum: [none, organizer, tentativelyAccepted, accepted, declined]
+        time:
+          type: string
+          format: date-time
+        '@odata.type':
+          type: string
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        '@odata.context':
+          type: string
+          description: OData context URL
+        '@odata.id':
+          type: string
+          description: OData entity ID
+        '@odata.editLink':
+          type: string
+          description: OData edit link
+        '@microsoft.graph.tips':
+          type: string
+          description: Microsoft Graph tips
+        preferences:
+          type: object
+          additionalProperties: true

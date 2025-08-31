@@ -1,0 +1,4129 @@
+openapi: 3.0.1
+info:
+  title: ACADEMICA API
+  description: API for ACADEMICA system using OpenAPI 3.0 - Version v1.0
+  contact:
+    name: ACADEMICA Development Team
+    email: dev@academica.com
+  version: v1.0
+servers:
+  - url: https://eb-academica-dev.etonhouse.com/
+paths:
+  /api/v1/Account/image:
+    get:
+      tags:
+        - Account
+      parameters:
+        - name: accountId
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountImageApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/AccountDeviceSession:
+    get:
+      tags:
+        - Account
+      parameters:
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfAccountDeviceSessionApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/AccountDeviceSession/{accountDeviceSessionId}:
+    put:
+      tags:
+        - Account
+      parameters:
+        - name: accountDeviceSessionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountDeviceSessionApiPutDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/AccountDeviceSessionApiPutDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/AccountDeviceSessionApiPutDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountDeviceSessionApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Branch:
+    get:
+      tags:
+        - Branch
+      parameters:
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfBranchApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Cache/clear:
+    post:
+      tags:
+        - Cache
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+  /api/v1/Calendar:
+    get:
+      tags:
+        - Calendar
+      parameters:
+        - name: BranchId
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: Keyword
+          in: query
+          schema:
+            type: string
+        - name: DateFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: DateTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfCalendarItemApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/ClassAttendance/TriggerCheck:
+    get:
+      tags:
+        - ClassAttendance
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Class:
+    get:
+      tags:
+        - Class
+      parameters:
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfClassApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Content:
+    get:
+      tags:
+        - Content
+      parameters:
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: ContentType
+          in: query
+          description: Filter Content by ContentType.<br /><br /> Use the Int Value in
+            this field:<br /><table><tr><th>Int
+            Value</th><th>EnumValue</th></tr><tr><td>0</td><td>Moments</td></tr><tr><td>1</td><td>Newsfeeds</td></tr><tr><td>2</td><td>Broadcasts</td></tr><tr><td>3</td><td>CheckInOuts</td></tr><tr><td>4</td><td>Documents</td></tr><tr><td>5</td><td>ProfilePhoto</td></tr><tr><td>6</td><td>Visitors</td></tr></table><br
+            /> Visit ContentTypeEnum for more details.
+          schema:
+            type: string
+        - name: ContentSearch
+          in: query
+          description: Searches case-insensitive substring in ContentTitle and ContentBody.
+          schema:
+            type: string
+        - name: LearningDomainId
+          in: query
+          description: Filter Content by LearningDomainId.
+          schema:
+            type: integer
+            format: int32
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfContentApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Content/{contentId}:
+    get:
+      tags:
+        - Content
+      parameters:
+        - name: contentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Content/seed-auto:
+    post:
+      tags:
+        - Content
+      parameters:
+        - name: yearsBack
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 5
+        - name: perDay
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 5
+        - name: branchId
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: null
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Content/cleanup-auto:
+    delete:
+      tags:
+        - Content
+      parameters:
+        - name: branchId
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: null
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Conversation:
+    get:
+      tags:
+        - Conversation
+      parameters:
+        - name: IsClosed
+          in: query
+          schema:
+            type: boolean
+        - name: Topic
+          in: query
+          schema:
+            type: string
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfConversationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+    post:
+      tags:
+        - Conversation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMutationDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMutationDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ConversationMutationDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Conversation/{id}:
+    get:
+      tags:
+        - Conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+    put:
+      tags:
+        - Conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMutationDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMutationDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ConversationMutationDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Conversation/{id}/close:
+    patch:
+      tags:
+        - Conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationCloseDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ConversationCloseDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ConversationCloseDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/ConversationMessage/by-conversation/{conversationId}:
+    get:
+      tags:
+        - ConversationMessage
+      parameters:
+        - name: conversationId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfConversationMessageApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/ConversationMessage:
+    post:
+      tags:
+        - ConversationMessage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMessageMutationDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMessageMutationDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ConversationMessageMutationDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationMessageApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/ConversationMessage/{id}/read:
+    patch:
+      tags:
+        - ConversationMessage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMessageReadStatusDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/ConversationMessageReadStatusDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/ConversationMessageReadStatusDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConversationMessageApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Holiday/sync:
+    get:
+      tags:
+        - Holiday
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+        "500":
+          description: Internal Server Error
+          content:
+            application/json: {}
+  /api/v1/InfantCareActivity:
+    get:
+      tags:
+        - InfantCare
+      parameters:
+        - name: StartDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: EndDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfInfantCareActivityApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+    post:
+      tags:
+        - InfantCare
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivitySaveDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivitySaveDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivitySaveDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfantCareActivityApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+    put:
+      tags:
+        - InfantCare
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivitySaveDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivitySaveDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivitySaveDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfantCareActivityApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/InfantCareActivityLog:
+    get:
+      tags:
+        - InfantCare
+      parameters:
+        - name: StartDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: EndDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfInfantCareActivityLogApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+    post:
+      tags:
+        - InfantCare
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivityLogCreateDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivityLogCreateDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivityLogCreateDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfantCareActivityLogApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+    put:
+      tags:
+        - InfantCare
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivityLogUpdateDto"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivityLogUpdateDto"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/InfantCareActivityLogUpdateDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfantCareActivityLogApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Notification/mark-all-as-read:
+    post:
+      tags:
+        - Notification
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+                format: int32
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Notification/summary:
+    get:
+      tags:
+        - Notification
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationSummaryDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Notification/toggle-read/{notificationRecipientId}:
+    put:
+      tags:
+        - Notification
+      parameters:
+        - name: notificationRecipientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Notification/{notificationRecipientId}:
+    get:
+      tags:
+        - Notification
+      parameters:
+        - name: notificationRecipientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Notification:
+    get:
+      tags:
+        - Notification
+      parameters:
+        - name: IsRead
+          in: query
+          description: Filter if the notification is read or not.
+          schema:
+            type: boolean
+        - name: ReadOnStartDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> Read On or after this date.
+          schema:
+            type: string
+            format: date
+        - name: ReadOnEndDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> Read On or before this date.
+          schema:
+            type: string
+            format: date
+        - name: CreatedOnStartDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> Created On or after this date.
+          schema:
+            type: string
+            format: date
+        - name: CreatedOnEndDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> Created or before this date.
+          schema:
+            type: string
+            format: date
+        - name: NotificationRecipientId
+          in: query
+          description: Filter by the NotificationRecipientId.
+          schema:
+            type: integer
+            format: int32
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfNotificationApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/StudentAttendance:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: StartDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the attendance is
+            at least created on or after this date. If both StartDate and
+            EndDate are provided, the attendance must be created within this
+            range.
+          schema:
+            type: string
+            format: date
+        - name: EndDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the attendance is
+            at most created on or before this date. If both StartDate and
+            EndDate are provided, the attendance must be created within this
+            range.
+          schema:
+            type: string
+            format: date
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfStudentAttendanceApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/StudentAuthorisedPerson:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfStudentAuthorisedPersonApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/StudentAuthorisedPerson/{id}/deactivate:
+    patch:
+      tags:
+        - Student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorisedPersonReasonApiDtoRequest"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/AuthorisedPersonReasonApiDtoRequest"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/AuthorisedPersonReasonApiDtoRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/StudentAuthorisedPerson/{id}/activate:
+    put:
+      tags:
+        - Student
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorisedPersonReasonApiDtoRequest"
+          text/json:
+            schema:
+              $ref: "#/components/schemas/AuthorisedPersonReasonApiDtoRequest"
+          application/*+json:
+            schema:
+              $ref: "#/components/schemas/AuthorisedPersonReasonApiDtoRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/StudentCheckInOut:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: StartDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the checkin or
+            checkout is at least created on or after this date. If both
+            StartDate and EndDate are provided, the checkin or checkout must be
+            created within this range.
+          schema:
+            type: string
+            format: date
+        - name: EndDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the checkin or
+            checkout is at most created on or before this date. If both
+            StartDate and EndDate are provided, the checkin or checkout must be
+            created within this range.
+          schema:
+            type: string
+            format: date
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfStudentCheckInOutApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/StudentClassAttendance:
+    get:
+      tags:
+        - ClassAttendance
+      parameters:
+        - name: StartDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the attendance is
+            at least created on or after this date. If both StartDate and
+            EndDate are provided, the attendance must be created within this
+            range. If either StartDate or EndDate is not provided, the start
+            date and end date will default to the start date of the current
+            month and the end date of the current month, respectively.
+          schema:
+            type: string
+            format: date
+        - name: EndDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the attendance is
+            at most created on or before this date. If both StartDate and
+            EndDate are provided, the attendance must be created within this
+            range. If either StartDate or EndDate is not provided, the start
+            date and end date will default to the start date of the current
+            month and the end date of the current month, respectively.
+          schema:
+            type: string
+            format: date
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ClassAttendanceDTO"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Student:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfStudentApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Student/{studentId}:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: studentId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/StudentTemperature:
+    get:
+      tags:
+        - Student
+      parameters:
+        - name: StartDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the student
+            temperature is at least created on or after this date. If both
+            StartDate and EndDate are provided, the student temperature must be
+            created within this range.
+          schema:
+            type: string
+            format: date
+        - name: EndDate
+          in: query
+          description: Full-date notation as defined by RFC 3339, section 5.6, for
+            example, 2017-07-21.<br /><br /> This ensures that the student
+            temperature is at most created on or before this date. If both
+            StartDate and EndDate are provided, the student temperature must be
+            created within this range.
+          schema:
+            type: string
+            format: date
+        - name: ParentEmail
+          in: query
+          description: Filter content by parent email address. Use this to get only
+            content relevant to students under a specific parent. This is a
+            student related filter which means this filters entities related to
+            some student.
+          schema:
+            type: string
+        - name: TeacherId
+          in: query
+          description: Teacher account id. This returns only students who are enrolled in
+            classes taught by the specified teacher's account id. Please be
+            aware that there is a difference between AccountId and TeacherId.
+            This is a student related filter which means this filters entities
+            related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter content by branch identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: ClassId
+          in: query
+          description: Filter content by class identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentId
+          in: query
+          description: Filter content by specific student identifier. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: AccountId
+          in: query
+          description: Filter content by specific student account id. This is a student
+            related filter which means this filters entities related to some
+            student.
+          schema:
+            type: integer
+            format: int32
+        - name: LevelId
+          in: query
+          description: Filter content by level identifier. This is a student related
+            filter which means this filters entities related to some student.
+          schema:
+            type: integer
+            format: int32
+        - name: StudentNameSearch
+          in: query
+          description: Search for students by name using case-insensitive substring
+            matching. This is a student related filter which means this filters
+            entities related to some student.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfStudentTemperatureApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Teacher:
+    get:
+      tags:
+        - Teacher
+      parameters:
+        - name: TeacherId
+          in: query
+          description: Filter teachers by specific teacher identifier.
+          schema:
+            type: integer
+            format: int32
+        - name: TeacherNameSearch
+          in: query
+          description: Search for teachers by name using case-insensitive substring
+            matching.
+          schema:
+            type: string
+        - name: ClassId
+          in: query
+          description: Filter teachers by class identifier. Returns teachers who are main
+            teachers of the specified class.
+          schema:
+            type: integer
+            format: int32
+        - name: BranchId
+          in: query
+          description: Filter teachers by branch identifier. Returns teachers who teach in
+            the specified branch.
+          schema:
+            type: integer
+            format: int32
+        - name: EmployeeId
+          in: query
+          description: Filter teachers by employee identifier.
+          schema:
+            type: integer
+            format: int32
+        - name: EmployeeEmail
+          in: query
+          description: Filter teachers by employee email address.
+          schema:
+            type: string
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfTeacherApiDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Teacher/{teacherId}:
+    get:
+      tags:
+        - Teacher
+      parameters:
+        - name: teacherId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeacherApiDto2"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/Teacher/GenerateDemoTeachers:
+    get:
+      tags:
+        - Teacher
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/UserBranchRole:
+    get:
+      tags:
+        - User
+      parameters:
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PagedResultOfUserBranchRoleView"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/User/me:
+    get:
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrentUserInfoDto"
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+  /api/v1/User/initializeUsers:
+    get:
+      tags:
+        - User
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json: {}
+        "401":
+          description: Unauthorized - Authentication required
+        "403":
+          description: Forbidden - Insufficient permissions
+components:
+  schemas:
+    AcademicYearApiDto:
+      type: object
+      properties:
+        academicYearId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+    AccountApiDto:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        name:
+          type: string
+        identifier:
+          type: string
+        contacts:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContactApiDto"
+        identifierType:
+          $ref: "#/components/schemas/IdentifierTypeEnum"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      nullable: true
+    AccountApiDto2:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        name:
+          type: string
+        identifier:
+          type: string
+        contacts:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContactApiDto"
+        identifierType:
+          $ref: "#/components/schemas/IdentifierTypeEnum"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    AccountDeviceSessionApiDto:
+      required:
+        - accountDeviceSessionId
+        - accountId
+        - deviceId
+      type: object
+      properties:
+        accountDeviceSessionId:
+          type: integer
+          format: int32
+        accountId:
+          type: integer
+          format: int32
+        pushNotificationToken:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        os:
+          type: string
+          nullable: true
+        osVersion:
+          type: string
+          nullable: true
+        deviceId:
+          type: string
+        model:
+          type: string
+          nullable: true
+        manufacturer:
+          type: string
+          nullable: true
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    AccountDeviceSessionApiPutDto:
+      type: object
+      properties:
+        pushNotificationToken:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        os:
+          type: string
+          nullable: true
+        osVersion:
+          type: string
+          nullable: true
+        model:
+          type: string
+          nullable: true
+        manufacturer:
+          type: string
+          nullable: true
+    AccountImageApiDto:
+      type: object
+      properties:
+        imageUrlResult:
+          $ref: "#/components/schemas/ImageUrlResult"
+    AddressApiDto:
+      type: object
+      properties:
+        addressId:
+          type: integer
+          format: int32
+        address1:
+          type: string
+          nullable: true
+        address2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        zipCode:
+          type: string
+          nullable: true
+        countryId:
+          type: integer
+          format: int32
+          nullable: true
+        country:
+          $ref: "#/components/schemas/CountryApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      nullable: true
+    AttendanceRecordDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        studentId:
+          type: integer
+          format: int32
+        classId:
+          type: integer
+          format: int32
+        date:
+          type: string
+          format: date
+        isPresent:
+          type: boolean
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        isWeekend:
+          type: boolean
+        isClassClosure:
+          type: boolean
+        remarks:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+        createdBy:
+          type: string
+        updatedBy:
+          type: string
+    AuthorisedPersonDeactivationReasonApiDto:
+      type: object
+      properties:
+        authorisedPersonDeactivationReasonId:
+          type: integer
+          format: int32
+        authorisedPersonId:
+          type: integer
+          format: int32
+        activated:
+          type: boolean
+        reason:
+          type: string
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    AuthorisedPersonReasonApiDtoRequest:
+      required:
+        - reason
+      type: object
+      properties:
+        reason:
+          maxLength: 512
+          type: string
+    BranchApiDto:
+      type: object
+      properties:
+        branchId:
+          type: integer
+          format: int32
+        code:
+          type: string
+        name:
+          type: string
+        accountId:
+          type: integer
+          format: int32
+          nullable: true
+        account:
+          $ref: "#/components/schemas/AccountApiDto"
+        companyId:
+          type: integer
+          format: int32
+        company:
+          $ref: "#/components/schemas/CompanyApiDto"
+        defaultCurrencyId:
+          type: integer
+          format: int32
+        govtRegName:
+          type: string
+        govtRegNo:
+          type: string
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    CalendarItemApiDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        subject:
+          type: string
+        location:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        startTime:
+          type: string
+          format: date-time
+          nullable: true
+        endTime:
+          type: string
+          format: date-time
+          nullable: true
+        isAllDay:
+          type: boolean
+        calendarItemType:
+          $ref: "#/components/schemas/CalendarItemTypeEnum"
+        recurrenceRule:
+          type: string
+          nullable: true
+        recurrenceException:
+          type: string
+          nullable: true
+        recurrenceId:
+          type: integer
+          format: int32
+          nullable: true
+        branchId:
+          type: integer
+          format: int32
+          nullable: true
+        academicYearId:
+          type: integer
+          format: int32
+          nullable: true
+        academicTermId:
+          type: integer
+          format: int32
+          nullable: true
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    CalendarItemTypeEnum:
+      type: integer
+    ClassApiDto:
+      type: object
+      properties:
+        classId:
+          type: integer
+          format: int32
+        levelId:
+          type: integer
+          format: int32
+        level:
+          $ref: "#/components/schemas/LevelApiDto"
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+          nullable: true
+        maxCapacity:
+          type: integer
+          format: int32
+        mainTeacherId:
+          type: integer
+          format: int32
+          nullable: true
+        mainTeacher:
+          $ref: "#/components/schemas/TeacherApiDto"
+        academicYearId:
+          type: integer
+          format: int32
+        academicYear:
+          $ref: "#/components/schemas/AcademicYearApiDto"
+        classSubjects:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassSubjectApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    ClassAttendanceDTO:
+      type: object
+      properties:
+        classId:
+          type: integer
+          format: int32
+        className:
+          type: string
+        students:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentAttendanceDTO"
+        sumPresent:
+          type: integer
+          format: int32
+        sumSchoolDays:
+          type: integer
+          format: int32
+        classAttendanceRate:
+          type: integer
+          format: int32
+    ClassRefApiDto:
+      type: object
+      properties:
+        classId:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ClassSubjectApiDto:
+      type: object
+      properties:
+        classSubjectId:
+          type: integer
+          format: int32
+        subjectId:
+          type: integer
+          format: int32
+        subject:
+          $ref: "#/components/schemas/SubjectApiDto"
+        classId:
+          type: integer
+          format: int32
+        class:
+          $ref: "#/components/schemas/ClassRefApiDto"
+        teacherId:
+          type: integer
+          format: int32
+          nullable: true
+        teacher:
+          $ref: "#/components/schemas/TeacherApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    CompanyApiDto:
+      type: object
+      properties:
+        companyId:
+          type: integer
+          format: int32
+        code:
+          type: string
+        accountId:
+          type: integer
+          format: int32
+          nullable: true
+        account:
+          $ref: "#/components/schemas/AccountApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      nullable: true
+    ContactApiDto:
+      type: object
+      properties:
+        contactId:
+          type: integer
+          format: int32
+        contactType:
+          $ref: "#/components/schemas/ContactTypeEnum"
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        addressId:
+          type: integer
+          format: int32
+          nullable: true
+        address:
+          $ref: "#/components/schemas/AddressApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    ContactTypeEnum:
+      type: integer
+    ContentApiDto:
+      type: object
+      properties:
+        studentContentId:
+          type: integer
+          format: int32
+        students:
+          type: array
+          items:
+            type: integer
+            format: int32
+        classes:
+          type: array
+          items:
+            type: integer
+            format: int32
+        levels:
+          type: array
+          items:
+            type: integer
+            format: int32
+        learningDomains:
+          type: array
+          items:
+            type: integer
+            format: int32
+        contentTitle:
+          type: string
+        contentBody:
+          type: string
+        activityDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        contentType:
+          $ref: "#/components/schemas/ContentTypeEnum"
+        publishDate:
+          type: string
+          format: date-time
+          nullable: true
+        includeFutureEnrolment:
+          type: boolean
+        attachmentFolderClassId:
+          type: integer
+          format: int32
+        attachmentFolder:
+          type: string
+        defaultUrl:
+          type: string
+        branchId:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    ContentTypeEnum:
+      type: integer
+    ConversationApiDto:
+      required:
+        - topic
+      type: object
+      properties:
+        conversationId:
+          type: integer
+          format: int32
+        topic:
+          maxLength: 255
+          type: string
+        isClosed:
+          type: boolean
+        dateClosed:
+          type: string
+          format: date-time
+          nullable: true
+        initiatorAccountId:
+          type: integer
+          format: int32
+        recipientAccountId:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    ConversationCloseDto:
+      type: object
+      properties:
+        dateClosed:
+          type: string
+          format: date-time
+          nullable: true
+    ConversationMessageApiDto:
+      required:
+        - message
+      type: object
+      properties:
+        conversationMessageId:
+          type: integer
+          format: int32
+        message:
+          maxLength: 4000
+          type: string
+        senderAccountId:
+          type: integer
+          format: int32
+        isRead:
+          type: boolean
+        conversationId:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    ConversationMessageMutationDto:
+      required:
+        - message
+      type: object
+      properties:
+        message:
+          maxLength: 4000
+          type: string
+        conversationId:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+    ConversationMessageReadStatusDto:
+      type: object
+      properties:
+        isRead:
+          type: boolean
+    ConversationMutationDto:
+      required:
+        - topic
+      type: object
+      properties:
+        topic:
+          maxLength: 255
+          type: string
+        isClosed:
+          type: boolean
+        dateClosed:
+          type: string
+          format: date-time
+          nullable: true
+        initiatorAccountId:
+          type: integer
+          format: int32
+        recipientAccountId:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+    CountryApiDto:
+      type: object
+      properties:
+        countryId:
+          type: integer
+          format: int32
+        isO2:
+          type: string
+        isO3:
+          type: string
+        name:
+          type: string
+        citizenship:
+          type: string
+        idd:
+          type: string
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      nullable: true
+    CurrentUserInfoDto:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        account:
+          $ref: "#/components/schemas/AccountApiDto2"
+        userId:
+          type: string
+        fullName:
+          type: string
+          nullable: true
+        email:
+          type: string
+        emailConfirmed:
+          type: boolean
+        lastActiveBranchId:
+          type: integer
+          format: int32
+          nullable: true
+        branchRoles:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserBranchRoleDto"
+    EmployeeApiDto:
+      type: object
+      properties:
+        employeeType:
+          $ref: "#/components/schemas/EmployeeTypeEnum"
+        code:
+          type: string
+        accountId:
+          type: integer
+          format: int32
+        account:
+          $ref: "#/components/schemas/AccountApiDto2"
+    EmployeeTypeEnum:
+      type: integer
+    EnrolmentApiDto:
+      type: object
+      properties:
+        enrolmentId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        studentId:
+          type: integer
+          format: int32
+        classId:
+          type: integer
+          format: int32
+        class:
+          $ref: "#/components/schemas/ClassApiDto"
+        academicYearId:
+          type: integer
+          format: int32
+        academicYear:
+          $ref: "#/components/schemas/AcademicYearApiDto"
+        enrolmentDate:
+          type: string
+          format: date
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        status:
+          $ref: "#/components/schemas/EnrolmentStatusEnum"
+    EnrolmentStatusEnum:
+      type: integer
+    IdentifierTypeEnum:
+      type: integer
+    ImageUrlResult:
+      type: object
+      properties:
+        url:
+          type: string
+        fallbackUrl:
+          type: string
+    InfantCareActivityApiDto:
+      type: object
+      properties:
+        infantCareActivityId:
+          type: integer
+          format: int32
+        studentId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        ageInMonths:
+          type: integer
+          format: int32
+          nullable: true
+        promotionDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFeedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastFeedTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        nextFeedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        nextFeedTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        feedRemarks:
+          type: string
+          nullable: true
+        feedPerformedBy:
+          type: string
+          nullable: true
+        lastDiaperDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastDiaperTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        nextDiaperDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        nextDiaperTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        diaperRemarks:
+          type: string
+          nullable: true
+        diaperPerformedBy:
+          type: string
+          nullable: true
+        napDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        napTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        napDuration:
+          type: integer
+          format: int32
+        napPerformedBy:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    InfantCareActivityLogApiDto:
+      type: object
+      properties:
+        infantCareActivityLogId:
+          type: integer
+          format: int32
+        infantCareActivityId:
+          type: integer
+          format: int32
+        studentId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        activityType:
+          $ref: "#/components/schemas/InfantCareActivityTypeEnum"
+        remarks:
+          type: string
+          nullable: true
+        performedBy:
+          type: string
+          nullable: true
+        performedAt:
+          type: string
+          format: date-time
+        nextScheduledAt:
+          type: string
+          format: date-time
+        additionalField:
+          type: string
+          nullable: true
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+          nullable: true
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    InfantCareActivityLogCreateDto:
+      required:
+        - activityType
+        - performedAt
+      type: object
+      properties:
+        infantCareActivityId:
+          type: integer
+          format: int32
+          nullable: true
+        studentId:
+          type: integer
+          format: int32
+          nullable: true
+        activityType:
+          $ref: "#/components/schemas/InfantCareActivityTypeEnum"
+        performedAt:
+          type: string
+          format: date-time
+        nextScheduledAt:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          maxLength: 1024
+          type: string
+          nullable: true
+        performedBy:
+          maxLength: 256
+          type: string
+          nullable: true
+        additionalField:
+          maxLength: 1024
+          type: string
+          nullable: true
+        isDeleted:
+          type: boolean
+    InfantCareActivityLogUpdateDto:
+      required:
+        - infantCareActivityLogId
+      type: object
+      properties:
+        infantCareActivityLogId:
+          type: integer
+          format: int32
+        activityType:
+          $ref: "#/components/schemas/NullableOfInfantCareActivityTypeEnum"
+        performedAt:
+          type: string
+          format: date-time
+          nullable: true
+        nextScheduledAt:
+          type: string
+          format: date-time
+          nullable: true
+        remarks:
+          maxLength: 1024
+          type: string
+          nullable: true
+        performedBy:
+          maxLength: 256
+          type: string
+          nullable: true
+        additionalField:
+          maxLength: 1024
+          type: string
+          nullable: true
+        isDeleted:
+          type: boolean
+    InfantCareActivitySaveDto:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        promotionDate:
+          type: string
+          format: date-time
+          nullable: true
+        lastFeedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastFeedTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        nextFeedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        nextFeedTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        feedRemarks:
+          type: string
+          nullable: true
+        feedPerformedBy:
+          type: string
+          nullable: true
+        lastDiaperDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastDiaperTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        nextDiaperDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        nextDiaperTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        diaperRemarks:
+          type: string
+          nullable: true
+        diaperPerformedBy:
+          type: string
+          nullable: true
+        napDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        napTime:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          nullable: true
+        napDuration:
+          type: integer
+          format: int32
+          nullable: true
+        napPerformedBy:
+          type: string
+          nullable: true
+        remarks:
+          type: string
+          nullable: true
+        isDeleted:
+          type: boolean
+    InfantCareActivityTypeEnum:
+      type: integer
+    LevelApiDto:
+      type: object
+      properties:
+        levelId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        code:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+          nullable: true
+        minAgeInMonths:
+          type: integer
+          format: int32
+        maxAgeInMonths:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    LevelApiDto2:
+      type: object
+      properties:
+        levelId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        code:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+          nullable: true
+        minAgeInMonths:
+          type: integer
+          format: int32
+        maxAgeInMonths:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      nullable: true
+    LookUpApiDto:
+      type: object
+      properties:
+        lookUpId:
+          type: integer
+          format: int32
+        lookUpType:
+          $ref: "#/components/schemas/LookUpTypeEnum"
+        name:
+          type: string
+        isDeleted:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+      nullable: true
+    LookUpTypeEnum:
+      type: integer
+    NotificationApiDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        notificationType:
+          $ref: "#/components/schemas/NotificationTypeEnum"
+        entityId:
+          type: integer
+          format: int32
+          nullable: true
+        isPublic:
+          type: boolean
+        isRead:
+          type: boolean
+        readDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        notificationRecipientId:
+          type: integer
+          format: int32
+        recipientAccountId:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    NotificationSummaryDto:
+      type: object
+      properties:
+        totalUnread:
+          type: integer
+          format: int32
+        totalRead:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+    NotificationTypeEnum:
+      type: integer
+    NullableOfInfantCareActivityTypeEnum:
+      type: integer
+      nullable: true
+    PagedResultOfAccountDeviceSessionApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccountDeviceSessionApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfBranchApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/BranchApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfCalendarItemApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CalendarItemApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfClassApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClassApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfContentApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContentApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfConversationApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConversationApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfConversationMessageApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConversationMessageApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfInfantCareActivityApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfantCareActivityApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfInfantCareActivityLogApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/InfantCareActivityLogApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfNotificationApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/NotificationApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfStudentApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfStudentAttendanceApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentAttendanceApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfStudentAuthorisedPersonApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentAuthorisedPersonApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfStudentCheckInOutApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentCheckInOutApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfStudentTemperatureApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentTemperatureApiDto"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfTeacherApiDto:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/TeacherApiDto2"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    PagedResultOfUserBranchRoleView:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserBranchRoleView"
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalCount:
+          type: integer
+          format: int32
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        totalPages:
+          type: integer
+          format: int32
+    StudentApiDto:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          format: int32
+        accountId:
+          type: integer
+          format: int32
+        account:
+          $ref: "#/components/schemas/AccountApiDto2"
+        name:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        identifier:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+          nullable: true
+        age:
+          type: integer
+          format: int32
+          nullable: true
+        genderId:
+          type: integer
+          format: int32
+          nullable: true
+        citizenshipId:
+          type: integer
+          format: int32
+          nullable: true
+        mainLanguageSpokenId:
+          type: integer
+          format: int32
+          nullable: true
+        raceId:
+          type: integer
+          format: int32
+          nullable: true
+        residenceStatusId:
+          type: integer
+          format: int32
+          nullable: true
+        enrolments:
+          type: array
+          items:
+            $ref: "#/components/schemas/EnrolmentApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    StudentAttendanceApiDto:
+      type: object
+      properties:
+        studentAttendanceId:
+          type: integer
+          format: int32
+        date:
+          type: string
+          format: date
+        isPresent:
+          type: boolean
+        remarks:
+          type: string
+        classId:
+          type: integer
+          format: int32
+        studentId:
+          type: integer
+          format: int32
+        accountId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    StudentAttendanceDTO:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          format: int32
+        identifier:
+          type: string
+        studentName:
+          type: string
+        enrolmentDate:
+          type: string
+          format: date
+        dob:
+          type: string
+          format: date
+        gender:
+          type: string
+        countSchoolDays:
+          type: integer
+          format: int32
+        countPresent:
+          type: integer
+          format: int32
+        countAbsent:
+          type: integer
+          format: int32
+        rate:
+          type: integer
+          format: int32
+        attendanceRecords:
+          type: array
+          items:
+            $ref: "#/components/schemas/AttendanceRecordDTO"
+    StudentAuthorisedPersonApiDto:
+      type: object
+      properties:
+        studentAuthorisedPersonId:
+          type: integer
+          format: int32
+        name:
+          type: string
+        identifier:
+          type: string
+        contactNumber:
+          type: string
+        relationToChild:
+          $ref: "#/components/schemas/LookUpApiDto"
+        studentId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        isActive:
+          type: boolean
+        statusReasons:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuthorisedPersonDeactivationReasonApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    StudentAuthorisedPersonApiDto2:
+      type: object
+      properties:
+        studentAuthorisedPersonId:
+          type: integer
+          format: int32
+        name:
+          type: string
+        identifier:
+          type: string
+        contactNumber:
+          type: string
+        relationToChild:
+          nullable: true
+        studentId:
+          type: integer
+          format: int32
+        branchId:
+          type: integer
+          format: int32
+        isActive:
+          type: boolean
+        statusReasons:
+          type: array
+          items:
+            $ref: "#/components/schemas/AuthorisedPersonDeactivationReasonApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+      nullable: true
+    StudentCheckInOutApiDto:
+      type: object
+      properties:
+        studentCheckInOutId:
+          type: integer
+          format: int32
+        studentId:
+          type: integer
+          format: int32
+          nullable: true
+        accountId:
+          type: integer
+          format: int32
+        checkInTime:
+          type: string
+          format: date-time
+        checkInRemarks:
+          type: string
+          nullable: true
+        checkOutTime:
+          type: string
+          format: date-time
+          nullable: true
+        checkOutRemarks:
+          type: string
+          nullable: true
+        branchId:
+          type: integer
+          format: int32
+        checkInAuthorisedPerson:
+          $ref: "#/components/schemas/StudentAuthorisedPersonApiDto"
+        checkOutAuthorisedPerson:
+          $ref: "#/components/schemas/StudentAuthorisedPersonApiDto2"
+        temperatures:
+          type: array
+          items:
+            $ref: "#/components/schemas/StudentTemperatureApiDto"
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    StudentTemperatureApiDto:
+      type: object
+      properties:
+        temperatureId:
+          type: integer
+          format: int32
+        accountId:
+          type: integer
+          format: int32
+        studentId:
+          type: integer
+          format: int32
+          nullable: true
+        checkInOutId:
+          type: integer
+          format: int32
+        temperatureValue:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    SubjectApiDto:
+      type: object
+      properties:
+        subjectId:
+          type: integer
+          format: int32
+        levelId:
+          type: integer
+          format: int32
+        level:
+          $ref: "#/components/schemas/LevelApiDto2"
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+          nullable: true
+        maxCapacity:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        createdByUserId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        lastUpdatedByUserId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+          format: date-time
+          nullable: true
+    TeacherApiDto:
+      type: object
+      properties:
+        teacherId:
+          type: integer
+          format: int32
+        employeeId:
+          type: integer
+          format: int32
+        employee:
+          $ref: "#/components/schemas/EmployeeApiDto"
+      nullable: true
+    TeacherApiDto2:
+      type: object
+      properties:
+        teacherId:
+          type: integer
+          format: int32
+        employeeId:
+          type: integer
+          format: int32
+        employee:
+          $ref: "#/components/schemas/EmployeeApiDto"
+    UserBranchRoleDto:
+      type: object
+      properties:
+        branchId:
+          type: integer
+          format: int32
+        roleCode:
+          type: string
+        studentId:
+          type: integer
+          format: int32
+          nullable: true
+    UserBranchRoleView:
+      type: object
+      properties:
+        branchId:
+          type: integer
+          format: int32
+        userId:
+          type: string
+        roleCode:
+          type: string
+        studentId:
+          type: integer
+          format: int32
+          nullable: true
+        email:
+          type: string
+          nullable: true
+  securitySchemes:
+    Keycloak:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://identity-dev.etonhouse.com/sso/realms/academica-dev/protocol/openid-connect/auth
+          tokenUrl: https://identity-dev.etonhouse.com/sso/realms/academica-dev/protocol/openid-connect/token
+          scopes:
+            openid: OpenID Connect scope
+            profile: Access to user profile information
+            email: Access to user email address
+    Bearer:
+      type: http
+      description: 'JWT Authorization header using the Bearer scheme. Example:
+        "Authorization: Bearer {token}"'
+      scheme: bearer
+      bearerFormat: JWT
+tags:
+  - name: Account
+  - name: Branch
+  - name: Cache
+  - name: Calendar
+  - name: ClassAttendance
+  - name: Class
+  - name: Content
+  - name: Conversation
+  - name: ConversationMessage
+  - name: Holiday
+  - name: InfantCare
+  - name: Notification
+  - name: Student
+  - name: Teacher
+  - name: User

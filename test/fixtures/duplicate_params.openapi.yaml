@@ -1,0 +1,127 @@
+openapi: 3.0.0
+info:
+  title: API with Duplicate Parameter Names
+  version: 1.0.0
+  description: Test API for handling duplicate parameter names in path and query
+servers:
+  - url: https://api.example.com
+paths:
+  /resources/{id}/details/{resourceId}:
+    get:
+      operationId: getResourceDetails
+      summary: Get resource details with duplicate parameter names
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Resource ID in path
+        - name: resourceId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Sub-resource ID in path
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by ID in query
+        - name: resourceId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by resource ID in query
+        - name: includeDeleted
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Resource details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceDetails'
+  /teachers/{id}/classes/{academicYearId}/{schoolId}:
+    get:
+      operationId: getTeacherClasses
+      summary: Get teacher classes with academic year and school filters
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: academicYearId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: schoolId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: academicYearId
+          in: query
+          schema:
+            type: string
+          description: Additional academic year filter
+        - name: schoolId
+          in: query
+          schema:
+            type: string
+          description: Additional school filter
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of classes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClassInfo'
+components:
+  schemas:
+    ResourceDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        resourceId:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+    ClassInfo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        academicYearId:
+          type: string
+        schoolId:
+          type: string
+        teacherId:
+          type: string
+        studentCount:
+          type: integer

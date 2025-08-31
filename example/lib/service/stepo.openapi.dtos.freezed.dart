@@ -1053,6 +1053,645 @@ class __$AppFeedbackDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$BadgesEarnedDetailDto {
+  @JsonKey(name: 'totalBadgesEarned')
+  int get totalBadgesEarned;
+  @JsonKey(name: 'companionsCount')
+  int get companionsCount;
+  @JsonKey(name: 'companionUsers')
+  List<UserDto>? get companionUsers;
+  @JsonKey(name: 'startersCount')
+  int get startersCount;
+  @JsonKey(name: 'starterUsers')
+  List<UserDto>? get starterUsers;
+  @JsonKey(name: 'celebratorsCount')
+  int get celebratorsCount;
+  @JsonKey(name: 'celebratorUsers')
+  List<UserDto>? get celebratorUsers;
+  @JsonKey(name: 'stepWithCount')
+  int get stepWithCount;
+  @JsonKey(name: 'stepWithUsers')
+  List<UserDto>? get stepWithUsers;
+  @JsonKey(name: 'topSupportedUsers')
+  List<TopSupportUserDto>? get topSupportedUsers;
+
+  /// Create a copy of BadgesEarnedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $BadgesEarnedDetailDtoCopyWith<BadgesEarnedDetailDto> get copyWith =>
+      _$BadgesEarnedDetailDtoCopyWithImpl<BadgesEarnedDetailDto>(
+          this as BadgesEarnedDetailDto, _$identity);
+
+  /// Serializes this BadgesEarnedDetailDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is BadgesEarnedDetailDto &&
+            (identical(other.totalBadgesEarned, totalBadgesEarned) ||
+                other.totalBadgesEarned == totalBadgesEarned) &&
+            (identical(other.companionsCount, companionsCount) ||
+                other.companionsCount == companionsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.companionUsers, companionUsers) &&
+            (identical(other.startersCount, startersCount) ||
+                other.startersCount == startersCount) &&
+            const DeepCollectionEquality()
+                .equals(other.starterUsers, starterUsers) &&
+            (identical(other.celebratorsCount, celebratorsCount) ||
+                other.celebratorsCount == celebratorsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.celebratorUsers, celebratorUsers) &&
+            (identical(other.stepWithCount, stepWithCount) ||
+                other.stepWithCount == stepWithCount) &&
+            const DeepCollectionEquality()
+                .equals(other.stepWithUsers, stepWithUsers) &&
+            const DeepCollectionEquality()
+                .equals(other.topSupportedUsers, topSupportedUsers));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      totalBadgesEarned,
+      companionsCount,
+      const DeepCollectionEquality().hash(companionUsers),
+      startersCount,
+      const DeepCollectionEquality().hash(starterUsers),
+      celebratorsCount,
+      const DeepCollectionEquality().hash(celebratorUsers),
+      stepWithCount,
+      const DeepCollectionEquality().hash(stepWithUsers),
+      const DeepCollectionEquality().hash(topSupportedUsers));
+
+  @override
+  String toString() {
+    return 'BadgesEarnedDetailDto(totalBadgesEarned: $totalBadgesEarned, companionsCount: $companionsCount, companionUsers: $companionUsers, startersCount: $startersCount, starterUsers: $starterUsers, celebratorsCount: $celebratorsCount, celebratorUsers: $celebratorUsers, stepWithCount: $stepWithCount, stepWithUsers: $stepWithUsers, topSupportedUsers: $topSupportedUsers)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $BadgesEarnedDetailDtoCopyWith<$Res> {
+  factory $BadgesEarnedDetailDtoCopyWith(BadgesEarnedDetailDto value,
+          $Res Function(BadgesEarnedDetailDto) _then) =
+      _$BadgesEarnedDetailDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'totalBadgesEarned') int totalBadgesEarned,
+      @JsonKey(name: 'companionsCount') int companionsCount,
+      @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+      @JsonKey(name: 'startersCount') int startersCount,
+      @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+      @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+      @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+      @JsonKey(name: 'stepWithCount') int stepWithCount,
+      @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+      @JsonKey(name: 'topSupportedUsers')
+      List<TopSupportUserDto>? topSupportedUsers});
+}
+
+/// @nodoc
+class _$BadgesEarnedDetailDtoCopyWithImpl<$Res>
+    implements $BadgesEarnedDetailDtoCopyWith<$Res> {
+  _$BadgesEarnedDetailDtoCopyWithImpl(this._self, this._then);
+
+  final BadgesEarnedDetailDto _self;
+  final $Res Function(BadgesEarnedDetailDto) _then;
+
+  /// Create a copy of BadgesEarnedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalBadgesEarned = null,
+    Object? companionsCount = null,
+    Object? companionUsers = freezed,
+    Object? startersCount = null,
+    Object? starterUsers = freezed,
+    Object? celebratorsCount = null,
+    Object? celebratorUsers = freezed,
+    Object? stepWithCount = null,
+    Object? stepWithUsers = freezed,
+    Object? topSupportedUsers = freezed,
+  }) {
+    return _then(_self.copyWith(
+      totalBadgesEarned: null == totalBadgesEarned
+          ? _self.totalBadgesEarned
+          : totalBadgesEarned // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionsCount: null == companionsCount
+          ? _self.companionsCount
+          : companionsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionUsers: freezed == companionUsers
+          ? _self.companionUsers
+          : companionUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      startersCount: null == startersCount
+          ? _self.startersCount
+          : startersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      starterUsers: freezed == starterUsers
+          ? _self.starterUsers
+          : starterUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      celebratorsCount: null == celebratorsCount
+          ? _self.celebratorsCount
+          : celebratorsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      celebratorUsers: freezed == celebratorUsers
+          ? _self.celebratorUsers
+          : celebratorUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      stepWithCount: null == stepWithCount
+          ? _self.stepWithCount
+          : stepWithCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      stepWithUsers: freezed == stepWithUsers
+          ? _self.stepWithUsers
+          : stepWithUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      topSupportedUsers: freezed == topSupportedUsers
+          ? _self.topSupportedUsers
+          : topSupportedUsers // ignore: cast_nullable_to_non_nullable
+              as List<TopSupportUserDto>?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [BadgesEarnedDetailDto].
+extension BadgesEarnedDetailDtoPatterns on BadgesEarnedDetailDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_BadgesEarnedDetailDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BadgesEarnedDetailDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_BadgesEarnedDetailDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BadgesEarnedDetailDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_BadgesEarnedDetailDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BadgesEarnedDetailDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'totalBadgesEarned') int totalBadgesEarned,
+            @JsonKey(name: 'companionsCount') int companionsCount,
+            @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+            @JsonKey(name: 'startersCount') int startersCount,
+            @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+            @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+            @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+            @JsonKey(name: 'stepWithCount') int stepWithCount,
+            @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+            @JsonKey(name: 'topSupportedUsers')
+            List<TopSupportUserDto>? topSupportedUsers)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _BadgesEarnedDetailDto() when $default != null:
+        return $default(
+            _that.totalBadgesEarned,
+            _that.companionsCount,
+            _that.companionUsers,
+            _that.startersCount,
+            _that.starterUsers,
+            _that.celebratorsCount,
+            _that.celebratorUsers,
+            _that.stepWithCount,
+            _that.stepWithUsers,
+            _that.topSupportedUsers);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'totalBadgesEarned') int totalBadgesEarned,
+            @JsonKey(name: 'companionsCount') int companionsCount,
+            @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+            @JsonKey(name: 'startersCount') int startersCount,
+            @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+            @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+            @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+            @JsonKey(name: 'stepWithCount') int stepWithCount,
+            @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+            @JsonKey(name: 'topSupportedUsers')
+            List<TopSupportUserDto>? topSupportedUsers)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BadgesEarnedDetailDto():
+        return $default(
+            _that.totalBadgesEarned,
+            _that.companionsCount,
+            _that.companionUsers,
+            _that.startersCount,
+            _that.starterUsers,
+            _that.celebratorsCount,
+            _that.celebratorUsers,
+            _that.stepWithCount,
+            _that.stepWithUsers,
+            _that.topSupportedUsers);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'totalBadgesEarned') int totalBadgesEarned,
+            @JsonKey(name: 'companionsCount') int companionsCount,
+            @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+            @JsonKey(name: 'startersCount') int startersCount,
+            @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+            @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+            @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+            @JsonKey(name: 'stepWithCount') int stepWithCount,
+            @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+            @JsonKey(name: 'topSupportedUsers')
+            List<TopSupportUserDto>? topSupportedUsers)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _BadgesEarnedDetailDto() when $default != null:
+        return $default(
+            _that.totalBadgesEarned,
+            _that.companionsCount,
+            _that.companionUsers,
+            _that.startersCount,
+            _that.starterUsers,
+            _that.celebratorsCount,
+            _that.celebratorUsers,
+            _that.stepWithCount,
+            _that.stepWithUsers,
+            _that.topSupportedUsers);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _BadgesEarnedDetailDto implements BadgesEarnedDetailDto {
+  _BadgesEarnedDetailDto(
+      {@JsonKey(name: 'totalBadgesEarned') this.totalBadgesEarned = 0,
+      @JsonKey(name: 'companionsCount') this.companionsCount = 0,
+      @JsonKey(name: 'companionUsers') final List<UserDto>? companionUsers,
+      @JsonKey(name: 'startersCount') this.startersCount = 0,
+      @JsonKey(name: 'starterUsers') final List<UserDto>? starterUsers,
+      @JsonKey(name: 'celebratorsCount') this.celebratorsCount = 0,
+      @JsonKey(name: 'celebratorUsers') final List<UserDto>? celebratorUsers,
+      @JsonKey(name: 'stepWithCount') this.stepWithCount = 0,
+      @JsonKey(name: 'stepWithUsers') final List<UserDto>? stepWithUsers,
+      @JsonKey(name: 'topSupportedUsers')
+      final List<TopSupportUserDto>? topSupportedUsers})
+      : _companionUsers = companionUsers,
+        _starterUsers = starterUsers,
+        _celebratorUsers = celebratorUsers,
+        _stepWithUsers = stepWithUsers,
+        _topSupportedUsers = topSupportedUsers;
+  factory _BadgesEarnedDetailDto.fromJson(Map<String, dynamic> json) =>
+      _$BadgesEarnedDetailDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'totalBadgesEarned')
+  final int totalBadgesEarned;
+  @override
+  @JsonKey(name: 'companionsCount')
+  final int companionsCount;
+  final List<UserDto>? _companionUsers;
+  @override
+  @JsonKey(name: 'companionUsers')
+  List<UserDto>? get companionUsers {
+    final value = _companionUsers;
+    if (value == null) return null;
+    if (_companionUsers is EqualUnmodifiableListView) return _companionUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'startersCount')
+  final int startersCount;
+  final List<UserDto>? _starterUsers;
+  @override
+  @JsonKey(name: 'starterUsers')
+  List<UserDto>? get starterUsers {
+    final value = _starterUsers;
+    if (value == null) return null;
+    if (_starterUsers is EqualUnmodifiableListView) return _starterUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'celebratorsCount')
+  final int celebratorsCount;
+  final List<UserDto>? _celebratorUsers;
+  @override
+  @JsonKey(name: 'celebratorUsers')
+  List<UserDto>? get celebratorUsers {
+    final value = _celebratorUsers;
+    if (value == null) return null;
+    if (_celebratorUsers is EqualUnmodifiableListView) return _celebratorUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'stepWithCount')
+  final int stepWithCount;
+  final List<UserDto>? _stepWithUsers;
+  @override
+  @JsonKey(name: 'stepWithUsers')
+  List<UserDto>? get stepWithUsers {
+    final value = _stepWithUsers;
+    if (value == null) return null;
+    if (_stepWithUsers is EqualUnmodifiableListView) return _stepWithUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<TopSupportUserDto>? _topSupportedUsers;
+  @override
+  @JsonKey(name: 'topSupportedUsers')
+  List<TopSupportUserDto>? get topSupportedUsers {
+    final value = _topSupportedUsers;
+    if (value == null) return null;
+    if (_topSupportedUsers is EqualUnmodifiableListView)
+      return _topSupportedUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of BadgesEarnedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$BadgesEarnedDetailDtoCopyWith<_BadgesEarnedDetailDto> get copyWith =>
+      __$BadgesEarnedDetailDtoCopyWithImpl<_BadgesEarnedDetailDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$BadgesEarnedDetailDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _BadgesEarnedDetailDto &&
+            (identical(other.totalBadgesEarned, totalBadgesEarned) ||
+                other.totalBadgesEarned == totalBadgesEarned) &&
+            (identical(other.companionsCount, companionsCount) ||
+                other.companionsCount == companionsCount) &&
+            const DeepCollectionEquality()
+                .equals(other._companionUsers, _companionUsers) &&
+            (identical(other.startersCount, startersCount) ||
+                other.startersCount == startersCount) &&
+            const DeepCollectionEquality()
+                .equals(other._starterUsers, _starterUsers) &&
+            (identical(other.celebratorsCount, celebratorsCount) ||
+                other.celebratorsCount == celebratorsCount) &&
+            const DeepCollectionEquality()
+                .equals(other._celebratorUsers, _celebratorUsers) &&
+            (identical(other.stepWithCount, stepWithCount) ||
+                other.stepWithCount == stepWithCount) &&
+            const DeepCollectionEquality()
+                .equals(other._stepWithUsers, _stepWithUsers) &&
+            const DeepCollectionEquality()
+                .equals(other._topSupportedUsers, _topSupportedUsers));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      totalBadgesEarned,
+      companionsCount,
+      const DeepCollectionEquality().hash(_companionUsers),
+      startersCount,
+      const DeepCollectionEquality().hash(_starterUsers),
+      celebratorsCount,
+      const DeepCollectionEquality().hash(_celebratorUsers),
+      stepWithCount,
+      const DeepCollectionEquality().hash(_stepWithUsers),
+      const DeepCollectionEquality().hash(_topSupportedUsers));
+
+  @override
+  String toString() {
+    return 'BadgesEarnedDetailDto(totalBadgesEarned: $totalBadgesEarned, companionsCount: $companionsCount, companionUsers: $companionUsers, startersCount: $startersCount, starterUsers: $starterUsers, celebratorsCount: $celebratorsCount, celebratorUsers: $celebratorUsers, stepWithCount: $stepWithCount, stepWithUsers: $stepWithUsers, topSupportedUsers: $topSupportedUsers)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$BadgesEarnedDetailDtoCopyWith<$Res>
+    implements $BadgesEarnedDetailDtoCopyWith<$Res> {
+  factory _$BadgesEarnedDetailDtoCopyWith(_BadgesEarnedDetailDto value,
+          $Res Function(_BadgesEarnedDetailDto) _then) =
+      __$BadgesEarnedDetailDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'totalBadgesEarned') int totalBadgesEarned,
+      @JsonKey(name: 'companionsCount') int companionsCount,
+      @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+      @JsonKey(name: 'startersCount') int startersCount,
+      @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+      @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+      @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+      @JsonKey(name: 'stepWithCount') int stepWithCount,
+      @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+      @JsonKey(name: 'topSupportedUsers')
+      List<TopSupportUserDto>? topSupportedUsers});
+}
+
+/// @nodoc
+class __$BadgesEarnedDetailDtoCopyWithImpl<$Res>
+    implements _$BadgesEarnedDetailDtoCopyWith<$Res> {
+  __$BadgesEarnedDetailDtoCopyWithImpl(this._self, this._then);
+
+  final _BadgesEarnedDetailDto _self;
+  final $Res Function(_BadgesEarnedDetailDto) _then;
+
+  /// Create a copy of BadgesEarnedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? totalBadgesEarned = null,
+    Object? companionsCount = null,
+    Object? companionUsers = freezed,
+    Object? startersCount = null,
+    Object? starterUsers = freezed,
+    Object? celebratorsCount = null,
+    Object? celebratorUsers = freezed,
+    Object? stepWithCount = null,
+    Object? stepWithUsers = freezed,
+    Object? topSupportedUsers = freezed,
+  }) {
+    return _then(_BadgesEarnedDetailDto(
+      totalBadgesEarned: null == totalBadgesEarned
+          ? _self.totalBadgesEarned
+          : totalBadgesEarned // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionsCount: null == companionsCount
+          ? _self.companionsCount
+          : companionsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionUsers: freezed == companionUsers
+          ? _self._companionUsers
+          : companionUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      startersCount: null == startersCount
+          ? _self.startersCount
+          : startersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      starterUsers: freezed == starterUsers
+          ? _self._starterUsers
+          : starterUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      celebratorsCount: null == celebratorsCount
+          ? _self.celebratorsCount
+          : celebratorsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      celebratorUsers: freezed == celebratorUsers
+          ? _self._celebratorUsers
+          : celebratorUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      stepWithCount: null == stepWithCount
+          ? _self.stepWithCount
+          : stepWithCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      stepWithUsers: freezed == stepWithUsers
+          ? _self._stepWithUsers
+          : stepWithUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      topSupportedUsers: freezed == topSupportedUsers
+          ? _self._topSupportedUsers
+          : topSupportedUsers // ignore: cast_nullable_to_non_nullable
+              as List<TopSupportUserDto>?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$BanUserDto {
   @JsonKey(name: 'reason')
   String get reason;
@@ -3428,543 +4067,6 @@ class __$CreateStepInteractionDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$DeviceTokenDto {
-  @JsonKey(name: 'id')
-  String? get id;
-  @JsonKey(name: 'deviceToken')
-  String? get deviceToken;
-  @JsonKey(name: 'platform')
-  String? get platform;
-  @JsonKey(name: 'isActive')
-  bool? get isActive;
-  @JsonKey(name: 'lastUsed')
-  DateTime? get lastUsed;
-  @JsonKey(name: 'appVersion')
-  String? get appVersion;
-  @JsonKey(name: 'deviceModel')
-  String? get deviceModel;
-  @JsonKey(name: 'deviceName')
-  String? get deviceName;
-  @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
-
-  /// Create a copy of DeviceTokenDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $DeviceTokenDtoCopyWith<DeviceTokenDto> get copyWith =>
-      _$DeviceTokenDtoCopyWithImpl<DeviceTokenDto>(
-          this as DeviceTokenDto, _$identity);
-
-  /// Serializes this DeviceTokenDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is DeviceTokenDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.deviceToken, deviceToken) ||
-                other.deviceToken == deviceToken) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.isActive, isActive) ||
-                other.isActive == isActive) &&
-            (identical(other.lastUsed, lastUsed) ||
-                other.lastUsed == lastUsed) &&
-            (identical(other.appVersion, appVersion) ||
-                other.appVersion == appVersion) &&
-            (identical(other.deviceModel, deviceModel) ||
-                other.deviceModel == deviceModel) &&
-            (identical(other.deviceName, deviceName) ||
-                other.deviceName == deviceName) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, deviceToken, platform,
-      isActive, lastUsed, appVersion, deviceModel, deviceName, createdDate);
-
-  @override
-  String toString() {
-    return 'DeviceTokenDto(id: $id, deviceToken: $deviceToken, platform: $platform, isActive: $isActive, lastUsed: $lastUsed, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName, createdDate: $createdDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $DeviceTokenDtoCopyWith<$Res> {
-  factory $DeviceTokenDtoCopyWith(
-          DeviceTokenDto value, $Res Function(DeviceTokenDto) _then) =
-      _$DeviceTokenDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'deviceToken') String? deviceToken,
-      @JsonKey(name: 'platform') String? platform,
-      @JsonKey(name: 'isActive') bool? isActive,
-      @JsonKey(name: 'lastUsed') DateTime? lastUsed,
-      @JsonKey(name: 'appVersion') String? appVersion,
-      @JsonKey(name: 'deviceModel') String? deviceModel,
-      @JsonKey(name: 'deviceName') String? deviceName,
-      @JsonKey(name: 'createdDate') DateTime? createdDate});
-}
-
-/// @nodoc
-class _$DeviceTokenDtoCopyWithImpl<$Res>
-    implements $DeviceTokenDtoCopyWith<$Res> {
-  _$DeviceTokenDtoCopyWithImpl(this._self, this._then);
-
-  final DeviceTokenDto _self;
-  final $Res Function(DeviceTokenDto) _then;
-
-  /// Create a copy of DeviceTokenDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = freezed,
-    Object? deviceToken = freezed,
-    Object? platform = freezed,
-    Object? isActive = freezed,
-    Object? lastUsed = freezed,
-    Object? appVersion = freezed,
-    Object? deviceModel = freezed,
-    Object? deviceName = freezed,
-    Object? createdDate = freezed,
-  }) {
-    return _then(_self.copyWith(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceToken: freezed == deviceToken
-          ? _self.deviceToken
-          : deviceToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: freezed == platform
-          ? _self.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isActive: freezed == isActive
-          ? _self.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      lastUsed: freezed == lastUsed
-          ? _self.lastUsed
-          : lastUsed // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      appVersion: freezed == appVersion
-          ? _self.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceModel: freezed == deviceModel
-          ? _self.deviceModel
-          : deviceModel // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceName: freezed == deviceName
-          ? _self.deviceName
-          : deviceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [DeviceTokenDto].
-extension DeviceTokenDtoPatterns on DeviceTokenDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_DeviceTokenDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _DeviceTokenDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_DeviceTokenDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _DeviceTokenDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_DeviceTokenDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _DeviceTokenDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'deviceToken') String? deviceToken,
-            @JsonKey(name: 'platform') String? platform,
-            @JsonKey(name: 'isActive') bool? isActive,
-            @JsonKey(name: 'lastUsed') DateTime? lastUsed,
-            @JsonKey(name: 'appVersion') String? appVersion,
-            @JsonKey(name: 'deviceModel') String? deviceModel,
-            @JsonKey(name: 'deviceName') String? deviceName,
-            @JsonKey(name: 'createdDate') DateTime? createdDate)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _DeviceTokenDto() when $default != null:
-        return $default(
-            _that.id,
-            _that.deviceToken,
-            _that.platform,
-            _that.isActive,
-            _that.lastUsed,
-            _that.appVersion,
-            _that.deviceModel,
-            _that.deviceName,
-            _that.createdDate);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'deviceToken') String? deviceToken,
-            @JsonKey(name: 'platform') String? platform,
-            @JsonKey(name: 'isActive') bool? isActive,
-            @JsonKey(name: 'lastUsed') DateTime? lastUsed,
-            @JsonKey(name: 'appVersion') String? appVersion,
-            @JsonKey(name: 'deviceModel') String? deviceModel,
-            @JsonKey(name: 'deviceName') String? deviceName,
-            @JsonKey(name: 'createdDate') DateTime? createdDate)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _DeviceTokenDto():
-        return $default(
-            _that.id,
-            _that.deviceToken,
-            _that.platform,
-            _that.isActive,
-            _that.lastUsed,
-            _that.appVersion,
-            _that.deviceModel,
-            _that.deviceName,
-            _that.createdDate);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'deviceToken') String? deviceToken,
-            @JsonKey(name: 'platform') String? platform,
-            @JsonKey(name: 'isActive') bool? isActive,
-            @JsonKey(name: 'lastUsed') DateTime? lastUsed,
-            @JsonKey(name: 'appVersion') String? appVersion,
-            @JsonKey(name: 'deviceModel') String? deviceModel,
-            @JsonKey(name: 'deviceName') String? deviceName,
-            @JsonKey(name: 'createdDate') DateTime? createdDate)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _DeviceTokenDto() when $default != null:
-        return $default(
-            _that.id,
-            _that.deviceToken,
-            _that.platform,
-            _that.isActive,
-            _that.lastUsed,
-            _that.appVersion,
-            _that.deviceModel,
-            _that.deviceName,
-            _that.createdDate);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _DeviceTokenDto implements DeviceTokenDto {
-  _DeviceTokenDto(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'deviceToken') this.deviceToken,
-      @JsonKey(name: 'platform') this.platform,
-      @JsonKey(name: 'isActive') this.isActive,
-      @JsonKey(name: 'lastUsed') this.lastUsed,
-      @JsonKey(name: 'appVersion') this.appVersion,
-      @JsonKey(name: 'deviceModel') this.deviceModel,
-      @JsonKey(name: 'deviceName') this.deviceName,
-      @JsonKey(name: 'createdDate') this.createdDate});
-  factory _DeviceTokenDto.fromJson(Map<String, dynamic> json) =>
-      _$DeviceTokenDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'id')
-  final String? id;
-  @override
-  @JsonKey(name: 'deviceToken')
-  final String? deviceToken;
-  @override
-  @JsonKey(name: 'platform')
-  final String? platform;
-  @override
-  @JsonKey(name: 'isActive')
-  final bool? isActive;
-  @override
-  @JsonKey(name: 'lastUsed')
-  final DateTime? lastUsed;
-  @override
-  @JsonKey(name: 'appVersion')
-  final String? appVersion;
-  @override
-  @JsonKey(name: 'deviceModel')
-  final String? deviceModel;
-  @override
-  @JsonKey(name: 'deviceName')
-  final String? deviceName;
-  @override
-  @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
-
-  /// Create a copy of DeviceTokenDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$DeviceTokenDtoCopyWith<_DeviceTokenDto> get copyWith =>
-      __$DeviceTokenDtoCopyWithImpl<_DeviceTokenDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$DeviceTokenDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _DeviceTokenDto &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.deviceToken, deviceToken) ||
-                other.deviceToken == deviceToken) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.isActive, isActive) ||
-                other.isActive == isActive) &&
-            (identical(other.lastUsed, lastUsed) ||
-                other.lastUsed == lastUsed) &&
-            (identical(other.appVersion, appVersion) ||
-                other.appVersion == appVersion) &&
-            (identical(other.deviceModel, deviceModel) ||
-                other.deviceModel == deviceModel) &&
-            (identical(other.deviceName, deviceName) ||
-                other.deviceName == deviceName) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, deviceToken, platform,
-      isActive, lastUsed, appVersion, deviceModel, deviceName, createdDate);
-
-  @override
-  String toString() {
-    return 'DeviceTokenDto(id: $id, deviceToken: $deviceToken, platform: $platform, isActive: $isActive, lastUsed: $lastUsed, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName, createdDate: $createdDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$DeviceTokenDtoCopyWith<$Res>
-    implements $DeviceTokenDtoCopyWith<$Res> {
-  factory _$DeviceTokenDtoCopyWith(
-          _DeviceTokenDto value, $Res Function(_DeviceTokenDto) _then) =
-      __$DeviceTokenDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'deviceToken') String? deviceToken,
-      @JsonKey(name: 'platform') String? platform,
-      @JsonKey(name: 'isActive') bool? isActive,
-      @JsonKey(name: 'lastUsed') DateTime? lastUsed,
-      @JsonKey(name: 'appVersion') String? appVersion,
-      @JsonKey(name: 'deviceModel') String? deviceModel,
-      @JsonKey(name: 'deviceName') String? deviceName,
-      @JsonKey(name: 'createdDate') DateTime? createdDate});
-}
-
-/// @nodoc
-class __$DeviceTokenDtoCopyWithImpl<$Res>
-    implements _$DeviceTokenDtoCopyWith<$Res> {
-  __$DeviceTokenDtoCopyWithImpl(this._self, this._then);
-
-  final _DeviceTokenDto _self;
-  final $Res Function(_DeviceTokenDto) _then;
-
-  /// Create a copy of DeviceTokenDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? id = freezed,
-    Object? deviceToken = freezed,
-    Object? platform = freezed,
-    Object? isActive = freezed,
-    Object? lastUsed = freezed,
-    Object? appVersion = freezed,
-    Object? deviceModel = freezed,
-    Object? deviceName = freezed,
-    Object? createdDate = freezed,
-  }) {
-    return _then(_DeviceTokenDto(
-      id: freezed == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceToken: freezed == deviceToken
-          ? _self.deviceToken
-          : deviceToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: freezed == platform
-          ? _self.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String?,
-      isActive: freezed == isActive
-          ? _self.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      lastUsed: freezed == lastUsed
-          ? _self.lastUsed
-          : lastUsed // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      appVersion: freezed == appVersion
-          ? _self.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceModel: freezed == deviceModel
-          ? _self.deviceModel
-          : deviceModel // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceName: freezed == deviceName
-          ? _self.deviceName
-          : deviceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
 mixin _$EditUserDto {
   @JsonKey(name: 'displayName')
   String get displayName;
@@ -4347,397 +4449,6 @@ class __$EditUserDtoCopyWithImpl<$Res> implements _$EditUserDtoCopyWith<$Res> {
           ? _self.isPrivate
           : isPrivate // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
-  }
-}
-
-/// @nodoc
-mixin _$FeedMetricsDto {
-  @JsonKey(name: 'followingCount')
-  int get followingCount;
-  @JsonKey(name: 'hotContentRatio')
-  num get hotContentRatio;
-  @JsonKey(name: 'followingContentRatio')
-  num get followingContentRatio;
-  @JsonKey(name: 'lastRefresh')
-  DateTime get lastRefresh;
-
-  /// Create a copy of FeedMetricsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $FeedMetricsDtoCopyWith<FeedMetricsDto> get copyWith =>
-      _$FeedMetricsDtoCopyWithImpl<FeedMetricsDto>(
-          this as FeedMetricsDto, _$identity);
-
-  /// Serializes this FeedMetricsDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is FeedMetricsDto &&
-            (identical(other.followingCount, followingCount) ||
-                other.followingCount == followingCount) &&
-            (identical(other.hotContentRatio, hotContentRatio) ||
-                other.hotContentRatio == hotContentRatio) &&
-            (identical(other.followingContentRatio, followingContentRatio) ||
-                other.followingContentRatio == followingContentRatio) &&
-            (identical(other.lastRefresh, lastRefresh) ||
-                other.lastRefresh == lastRefresh));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, followingCount, hotContentRatio,
-      followingContentRatio, lastRefresh);
-
-  @override
-  String toString() {
-    return 'FeedMetricsDto(followingCount: $followingCount, hotContentRatio: $hotContentRatio, followingContentRatio: $followingContentRatio, lastRefresh: $lastRefresh)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $FeedMetricsDtoCopyWith<$Res> {
-  factory $FeedMetricsDtoCopyWith(
-          FeedMetricsDto value, $Res Function(FeedMetricsDto) _then) =
-      _$FeedMetricsDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'followingCount') int followingCount,
-      @JsonKey(name: 'hotContentRatio') num hotContentRatio,
-      @JsonKey(name: 'followingContentRatio') num followingContentRatio,
-      @JsonKey(name: 'lastRefresh') DateTime lastRefresh});
-}
-
-/// @nodoc
-class _$FeedMetricsDtoCopyWithImpl<$Res>
-    implements $FeedMetricsDtoCopyWith<$Res> {
-  _$FeedMetricsDtoCopyWithImpl(this._self, this._then);
-
-  final FeedMetricsDto _self;
-  final $Res Function(FeedMetricsDto) _then;
-
-  /// Create a copy of FeedMetricsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? followingCount = null,
-    Object? hotContentRatio = null,
-    Object? followingContentRatio = null,
-    Object? lastRefresh = null,
-  }) {
-    return _then(_self.copyWith(
-      followingCount: null == followingCount
-          ? _self.followingCount
-          : followingCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      hotContentRatio: null == hotContentRatio
-          ? _self.hotContentRatio
-          : hotContentRatio // ignore: cast_nullable_to_non_nullable
-              as num,
-      followingContentRatio: null == followingContentRatio
-          ? _self.followingContentRatio
-          : followingContentRatio // ignore: cast_nullable_to_non_nullable
-              as num,
-      lastRefresh: null == lastRefresh
-          ? _self.lastRefresh
-          : lastRefresh // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [FeedMetricsDto].
-extension FeedMetricsDtoPatterns on FeedMetricsDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_FeedMetricsDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _FeedMetricsDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_FeedMetricsDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FeedMetricsDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_FeedMetricsDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FeedMetricsDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'followingCount') int followingCount,
-            @JsonKey(name: 'hotContentRatio') num hotContentRatio,
-            @JsonKey(name: 'followingContentRatio') num followingContentRatio,
-            @JsonKey(name: 'lastRefresh') DateTime lastRefresh)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _FeedMetricsDto() when $default != null:
-        return $default(_that.followingCount, _that.hotContentRatio,
-            _that.followingContentRatio, _that.lastRefresh);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'followingCount') int followingCount,
-            @JsonKey(name: 'hotContentRatio') num hotContentRatio,
-            @JsonKey(name: 'followingContentRatio') num followingContentRatio,
-            @JsonKey(name: 'lastRefresh') DateTime lastRefresh)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FeedMetricsDto():
-        return $default(_that.followingCount, _that.hotContentRatio,
-            _that.followingContentRatio, _that.lastRefresh);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'followingCount') int followingCount,
-            @JsonKey(name: 'hotContentRatio') num hotContentRatio,
-            @JsonKey(name: 'followingContentRatio') num followingContentRatio,
-            @JsonKey(name: 'lastRefresh') DateTime lastRefresh)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _FeedMetricsDto() when $default != null:
-        return $default(_that.followingCount, _that.hotContentRatio,
-            _that.followingContentRatio, _that.lastRefresh);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _FeedMetricsDto implements FeedMetricsDto {
-  _FeedMetricsDto(
-      {@JsonKey(name: 'followingCount') required this.followingCount,
-      @JsonKey(name: 'hotContentRatio') required this.hotContentRatio,
-      @JsonKey(name: 'followingContentRatio')
-      required this.followingContentRatio,
-      @JsonKey(name: 'lastRefresh') required this.lastRefresh});
-  factory _FeedMetricsDto.fromJson(Map<String, dynamic> json) =>
-      _$FeedMetricsDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'followingCount')
-  final int followingCount;
-  @override
-  @JsonKey(name: 'hotContentRatio')
-  final num hotContentRatio;
-  @override
-  @JsonKey(name: 'followingContentRatio')
-  final num followingContentRatio;
-  @override
-  @JsonKey(name: 'lastRefresh')
-  final DateTime lastRefresh;
-
-  /// Create a copy of FeedMetricsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$FeedMetricsDtoCopyWith<_FeedMetricsDto> get copyWith =>
-      __$FeedMetricsDtoCopyWithImpl<_FeedMetricsDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$FeedMetricsDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _FeedMetricsDto &&
-            (identical(other.followingCount, followingCount) ||
-                other.followingCount == followingCount) &&
-            (identical(other.hotContentRatio, hotContentRatio) ||
-                other.hotContentRatio == hotContentRatio) &&
-            (identical(other.followingContentRatio, followingContentRatio) ||
-                other.followingContentRatio == followingContentRatio) &&
-            (identical(other.lastRefresh, lastRefresh) ||
-                other.lastRefresh == lastRefresh));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, followingCount, hotContentRatio,
-      followingContentRatio, lastRefresh);
-
-  @override
-  String toString() {
-    return 'FeedMetricsDto(followingCount: $followingCount, hotContentRatio: $hotContentRatio, followingContentRatio: $followingContentRatio, lastRefresh: $lastRefresh)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$FeedMetricsDtoCopyWith<$Res>
-    implements $FeedMetricsDtoCopyWith<$Res> {
-  factory _$FeedMetricsDtoCopyWith(
-          _FeedMetricsDto value, $Res Function(_FeedMetricsDto) _then) =
-      __$FeedMetricsDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'followingCount') int followingCount,
-      @JsonKey(name: 'hotContentRatio') num hotContentRatio,
-      @JsonKey(name: 'followingContentRatio') num followingContentRatio,
-      @JsonKey(name: 'lastRefresh') DateTime lastRefresh});
-}
-
-/// @nodoc
-class __$FeedMetricsDtoCopyWithImpl<$Res>
-    implements _$FeedMetricsDtoCopyWith<$Res> {
-  __$FeedMetricsDtoCopyWithImpl(this._self, this._then);
-
-  final _FeedMetricsDto _self;
-  final $Res Function(_FeedMetricsDto) _then;
-
-  /// Create a copy of FeedMetricsDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? followingCount = null,
-    Object? hotContentRatio = null,
-    Object? followingContentRatio = null,
-    Object? lastRefresh = null,
-  }) {
-    return _then(_FeedMetricsDto(
-      followingCount: null == followingCount
-          ? _self.followingCount
-          : followingCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      hotContentRatio: null == hotContentRatio
-          ? _self.hotContentRatio
-          : hotContentRatio // ignore: cast_nullable_to_non_nullable
-              as num,
-      followingContentRatio: null == followingContentRatio
-          ? _self.followingContentRatio
-          : followingContentRatio // ignore: cast_nullable_to_non_nullable
-              as num,
-      lastRefresh: null == lastRefresh
-          ? _self.lastRefresh
-          : lastRefresh // ignore: cast_nullable_to_non_nullable
-              as DateTime,
     ));
   }
 }
@@ -11130,14 +10841,14 @@ class __$PageResponseOfAppFeedbackDtoCopyWithImpl<$Res>
 mixin _$ProfileDto {
   @JsonKey(name: 'userDetail')
   UserDetailDto get userDetail;
-  @JsonKey(name: 'badgesCount')
-  int get badgesCount;
-  @JsonKey(name: 'badgesUsers')
-  List<UserDto>? get badgesUsers;
-  @JsonKey(name: 'supportersCount')
-  int get supportersCount;
-  @JsonKey(name: 'supportersUsers')
-  List<UserDto>? get supportersUsers;
+  @JsonKey(name: 'badgesEarned')
+  int get badgesEarned;
+  @JsonKey(name: 'latestSupportedUsers')
+  List<UserDto>? get latestSupportedUsers;
+  @JsonKey(name: 'supportReceived')
+  int get supportReceived;
+  @JsonKey(name: 'latestSupporters')
+  List<UserDto>? get latestSupporters;
   @JsonKey(name: 'followersCount')
   int get followersCount;
   @JsonKey(name: 'followingsCount')
@@ -11162,14 +10873,14 @@ mixin _$ProfileDto {
             other is ProfileDto &&
             (identical(other.userDetail, userDetail) ||
                 other.userDetail == userDetail) &&
-            (identical(other.badgesCount, badgesCount) ||
-                other.badgesCount == badgesCount) &&
+            (identical(other.badgesEarned, badgesEarned) ||
+                other.badgesEarned == badgesEarned) &&
             const DeepCollectionEquality()
-                .equals(other.badgesUsers, badgesUsers) &&
-            (identical(other.supportersCount, supportersCount) ||
-                other.supportersCount == supportersCount) &&
+                .equals(other.latestSupportedUsers, latestSupportedUsers) &&
+            (identical(other.supportReceived, supportReceived) ||
+                other.supportReceived == supportReceived) &&
             const DeepCollectionEquality()
-                .equals(other.supportersUsers, supportersUsers) &&
+                .equals(other.latestSupporters, latestSupporters) &&
             (identical(other.followersCount, followersCount) ||
                 other.followersCount == followersCount) &&
             (identical(other.followingsCount, followingsCount) ||
@@ -11185,17 +10896,17 @@ mixin _$ProfileDto {
   int get hashCode => Object.hash(
       runtimeType,
       userDetail,
-      badgesCount,
-      const DeepCollectionEquality().hash(badgesUsers),
-      supportersCount,
-      const DeepCollectionEquality().hash(supportersUsers),
+      badgesEarned,
+      const DeepCollectionEquality().hash(latestSupportedUsers),
+      supportReceived,
+      const DeepCollectionEquality().hash(latestSupporters),
       followersCount,
       followingsCount,
       hasPendingFollowRequestToMe);
 
   @override
   String toString() {
-    return 'ProfileDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount, hasPendingFollowRequestToMe: $hasPendingFollowRequestToMe)';
+    return 'ProfileDto(userDetail: $userDetail, badgesEarned: $badgesEarned, latestSupportedUsers: $latestSupportedUsers, supportReceived: $supportReceived, latestSupporters: $latestSupporters, followersCount: $followersCount, followingsCount: $followingsCount, hasPendingFollowRequestToMe: $hasPendingFollowRequestToMe)';
   }
 }
 
@@ -11207,10 +10918,11 @@ abstract mixin class $ProfileDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
-      @JsonKey(name: 'badgesCount') int badgesCount,
-      @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-      @JsonKey(name: 'supportersCount') int supportersCount,
-      @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
+      @JsonKey(name: 'badgesEarned') int badgesEarned,
+      @JsonKey(name: 'latestSupportedUsers')
+      List<UserDto>? latestSupportedUsers,
+      @JsonKey(name: 'supportReceived') int supportReceived,
+      @JsonKey(name: 'latestSupporters') List<UserDto>? latestSupporters,
       @JsonKey(name: 'followersCount') int followersCount,
       @JsonKey(name: 'followingsCount') int followingsCount,
       @JsonKey(name: 'hasPendingFollowRequestToMe')
@@ -11232,10 +10944,10 @@ class _$ProfileDtoCopyWithImpl<$Res> implements $ProfileDtoCopyWith<$Res> {
   @override
   $Res call({
     Object? userDetail = null,
-    Object? badgesCount = null,
-    Object? badgesUsers = freezed,
-    Object? supportersCount = null,
-    Object? supportersUsers = freezed,
+    Object? badgesEarned = null,
+    Object? latestSupportedUsers = freezed,
+    Object? supportReceived = null,
+    Object? latestSupporters = freezed,
     Object? followersCount = null,
     Object? followingsCount = null,
     Object? hasPendingFollowRequestToMe = null,
@@ -11245,21 +10957,21 @@ class _$ProfileDtoCopyWithImpl<$Res> implements $ProfileDtoCopyWith<$Res> {
           ? _self.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
               as UserDetailDto,
-      badgesCount: null == badgesCount
-          ? _self.badgesCount
-          : badgesCount // ignore: cast_nullable_to_non_nullable
+      badgesEarned: null == badgesEarned
+          ? _self.badgesEarned
+          : badgesEarned // ignore: cast_nullable_to_non_nullable
               as int,
-      badgesUsers: freezed == badgesUsers
-          ? _self.badgesUsers
-          : badgesUsers // ignore: cast_nullable_to_non_nullable
+      latestSupportedUsers: freezed == latestSupportedUsers
+          ? _self.latestSupportedUsers
+          : latestSupportedUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      supportersCount: null == supportersCount
-          ? _self.supportersCount
-          : supportersCount // ignore: cast_nullable_to_non_nullable
+      supportReceived: null == supportReceived
+          ? _self.supportReceived
+          : supportReceived // ignore: cast_nullable_to_non_nullable
               as int,
-      supportersUsers: freezed == supportersUsers
-          ? _self.supportersUsers
-          : supportersUsers // ignore: cast_nullable_to_non_nullable
+      latestSupporters: freezed == latestSupporters
+          ? _self.latestSupporters
+          : latestSupporters // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
       followersCount: null == followersCount
           ? _self.followersCount
@@ -11380,10 +11092,11 @@ extension ProfileDtoPatterns on ProfileDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'userDetail') UserDetailDto userDetail,
-            @JsonKey(name: 'badgesCount') int badgesCount,
-            @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-            @JsonKey(name: 'supportersCount') int supportersCount,
-            @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
+            @JsonKey(name: 'badgesEarned') int badgesEarned,
+            @JsonKey(name: 'latestSupportedUsers')
+            List<UserDto>? latestSupportedUsers,
+            @JsonKey(name: 'supportReceived') int supportReceived,
+            @JsonKey(name: 'latestSupporters') List<UserDto>? latestSupporters,
             @JsonKey(name: 'followersCount') int followersCount,
             @JsonKey(name: 'followingsCount') int followingsCount,
             @JsonKey(name: 'hasPendingFollowRequestToMe')
@@ -11396,10 +11109,10 @@ extension ProfileDtoPatterns on ProfileDto {
       case _ProfileDto() when $default != null:
         return $default(
             _that.userDetail,
-            _that.badgesCount,
-            _that.badgesUsers,
-            _that.supportersCount,
-            _that.supportersUsers,
+            _that.badgesEarned,
+            _that.latestSupportedUsers,
+            _that.supportReceived,
+            _that.latestSupporters,
             _that.followersCount,
             _that.followingsCount,
             _that.hasPendingFollowRequestToMe);
@@ -11425,10 +11138,11 @@ extension ProfileDtoPatterns on ProfileDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'userDetail') UserDetailDto userDetail,
-            @JsonKey(name: 'badgesCount') int badgesCount,
-            @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-            @JsonKey(name: 'supportersCount') int supportersCount,
-            @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
+            @JsonKey(name: 'badgesEarned') int badgesEarned,
+            @JsonKey(name: 'latestSupportedUsers')
+            List<UserDto>? latestSupportedUsers,
+            @JsonKey(name: 'supportReceived') int supportReceived,
+            @JsonKey(name: 'latestSupporters') List<UserDto>? latestSupporters,
             @JsonKey(name: 'followersCount') int followersCount,
             @JsonKey(name: 'followingsCount') int followingsCount,
             @JsonKey(name: 'hasPendingFollowRequestToMe')
@@ -11440,10 +11154,10 @@ extension ProfileDtoPatterns on ProfileDto {
       case _ProfileDto():
         return $default(
             _that.userDetail,
-            _that.badgesCount,
-            _that.badgesUsers,
-            _that.supportersCount,
-            _that.supportersUsers,
+            _that.badgesEarned,
+            _that.latestSupportedUsers,
+            _that.supportReceived,
+            _that.latestSupporters,
             _that.followersCount,
             _that.followingsCount,
             _that.hasPendingFollowRequestToMe);
@@ -11466,10 +11180,11 @@ extension ProfileDtoPatterns on ProfileDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'userDetail') UserDetailDto userDetail,
-            @JsonKey(name: 'badgesCount') int badgesCount,
-            @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-            @JsonKey(name: 'supportersCount') int supportersCount,
-            @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
+            @JsonKey(name: 'badgesEarned') int badgesEarned,
+            @JsonKey(name: 'latestSupportedUsers')
+            List<UserDto>? latestSupportedUsers,
+            @JsonKey(name: 'supportReceived') int supportReceived,
+            @JsonKey(name: 'latestSupporters') List<UserDto>? latestSupporters,
             @JsonKey(name: 'followersCount') int followersCount,
             @JsonKey(name: 'followingsCount') int followingsCount,
             @JsonKey(name: 'hasPendingFollowRequestToMe')
@@ -11481,10 +11196,10 @@ extension ProfileDtoPatterns on ProfileDto {
       case _ProfileDto() when $default != null:
         return $default(
             _that.userDetail,
-            _that.badgesCount,
-            _that.badgesUsers,
-            _that.supportersCount,
-            _that.supportersUsers,
+            _that.badgesEarned,
+            _that.latestSupportedUsers,
+            _that.supportReceived,
+            _that.latestSupporters,
             _that.followersCount,
             _that.followingsCount,
             _that.hasPendingFollowRequestToMe);
@@ -11499,16 +11214,17 @@ extension ProfileDtoPatterns on ProfileDto {
 class _ProfileDto implements ProfileDto {
   _ProfileDto(
       {@JsonKey(name: 'userDetail') required this.userDetail,
-      @JsonKey(name: 'badgesCount') this.badgesCount = 0,
-      @JsonKey(name: 'badgesUsers') final List<UserDto>? badgesUsers,
-      @JsonKey(name: 'supportersCount') this.supportersCount = 0,
-      @JsonKey(name: 'supportersUsers') final List<UserDto>? supportersUsers,
+      @JsonKey(name: 'badgesEarned') this.badgesEarned = 0,
+      @JsonKey(name: 'latestSupportedUsers')
+      final List<UserDto>? latestSupportedUsers,
+      @JsonKey(name: 'supportReceived') this.supportReceived = 0,
+      @JsonKey(name: 'latestSupporters') final List<UserDto>? latestSupporters,
       @JsonKey(name: 'followersCount') this.followersCount = 0,
       @JsonKey(name: 'followingsCount') this.followingsCount = 0,
       @JsonKey(name: 'hasPendingFollowRequestToMe')
       this.hasPendingFollowRequestToMe = false})
-      : _badgesUsers = badgesUsers,
-        _supportersUsers = supportersUsers;
+      : _latestSupportedUsers = latestSupportedUsers,
+        _latestSupporters = latestSupporters;
   factory _ProfileDto.fromJson(Map<String, dynamic> json) =>
       _$ProfileDtoFromJson(json);
 
@@ -11516,29 +11232,31 @@ class _ProfileDto implements ProfileDto {
   @JsonKey(name: 'userDetail')
   final UserDetailDto userDetail;
   @override
-  @JsonKey(name: 'badgesCount')
-  final int badgesCount;
-  final List<UserDto>? _badgesUsers;
+  @JsonKey(name: 'badgesEarned')
+  final int badgesEarned;
+  final List<UserDto>? _latestSupportedUsers;
   @override
-  @JsonKey(name: 'badgesUsers')
-  List<UserDto>? get badgesUsers {
-    final value = _badgesUsers;
+  @JsonKey(name: 'latestSupportedUsers')
+  List<UserDto>? get latestSupportedUsers {
+    final value = _latestSupportedUsers;
     if (value == null) return null;
-    if (_badgesUsers is EqualUnmodifiableListView) return _badgesUsers;
+    if (_latestSupportedUsers is EqualUnmodifiableListView)
+      return _latestSupportedUsers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
-  @JsonKey(name: 'supportersCount')
-  final int supportersCount;
-  final List<UserDto>? _supportersUsers;
+  @JsonKey(name: 'supportReceived')
+  final int supportReceived;
+  final List<UserDto>? _latestSupporters;
   @override
-  @JsonKey(name: 'supportersUsers')
-  List<UserDto>? get supportersUsers {
-    final value = _supportersUsers;
+  @JsonKey(name: 'latestSupporters')
+  List<UserDto>? get latestSupporters {
+    final value = _latestSupporters;
     if (value == null) return null;
-    if (_supportersUsers is EqualUnmodifiableListView) return _supportersUsers;
+    if (_latestSupporters is EqualUnmodifiableListView)
+      return _latestSupporters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -11575,14 +11293,14 @@ class _ProfileDto implements ProfileDto {
             other is _ProfileDto &&
             (identical(other.userDetail, userDetail) ||
                 other.userDetail == userDetail) &&
-            (identical(other.badgesCount, badgesCount) ||
-                other.badgesCount == badgesCount) &&
+            (identical(other.badgesEarned, badgesEarned) ||
+                other.badgesEarned == badgesEarned) &&
             const DeepCollectionEquality()
-                .equals(other._badgesUsers, _badgesUsers) &&
-            (identical(other.supportersCount, supportersCount) ||
-                other.supportersCount == supportersCount) &&
+                .equals(other._latestSupportedUsers, _latestSupportedUsers) &&
+            (identical(other.supportReceived, supportReceived) ||
+                other.supportReceived == supportReceived) &&
             const DeepCollectionEquality()
-                .equals(other._supportersUsers, _supportersUsers) &&
+                .equals(other._latestSupporters, _latestSupporters) &&
             (identical(other.followersCount, followersCount) ||
                 other.followersCount == followersCount) &&
             (identical(other.followingsCount, followingsCount) ||
@@ -11598,17 +11316,17 @@ class _ProfileDto implements ProfileDto {
   int get hashCode => Object.hash(
       runtimeType,
       userDetail,
-      badgesCount,
-      const DeepCollectionEquality().hash(_badgesUsers),
-      supportersCount,
-      const DeepCollectionEquality().hash(_supportersUsers),
+      badgesEarned,
+      const DeepCollectionEquality().hash(_latestSupportedUsers),
+      supportReceived,
+      const DeepCollectionEquality().hash(_latestSupporters),
       followersCount,
       followingsCount,
       hasPendingFollowRequestToMe);
 
   @override
   String toString() {
-    return 'ProfileDto(userDetail: $userDetail, badgesCount: $badgesCount, badgesUsers: $badgesUsers, supportersCount: $supportersCount, supportersUsers: $supportersUsers, followersCount: $followersCount, followingsCount: $followingsCount, hasPendingFollowRequestToMe: $hasPendingFollowRequestToMe)';
+    return 'ProfileDto(userDetail: $userDetail, badgesEarned: $badgesEarned, latestSupportedUsers: $latestSupportedUsers, supportReceived: $supportReceived, latestSupporters: $latestSupporters, followersCount: $followersCount, followingsCount: $followingsCount, hasPendingFollowRequestToMe: $hasPendingFollowRequestToMe)';
   }
 }
 
@@ -11622,10 +11340,11 @@ abstract mixin class _$ProfileDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'userDetail') UserDetailDto userDetail,
-      @JsonKey(name: 'badgesCount') int badgesCount,
-      @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-      @JsonKey(name: 'supportersCount') int supportersCount,
-      @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
+      @JsonKey(name: 'badgesEarned') int badgesEarned,
+      @JsonKey(name: 'latestSupportedUsers')
+      List<UserDto>? latestSupportedUsers,
+      @JsonKey(name: 'supportReceived') int supportReceived,
+      @JsonKey(name: 'latestSupporters') List<UserDto>? latestSupporters,
       @JsonKey(name: 'followersCount') int followersCount,
       @JsonKey(name: 'followingsCount') int followingsCount,
       @JsonKey(name: 'hasPendingFollowRequestToMe')
@@ -11648,10 +11367,10 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? userDetail = null,
-    Object? badgesCount = null,
-    Object? badgesUsers = freezed,
-    Object? supportersCount = null,
-    Object? supportersUsers = freezed,
+    Object? badgesEarned = null,
+    Object? latestSupportedUsers = freezed,
+    Object? supportReceived = null,
+    Object? latestSupporters = freezed,
     Object? followersCount = null,
     Object? followingsCount = null,
     Object? hasPendingFollowRequestToMe = null,
@@ -11661,21 +11380,21 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
           ? _self.userDetail
           : userDetail // ignore: cast_nullable_to_non_nullable
               as UserDetailDto,
-      badgesCount: null == badgesCount
-          ? _self.badgesCount
-          : badgesCount // ignore: cast_nullable_to_non_nullable
+      badgesEarned: null == badgesEarned
+          ? _self.badgesEarned
+          : badgesEarned // ignore: cast_nullable_to_non_nullable
               as int,
-      badgesUsers: freezed == badgesUsers
-          ? _self._badgesUsers
-          : badgesUsers // ignore: cast_nullable_to_non_nullable
+      latestSupportedUsers: freezed == latestSupportedUsers
+          ? _self._latestSupportedUsers
+          : latestSupportedUsers // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
-      supportersCount: null == supportersCount
-          ? _self.supportersCount
-          : supportersCount // ignore: cast_nullable_to_non_nullable
+      supportReceived: null == supportReceived
+          ? _self.supportReceived
+          : supportReceived // ignore: cast_nullable_to_non_nullable
               as int,
-      supportersUsers: freezed == supportersUsers
-          ? _self._supportersUsers
-          : supportersUsers // ignore: cast_nullable_to_non_nullable
+      latestSupporters: freezed == latestSupporters
+          ? _self._latestSupporters
+          : latestSupporters // ignore: cast_nullable_to_non_nullable
               as List<UserDto>?,
       followersCount: null == followersCount
           ? _self.followersCount
@@ -11700,421 +11419,6 @@ class __$ProfileDtoCopyWithImpl<$Res> implements _$ProfileDtoCopyWith<$Res> {
     return $UserDetailDtoCopyWith<$Res>(_self.userDetail, (value) {
       return _then(_self.copyWith(userDetail: value));
     });
-  }
-}
-
-/// @nodoc
-mixin _$RegisterDeviceDto {
-  @JsonKey(name: 'deviceToken')
-  String? get deviceToken;
-  @JsonKey(name: 'platform')
-  String? get platform;
-  @JsonKey(name: 'appVersion')
-  String? get appVersion;
-  @JsonKey(name: 'deviceModel')
-  String? get deviceModel;
-  @JsonKey(name: 'deviceName')
-  String? get deviceName;
-
-  /// Create a copy of RegisterDeviceDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $RegisterDeviceDtoCopyWith<RegisterDeviceDto> get copyWith =>
-      _$RegisterDeviceDtoCopyWithImpl<RegisterDeviceDto>(
-          this as RegisterDeviceDto, _$identity);
-
-  /// Serializes this RegisterDeviceDto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is RegisterDeviceDto &&
-            (identical(other.deviceToken, deviceToken) ||
-                other.deviceToken == deviceToken) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.appVersion, appVersion) ||
-                other.appVersion == appVersion) &&
-            (identical(other.deviceModel, deviceModel) ||
-                other.deviceModel == deviceModel) &&
-            (identical(other.deviceName, deviceName) ||
-                other.deviceName == deviceName));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, deviceToken, platform, appVersion, deviceModel, deviceName);
-
-  @override
-  String toString() {
-    return 'RegisterDeviceDto(deviceToken: $deviceToken, platform: $platform, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $RegisterDeviceDtoCopyWith<$Res> {
-  factory $RegisterDeviceDtoCopyWith(
-          RegisterDeviceDto value, $Res Function(RegisterDeviceDto) _then) =
-      _$RegisterDeviceDtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'deviceToken') String? deviceToken,
-      @JsonKey(name: 'platform') String? platform,
-      @JsonKey(name: 'appVersion') String? appVersion,
-      @JsonKey(name: 'deviceModel') String? deviceModel,
-      @JsonKey(name: 'deviceName') String? deviceName});
-}
-
-/// @nodoc
-class _$RegisterDeviceDtoCopyWithImpl<$Res>
-    implements $RegisterDeviceDtoCopyWith<$Res> {
-  _$RegisterDeviceDtoCopyWithImpl(this._self, this._then);
-
-  final RegisterDeviceDto _self;
-  final $Res Function(RegisterDeviceDto) _then;
-
-  /// Create a copy of RegisterDeviceDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? deviceToken = freezed,
-    Object? platform = freezed,
-    Object? appVersion = freezed,
-    Object? deviceModel = freezed,
-    Object? deviceName = freezed,
-  }) {
-    return _then(_self.copyWith(
-      deviceToken: freezed == deviceToken
-          ? _self.deviceToken
-          : deviceToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: freezed == platform
-          ? _self.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String?,
-      appVersion: freezed == appVersion
-          ? _self.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceModel: freezed == deviceModel
-          ? _self.deviceModel
-          : deviceModel // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceName: freezed == deviceName
-          ? _self.deviceName
-          : deviceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [RegisterDeviceDto].
-extension RegisterDeviceDtoPatterns on RegisterDeviceDto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_RegisterDeviceDto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _RegisterDeviceDto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_RegisterDeviceDto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _RegisterDeviceDto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_RegisterDeviceDto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _RegisterDeviceDto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'deviceToken') String? deviceToken,
-            @JsonKey(name: 'platform') String? platform,
-            @JsonKey(name: 'appVersion') String? appVersion,
-            @JsonKey(name: 'deviceModel') String? deviceModel,
-            @JsonKey(name: 'deviceName') String? deviceName)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _RegisterDeviceDto() when $default != null:
-        return $default(_that.deviceToken, _that.platform, _that.appVersion,
-            _that.deviceModel, _that.deviceName);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'deviceToken') String? deviceToken,
-            @JsonKey(name: 'platform') String? platform,
-            @JsonKey(name: 'appVersion') String? appVersion,
-            @JsonKey(name: 'deviceModel') String? deviceModel,
-            @JsonKey(name: 'deviceName') String? deviceName)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _RegisterDeviceDto():
-        return $default(_that.deviceToken, _that.platform, _that.appVersion,
-            _that.deviceModel, _that.deviceName);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'deviceToken') String? deviceToken,
-            @JsonKey(name: 'platform') String? platform,
-            @JsonKey(name: 'appVersion') String? appVersion,
-            @JsonKey(name: 'deviceModel') String? deviceModel,
-            @JsonKey(name: 'deviceName') String? deviceName)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _RegisterDeviceDto() when $default != null:
-        return $default(_that.deviceToken, _that.platform, _that.appVersion,
-            _that.deviceModel, _that.deviceName);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _RegisterDeviceDto implements RegisterDeviceDto {
-  _RegisterDeviceDto(
-      {@JsonKey(name: 'deviceToken') this.deviceToken,
-      @JsonKey(name: 'platform') this.platform,
-      @JsonKey(name: 'appVersion') this.appVersion,
-      @JsonKey(name: 'deviceModel') this.deviceModel,
-      @JsonKey(name: 'deviceName') this.deviceName});
-  factory _RegisterDeviceDto.fromJson(Map<String, dynamic> json) =>
-      _$RegisterDeviceDtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'deviceToken')
-  final String? deviceToken;
-  @override
-  @JsonKey(name: 'platform')
-  final String? platform;
-  @override
-  @JsonKey(name: 'appVersion')
-  final String? appVersion;
-  @override
-  @JsonKey(name: 'deviceModel')
-  final String? deviceModel;
-  @override
-  @JsonKey(name: 'deviceName')
-  final String? deviceName;
-
-  /// Create a copy of RegisterDeviceDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$RegisterDeviceDtoCopyWith<_RegisterDeviceDto> get copyWith =>
-      __$RegisterDeviceDtoCopyWithImpl<_RegisterDeviceDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$RegisterDeviceDtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _RegisterDeviceDto &&
-            (identical(other.deviceToken, deviceToken) ||
-                other.deviceToken == deviceToken) &&
-            (identical(other.platform, platform) ||
-                other.platform == platform) &&
-            (identical(other.appVersion, appVersion) ||
-                other.appVersion == appVersion) &&
-            (identical(other.deviceModel, deviceModel) ||
-                other.deviceModel == deviceModel) &&
-            (identical(other.deviceName, deviceName) ||
-                other.deviceName == deviceName));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, deviceToken, platform, appVersion, deviceModel, deviceName);
-
-  @override
-  String toString() {
-    return 'RegisterDeviceDto(deviceToken: $deviceToken, platform: $platform, appVersion: $appVersion, deviceModel: $deviceModel, deviceName: $deviceName)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$RegisterDeviceDtoCopyWith<$Res>
-    implements $RegisterDeviceDtoCopyWith<$Res> {
-  factory _$RegisterDeviceDtoCopyWith(
-          _RegisterDeviceDto value, $Res Function(_RegisterDeviceDto) _then) =
-      __$RegisterDeviceDtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'deviceToken') String? deviceToken,
-      @JsonKey(name: 'platform') String? platform,
-      @JsonKey(name: 'appVersion') String? appVersion,
-      @JsonKey(name: 'deviceModel') String? deviceModel,
-      @JsonKey(name: 'deviceName') String? deviceName});
-}
-
-/// @nodoc
-class __$RegisterDeviceDtoCopyWithImpl<$Res>
-    implements _$RegisterDeviceDtoCopyWith<$Res> {
-  __$RegisterDeviceDtoCopyWithImpl(this._self, this._then);
-
-  final _RegisterDeviceDto _self;
-  final $Res Function(_RegisterDeviceDto) _then;
-
-  /// Create a copy of RegisterDeviceDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? deviceToken = freezed,
-    Object? platform = freezed,
-    Object? appVersion = freezed,
-    Object? deviceModel = freezed,
-    Object? deviceName = freezed,
-  }) {
-    return _then(_RegisterDeviceDto(
-      deviceToken: freezed == deviceToken
-          ? _self.deviceToken
-          : deviceToken // ignore: cast_nullable_to_non_nullable
-              as String?,
-      platform: freezed == platform
-          ? _self.platform
-          : platform // ignore: cast_nullable_to_non_nullable
-              as String?,
-      appVersion: freezed == appVersion
-          ? _self.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceModel: freezed == deviceModel
-          ? _self.deviceModel
-          : deviceModel // ignore: cast_nullable_to_non_nullable
-              as String?,
-      deviceName: freezed == deviceName
-          ? _self.deviceName
-          : deviceName // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
   }
 }
 
@@ -17088,6 +16392,645 @@ class __$StepMediaDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$SupportReceivedDetailDto {
+  @JsonKey(name: 'totalSupportReceived')
+  int get totalSupportReceived;
+  @JsonKey(name: 'companionsCount')
+  int get companionsCount;
+  @JsonKey(name: 'companionUsers')
+  List<UserDto>? get companionUsers;
+  @JsonKey(name: 'startersCount')
+  int get startersCount;
+  @JsonKey(name: 'starterUsers')
+  List<UserDto>? get starterUsers;
+  @JsonKey(name: 'celebratorsCount')
+  int get celebratorsCount;
+  @JsonKey(name: 'celebratorUsers')
+  List<UserDto>? get celebratorUsers;
+  @JsonKey(name: 'stepWithCount')
+  int get stepWithCount;
+  @JsonKey(name: 'stepWithUsers')
+  List<UserDto>? get stepWithUsers;
+  @JsonKey(name: 'topActiveSupporters')
+  List<TopSupportUserDto>? get topActiveSupporters;
+
+  /// Create a copy of SupportReceivedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SupportReceivedDetailDtoCopyWith<SupportReceivedDetailDto> get copyWith =>
+      _$SupportReceivedDetailDtoCopyWithImpl<SupportReceivedDetailDto>(
+          this as SupportReceivedDetailDto, _$identity);
+
+  /// Serializes this SupportReceivedDetailDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SupportReceivedDetailDto &&
+            (identical(other.totalSupportReceived, totalSupportReceived) ||
+                other.totalSupportReceived == totalSupportReceived) &&
+            (identical(other.companionsCount, companionsCount) ||
+                other.companionsCount == companionsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.companionUsers, companionUsers) &&
+            (identical(other.startersCount, startersCount) ||
+                other.startersCount == startersCount) &&
+            const DeepCollectionEquality()
+                .equals(other.starterUsers, starterUsers) &&
+            (identical(other.celebratorsCount, celebratorsCount) ||
+                other.celebratorsCount == celebratorsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.celebratorUsers, celebratorUsers) &&
+            (identical(other.stepWithCount, stepWithCount) ||
+                other.stepWithCount == stepWithCount) &&
+            const DeepCollectionEquality()
+                .equals(other.stepWithUsers, stepWithUsers) &&
+            const DeepCollectionEquality()
+                .equals(other.topActiveSupporters, topActiveSupporters));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      totalSupportReceived,
+      companionsCount,
+      const DeepCollectionEquality().hash(companionUsers),
+      startersCount,
+      const DeepCollectionEquality().hash(starterUsers),
+      celebratorsCount,
+      const DeepCollectionEquality().hash(celebratorUsers),
+      stepWithCount,
+      const DeepCollectionEquality().hash(stepWithUsers),
+      const DeepCollectionEquality().hash(topActiveSupporters));
+
+  @override
+  String toString() {
+    return 'SupportReceivedDetailDto(totalSupportReceived: $totalSupportReceived, companionsCount: $companionsCount, companionUsers: $companionUsers, startersCount: $startersCount, starterUsers: $starterUsers, celebratorsCount: $celebratorsCount, celebratorUsers: $celebratorUsers, stepWithCount: $stepWithCount, stepWithUsers: $stepWithUsers, topActiveSupporters: $topActiveSupporters)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SupportReceivedDetailDtoCopyWith<$Res> {
+  factory $SupportReceivedDetailDtoCopyWith(SupportReceivedDetailDto value,
+          $Res Function(SupportReceivedDetailDto) _then) =
+      _$SupportReceivedDetailDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'totalSupportReceived') int totalSupportReceived,
+      @JsonKey(name: 'companionsCount') int companionsCount,
+      @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+      @JsonKey(name: 'startersCount') int startersCount,
+      @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+      @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+      @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+      @JsonKey(name: 'stepWithCount') int stepWithCount,
+      @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+      @JsonKey(name: 'topActiveSupporters')
+      List<TopSupportUserDto>? topActiveSupporters});
+}
+
+/// @nodoc
+class _$SupportReceivedDetailDtoCopyWithImpl<$Res>
+    implements $SupportReceivedDetailDtoCopyWith<$Res> {
+  _$SupportReceivedDetailDtoCopyWithImpl(this._self, this._then);
+
+  final SupportReceivedDetailDto _self;
+  final $Res Function(SupportReceivedDetailDto) _then;
+
+  /// Create a copy of SupportReceivedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? totalSupportReceived = null,
+    Object? companionsCount = null,
+    Object? companionUsers = freezed,
+    Object? startersCount = null,
+    Object? starterUsers = freezed,
+    Object? celebratorsCount = null,
+    Object? celebratorUsers = freezed,
+    Object? stepWithCount = null,
+    Object? stepWithUsers = freezed,
+    Object? topActiveSupporters = freezed,
+  }) {
+    return _then(_self.copyWith(
+      totalSupportReceived: null == totalSupportReceived
+          ? _self.totalSupportReceived
+          : totalSupportReceived // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionsCount: null == companionsCount
+          ? _self.companionsCount
+          : companionsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionUsers: freezed == companionUsers
+          ? _self.companionUsers
+          : companionUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      startersCount: null == startersCount
+          ? _self.startersCount
+          : startersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      starterUsers: freezed == starterUsers
+          ? _self.starterUsers
+          : starterUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      celebratorsCount: null == celebratorsCount
+          ? _self.celebratorsCount
+          : celebratorsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      celebratorUsers: freezed == celebratorUsers
+          ? _self.celebratorUsers
+          : celebratorUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      stepWithCount: null == stepWithCount
+          ? _self.stepWithCount
+          : stepWithCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      stepWithUsers: freezed == stepWithUsers
+          ? _self.stepWithUsers
+          : stepWithUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      topActiveSupporters: freezed == topActiveSupporters
+          ? _self.topActiveSupporters
+          : topActiveSupporters // ignore: cast_nullable_to_non_nullable
+              as List<TopSupportUserDto>?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [SupportReceivedDetailDto].
+extension SupportReceivedDetailDtoPatterns on SupportReceivedDetailDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SupportReceivedDetailDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SupportReceivedDetailDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SupportReceivedDetailDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SupportReceivedDetailDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SupportReceivedDetailDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SupportReceivedDetailDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'totalSupportReceived') int totalSupportReceived,
+            @JsonKey(name: 'companionsCount') int companionsCount,
+            @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+            @JsonKey(name: 'startersCount') int startersCount,
+            @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+            @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+            @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+            @JsonKey(name: 'stepWithCount') int stepWithCount,
+            @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+            @JsonKey(name: 'topActiveSupporters')
+            List<TopSupportUserDto>? topActiveSupporters)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SupportReceivedDetailDto() when $default != null:
+        return $default(
+            _that.totalSupportReceived,
+            _that.companionsCount,
+            _that.companionUsers,
+            _that.startersCount,
+            _that.starterUsers,
+            _that.celebratorsCount,
+            _that.celebratorUsers,
+            _that.stepWithCount,
+            _that.stepWithUsers,
+            _that.topActiveSupporters);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'totalSupportReceived') int totalSupportReceived,
+            @JsonKey(name: 'companionsCount') int companionsCount,
+            @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+            @JsonKey(name: 'startersCount') int startersCount,
+            @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+            @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+            @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+            @JsonKey(name: 'stepWithCount') int stepWithCount,
+            @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+            @JsonKey(name: 'topActiveSupporters')
+            List<TopSupportUserDto>? topActiveSupporters)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SupportReceivedDetailDto():
+        return $default(
+            _that.totalSupportReceived,
+            _that.companionsCount,
+            _that.companionUsers,
+            _that.startersCount,
+            _that.starterUsers,
+            _that.celebratorsCount,
+            _that.celebratorUsers,
+            _that.stepWithCount,
+            _that.stepWithUsers,
+            _that.topActiveSupporters);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'totalSupportReceived') int totalSupportReceived,
+            @JsonKey(name: 'companionsCount') int companionsCount,
+            @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+            @JsonKey(name: 'startersCount') int startersCount,
+            @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+            @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+            @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+            @JsonKey(name: 'stepWithCount') int stepWithCount,
+            @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+            @JsonKey(name: 'topActiveSupporters')
+            List<TopSupportUserDto>? topActiveSupporters)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SupportReceivedDetailDto() when $default != null:
+        return $default(
+            _that.totalSupportReceived,
+            _that.companionsCount,
+            _that.companionUsers,
+            _that.startersCount,
+            _that.starterUsers,
+            _that.celebratorsCount,
+            _that.celebratorUsers,
+            _that.stepWithCount,
+            _that.stepWithUsers,
+            _that.topActiveSupporters);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _SupportReceivedDetailDto implements SupportReceivedDetailDto {
+  _SupportReceivedDetailDto(
+      {@JsonKey(name: 'totalSupportReceived') this.totalSupportReceived = 0,
+      @JsonKey(name: 'companionsCount') this.companionsCount = 0,
+      @JsonKey(name: 'companionUsers') final List<UserDto>? companionUsers,
+      @JsonKey(name: 'startersCount') this.startersCount = 0,
+      @JsonKey(name: 'starterUsers') final List<UserDto>? starterUsers,
+      @JsonKey(name: 'celebratorsCount') this.celebratorsCount = 0,
+      @JsonKey(name: 'celebratorUsers') final List<UserDto>? celebratorUsers,
+      @JsonKey(name: 'stepWithCount') this.stepWithCount = 0,
+      @JsonKey(name: 'stepWithUsers') final List<UserDto>? stepWithUsers,
+      @JsonKey(name: 'topActiveSupporters')
+      final List<TopSupportUserDto>? topActiveSupporters})
+      : _companionUsers = companionUsers,
+        _starterUsers = starterUsers,
+        _celebratorUsers = celebratorUsers,
+        _stepWithUsers = stepWithUsers,
+        _topActiveSupporters = topActiveSupporters;
+  factory _SupportReceivedDetailDto.fromJson(Map<String, dynamic> json) =>
+      _$SupportReceivedDetailDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'totalSupportReceived')
+  final int totalSupportReceived;
+  @override
+  @JsonKey(name: 'companionsCount')
+  final int companionsCount;
+  final List<UserDto>? _companionUsers;
+  @override
+  @JsonKey(name: 'companionUsers')
+  List<UserDto>? get companionUsers {
+    final value = _companionUsers;
+    if (value == null) return null;
+    if (_companionUsers is EqualUnmodifiableListView) return _companionUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'startersCount')
+  final int startersCount;
+  final List<UserDto>? _starterUsers;
+  @override
+  @JsonKey(name: 'starterUsers')
+  List<UserDto>? get starterUsers {
+    final value = _starterUsers;
+    if (value == null) return null;
+    if (_starterUsers is EqualUnmodifiableListView) return _starterUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'celebratorsCount')
+  final int celebratorsCount;
+  final List<UserDto>? _celebratorUsers;
+  @override
+  @JsonKey(name: 'celebratorUsers')
+  List<UserDto>? get celebratorUsers {
+    final value = _celebratorUsers;
+    if (value == null) return null;
+    if (_celebratorUsers is EqualUnmodifiableListView) return _celebratorUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'stepWithCount')
+  final int stepWithCount;
+  final List<UserDto>? _stepWithUsers;
+  @override
+  @JsonKey(name: 'stepWithUsers')
+  List<UserDto>? get stepWithUsers {
+    final value = _stepWithUsers;
+    if (value == null) return null;
+    if (_stepWithUsers is EqualUnmodifiableListView) return _stepWithUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<TopSupportUserDto>? _topActiveSupporters;
+  @override
+  @JsonKey(name: 'topActiveSupporters')
+  List<TopSupportUserDto>? get topActiveSupporters {
+    final value = _topActiveSupporters;
+    if (value == null) return null;
+    if (_topActiveSupporters is EqualUnmodifiableListView)
+      return _topActiveSupporters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of SupportReceivedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SupportReceivedDetailDtoCopyWith<_SupportReceivedDetailDto> get copyWith =>
+      __$SupportReceivedDetailDtoCopyWithImpl<_SupportReceivedDetailDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SupportReceivedDetailDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SupportReceivedDetailDto &&
+            (identical(other.totalSupportReceived, totalSupportReceived) ||
+                other.totalSupportReceived == totalSupportReceived) &&
+            (identical(other.companionsCount, companionsCount) ||
+                other.companionsCount == companionsCount) &&
+            const DeepCollectionEquality()
+                .equals(other._companionUsers, _companionUsers) &&
+            (identical(other.startersCount, startersCount) ||
+                other.startersCount == startersCount) &&
+            const DeepCollectionEquality()
+                .equals(other._starterUsers, _starterUsers) &&
+            (identical(other.celebratorsCount, celebratorsCount) ||
+                other.celebratorsCount == celebratorsCount) &&
+            const DeepCollectionEquality()
+                .equals(other._celebratorUsers, _celebratorUsers) &&
+            (identical(other.stepWithCount, stepWithCount) ||
+                other.stepWithCount == stepWithCount) &&
+            const DeepCollectionEquality()
+                .equals(other._stepWithUsers, _stepWithUsers) &&
+            const DeepCollectionEquality()
+                .equals(other._topActiveSupporters, _topActiveSupporters));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      totalSupportReceived,
+      companionsCount,
+      const DeepCollectionEquality().hash(_companionUsers),
+      startersCount,
+      const DeepCollectionEquality().hash(_starterUsers),
+      celebratorsCount,
+      const DeepCollectionEquality().hash(_celebratorUsers),
+      stepWithCount,
+      const DeepCollectionEquality().hash(_stepWithUsers),
+      const DeepCollectionEquality().hash(_topActiveSupporters));
+
+  @override
+  String toString() {
+    return 'SupportReceivedDetailDto(totalSupportReceived: $totalSupportReceived, companionsCount: $companionsCount, companionUsers: $companionUsers, startersCount: $startersCount, starterUsers: $starterUsers, celebratorsCount: $celebratorsCount, celebratorUsers: $celebratorUsers, stepWithCount: $stepWithCount, stepWithUsers: $stepWithUsers, topActiveSupporters: $topActiveSupporters)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SupportReceivedDetailDtoCopyWith<$Res>
+    implements $SupportReceivedDetailDtoCopyWith<$Res> {
+  factory _$SupportReceivedDetailDtoCopyWith(_SupportReceivedDetailDto value,
+          $Res Function(_SupportReceivedDetailDto) _then) =
+      __$SupportReceivedDetailDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'totalSupportReceived') int totalSupportReceived,
+      @JsonKey(name: 'companionsCount') int companionsCount,
+      @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+      @JsonKey(name: 'startersCount') int startersCount,
+      @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+      @JsonKey(name: 'celebratorsCount') int celebratorsCount,
+      @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+      @JsonKey(name: 'stepWithCount') int stepWithCount,
+      @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+      @JsonKey(name: 'topActiveSupporters')
+      List<TopSupportUserDto>? topActiveSupporters});
+}
+
+/// @nodoc
+class __$SupportReceivedDetailDtoCopyWithImpl<$Res>
+    implements _$SupportReceivedDetailDtoCopyWith<$Res> {
+  __$SupportReceivedDetailDtoCopyWithImpl(this._self, this._then);
+
+  final _SupportReceivedDetailDto _self;
+  final $Res Function(_SupportReceivedDetailDto) _then;
+
+  /// Create a copy of SupportReceivedDetailDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? totalSupportReceived = null,
+    Object? companionsCount = null,
+    Object? companionUsers = freezed,
+    Object? startersCount = null,
+    Object? starterUsers = freezed,
+    Object? celebratorsCount = null,
+    Object? celebratorUsers = freezed,
+    Object? stepWithCount = null,
+    Object? stepWithUsers = freezed,
+    Object? topActiveSupporters = freezed,
+  }) {
+    return _then(_SupportReceivedDetailDto(
+      totalSupportReceived: null == totalSupportReceived
+          ? _self.totalSupportReceived
+          : totalSupportReceived // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionsCount: null == companionsCount
+          ? _self.companionsCount
+          : companionsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      companionUsers: freezed == companionUsers
+          ? _self._companionUsers
+          : companionUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      startersCount: null == startersCount
+          ? _self.startersCount
+          : startersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      starterUsers: freezed == starterUsers
+          ? _self._starterUsers
+          : starterUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      celebratorsCount: null == celebratorsCount
+          ? _self.celebratorsCount
+          : celebratorsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      celebratorUsers: freezed == celebratorUsers
+          ? _self._celebratorUsers
+          : celebratorUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      stepWithCount: null == stepWithCount
+          ? _self.stepWithCount
+          : stepWithCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      stepWithUsers: freezed == stepWithUsers
+          ? _self._stepWithUsers
+          : stepWithUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserDto>?,
+      topActiveSupporters: freezed == topActiveSupporters
+          ? _self._topActiveSupporters
+          : topActiveSupporters // ignore: cast_nullable_to_non_nullable
+              as List<TopSupportUserDto>?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$TestNotificationDto {
   @JsonKey(name: 'title')
   String? get title;
@@ -17097,8 +17040,6 @@ mixin _$TestNotificationDto {
   String? get userId;
   @JsonKey(name: 'topic')
   String? get topic;
-  @JsonKey(name: 'deviceTokens')
-  List<String>? get deviceTokens;
   @JsonKey(name: 'data')
   Map<String, String>? get data;
   @JsonKey(name: 'priority')
@@ -17124,8 +17065,6 @@ mixin _$TestNotificationDto {
             (identical(other.body, body) || other.body == body) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.topic, topic) || other.topic == topic) &&
-            const DeepCollectionEquality()
-                .equals(other.deviceTokens, deviceTokens) &&
             const DeepCollectionEquality().equals(other.data, data) &&
             (identical(other.priority, priority) ||
                 other.priority == priority));
@@ -17133,19 +17072,12 @@ mixin _$TestNotificationDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      title,
-      body,
-      userId,
-      topic,
-      const DeepCollectionEquality().hash(deviceTokens),
-      const DeepCollectionEquality().hash(data),
-      priority);
+  int get hashCode => Object.hash(runtimeType, title, body, userId, topic,
+      const DeepCollectionEquality().hash(data), priority);
 
   @override
   String toString() {
-    return 'TestNotificationDto(title: $title, body: $body, userId: $userId, topic: $topic, deviceTokens: $deviceTokens, data: $data, priority: $priority)';
+    return 'TestNotificationDto(title: $title, body: $body, userId: $userId, topic: $topic, data: $data, priority: $priority)';
   }
 }
 
@@ -17160,7 +17092,6 @@ abstract mixin class $TestNotificationDtoCopyWith<$Res> {
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'topic') String? topic,
-      @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
@@ -17182,7 +17113,6 @@ class _$TestNotificationDtoCopyWithImpl<$Res>
     Object? body = freezed,
     Object? userId = freezed,
     Object? topic = freezed,
-    Object? deviceTokens = freezed,
     Object? data = freezed,
     Object? priority = freezed,
   }) {
@@ -17203,10 +17133,6 @@ class _$TestNotificationDtoCopyWithImpl<$Res>
           ? _self.topic
           : topic // ignore: cast_nullable_to_non_nullable
               as String?,
-      deviceTokens: freezed == deviceTokens
-          ? _self.deviceTokens
-          : deviceTokens // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       data: freezed == data
           ? _self.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -17315,7 +17241,6 @@ extension TestNotificationDtoPatterns on TestNotificationDto {
             @JsonKey(name: 'body') String? body,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'topic') String? topic,
-            @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
             @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority)?
         $default, {
@@ -17325,7 +17250,7 @@ extension TestNotificationDtoPatterns on TestNotificationDto {
     switch (_that) {
       case _TestNotificationDto() when $default != null:
         return $default(_that.title, _that.body, _that.userId, _that.topic,
-            _that.deviceTokens, _that.data, _that.priority);
+            _that.data, _that.priority);
       case _:
         return orElse();
     }
@@ -17351,7 +17276,6 @@ extension TestNotificationDtoPatterns on TestNotificationDto {
             @JsonKey(name: 'body') String? body,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'topic') String? topic,
-            @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
             @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority)
         $default,
@@ -17360,7 +17284,7 @@ extension TestNotificationDtoPatterns on TestNotificationDto {
     switch (_that) {
       case _TestNotificationDto():
         return $default(_that.title, _that.body, _that.userId, _that.topic,
-            _that.deviceTokens, _that.data, _that.priority);
+            _that.data, _that.priority);
     }
   }
 
@@ -17383,7 +17307,6 @@ extension TestNotificationDtoPatterns on TestNotificationDto {
             @JsonKey(name: 'body') String? body,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'topic') String? topic,
-            @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
             @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority)?
         $default,
@@ -17392,7 +17315,7 @@ extension TestNotificationDtoPatterns on TestNotificationDto {
     switch (_that) {
       case _TestNotificationDto() when $default != null:
         return $default(_that.title, _that.body, _that.userId, _that.topic,
-            _that.deviceTokens, _that.data, _that.priority);
+            _that.data, _that.priority);
       case _:
         return null;
     }
@@ -17407,11 +17330,9 @@ class _TestNotificationDto implements TestNotificationDto {
       @JsonKey(name: 'body') this.body,
       @JsonKey(name: 'userId') this.userId,
       @JsonKey(name: 'topic') this.topic,
-      @JsonKey(name: 'deviceTokens') final List<String>? deviceTokens,
       @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority})
-      : _deviceTokens = deviceTokens,
-        _data = data;
+      : _data = data;
   factory _TestNotificationDto.fromJson(Map<String, dynamic> json) =>
       _$TestNotificationDtoFromJson(json);
 
@@ -17427,17 +17348,6 @@ class _TestNotificationDto implements TestNotificationDto {
   @override
   @JsonKey(name: 'topic')
   final String? topic;
-  final List<String>? _deviceTokens;
-  @override
-  @JsonKey(name: 'deviceTokens')
-  List<String>? get deviceTokens {
-    final value = _deviceTokens;
-    if (value == null) return null;
-    if (_deviceTokens is EqualUnmodifiableListView) return _deviceTokens;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
   final Map<String, String>? _data;
   @override
   @JsonKey(name: 'data')
@@ -17478,8 +17388,6 @@ class _TestNotificationDto implements TestNotificationDto {
             (identical(other.body, body) || other.body == body) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.topic, topic) || other.topic == topic) &&
-            const DeepCollectionEquality()
-                .equals(other._deviceTokens, _deviceTokens) &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.priority, priority) ||
                 other.priority == priority));
@@ -17487,19 +17395,12 @@ class _TestNotificationDto implements TestNotificationDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      title,
-      body,
-      userId,
-      topic,
-      const DeepCollectionEquality().hash(_deviceTokens),
-      const DeepCollectionEquality().hash(_data),
-      priority);
+  int get hashCode => Object.hash(runtimeType, title, body, userId, topic,
+      const DeepCollectionEquality().hash(_data), priority);
 
   @override
   String toString() {
-    return 'TestNotificationDto(title: $title, body: $body, userId: $userId, topic: $topic, deviceTokens: $deviceTokens, data: $data, priority: $priority)';
+    return 'TestNotificationDto(title: $title, body: $body, userId: $userId, topic: $topic, data: $data, priority: $priority)';
   }
 }
 
@@ -17516,7 +17417,6 @@ abstract mixin class _$TestNotificationDtoCopyWith<$Res>
       @JsonKey(name: 'body') String? body,
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'topic') String? topic,
-      @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
       @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority});
 }
@@ -17538,7 +17438,6 @@ class __$TestNotificationDtoCopyWithImpl<$Res>
     Object? body = freezed,
     Object? userId = freezed,
     Object? topic = freezed,
-    Object? deviceTokens = freezed,
     Object? data = freezed,
     Object? priority = freezed,
   }) {
@@ -17559,10 +17458,6 @@ class __$TestNotificationDtoCopyWithImpl<$Res>
           ? _self.topic
           : topic // ignore: cast_nullable_to_non_nullable
               as String?,
-      deviceTokens: freezed == deviceTokens
-          ? _self._deviceTokens
-          : deviceTokens // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
       data: freezed == data
           ? _self._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -17906,97 +17801,138 @@ class __$TestNotificationResultDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$TokenValidationResultDto {
-  @JsonKey(name: 'validatedCount')
-  int? get validatedCount;
-  @JsonKey(name: 'invalidatedCount')
-  int? get invalidatedCount;
-  @JsonKey(name: 'invalidTokens')
-  List<String>? get invalidTokens;
+mixin _$TopSupportUserDto {
+  @JsonKey(name: 'user')
+  UserDto get user;
+  @JsonKey(name: 'companionsGiven')
+  int get companionsGiven;
+  @JsonKey(name: 'startersGiven')
+  int get startersGiven;
+  @JsonKey(name: 'celebratorsGiven')
+  int get celebratorsGiven;
+  @JsonKey(name: 'stepWithGiven')
+  int get stepWithGiven;
+  @JsonKey(name: 'totalSupport')
+  int get totalSupport;
 
-  /// Create a copy of TokenValidationResultDto
+  /// Create a copy of TopSupportUserDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $TokenValidationResultDtoCopyWith<TokenValidationResultDto> get copyWith =>
-      _$TokenValidationResultDtoCopyWithImpl<TokenValidationResultDto>(
-          this as TokenValidationResultDto, _$identity);
+  $TopSupportUserDtoCopyWith<TopSupportUserDto> get copyWith =>
+      _$TopSupportUserDtoCopyWithImpl<TopSupportUserDto>(
+          this as TopSupportUserDto, _$identity);
 
-  /// Serializes this TokenValidationResultDto to a JSON map.
+  /// Serializes this TopSupportUserDto to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TokenValidationResultDto &&
-            (identical(other.validatedCount, validatedCount) ||
-                other.validatedCount == validatedCount) &&
-            (identical(other.invalidatedCount, invalidatedCount) ||
-                other.invalidatedCount == invalidatedCount) &&
-            const DeepCollectionEquality()
-                .equals(other.invalidTokens, invalidTokens));
+            other is TopSupportUserDto &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.companionsGiven, companionsGiven) ||
+                other.companionsGiven == companionsGiven) &&
+            (identical(other.startersGiven, startersGiven) ||
+                other.startersGiven == startersGiven) &&
+            (identical(other.celebratorsGiven, celebratorsGiven) ||
+                other.celebratorsGiven == celebratorsGiven) &&
+            (identical(other.stepWithGiven, stepWithGiven) ||
+                other.stepWithGiven == stepWithGiven) &&
+            (identical(other.totalSupport, totalSupport) ||
+                other.totalSupport == totalSupport));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, validatedCount, invalidatedCount,
-      const DeepCollectionEquality().hash(invalidTokens));
+  int get hashCode => Object.hash(runtimeType, user, companionsGiven,
+      startersGiven, celebratorsGiven, stepWithGiven, totalSupport);
 
   @override
   String toString() {
-    return 'TokenValidationResultDto(validatedCount: $validatedCount, invalidatedCount: $invalidatedCount, invalidTokens: $invalidTokens)';
+    return 'TopSupportUserDto(user: $user, companionsGiven: $companionsGiven, startersGiven: $startersGiven, celebratorsGiven: $celebratorsGiven, stepWithGiven: $stepWithGiven, totalSupport: $totalSupport)';
   }
 }
 
 /// @nodoc
-abstract mixin class $TokenValidationResultDtoCopyWith<$Res> {
-  factory $TokenValidationResultDtoCopyWith(TokenValidationResultDto value,
-          $Res Function(TokenValidationResultDto) _then) =
-      _$TokenValidationResultDtoCopyWithImpl;
+abstract mixin class $TopSupportUserDtoCopyWith<$Res> {
+  factory $TopSupportUserDtoCopyWith(
+          TopSupportUserDto value, $Res Function(TopSupportUserDto) _then) =
+      _$TopSupportUserDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'validatedCount') int? validatedCount,
-      @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
-      @JsonKey(name: 'invalidTokens') List<String>? invalidTokens});
+      {@JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'companionsGiven') int companionsGiven,
+      @JsonKey(name: 'startersGiven') int startersGiven,
+      @JsonKey(name: 'celebratorsGiven') int celebratorsGiven,
+      @JsonKey(name: 'stepWithGiven') int stepWithGiven,
+      @JsonKey(name: 'totalSupport') int totalSupport});
+
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$TokenValidationResultDtoCopyWithImpl<$Res>
-    implements $TokenValidationResultDtoCopyWith<$Res> {
-  _$TokenValidationResultDtoCopyWithImpl(this._self, this._then);
+class _$TopSupportUserDtoCopyWithImpl<$Res>
+    implements $TopSupportUserDtoCopyWith<$Res> {
+  _$TopSupportUserDtoCopyWithImpl(this._self, this._then);
 
-  final TokenValidationResultDto _self;
-  final $Res Function(TokenValidationResultDto) _then;
+  final TopSupportUserDto _self;
+  final $Res Function(TopSupportUserDto) _then;
 
-  /// Create a copy of TokenValidationResultDto
+  /// Create a copy of TopSupportUserDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? validatedCount = freezed,
-    Object? invalidatedCount = freezed,
-    Object? invalidTokens = freezed,
+    Object? user = null,
+    Object? companionsGiven = null,
+    Object? startersGiven = null,
+    Object? celebratorsGiven = null,
+    Object? stepWithGiven = null,
+    Object? totalSupport = null,
   }) {
     return _then(_self.copyWith(
-      validatedCount: freezed == validatedCount
-          ? _self.validatedCount
-          : validatedCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      invalidatedCount: freezed == invalidatedCount
-          ? _self.invalidatedCount
-          : invalidatedCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      invalidTokens: freezed == invalidTokens
-          ? _self.invalidTokens
-          : invalidTokens // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserDto,
+      companionsGiven: null == companionsGiven
+          ? _self.companionsGiven
+          : companionsGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      startersGiven: null == startersGiven
+          ? _self.startersGiven
+          : startersGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      celebratorsGiven: null == celebratorsGiven
+          ? _self.celebratorsGiven
+          : celebratorsGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      stepWithGiven: null == stepWithGiven
+          ? _self.stepWithGiven
+          : stepWithGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalSupport: null == totalSupport
+          ? _self.totalSupport
+          : totalSupport // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
+  }
+
+  /// Create a copy of TopSupportUserDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
   }
 }
 
-/// Adds pattern-matching-related methods to [TokenValidationResultDto].
-extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
+/// Adds pattern-matching-related methods to [TopSupportUserDto].
+extension TopSupportUserDtoPatterns on TopSupportUserDto {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -18011,12 +17947,12 @@ extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_TokenValidationResultDto value)? $default, {
+    TResult Function(_TopSupportUserDto value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _TokenValidationResultDto() when $default != null:
+      case _TopSupportUserDto() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -18038,11 +17974,11 @@ extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_TokenValidationResultDto value) $default,
+    TResult Function(_TopSupportUserDto value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _TokenValidationResultDto():
+      case _TopSupportUserDto():
         return $default(_that);
     }
   }
@@ -18061,11 +17997,11 @@ extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_TokenValidationResultDto value)? $default,
+    TResult? Function(_TopSupportUserDto value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _TokenValidationResultDto() when $default != null:
+      case _TopSupportUserDto() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -18087,17 +18023,20 @@ extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'validatedCount') int? validatedCount,
-            @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
-            @JsonKey(name: 'invalidTokens') List<String>? invalidTokens)?
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'companionsGiven') int companionsGiven,
+            @JsonKey(name: 'startersGiven') int startersGiven,
+            @JsonKey(name: 'celebratorsGiven') int celebratorsGiven,
+            @JsonKey(name: 'stepWithGiven') int stepWithGiven,
+            @JsonKey(name: 'totalSupport') int totalSupport)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _TokenValidationResultDto() when $default != null:
-        return $default(
-            _that.validatedCount, _that.invalidatedCount, _that.invalidTokens);
+      case _TopSupportUserDto() when $default != null:
+        return $default(_that.user, _that.companionsGiven, _that.startersGiven,
+            _that.celebratorsGiven, _that.stepWithGiven, _that.totalSupport);
       case _:
         return orElse();
     }
@@ -18119,16 +18058,19 @@ extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'validatedCount') int? validatedCount,
-            @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
-            @JsonKey(name: 'invalidTokens') List<String>? invalidTokens)
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'companionsGiven') int companionsGiven,
+            @JsonKey(name: 'startersGiven') int startersGiven,
+            @JsonKey(name: 'celebratorsGiven') int celebratorsGiven,
+            @JsonKey(name: 'stepWithGiven') int stepWithGiven,
+            @JsonKey(name: 'totalSupport') int totalSupport)
         $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _TokenValidationResultDto():
-        return $default(
-            _that.validatedCount, _that.invalidatedCount, _that.invalidTokens);
+      case _TopSupportUserDto():
+        return $default(_that.user, _that.companionsGiven, _that.startersGiven,
+            _that.celebratorsGiven, _that.stepWithGiven, _that.totalSupport);
     }
   }
 
@@ -18147,16 +18089,19 @@ extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'validatedCount') int? validatedCount,
-            @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
-            @JsonKey(name: 'invalidTokens') List<String>? invalidTokens)?
+            @JsonKey(name: 'user') UserDto user,
+            @JsonKey(name: 'companionsGiven') int companionsGiven,
+            @JsonKey(name: 'startersGiven') int startersGiven,
+            @JsonKey(name: 'celebratorsGiven') int celebratorsGiven,
+            @JsonKey(name: 'stepWithGiven') int stepWithGiven,
+            @JsonKey(name: 'totalSupport') int totalSupport)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _TokenValidationResultDto() when $default != null:
-        return $default(
-            _that.validatedCount, _that.invalidatedCount, _that.invalidTokens);
+      case _TopSupportUserDto() when $default != null:
+        return $default(_that.user, _that.companionsGiven, _that.startersGiven,
+            _that.celebratorsGiven, _that.stepWithGiven, _that.totalSupport);
       case _:
         return null;
     }
@@ -18165,44 +18110,47 @@ extension TokenValidationResultDtoPatterns on TokenValidationResultDto {
 
 /// @nodoc
 @JsonSerializable()
-class _TokenValidationResultDto implements TokenValidationResultDto {
-  _TokenValidationResultDto(
-      {@JsonKey(name: 'validatedCount') this.validatedCount,
-      @JsonKey(name: 'invalidatedCount') this.invalidatedCount,
-      @JsonKey(name: 'invalidTokens') final List<String>? invalidTokens})
-      : _invalidTokens = invalidTokens;
-  factory _TokenValidationResultDto.fromJson(Map<String, dynamic> json) =>
-      _$TokenValidationResultDtoFromJson(json);
+class _TopSupportUserDto implements TopSupportUserDto {
+  _TopSupportUserDto(
+      {@JsonKey(name: 'user') required this.user,
+      @JsonKey(name: 'companionsGiven') this.companionsGiven = 0,
+      @JsonKey(name: 'startersGiven') this.startersGiven = 0,
+      @JsonKey(name: 'celebratorsGiven') this.celebratorsGiven = 0,
+      @JsonKey(name: 'stepWithGiven') this.stepWithGiven = 0,
+      @JsonKey(name: 'totalSupport') this.totalSupport = 0});
+  factory _TopSupportUserDto.fromJson(Map<String, dynamic> json) =>
+      _$TopSupportUserDtoFromJson(json);
 
   @override
-  @JsonKey(name: 'validatedCount')
-  final int? validatedCount;
+  @JsonKey(name: 'user')
+  final UserDto user;
   @override
-  @JsonKey(name: 'invalidatedCount')
-  final int? invalidatedCount;
-  final List<String>? _invalidTokens;
+  @JsonKey(name: 'companionsGiven')
+  final int companionsGiven;
   @override
-  @JsonKey(name: 'invalidTokens')
-  List<String>? get invalidTokens {
-    final value = _invalidTokens;
-    if (value == null) return null;
-    if (_invalidTokens is EqualUnmodifiableListView) return _invalidTokens;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  @JsonKey(name: 'startersGiven')
+  final int startersGiven;
+  @override
+  @JsonKey(name: 'celebratorsGiven')
+  final int celebratorsGiven;
+  @override
+  @JsonKey(name: 'stepWithGiven')
+  final int stepWithGiven;
+  @override
+  @JsonKey(name: 'totalSupport')
+  final int totalSupport;
 
-  /// Create a copy of TokenValidationResultDto
+  /// Create a copy of TopSupportUserDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$TokenValidationResultDtoCopyWith<_TokenValidationResultDto> get copyWith =>
-      __$TokenValidationResultDtoCopyWithImpl<_TokenValidationResultDto>(
-          this, _$identity);
+  _$TopSupportUserDtoCopyWith<_TopSupportUserDto> get copyWith =>
+      __$TopSupportUserDtoCopyWithImpl<_TopSupportUserDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$TokenValidationResultDtoToJson(
+    return _$TopSupportUserDtoToJson(
       this,
     );
   }
@@ -18211,71 +18159,107 @@ class _TokenValidationResultDto implements TokenValidationResultDto {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TokenValidationResultDto &&
-            (identical(other.validatedCount, validatedCount) ||
-                other.validatedCount == validatedCount) &&
-            (identical(other.invalidatedCount, invalidatedCount) ||
-                other.invalidatedCount == invalidatedCount) &&
-            const DeepCollectionEquality()
-                .equals(other._invalidTokens, _invalidTokens));
+            other is _TopSupportUserDto &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.companionsGiven, companionsGiven) ||
+                other.companionsGiven == companionsGiven) &&
+            (identical(other.startersGiven, startersGiven) ||
+                other.startersGiven == startersGiven) &&
+            (identical(other.celebratorsGiven, celebratorsGiven) ||
+                other.celebratorsGiven == celebratorsGiven) &&
+            (identical(other.stepWithGiven, stepWithGiven) ||
+                other.stepWithGiven == stepWithGiven) &&
+            (identical(other.totalSupport, totalSupport) ||
+                other.totalSupport == totalSupport));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, validatedCount, invalidatedCount,
-      const DeepCollectionEquality().hash(_invalidTokens));
+  int get hashCode => Object.hash(runtimeType, user, companionsGiven,
+      startersGiven, celebratorsGiven, stepWithGiven, totalSupport);
 
   @override
   String toString() {
-    return 'TokenValidationResultDto(validatedCount: $validatedCount, invalidatedCount: $invalidatedCount, invalidTokens: $invalidTokens)';
+    return 'TopSupportUserDto(user: $user, companionsGiven: $companionsGiven, startersGiven: $startersGiven, celebratorsGiven: $celebratorsGiven, stepWithGiven: $stepWithGiven, totalSupport: $totalSupport)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$TokenValidationResultDtoCopyWith<$Res>
-    implements $TokenValidationResultDtoCopyWith<$Res> {
-  factory _$TokenValidationResultDtoCopyWith(_TokenValidationResultDto value,
-          $Res Function(_TokenValidationResultDto) _then) =
-      __$TokenValidationResultDtoCopyWithImpl;
+abstract mixin class _$TopSupportUserDtoCopyWith<$Res>
+    implements $TopSupportUserDtoCopyWith<$Res> {
+  factory _$TopSupportUserDtoCopyWith(
+          _TopSupportUserDto value, $Res Function(_TopSupportUserDto) _then) =
+      __$TopSupportUserDtoCopyWithImpl;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'validatedCount') int? validatedCount,
-      @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
-      @JsonKey(name: 'invalidTokens') List<String>? invalidTokens});
+      {@JsonKey(name: 'user') UserDto user,
+      @JsonKey(name: 'companionsGiven') int companionsGiven,
+      @JsonKey(name: 'startersGiven') int startersGiven,
+      @JsonKey(name: 'celebratorsGiven') int celebratorsGiven,
+      @JsonKey(name: 'stepWithGiven') int stepWithGiven,
+      @JsonKey(name: 'totalSupport') int totalSupport});
+
+  @override
+  $UserDtoCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class __$TokenValidationResultDtoCopyWithImpl<$Res>
-    implements _$TokenValidationResultDtoCopyWith<$Res> {
-  __$TokenValidationResultDtoCopyWithImpl(this._self, this._then);
+class __$TopSupportUserDtoCopyWithImpl<$Res>
+    implements _$TopSupportUserDtoCopyWith<$Res> {
+  __$TopSupportUserDtoCopyWithImpl(this._self, this._then);
 
-  final _TokenValidationResultDto _self;
-  final $Res Function(_TokenValidationResultDto) _then;
+  final _TopSupportUserDto _self;
+  final $Res Function(_TopSupportUserDto) _then;
 
-  /// Create a copy of TokenValidationResultDto
+  /// Create a copy of TopSupportUserDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? validatedCount = freezed,
-    Object? invalidatedCount = freezed,
-    Object? invalidTokens = freezed,
+    Object? user = null,
+    Object? companionsGiven = null,
+    Object? startersGiven = null,
+    Object? celebratorsGiven = null,
+    Object? stepWithGiven = null,
+    Object? totalSupport = null,
   }) {
-    return _then(_TokenValidationResultDto(
-      validatedCount: freezed == validatedCount
-          ? _self.validatedCount
-          : validatedCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      invalidatedCount: freezed == invalidatedCount
-          ? _self.invalidatedCount
-          : invalidatedCount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      invalidTokens: freezed == invalidTokens
-          ? _self._invalidTokens
-          : invalidTokens // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+    return _then(_TopSupportUserDto(
+      user: null == user
+          ? _self.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserDto,
+      companionsGiven: null == companionsGiven
+          ? _self.companionsGiven
+          : companionsGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      startersGiven: null == startersGiven
+          ? _self.startersGiven
+          : startersGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      celebratorsGiven: null == celebratorsGiven
+          ? _self.celebratorsGiven
+          : celebratorsGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      stepWithGiven: null == stepWithGiven
+          ? _self.stepWithGiven
+          : stepWithGiven // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalSupport: null == totalSupport
+          ? _self.totalSupport
+          : totalSupport // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
+  }
+
+  /// Create a copy of TopSupportUserDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDtoCopyWith<$Res> get user {
+    return $UserDtoCopyWith<$Res>(_self.user, (value) {
+      return _then(_self.copyWith(user: value));
+    });
   }
 }
 

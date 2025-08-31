@@ -43,6 +43,26 @@ sealed class AppFeedbackDto with _$AppFeedbackDto {
 }
 
 @freezed
+sealed class BadgesEarnedDetailDto with _$BadgesEarnedDetailDto {
+  factory BadgesEarnedDetailDto({
+    @JsonKey(name: 'totalBadgesEarned') @Default(0) int totalBadgesEarned,
+    @JsonKey(name: 'companionsCount') @Default(0) int companionsCount,
+    @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+    @JsonKey(name: 'startersCount') @Default(0) int startersCount,
+    @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+    @JsonKey(name: 'celebratorsCount') @Default(0) int celebratorsCount,
+    @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+    @JsonKey(name: 'stepWithCount') @Default(0) int stepWithCount,
+    @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+    @JsonKey(name: 'topSupportedUsers')
+    List<TopSupportUserDto>? topSupportedUsers,
+  }) = _BadgesEarnedDetailDto;
+
+  factory BadgesEarnedDetailDto.fromJson(Map<String, dynamic> json) =>
+      _$BadgesEarnedDetailDtoFromJson(json);
+}
+
+@freezed
 sealed class BanUserDto with _$BanUserDto {
   factory BanUserDto({
     @JsonKey(name: 'reason') required String reason,
@@ -121,24 +141,6 @@ sealed class CreateStepInteractionDto with _$CreateStepInteractionDto {
 
   factory CreateStepInteractionDto.fromJson(Map<String, dynamic> json) =>
       _$CreateStepInteractionDtoFromJson(json);
-}
-
-@freezed
-sealed class DeviceTokenDto with _$DeviceTokenDto {
-  factory DeviceTokenDto({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'deviceToken') String? deviceToken,
-    @JsonKey(name: 'platform') String? platform,
-    @JsonKey(name: 'isActive') bool? isActive,
-    @JsonKey(name: 'lastUsed') DateTime? lastUsed,
-    @JsonKey(name: 'appVersion') String? appVersion,
-    @JsonKey(name: 'deviceModel') String? deviceModel,
-    @JsonKey(name: 'deviceName') String? deviceName,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-  }) = _DeviceTokenDto;
-
-  factory DeviceTokenDto.fromJson(Map<String, dynamic> json) =>
-      _$DeviceTokenDtoFromJson(json);
 }
 
 @freezed
@@ -222,19 +224,6 @@ extension FeedbackTypeDtoExt on FeedbackTypeDto {
         FeedbackTypeDto.performance => 'Performance',
         FeedbackTypeDto.other => 'Other',
       };
-}
-
-@freezed
-sealed class FeedMetricsDto with _$FeedMetricsDto {
-  factory FeedMetricsDto({
-    @JsonKey(name: 'followingCount') required int followingCount,
-    @JsonKey(name: 'hotContentRatio') required num hotContentRatio,
-    @JsonKey(name: 'followingContentRatio') required num followingContentRatio,
-    @JsonKey(name: 'lastRefresh') required DateTime lastRefresh,
-  }) = _FeedMetricsDto;
-
-  factory FeedMetricsDto.fromJson(Map<String, dynamic> json) =>
-      _$FeedMetricsDtoFromJson(json);
 }
 
 @freezed
@@ -638,10 +627,10 @@ sealed class PageResponseOfAppFeedbackDto with _$PageResponseOfAppFeedbackDto {
 sealed class ProfileDto with _$ProfileDto {
   factory ProfileDto({
     @JsonKey(name: 'userDetail') required UserDetailDto userDetail,
-    @JsonKey(name: 'badgesCount') @Default(0) int badgesCount,
-    @JsonKey(name: 'badgesUsers') List<UserDto>? badgesUsers,
-    @JsonKey(name: 'supportersCount') @Default(0) int supportersCount,
-    @JsonKey(name: 'supportersUsers') List<UserDto>? supportersUsers,
+    @JsonKey(name: 'badgesEarned') @Default(0) int badgesEarned,
+    @JsonKey(name: 'latestSupportedUsers') List<UserDto>? latestSupportedUsers,
+    @JsonKey(name: 'supportReceived') @Default(0) int supportReceived,
+    @JsonKey(name: 'latestSupporters') List<UserDto>? latestSupporters,
     @JsonKey(name: 'followersCount') @Default(0) int followersCount,
     @JsonKey(name: 'followingsCount') @Default(0) int followingsCount,
     @JsonKey(name: 'hasPendingFollowRequestToMe')
@@ -651,20 +640,6 @@ sealed class ProfileDto with _$ProfileDto {
 
   factory ProfileDto.fromJson(Map<String, dynamic> json) =>
       _$ProfileDtoFromJson(json);
-}
-
-@freezed
-sealed class RegisterDeviceDto with _$RegisterDeviceDto {
-  factory RegisterDeviceDto({
-    @JsonKey(name: 'deviceToken') String? deviceToken,
-    @JsonKey(name: 'platform') String? platform,
-    @JsonKey(name: 'appVersion') String? appVersion,
-    @JsonKey(name: 'deviceModel') String? deviceModel,
-    @JsonKey(name: 'deviceName') String? deviceName,
-  }) = _RegisterDeviceDto;
-
-  factory RegisterDeviceDto.fromJson(Map<String, dynamic> json) =>
-      _$RegisterDeviceDtoFromJson(json);
 }
 
 @freezed
@@ -853,13 +828,32 @@ extension StepTypeDtoExt on StepTypeDto {
 }
 
 @freezed
+sealed class SupportReceivedDetailDto with _$SupportReceivedDetailDto {
+  factory SupportReceivedDetailDto({
+    @JsonKey(name: 'totalSupportReceived') @Default(0) int totalSupportReceived,
+    @JsonKey(name: 'companionsCount') @Default(0) int companionsCount,
+    @JsonKey(name: 'companionUsers') List<UserDto>? companionUsers,
+    @JsonKey(name: 'startersCount') @Default(0) int startersCount,
+    @JsonKey(name: 'starterUsers') List<UserDto>? starterUsers,
+    @JsonKey(name: 'celebratorsCount') @Default(0) int celebratorsCount,
+    @JsonKey(name: 'celebratorUsers') List<UserDto>? celebratorUsers,
+    @JsonKey(name: 'stepWithCount') @Default(0) int stepWithCount,
+    @JsonKey(name: 'stepWithUsers') List<UserDto>? stepWithUsers,
+    @JsonKey(name: 'topActiveSupporters')
+    List<TopSupportUserDto>? topActiveSupporters,
+  }) = _SupportReceivedDetailDto;
+
+  factory SupportReceivedDetailDto.fromJson(Map<String, dynamic> json) =>
+      _$SupportReceivedDetailDtoFromJson(json);
+}
+
+@freezed
 sealed class TestNotificationDto with _$TestNotificationDto {
   factory TestNotificationDto({
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'body') String? body,
     @JsonKey(name: 'userId') String? userId,
     @JsonKey(name: 'topic') String? topic,
-    @JsonKey(name: 'deviceTokens') List<String>? deviceTokens,
     @JsonKey(name: 'data') Map<String, String>? data,
     @JsonKey(name: 'priority') int? priority,
   }) = _TestNotificationDto;
@@ -880,15 +874,18 @@ sealed class TestNotificationResultDto with _$TestNotificationResultDto {
 }
 
 @freezed
-sealed class TokenValidationResultDto with _$TokenValidationResultDto {
-  factory TokenValidationResultDto({
-    @JsonKey(name: 'validatedCount') int? validatedCount,
-    @JsonKey(name: 'invalidatedCount') int? invalidatedCount,
-    @JsonKey(name: 'invalidTokens') List<String>? invalidTokens,
-  }) = _TokenValidationResultDto;
+sealed class TopSupportUserDto with _$TopSupportUserDto {
+  factory TopSupportUserDto({
+    @JsonKey(name: 'user') required UserDto user,
+    @JsonKey(name: 'companionsGiven') @Default(0) int companionsGiven,
+    @JsonKey(name: 'startersGiven') @Default(0) int startersGiven,
+    @JsonKey(name: 'celebratorsGiven') @Default(0) int celebratorsGiven,
+    @JsonKey(name: 'stepWithGiven') @Default(0) int stepWithGiven,
+    @JsonKey(name: 'totalSupport') @Default(0) int totalSupport,
+  }) = _TopSupportUserDto;
 
-  factory TokenValidationResultDto.fromJson(Map<String, dynamic> json) =>
-      _$TokenValidationResultDtoFromJson(json);
+  factory TopSupportUserDto.fromJson(Map<String, dynamic> json) =>
+      _$TopSupportUserDtoFromJson(json);
 }
 
 @freezed
@@ -1045,78 +1042,6 @@ sealed class VideoStatusDto with _$VideoStatusDto {
 
   factory VideoStatusDto.fromJson(Map<String, dynamic> json) =>
       _$VideoStatusDtoFromJson(json);
-}
-
-enum ApiV1AdminFeedbackGetTypeDto {
-  @JsonValue('BugReport')
-  bugReport,
-  @JsonValue('FeatureRequest')
-  featureRequest,
-  @JsonValue('GeneralFeedback')
-  generalFeedback,
-  @JsonValue('UiUxIssue')
-  uiUxIssue,
-  @JsonValue('Performance')
-  performance,
-  @JsonValue('Other')
-  other,
-}
-
-extension ApiV1AdminFeedbackGetTypeDtoExt on ApiV1AdminFeedbackGetTypeDto {
-  static final Map<String, ApiV1AdminFeedbackGetTypeDto> _names = {
-    'BugReport': ApiV1AdminFeedbackGetTypeDto.bugReport,
-    'FeatureRequest': ApiV1AdminFeedbackGetTypeDto.featureRequest,
-    'GeneralFeedback': ApiV1AdminFeedbackGetTypeDto.generalFeedback,
-    'UiUxIssue': ApiV1AdminFeedbackGetTypeDto.uiUxIssue,
-    'Performance': ApiV1AdminFeedbackGetTypeDto.performance,
-    'Other': ApiV1AdminFeedbackGetTypeDto.other,
-  };
-  static ApiV1AdminFeedbackGetTypeDto fromName(String name) =>
-      _names[name] ??
-      _throwStateError(
-          'Invalid enum name: $name for ApiV1AdminFeedbackGetTypeDto');
-  String get name => switch (this) {
-        ApiV1AdminFeedbackGetTypeDto.bugReport => 'BugReport',
-        ApiV1AdminFeedbackGetTypeDto.featureRequest => 'FeatureRequest',
-        ApiV1AdminFeedbackGetTypeDto.generalFeedback => 'GeneralFeedback',
-        ApiV1AdminFeedbackGetTypeDto.uiUxIssue => 'UiUxIssue',
-        ApiV1AdminFeedbackGetTypeDto.performance => 'Performance',
-        ApiV1AdminFeedbackGetTypeDto.other => 'Other',
-      };
-}
-
-enum ApiV1AdminFeedbackGetStatusDto {
-  @JsonValue('Open')
-  open,
-  @JsonValue('InProgress')
-  inProgress,
-  @JsonValue('Resolved')
-  resolved,
-  @JsonValue('Closed')
-  closed,
-  @JsonValue('Duplicate')
-  duplicate,
-}
-
-extension ApiV1AdminFeedbackGetStatusDtoExt on ApiV1AdminFeedbackGetStatusDto {
-  static final Map<String, ApiV1AdminFeedbackGetStatusDto> _names = {
-    'Open': ApiV1AdminFeedbackGetStatusDto.open,
-    'InProgress': ApiV1AdminFeedbackGetStatusDto.inProgress,
-    'Resolved': ApiV1AdminFeedbackGetStatusDto.resolved,
-    'Closed': ApiV1AdminFeedbackGetStatusDto.closed,
-    'Duplicate': ApiV1AdminFeedbackGetStatusDto.duplicate,
-  };
-  static ApiV1AdminFeedbackGetStatusDto fromName(String name) =>
-      _names[name] ??
-      _throwStateError(
-          'Invalid enum name: $name for ApiV1AdminFeedbackGetStatusDto');
-  String get name => switch (this) {
-        ApiV1AdminFeedbackGetStatusDto.open => 'Open',
-        ApiV1AdminFeedbackGetStatusDto.inProgress => 'InProgress',
-        ApiV1AdminFeedbackGetStatusDto.resolved => 'Resolved',
-        ApiV1AdminFeedbackGetStatusDto.closed => 'Closed',
-        ApiV1AdminFeedbackGetStatusDto.duplicate => 'Duplicate',
-      };
 }
 
 T _throwStateError<T>(String message) => throw StateError(message);

@@ -653,6 +653,122 @@ components:
         // Should not contain null values in enum definitions
         expect(dtosOutput, isNot(contains('@JsonValue(\'null\')')));
       });
+
+      test('handles duplicate parameter names in path and query', () async {
+        final duplicateParamsYaml =
+            await File('test/fixtures/duplicate_params.openapi.yaml')
+                .readAsString();
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(duplicateParamsYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'DuplicateParamsApi',
+          partFileName: 'duplicate_params.openapi.dtos.g.dart',
+        );
+
+        final serviceLibrary =
+            generator.generateServiceLibrary('duplicate_params');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+        );
+
+        // Check that duplicate parameters are renamed with suffixes
+        expect(serviceOutput, contains('getResourceDetails'));
+        expect(
+            serviceOutput, contains('required String id,')); // Path parameter
+        expect(serviceOutput,
+            contains('required String resourceId,')); // Path parameter
+        expect(serviceOutput,
+            contains('String? idQuery,')); // Query parameter renamed
+        expect(serviceOutput,
+            contains('String? resourceIdQuery,')); // Query parameter renamed
+
+        // Check the teacher classes endpoint
+        expect(serviceOutput, contains('getTeacherClasses'));
+        expect(serviceOutput,
+            contains('required String academicYearId,')); // Path parameter
+        expect(serviceOutput,
+            contains('required String schoolId,')); // Path parameter
+        expect(
+            serviceOutput,
+            contains(
+                'String? academicYearIdQuery,')); // Query parameter renamed
+        expect(serviceOutput,
+            contains('String? schoolIdQuery,')); // Query parameter renamed
+
+        // Verify the renamed parameters are used correctly in query building
+        expect(serviceOutput,
+            contains('if (idQuery != null) queryParams[\'id\'] = idQuery;'));
+        expect(
+            serviceOutput,
+            contains(
+                'if (resourceIdQuery != null) queryParams[\'resourceId\'] = resourceIdQuery;'));
+        // The actual output has a different formatting with newlines
+        expect(serviceOutput, contains('if (academicYearIdQuery != null)'));
+        expect(serviceOutput,
+            contains('queryParams[\'academicYearId\'] = academicYearIdQuery;'));
+        expect(
+            serviceOutput,
+            contains(
+                'if (schoolIdQuery != null) queryParams[\'schoolId\'] = schoolIdQuery;'));
+      });
+
+      test('handles field names with @ symbols (like @odata.type)', () async {
+        final atSymbolYaml =
+            await File('test/fixtures/at_symbol_fields.openapi.yaml')
+                .readAsString();
+        final api = OpenApiServiceBuilderUtils.loadApiFromYaml(atSymbolYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'AtSymbolApi',
+          partFileName: 'at_symbol.openapi.dtos.g.dart',
+        );
+
+        final dtosLibrary = generator.generateDtosLibrary();
+        final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          dtosLibrary,
+        );
+
+        // Check that @ symbol fields are properly sanitized to valid Dart identifiers
+        // The @odata.type field should become odataType
+        expect(dtosOutput, contains('String? odataType'));
+        expect(dtosOutput, contains('String? odataEtag'));
+        expect(dtosOutput, contains('String? odataContext'));
+        expect(dtosOutput, contains('String? odataId'));
+        expect(dtosOutput, contains('String? odataEditLink'));
+        expect(dtosOutput, contains('String? metadataSource'));
+        expect(dtosOutput, contains('String? microsoftGraphTips'));
+
+        // Check that JsonKey annotations preserve the original field names
+        expect(dtosOutput, contains('@JsonKey(name: \'@odata.type\')'));
+        expect(dtosOutput, contains('@JsonKey(name: \'@odata.etag\')'));
+        expect(dtosOutput, contains('@JsonKey(name: \'@odata.context\')'));
+        expect(dtosOutput, contains('@JsonKey(name: \'@odata.id\')'));
+        expect(dtosOutput, contains('@JsonKey(name: \'@odata.editLink\')'));
+        expect(dtosOutput, contains('@JsonKey(name: \'@metadata.source\')'));
+        expect(
+            dtosOutput, contains('@JsonKey(name: \'@microsoft.graph.tips\')'));
+
+        // Check that the generated DTOs are valid Dart code (should not have @ in field names)
+        expect(dtosOutput, isNot(contains('String? @odata')));
+        expect(dtosOutput, isNot(contains('String? @metadata')));
+        expect(dtosOutput, isNot(contains('String? @microsoft')));
+
+        // Generate service to ensure it also handles the DTOs correctly
+        final serviceLibrary = generator.generateServiceLibrary('at_symbol');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+        );
+
+        // Service should reference the DTOs correctly
+        expect(serviceOutput, contains('CalendarEventDto'));
+        expect(serviceOutput, contains('UserProfileDto'));
+        expect(serviceOutput, contains('getCalendarEvents'));
+        expect(serviceOutput, contains('createCalendarEvent'));
+        expect(serviceOutput, contains('getUserProfile'));
+      });
     });
   });
 }

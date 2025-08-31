@@ -144,7 +144,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/pet/$petId',
+        endpoint: '/pet/{petId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -169,7 +169,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/pet/$petId',
+        endpoint: '/pet/{petId}',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -192,7 +192,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/pet/$petId',
+        endpoint: '/pet/{petId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -227,7 +227,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/pet/$petId/uploadImage',
+        endpoint: '/pet/{petId}/uploadImage',
         requestBody: file,
       );
       return Left(_errorHandler.handleError(
@@ -295,7 +295,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/store/order/$orderId',
+        endpoint: '/store/order/{orderId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -315,7 +315,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/store/order/$orderId',
+        endpoint: '/store/order/{orderId}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -458,7 +458,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/user/$username',
+        endpoint: '/user/{username}',
       );
       return Left(_errorHandler.handleError(
         e,
@@ -484,7 +484,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/user/$username',
+        endpoint: '/user/{username}',
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -505,7 +505,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/user/$username',
+        endpoint: '/user/{username}',
       );
       return Left(_errorHandler.handleError(
         e,
