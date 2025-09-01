@@ -104,6 +104,10 @@ class OpenApiLibraryGenerator {
   final createdSchema = <APISchemaObject, Reference>{};
   final createdEnums = <String, Reference>{};
   final securitySchemes = <String, Expression>{};
+  
+  // Maps for duplicate detection and merging
+  final schemaSignatures = <String, String>{}; // signature -> canonical name
+  final schemaReferences = <String, String>{}; // duplicate name -> canonical name
 
   final lb = LibraryBuilder();
   final securitySchemesClass = ClassBuilder()..name = 'SecuritySchemes';
@@ -203,6 +207,160 @@ class OpenApiLibraryGenerator {
     return null;
   }
 
+  /// Detects and maps duplicate schemas with numbered suffixes
+  Map<String, String> _detectAndMapDuplicateSchemas() {
+    final components = api.components;
+    if (components?.schemas == null) return {};
+
+    // Group schemas by their base name (without number suffix)
+    final schemaGroups = <String, List<MapEntry<String, APISchemaObject>>>{};
+    final numberSuffixPattern = RegExp(r'^(.+?)(\d+)$');
+
+    for (final entry in components!.schemas!.entries) {
+      if (entry.value == null) continue; // Skip null schemas
+      final name = entry.key;
+      String baseName = name;
+      
+      // Check if this schema has a number suffix
+      final match = numberSuffixPattern.firstMatch(name);
+      if (match != null) {
+        baseName = match.group(1)!;
+      }
+      
+      schemaGroups.putIfAbsent(baseName, () => []).add(MapEntry(name, entry.value!));
+    }
+
+    // Process each group to find actual duplicates
+    for (final group in schemaGroups.entries) {
+      if (group.value.length <= 1) continue;
+      
+      // Sort by name to ensure consistent canonical selection
+      final sortedSchemas = group.value..sort((a, b) => a.key.compareTo(b.key));
+      
+      // Compare schemas in the group
+      final signatureMap = <String, List<String>>{};
+      
+      for (final schemaEntry in sortedSchemas) {
+        final signature = _computeSchemaSignature(schemaEntry.value);
+        signatureMap.putIfAbsent(signature, () => []).add(schemaEntry.key);
+      }
+      
+      // Map duplicates to canonical names
+      for (final duplicates in signatureMap.values) {
+        if (duplicates.length > 1) {
+          // Use the first name (without number suffix if possible) as canonical
+          final canonicalName = duplicates.first;
+          
+          // Only merge if they are truly numbered variants of the same schema
+          // (e.g., AccountApiDto and AccountApiDto2)
+          bool shouldMerge = true;
+          final baseNameMatch = numberSuffixPattern.firstMatch(duplicates.first);
+          final expectedBaseName = baseNameMatch?.group(1) ?? duplicates.first;
+          
+          for (final dupName in duplicates.skip(1)) {
+            final match = numberSuffixPattern.firstMatch(dupName);
+            final dupBaseName = match?.group(1) ?? dupName;
+            
+            // Only merge if base names match or if one is the base of the other
+            if (dupBaseName != expectedBaseName && dupName != expectedBaseName) {
+              shouldMerge = false;
+              break;
+            }
+          }
+          
+          if (shouldMerge) {
+            for (final dupName in duplicates.skip(1)) {
+              schemaReferences[dupName] = canonicalName;
+              _logger.fine('Mapping duplicate schema $dupName to canonical $canonicalName');
+            }
+          }
+        }
+      }
+    }
+    
+    return Map<String, String>.from(schemaReferences);
+  }
+
+  /// Computes a signature for a schema based on its structure
+  String _computeSchemaSignature(APISchemaObject schema) {
+    final parts = <String>[];
+    
+    // Handle enums
+    if (schema.enumerated?.isNotEmpty == true) {
+      parts.add('enum');
+      final values = schema.enumerated!.map((e) => e.toString()).toList()..sort();
+      parts.add(values.join(','));
+      return parts.join(':');
+    }
+    
+    // Handle objects
+    parts.add('object');
+    
+    // Add properties
+    if (schema.properties != null) {
+      final props = <String>[];
+      for (final entry in schema.properties!.entries) {
+        final propSchema = entry.value!;
+        final propType = _getSchemaTypeSignature(propSchema);
+        props.add('${entry.key}:$propType');
+      }
+      props.sort();
+      parts.add('props:[${props.join(',')}]');
+    }
+    
+    // Add required fields
+    if (schema.required?.isNotEmpty == true) {
+      final required = schema.required!.toList()..sort();
+      parts.add('required:[${required.join(',')}]');
+    }
+    
+    return parts.join('|');
+  }
+
+  /// Gets a type signature for a schema property
+  String _getSchemaTypeSignature(APISchemaObject schema) {
+    // Handle references
+    if (schema.referenceURI != null) {
+      final segments = schema.referenceURI!.pathSegments;
+      if (segments.length >= 3) {
+        return 'ref:${segments.last}';
+      }
+    }
+    
+    // Handle basic types
+    final effectiveType = schema.primaryType ?? schema.type;
+    
+    if (effectiveType == APIType.array) {
+      final itemType = schema.items != null ? _getSchemaTypeSignature(schema.items!) : 'any';
+      return 'array<$itemType>';
+    }
+    
+    if (effectiveType == APIType.string) {
+      if (schema.format != null) {
+        return 'string:${schema.format}';
+      }
+      return 'string';
+    }
+    
+    if (effectiveType == APIType.integer) {
+      return 'int:${schema.format ?? 'int32'}';
+    }
+    
+    if (effectiveType == APIType.number) {
+      return 'number';
+    }
+    
+    if (effectiveType == APIType.boolean) {
+      return 'bool';
+    }
+    
+    if (effectiveType == APIType.object) {
+      return 'object';
+    }
+    
+    return 'any';
+  }
+
   Library _generateServiceStyle() {
     // Generate freezed DTOs for schemas
     final components = api.components;
@@ -225,6 +383,9 @@ class OpenApiLibraryGenerator {
     dtosLb.body.add(
         Directive.part(partFileName.replaceAll('.g.dart', '.freezed.dart')));
     dtosLb.body.add(Directive.part(partFileName));
+
+    // Detect and map duplicate schemas
+    _detectAndMapDuplicateSchemas();
 
     // Track which schemas are actually used by endpoints
     final usedSchemas = <String>{};
@@ -281,6 +442,13 @@ class OpenApiLibraryGenerator {
     if (components?.schemas != null) {
       for (final schemaEntry in components!.schemas!.entries) {
         final schema = schemaEntry.value!;
+        
+        // Skip if this is a duplicate that maps to another schema
+        if (schemaReferences.containsKey(schemaEntry.key)) {
+          _logger.fine('Skipping duplicate schema ${schemaEntry.key}');
+          continue;
+        }
+        
         final isUsed = usedSchemas.contains(schemaEntry.key);
         final isEnum = schema.enumerated?.isNotEmpty == true;
         final shouldGenerate = shouldGenerateDto(schema);
@@ -423,7 +591,12 @@ class OpenApiLibraryGenerator {
       if (segments.length >= 3 &&
           segments[0] == 'components' &&
           segments[1] == 'schemas') {
-        usedSchemas.add(segments[2]);
+        var schemaName = segments[2];
+        // If this is a duplicate, add the canonical name instead
+        if (schemaReferences.containsKey(schemaName)) {
+          schemaName = schemaReferences[schemaName]!;
+        }
+        usedSchemas.add(schemaName);
       }
     }
 
@@ -566,8 +739,14 @@ class OpenApiLibraryGenerator {
     }
   }
 
-  Library generateServiceLibrary(String inputIdBasename) {
+  Library generateServiceLibrary(String inputIdBasename,
+      {Map<String, String>? duplicateMappings}) {
     final serviceLb = LibraryBuilder();
+
+    // Apply duplicate mappings if provided
+    if (duplicateMappings != null) {
+      schemaReferences.addAll(duplicateMappings);
+    }
 
     // Add import for DTOs first
     final dtosFileName = '$inputIdBasename.openapi.dtos.dart';
@@ -1368,7 +1547,12 @@ class OpenApiLibraryGenerator {
     }
     final segments = referenceUri.pathSegments;
     if (segments[0] == 'components' && segments[1] == 'schemas') {
-      final name = classNameForComponent(segments[2]);
+      var componentName = segments[2];
+      // If this is a duplicate, use the canonical name
+      if (schemaReferences.containsKey(componentName)) {
+        componentName = schemaReferences[componentName]!;
+      }
+      final name = classNameForComponent(componentName);
       return name;
     }
     return null;
@@ -1376,9 +1560,17 @@ class OpenApiLibraryGenerator {
 
   Reference _schemaReference(String key, APISchemaObject schemaObject) {
     _logger.finer('Looking up ${schemaObject.referenceURI}');
+    
+    // Check if this key is a duplicate that should map to another schema
+    var actualKey = key;
+    if (schemaReferences.containsKey(key)) {
+      actualKey = schemaReferences[key]!;
+      _logger.finer('Remapping duplicate $key to canonical $actualKey');
+    }
+    
     final uri = schemaObject.referenceURI;
     final componentName =
-        _componentNameFromReferenceUri(uri) ?? classNameForComponent(key);
+        _componentNameFromReferenceUri(uri) ?? classNameForComponent(actualKey);
 
     if (createdSchema[schemaObject] case final ref?) {
       _logger.finest('Found already created for this schema reference.');
@@ -1874,7 +2066,7 @@ class OpenApiServiceBuilder extends Builder {
         includeFilterPrefix: includeFilterPrefix,
       );
 
-      // Generate DTOs library
+      // Generate DTOs library and get duplicate mappings
       final dtosLibrary = dtosGenerator.generateDtosLibrary();
       final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(
         dtosLibrary,
@@ -1882,9 +2074,11 @@ class OpenApiServiceBuilder extends Builder {
       final dtosOutputId = inputId.changeExtension('.dtos.dart');
       await buildStep.writeAsString(dtosOutputId, dtosOutput);
 
-      // Generate Service library
-      final serviceLibrary =
-          serviceGenerator.generateServiceLibrary(inputIdBasename);
+      // Generate Service library with duplicate mappings from DTOs
+      final serviceLibrary = serviceGenerator.generateServiceLibrary(
+        inputIdBasename,
+        duplicateMappings: dtosGenerator.schemaReferences,
+      );
       final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
         serviceLibrary,
       );

@@ -1375,11 +1375,11 @@ class EbridgeService {
   }
 
   /// get: /api/v1/Teacher/{teacherId}
-  Future<Either<ApiError, TeacherApiDto2Dto>> apiV1TeacherTeacherIdGet(
+  Future<Either<ApiError, TeacherApiDto>> apiV1TeacherTeacherIdGet(
       {required int teacherId}) async {
     try {
       final response = await _dio.get('/api/v1/Teacher/$teacherId');
-      final result = TeacherApiDto2Dto.fromJson(response.data);
+      final result = TeacherApiDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(

@@ -58,40 +58,6 @@ Map<String, dynamic> _$AccountApiDtoToJson(_AccountApiDto instance) =>
       'updatedDate': instance.updatedDate?.toIso8601String(),
     };
 
-_AccountApiDto2Dto _$AccountApiDto2DtoFromJson(Map<String, dynamic> json) =>
-    _AccountApiDto2Dto(
-      accountId: (json['accountId'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      identifier: json['identifier'] as String?,
-      contacts: (json['contacts'] as List<dynamic>?)
-          ?.map((e) => ContactApiDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      identifierType: (json['identifierType'] as num?)?.toInt(),
-      isDeleted: json['isDeleted'] as bool?,
-      createdByUserId: json['createdByUserId'] as String?,
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
-      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
-      updatedDate: json['updatedDate'] == null
-          ? null
-          : DateTime.parse(json['updatedDate'] as String),
-    );
-
-Map<String, dynamic> _$AccountApiDto2DtoToJson(_AccountApiDto2Dto instance) =>
-    <String, dynamic>{
-      'accountId': instance.accountId,
-      'name': instance.name,
-      'identifier': instance.identifier,
-      'contacts': instance.contacts,
-      'identifierType': instance.identifierType,
-      'isDeleted': instance.isDeleted,
-      'createdByUserId': instance.createdByUserId,
-      'createdDate': instance.createdDate?.toIso8601String(),
-      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
-      'updatedDate': instance.updatedDate?.toIso8601String(),
-    };
-
 _AccountDeviceSessionApiDto _$AccountDeviceSessionApiDtoFromJson(
         Map<String, dynamic> json) =>
     _AccountDeviceSessionApiDto(
@@ -840,7 +806,7 @@ _CurrentUserInfoDto _$CurrentUserInfoDtoFromJson(Map<String, dynamic> json) =>
       accountId: (json['accountId'] as num?)?.toInt(),
       account: json['account'] == null
           ? null
-          : AccountApiDto2Dto.fromJson(json['account'] as Map<String, dynamic>),
+          : AccountApiDto.fromJson(json['account'] as Map<String, dynamic>),
       userId: json['userId'] as String?,
       fullName: json['fullName'] as String?,
       email: json['email'] as String?,
@@ -870,7 +836,7 @@ _EmployeeApiDto _$EmployeeApiDtoFromJson(Map<String, dynamic> json) =>
       accountId: (json['accountId'] as num?)?.toInt(),
       account: json['account'] == null
           ? null
-          : AccountApiDto2Dto.fromJson(json['account'] as Map<String, dynamic>),
+          : AccountApiDto.fromJson(json['account'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EmployeeApiDtoToJson(_EmployeeApiDto instance) =>
@@ -1202,44 +1168,6 @@ _LevelApiDto _$LevelApiDtoFromJson(Map<String, dynamic> json) => _LevelApiDto(
     );
 
 Map<String, dynamic> _$LevelApiDtoToJson(_LevelApiDto instance) =>
-    <String, dynamic>{
-      'levelId': instance.levelId,
-      'branchId': instance.branchId,
-      'code': instance.code,
-      'name': instance.name,
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
-      'minAgeInMonths': instance.minAgeInMonths,
-      'maxAgeInMonths': instance.maxAgeInMonths,
-      'isDeleted': instance.isDeleted,
-      'createdByUserId': instance.createdByUserId,
-      'createdDate': instance.createdDate?.toIso8601String(),
-      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
-      'updatedDate': instance.updatedDate?.toIso8601String(),
-    };
-
-_LevelApiDto2Dto _$LevelApiDto2DtoFromJson(Map<String, dynamic> json) =>
-    _LevelApiDto2Dto(
-      levelId: (json['levelId'] as num?)?.toInt(),
-      branchId: (json['branchId'] as num?)?.toInt(),
-      code: json['code'] as String?,
-      name: json['name'] as String?,
-      startDate: json['startDate'] as String?,
-      endDate: json['endDate'] as String?,
-      minAgeInMonths: (json['minAgeInMonths'] as num?)?.toInt(),
-      maxAgeInMonths: (json['maxAgeInMonths'] as num?)?.toInt(),
-      isDeleted: json['isDeleted'] as bool?,
-      createdByUserId: json['createdByUserId'] as String?,
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
-      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
-      updatedDate: json['updatedDate'] == null
-          ? null
-          : DateTime.parse(json['updatedDate'] as String),
-    );
-
-Map<String, dynamic> _$LevelApiDto2DtoToJson(_LevelApiDto2Dto instance) =>
     <String, dynamic>{
       'levelId': instance.levelId,
       'branchId': instance.branchId,
@@ -1743,7 +1671,7 @@ _PagedResultOfTeacherApiDto _$PagedResultOfTeacherApiDtoFromJson(
         Map<String, dynamic> json) =>
     _PagedResultOfTeacherApiDto(
       items: (json['items'] as List<dynamic>?)
-          ?.map((e) => TeacherApiDto2Dto.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => TeacherApiDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       page: (json['page'] as num?)?.toInt(),
       pageSize: (json['pageSize'] as num?)?.toInt(),
@@ -1798,7 +1726,7 @@ _StudentApiDto _$StudentApiDtoFromJson(Map<String, dynamic> json) =>
       accountId: (json['accountId'] as num?)?.toInt(),
       account: json['account'] == null
           ? null
-          : AccountApiDto2Dto.fromJson(json['account'] as Map<String, dynamic>),
+          : AccountApiDto.fromJson(json['account'] as Map<String, dynamic>),
       name: json['name'] as String?,
       email: json['email'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
@@ -2120,7 +2048,7 @@ _SubjectApiDto _$SubjectApiDtoFromJson(Map<String, dynamic> json) =>
       levelId: (json['levelId'] as num?)?.toInt(),
       level: json['level'] == null
           ? null
-          : LevelApiDto2Dto.fromJson(json['level'] as Map<String, dynamic>),
+          : LevelApiDto.fromJson(json['level'] as Map<String, dynamic>),
       name: json['name'] as String?,
       startDate: json['startDate'] as String?,
       endDate: json['endDate'] as String?,
@@ -2162,22 +2090,6 @@ _TeacherApiDto _$TeacherApiDtoFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$TeacherApiDtoToJson(_TeacherApiDto instance) =>
-    <String, dynamic>{
-      'teacherId': instance.teacherId,
-      'employeeId': instance.employeeId,
-      'employee': instance.employee,
-    };
-
-_TeacherApiDto2Dto _$TeacherApiDto2DtoFromJson(Map<String, dynamic> json) =>
-    _TeacherApiDto2Dto(
-      teacherId: (json['teacherId'] as num?)?.toInt(),
-      employeeId: (json['employeeId'] as num?)?.toInt(),
-      employee: json['employee'] == null
-          ? null
-          : EmployeeApiDto.fromJson(json['employee'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$TeacherApiDto2DtoToJson(_TeacherApiDto2Dto instance) =>
     <String, dynamic>{
       'teacherId': instance.teacherId,
       'employeeId': instance.employeeId,

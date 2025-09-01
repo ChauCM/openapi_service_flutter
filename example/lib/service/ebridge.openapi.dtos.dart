@@ -43,25 +43,6 @@ sealed class AccountApiDto with _$AccountApiDto {
 }
 
 @freezed
-sealed class AccountApiDto2Dto with _$AccountApiDto2Dto {
-  factory AccountApiDto2Dto({
-    @JsonKey(name: 'accountId') int? accountId,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'identifier') String? identifier,
-    @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
-    @JsonKey(name: 'identifierType') int? identifierType,
-    @JsonKey(name: 'isDeleted') bool? isDeleted,
-    @JsonKey(name: 'createdByUserId') String? createdByUserId,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
-  }) = _AccountApiDto2Dto;
-
-  factory AccountApiDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$AccountApiDto2DtoFromJson(json);
-}
-
-@freezed
 sealed class AccountDeviceSessionApiDto with _$AccountDeviceSessionApiDto {
   factory AccountDeviceSessionApiDto({
     @JsonKey(name: 'accountDeviceSessionId')
@@ -494,7 +475,7 @@ sealed class CountryApiDto with _$CountryApiDto {
 sealed class CurrentUserInfoDto with _$CurrentUserInfoDto {
   factory CurrentUserInfoDto({
     @JsonKey(name: 'accountId') int? accountId,
-    @JsonKey(name: 'account') AccountApiDto2Dto? account,
+    @JsonKey(name: 'account') AccountApiDto? account,
     @JsonKey(name: 'userId') String? userId,
     @JsonKey(name: 'fullName') String? fullName,
     @JsonKey(name: 'email') String? email,
@@ -513,7 +494,7 @@ sealed class EmployeeApiDto with _$EmployeeApiDto {
     @JsonKey(name: 'employeeType') int? employeeType,
     @JsonKey(name: 'code') String? code,
     @JsonKey(name: 'accountId') int? accountId,
-    @JsonKey(name: 'account') AccountApiDto2Dto? account,
+    @JsonKey(name: 'account') AccountApiDto? account,
   }) = _EmployeeApiDto;
 
   factory EmployeeApiDto.fromJson(Map<String, dynamic> json) =>
@@ -699,28 +680,6 @@ sealed class LevelApiDto with _$LevelApiDto {
 
   factory LevelApiDto.fromJson(Map<String, dynamic> json) =>
       _$LevelApiDtoFromJson(json);
-}
-
-@freezed
-sealed class LevelApiDto2Dto with _$LevelApiDto2Dto {
-  factory LevelApiDto2Dto({
-    @JsonKey(name: 'levelId') int? levelId,
-    @JsonKey(name: 'branchId') int? branchId,
-    @JsonKey(name: 'code') String? code,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'startDate') String? startDate,
-    @JsonKey(name: 'endDate') String? endDate,
-    @JsonKey(name: 'minAgeInMonths') int? minAgeInMonths,
-    @JsonKey(name: 'maxAgeInMonths') int? maxAgeInMonths,
-    @JsonKey(name: 'isDeleted') bool? isDeleted,
-    @JsonKey(name: 'createdByUserId') String? createdByUserId,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
-  }) = _LevelApiDto2Dto;
-
-  factory LevelApiDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$LevelApiDto2DtoFromJson(json);
 }
 
 @freezed
@@ -1034,7 +993,7 @@ sealed class PagedResultOfStudentTemperatureApiDto
 @freezed
 sealed class PagedResultOfTeacherApiDto with _$PagedResultOfTeacherApiDto {
   factory PagedResultOfTeacherApiDto({
-    @JsonKey(name: 'items') List<TeacherApiDto2Dto>? items,
+    @JsonKey(name: 'items') List<TeacherApiDto>? items,
     @JsonKey(name: 'page') int? page,
     @JsonKey(name: 'pageSize') int? pageSize,
     @JsonKey(name: 'totalCount') int? totalCount,
@@ -1070,7 +1029,7 @@ sealed class StudentApiDto with _$StudentApiDto {
   factory StudentApiDto({
     @JsonKey(name: 'studentId') int? studentId,
     @JsonKey(name: 'accountId') int? accountId,
-    @JsonKey(name: 'account') AccountApiDto2Dto? account,
+    @JsonKey(name: 'account') AccountApiDto? account,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'phoneNumber') String? phoneNumber,
@@ -1240,7 +1199,7 @@ sealed class SubjectApiDto with _$SubjectApiDto {
   factory SubjectApiDto({
     @JsonKey(name: 'subjectId') int? subjectId,
     @JsonKey(name: 'levelId') int? levelId,
-    @JsonKey(name: 'level') LevelApiDto2Dto? level,
+    @JsonKey(name: 'level') LevelApiDto? level,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'startDate') String? startDate,
     @JsonKey(name: 'endDate') String? endDate,
@@ -1266,18 +1225,6 @@ sealed class TeacherApiDto with _$TeacherApiDto {
 
   factory TeacherApiDto.fromJson(Map<String, dynamic> json) =>
       _$TeacherApiDtoFromJson(json);
-}
-
-@freezed
-sealed class TeacherApiDto2Dto with _$TeacherApiDto2Dto {
-  factory TeacherApiDto2Dto({
-    @JsonKey(name: 'teacherId') int? teacherId,
-    @JsonKey(name: 'employeeId') int? employeeId,
-    @JsonKey(name: 'employee') EmployeeApiDto? employee,
-  }) = _TeacherApiDto2Dto;
-
-  factory TeacherApiDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$TeacherApiDto2DtoFromJson(json);
 }
 
 @freezed

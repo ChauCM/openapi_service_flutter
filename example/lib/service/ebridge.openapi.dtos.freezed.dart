@@ -1016,598 +1016,6 @@ class __$AccountApiDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$AccountApiDto2Dto {
-  @JsonKey(name: 'accountId')
-  int? get accountId;
-  @JsonKey(name: 'name')
-  String? get name;
-  @JsonKey(name: 'identifier')
-  String? get identifier;
-  @JsonKey(name: 'contacts')
-  List<ContactApiDto>? get contacts;
-  @JsonKey(name: 'identifierType')
-  int? get identifierType;
-  @JsonKey(name: 'isDeleted')
-  bool? get isDeleted;
-  @JsonKey(name: 'createdByUserId')
-  String? get createdByUserId;
-  @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
-  @JsonKey(name: 'lastUpdatedByUserId')
-  String? get lastUpdatedByUserId;
-  @JsonKey(name: 'updatedDate')
-  DateTime? get updatedDate;
-
-  /// Create a copy of AccountApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $AccountApiDto2DtoCopyWith<AccountApiDto2Dto> get copyWith =>
-      _$AccountApiDto2DtoCopyWithImpl<AccountApiDto2Dto>(
-          this as AccountApiDto2Dto, _$identity);
-
-  /// Serializes this AccountApiDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AccountApiDto2Dto &&
-            (identical(other.accountId, accountId) ||
-                other.accountId == accountId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier) &&
-            const DeepCollectionEquality().equals(other.contacts, contacts) &&
-            (identical(other.identifierType, identifierType) ||
-                other.identifierType == identifierType) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
-            (identical(other.createdByUserId, createdByUserId) ||
-                other.createdByUserId == createdByUserId) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
-                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      accountId,
-      name,
-      identifier,
-      const DeepCollectionEquality().hash(contacts),
-      identifierType,
-      isDeleted,
-      createdByUserId,
-      createdDate,
-      lastUpdatedByUserId,
-      updatedDate);
-
-  @override
-  String toString() {
-    return 'AccountApiDto2Dto(accountId: $accountId, name: $name, identifier: $identifier, contacts: $contacts, identifierType: $identifierType, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $AccountApiDto2DtoCopyWith<$Res> {
-  factory $AccountApiDto2DtoCopyWith(
-          AccountApiDto2Dto value, $Res Function(AccountApiDto2Dto) _then) =
-      _$AccountApiDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'identifier') String? identifier,
-      @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
-      @JsonKey(name: 'identifierType') int? identifierType,
-      @JsonKey(name: 'isDeleted') bool? isDeleted,
-      @JsonKey(name: 'createdByUserId') String? createdByUserId,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
-}
-
-/// @nodoc
-class _$AccountApiDto2DtoCopyWithImpl<$Res>
-    implements $AccountApiDto2DtoCopyWith<$Res> {
-  _$AccountApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final AccountApiDto2Dto _self;
-  final $Res Function(AccountApiDto2Dto) _then;
-
-  /// Create a copy of AccountApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? accountId = freezed,
-    Object? name = freezed,
-    Object? identifier = freezed,
-    Object? contacts = freezed,
-    Object? identifierType = freezed,
-    Object? isDeleted = freezed,
-    Object? createdByUserId = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdatedByUserId = freezed,
-    Object? updatedDate = freezed,
-  }) {
-    return _then(_self.copyWith(
-      accountId: freezed == accountId
-          ? _self.accountId
-          : accountId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      identifier: freezed == identifier
-          ? _self.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contacts: freezed == contacts
-          ? _self.contacts
-          : contacts // ignore: cast_nullable_to_non_nullable
-              as List<ContactApiDto>?,
-      identifierType: freezed == identifierType
-          ? _self.identifierType
-          : identifierType // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDeleted: freezed == isDeleted
-          ? _self.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdByUserId: freezed == createdByUserId
-          ? _self.createdByUserId
-          : createdByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdatedByUserId: freezed == lastUpdatedByUserId
-          ? _self.lastUpdatedByUserId
-          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _self.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [AccountApiDto2Dto].
-extension AccountApiDto2DtoPatterns on AccountApiDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_AccountApiDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _AccountApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_AccountApiDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _AccountApiDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_AccountApiDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _AccountApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'identifier') String? identifier,
-            @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
-            @JsonKey(name: 'identifierType') int? identifierType,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _AccountApiDto2Dto() when $default != null:
-        return $default(
-            _that.accountId,
-            _that.name,
-            _that.identifier,
-            _that.contacts,
-            _that.identifierType,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'identifier') String? identifier,
-            @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
-            @JsonKey(name: 'identifierType') int? identifierType,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _AccountApiDto2Dto():
-        return $default(
-            _that.accountId,
-            _that.name,
-            _that.identifier,
-            _that.contacts,
-            _that.identifierType,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'identifier') String? identifier,
-            @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
-            @JsonKey(name: 'identifierType') int? identifierType,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _AccountApiDto2Dto() when $default != null:
-        return $default(
-            _that.accountId,
-            _that.name,
-            _that.identifier,
-            _that.contacts,
-            _that.identifierType,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _AccountApiDto2Dto implements AccountApiDto2Dto {
-  _AccountApiDto2Dto(
-      {@JsonKey(name: 'accountId') this.accountId,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'identifier') this.identifier,
-      @JsonKey(name: 'contacts') final List<ContactApiDto>? contacts,
-      @JsonKey(name: 'identifierType') this.identifierType,
-      @JsonKey(name: 'isDeleted') this.isDeleted,
-      @JsonKey(name: 'createdByUserId') this.createdByUserId,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') this.updatedDate})
-      : _contacts = contacts;
-  factory _AccountApiDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$AccountApiDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'accountId')
-  final int? accountId;
-  @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
-  @JsonKey(name: 'identifier')
-  final String? identifier;
-  final List<ContactApiDto>? _contacts;
-  @override
-  @JsonKey(name: 'contacts')
-  List<ContactApiDto>? get contacts {
-    final value = _contacts;
-    if (value == null) return null;
-    if (_contacts is EqualUnmodifiableListView) return _contacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  @JsonKey(name: 'identifierType')
-  final int? identifierType;
-  @override
-  @JsonKey(name: 'isDeleted')
-  final bool? isDeleted;
-  @override
-  @JsonKey(name: 'createdByUserId')
-  final String? createdByUserId;
-  @override
-  @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
-  @override
-  @JsonKey(name: 'lastUpdatedByUserId')
-  final String? lastUpdatedByUserId;
-  @override
-  @JsonKey(name: 'updatedDate')
-  final DateTime? updatedDate;
-
-  /// Create a copy of AccountApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$AccountApiDto2DtoCopyWith<_AccountApiDto2Dto> get copyWith =>
-      __$AccountApiDto2DtoCopyWithImpl<_AccountApiDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$AccountApiDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _AccountApiDto2Dto &&
-            (identical(other.accountId, accountId) ||
-                other.accountId == accountId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier) &&
-            const DeepCollectionEquality().equals(other._contacts, _contacts) &&
-            (identical(other.identifierType, identifierType) ||
-                other.identifierType == identifierType) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
-            (identical(other.createdByUserId, createdByUserId) ||
-                other.createdByUserId == createdByUserId) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
-                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      accountId,
-      name,
-      identifier,
-      const DeepCollectionEquality().hash(_contacts),
-      identifierType,
-      isDeleted,
-      createdByUserId,
-      createdDate,
-      lastUpdatedByUserId,
-      updatedDate);
-
-  @override
-  String toString() {
-    return 'AccountApiDto2Dto(accountId: $accountId, name: $name, identifier: $identifier, contacts: $contacts, identifierType: $identifierType, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$AccountApiDto2DtoCopyWith<$Res>
-    implements $AccountApiDto2DtoCopyWith<$Res> {
-  factory _$AccountApiDto2DtoCopyWith(
-          _AccountApiDto2Dto value, $Res Function(_AccountApiDto2Dto) _then) =
-      __$AccountApiDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'identifier') String? identifier,
-      @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
-      @JsonKey(name: 'identifierType') int? identifierType,
-      @JsonKey(name: 'isDeleted') bool? isDeleted,
-      @JsonKey(name: 'createdByUserId') String? createdByUserId,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
-}
-
-/// @nodoc
-class __$AccountApiDto2DtoCopyWithImpl<$Res>
-    implements _$AccountApiDto2DtoCopyWith<$Res> {
-  __$AccountApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _AccountApiDto2Dto _self;
-  final $Res Function(_AccountApiDto2Dto) _then;
-
-  /// Create a copy of AccountApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? accountId = freezed,
-    Object? name = freezed,
-    Object? identifier = freezed,
-    Object? contacts = freezed,
-    Object? identifierType = freezed,
-    Object? isDeleted = freezed,
-    Object? createdByUserId = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdatedByUserId = freezed,
-    Object? updatedDate = freezed,
-  }) {
-    return _then(_AccountApiDto2Dto(
-      accountId: freezed == accountId
-          ? _self.accountId
-          : accountId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      identifier: freezed == identifier
-          ? _self.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contacts: freezed == contacts
-          ? _self._contacts
-          : contacts // ignore: cast_nullable_to_non_nullable
-              as List<ContactApiDto>?,
-      identifierType: freezed == identifierType
-          ? _self.identifierType
-          : identifierType // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDeleted: freezed == isDeleted
-          ? _self.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdByUserId: freezed == createdByUserId
-          ? _self.createdByUserId
-          : createdByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdatedByUserId: freezed == lastUpdatedByUserId
-          ? _self.lastUpdatedByUserId
-          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _self.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
 mixin _$AccountDeviceSessionApiDto {
   @JsonKey(name: 'accountDeviceSessionId')
   int get accountDeviceSessionId;
@@ -14849,7 +14257,7 @@ mixin _$CurrentUserInfoDto {
   @JsonKey(name: 'accountId')
   int? get accountId;
   @JsonKey(name: 'account')
-  AccountApiDto2Dto? get account;
+  AccountApiDto? get account;
   @JsonKey(name: 'userId')
   String? get userId;
   @JsonKey(name: 'fullName')
@@ -14921,7 +14329,7 @@ abstract mixin class $CurrentUserInfoDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'account') AccountApiDto2Dto? account,
+      @JsonKey(name: 'account') AccountApiDto? account,
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'fullName') String? fullName,
       @JsonKey(name: 'email') String? email,
@@ -14929,7 +14337,7 @@ abstract mixin class $CurrentUserInfoDtoCopyWith<$Res> {
       @JsonKey(name: 'lastActiveBranchId') int? lastActiveBranchId,
       @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles});
 
-  $AccountApiDto2DtoCopyWith<$Res>? get account;
+  $AccountApiDtoCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -14962,7 +14370,7 @@ class _$CurrentUserInfoDtoCopyWithImpl<$Res>
       account: freezed == account
           ? _self.account
           : account // ignore: cast_nullable_to_non_nullable
-              as AccountApiDto2Dto?,
+              as AccountApiDto?,
       userId: freezed == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -14994,12 +14402,12 @@ class _$CurrentUserInfoDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountApiDto2DtoCopyWith<$Res>? get account {
+  $AccountApiDtoCopyWith<$Res>? get account {
     if (_self.account == null) {
       return null;
     }
 
-    return $AccountApiDto2DtoCopyWith<$Res>(_self.account!, (value) {
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
       return _then(_self.copyWith(account: value));
     });
   }
@@ -15098,7 +14506,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account,
+            @JsonKey(name: 'account') AccountApiDto? account,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'fullName') String? fullName,
             @JsonKey(name: 'email') String? email,
@@ -15142,7 +14550,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account,
+            @JsonKey(name: 'account') AccountApiDto? account,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'fullName') String? fullName,
             @JsonKey(name: 'email') String? email,
@@ -15182,7 +14590,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account,
+            @JsonKey(name: 'account') AccountApiDto? account,
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'fullName') String? fullName,
             @JsonKey(name: 'email') String? email,
@@ -15230,7 +14638,7 @@ class _CurrentUserInfoDto implements CurrentUserInfoDto {
   final int? accountId;
   @override
   @JsonKey(name: 'account')
-  final AccountApiDto2Dto? account;
+  final AccountApiDto? account;
   @override
   @JsonKey(name: 'userId')
   final String? userId;
@@ -15321,7 +14729,7 @@ abstract mixin class _$CurrentUserInfoDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'account') AccountApiDto2Dto? account,
+      @JsonKey(name: 'account') AccountApiDto? account,
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'fullName') String? fullName,
       @JsonKey(name: 'email') String? email,
@@ -15330,7 +14738,7 @@ abstract mixin class _$CurrentUserInfoDtoCopyWith<$Res>
       @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles});
 
   @override
-  $AccountApiDto2DtoCopyWith<$Res>? get account;
+  $AccountApiDtoCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -15363,7 +14771,7 @@ class __$CurrentUserInfoDtoCopyWithImpl<$Res>
       account: freezed == account
           ? _self.account
           : account // ignore: cast_nullable_to_non_nullable
-              as AccountApiDto2Dto?,
+              as AccountApiDto?,
       userId: freezed == userId
           ? _self.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -15395,12 +14803,12 @@ class __$CurrentUserInfoDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountApiDto2DtoCopyWith<$Res>? get account {
+  $AccountApiDtoCopyWith<$Res>? get account {
     if (_self.account == null) {
       return null;
     }
 
-    return $AccountApiDto2DtoCopyWith<$Res>(_self.account!, (value) {
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
       return _then(_self.copyWith(account: value));
     });
   }
@@ -15415,7 +14823,7 @@ mixin _$EmployeeApiDto {
   @JsonKey(name: 'accountId')
   int? get accountId;
   @JsonKey(name: 'account')
-  AccountApiDto2Dto? get account;
+  AccountApiDto? get account;
 
   /// Create a copy of EmployeeApiDto
   /// with the given fields replaced by the non-null parameter values.
@@ -15462,9 +14870,9 @@ abstract mixin class $EmployeeApiDtoCopyWith<$Res> {
       {@JsonKey(name: 'employeeType') int? employeeType,
       @JsonKey(name: 'code') String? code,
       @JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'account') AccountApiDto2Dto? account});
+      @JsonKey(name: 'account') AccountApiDto? account});
 
-  $AccountApiDto2DtoCopyWith<$Res>? get account;
+  $AccountApiDtoCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -15501,7 +14909,7 @@ class _$EmployeeApiDtoCopyWithImpl<$Res>
       account: freezed == account
           ? _self.account
           : account // ignore: cast_nullable_to_non_nullable
-              as AccountApiDto2Dto?,
+              as AccountApiDto?,
     ));
   }
 
@@ -15509,12 +14917,12 @@ class _$EmployeeApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountApiDto2DtoCopyWith<$Res>? get account {
+  $AccountApiDtoCopyWith<$Res>? get account {
     if (_self.account == null) {
       return null;
     }
 
-    return $AccountApiDto2DtoCopyWith<$Res>(_self.account!, (value) {
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
       return _then(_self.copyWith(account: value));
     });
   }
@@ -15615,7 +15023,7 @@ extension EmployeeApiDtoPatterns on EmployeeApiDto {
             @JsonKey(name: 'employeeType') int? employeeType,
             @JsonKey(name: 'code') String? code,
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account)?
+            @JsonKey(name: 'account') AccountApiDto? account)?
         $default, {
     required TResult orElse(),
   }) {
@@ -15648,7 +15056,7 @@ extension EmployeeApiDtoPatterns on EmployeeApiDto {
             @JsonKey(name: 'employeeType') int? employeeType,
             @JsonKey(name: 'code') String? code,
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account)
+            @JsonKey(name: 'account') AccountApiDto? account)
         $default,
   ) {
     final _that = this;
@@ -15677,7 +15085,7 @@ extension EmployeeApiDtoPatterns on EmployeeApiDto {
             @JsonKey(name: 'employeeType') int? employeeType,
             @JsonKey(name: 'code') String? code,
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account)?
+            @JsonKey(name: 'account') AccountApiDto? account)?
         $default,
   ) {
     final _that = this;
@@ -15713,7 +15121,7 @@ class _EmployeeApiDto implements EmployeeApiDto {
   final int? accountId;
   @override
   @JsonKey(name: 'account')
-  final AccountApiDto2Dto? account;
+  final AccountApiDto? account;
 
   /// Create a copy of EmployeeApiDto
   /// with the given fields replaced by the non-null parameter values.
@@ -15766,10 +15174,10 @@ abstract mixin class _$EmployeeApiDtoCopyWith<$Res>
       {@JsonKey(name: 'employeeType') int? employeeType,
       @JsonKey(name: 'code') String? code,
       @JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'account') AccountApiDto2Dto? account});
+      @JsonKey(name: 'account') AccountApiDto? account});
 
   @override
-  $AccountApiDto2DtoCopyWith<$Res>? get account;
+  $AccountApiDtoCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -15806,7 +15214,7 @@ class __$EmployeeApiDtoCopyWithImpl<$Res>
       account: freezed == account
           ? _self.account
           : account // ignore: cast_nullable_to_non_nullable
-              as AccountApiDto2Dto?,
+              as AccountApiDto?,
     ));
   }
 
@@ -15814,12 +15222,12 @@ class __$EmployeeApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountApiDto2DtoCopyWith<$Res>? get account {
+  $AccountApiDtoCopyWith<$Res>? get account {
     if (_self.account == null) {
       return null;
     }
 
-    return $AccountApiDto2DtoCopyWith<$Res>(_self.account!, (value) {
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
       return _then(_self.copyWith(account: value));
     });
   }
@@ -21295,675 +20703,6 @@ class __$LevelApiDtoCopyWithImpl<$Res> implements _$LevelApiDtoCopyWith<$Res> {
     Object? updatedDate = freezed,
   }) {
     return _then(_LevelApiDto(
-      levelId: freezed == levelId
-          ? _self.levelId
-          : levelId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      branchId: freezed == branchId
-          ? _self.branchId
-          : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _self.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startDate: freezed == startDate
-          ? _self.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endDate: freezed == endDate
-          ? _self.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      minAgeInMonths: freezed == minAgeInMonths
-          ? _self.minAgeInMonths
-          : minAgeInMonths // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxAgeInMonths: freezed == maxAgeInMonths
-          ? _self.maxAgeInMonths
-          : maxAgeInMonths // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDeleted: freezed == isDeleted
-          ? _self.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdByUserId: freezed == createdByUserId
-          ? _self.createdByUserId
-          : createdByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdatedByUserId: freezed == lastUpdatedByUserId
-          ? _self.lastUpdatedByUserId
-          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _self.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// @nodoc
-mixin _$LevelApiDto2Dto {
-  @JsonKey(name: 'levelId')
-  int? get levelId;
-  @JsonKey(name: 'branchId')
-  int? get branchId;
-  @JsonKey(name: 'code')
-  String? get code;
-  @JsonKey(name: 'name')
-  String? get name;
-  @JsonKey(name: 'startDate')
-  String? get startDate;
-  @JsonKey(name: 'endDate')
-  String? get endDate;
-  @JsonKey(name: 'minAgeInMonths')
-  int? get minAgeInMonths;
-  @JsonKey(name: 'maxAgeInMonths')
-  int? get maxAgeInMonths;
-  @JsonKey(name: 'isDeleted')
-  bool? get isDeleted;
-  @JsonKey(name: 'createdByUserId')
-  String? get createdByUserId;
-  @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
-  @JsonKey(name: 'lastUpdatedByUserId')
-  String? get lastUpdatedByUserId;
-  @JsonKey(name: 'updatedDate')
-  DateTime? get updatedDate;
-
-  /// Create a copy of LevelApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $LevelApiDto2DtoCopyWith<LevelApiDto2Dto> get copyWith =>
-      _$LevelApiDto2DtoCopyWithImpl<LevelApiDto2Dto>(
-          this as LevelApiDto2Dto, _$identity);
-
-  /// Serializes this LevelApiDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is LevelApiDto2Dto &&
-            (identical(other.levelId, levelId) || other.levelId == levelId) &&
-            (identical(other.branchId, branchId) ||
-                other.branchId == branchId) &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.minAgeInMonths, minAgeInMonths) ||
-                other.minAgeInMonths == minAgeInMonths) &&
-            (identical(other.maxAgeInMonths, maxAgeInMonths) ||
-                other.maxAgeInMonths == maxAgeInMonths) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
-            (identical(other.createdByUserId, createdByUserId) ||
-                other.createdByUserId == createdByUserId) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
-                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      levelId,
-      branchId,
-      code,
-      name,
-      startDate,
-      endDate,
-      minAgeInMonths,
-      maxAgeInMonths,
-      isDeleted,
-      createdByUserId,
-      createdDate,
-      lastUpdatedByUserId,
-      updatedDate);
-
-  @override
-  String toString() {
-    return 'LevelApiDto2Dto(levelId: $levelId, branchId: $branchId, code: $code, name: $name, startDate: $startDate, endDate: $endDate, minAgeInMonths: $minAgeInMonths, maxAgeInMonths: $maxAgeInMonths, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $LevelApiDto2DtoCopyWith<$Res> {
-  factory $LevelApiDto2DtoCopyWith(
-          LevelApiDto2Dto value, $Res Function(LevelApiDto2Dto) _then) =
-      _$LevelApiDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'levelId') int? levelId,
-      @JsonKey(name: 'branchId') int? branchId,
-      @JsonKey(name: 'code') String? code,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'startDate') String? startDate,
-      @JsonKey(name: 'endDate') String? endDate,
-      @JsonKey(name: 'minAgeInMonths') int? minAgeInMonths,
-      @JsonKey(name: 'maxAgeInMonths') int? maxAgeInMonths,
-      @JsonKey(name: 'isDeleted') bool? isDeleted,
-      @JsonKey(name: 'createdByUserId') String? createdByUserId,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
-}
-
-/// @nodoc
-class _$LevelApiDto2DtoCopyWithImpl<$Res>
-    implements $LevelApiDto2DtoCopyWith<$Res> {
-  _$LevelApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final LevelApiDto2Dto _self;
-  final $Res Function(LevelApiDto2Dto) _then;
-
-  /// Create a copy of LevelApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? levelId = freezed,
-    Object? branchId = freezed,
-    Object? code = freezed,
-    Object? name = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? minAgeInMonths = freezed,
-    Object? maxAgeInMonths = freezed,
-    Object? isDeleted = freezed,
-    Object? createdByUserId = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdatedByUserId = freezed,
-    Object? updatedDate = freezed,
-  }) {
-    return _then(_self.copyWith(
-      levelId: freezed == levelId
-          ? _self.levelId
-          : levelId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      branchId: freezed == branchId
-          ? _self.branchId
-          : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      code: freezed == code
-          ? _self.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      startDate: freezed == startDate
-          ? _self.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      endDate: freezed == endDate
-          ? _self.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as String?,
-      minAgeInMonths: freezed == minAgeInMonths
-          ? _self.minAgeInMonths
-          : minAgeInMonths // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxAgeInMonths: freezed == maxAgeInMonths
-          ? _self.maxAgeInMonths
-          : maxAgeInMonths // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isDeleted: freezed == isDeleted
-          ? _self.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdByUserId: freezed == createdByUserId
-          ? _self.createdByUserId
-          : createdByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdatedByUserId: freezed == lastUpdatedByUserId
-          ? _self.lastUpdatedByUserId
-          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _self.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [LevelApiDto2Dto].
-extension LevelApiDto2DtoPatterns on LevelApiDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_LevelApiDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _LevelApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_LevelApiDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _LevelApiDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_LevelApiDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _LevelApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'levelId') int? levelId,
-            @JsonKey(name: 'branchId') int? branchId,
-            @JsonKey(name: 'code') String? code,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'startDate') String? startDate,
-            @JsonKey(name: 'endDate') String? endDate,
-            @JsonKey(name: 'minAgeInMonths') int? minAgeInMonths,
-            @JsonKey(name: 'maxAgeInMonths') int? maxAgeInMonths,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _LevelApiDto2Dto() when $default != null:
-        return $default(
-            _that.levelId,
-            _that.branchId,
-            _that.code,
-            _that.name,
-            _that.startDate,
-            _that.endDate,
-            _that.minAgeInMonths,
-            _that.maxAgeInMonths,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'levelId') int? levelId,
-            @JsonKey(name: 'branchId') int? branchId,
-            @JsonKey(name: 'code') String? code,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'startDate') String? startDate,
-            @JsonKey(name: 'endDate') String? endDate,
-            @JsonKey(name: 'minAgeInMonths') int? minAgeInMonths,
-            @JsonKey(name: 'maxAgeInMonths') int? maxAgeInMonths,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _LevelApiDto2Dto():
-        return $default(
-            _that.levelId,
-            _that.branchId,
-            _that.code,
-            _that.name,
-            _that.startDate,
-            _that.endDate,
-            _that.minAgeInMonths,
-            _that.maxAgeInMonths,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'levelId') int? levelId,
-            @JsonKey(name: 'branchId') int? branchId,
-            @JsonKey(name: 'code') String? code,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'startDate') String? startDate,
-            @JsonKey(name: 'endDate') String? endDate,
-            @JsonKey(name: 'minAgeInMonths') int? minAgeInMonths,
-            @JsonKey(name: 'maxAgeInMonths') int? maxAgeInMonths,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _LevelApiDto2Dto() when $default != null:
-        return $default(
-            _that.levelId,
-            _that.branchId,
-            _that.code,
-            _that.name,
-            _that.startDate,
-            _that.endDate,
-            _that.minAgeInMonths,
-            _that.maxAgeInMonths,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _LevelApiDto2Dto implements LevelApiDto2Dto {
-  _LevelApiDto2Dto(
-      {@JsonKey(name: 'levelId') this.levelId,
-      @JsonKey(name: 'branchId') this.branchId,
-      @JsonKey(name: 'code') this.code,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'startDate') this.startDate,
-      @JsonKey(name: 'endDate') this.endDate,
-      @JsonKey(name: 'minAgeInMonths') this.minAgeInMonths,
-      @JsonKey(name: 'maxAgeInMonths') this.maxAgeInMonths,
-      @JsonKey(name: 'isDeleted') this.isDeleted,
-      @JsonKey(name: 'createdByUserId') this.createdByUserId,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') this.updatedDate});
-  factory _LevelApiDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$LevelApiDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'levelId')
-  final int? levelId;
-  @override
-  @JsonKey(name: 'branchId')
-  final int? branchId;
-  @override
-  @JsonKey(name: 'code')
-  final String? code;
-  @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
-  @JsonKey(name: 'startDate')
-  final String? startDate;
-  @override
-  @JsonKey(name: 'endDate')
-  final String? endDate;
-  @override
-  @JsonKey(name: 'minAgeInMonths')
-  final int? minAgeInMonths;
-  @override
-  @JsonKey(name: 'maxAgeInMonths')
-  final int? maxAgeInMonths;
-  @override
-  @JsonKey(name: 'isDeleted')
-  final bool? isDeleted;
-  @override
-  @JsonKey(name: 'createdByUserId')
-  final String? createdByUserId;
-  @override
-  @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
-  @override
-  @JsonKey(name: 'lastUpdatedByUserId')
-  final String? lastUpdatedByUserId;
-  @override
-  @JsonKey(name: 'updatedDate')
-  final DateTime? updatedDate;
-
-  /// Create a copy of LevelApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$LevelApiDto2DtoCopyWith<_LevelApiDto2Dto> get copyWith =>
-      __$LevelApiDto2DtoCopyWithImpl<_LevelApiDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$LevelApiDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _LevelApiDto2Dto &&
-            (identical(other.levelId, levelId) || other.levelId == levelId) &&
-            (identical(other.branchId, branchId) ||
-                other.branchId == branchId) &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.startDate, startDate) ||
-                other.startDate == startDate) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.minAgeInMonths, minAgeInMonths) ||
-                other.minAgeInMonths == minAgeInMonths) &&
-            (identical(other.maxAgeInMonths, maxAgeInMonths) ||
-                other.maxAgeInMonths == maxAgeInMonths) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
-            (identical(other.createdByUserId, createdByUserId) ||
-                other.createdByUserId == createdByUserId) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
-                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      levelId,
-      branchId,
-      code,
-      name,
-      startDate,
-      endDate,
-      minAgeInMonths,
-      maxAgeInMonths,
-      isDeleted,
-      createdByUserId,
-      createdDate,
-      lastUpdatedByUserId,
-      updatedDate);
-
-  @override
-  String toString() {
-    return 'LevelApiDto2Dto(levelId: $levelId, branchId: $branchId, code: $code, name: $name, startDate: $startDate, endDate: $endDate, minAgeInMonths: $minAgeInMonths, maxAgeInMonths: $maxAgeInMonths, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$LevelApiDto2DtoCopyWith<$Res>
-    implements $LevelApiDto2DtoCopyWith<$Res> {
-  factory _$LevelApiDto2DtoCopyWith(
-          _LevelApiDto2Dto value, $Res Function(_LevelApiDto2Dto) _then) =
-      __$LevelApiDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'levelId') int? levelId,
-      @JsonKey(name: 'branchId') int? branchId,
-      @JsonKey(name: 'code') String? code,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'startDate') String? startDate,
-      @JsonKey(name: 'endDate') String? endDate,
-      @JsonKey(name: 'minAgeInMonths') int? minAgeInMonths,
-      @JsonKey(name: 'maxAgeInMonths') int? maxAgeInMonths,
-      @JsonKey(name: 'isDeleted') bool? isDeleted,
-      @JsonKey(name: 'createdByUserId') String? createdByUserId,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
-}
-
-/// @nodoc
-class __$LevelApiDto2DtoCopyWithImpl<$Res>
-    implements _$LevelApiDto2DtoCopyWith<$Res> {
-  __$LevelApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _LevelApiDto2Dto _self;
-  final $Res Function(_LevelApiDto2Dto) _then;
-
-  /// Create a copy of LevelApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? levelId = freezed,
-    Object? branchId = freezed,
-    Object? code = freezed,
-    Object? name = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
-    Object? minAgeInMonths = freezed,
-    Object? maxAgeInMonths = freezed,
-    Object? isDeleted = freezed,
-    Object? createdByUserId = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdatedByUserId = freezed,
-    Object? updatedDate = freezed,
-  }) {
-    return _then(_LevelApiDto2Dto(
       levelId: freezed == levelId
           ? _self.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
@@ -31145,7 +29884,7 @@ class __$PagedResultOfStudentTemperatureApiDtoCopyWithImpl<$Res>
 /// @nodoc
 mixin _$PagedResultOfTeacherApiDto {
   @JsonKey(name: 'items')
-  List<TeacherApiDto2Dto>? get items;
+  List<TeacherApiDto>? get items;
   @JsonKey(name: 'page')
   int? get page;
   @JsonKey(name: 'pageSize')
@@ -31215,7 +29954,7 @@ abstract mixin class $PagedResultOfTeacherApiDtoCopyWith<$Res> {
       _$PagedResultOfTeacherApiDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'items') List<TeacherApiDto2Dto>? items,
+      {@JsonKey(name: 'items') List<TeacherApiDto>? items,
       @JsonKey(name: 'page') int? page,
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
@@ -31249,7 +29988,7 @@ class _$PagedResultOfTeacherApiDtoCopyWithImpl<$Res>
       items: freezed == items
           ? _self.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<TeacherApiDto2Dto>?,
+              as List<TeacherApiDto>?,
       page: freezed == page
           ? _self.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -31370,7 +30109,7 @@ extension PagedResultOfTeacherApiDtoPatterns on PagedResultOfTeacherApiDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'items') List<TeacherApiDto2Dto>? items,
+            @JsonKey(name: 'items') List<TeacherApiDto>? items,
             @JsonKey(name: 'page') int? page,
             @JsonKey(name: 'pageSize') int? pageSize,
             @JsonKey(name: 'totalCount') int? totalCount,
@@ -31412,7 +30151,7 @@ extension PagedResultOfTeacherApiDtoPatterns on PagedResultOfTeacherApiDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'items') List<TeacherApiDto2Dto>? items,
+            @JsonKey(name: 'items') List<TeacherApiDto>? items,
             @JsonKey(name: 'page') int? page,
             @JsonKey(name: 'pageSize') int? pageSize,
             @JsonKey(name: 'totalCount') int? totalCount,
@@ -31450,7 +30189,7 @@ extension PagedResultOfTeacherApiDtoPatterns on PagedResultOfTeacherApiDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'items') List<TeacherApiDto2Dto>? items,
+            @JsonKey(name: 'items') List<TeacherApiDto>? items,
             @JsonKey(name: 'page') int? page,
             @JsonKey(name: 'pageSize') int? pageSize,
             @JsonKey(name: 'totalCount') int? totalCount,
@@ -31480,7 +30219,7 @@ extension PagedResultOfTeacherApiDtoPatterns on PagedResultOfTeacherApiDto {
 @JsonSerializable()
 class _PagedResultOfTeacherApiDto implements PagedResultOfTeacherApiDto {
   _PagedResultOfTeacherApiDto(
-      {@JsonKey(name: 'items') final List<TeacherApiDto2Dto>? items,
+      {@JsonKey(name: 'items') final List<TeacherApiDto>? items,
       @JsonKey(name: 'page') this.page,
       @JsonKey(name: 'pageSize') this.pageSize,
       @JsonKey(name: 'totalCount') this.totalCount,
@@ -31491,10 +30230,10 @@ class _PagedResultOfTeacherApiDto implements PagedResultOfTeacherApiDto {
   factory _PagedResultOfTeacherApiDto.fromJson(Map<String, dynamic> json) =>
       _$PagedResultOfTeacherApiDtoFromJson(json);
 
-  final List<TeacherApiDto2Dto>? _items;
+  final List<TeacherApiDto>? _items;
   @override
   @JsonKey(name: 'items')
-  List<TeacherApiDto2Dto>? get items {
+  List<TeacherApiDto>? get items {
     final value = _items;
     if (value == null) return null;
     if (_items is EqualUnmodifiableListView) return _items;
@@ -31584,7 +30323,7 @@ abstract mixin class _$PagedResultOfTeacherApiDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'items') List<TeacherApiDto2Dto>? items,
+      {@JsonKey(name: 'items') List<TeacherApiDto>? items,
       @JsonKey(name: 'page') int? page,
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
@@ -31618,7 +30357,7 @@ class __$PagedResultOfTeacherApiDtoCopyWithImpl<$Res>
       items: freezed == items
           ? _self._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<TeacherApiDto2Dto>?,
+              as List<TeacherApiDto>?,
       page: freezed == page
           ? _self.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -32165,7 +30904,7 @@ mixin _$StudentApiDto {
   @JsonKey(name: 'accountId')
   int? get accountId;
   @JsonKey(name: 'account')
-  AccountApiDto2Dto? get account;
+  AccountApiDto? get account;
   @JsonKey(name: 'name')
   String? get name;
   @JsonKey(name: 'email')
@@ -32295,7 +31034,7 @@ abstract mixin class $StudentApiDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'studentId') int? studentId,
       @JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'account') AccountApiDto2Dto? account,
+      @JsonKey(name: 'account') AccountApiDto? account,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
@@ -32314,7 +31053,7 @@ abstract mixin class $StudentApiDtoCopyWith<$Res> {
       @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
 
-  $AccountApiDto2DtoCopyWith<$Res>? get account;
+  $AccountApiDtoCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -32363,7 +31102,7 @@ class _$StudentApiDtoCopyWithImpl<$Res>
       account: freezed == account
           ? _self.account
           : account // ignore: cast_nullable_to_non_nullable
-              as AccountApiDto2Dto?,
+              as AccountApiDto?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -32439,12 +31178,12 @@ class _$StudentApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountApiDto2DtoCopyWith<$Res>? get account {
+  $AccountApiDtoCopyWith<$Res>? get account {
     if (_self.account == null) {
       return null;
     }
 
-    return $AccountApiDto2DtoCopyWith<$Res>(_self.account!, (value) {
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
       return _then(_self.copyWith(account: value));
     });
   }
@@ -32544,7 +31283,7 @@ extension StudentApiDtoPatterns on StudentApiDto {
     TResult Function(
             @JsonKey(name: 'studentId') int? studentId,
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account,
+            @JsonKey(name: 'account') AccountApiDto? account,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'phoneNumber') String? phoneNumber,
@@ -32612,7 +31351,7 @@ extension StudentApiDtoPatterns on StudentApiDto {
     TResult Function(
             @JsonKey(name: 'studentId') int? studentId,
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account,
+            @JsonKey(name: 'account') AccountApiDto? account,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'phoneNumber') String? phoneNumber,
@@ -32676,7 +31415,7 @@ extension StudentApiDtoPatterns on StudentApiDto {
     TResult? Function(
             @JsonKey(name: 'studentId') int? studentId,
             @JsonKey(name: 'accountId') int? accountId,
-            @JsonKey(name: 'account') AccountApiDto2Dto? account,
+            @JsonKey(name: 'account') AccountApiDto? account,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'phoneNumber') String? phoneNumber,
@@ -32762,7 +31501,7 @@ class _StudentApiDto implements StudentApiDto {
   final int? accountId;
   @override
   @JsonKey(name: 'account')
-  final AccountApiDto2Dto? account;
+  final AccountApiDto? account;
   @override
   @JsonKey(name: 'name')
   final String? name;
@@ -32923,7 +31662,7 @@ abstract mixin class _$StudentApiDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'studentId') int? studentId,
       @JsonKey(name: 'accountId') int? accountId,
-      @JsonKey(name: 'account') AccountApiDto2Dto? account,
+      @JsonKey(name: 'account') AccountApiDto? account,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'phoneNumber') String? phoneNumber,
@@ -32943,7 +31682,7 @@ abstract mixin class _$StudentApiDtoCopyWith<$Res>
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
 
   @override
-  $AccountApiDto2DtoCopyWith<$Res>? get account;
+  $AccountApiDtoCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -32992,7 +31731,7 @@ class __$StudentApiDtoCopyWithImpl<$Res>
       account: freezed == account
           ? _self.account
           : account // ignore: cast_nullable_to_non_nullable
-              as AccountApiDto2Dto?,
+              as AccountApiDto?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -33068,12 +31807,12 @@ class __$StudentApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AccountApiDto2DtoCopyWith<$Res>? get account {
+  $AccountApiDtoCopyWith<$Res>? get account {
     if (_self.account == null) {
       return null;
     }
 
-    return $AccountApiDto2DtoCopyWith<$Res>(_self.account!, (value) {
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
       return _then(_self.copyWith(account: value));
     });
   }
@@ -37372,7 +36111,7 @@ mixin _$SubjectApiDto {
   @JsonKey(name: 'levelId')
   int? get levelId;
   @JsonKey(name: 'level')
-  LevelApiDto2Dto? get level;
+  LevelApiDto? get level;
   @JsonKey(name: 'name')
   String? get name;
   @JsonKey(name: 'startDate')
@@ -37462,7 +36201,7 @@ abstract mixin class $SubjectApiDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'subjectId') int? subjectId,
       @JsonKey(name: 'levelId') int? levelId,
-      @JsonKey(name: 'level') LevelApiDto2Dto? level,
+      @JsonKey(name: 'level') LevelApiDto? level,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'startDate') String? startDate,
       @JsonKey(name: 'endDate') String? endDate,
@@ -37473,7 +36212,7 @@ abstract mixin class $SubjectApiDtoCopyWith<$Res> {
       @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
 
-  $LevelApiDto2DtoCopyWith<$Res>? get level;
+  $LevelApiDtoCopyWith<$Res>? get level;
 }
 
 /// @nodoc
@@ -37514,7 +36253,7 @@ class _$SubjectApiDtoCopyWithImpl<$Res>
       level: freezed == level
           ? _self.level
           : level // ignore: cast_nullable_to_non_nullable
-              as LevelApiDto2Dto?,
+              as LevelApiDto?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -37558,12 +36297,12 @@ class _$SubjectApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LevelApiDto2DtoCopyWith<$Res>? get level {
+  $LevelApiDtoCopyWith<$Res>? get level {
     if (_self.level == null) {
       return null;
     }
 
-    return $LevelApiDto2DtoCopyWith<$Res>(_self.level!, (value) {
+    return $LevelApiDtoCopyWith<$Res>(_self.level!, (value) {
       return _then(_self.copyWith(level: value));
     });
   }
@@ -37663,7 +36402,7 @@ extension SubjectApiDtoPatterns on SubjectApiDto {
     TResult Function(
             @JsonKey(name: 'subjectId') int? subjectId,
             @JsonKey(name: 'levelId') int? levelId,
-            @JsonKey(name: 'level') LevelApiDto2Dto? level,
+            @JsonKey(name: 'level') LevelApiDto? level,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'startDate') String? startDate,
             @JsonKey(name: 'endDate') String? endDate,
@@ -37715,7 +36454,7 @@ extension SubjectApiDtoPatterns on SubjectApiDto {
     TResult Function(
             @JsonKey(name: 'subjectId') int? subjectId,
             @JsonKey(name: 'levelId') int? levelId,
-            @JsonKey(name: 'level') LevelApiDto2Dto? level,
+            @JsonKey(name: 'level') LevelApiDto? level,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'startDate') String? startDate,
             @JsonKey(name: 'endDate') String? endDate,
@@ -37763,7 +36502,7 @@ extension SubjectApiDtoPatterns on SubjectApiDto {
     TResult? Function(
             @JsonKey(name: 'subjectId') int? subjectId,
             @JsonKey(name: 'levelId') int? levelId,
-            @JsonKey(name: 'level') LevelApiDto2Dto? level,
+            @JsonKey(name: 'level') LevelApiDto? level,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'startDate') String? startDate,
             @JsonKey(name: 'endDate') String? endDate,
@@ -37824,7 +36563,7 @@ class _SubjectApiDto implements SubjectApiDto {
   final int? levelId;
   @override
   @JsonKey(name: 'level')
-  final LevelApiDto2Dto? level;
+  final LevelApiDto? level;
   @override
   @JsonKey(name: 'name')
   final String? name;
@@ -37929,7 +36668,7 @@ abstract mixin class _$SubjectApiDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'subjectId') int? subjectId,
       @JsonKey(name: 'levelId') int? levelId,
-      @JsonKey(name: 'level') LevelApiDto2Dto? level,
+      @JsonKey(name: 'level') LevelApiDto? level,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'startDate') String? startDate,
       @JsonKey(name: 'endDate') String? endDate,
@@ -37941,7 +36680,7 @@ abstract mixin class _$SubjectApiDtoCopyWith<$Res>
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
 
   @override
-  $LevelApiDto2DtoCopyWith<$Res>? get level;
+  $LevelApiDtoCopyWith<$Res>? get level;
 }
 
 /// @nodoc
@@ -37982,7 +36721,7 @@ class __$SubjectApiDtoCopyWithImpl<$Res>
       level: freezed == level
           ? _self.level
           : level // ignore: cast_nullable_to_non_nullable
-              as LevelApiDto2Dto?,
+              as LevelApiDto?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -38026,12 +36765,12 @@ class __$SubjectApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LevelApiDto2DtoCopyWith<$Res>? get level {
+  $LevelApiDtoCopyWith<$Res>? get level {
     if (_self.level == null) {
       return null;
     }
 
-    return $LevelApiDto2DtoCopyWith<$Res>(_self.level!, (value) {
+    return $LevelApiDtoCopyWith<$Res>(_self.level!, (value) {
       return _then(_self.copyWith(level: value));
     });
   }
@@ -38416,399 +37155,6 @@ class __$TeacherApiDtoCopyWithImpl<$Res>
   }
 
   /// Create a copy of TeacherApiDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $EmployeeApiDtoCopyWith<$Res>? get employee {
-    if (_self.employee == null) {
-      return null;
-    }
-
-    return $EmployeeApiDtoCopyWith<$Res>(_self.employee!, (value) {
-      return _then(_self.copyWith(employee: value));
-    });
-  }
-}
-
-/// @nodoc
-mixin _$TeacherApiDto2Dto {
-  @JsonKey(name: 'teacherId')
-  int? get teacherId;
-  @JsonKey(name: 'employeeId')
-  int? get employeeId;
-  @JsonKey(name: 'employee')
-  EmployeeApiDto? get employee;
-
-  /// Create a copy of TeacherApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $TeacherApiDto2DtoCopyWith<TeacherApiDto2Dto> get copyWith =>
-      _$TeacherApiDto2DtoCopyWithImpl<TeacherApiDto2Dto>(
-          this as TeacherApiDto2Dto, _$identity);
-
-  /// Serializes this TeacherApiDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is TeacherApiDto2Dto &&
-            (identical(other.teacherId, teacherId) ||
-                other.teacherId == teacherId) &&
-            (identical(other.employeeId, employeeId) ||
-                other.employeeId == employeeId) &&
-            (identical(other.employee, employee) ||
-                other.employee == employee));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, teacherId, employeeId, employee);
-
-  @override
-  String toString() {
-    return 'TeacherApiDto2Dto(teacherId: $teacherId, employeeId: $employeeId, employee: $employee)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $TeacherApiDto2DtoCopyWith<$Res> {
-  factory $TeacherApiDto2DtoCopyWith(
-          TeacherApiDto2Dto value, $Res Function(TeacherApiDto2Dto) _then) =
-      _$TeacherApiDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'teacherId') int? teacherId,
-      @JsonKey(name: 'employeeId') int? employeeId,
-      @JsonKey(name: 'employee') EmployeeApiDto? employee});
-
-  $EmployeeApiDtoCopyWith<$Res>? get employee;
-}
-
-/// @nodoc
-class _$TeacherApiDto2DtoCopyWithImpl<$Res>
-    implements $TeacherApiDto2DtoCopyWith<$Res> {
-  _$TeacherApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final TeacherApiDto2Dto _self;
-  final $Res Function(TeacherApiDto2Dto) _then;
-
-  /// Create a copy of TeacherApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? teacherId = freezed,
-    Object? employeeId = freezed,
-    Object? employee = freezed,
-  }) {
-    return _then(_self.copyWith(
-      teacherId: freezed == teacherId
-          ? _self.teacherId
-          : teacherId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      employeeId: freezed == employeeId
-          ? _self.employeeId
-          : employeeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      employee: freezed == employee
-          ? _self.employee
-          : employee // ignore: cast_nullable_to_non_nullable
-              as EmployeeApiDto?,
-    ));
-  }
-
-  /// Create a copy of TeacherApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $EmployeeApiDtoCopyWith<$Res>? get employee {
-    if (_self.employee == null) {
-      return null;
-    }
-
-    return $EmployeeApiDtoCopyWith<$Res>(_self.employee!, (value) {
-      return _then(_self.copyWith(employee: value));
-    });
-  }
-}
-
-/// Adds pattern-matching-related methods to [TeacherApiDto2Dto].
-extension TeacherApiDto2DtoPatterns on TeacherApiDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_TeacherApiDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _TeacherApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_TeacherApiDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TeacherApiDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_TeacherApiDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TeacherApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'teacherId') int? teacherId,
-            @JsonKey(name: 'employeeId') int? employeeId,
-            @JsonKey(name: 'employee') EmployeeApiDto? employee)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _TeacherApiDto2Dto() when $default != null:
-        return $default(_that.teacherId, _that.employeeId, _that.employee);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'teacherId') int? teacherId,
-            @JsonKey(name: 'employeeId') int? employeeId,
-            @JsonKey(name: 'employee') EmployeeApiDto? employee)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TeacherApiDto2Dto():
-        return $default(_that.teacherId, _that.employeeId, _that.employee);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'teacherId') int? teacherId,
-            @JsonKey(name: 'employeeId') int? employeeId,
-            @JsonKey(name: 'employee') EmployeeApiDto? employee)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _TeacherApiDto2Dto() when $default != null:
-        return $default(_that.teacherId, _that.employeeId, _that.employee);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _TeacherApiDto2Dto implements TeacherApiDto2Dto {
-  _TeacherApiDto2Dto(
-      {@JsonKey(name: 'teacherId') this.teacherId,
-      @JsonKey(name: 'employeeId') this.employeeId,
-      @JsonKey(name: 'employee') this.employee});
-  factory _TeacherApiDto2Dto.fromJson(Map<String, dynamic> json) =>
-      _$TeacherApiDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'teacherId')
-  final int? teacherId;
-  @override
-  @JsonKey(name: 'employeeId')
-  final int? employeeId;
-  @override
-  @JsonKey(name: 'employee')
-  final EmployeeApiDto? employee;
-
-  /// Create a copy of TeacherApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$TeacherApiDto2DtoCopyWith<_TeacherApiDto2Dto> get copyWith =>
-      __$TeacherApiDto2DtoCopyWithImpl<_TeacherApiDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$TeacherApiDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _TeacherApiDto2Dto &&
-            (identical(other.teacherId, teacherId) ||
-                other.teacherId == teacherId) &&
-            (identical(other.employeeId, employeeId) ||
-                other.employeeId == employeeId) &&
-            (identical(other.employee, employee) ||
-                other.employee == employee));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(runtimeType, teacherId, employeeId, employee);
-
-  @override
-  String toString() {
-    return 'TeacherApiDto2Dto(teacherId: $teacherId, employeeId: $employeeId, employee: $employee)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$TeacherApiDto2DtoCopyWith<$Res>
-    implements $TeacherApiDto2DtoCopyWith<$Res> {
-  factory _$TeacherApiDto2DtoCopyWith(
-          _TeacherApiDto2Dto value, $Res Function(_TeacherApiDto2Dto) _then) =
-      __$TeacherApiDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'teacherId') int? teacherId,
-      @JsonKey(name: 'employeeId') int? employeeId,
-      @JsonKey(name: 'employee') EmployeeApiDto? employee});
-
-  @override
-  $EmployeeApiDtoCopyWith<$Res>? get employee;
-}
-
-/// @nodoc
-class __$TeacherApiDto2DtoCopyWithImpl<$Res>
-    implements _$TeacherApiDto2DtoCopyWith<$Res> {
-  __$TeacherApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _TeacherApiDto2Dto _self;
-  final $Res Function(_TeacherApiDto2Dto) _then;
-
-  /// Create a copy of TeacherApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? teacherId = freezed,
-    Object? employeeId = freezed,
-    Object? employee = freezed,
-  }) {
-    return _then(_TeacherApiDto2Dto(
-      teacherId: freezed == teacherId
-          ? _self.teacherId
-          : teacherId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      employeeId: freezed == employeeId
-          ? _self.employeeId
-          : employeeId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      employee: freezed == employee
-          ? _self.employee
-          : employee // ignore: cast_nullable_to_non_nullable
-              as EmployeeApiDto?,
-    ));
-  }
-
-  /// Create a copy of TeacherApiDto2Dto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
