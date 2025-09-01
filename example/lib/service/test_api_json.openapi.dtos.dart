@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element, unnecessary_import, unused_import, invalid_annotation_target
+// ignore_for_file: unused_element, unnecessary_import, unused_import, invalid_annotation_target, curly_braces_in_flow_control_structures, require_trailing_commas
 
 import 'package:dio/dio.dart';
 import 'package:either_dart/either.dart';
