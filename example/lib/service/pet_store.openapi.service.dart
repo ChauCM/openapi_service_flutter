@@ -26,16 +26,17 @@ class PetStoreService {
   /// Update an existing pet
   /// put: /pet
   Future<Either<ApiError, void>> updatePet(PetDto body) async {
+    final endpoint = '/pet';
     try {
       final _ = await _dio.put(
-        '/pet',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/pet',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -49,16 +50,17 @@ class PetStoreService {
   /// Add a new pet to the store
   /// post: /pet
   Future<Either<ApiError, void>> addPet(PetDto body) async {
+    final endpoint = '/pet';
     try {
       final _ = await _dio.post(
-        '/pet',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/pet',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -74,12 +76,13 @@ class PetStoreService {
   /// get: /pet/findByStatus
   Future<Either<ApiError, List<PetDto>>> findPetsByStatus(
       {required List<FindPetsByStatusStatusDto> status}) async {
+    final endpoint = '/pet/findByStatus';
     final queryParams = <String, dynamic>{};
     try {
       queryParams['status'] = status;
 
       final response = await _dio.get(
-        '/pet/findByStatus',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -90,7 +93,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/pet/findByStatus',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -106,12 +109,13 @@ class PetStoreService {
   /// get: /pet/findByTags
   Future<Either<ApiError, List<PetDto>>> findPetsByTags(
       {required List<String> tags}) async {
+    final endpoint = '/pet/findByTags';
     final queryParams = <String, dynamic>{};
     try {
       queryParams['tags'] = tags;
 
       final response = await _dio.get(
-        '/pet/findByTags',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -122,7 +126,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/pet/findByTags',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -137,14 +141,15 @@ class PetStoreService {
   /// Returns a single pet
   /// get: /pet/{petId}
   Future<Either<ApiError, PetDto>> getPetById({required int petId}) async {
+    final endpoint = '/pet/$petId';
     try {
-      final response = await _dio.get('/pet/$petId');
+      final response = await _dio.get(endpoint);
       final result = PetDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/pet/{petId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -160,16 +165,17 @@ class PetStoreService {
     UpdatePetWithFormRequestDto body, {
     required int petId,
   }) async {
+    final endpoint = '/pet/$petId';
     try {
       final _ = await _dio.post(
-        '/pet/$petId',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/pet/{petId}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -186,13 +192,14 @@ class PetStoreService {
     String? apiKey,
     required int petId,
   }) async {
+    final endpoint = '/pet/$petId';
     try {
-      final _ = await _dio.delete('/pet/$petId');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/pet/{petId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -209,12 +216,13 @@ class PetStoreService {
     required int petId,
     void Function(int sent, int total)? onProgress,
   }) async {
+    final endpoint = '/pet/$petId/uploadImage';
     try {
       final length = await file.length();
       final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
 
       final response = await _dio.post(
-        '/pet/$petId/uploadImage',
+        endpoint,
         data: file.openRead(),
         onSendProgress: onProgress,
         options: Options(headers: <String, dynamic>{
@@ -227,7 +235,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/pet/{petId}/uploadImage',
+        endpoint: endpoint,
         requestBody: file,
       );
       return Left(_errorHandler.handleError(
@@ -242,14 +250,15 @@ class PetStoreService {
   /// Returns a map of status codes to quantities
   /// get: /store/inventory
   Future<Either<ApiError, Map<String, int>>> getInventory() async {
+    final endpoint = '/store/inventory';
     try {
-      final response = await _dio.get('/store/inventory');
+      final response = await _dio.get(endpoint);
       final result = (response.data as Map<String, int>);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/store/inventory',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -262,9 +271,10 @@ class PetStoreService {
   /// Place an order for a pet
   /// post: /store/order
   Future<Either<ApiError, OrderDto>> placeOrder(OrderDto body) async {
+    final endpoint = '/store/order';
     try {
       final response = await _dio.post(
-        '/store/order',
+        endpoint,
         data: body.toJson(),
       );
       final result = OrderDto.fromJson(response.data);
@@ -272,7 +282,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/store/order',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -288,14 +298,15 @@ class PetStoreService {
   /// get: /store/order/{orderId}
   Future<Either<ApiError, OrderDto>> getOrderById(
       {required int orderId}) async {
+    final endpoint = '/store/order/$orderId';
     try {
-      final response = await _dio.get('/store/order/$orderId');
+      final response = await _dio.get(endpoint);
       final result = OrderDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/store/order/{orderId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -309,13 +320,14 @@ class PetStoreService {
   /// For valid response try integer IDs with positive integer value.\ \ Negative or non-integer values will generate API errors
   /// delete: /store/order/{orderId}
   Future<Either<ApiError, void>> deleteOrder({required int orderId}) async {
+    final endpoint = '/store/order/$orderId';
     try {
-      final _ = await _dio.delete('/store/order/$orderId');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/store/order/{orderId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -329,16 +341,17 @@ class PetStoreService {
   /// This can only be done by the logged in user.
   /// post: /user
   Future<Either<ApiError, void>> createUser(UserDto body) async {
+    final endpoint = '/user';
     try {
       final _ = await _dio.post(
-        '/user',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/user',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -353,16 +366,17 @@ class PetStoreService {
   /// post: /user/createWithArray
   Future<Either<ApiError, void>> createUsersWithArrayInput(
       List<UserDto> body) async {
+    final endpoint = '/user/createWithArray';
     try {
       final _ = await _dio.post(
-        '/user/createWithArray',
+        endpoint,
         data: body,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/user/createWithArray',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -377,16 +391,17 @@ class PetStoreService {
   /// post: /user/createWithList
   Future<Either<ApiError, void>> createUsersWithListInput(
       List<UserDto> body) async {
+    final endpoint = '/user/createWithList';
     try {
       final _ = await _dio.post(
-        '/user/createWithList',
+        endpoint,
         data: body,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/user/createWithList',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -403,13 +418,14 @@ class PetStoreService {
     required String username,
     required String password,
   }) async {
+    final endpoint = '/user/login';
     final queryParams = <String, dynamic>{};
     try {
       queryParams['username'] = username;
       queryParams['password'] = password;
 
       final response = await _dio.get(
-        '/user/login',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as String);
@@ -417,7 +433,7 @@ class PetStoreService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/user/login',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -431,13 +447,14 @@ class PetStoreService {
   /// Logs out current logged in user session
   /// get: /user/logout
   Future<Either<ApiError, void>> logoutUser() async {
+    final endpoint = '/user/logout';
     try {
-      final _ = await _dio.get('/user/logout');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/user/logout',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -451,14 +468,15 @@ class PetStoreService {
   /// get: /user/{username}
   Future<Either<ApiError, UserDto>> getUserByName(
       {required String username}) async {
+    final endpoint = '/user/$username';
     try {
-      final response = await _dio.get('/user/$username');
+      final response = await _dio.get(endpoint);
       final result = UserDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/user/{username}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -475,16 +493,17 @@ class PetStoreService {
     UserDto body, {
     required String username,
   }) async {
+    final endpoint = '/user/$username';
     try {
       final _ = await _dio.put(
-        '/user/$username',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/user/{username}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -499,13 +518,14 @@ class PetStoreService {
   /// This can only be done by the logged in user.
   /// delete: /user/{username}
   Future<Either<ApiError, void>> deleteUser({required String username}) async {
+    final endpoint = '/user/$username';
     try {
-      final _ = await _dio.delete('/user/$username');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/user/{username}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,

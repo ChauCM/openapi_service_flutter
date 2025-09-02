@@ -1079,6 +1079,9 @@ class OpenApiLibraryGenerator {
         .isNotEmpty;
 
     final methodBody = <Code>[
+      // Declare the full endpoint at the start
+      declareFinal('endpoint').assign(literalString(actualPath)).statement,
+      
       // Declare queryParams outside try block if needed
       ...() {
         if (hasQueryParams) {
@@ -1176,7 +1179,7 @@ class OpenApiLibraryGenerator {
       }(),
 
       // Make the HTTP request
-      _generateHttpCall(httpMethod, path, operation, allParameters, returnType),
+      _generateHttpCall(httpMethod, operation, allParameters, returnType),
 
       // Parse response
       if (returnType != _void) ...[
@@ -1320,7 +1323,7 @@ class OpenApiLibraryGenerator {
       declareFinal('requestContext')
           .assign(refer('RequestContext').call([], {
             'method': literalString(httpMethod.toUpperCase()),
-            'endpoint': literalString(path),
+            'endpoint': refer('endpoint'),
             ...() {
               // Add request body based on the request type
               final requestBodyMap = <String, Expression>{};
@@ -1364,21 +1367,10 @@ class OpenApiLibraryGenerator {
 
   Code _generateHttpCall(
     String httpMethod,
-    String path,
     APIOperation operation,
     List<APIParameter?> parameters,
     Reference returnType,
   ) {
-    final pathParams =
-        parameters.where((p) => p!.location == APIParameterLocation.path);
-    var actualPath = path;
-
-    // Replace path parameters
-    for (final param in pathParams) {
-      actualPath = actualPath.replaceAll(
-          '{${param!.name}}', '\$${param.name!.camelCase}');
-    }
-
     final requestArgs = <String, Expression>{};
 
     // Add query parameters
@@ -1425,7 +1417,7 @@ class OpenApiLibraryGenerator {
     return declareFinal(variableName)
         .assign(refer('_dio')
             .property(httpMethod.toLowerCase())
-            ([literalString(actualPath)], requestArgs)
+            ([refer('endpoint')], requestArgs)
             .awaited)
         .statement;
   }

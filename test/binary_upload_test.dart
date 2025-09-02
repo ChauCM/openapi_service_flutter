@@ -251,10 +251,8 @@ void main() {
         expect(serviceOutput, contains('stackTrace,'));
         expect(serviceOutput, contains('requestContext,'));
         
-        // Should include endpoint path in error handling
-        expect(serviceOutput, contains('\'/api/v1/account/avatar\','));
-        expect(serviceOutput, contains('\'/api/v1/steps/\$stepId/images\','));
-        expect(serviceOutput, contains('\'/api/v1/files/upload\','));
+        // Should include endpoint variable in error handling
+        expect(serviceOutput, contains('endpoint: endpoint,'));
       });
     });
 

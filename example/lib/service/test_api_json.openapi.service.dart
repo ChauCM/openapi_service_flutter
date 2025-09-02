@@ -23,16 +23,17 @@ class TestJsonApiService {
   /// post: /user/register
   Future<Either<ApiError, void>> userRegisterPost(
       RegisterRequestDto body) async {
+    final endpoint = '/user/register';
     try {
       final _ = await _dio.post(
-        '/user/register',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/user/register',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -47,12 +48,13 @@ class TestJsonApiService {
   /// get: /hello/{name}
   Future<Either<ApiError, HelloResponseDto>> helloNameGet(
       {String? salutation}) async {
+    final endpoint = '/hello/{name}';
     final queryParams = <String, dynamic>{};
     try {
       if (salutation != null) queryParams['salutation'] = salutation;
 
       final response = await _dio.get(
-        '/hello/{name}',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = HelloResponseDto.fromJson(response.data);
@@ -60,7 +62,7 @@ class TestJsonApiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/hello/{name}',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -75,9 +77,10 @@ class TestJsonApiService {
   /// put: /hello/{name}
   Future<Either<ApiError, HelloResponseDto>> helloNamePut(
       HelloRequestDto body) async {
+    final endpoint = '/hello/{name}';
     try {
       final response = await _dio.put(
-        '/hello/{name}',
+        endpoint,
         data: body.toJson(),
       );
       final result = HelloResponseDto.fromJson(response.data);
@@ -85,7 +88,7 @@ class TestJsonApiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/hello/{name}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(

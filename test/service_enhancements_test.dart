@@ -119,10 +119,13 @@ paths:
 
         final result = generateServiceLibrary(yamlContent);
 
+        // Check endpoint variable declaration
+        expect(result, contains('final endpoint = \'/users\';'));
+        
         // Check RequestContext usage
         expect(result, contains('final requestContext = RequestContext('));
         expect(result, contains('method: \'GET\','));
-        expect(result, contains('endpoint: \'/users\','));
+        expect(result, contains('endpoint: endpoint,'));
         expect(result, contains('_errorHandler.handleError('));
         expect(result, contains('e,'));
         expect(result, contains('stackTrace,'));
@@ -160,10 +163,13 @@ paths:
 
         final result = generateServiceLibrary(yamlContent);
 
+        // Check endpoint variable declaration
+        expect(result, contains('final endpoint = \'/users\';'));
+        
         // Check RequestContext includes request body
         expect(result, contains('final requestContext = RequestContext('));
         expect(result, contains('method: \'POST\','));
-        expect(result, contains('endpoint: \'/users\','));
+        expect(result, contains('endpoint: endpoint,'));
         expect(result, contains('requestBody: body,'));
       });
 

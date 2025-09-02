@@ -22,13 +22,14 @@ class KagamiService {
   /// get: /Accounts/{accountId}
   Future<Either<ApiError, void>> getWithDetails188(
       {required String accountId}) async {
+    final endpoint = '/Accounts/$accountId';
     try {
-      final _ = await _dio.get('/Accounts/$accountId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Accounts/{accountId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -41,12 +42,13 @@ class KagamiService {
   /// get: /v2/Attendances
   Future<Either<ApiError, DailyLogAttendanceDto>> getAttendanceById190(
       {String? id}) async {
+    final endpoint = '/v2/Attendances';
     final queryParams = <String, dynamic>{};
     try {
       if (id != null) queryParams['Id'] = id;
 
       final response = await _dio.get(
-        '/v2/Attendances',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = DailyLogAttendanceDto.fromJson(response.data);
@@ -54,7 +56,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Attendances',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -67,16 +69,17 @@ class KagamiService {
 
   /// post: /v2/Attendances
   Future<Either<ApiError, void>> logAttendance189(AttendanceDto body) async {
+    final endpoint = '/v2/Attendances';
     try {
       final _ = await _dio.post(
-        '/v2/Attendances',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/Attendances',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -92,9 +95,10 @@ class KagamiService {
     MarkMassAttendanceParameterDto body, {
     required String yyyymmdd,
   }) async {
+    final endpoint = '/v2/Attendances/$yyyymmdd';
     try {
       final response = await _dio.post(
-        '/v2/Attendances/$yyyymmdd',
+        endpoint,
         data: body.toJson(),
       );
       final result = (response.data as List<dynamic>);
@@ -105,7 +109,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/Attendances/{yyyymmdd}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -121,14 +125,15 @@ class KagamiService {
     required String studentid,
     required String logDate,
   }) async {
+    final endpoint = '/v2/Attendances/$studentid/$logDate';
     try {
-      final response = await _dio.get('/v2/Attendances/$studentid/$logDate');
+      final response = await _dio.get(endpoint);
       final result = DailyLogAttendanceDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Attendances/{studentid}/{logDate}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -140,16 +145,17 @@ class KagamiService {
 
   /// post: /Auth/Token
   Future<Either<ApiError, void>> token193(LoginParameterDto body) async {
+    final endpoint = '/Auth/Token';
     try {
       final _ = await _dio.post(
-        '/Auth/Token',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Auth/Token',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -163,16 +169,17 @@ class KagamiService {
   /// post: /Auth/Action/Refresh
   Future<Either<ApiError, void>> refresh194(
       RefreshTokenParameterDto body) async {
+    final endpoint = '/Auth/Action/Refresh';
     try {
       final _ = await _dio.post(
-        '/Auth/Action/Refresh',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Auth/Action/Refresh',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -186,13 +193,14 @@ class KagamiService {
   /// post: /Auth/Schools/{schoolId}
   Future<Either<ApiError, void>> switchSchool195(
       {required String schoolId}) async {
+    final endpoint = '/Auth/Schools/$schoolId';
     try {
-      final _ = await _dio.post('/Auth/Schools/$schoolId');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Auth/Schools/{schoolId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -204,13 +212,14 @@ class KagamiService {
 
   /// get: /Calendars/Error
   Future<Either<ApiError, void>> getError196() async {
+    final endpoint = '/Calendars/Error';
     try {
-      final _ = await _dio.get('/Calendars/Error');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Calendars/Error',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -226,14 +235,14 @@ class KagamiService {
     required String fromYyyyMMdd,
     required String toYyyyMMdd,
   }) async {
+    final endpoint = '/Calendars/Schools/$schoolId/$fromYyyyMMdd/$toYyyyMMdd';
     try {
-      final _ = await _dio
-          .get('/Calendars/Schools/$schoolId/$fromYyyyMMdd/$toYyyyMMdd');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Calendars/Schools/{schoolId}/{from_yyyyMMdd}/{to_yyyyMMdd}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -248,14 +257,15 @@ class KagamiService {
     required String schoolId,
     required String teacherAccountId,
   }) async {
+    final endpoint =
+        '/Calendars/PTC/AvailableSlots/$schoolId/$teacherAccountId';
     try {
-      final _ = await _dio
-          .get('/Calendars/PTC/AvailableSlots/$schoolId/$teacherAccountId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Calendars/PTC/AvailableSlots/{schoolId}/{teacherAccountId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -270,14 +280,14 @@ class KagamiService {
     required String schoolId,
     required String teacherAccountId,
   }) async {
+    final endpoint = '/Calendars/PTC/Slots/$schoolId/$teacherAccountId';
     try {
-      final _ =
-          await _dio.get('/Calendars/PTC/Slots/$schoolId/$teacherAccountId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Calendars/PTC/Slots/{schoolId}/{teacherAccountId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -294,15 +304,15 @@ class KagamiService {
     required String fromYyyyMMdd,
     required String toYyyyMMdd,
   }) async {
+    final endpoint =
+        '/Calendars/PTC/Slots/$schoolId/$teacherAccountId/$fromYyyyMMdd/$toYyyyMMdd';
     try {
-      final _ = await _dio.get(
-          '/Calendars/PTC/Slots/$schoolId/$teacherAccountId/$fromYyyyMMdd/$toYyyyMMdd');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Calendars/PTC/Slots/{schoolId}/{teacherAccountId}/{from_yyyyMMdd}/{to_yyyyMMdd}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -318,15 +328,15 @@ class KagamiService {
     required String teacherAccountId,
     required String eventIds,
   }) async {
+    final endpoint =
+        '/Calendars/PTC/Slots/$schoolId/$teacherAccountId/$eventIds';
     try {
-      final _ = await _dio
-          .delete('/Calendars/PTC/Slots/$schoolId/$teacherAccountId/$eventIds');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint:
-            '/Calendars/PTC/Slots/{schoolId}/{teacherAccountId}/{eventIds}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -342,15 +352,15 @@ class KagamiService {
     required String studentId,
     required String parentAccountId,
   }) async {
+    final endpoint =
+        '/Calendars/PTC/MyBookings/$schoolId/$studentId/$parentAccountId';
     try {
-      final _ = await _dio.get(
-          '/Calendars/PTC/MyBookings/$schoolId/$studentId/$parentAccountId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Calendars/PTC/MyBookings/{schoolId}/{studentId}/{parentAccountId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -365,15 +375,15 @@ class KagamiService {
     required String schoolId,
     required String studentId,
   }) async {
+    final endpoint =
+        '/Calendars/PTC/GetTeachersWithPTCSlots/$schoolId/$studentId';
     try {
-      final _ = await _dio
-          .get('/Calendars/PTC/GetTeachersWithPTCSlots/$schoolId/$studentId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Calendars/PTC/GetTeachersWithPTCSlots/{schoolId}/{studentId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -386,13 +396,14 @@ class KagamiService {
   /// get: /Calendars/PTC/MyBookings/Teachers/{teacherId}
   Future<Either<ApiError, void>> getPTCBookingsByTeacherId204(
       {required String teacherId}) async {
+    final endpoint = '/Calendars/PTC/MyBookings/Teachers/$teacherId';
     try {
-      final _ = await _dio.get('/Calendars/PTC/MyBookings/Teachers/$teacherId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Calendars/PTC/MyBookings/Teachers/{teacherId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -405,16 +416,17 @@ class KagamiService {
   /// post: /Calendars/PTC
   Future<Either<ApiError, void>> bookEvent205(
       BookEventRequestParameterDto body) async {
+    final endpoint = '/Calendars/PTC';
     try {
       final _ = await _dio.post(
-        '/Calendars/PTC',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Calendars/PTC',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -428,16 +440,17 @@ class KagamiService {
   /// post: /Calendars/PTC/Cancel
   Future<Either<ApiError, void>> unBookEvent206(
       BookEventRequestParameterDto body) async {
+    final endpoint = '/Calendars/PTC/Cancel';
     try {
       final _ = await _dio.post(
-        '/Calendars/PTC/Cancel',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Calendars/PTC/Cancel',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -451,16 +464,17 @@ class KagamiService {
   /// post: /Calendars/PTC/Update
   Future<Either<ApiError, void>> updateBookingEvent207(
       EditBookEventParameterDto body) async {
+    final endpoint = '/Calendars/PTC/Update';
     try {
       final _ = await _dio.post(
-        '/Calendars/PTC/Update',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Calendars/PTC/Update',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -476,16 +490,17 @@ class KagamiService {
     CalendarItemParameterDto body, {
     required String id,
   }) async {
+    final endpoint = '/Calendars/PTC/Create/$id';
     try {
       final _ = await _dio.post(
-        '/Calendars/PTC/Create/$id',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Calendars/PTC/Create/{id}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -498,16 +513,17 @@ class KagamiService {
 
   /// post: /CheckInsOuts
   Future<Either<ApiError, void>> logCheckInOut209(CheckInOutDto body) async {
+    final endpoint = '/CheckInsOuts';
     try {
       final _ = await _dio.post(
-        '/CheckInsOuts',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/CheckInsOuts',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -521,12 +537,13 @@ class KagamiService {
   /// get: /v2/CheckInsOuts
   Future<Either<ApiError, CheckInOutDto>> getCheckInOutById211(
       {String? id}) async {
+    final endpoint = '/v2/CheckInsOuts';
     final queryParams = <String, dynamic>{};
     try {
       if (id != null) queryParams['id'] = id;
 
       final response = await _dio.get(
-        '/v2/CheckInsOuts',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = CheckInOutDto.fromJson(response.data);
@@ -534,7 +551,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/CheckInsOuts',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -548,9 +565,10 @@ class KagamiService {
   /// post: /v2/CheckInsOuts
   Future<Either<ApiError, CheckInOutDto>> logCheckInOut210(
       CheckInOutParameterDto body) async {
+    final endpoint = '/v2/CheckInsOuts';
     try {
       final response = await _dio.post(
-        '/v2/CheckInsOuts',
+        endpoint,
         data: body.toJson(),
       );
       final result = CheckInOutDto.fromJson(response.data);
@@ -558,7 +576,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/CheckInsOuts',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -574,14 +592,15 @@ class KagamiService {
     required String studentId,
     required String logDate,
   }) async {
+    final endpoint = '/v2/CheckInsOuts/{studentid}/$logDate';
     try {
-      final response = await _dio.get('/v2/CheckInsOuts/{studentid}/$logDate');
+      final response = await _dio.get(endpoint);
       final result = CheckInOutDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/CheckInsOuts/{studentid}/{logDate}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -597,20 +616,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Classes/$id/Students';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Classes/$id/Students',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Classes/{id}/Students',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -627,20 +647,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Classes/$id/Teachers';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Classes/$id/Teachers',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Classes/{id}/Teachers',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -657,15 +678,15 @@ class KagamiService {
     required String yyyyMMddStart,
     required String yyyyMMddEnd,
   }) async {
+    final endpoint =
+        '/Classes/$classid/Attendances/$yyyyMMddStart/$yyyyMMddEnd';
     try {
-      final _ = await _dio
-          .get('/Classes/$classid/Attendances/$yyyyMMddStart/$yyyyMMddEnd');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Classes/{classid}/Attendances/{yyyyMMdd_start}/{yyyyMMdd_end}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -677,13 +698,14 @@ class KagamiService {
 
   /// get: /Classes/{id}
   Future<Either<ApiError, void>> getById216({required String id}) async {
+    final endpoint = '/Classes/$id';
     try {
-      final _ = await _dio.get('/Classes/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Classes/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -695,13 +717,14 @@ class KagamiService {
 
   /// get: /v2/Classes/{id}
   Future<Either<ApiError, void>> getById217({required String id}) async {
+    final endpoint = '/v2/Classes/$id';
     try {
-      final _ = await _dio.get('/v2/Classes/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Classes/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -717,20 +740,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/v2/Classes/$id/Students';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/v2/Classes/$id/Students',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Classes/{id}/Students',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -747,20 +771,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/v2/Classes/$id/Teachers';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/v2/Classes/$id/Teachers',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Classes/{id}/Teachers',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -776,13 +801,14 @@ class KagamiService {
     required String classid,
     required String yyyyMMdd,
   }) async {
+    final endpoint = '/v2/Classes/$classid/Attendances/{yyyymmdd}';
     try {
-      final _ = await _dio.get('/v2/Classes/$classid/Attendances/{yyyymmdd}');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Classes/{classid}/Attendances/{yyyymmdd}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -798,15 +824,15 @@ class KagamiService {
     required String yyyyMMddStart,
     required String yyyyMMddEnd,
   }) async {
+    final endpoint =
+        '/v2/Classes/$classid/Attendances/$yyyyMMddStart/$yyyyMMddEnd';
     try {
-      final _ = await _dio
-          .get('/v2/Classes/$classid/Attendances/$yyyyMMddStart/$yyyyMMddEnd');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/v2/Classes/{classid}/Attendances/{yyyyMMdd_start}/{yyyyMMdd_end}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -821,13 +847,14 @@ class KagamiService {
     required String classid,
     required String date,
   }) async {
+    final endpoint = '/v2/Classes/$classid/CheckInOuts/$date';
     try {
-      final _ = await _dio.get('/v2/Classes/$classid/CheckInOuts/$date');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Classes/{classid}/CheckInOuts/{date}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -843,9 +870,9 @@ class KagamiService {
     required String schoolid,
     required String searchstring,
   }) async {
+    final endpoint = '/v2/Classes/$schoolid/StudentSearch/$searchstring';
     try {
-      final response =
-          await _dio.get('/v2/Classes/$schoolid/StudentSearch/$searchstring');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) =>
@@ -855,7 +882,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Classes/{schoolid}/StudentSearch/{searchstring}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -871,8 +898,9 @@ class KagamiService {
     required String classid,
     required String date,
   }) async {
+    final endpoint = '/v2/Classes/$classid/Status/$date';
     try {
-      final response = await _dio.get('/v2/Classes/$classid/Status/$date');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) =>
@@ -882,7 +910,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/Classes/{classid}/Status/{date}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -895,16 +923,17 @@ class KagamiService {
   /// post: /Communications/Action/SendNotification
   Future<Either<ApiError, void>> sendNotification225(
       CommunicationsParameterDto body) async {
+    final endpoint = '/Communications/Action/SendNotification';
     try {
       final _ = await _dio.post(
-        '/Communications/Action/SendNotification',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Communications/Action/SendNotification',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -921,20 +950,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Communications/Action/GetNotifications/$topic';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['pageNumber'] = pageNumber;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Communications/Action/GetNotifications/$topic',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Communications/Action/GetNotifications/{topic}',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -948,14 +978,14 @@ class KagamiService {
   /// put: /Communications/Action/UpdateNotificationStatus/{topic}
   Future<Either<ApiError, void>> updateNotificationStatus227(
       {required String topic}) async {
+    final endpoint = '/Communications/Action/UpdateNotificationStatus/$topic';
     try {
-      final _ = await _dio
-          .put('/Communications/Action/UpdateNotificationStatus/$topic');
+      final _ = await _dio.put(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/Communications/Action/UpdateNotificationStatus/{topic}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -968,15 +998,15 @@ class KagamiService {
   /// post: /Communications/Action/SendTeacherReminderNotification/{TeacherReminderTypes}
   Future<Either<ApiError, void>> sendTeacherReminderNotification228(
       {required String teacherReminderTypes}) async {
+    final endpoint =
+        '/Communications/Action/SendTeacherReminderNotification/$teacherReminderTypes';
     try {
-      final _ = await _dio.post(
-          '/Communications/Action/SendTeacherReminderNotification/$teacherReminderTypes');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint:
-            '/Communications/Action/SendTeacherReminderNotification/{TeacherReminderTypes}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -989,15 +1019,15 @@ class KagamiService {
   /// post: /Communications/Action/SendPrincipalNotification/{NotificationType}
   Future<Either<ApiError, void>> sendPrincipalNotification229(
       {required String notificationType}) async {
+    final endpoint =
+        '/Communications/Action/SendPrincipalNotification/$notificationType';
     try {
-      final _ = await _dio.post(
-          '/Communications/Action/SendPrincipalNotification/$notificationType');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint:
-            '/Communications/Action/SendPrincipalNotification/{NotificationType}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1009,14 +1039,14 @@ class KagamiService {
 
   /// post: /Communications/Action/SendCustomNotification
   Future<Either<ApiError, void>> sendCustomNotification230() async {
+    final endpoint = '/Communications/Action/SendCustomNotification';
     try {
-      final _ =
-          await _dio.post('/Communications/Action/SendCustomNotification');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Communications/Action/SendCustomNotification',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1031,15 +1061,15 @@ class KagamiService {
     required String entityType,
     required String entityId,
   }) async {
+    final endpoint =
+        '/Communications/Action/SendPushNotification/$entityType/$entityId';
     try {
-      final _ = await _dio.post(
-          '/Communications/Action/SendPushNotification/$entityType/$entityId');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint:
-            '/Communications/Action/SendPushNotification/{entityType}/{entityId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1054,16 +1084,17 @@ class KagamiService {
     CustomNotificationParametersDto body, {
     required String entityType,
   }) async {
+    final endpoint = '/Communications/Action/SendPTCNotification/$entityType';
     try {
       final _ = await _dio.post(
-        '/Communications/Action/SendPTCNotification/$entityType',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Communications/Action/SendPTCNotification/{entityType}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1079,20 +1110,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Countries';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Countries',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Countries',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1108,13 +1140,14 @@ class KagamiService {
     required String schoolId,
     required String levelId,
   }) async {
+    final endpoint = '/CourseComponents/$schoolId/$levelId';
     try {
-      final _ = await _dio.get('/CourseComponents/$schoolId/$levelId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/CourseComponents/{schoolId}/{levelId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1130,15 +1163,15 @@ class KagamiService {
     required String academicYearId,
     required String yyyyMMdd,
   }) async {
+    final endpoint =
+        '/CourseComponents/$courseComponentId/$academicYearId/$yyyyMMdd';
     try {
-      final _ = await _dio.get(
-          '/CourseComponents/$courseComponentId/$academicYearId/$yyyyMMdd');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/CourseComponents/{courseComponentId}/{academicYearId}/{yyyyMMdd}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1153,16 +1186,17 @@ class KagamiService {
     CourseComponentAttendanceDto body, {
     required String userId,
   }) async {
+    final endpoint = '/CourseComponents/$userId';
     try {
       final _ = await _dio.post(
-        '/CourseComponents/$userId',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/CourseComponents/{userId}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1178,16 +1212,17 @@ class KagamiService {
     CourseComponentStudentParameterDto body, {
     required String courseComponentId,
   }) async {
+    final endpoint = '/CourseComponents/$courseComponentId/students';
     try {
       final _ = await _dio.post(
-        '/CourseComponents/$courseComponentId/students',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/CourseComponents/{courseComponentId}/students',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1203,20 +1238,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Courses';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Courses',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Courses',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1229,13 +1265,14 @@ class KagamiService {
 
   /// get: /Courses/{id}
   Future<Either<ApiError, void>> getById239({required String id}) async {
+    final endpoint = '/Courses/$id';
     try {
-      final _ = await _dio.get('/Courses/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Courses/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1253,6 +1290,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Courses/$id/classes';
     final queryParams = <String, dynamic>{};
     try {
       if (showActiveOnly != null)
@@ -1263,14 +1301,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Courses/$id/classes',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Courses/{id}/classes',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1287,6 +1325,7 @@ class KagamiService {
     String? schoolId,
     String? academicYearId,
   }) async {
+    final endpoint = '/Courses/$id/students';
     final queryParams = <String, dynamic>{};
     try {
       if (schoolId != null) queryParams['SchoolId'] = schoolId;
@@ -1294,14 +1333,14 @@ class KagamiService {
         queryParams['AcademicYearId'] = academicYearId;
 
       final _ = await _dio.get(
-        '/Courses/$id/students',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Courses/{id}/students',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1318,13 +1357,14 @@ class KagamiService {
     required int year,
     required int month,
   }) async {
+    final endpoint = '/DailyLogs/$studentid/$year/$month';
     try {
-      final _ = await _dio.get('/DailyLogs/$studentid/$year/$month');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/DailyLogs/{studentid}/{year}/{month}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1339,13 +1379,14 @@ class KagamiService {
     required String studentId,
     required String logDate,
   }) async {
+    final endpoint = '/v2/DailyLogs/{studentid}/$logDate';
     try {
-      final _ = await _dio.get('/v2/DailyLogs/{studentid}/$logDate');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/DailyLogs/{studentid}/{logDate}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1361,13 +1402,14 @@ class KagamiService {
     required int year,
     required int month,
   }) async {
+    final endpoint = '/v2/DailyLogs/$studentid/$year/$month';
     try {
-      final _ = await _dio.get('/v2/DailyLogs/$studentid/$year/$month');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/DailyLogs/{studentid}/{year}/{month}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1383,14 +1425,14 @@ class KagamiService {
     required String dateFrom,
     required String dateTo,
   }) async {
+    final endpoint = '/v2/DailyLogs/$studentid/daterange/$dateFrom/$dateTo';
     try {
-      final _ = await _dio
-          .get('/v2/DailyLogs/$studentid/daterange/$dateFrom/$dateTo');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/DailyLogs/{studentid}/daterange/{dateFrom}/{dateTo}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1406,14 +1448,14 @@ class KagamiService {
     required int month,
     required int year,
   }) async {
+    final endpoint = '/v2/DailyLogs/DailyLogMonitoring/$schoolId/$month/$year';
     try {
-      final _ = await _dio
-          .get('/v2/DailyLogs/DailyLogMonitoring/$schoolId/$month/$year');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/DailyLogs/DailyLogMonitoring/{SchoolId}/{Month}/{Year}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1430,15 +1472,15 @@ class KagamiService {
     required int year,
     required String classId,
   }) async {
+    final endpoint =
+        '/v2/DailyLogs/DailyLogMonitoring/Absences/$schoolId/$month/$year/$classId';
     try {
-      final _ = await _dio.get(
-          '/v2/DailyLogs/DailyLogMonitoring/Absences/$schoolId/$month/$year/$classId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/v2/DailyLogs/DailyLogMonitoring/Absences/{SchoolId}/{Month}/{Year}/{ClassId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1455,15 +1497,15 @@ class KagamiService {
     required int year,
     required String classId,
   }) async {
+    final endpoint =
+        '/v2/DailyLogs/DailyLogMonitoring/IncompleteTemperature/$schoolId/$month/$year/$classId';
     try {
-      final _ = await _dio.get(
-          '/v2/DailyLogs/DailyLogMonitoring/IncompleteTemperature/$schoolId/$month/$year/$classId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/v2/DailyLogs/DailyLogMonitoring/IncompleteTemperature/{SchoolId}/{Month}/{Year}/{ClassId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1476,13 +1518,14 @@ class KagamiService {
   /// put: /Files/{filename}
   Future<Either<ApiError, void>> fileUpload249(
       {required String filename}) async {
+    final endpoint = '/Files/$filename';
     try {
-      final _ = await _dio.put('/Files/$filename');
+      final _ = await _dio.put(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/Files/{filename}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1497,13 +1540,14 @@ class KagamiService {
     required String entityId,
     required String entity,
   }) async {
+    final endpoint = '/Files/$entity/$entityId';
     try {
-      final _ = await _dio.put('/Files/$entity/$entityId');
+      final _ = await _dio.put(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/Files/{entity}/{entityId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1515,13 +1559,14 @@ class KagamiService {
 
   /// get: /Files/{id}
   Future<Either<ApiError, void>> getFileById251({required String id}) async {
+    final endpoint = '/Files/$id';
     try {
-      final _ = await _dio.get('/Files/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Files/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1539,6 +1584,7 @@ class KagamiService {
     int? h,
     int? w,
   }) async {
+    final endpoint = '/Files/Images';
     final queryParams = <String, dynamic>{};
     try {
       if (e != null) queryParams['e'] = e;
@@ -1548,14 +1594,14 @@ class KagamiService {
       if (w != null) queryParams['w'] = w;
 
       final _ = await _dio.get(
-        '/Files/Images',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Files/Images',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1568,13 +1614,14 @@ class KagamiService {
 
   /// get: /Fs/{path}
   Future<Either<ApiError, void>> get253({required String path}) async {
+    final endpoint = '/Fs/$path';
     try {
-      final _ = await _dio.get('/Fs/$path');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Fs/{path}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1594,6 +1641,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Goals/post';
     final queryParams = <String, dynamic>{};
     try {
       if (studentList != null) queryParams['studentList'] = studentList;
@@ -1606,14 +1654,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Goals/post',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Goals/post',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1634,6 +1682,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Goals/goallevels';
     final queryParams = <String, dynamic>{};
     try {
       if (studentList != null) queryParams['studentList'] = studentList;
@@ -1646,14 +1695,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Goals/goallevels',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Goals/goallevels',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1666,13 +1715,14 @@ class KagamiService {
 
   /// get: /Invoices/{id}
   Future<Either<ApiError, void>> get256({required String id}) async {
+    final endpoint = '/Invoices/$id';
     try {
-      final _ = await _dio.get('/Invoices/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Invoices/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1688,20 +1738,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Invoices/$id/Household';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Invoices/$id/Household',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Invoices/{id}/Household',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1718,20 +1769,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Invoices/$id/Parent/History';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Invoices/$id/Parent/History',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Invoices/{id}/Parent/History',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1748,20 +1800,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Invoices/$id/Parent/Outstanding';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Invoices/$id/Parent/Outstanding',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Invoices/{id}/Parent/Outstanding',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1777,14 +1830,14 @@ class KagamiService {
     required String studentId,
     required String invoiceName,
   }) async {
+    final endpoint = '/Invoices/OutstandingItems/$studentId/$invoiceName';
     try {
-      final _ =
-          await _dio.get('/Invoices/OutstandingItems/$studentId/$invoiceName');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Invoices/OutstandingItems/{studentId}/{invoiceName}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1801,15 +1854,15 @@ class KagamiService {
     required String yyyyMMddInvoiceEndDate,
     required String yyyyMMddReceiptCutOffDate,
   }) async {
+    final endpoint =
+        '/Invoices/OutstandingAR/$universityId/$yyyyMMddInvoiceStartDate/$yyyyMMddInvoiceEndDate/$yyyyMMddReceiptCutOffDate';
     try {
-      final _ = await _dio.get(
-          '/Invoices/OutstandingAR/$universityId/$yyyyMMddInvoiceStartDate/$yyyyMMddInvoiceEndDate/$yyyyMMddReceiptCutOffDate');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Invoices/OutstandingAR/{universityId}/{yyyyMMdd_InvoiceStartDate}/{yyyyMMdd_InvoiceEndDate}/{yyyyMMdd_ReceiptCutOffDate}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1822,14 +1875,15 @@ class KagamiService {
   /// get: /MedicineAuditTrails/{id}
   Future<Either<ApiError, MedicineAuditWithDetailVODto>> getById262(
       {required int id}) async {
+    final endpoint = '/MedicineAuditTrails/$id';
     try {
-      final response = await _dio.get('/MedicineAuditTrails/$id');
+      final response = await _dio.get(endpoint);
       final result = MedicineAuditWithDetailVODto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineAuditTrails/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1848,6 +1902,7 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineAuditTrails/schools/$schoolId/allAudits';
     final queryParams = <String, dynamic>{};
     try {
       if (filterDateFrom != null)
@@ -1857,7 +1912,7 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineAuditTrails/schools/$schoolId/allAudits',
+        endpoint,
         queryParameters: queryParams,
       );
       final result =
@@ -1866,7 +1921,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineAuditTrails/schools/{schoolId}/allAudits',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1880,16 +1935,17 @@ class KagamiService {
   /// post: /MedicineAuditTrails
   Future<Either<ApiError, void>> saveMedicineAudit265(
       MedicineAuditTrailsDto body) async {
+    final endpoint = '/MedicineAuditTrails';
     try {
       final _ = await _dio.post(
-        '/MedicineAuditTrails',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineAuditTrails',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1902,20 +1958,21 @@ class KagamiService {
 
   /// delete: /MedicineAuditTrails
   Future<Either<ApiError, void>> delete264({int? medicineAuditId}) async {
+    final endpoint = '/MedicineAuditTrails';
     final queryParams = <String, dynamic>{};
     try {
       if (medicineAuditId != null)
         queryParams['medicineAuditId'] = medicineAuditId;
 
       final _ = await _dio.delete(
-        '/MedicineAuditTrails',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/MedicineAuditTrails',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -1929,9 +1986,9 @@ class KagamiService {
   /// get: /MedicineAuditTrails/ByMedicineFormId/{medicineFormId}
   Future<Either<ApiError, List<MedicineAuditWithDetailVODto>>>
       getListByMedicineFormId266({required int medicineFormId}) async {
+    final endpoint = '/MedicineAuditTrails/ByMedicineFormId/$medicineFormId';
     try {
-      final response = await _dio
-          .get('/MedicineAuditTrails/ByMedicineFormId/$medicineFormId');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) => MedicineAuditWithDetailVODto.fromJson(
@@ -1941,7 +1998,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineAuditTrails/ByMedicineFormId/{medicineFormId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1956,16 +2013,17 @@ class KagamiService {
     MedicineAuditTrailsDto body, {
     required String userId,
   }) async {
+    final endpoint = '/MedicineAuditTrails/user/$userId';
     try {
       final _ = await _dio.post(
-        '/MedicineAuditTrails/user/$userId',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineAuditTrails/user/{userId}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -1979,16 +2037,17 @@ class KagamiService {
   /// post: /MedicineAuditTrails/verify
   Future<Either<ApiError, void>> verifyByMedicineFormId268(
       MedicineAuditTrailsVerifierDto body) async {
+    final endpoint = '/MedicineAuditTrails/verify';
     try {
       final _ = await _dio.post(
-        '/MedicineAuditTrails/verify',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineAuditTrails/verify',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2004,16 +2063,17 @@ class KagamiService {
     MedicineAuditTrailsVerifierDto body, {
     required String userId,
   }) async {
+    final endpoint = '/MedicineAuditTrails/verify/$userId';
     try {
       final _ = await _dio.post(
-        '/MedicineAuditTrails/verify/$userId',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineAuditTrails/verify/{userId}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2027,16 +2087,17 @@ class KagamiService {
   /// post: /MedicineAuditTrails/reject
   Future<Either<ApiError, void>> rejectByMedicineFormId270(
       MedicineAuditTrailsVerifierDto body) async {
+    final endpoint = '/MedicineAuditTrails/reject';
     try {
       final _ = await _dio.post(
-        '/MedicineAuditTrails/reject',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineAuditTrails/reject',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2049,13 +2110,14 @@ class KagamiService {
 
   /// get: /MedicineDetails/{id}
   Future<Either<ApiError, void>> getById271({required String id}) async {
+    final endpoint = '/MedicineDetails/$id';
     try {
-      final _ = await _dio.get('/MedicineDetails/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineDetails/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2070,13 +2132,14 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineForm';
     final queryParams = <String, dynamic>{};
     try {
       if (page != null) queryParams['Page'] = page;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineForm',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -2088,7 +2151,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2102,16 +2165,17 @@ class KagamiService {
   /// post: /MedicineForm
   Future<Either<ApiError, void>> saveMedicineForm274(
       MedicineFormDto body) async {
+    final endpoint = '/MedicineForm';
     try {
       final _ = await _dio.post(
-        '/MedicineForm',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2124,19 +2188,20 @@ class KagamiService {
 
   /// delete: /MedicineForm
   Future<Either<ApiError, void>> delete272({String? id}) async {
+    final endpoint = '/MedicineForm';
     final queryParams = <String, dynamic>{};
     try {
       if (id != null) queryParams['id'] = id;
 
       final _ = await _dio.delete(
-        '/MedicineForm',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/MedicineForm',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2150,14 +2215,15 @@ class KagamiService {
   /// get: /MedicineForm/{id}
   Future<Either<ApiError, MedicineFormFullVODto>> getFullMedicineForm275(
       {required int id}) async {
+    final endpoint = '/MedicineForm/$id';
     try {
-      final response = await _dio.get('/MedicineForm/$id');
+      final response = await _dio.get(endpoint);
       final result = MedicineFormFullVODto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2171,9 +2237,9 @@ class KagamiService {
   Future<Either<ApiError, List<MedicineDataStudentVODto>>>
       getStudentWithMedicineDataByParentId276(
           {required String parentId}) async {
+    final endpoint = '/MedicineForm/parents/$parentId/students';
     try {
-      final response =
-          await _dio.get('/MedicineForm/parents/$parentId/students');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) =>
@@ -2183,7 +2249,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/parents/{parentId}/students',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2197,14 +2263,15 @@ class KagamiService {
   Future<Either<ApiError, MedicineDataStudentVODto>>
       getStudentWithMedicineDataByMedicineFormId277(
           {required int medicineFormId}) async {
+    final endpoint = '/MedicineForm/$medicineFormId/student';
     try {
-      final response = await _dio.get('/MedicineForm/$medicineFormId/student');
+      final response = await _dio.get(endpoint);
       final result = MedicineDataStudentVODto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/{medicineFormId}/student',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2217,9 +2284,9 @@ class KagamiService {
   /// get: /MedicineForm/classes/{classId}/students
   Future<Either<ApiError, List<MedicineDataStudentVODto>>>
       getStudentsWithMedicineDataByClassId278({required String classId}) async {
+    final endpoint = '/MedicineForm/classes/$classId/students';
     try {
-      final response =
-          await _dio.get('/MedicineForm/classes/$classId/students');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) =>
@@ -2229,7 +2296,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/classes/{classId}/students',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2245,12 +2312,13 @@ class KagamiService {
     required String schoolId,
     String? searchString,
   }) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/students';
     final queryParams = <String, dynamic>{};
     try {
       if (searchString != null) queryParams['searchString'] = searchString;
 
       final response = await _dio.get(
-        '/MedicineForm/schools/$schoolId/students',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -2262,7 +2330,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/students',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2276,9 +2344,9 @@ class KagamiService {
   /// get: /MedicineForm/schools/{schoolId}/homePageInfo
   Future<Either<ApiError, List<MedicineFormFullVODto>>>
       getHomePageInfoBySchoolId280({required String schoolId}) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/homePageInfo';
     try {
-      final response =
-          await _dio.get('/MedicineForm/schools/$schoolId/homePageInfo');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) =>
@@ -2288,7 +2356,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/homePageInfo',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2304,12 +2372,13 @@ class KagamiService {
     required String schoolId,
     String? date,
   }) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/todayMedicine';
     final queryParams = <String, dynamic>{};
     try {
       if (date != null) queryParams['date'] = date;
 
       final response = await _dio.get(
-        '/MedicineForm/schools/$schoolId/todayMedicine',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -2321,7 +2390,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/todayMedicine',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2339,13 +2408,14 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/allActiveMedicine';
     final queryParams = <String, dynamic>{};
     try {
       if (page != null) queryParams['Page'] = page;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineForm/schools/$schoolId/allActiveMedicine',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
@@ -2353,7 +2423,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/allActiveMedicine',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2374,6 +2444,7 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/allRequestMedicine';
     final queryParams = <String, dynamic>{};
     try {
       if (classId != null) queryParams['classId'] = classId;
@@ -2384,7 +2455,7 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineForm/schools/$schoolId/allRequestMedicine',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
@@ -2392,7 +2463,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/allRequestMedicine',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2416,6 +2487,7 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/request/$status';
     final queryParams = <String, dynamic>{};
     try {
       if (search != null) queryParams['Search'] = search;
@@ -2428,7 +2500,7 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineForm/schools/$schoolId/request/$status',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
@@ -2436,7 +2508,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/request/{status}',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2459,6 +2531,7 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/medicinerequests';
     final queryParams = <String, dynamic>{};
     try {
       if (search != null) queryParams['Search'] = search;
@@ -2471,7 +2544,7 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineForm/schools/$schoolId/medicinerequests',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
@@ -2479,7 +2552,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/medicinerequests',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2493,9 +2566,9 @@ class KagamiService {
   /// get: /MedicineForm/schools/{schoolId}/actionMedicine
   Future<Either<ApiError, List<MedicineFormFullVODto>>>
       getActionMedicineBySchoolId286({required String schoolId}) async {
+    final endpoint = '/MedicineForm/schools/$schoolId/actionMedicine';
     try {
-      final response =
-          await _dio.get('/MedicineForm/schools/$schoolId/actionMedicine');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) =>
@@ -2505,7 +2578,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/schools/{schoolId}/actionMedicine',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2522,13 +2595,14 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineForm/students/$studentId/validMedicines';
     final queryParams = <String, dynamic>{};
     try {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineForm/students/$studentId/validMedicines',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -2540,7 +2614,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/students/{studentId}/validMedicines',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2558,13 +2632,14 @@ class KagamiService {
     int? page,
     int? pageSize,
   }) async {
+    final endpoint = '/MedicineForm/students/$studentId/expiredMedicines';
     final queryParams = <String, dynamic>{};
     try {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
 
       final response = await _dio.get(
-        '/MedicineForm/students/$studentId/expiredMedicines',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = (response.data as List<dynamic>);
@@ -2576,7 +2651,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/MedicineForm/students/{studentId}/expiredMedicines',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2592,16 +2667,17 @@ class KagamiService {
     MedicineFormUpdateDto body, {
     required int medicineFormId,
   }) async {
+    final endpoint = '/MedicineForm/$medicineFormId';
     try {
       final _ = await _dio.put(
-        '/MedicineForm/$medicineFormId',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/MedicineForm/{medicineFormId}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2615,13 +2691,14 @@ class KagamiService {
   /// post: /MedicineForm/{id}/cancel
   Future<Either<ApiError, void>> cancelMedicineForm290(
       {required int id}) async {
+    final endpoint = '/MedicineForm/$id/cancel';
     try {
-      final _ = await _dio.post('/MedicineForm/$id/cancel');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{id}/cancel',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2636,13 +2713,14 @@ class KagamiService {
     required int id,
     required String userid,
   }) async {
+    final endpoint = '/MedicineForm/$id/cancel/$userid';
     try {
-      final _ = await _dio.post('/MedicineForm/$id/cancel/$userid');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{id}/cancel/{userid}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2657,16 +2735,17 @@ class KagamiService {
     MedicineFormRejectDto body, {
     required int id,
   }) async {
+    final endpoint = '/MedicineForm/$id/reject';
     try {
       final _ = await _dio.post(
-        '/MedicineForm/$id/reject',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{id}/reject',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2683,16 +2762,17 @@ class KagamiService {
     required int id,
     required String userid,
   }) async {
+    final endpoint = '/MedicineForm/$id/reject/$userid';
     try {
       final _ = await _dio.post(
-        '/MedicineForm/$id/reject/$userid',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{id}/reject/{userid}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2706,13 +2786,14 @@ class KagamiService {
   /// post: /MedicineForm/{medicineFormId}/acknowledge
   Future<Either<ApiError, void>> acknowledgeMedicineForm294(
       {required int medicineFormId}) async {
+    final endpoint = '/MedicineForm/$medicineFormId/acknowledge';
     try {
-      final _ = await _dio.post('/MedicineForm/$medicineFormId/acknowledge');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{medicineFormId}/acknowledge',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2727,14 +2808,14 @@ class KagamiService {
     required int medicineFormId,
     required String userId,
   }) async {
+    final endpoint = '/MedicineForm/$medicineFormId/acknowledge/$userId';
     try {
-      final _ =
-          await _dio.post('/MedicineForm/$medicineFormId/acknowledge/$userId');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{medicineFormId}/acknowledge/{userId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2747,13 +2828,14 @@ class KagamiService {
   /// post: /MedicineForm/{id}/acknowledge/cancel
   Future<Either<ApiError, void>> acknowledgeCancelMedicineForm296(
       {required int id}) async {
+    final endpoint = '/MedicineForm/$id/acknowledge/cancel';
     try {
-      final _ = await _dio.post('/MedicineForm/$id/acknowledge/cancel');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{id}/acknowledge/cancel',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2768,13 +2850,14 @@ class KagamiService {
     required int id,
     required String userid,
   }) async {
+    final endpoint = '/MedicineForm/$id/acknowledge/cancel/$userid';
     try {
-      final _ = await _dio.post('/MedicineForm/$id/acknowledge/cancel/$userid');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/MedicineForm/{id}/acknowledge/cancel/{userid}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2786,13 +2869,14 @@ class KagamiService {
 
   /// get: /Menu/Action/GetMenus
   Future<Either<ApiError, void>> getMenus298() async {
+    final endpoint = '/Menu/Action/GetMenus';
     try {
-      final _ = await _dio.get('/Menu/Action/GetMenus');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Menu/Action/GetMenus',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2805,16 +2889,17 @@ class KagamiService {
   /// post: /OTP
   Future<Either<ApiError, void>> generateAndSendOTP299(
       OTPParameterDto body) async {
+    final endpoint = '/OTP';
     try {
       final _ = await _dio.post(
-        '/OTP',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/OTP',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2828,16 +2913,17 @@ class KagamiService {
   /// post: /OTP/Action/Validate
   Future<Either<ApiError, void>> validateOtp300(
       OTPValidateParameterDto body) async {
+    final endpoint = '/OTP/Action/Validate';
     try {
       final _ = await _dio.post(
-        '/OTP/Action/Validate',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/OTP/Action/Validate',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -2851,8 +2937,9 @@ class KagamiService {
   /// get: /Parents/{id}/Students
   Future<Either<ApiError, List<StudentWithConfigVODto>>>
       getStudentDetailByParentId301({required String id}) async {
+    final endpoint = '/Parents/$id/Students';
     try {
-      final response = await _dio.get('/Parents/$id/Students');
+      final response = await _dio.get(endpoint);
       final result = (response.data as List<dynamic>);
       final mappedResult = result
           .map((item) =>
@@ -2862,7 +2949,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Parents/{id}/Students',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2874,13 +2961,14 @@ class KagamiService {
 
   /// get: /Posts/{id}
   Future<Either<ApiError, void>> get302({required String id}) async {
+    final endpoint = '/Posts/$id';
     try {
-      final _ = await _dio.get('/Posts/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2910,6 +2998,7 @@ class KagamiService {
     int? pageSize,
     required String id,
   }) async {
+    final endpoint = '/Posts/Teacher/$id';
     final queryParams = <String, dynamic>{};
     try {
       if (schoolId != null) queryParams['SchoolId'] = schoolId;
@@ -2935,14 +3024,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Posts/Teacher/$id',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/Teacher/{id}',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -2955,13 +3044,14 @@ class KagamiService {
 
   /// get: /Posts/{id}/Files
   Future<Either<ApiError, void>> getFiles304({required String id}) async {
+    final endpoint = '/Posts/$id/Files';
     try {
-      final _ = await _dio.get('/Posts/$id/Files');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/{id}/Files',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -2976,16 +3066,17 @@ class KagamiService {
     List<String> body, {
     required String id,
   }) async {
+    final endpoint = '/Posts/$id/Files';
     try {
       final _ = await _dio.post(
-        '/Posts/$id/Files',
+        endpoint,
         data: body,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Posts/{id}/Files',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3015,6 +3106,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Posts';
     final queryParams = <String, dynamic>{};
     try {
       if (schoolId != null) queryParams['SchoolId'] = schoolId;
@@ -3040,14 +3132,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Posts',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -3060,16 +3152,17 @@ class KagamiService {
 
   /// put: /Posts
   Future<Either<ApiError, void>> updatePost308(PostDto body) async {
+    final endpoint = '/Posts';
     try {
       final _ = await _dio.put(
-        '/Posts',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/Posts',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3082,16 +3175,17 @@ class KagamiService {
 
   /// post: /Posts
   Future<Either<ApiError, void>> createPost307(PostDto body) async {
+    final endpoint = '/Posts';
     try {
       final _ = await _dio.post(
-        '/Posts',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Posts',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3105,16 +3199,17 @@ class KagamiService {
   /// post: /Posts/Search
   Future<Either<ApiError, void>> search309(
       PostQueryStringParametersDto body) async {
+    final endpoint = '/Posts/Search';
     try {
       final _ = await _dio.post(
-        '/Posts/Search',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Posts/Search',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3136,6 +3231,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Posts/Student/$studentId';
     final queryParams = <String, dynamic>{};
     try {
       if (postType != null) queryParams['PostType'] = postType;
@@ -3149,14 +3245,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Posts/Student/$studentId',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/Student/{studentId}',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -3170,16 +3266,17 @@ class KagamiService {
   /// post: /Posts/Actions/GeneratePdf
   Future<Either<ApiError, void>> generatePdf311(
       PostToPDFParametersDto body) async {
+    final endpoint = '/Posts/Actions/GeneratePdf';
     try {
       final _ = await _dio.post(
-        '/Posts/Actions/GeneratePdf',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Posts/Actions/GeneratePdf',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3195,13 +3292,14 @@ class KagamiService {
     required String postId,
     required String studentId,
   }) async {
+    final endpoint = '/Posts/Actions/GeneratePdf/$postId/$studentId';
     try {
-      final _ = await _dio.get('/Posts/Actions/GeneratePdf/$postId/$studentId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/Actions/GeneratePdf/{PostId}/{StudentId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3214,13 +3312,14 @@ class KagamiService {
   /// get: /Posts/v2/Actions/GeneratePdf/{postId}
   Future<Either<ApiError, void>> generatePdfByIdAsync2313(
       {required String postId}) async {
+    final endpoint = '/Posts/v2/Actions/GeneratePdf/$postId';
     try {
-      final _ = await _dio.get('/Posts/v2/Actions/GeneratePdf/$postId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/v2/Actions/GeneratePdf/{postId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3236,13 +3335,14 @@ class KagamiService {
     required String filename,
     required String schoolId,
   }) async {
+    final endpoint = '/Posts/$id/Files/$filename/$schoolId';
     try {
-      final _ = await _dio.put('/Posts/$id/Files/$filename/$schoolId');
+      final _ = await _dio.put(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/Posts/{id}/Files/{filename}/{SchoolId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3257,13 +3357,14 @@ class KagamiService {
     required String fileId,
     required String id,
   }) async {
+    final endpoint = '/Posts/$id/Files/$fileId';
     try {
-      final _ = await _dio.delete('/Posts/$id/Files/$fileId');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/Posts/{id}/Files/{fileId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3275,13 +3376,14 @@ class KagamiService {
 
   /// get: /Posts/{id}/Comments
   Future<Either<ApiError, void>> getComments316({required String id}) async {
+    final endpoint = '/Posts/$id/Comments';
     try {
-      final _ = await _dio.get('/Posts/$id/Comments');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/{id}/Comments',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3296,16 +3398,17 @@ class KagamiService {
     PostCommentDto body, {
     required String id,
   }) async {
+    final endpoint = '/Posts/$id/Comments';
     try {
       final _ = await _dio.post(
-        '/Posts/$id/Comments',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Posts/{id}/Comments',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3318,16 +3421,17 @@ class KagamiService {
 
   /// post: /Posts/Comments
   Future<Either<ApiError, void>> createComments318(PostCommentDto body) async {
+    final endpoint = '/Posts/Comments';
     try {
       final _ = await _dio.post(
-        '/Posts/Comments',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Posts/Comments',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3340,13 +3444,14 @@ class KagamiService {
 
   /// get: /Posts/{id}/Views
   Future<Either<ApiError, void>> getViews319({required String id}) async {
+    final endpoint = '/Posts/$id/Views';
     try {
-      final _ = await _dio.get('/Posts/$id/Views');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/{id}/Views',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3361,13 +3466,14 @@ class KagamiService {
     required String id,
     required String parentAccount,
   }) async {
+    final endpoint = '/Posts/$id/Views/$parentAccount';
     try {
-      final _ = await _dio.post('/Posts/$id/Views/$parentAccount');
+      final _ = await _dio.post(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Posts/{id}/Views/{ParentAccount}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3380,13 +3486,14 @@ class KagamiService {
   /// get: /Posts/{SchoolId}/TeacherFilter
   Future<Either<ApiError, void>> getTeachersForFilter321(
       {required String schoolId}) async {
+    final endpoint = '/Posts/$schoolId/TeacherFilter';
     try {
-      final _ = await _dio.get('/Posts/$schoolId/TeacherFilter');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Posts/{SchoolId}/TeacherFilter',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3398,13 +3505,14 @@ class KagamiService {
 
   /// get: /Programmes/{id}
   Future<Either<ApiError, void>> getById322({required String id}) async {
+    final endpoint = '/Programmes/$id';
     try {
-      final _ = await _dio.get('/Programmes/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Programmes/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3420,20 +3528,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Programmes/$id/courses';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Programmes/$id/courses',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Programmes/{id}/courses',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -3446,13 +3555,14 @@ class KagamiService {
 
   /// get: /Reaction/{id}/GetReaction
   Future<Either<ApiError, void>> getLikes324({required String id}) async {
+    final endpoint = '/Reaction/$id/GetReaction';
     try {
-      final _ = await _dio.get('/Reaction/$id/GetReaction');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Reaction/{id}/GetReaction',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3464,16 +3574,17 @@ class KagamiService {
 
   /// post: /Reaction/CreateReaction
   Future<Either<ApiError, void>> createLikes325(PostReactionDto body) async {
+    final endpoint = '/Reaction/CreateReaction';
     try {
       final _ = await _dio.post(
-        '/Reaction/CreateReaction',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Reaction/CreateReaction',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3486,16 +3597,17 @@ class KagamiService {
 
   /// post: /Reaction/UpdateReaction
   Future<Either<ApiError, void>> updateLikes326(PostReactionDto body) async {
+    final endpoint = '/Reaction/UpdateReaction';
     try {
       final _ = await _dio.post(
-        '/Reaction/UpdateReaction',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Reaction/UpdateReaction',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3508,16 +3620,17 @@ class KagamiService {
 
   /// post: /Reaction/DeleteReaction
   Future<Either<ApiError, void>> deleteLikes327(PostReactionDto body) async {
+    final endpoint = '/Reaction/DeleteReaction';
     try {
       final _ = await _dio.post(
-        '/Reaction/DeleteReaction',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Reaction/DeleteReaction',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3530,13 +3643,14 @@ class KagamiService {
 
   /// get: /Schools
   Future<Either<ApiError, void>> getAllWithDetails328() async {
+    final endpoint = '/Schools';
     try {
-      final _ = await _dio.get('/Schools');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Schools',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3548,13 +3662,14 @@ class KagamiService {
 
   /// get: /Schools/{id}
   Future<Either<ApiError, void>> getById329({required String id}) async {
+    final endpoint = '/Schools/$id';
     try {
-      final _ = await _dio.get('/Schools/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Schools/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3570,20 +3685,21 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Schools/$id/programmes';
     final queryParams = <String, dynamic>{};
     try {
       if (pageNumber != null) queryParams['PageNumber'] = pageNumber;
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Schools/$id/programmes',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Schools/{id}/programmes',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -3602,6 +3718,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Schools/$id/Classes';
     final queryParams = <String, dynamic>{};
     try {
       if (showActiveOnly != null)
@@ -3612,14 +3729,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Schools/$id/Classes',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Schools/{id}/Classes',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -3633,14 +3750,15 @@ class KagamiService {
   /// get: /Schools/{id}/MedicineConfig
   Future<Either<ApiError, MedicineFormSchoolConfigVODto>>
       getMedicineConfigBySchoolId332({required String id}) async {
+    final endpoint = '/Schools/$id/MedicineConfig';
     try {
-      final response = await _dio.get('/Schools/$id/MedicineConfig');
+      final response = await _dio.get(endpoint);
       final result = MedicineFormSchoolConfigVODto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Schools/{id}/MedicineConfig',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3652,16 +3770,17 @@ class KagamiService {
 
   /// post: /Settings
   Future<Either<ApiError, void>> editSetting333(UserConfigDto body) async {
+    final endpoint = '/Settings';
     try {
       final _ = await _dio.post(
-        '/Settings',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Settings',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3674,13 +3793,14 @@ class KagamiService {
 
   /// get: /Students/{id}
   Future<Either<ApiError, void>> get334({required String id}) async {
+    final endpoint = '/Students/$id';
     try {
-      final _ = await _dio.get('/Students/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3693,13 +3813,14 @@ class KagamiService {
   /// get: /Students/QR/{studentNo}
   Future<Either<ApiError, void>> getByStudentNumber335(
       {required String studentNo}) async {
+    final endpoint = '/Students/QR/$studentNo';
     try {
-      final _ = await _dio.get('/Students/QR/$studentNo');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/QR/{studentNo}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3729,6 +3850,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Students/$id/Posts';
     final queryParams = <String, dynamic>{};
     try {
       if (schoolId != null) queryParams['SchoolId'] = schoolId;
@@ -3754,14 +3876,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Students/$id/Posts',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/{id}/Posts',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -3778,16 +3900,17 @@ class KagamiService {
     required String id,
     required String yyyymmdd,
   }) async {
+    final endpoint = '/Students/$id/attendances/$yyyymmdd';
     try {
       final _ = await _dio.post(
-        '/Students/$id/attendances/$yyyymmdd',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Students/{id}/attendances/{yyyymmdd}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3804,16 +3927,17 @@ class KagamiService {
     required String id,
     required String dateTimeString,
   }) async {
+    final endpoint = '/Students/$id/CheckInOutsWithPhoto/$dateTimeString';
     try {
       final _ = await _dio.post(
-        '/Students/$id/CheckInOutsWithPhoto/$dateTimeString',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Students/{id}/CheckInOutsWithPhoto/{dateTimeString}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3829,13 +3953,14 @@ class KagamiService {
     required String id,
     required String academicYear,
   }) async {
+    final endpoint = '/Students/$id/$academicYear/goals';
     try {
-      final _ = await _dio.get('/Students/$id/$academicYear/goals');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/{id}/{academicYear}/goals',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3851,15 +3976,15 @@ class KagamiService {
     required String checkInsOutsId,
     required String filename,
   }) async {
+    final endpoint =
+        '/Students/$id/CheckInsOuts/$checkInsOutsId/Files/$filename';
     try {
-      final _ = await _dio
-          .put('/Students/$id/CheckInsOuts/$checkInsOutsId/Files/$filename');
+      final _ = await _dio.put(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint:
-            '/Students/{id}/CheckInsOuts/{checkInsOutsId}/Files/{filename}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3872,13 +3997,14 @@ class KagamiService {
   /// get: /Students/AuthorisedPickUp/{id}
   Future<Either<ApiError, void>> getAuthorisedPickUp341(
       {required String id}) async {
+    final endpoint = '/Students/AuthorisedPickUp/$id';
     try {
-      final _ = await _dio.get('/Students/AuthorisedPickUp/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/AuthorisedPickUp/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3894,15 +4020,15 @@ class KagamiService {
     required String authPickID,
     required String filename,
   }) async {
+    final endpoint =
+        '/Students/$id/AuthorisedPickUp/$authPickID/Files/$filename';
     try {
-      final _ = await _dio
-          .put('/Students/$id/AuthorisedPickUp/$authPickID/Files/$filename');
+      final _ = await _dio.put(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint:
-            '/Students/{id}/AuthorisedPickUp/{AuthPickID}/Files/{filename}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3917,16 +4043,17 @@ class KagamiService {
     AuthorisedPickUpDto body, {
     required String id,
   }) async {
+    final endpoint = '/Students/$id/AuthorisedPickUp';
     try {
       final _ = await _dio.post(
-        '/Students/$id/AuthorisedPickUp',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Students/{id}/AuthorisedPickUp',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3943,16 +4070,17 @@ class KagamiService {
     required String id,
     required String conId,
   }) async {
+    final endpoint = '/Students/$id/AuthorisedPickUp/$conId';
     try {
       final _ = await _dio.post(
-        '/Students/$id/AuthorisedPickUp/$conId',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Students/{id}/AuthorisedPickUp/{ConId}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -3968,14 +4096,14 @@ class KagamiService {
     required String id,
     required String authPickupId,
   }) async {
+    final endpoint = '/Students/$id/DeleteAuthorisedPickUp/$authPickupId';
     try {
-      final _ = await _dio
-          .delete('/Students/$id/DeleteAuthorisedPickUp/$authPickupId');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/Students/{id}/DeleteAuthorisedPickUp/{authPickupId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -3990,14 +4118,14 @@ class KagamiService {
     required String id,
     required String authPickupId,
   }) async {
+    final endpoint = '/Students/$id/AuthorisedPickUp/$authPickupId';
     try {
-      final _ =
-          await _dio.delete('/Students/$id/AuthorisedPickUp/$authPickupId');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/Students/{id}/AuthorisedPickUp/{authPickupId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4013,14 +4141,14 @@ class KagamiService {
     required String authPickupId,
     required String conId,
   }) async {
+    final endpoint = '/Students/$id/AuthorisedPickUp/$authPickupId/$conId';
     try {
-      final _ = await _dio
-          .delete('/Students/$id/AuthorisedPickUp/$authPickupId/$conId');
+      final _ = await _dio.delete(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
-        endpoint: '/Students/{id}/AuthorisedPickUp/{authPickupId}/{ConId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4033,13 +4161,14 @@ class KagamiService {
   /// get: /Students/{id}/Teachers
   Future<Either<ApiError, void>> getStudentclass348(
       {required String id}) async {
+    final endpoint = '/Students/$id/Teachers';
     try {
-      final _ = await _dio.get('/Students/$id/Teachers');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/{id}/Teachers',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4052,13 +4181,14 @@ class KagamiService {
   /// get: /Students/TermlyReport/{id}
   Future<Either<ApiError, void>> getStudenttermlyreport349(
       {required String id}) async {
+    final endpoint = '/Students/TermlyReport/$id';
     try {
-      final _ = await _dio.get('/Students/TermlyReport/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/TermlyReport/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4073,16 +4203,17 @@ class KagamiService {
     List<StudentStatisticDto> body, {
     required String studentId,
   }) async {
+    final endpoint = '/Students/$studentId/Statistics';
     try {
       final _ = await _dio.post(
-        '/Students/$studentId/Statistics',
+        endpoint,
         data: body,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Students/{StudentId}/Statistics',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4098,15 +4229,15 @@ class KagamiService {
     required String studentId,
     required String academiYearID,
   }) async {
+    final endpoint =
+        '/Students/$studentId/Statistics/AcademicYear/$academiYearID';
     try {
-      final _ = await _dio
-          .get('/Students/$studentId/Statistics/AcademicYear/$academiYearID');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Students/{StudentId}/Statistics/AcademicYear/{AcademiYearID}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4119,14 +4250,14 @@ class KagamiService {
   /// get: /Students/{StudentId}/Statistics/GetAcademicYears
   Future<Either<ApiError, void>> getStudentAcademicYears352(
       {required String studentId}) async {
+    final endpoint = '/Students/$studentId/Statistics/GetAcademicYears';
     try {
-      final _ =
-          await _dio.get('/Students/$studentId/Statistics/GetAcademicYears');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Students/{StudentId}/Statistics/GetAcademicYears',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4141,13 +4272,14 @@ class KagamiService {
     required String id,
     required String filename,
   }) async {
+    final endpoint = '/Students/$id/MedicineDetails/Files/$filename';
     try {
-      final _ = await _dio.put('/Students/$id/MedicineDetails/Files/$filename');
+      final _ = await _dio.put(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/Students/{id}/MedicineDetails/Files/{filename}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4163,16 +4295,17 @@ class KagamiService {
     required String id,
     required String dateTimeString,
   }) async {
+    final endpoint = '/v2/Students/$id/CheckInOuts/$dateTimeString';
     try {
       final _ = await _dio.post(
-        '/v2/Students/$id/CheckInOuts/$dateTimeString',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/Students/{id}/CheckInOuts/{dateTimeString}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4189,16 +4322,17 @@ class KagamiService {
     required String id,
     required String yyyymmdd,
   }) async {
+    final endpoint = '/v2/Students/$id/attendances/$yyyymmdd';
     try {
       final _ = await _dio.post(
-        '/v2/Students/$id/attendances/$yyyymmdd',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/Students/{id}/attendances/{yyyymmdd}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4215,16 +4349,17 @@ class KagamiService {
     required String id,
     required String dateTimeString,
   }) async {
+    final endpoint = '/v2/Students/$id/CheckInOutsWithPhoto/$dateTimeString';
     try {
       final _ = await _dio.post(
-        '/v2/Students/$id/CheckInOutsWithPhoto/$dateTimeString',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/Students/{id}/CheckInOutsWithPhoto/{dateTimeString}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4241,16 +4376,17 @@ class KagamiService {
     required String id,
     required String dateTimeString,
   }) async {
+    final endpoint = '/v2/Students/$id/TemperatureChecks/$dateTimeString';
     try {
       final _ = await _dio.post(
-        '/v2/Students/$id/TemperatureChecks/$dateTimeString',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/Students/{id}/TemperatureChecks/{dateTimeString}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4266,16 +4402,17 @@ class KagamiService {
     MarkDailyRoutineParameterDto body, {
     required String id,
   }) async {
+    final endpoint = '/v2/Students/$id/DailyRoutines';
     try {
       final _ = await _dio.post(
-        '/v2/Students/$id/DailyRoutines',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/Students/{id}/DailyRoutines',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4292,15 +4429,15 @@ class KagamiService {
     required String academicYearId,
     required String yyyymmdd,
   }) async {
+    final endpoint =
+        '/Subjects/Attendances/$componentId/$academicYearId/$yyyymmdd';
     try {
-      final _ = await _dio
-          .get('/Subjects/Attendances/$componentId/$academicYearId/$yyyymmdd');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Subjects/Attendances/{componentId}/{academicYearId}/{yyyymmdd}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4313,16 +4450,17 @@ class KagamiService {
   /// post: /Subjects/Attendances
   Future<Either<ApiError, void>> markAttendance360(
       CourseComponentAttendanceParameterDto body) async {
+    final endpoint = '/Subjects/Attendances';
     try {
       final _ = await _dio.post(
-        '/Subjects/Attendances',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Subjects/Attendances',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4335,13 +4473,14 @@ class KagamiService {
 
   /// get: /Teachers/{id}
   Future<Either<ApiError, void>> get361({required String id}) async {
+    final endpoint = '/Teachers/$id';
     try {
-      final _ = await _dio.get('/Teachers/$id');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Teachers/{id}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4361,6 +4500,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Teachers/$id/Classes';
     final queryParams = <String, dynamic>{};
     try {
       if (isActive != null) queryParams['IsActive'] = isActive;
@@ -4373,14 +4513,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Teachers/$id/Classes',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Teachers/{id}/Classes',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -4401,6 +4541,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Teachers/$id/ManagedClasses';
     final queryParams = <String, dynamic>{};
     try {
       if (isActive != null) queryParams['IsActive'] = isActive;
@@ -4413,14 +4554,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Teachers/$id/ManagedClasses',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Teachers/{id}/ManagedClasses',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -4444,6 +4585,8 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint =
+        '/Teachers/$id/ManagedClassesWithStudents/{AcademicYearID}/$schoolIdQuery';
     final queryParams = <String, dynamic>{};
     try {
       if (isActive != null) queryParams['IsActive'] = isActive;
@@ -4456,15 +4599,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Teachers/$id/ManagedClassesWithStudents/{AcademicYearID}/$schoolId',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint:
-            '/Teachers/{id}/ManagedClassesWithStudents/{AcademicYearID}/{SchoolId}',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -4485,6 +4627,7 @@ class KagamiService {
     int? pageNumber,
     int? pageSize,
   }) async {
+    final endpoint = '/Teachers/$id/Courses';
     final queryParams = <String, dynamic>{};
     try {
       if (isActive != null) queryParams['IsActive'] = isActive;
@@ -4497,14 +4640,14 @@ class KagamiService {
       if (pageSize != null) queryParams['PageSize'] = pageSize;
 
       final _ = await _dio.get(
-        '/Teachers/$id/Courses',
+        endpoint,
         queryParameters: queryParams,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Teachers/{id}/Courses',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -4521,16 +4664,17 @@ class KagamiService {
     required String id,
     required String schoolId,
   }) async {
+    final endpoint = '/Teachers/$id/CoursesBySchool/$schoolId';
     try {
       final _ = await _dio.get(
-        '/Teachers/$id/CoursesBySchool/$schoolId',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Teachers/{id}/CoursesBySchool/{schoolId}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4544,16 +4688,17 @@ class KagamiService {
   /// post: /TemperatureChecks
   Future<Either<ApiError, void>> logTemperatureCheck367(
       TemperatureCheckDto body) async {
+    final endpoint = '/TemperatureChecks';
     try {
       final _ = await _dio.post(
-        '/TemperatureChecks',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/TemperatureChecks',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4567,12 +4712,13 @@ class KagamiService {
   /// get: /v2/TemperatureChecks
   Future<Either<ApiError, TemperatureCheckDto>> getTemperatureById369(
       {String? id}) async {
+    final endpoint = '/v2/TemperatureChecks';
     final queryParams = <String, dynamic>{};
     try {
       if (id != null) queryParams['id'] = id;
 
       final response = await _dio.get(
-        '/v2/TemperatureChecks',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = TemperatureCheckDto.fromJson(response.data);
@@ -4580,7 +4726,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/TemperatureChecks',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -4594,9 +4740,10 @@ class KagamiService {
   /// post: /v2/TemperatureChecks
   Future<Either<ApiError, TemperatureCheckDto>> logTemperatureCheck368(
       TemperatureCheckParameterDto body) async {
+    final endpoint = '/v2/TemperatureChecks';
     try {
       final response = await _dio.post(
-        '/v2/TemperatureChecks',
+        endpoint,
         data: body.toJson(),
       );
       final result = TemperatureCheckDto.fromJson(response.data);
@@ -4604,7 +4751,7 @@ class KagamiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/v2/TemperatureChecks',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4620,15 +4767,15 @@ class KagamiService {
     required String studentId,
     required String logDate,
   }) async {
+    final endpoint = '/v2/TemperatureChecks/{studentid}/$logDate';
     try {
-      final response =
-          await _dio.get('/v2/TemperatureChecks/{studentid}/$logDate');
+      final response = await _dio.get(endpoint);
       final result = TemperatureCheckDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/v2/TemperatureChecks/{studentid}/{logDate}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -4641,16 +4788,17 @@ class KagamiService {
   /// post: /Users/Action/ResetPassword
   Future<Either<ApiError, void>> resetPassword371(
       ResetPasswordParameterDto body) async {
+    final endpoint = '/Users/Action/ResetPassword';
     try {
       final _ = await _dio.post(
-        '/Users/Action/ResetPassword',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Users/Action/ResetPassword',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4666,16 +4814,17 @@ class KagamiService {
     ChangePasswordParameterDto body, {
     required String userId,
   }) async {
+    final endpoint = '/Users/$userId/Password';
     try {
       final _ = await _dio.post(
-        '/Users/$userId/Password',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Users/{userId}/Password',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4689,16 +4838,17 @@ class KagamiService {
   /// post: /Users/Action/ResetPasswordV2
   Future<Either<ApiError, void>> resetPasswordV2373(
       ResetPasswordParameterDto body) async {
+    final endpoint = '/Users/Action/ResetPasswordV2';
     try {
       final _ = await _dio.post(
-        '/Users/Action/ResetPasswordV2',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Users/Action/ResetPasswordV2',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4714,16 +4864,17 @@ class KagamiService {
     ChangePasswordParameterDto body, {
     required String userId,
   }) async {
+    final endpoint = '/Users/$userId/PasswordV2';
     try {
       final _ = await _dio.post(
-        '/Users/$userId/PasswordV2',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/Users/{userId}/PasswordV2',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -4737,13 +4888,14 @@ class KagamiService {
   /// get: /Users/{userId}
   Future<Either<ApiError, void>> getUserById375(
       {required String userId}) async {
+    final endpoint = '/Users/$userId';
     try {
-      final _ = await _dio.get('/Users/$userId');
+      final _ = await _dio.get(endpoint);
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/Users/{userId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,

@@ -23,16 +23,17 @@ class TestApiService {
   /// post: /user/register
   Future<Either<ApiError, void>> userRegisterPost(
       RegisterRequestDto body) async {
+    final endpoint = '/user/register';
     try {
       final _ = await _dio.post(
-        '/user/register',
+        endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
-        endpoint: '/user/register',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -46,14 +47,15 @@ class TestApiService {
   /// Say Hello World to {name} with a nice html page.
   /// get: /hello/{name}/html
   Future<Either<ApiError, String>> helloNameHtmlGet() async {
+    final endpoint = '/hello/{name}/html';
     try {
-      final response = await _dio.get('/hello/{name}/html');
+      final response = await _dio.get(endpoint);
       final result = (response.data as String);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/hello/{name}/html',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -67,12 +69,13 @@ class TestApiService {
   /// get: /hello/{name}
   Future<Either<ApiError, HelloResponseDto>> helloNameGet(
       {String? salutation}) async {
+    final endpoint = '/hello/{name}';
     final queryParams = <String, dynamic>{};
     try {
       if (salutation != null) queryParams['salutation'] = salutation;
 
       final response = await _dio.get(
-        '/hello/{name}',
+        endpoint,
         queryParameters: queryParams,
       );
       final result = HelloResponseDto.fromJson(response.data);
@@ -80,7 +83,7 @@ class TestApiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/hello/{name}',
+        endpoint: endpoint,
         queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
@@ -95,9 +98,10 @@ class TestApiService {
   /// put: /hello/{name}
   Future<Either<ApiError, HelloResponseDto>> helloNamePut(
       HelloRequestDto body) async {
+    final endpoint = '/hello/{name}';
     try {
       final response = await _dio.put(
-        '/hello/{name}',
+        endpoint,
         data: body.toJson(),
       );
       final result = HelloResponseDto.fromJson(response.data);
@@ -105,7 +109,7 @@ class TestApiService {
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/hello/{name}',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
@@ -120,14 +124,15 @@ class TestApiService {
   /// get: /uuidExample/{messageId}
   Future<Either<ApiError, UuidExampleMessageIdGetResponseDto>>
       uuidExampleMessageIdGet() async {
+    final endpoint = '/uuidExample/{messageId}';
     try {
-      final response = await _dio.get('/uuidExample/{messageId}');
+      final response = await _dio.get(endpoint);
       final result = UuidExampleMessageIdGetResponseDto.fromJson(response.data);
       return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
-        endpoint: '/uuidExample/{messageId}',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -139,16 +144,17 @@ class TestApiService {
 
   /// put: /hello/integer
   Future<Either<ApiError, void>> helloIntegerPut(int body) async {
+    final endpoint = '/hello/integer';
     try {
       final _ = await _dio.put(
-        '/hello/integer',
+        endpoint,
         data: body,
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
-        endpoint: '/hello/integer',
+        endpoint: endpoint,
         requestBody: body,
       );
       return Left(_errorHandler.handleError(
