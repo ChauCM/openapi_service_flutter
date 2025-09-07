@@ -1,16 +1,22 @@
 import 'package:dio/dio.dart';
+import 'smart_upload_interceptor.dart';
 
 /// Creates a default Dio client with opinionated configuration
 /// suitable for most API integrations
 class DefaultDio {
   /// Creates a default Dio instance with sensible defaults
+  /// 
+  /// Includes smart upload detection that automatically adjusts timeouts
+  /// for file upload operations while maintaining fast timeouts for regular API calls.
   static Dio create({
     String? baseUrl,
     Duration connectTimeout = const Duration(seconds: 30),
     Duration receiveTimeout = const Duration(seconds: 30),
     Duration sendTimeout = const Duration(seconds: 30),
+    Duration uploadProgressTimeout = const Duration(seconds: 45),
     Map<String, dynamic>? headers,
     List<Interceptor>? interceptors,
+    bool enableSmartUploadTimeout = true,
   }) {
     final dio = Dio();
     
@@ -30,6 +36,14 @@ class DefaultDio {
       maxRedirects: 3,
     );
     
+    // Add smart upload interceptor for intelligent timeout handling
+    if (enableSmartUploadTimeout) {
+      dio.interceptors.add(SmartUploadInterceptor(
+        regularSendTimeout: sendTimeout,
+        uploadProgressTimeout: uploadProgressTimeout,
+      ));
+    }
+    
     // Add custom interceptors if provided
     if (interceptors != null) {
       dio.interceptors.addAll(interceptors);
@@ -44,16 +58,20 @@ class DefaultDio {
     Duration connectTimeout = const Duration(seconds: 30),
     Duration receiveTimeout = const Duration(seconds: 30),
     Duration sendTimeout = const Duration(seconds: 30),
+    Duration uploadProgressTimeout = const Duration(seconds: 45),
     Map<String, dynamic>? headers,
     List<Interceptor>? interceptors,
+    bool enableSmartUploadTimeout = true,
   }) {
     final dio = create(
       baseUrl: baseUrl,
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,
       sendTimeout: sendTimeout,
+      uploadProgressTimeout: uploadProgressTimeout,
       headers: headers,
       interceptors: interceptors,
+      enableSmartUploadTimeout: enableSmartUploadTimeout,
     );
     
     // Add logging interceptor for development

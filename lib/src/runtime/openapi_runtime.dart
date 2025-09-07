@@ -12,3 +12,4 @@ export 'error/request_context.dart';
 
 // Export Dio utilities
 export 'dio/default_dio.dart';
+export 'dio/smart_upload_interceptor.dart';
