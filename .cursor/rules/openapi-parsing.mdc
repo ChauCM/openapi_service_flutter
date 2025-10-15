@@ -1,0 +1,210 @@
+---
+description: Guidelines for working with OpenAPI specification parsing
+---
+# OpenAPI Specification Parsing
+
+This project includes an internal `open-api-dart` package for parsing OpenAPI specifications.
+
+## Package Location
+
+The `open-api-dart` package is located in the `open-api-dart/` directory at the project root.
+
+## Supported Versions
+
+- **OpenAPI 2.0** (Swagger) - via `v2.dart`
+- **OpenAPI 3.0+** - via `v3.dart`
+- **OpenAPI 3.1.1** - Full support with array type syntax
+
+## Key Classes
+
+### Document
+Main entry point for parsed OpenAPI specification:
+```dart
+class APIDocument {
+  APIInfo? info;
+  Map<String, APIPath>? paths;
+  APIComponents? components;
+  // ... other properties
+}
+```
+
+### Schema
+Represents schema objects (types, models):
+```dart
+class APISchemaObject {
+  APIType? type;
+  Map<String, APISchemaObject?>? properties;
+  List<String>? required;
+  List<dynamic>? enumerated;
+  Uri? referenceURI;
+  // ... other properties
+}
+```
+
+### Operation
+Represents API operations (endpoints):
+```dart
+class APIOperation {
+  String? id;
+  String? summary;
+  String? description;
+  List<APIParameter?>? parameters;
+  APIRequestBody? requestBody;
+  Map<String, APIResponse?>? responses;
+  // ... other properties
+}
+```
+
+## Type Handling
+
+### Primary Type Resolution
+OpenAPI 3.1.1 allows array syntax for types: `type: [string, null]`
+
+Use `primaryType` getter to get the main type:
+```dart
+final effectiveType = schema.primaryType ?? schema.type;
+```
+
+### Type Mapping
+The generator maps OpenAPI types to Dart types:
+- `string` → `String` (with format handling for `date-time`, `uuid`, `binary`)
+- `integer` → `int`
+- `number` → `num`
+- `boolean` → `bool`
+- `array` → `List<T>`
+- `object` → DTO class or `Map<String, T>`
+
+### Reference Resolution
+Schemas can reference other schemas:
+```yaml
+$ref: '#/components/schemas/User'
+```
+
+The generator resolves references using `referenceURI`:
+```dart
+if (schema.referenceURI != null) {
+  final segments = schema.referenceURI!.pathSegments;
+  if (segments[0] == 'components' && segments[1] == 'schemas') {
+    final componentName = segments[2];
+    // Use component schema
+  }
+}
+```
+
+## Schema Composition
+
+OpenAPI supports schema composition with:
+- `allOf` - All schemas must match (inheritance/composition)
+- `oneOf` - Exactly one schema must match (union types)
+- `anyOf` - One or more schemas must match (flexible union)
+
+The generator handles these by:
+1. Collecting all referenced schemas
+2. Merging properties from composed schemas
+3. Generating appropriate Dart types
+
+## Enum Handling
+
+Enums are defined with the `enum` keyword:
+```yaml
+type: string
+enum:
+  - active
+  - inactive
+  - pending
+```
+
+The generator:
+1. Filters out `null` values
+2. Sanitizes enum value names (handles reserved words)
+3. Adds `@JsonValue` annotations for JSON serialization
+4. Generates extension methods for name conversion
+
+## Additional Properties
+
+Objects can have dynamic properties:
+```yaml
+type: object
+additionalProperties:
+  type: string
+```
+
+This generates `Map<String, String>` in Dart.
+
+## File Format Support
+
+The parser accepts both YAML and JSON formats:
+- `.openapi.yaml` / `.openapi.yml` - YAML format
+- `.openapi.json` - JSON format
+
+Content validation ensures format matches file extension.
+
+## Loading API Documents
+
+Use `OpenApiServiceBuilderUtils.loadApiFromYaml()`:
+```dart
+final api = OpenApiServiceBuilderUtils.loadApiFromYaml(
+  yamlSource,
+  filePath: 'path/to/spec.yaml',
+);
+```
+
+This handles:
+- YAML/JSON parsing
+- Format validation
+- Type conversion
+- Error handling
+
+## Common Patterns
+
+### Checking if Schema Should Generate DTO
+```dart
+bool shouldGenerateDto(APISchemaObject schema) {
+  final effectiveType = schema.primaryType;
+  
+  // Don't generate for simple types
+  if (effectiveType != null && effectiveType != APIType.object) {
+    return false;
+  }
+  
+  // Generate for objects with properties or composition
+  return hasObjectType ||
+      (schema.properties?.isNotEmpty == true) ||
+      (schema.allOf?.isNotEmpty == true) ||
+      (schema.oneOf?.isNotEmpty == true) ||
+      (schema.anyOf?.isNotEmpty == true);
+}
+```
+
+### Collecting Schema References
+```dart
+void collectSchemaReferences(
+  APISchemaObject schema,
+  Set<String> usedSchemas,
+  [Set<APISchemaObject>? visitedSchemas]
+) {
+  visitedSchemas ??= <APISchemaObject>{};
+  
+  if (visitedSchemas.contains(schema)) return;
+  visitedSchemas.add(schema);
+  
+  // Add reference if this schema points to a component
+  if (schema.referenceURI != null) {
+    final segments = schema.referenceURI!.pathSegments;
+    if (segments[0] == 'components' && segments[1] == 'schemas') {
+      usedSchemas.add(segments[2]);
+    }
+  }
+  
+  // Recursively check nested schemas
+  schema.properties?.values.forEach((prop) {
+    collectSchemaReferences(prop!, usedSchemas, visitedSchemas);
+  });
+}
+```
+
+## File References
+
+- OpenAPI v3 library: [open-api-dart/lib/v3.dart](mdc:open-api-dart/lib/v3.dart)
+- OpenAPI v2 library: [open-api-dart/lib/v2.dart](mdc:open-api-dart/lib/v2.dart)
+- Builder utilities: [openapi_service_builder.dart](mdc:lib/src/openapi_service_builder.dart)

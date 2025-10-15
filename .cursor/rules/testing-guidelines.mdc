@@ -1,0 +1,166 @@
+---
+globs: test/**/*.dart
+---
+# Testing Guidelines
+
+Follow these patterns when writing tests for the OpenAPI service generator.
+
+## Test Structure
+
+Tests are organized by functionality:
+- `openapi_service_builder_test.dart` - Main functionality tests
+- `openapi_service_builder_edge_cases_test.dart` - Edge case handling
+- `openapi_library_generator_test.dart` - Library generation tests
+- `service_enhancements_test.dart` - Service configuration and error handling
+- `runtime_error_handler_test.dart` - Runtime error handling tests
+- `binary_upload_test.dart` - Binary file upload tests
+- `duplicate_schema_test.dart` - Duplicate schema detection
+- `prefix_filter_test.dart` - Prefix filtering tests
+- `type_casting_test.dart` - Type casting tests
+
+## Test Utilities
+
+Use the `TestUtils` class from [test_utils.dart](mdc:test/test_utils.dart):
+
+```dart
+// Create builders
+final builder = TestUtils.createDefaultBuilder();
+final customBuilder = TestUtils.createCustomBuilder(
+  prefixFilter: '/api',
+  includeFilterPrefix: false,
+);
+
+// Create test YAML
+final yaml = TestUtils.createMinimalValidYaml(
+  title: 'My API',
+  dartName: 'MyApi',
+);
+
+// Load fixtures
+final yamlContent = await loadFixture('simple_api.openapi.yaml');
+
+// Generate and validate
+final serviceOutput = generateServiceLibrary(yamlContent);
+TestUtils.assertServiceContainsCommonElements(serviceOutput);
+TestUtils.assertDtosContainsCommonElements(dtosOutput);
+```
+
+## Common Test Patterns
+
+### Testing Generated DTOs
+```dart
+test('generates Freezed DTOs with correct structure', () async {
+  final yamlContent = await loadFixture('test_api.openapi.yaml');
+  final api = OpenApiServiceBuilderUtils.loadApiFromYaml(yamlContent);
+  
+  final generator = OpenApiLibraryGenerator(
+    api,
+    baseName: 'TestApi',
+    partFileName: 'test.dtos.g.dart',
+  );
+  
+  final dtosLibrary = generator.generateDtosLibrary();
+  final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(dtosLibrary);
+  
+  expect(dtosOutput, contains('@freezed'));
+  expect(dtosOutput, contains('fromJson'));
+  expect(dtosOutput, contains('.freezed.dart'));
+});
+```
+
+### Testing Service Generation
+```dart
+test('generates service methods with error handling', () async {
+  final serviceOutput = generateServiceLibrary(yamlContent);
+  
+  expect(serviceOutput, contains('Future<Either<ApiError,'));
+  expect(serviceOutput, contains('_errorHandler.handleError'));
+  expect(serviceOutput, contains('RequestContext'));
+});
+```
+
+### Testing Error Handling
+```dart
+test('DefaultErrorHandler extracts error messages', () {
+  final handler = DefaultErrorHandler();
+  
+  // Test JSON response
+  final message = handler.extractErrorMessage({
+    'message': 'User not found',
+  });
+  expect(message, equals('User not found'));
+  
+  // Test nested error
+  final nestedMessage = handler.extractErrorMessage({
+    'error': {'message': 'Invalid token'},
+  });
+  expect(nestedMessage, equals('Invalid token'));
+});
+```
+
+### Testing Edge Cases
+```dart
+test('handles duplicate schemas with numbered suffixes', () async {
+  final yamlContent = await loadFixture('duplicate_schema.openapi.yaml');
+  final api = OpenApiServiceBuilderUtils.loadApiFromYaml(yamlContent);
+  
+  final generator = OpenApiLibraryGenerator(
+    api,
+    baseName: 'TestApi',
+    partFileName: 'test.dtos.g.dart',
+  );
+  
+  final dtosLibrary = generator.generateDtosLibrary();
+  final dtosOutput = OpenApiServiceBuilderUtils.formatLibrary(dtosLibrary);
+  
+  // Should only generate one DTO for duplicate schemas
+  expect('AccountDto'.allMatches(dtosOutput).length, equals(1));
+});
+```
+
+## Fixtures
+
+Test fixtures are located in `test/fixtures/`:
+- `simple_api.openapi.yaml` - Basic API structure
+- `enum_api.openapi.yaml` - Enum handling
+- `array_api.openapi.yaml` - Array types
+- `map_api.openapi.yaml` - Map types
+- `complex_types.openapi.yaml` - Complex nested types
+- `binary_upload_api.openapi.yaml` - Binary file uploads
+- `multipart_api.openapi.yaml` - Multipart form data
+- `duplicate_schema.openapi.yaml` - Duplicate schema detection
+- `nullable_enum_api.openapi.yaml` - Nullable enum handling
+- `error_cases.openapi.yaml` - Error handling scenarios
+
+## Running Tests
+
+```bash
+# Run all tests
+dart test
+
+# Run specific test file
+dart test test/openapi_service_builder_test.dart
+
+# Run with verbose output
+dart test -v
+
+# Run with coverage
+dart test --coverage
+
+# Run specific test by name
+dart test -n "generates Freezed DTOs"
+```
+
+## Assertions to Include
+
+When testing generated code, always verify:
+1. ✅ Generated code header is present
+2. ✅ Required imports are included
+3. ✅ Freezed annotations for DTOs
+4. ✅ Either-based error handling for services
+5. ✅ ErrorHandler integration
+6. ✅ RequestContext creation
+7. ✅ Proper type conversions
+8. ✅ Enum handling with @JsonValue
+9. ✅ Nullable field handling
+10. ✅ Part directives for generated files

@@ -1,0 +1,319 @@
+---
+description: Special features and advanced functionality
+---
+# Special Features
+
+This document covers advanced features and special handling in the code generator.
+
+## Binary File Upload Support
+
+The generator supports binary file uploads with progress tracking.
+
+### Supported Content Types
+- `image/*` (image/jpeg, image/png, etc.)
+- `video/*` (video/mp4, video/mpeg, etc.)
+- `audio/*` (audio/mp3, audio/wav, etc.)
+- `application/octet-stream`
+
+### Generated Code Pattern
+
+For binary endpoints:
+```dart
+Future<Either<ApiError, Response>> uploadFile(
+  File file, {
+  void Function(int sent, int total)? onProgress,
+}) async {
+  final endpoint = '/api/upload';
+  
+  try {
+    final length = await file.length();
+    final mime = lookupMimeType(file.path) ?? 'application/octet-stream';
+    
+    final response = await _dio.post(
+      endpoint,
+      data: file.openRead(),
+      onSendProgress: onProgress,
+      options: Options(
+        headers: {
+          'Content-Length': length.toString(),
+          'Content-Type': mime,
+        },
+      ),
+    );
+    
+    return Right(Response.fromJson(response.data));
+  } catch (e, stackTrace) {
+    // Error handling...
+  }
+}
+```
+
+### Features
+- Automatic MIME type detection using `mime` package
+- Stream-based upload for memory efficiency
+- Progress callbacks with bytes sent/total
+- Proper Content-Length and Content-Type headers
+
+## Multipart Form Data
+
+The generator handles `multipart/form-data` requests for file uploads with additional fields.
+
+### OpenAPI Definition
+```yaml
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          file:
+            type: string
+            format: binary
+          description:
+            type: string
+          tags:
+            type: array
+            items:
+              type: string
+        required:
+          - file
+```
+
+### Generated Code
+```dart
+Future<Either<ApiError, Response>> uploadWithMetadata(
+  File file, {
+  required String description,
+  List<String>? tags,
+  void Function(int sent, int total)? onProgress,
+}) async {
+  final endpoint = '/api/upload';
+  
+  try {
+    final formData = FormData();
+    
+    formData.files.add(MapEntry(
+      'file',
+      await MultipartFile.fromFile(file.path, filename: _getFileName(file.path)),
+    ));
+    formData.fields.add(MapEntry('description', description));
+    if (tags != null) {
+      formData.fields.add(MapEntry('tags', tags.toString()));
+    }
+    
+    final response = await _dio.post(
+      endpoint,
+      data: formData,
+      onSendProgress: onProgress,
+    );
+    
+    return Right(Response.fromJson(response.data));
+  } catch (e, stackTrace) {
+    // Error handling...
+  }
+}
+```
+
+## Duplicate Schema Detection
+
+The generator automatically detects and merges duplicate schemas with numbered suffixes.
+
+### Problem
+C# OpenAPI generators often create duplicates like:
+- `AccountApiDto`
+- `AccountApiDto2`
+- `AccountApiDto3`
+
+### Solution
+The generator:
+1. Computes signatures for each schema based on structure
+2. Groups schemas by base name (without number suffix)
+3. Compares signatures to find true duplicates
+4. Maps duplicates to canonical name (first occurrence)
+5. Only generates one DTO for duplicate schemas
+
+### Implementation
+```dart
+Map<String, String> _detectAndMapDuplicateSchemas() {
+  // Group schemas by base name
+  final schemaGroups = <String, List<MapEntry<String, APISchemaObject>>>{};
+  final numberSuffixPattern = RegExp(r'^(.+?)(\d+)$');
+  
+  for (final entry in components.schemas.entries) {
+    final match = numberSuffixPattern.firstMatch(entry.key);
+    final baseName = match?.group(1) ?? entry.key;
+    schemaGroups.putIfAbsent(baseName, () => []).add(entry);
+  }
+  
+  // Compare schemas and map duplicates
+  for (final group in schemaGroups.entries) {
+    if (group.value.length <= 1) continue;
+    
+    final signatureMap = <String, List<String>>{};
+    for (final schema in group.value) {
+      final signature = _computeSchemaSignature(schema.value);
+      signatureMap.putIfAbsent(signature, () => []).add(schema.key);
+    }
+    
+    // Map duplicates to canonical name
+    for (final duplicates in signatureMap.values) {
+      if (duplicates.length > 1) {
+        final canonical = duplicates.first;
+        for (final dup in duplicates.skip(1)) {
+          schemaReferences[dup] = canonical;
+        }
+      }
+    }
+  }
+  
+  return schemaReferences;
+}
+```
+
+## Nullable Enum Pattern
+
+Handles `NullableOf*` enum pattern from C# OpenAPI generators.
+
+### Pattern
+```yaml
+NullableOfStatus:
+  type: string
+  enum:
+    - active
+    - inactive
+    - null
+```
+
+### Handling
+1. Extract base name: `NullableOfStatus` → `Status`
+2. Filter out `null` values from enum
+3. Make the field nullable in the DTO
+4. Use base name for enum type
+
+## Reserved Word Handling
+
+### Enum Values
+Dart reserved words in enum values are prefixed with `$`:
+```dart
+enum MyEnum {
+  @JsonValue('default')
+  $default,  // 'default' is a reserved word
+  
+  @JsonValue('class')
+  $class,    // 'class' is a reserved word
+}
+```
+
+### Field Names
+Reserved words in field names get a `Field` suffix:
+```dart
+class MyDto {
+  @JsonKey(name: 'default')
+  final String defaultField;  // 'default' is reserved
+  
+  @JsonKey(name: 'class')
+  final String classField;    // 'class' is reserved
+}
+```
+
+## Field Name Sanitization
+
+### @ Symbol
+Fields starting with `@` (common in XML-based APIs):
+```yaml
+properties:
+  '@type':
+    type: string
+  '@id':
+    type: integer
+```
+
+Generated as:
+```dart
+class MyDto {
+  @JsonKey(name: '@type')
+  final String atType;
+  
+  @JsonKey(name: '@id')
+  final int atId;
+}
+```
+
+## Prefix Filtering
+
+Filter endpoints by path prefix to generate services for specific API subsets.
+
+### Configuration
+```yaml
+targets:
+  $default:
+    builders:
+      openapi_service_flutter|openapi_service_builder:
+        options:
+          prefixFilter: "/api/v1"
+          includeFilterPrefix: false
+```
+
+### Behavior
+- Only endpoints starting with `/api/v1` are included
+- With `includeFilterPrefix: false`, prefix is removed from method names
+- `/api/v1/users` → `usersGet()` instead of `apiV1UsersGet()`
+
+## Default Values
+
+The generator supports default values for optional fields:
+
+```yaml
+properties:
+  status:
+    type: string
+    default: "active"
+  count:
+    type: integer
+    default: 0
+```
+
+Generated as:
+```dart
+class MyDto {
+  @Default('active')
+  final String status;
+  
+  @Default(0)
+  final int count;
+}
+```
+
+For enum defaults:
+```dart
+class MyDto {
+  @Default(StatusEnum.active)
+  final StatusEnum status;
+}
+```
+
+## UUID Handling
+
+UUIDs are handled as strings with special converter:
+
+```yaml
+properties:
+  id:
+    type: string
+    format: uuid
+```
+
+Generated as:
+```dart
+class MyDto {
+  @ApiUuidJsonConverter()
+  final String id;  // UUID as string
+}
+```
+
+## File References
+
+- Binary upload tests: [binary_upload_test.dart](mdc:test/binary_upload_test.dart)
+- Duplicate schema tests: [duplicate_schema_test.dart](mdc:test/duplicate_schema_test.dart)
+- Prefix filter tests: [prefix_filter_test.dart](mdc:test/prefix_filter_test.dart)
+- Main builder: [openapi_service_builder.dart](mdc:lib/src/openapi_service_builder.dart)

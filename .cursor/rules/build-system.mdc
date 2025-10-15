@@ -1,0 +1,184 @@
+---
+description: Build system configuration and code generation workflow
+---
+# Build System and Code Generation
+
+This project uses Dart's `build_runner` for code generation from OpenAPI specifications.
+
+## Build Configuration
+
+Configuration is in [build.yaml](mdc:build.yaml):
+
+```yaml
+builders:
+  openapi_service_builder:
+    import: "package:openapi_service_flutter/openapi_service_flutter.dart"
+    builder_factories: ["openApiServiceBuilder"]
+    build_extensions:
+      .openapi.yaml: [".openapi.dtos.dart", ".openapi.service.dart"]
+      .openapi.json: [".openapi.dtos.dart", ".openapi.service.dart"]
+    auto_apply: dependents
+    build_to: source
+    runs_before: ["freezed", "json_serializable"]
+```
+
+## Input Files
+
+The builder processes files with these extensions:
+- `.openapi.yaml` - OpenAPI specification in YAML format
+- `.openapi.json` - OpenAPI specification in JSON format
+
+## Output Files
+
+For each input file, two files are generated:
+
+### 1. DTOs File (`.openapi.dtos.dart`)
+Contains:
+- Freezed data classes with `@freezed` annotation
+- Enum types with `@JsonValue` annotations
+- `fromJson` factory constructors
+- Part directives for `.freezed.dart` and `.g.dart`
+
+Example: `pet_store.openapi.yaml` → `pet_store.openapi.dtos.dart`
+
+### 2. Service File (`.openapi.service.dart`)
+Contains:
+- Service class with HTTP methods
+- Import of corresponding DTOs file
+- Import of runtime error handling
+- Dio-based HTTP client integration
+- Either-based error handling
+
+Example: `pet_store.openapi.yaml` → `pet_store.openapi.service.dart`
+
+## Code Generation Workflow
+
+### Using build_runner (Recommended)
+
+```bash
+# Generate code for all .openapi.yaml/.json files
+dart run build_runner build
+
+# Clean and regenerate
+dart run build_runner clean
+dart run build_runner build
+
+# Delete conflicting outputs (recommended)
+dart run build_runner build --delete-conflicting-outputs
+
+# Watch for changes and auto-regenerate
+dart run build_runner watch
+```
+
+### Using CLI Tool (Alternative)
+
+```bash
+# Generate code for a specific OpenAPI spec
+dart run openapi_service_flutter:openapi_code_builder_cli path/to/spec.openapi.yaml
+```
+
+## Build Order
+
+The builder runs **before** Freezed and json_serializable:
+1. `openapi_service_builder` generates DTOs and services
+2. `freezed` generates `.freezed.dart` files for DTOs
+3. `json_serializable` generates `.g.dart` files for JSON serialization
+
+This ensures proper dependency resolution.
+
+## Configuration Options
+
+The builder supports configuration in `build.yaml`:
+
+```yaml
+targets:
+  $default:
+    builders:
+      openapi_service_flutter|openapi_service_builder:
+        options:
+          prefixFilter: "/api"  # Filter endpoints by prefix
+          includeFilterPrefix: false  # Remove prefix from method names
+```
+
+### prefixFilter
+Filter endpoints to only include those starting with the specified prefix.
+
+Example: `prefixFilter: "/api"` only includes endpoints like `/api/users`, `/api/posts`
+
+### includeFilterPrefix
+Whether to include the filter prefix in generated method names.
+
+- `true` (default): `/api/users` → `apiUsersGet()`
+- `false`: `/api/users` → `usersGet()`
+
+## Generated File Dependencies
+
+Generated service code depends on:
+- `dio` (>=5.0.0) - HTTP client
+- `either_dart` (>=1.0.0) - Either type for error handling
+- `freezed_annotation` (>=2.4.0) - DTO annotations
+- `json_annotation` (>=4.0.1) - JSON serialization
+- `openapi_service_flutter/runtime.dart` - Runtime error handling
+
+Ensure these are in your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  dio: ^5.0.0
+  either_dart: ^1.0.0
+  freezed_annotation: ^2.4.0
+  json_annotation: ^4.0.1
+  openapi_service_flutter: ^1.0.0
+
+dev_dependencies:
+  build_runner: ^2.4.0
+  freezed: ^2.4.0
+  json_serializable: ^6.0.0
+```
+
+## Example Project Structure
+
+```
+lib/
+  service/
+    pet_store.openapi.yaml          # Input OpenAPI spec
+    pet_store.openapi.dtos.dart     # Generated DTOs
+    pet_store.openapi.dtos.freezed.dart  # Freezed generated
+    pet_store.openapi.dtos.g.dart   # JSON serialization
+    pet_store.openapi.service.dart  # Generated service
+```
+
+## Troubleshooting
+
+### Conflicting Outputs
+If you see "Conflicting outputs" errors:
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
+
+### Missing Generated Files
+Ensure you've run `build_runner` after adding/modifying OpenAPI specs:
+```bash
+dart run build_runner build
+```
+
+### Build Errors
+Check that:
+1. OpenAPI spec is valid YAML/JSON
+2. File has correct extension (`.openapi.yaml` or `.openapi.json`)
+3. All dependencies are in `pubspec.yaml`
+4. No syntax errors in the OpenAPI specification
+
+### Clean Build
+For persistent issues, try a clean build:
+```bash
+dart run build_runner clean
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs
+```
+
+## File References
+
+- Build configuration: [build.yaml](mdc:build.yaml)
+- Builder implementation: [openapi_service_builder.dart](mdc:lib/src/openapi_service_builder.dart)
+- Example specs: [example/lib/service/](mdc:example/lib/service/)

@@ -1,0 +1,97 @@
+---
+alwaysApply: true
+---
+# Error Handling Architecture
+
+This project uses a comprehensive error handling system with functional programming patterns.
+
+## Core Components
+
+### ApiError
+The main error type returned by all service methods:
+- `message` - User-friendly error message
+- `statusCode` - HTTP status code (if applicable)
+- `type` - Error category (e.g., `network_error`, `authentication_error`)
+- `technicalDetails` - Full technical error details for debugging
+- `debugInfo` - Additional debug information including request context
+
+**Convenience getters**:
+- `isNetworkError`, `isTimeout`, `isAuthenticationError`, `isAuthorizationError`
+- `isNotFound`, `isValidationError`, `isServerError`, `isClientError`
+
+### ErrorHandler Interface
+Defines the contract for error handling:
+```dart
+abstract class ErrorHandler {
+  ApiError handleError(dynamic error, StackTrace stackTrace, RequestContext requestContext);
+  String? extractErrorMessage(dynamic data);
+}
+```
+
+### DefaultErrorHandler
+The default implementation that:
+1. Maps HTTP status codes to error types (401→authentication_error, 403→authorization_error, etc.)
+2. Extracts error messages from common API response fields (message, error, detail, error_description)
+3. Provides fallback messages for network errors, timeouts, etc.
+4. Creates comprehensive debug information
+
+### RequestContext
+Contains request information for error debugging:
+- `method` - HTTP method (GET, POST, etc.)
+- `endpoint` - The API endpoint that failed
+- `requestBody` - Request payload (if any)
+- `queryParameters` - Query parameters used
+
+## Generated Service Error Handling
+
+All generated service methods follow this pattern:
+
+```dart
+Future<Either<ApiError, ResponseType>> methodName(...) async {
+  final endpoint = '/api/path';
+  final queryParams = <String, dynamic>{};
+  
+  try {
+    // Build request and make HTTP call
+    final response = await _dio.get(endpoint, queryParameters: queryParams);
+    
+    // Parse and return success response
+    return Right(result);
+  } catch (e, stackTrace) {
+    // Create request context
+    final requestContext = RequestContext(
+      method: 'GET',
+      endpoint: endpoint,
+      queryParameters: queryParams,
+      requestBody: body, // if applicable
+    );
+    
+    // Delegate to error handler
+    return Left(_errorHandler.handleError(e, stackTrace, requestContext));
+  }
+}
+```
+
+## Error Type Mapping
+
+Status codes are automatically mapped to error types:
+- `401` → `authentication_error`
+- `403` → `authorization_error`
+- `404` → `not_found_error`
+- `408` → `timeout_error`
+- `422` → `validation_error`
+- `429` → `rate_limit_error`
+- `500+` → `server_error`
+
+DioException types are also mapped:
+- `connectionTimeout`, `sendTimeout`, `receiveTimeout` → `timeout_error`
+- `connectionError` → `network_error`
+- `cancel` → `cancelled_error`
+- `badCertificate` → `certificate_error`
+
+## File References
+
+- Error types: [api_error.dart](mdc:lib/src/runtime/error/api_error.dart)
+- Error handler: [default_error_handler.dart](mdc:lib/src/runtime/error/default_error_handler.dart)
+- Request context: [request_context.dart](mdc:lib/src/runtime/error/request_context.dart)
+- Error messages: [error_messages.dart](mdc:lib/src/runtime/error/error_messages.dart)

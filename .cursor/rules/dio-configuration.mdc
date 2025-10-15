@@ -1,0 +1,355 @@
+---
+description: DefaultDio configuration and HTTP client setup
+---
+# DefaultDio Configuration and HTTP Client Setup
+
+This document covers the `DefaultDio` utility and best practices for HTTP client configuration.
+
+## DefaultDio Overview
+
+`DefaultDio` provides opinionated, production-ready HTTP client setup for generated services.
+
+### Features
+- **Sensible Timeouts**: 30-second defaults for connect/receive/send operations
+- **JSON Headers**: Automatically sets `Content-Type` and `Accept` to `application/json`
+- **Redirect Handling**: Follows redirects up to 3 times automatically
+- **Smart Upload Timeout**: Intelligent timeout handling for file uploads
+- **Debug Logging**: Easy one-line setup with `createWithLogging()`
+- **Extensible**: Add custom headers and interceptors easily
+
+## Basic Usage
+
+### Simple Setup
+```dart
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+
+final dio = DefaultDio.create(
+  baseUrl: 'https://api.yourbackend.com',
+);
+
+final service = MyApiService(dio);
+```
+
+### Custom Configuration
+```dart
+final dio = DefaultDio.create(
+  baseUrl: 'https://api.yourbackend.com',
+  connectTimeout: Duration(seconds: 10),
+  receiveTimeout: Duration(seconds: 15),
+  sendTimeout: Duration(seconds: 20),
+  uploadProgressTimeout: Duration(seconds: 60),
+  headers: {
+    'X-API-Version': '1.0',
+    'Accept-Language': 'en-US',
+  },
+  interceptors: [
+    AuthInterceptor(),
+    LoggingInterceptor(),
+  ],
+);
+```
+
+### With Logging (Development)
+```dart
+final dio = DefaultDio.createWithLogging(
+  baseUrl: 'https://api.yourbackend.com',
+);
+```
+
+This automatically logs:
+- 🔵 Request method and URL
+- 📤 Request body size
+- 🟢 Response status code
+- 📥 Response body size
+- 🔴 Error status and message
+
+## Default Configuration
+
+When you call `DefaultDio.create()`, the following defaults are applied:
+
+```dart
+BaseOptions(
+  baseUrl: baseUrl ?? '',
+  connectTimeout: Duration(seconds: 30),
+  receiveTimeout: Duration(seconds: 30),
+  sendTimeout: Duration(seconds: 30),
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+  responseType: ResponseType.json,
+  followRedirects: true,
+  maxRedirects: 3,
+)
+```
+
+## SmartUploadInterceptor
+
+DefaultDio includes `SmartUploadInterceptor` by default for intelligent file upload handling.
+
+### How It Works
+
+1. **Detection**: Automatically detects file upload requests by checking:
+   - If data is a `Stream` (from `file.openRead()`)
+   - If data is `FormData` (multipart uploads)
+   - If progress callback is provided
+   - If Content-Type is non-JSON
+
+2. **Timeout Adjustment**:
+   - Regular requests: Use standard `sendTimeout`
+   - File uploads with progress: Disable fixed timeout, use progress monitoring
+   - File uploads without progress: Use generous 10-minute timeout
+
+3. **Progress Monitoring**:
+   - Tracks last progress timestamp
+   - Times out only if no progress for `uploadProgressTimeout` duration
+   - Default: 45 seconds without progress
+
+### Configuration
+```dart
+// Enable smart upload timeout (default)
+final dio = DefaultDio.create(
+  baseUrl: 'https://api.yourbackend.com',
+  uploadProgressTimeout: Duration(seconds: 60),
+  enableSmartUploadTimeout: true,
+);
+
+// Disable smart upload timeout
+final dio = DefaultDio.create(
+  baseUrl: 'https://api.yourbackend.com',
+  enableSmartUploadTimeout: false,
+);
+```
+
+### Benefits
+- Fast timeouts for regular API calls (30 seconds)
+- Generous timeouts for file uploads (progress-based)
+- No need to adjust timeouts manually per request
+- Prevents premature timeout on slow uploads
+- Detects stalled uploads (no progress)
+
+## Manual Dio Setup (Alternative)
+
+If you prefer not to use DefaultDio:
+
+```dart
+final dio = Dio();
+dio.options = BaseOptions(
+  baseUrl: 'https://api.yourbackend.com',
+  connectTimeout: Duration(seconds: 30),
+  receiveTimeout: Duration(seconds: 30),
+  sendTimeout: Duration(seconds: 30),
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
+);
+
+// Add interceptors manually
+dio.interceptors.add(LogInterceptor(
+  requestBody: true,
+  responseBody: true,
+));
+
+final service = MyApiService(dio);
+```
+
+## Common Interceptors
+
+### Authentication Interceptor
+```dart
+class AuthInterceptor extends Interceptor {
+  final TokenProvider tokenProvider;
+  
+  AuthInterceptor(this.tokenProvider);
+  
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    final token = await tokenProvider.getToken();
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+    handler.next(options);
+  }
+  
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    if (err.response?.statusCode == 401) {
+      tokenProvider.clearToken();
+    }
+    handler.next(err);
+  }
+}
+```
+
+### Retry Interceptor
+```dart
+class RetryInterceptor extends Interceptor {
+  final int maxRetries;
+  
+  RetryInterceptor({this.maxRetries = 3});
+  
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
+    final retries = err.requestOptions.extra['retries'] ?? 0;
+    
+    if (retries < maxRetries && _shouldRetry(err)) {
+      err.requestOptions.extra['retries'] = retries + 1;
+      
+      // Wait before retry
+      await Future.delayed(Duration(seconds: retries + 1));
+      
+      try {
+        final response = await Dio().fetch(err.requestOptions);
+        handler.resolve(response);
+      } catch (e) {
+        handler.next(err);
+      }
+    } else {
+      handler.next(err);
+    }
+  }
+  
+  bool _shouldRetry(DioException err) {
+    return err.type == DioExceptionType.connectionTimeout ||
+           err.type == DioExceptionType.receiveTimeout ||
+           (err.response?.statusCode ?? 0) >= 500;
+  }
+}
+```
+
+### Cache Interceptor
+```dart
+class CacheInterceptor extends Interceptor {
+  final Map<String, Response> _cache = {};
+  
+  @override
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    if (options.method == 'GET') {
+      final cached = _cache[options.uri.toString()];
+      if (cached != null) {
+        return handler.resolve(cached);
+      }
+    }
+    handler.next(options);
+  }
+  
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    if (response.requestOptions.method == 'GET') {
+      _cache[response.requestOptions.uri.toString()] = response;
+    }
+    handler.next(response);
+  }
+}
+```
+
+## Environment-Specific Configuration
+
+### Development vs Production
+```dart
+class ApiConfig {
+  static Dio createDio() {
+    final baseUrl = kDebugMode
+        ? 'https://dev-api.yourbackend.com'
+        : 'https://api.yourbackend.com';
+    
+    return kDebugMode
+        ? DefaultDio.createWithLogging(baseUrl: baseUrl)
+        : DefaultDio.create(baseUrl: baseUrl);
+  }
+}
+```
+
+### Multiple Environments
+```dart
+enum Environment { dev, staging, production }
+
+class ApiConfig {
+  static Environment current = Environment.dev;
+  
+  static String get baseUrl {
+    switch (current) {
+      case Environment.dev:
+        return 'https://dev-api.yourbackend.com';
+      case Environment.staging:
+        return 'https://staging-api.yourbackend.com';
+      case Environment.production:
+        return 'https://api.yourbackend.com';
+    }
+  }
+  
+  static Dio createDio() {
+    return DefaultDio.create(
+      baseUrl: baseUrl,
+      headers: {
+        'X-Environment': current.name,
+      },
+    );
+  }
+}
+```
+
+## Performance Optimization
+
+### Connection Pooling
+Reuse Dio instance across your app:
+```dart
+class ApiProvider {
+  static final Dio _dio = DefaultDio.create(
+    baseUrl: 'https://api.yourbackend.com',
+  );
+  
+  static MyApiService get myApi => MyApiService(_dio);
+  static OtherApiService get otherApi => OtherApiService(_dio);
+}
+```
+
+### Timeout Tuning
+Adjust timeouts based on your API characteristics:
+```dart
+// Fast API with small payloads
+final dio = DefaultDio.create(
+  connectTimeout: Duration(seconds: 10),
+  receiveTimeout: Duration(seconds: 15),
+);
+
+// Slow API or large payloads
+final dio = DefaultDio.create(
+  connectTimeout: Duration(seconds: 60),
+  receiveTimeout: Duration(seconds: 120),
+);
+```
+
+## Troubleshooting
+
+### Connection Timeouts
+If you're experiencing frequent connection timeouts:
+1. Check network connectivity
+2. Verify baseUrl is correct
+3. Increase `connectTimeout`
+4. Add retry interceptor
+
+### Upload Timeouts
+If file uploads are timing out:
+1. Verify `uploadProgressTimeout` is sufficient
+2. Check if progress callback is provided
+3. Enable `SmartUploadInterceptor` (default)
+4. Monitor upload progress in logs
+
+### Certificate Errors
+For development with self-signed certificates:
+```dart
+// WARNING: Only use in development!
+(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = 
+    (client) {
+  client.badCertificateCallback = (cert, host, port) => true;
+  return client;
+};
+```
+
+## File References
+
+- DefaultDio implementation: [default_dio.dart](mdc:lib/src/runtime/dio/default_dio.dart)
+- SmartUploadInterceptor: [smart_upload_interceptor.dart](mdc:lib/src/runtime/dio/smart_upload_interceptor.dart)
+- Usage examples: [README.md](mdc:README.md)

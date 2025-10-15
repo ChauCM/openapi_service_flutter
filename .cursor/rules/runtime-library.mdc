@@ -1,0 +1,155 @@
+---
+globs: lib/src/runtime/**/*.dart
+---
+# Runtime Library Guidelines
+
+The runtime library provides reusable components that generated code depends on.
+
+## Structure
+
+Runtime components are in `lib/src/runtime/`:
+- `error/` - Error handling infrastructure
+- `dio/` - HTTP client utilities
+- `openapi_runtime.dart` - Main runtime exports
+
+## Error Handling Components
+
+### ApiError
+Immutable error class with:
+- User-friendly message
+- HTTP status code
+- Error type categorization
+- Technical details for debugging
+- Debug info with request context
+
+### ErrorHandler Interface
+```dart
+abstract class ErrorHandler {
+  ApiError handleError(
+    dynamic error,
+    StackTrace stackTrace,
+    RequestContext requestContext,
+  );
+  
+  String? extractErrorMessage(dynamic data);
+}
+```
+
+### DefaultErrorHandler
+Default implementation that:
+- Maps status codes to error types
+- Extracts messages from common API response fields
+- Provides friendly fallback messages
+- Creates comprehensive debug information
+
+### RequestContext
+Contains request information:
+```dart
+class RequestContext {
+  final String method;
+  final String endpoint;
+  final dynamic requestBody;
+  final Map<String, dynamic>? queryParameters;
+}
+```
+
+## Dio Utilities
+
+### DefaultDio
+Factory for creating configured Dio instances:
+```dart
+class DefaultDio {
+  static Dio create({
+    String? baseUrl,
+    Duration? connectTimeout,
+    Duration? receiveTimeout,
+    List<Interceptor>? interceptors,
+  });
+}
+```
+
+Features:
+- Opinionated default configuration
+- JSON content type headers
+- Automatic interceptor setup
+- Smart upload interceptor for file uploads
+
+### SmartUploadInterceptor
+Handles file upload optimization:
+- Detects multipart/form-data requests
+- Adds progress callbacks
+- Optimizes buffer size for large files
+
+## Usage in Generated Code
+
+Generated services use runtime components:
+
+```dart
+class MyApiService {
+  MyApiService(this._dio, {ErrorHandler? errorHandler})
+      : _errorHandler = errorHandler ?? const DefaultErrorHandler();
+  
+  final Dio _dio;
+  final ErrorHandler _errorHandler;
+  
+  Future<Either<ApiError, Response>> getData() async {
+    final endpoint = '/api/data';
+    
+    try {
+      final response = await _dio.get(endpoint);
+      return Right(Response.fromJson(response.data));
+    } catch (e, stackTrace) {
+      final context = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+      );
+      return Left(_errorHandler.handleError(e, stackTrace, context));
+    }
+  }
+}
+```
+
+## Adding New Runtime Components
+
+When adding new runtime components:
+
+1. **Place in appropriate subdirectory**:
+   - Error handling → `error/`
+   - HTTP utilities → `dio/`
+   - Other utilities → Create new subdirectory
+
+2. **Export from openapi_runtime.dart**:
+   ```dart
+   export 'error/api_error.dart';
+   export 'error/error_handler.dart';
+   // ... etc
+   ```
+
+3. **Export from runtime.dart**:
+   ```dart
+   export 'src/runtime/openapi_runtime.dart';
+   ```
+
+4. **Update generated code** if needed:
+   - Modify `OpenApiLibraryGenerator` in [openapi_service_builder.dart](mdc:lib/src/openapi_service_builder.dart)
+   - Add imports to service generation
+   - Update method templates
+
+5. **Add tests**:
+   - Create tests in `test/` directory
+   - Test both runtime component and integration with generated code
+
+## Dependencies
+
+Runtime components can depend on:
+- `dio` (>=5.0.0) - HTTP client
+- `either_dart` (>=1.0.0) - Functional error handling
+- Standard Dart libraries
+
+Avoid adding heavy dependencies to keep generated code lightweight.
+
+## File References
+
+- Error handling: [lib/src/runtime/error/](mdc:lib/src/runtime/error/)
+- Dio utilities: [lib/src/runtime/dio/](mdc:lib/src/runtime/dio/)
+- Runtime exports: [openapi_runtime.dart](mdc:lib/src/runtime/openapi_runtime.dart)

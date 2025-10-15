@@ -5,7 +5,7 @@ import 'smart_upload_interceptor.dart';
 /// suitable for most API integrations
 class DefaultDio {
   /// Creates a default Dio instance with sensible defaults
-  /// 
+  ///
   /// Includes smart upload detection that automatically adjusts timeouts
   /// for file upload operations while maintaining fast timeouts for regular API calls.
   static Dio create({
@@ -19,7 +19,7 @@ class DefaultDio {
     bool enableSmartUploadTimeout = true,
   }) {
     final dio = Dio();
-    
+
     // Base configuration
     dio.options = BaseOptions(
       baseUrl: baseUrl ?? '',
@@ -35,7 +35,7 @@ class DefaultDio {
       followRedirects: true,
       maxRedirects: 3,
     );
-    
+
     // Add smart upload interceptor for intelligent timeout handling
     if (enableSmartUploadTimeout) {
       dio.interceptors.add(SmartUploadInterceptor(
@@ -43,15 +43,15 @@ class DefaultDio {
         uploadProgressTimeout: uploadProgressTimeout,
       ));
     }
-    
+
     // Add custom interceptors if provided
     if (interceptors != null) {
       dio.interceptors.addAll(interceptors);
     }
-    
+
     return dio;
   }
-  
+
   /// Creates a Dio instance with logging enabled (debug mode)
   static Dio createWithLogging({
     String? baseUrl,
@@ -73,13 +73,13 @@ class DefaultDio {
       interceptors: interceptors,
       enableSmartUploadTimeout: enableSmartUploadTimeout,
     );
-    
+
     // Add logging interceptor for development
     dio.interceptors.add(_createLoggingInterceptor());
-    
+
     return dio;
   }
-  
+
   static Interceptor _createLoggingInterceptor() {
     return InterceptorsWrapper(
       onRequest: (options, handler) {
@@ -97,7 +97,8 @@ class DefaultDio {
         handler.next(response);
       },
       onError: (error, handler) {
-        print('🔴 ${error.response?.statusCode ?? 'NO_STATUS'} ${error.requestOptions.uri}');
+        print(
+            '🔴 ${error.response?.statusCode ?? 'NO_STATUS'} ${error.requestOptions.uri}');
         print('❌ ${error.message}');
         if (error.response?.data != null) {
           final errorLength = _getDataLength(error.response!.data);
@@ -107,10 +108,10 @@ class DefaultDio {
       },
     );
   }
-  
+
   static String _getDataLength(dynamic data) {
     if (data == null) return 'null';
-    
+
     if (data is String) {
       return '${data.length} chars';
     } else if (data is List) {

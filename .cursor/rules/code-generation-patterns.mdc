@@ -1,0 +1,66 @@
+---
+alwaysApply: true
+---
+# Code Generation Patterns
+
+This project generates Dart code from OpenAPI specifications. Follow these patterns when working with code generation:
+
+## Generated Code Structure
+
+The generator produces **two separate files** per OpenAPI spec:
+- `.openapi.dtos.dart` - Freezed DTOs with JSON serialization
+- `.openapi.service.dart` - Service classes with HTTP methods using Dio
+
+### DTOs (Data Transfer Objects)
+- Use `@freezed` annotation for immutable data classes
+- Include both `.freezed.dart` and `.g.dart` part directives
+- Generate `fromJson` factory constructors
+- Handle enum types with `@JsonValue` annotations
+- Support nullable types and default values
+
+### Services
+- Import the corresponding DTOs file
+- Use `Dio` for HTTP client operations
+- Return `Either<ApiError, T>` for error handling (using `either_dart` package)
+- Accept `ErrorHandler` for customizable error processing
+- Generate methods for each API endpoint
+
+## Key Generation Rules
+
+1. **Enum Handling**:
+   - Filter out `null` values from enums
+   - Sanitize enum value names (handle reserved words with `$` prefix)
+   - Use `@JsonValue` for proper JSON serialization
+   - Support inline enums in properties
+
+2. **Schema References**:
+   - Detect and merge duplicate schemas with numbered suffixes (e.g., `AccountDto` and `AccountDto2`)
+   - Use canonical names to avoid duplicate DTO generation
+   - Track schema references to prevent circular dependencies
+
+3. **Type Mapping**:
+   - `string` → `String`
+   - `integer` → `int`
+   - `number` → `num`
+   - `boolean` → `bool`
+   - `array` → `List<T>`
+   - `object` with properties → DTO class
+   - `object` with additionalProperties → `Map<String, T>`
+   - `date-time` format → `DateTime`
+   - `binary` format → `Uint8List`
+
+4. **Field Name Sanitization**:
+   - Remove `@` prefix from field names
+   - Handle Dart reserved keywords by adding `Field` suffix
+   - Use `@JsonKey(name: 'original_name')` to preserve JSON keys
+
+5. **Nullable Handling**:
+   - Optional fields are nullable unless they have default values
+   - Handle `NullableOf*` enum patterns from C# OpenAPI generators
+   - Required fields are non-nullable
+
+## File References
+
+- Main builder: [openapi_service_builder.dart](mdc:lib/src/openapi_service_builder.dart)
+- Custom allocator: [custom_allocator.dart](mdc:lib/src/custom_allocator.dart)
+- Test utilities: [test_utils.dart](mdc:test/test_utils.dart)

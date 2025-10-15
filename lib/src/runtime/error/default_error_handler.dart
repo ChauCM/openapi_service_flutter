@@ -15,6 +15,12 @@ class DefaultErrorHandler implements ErrorHandler {
     StackTrace stackTrace,
     RequestContext requestContext,
   ) {
+    // Print error and stack trace for debugging (replicates regular API fail behavior)
+    print('❌ Error:');
+    print(error);
+    print('📍 Stack trace:');
+    print(stackTrace);
+
     if (error is DioException) {
       return _handleDioException(error, stackTrace, requestContext);
     }

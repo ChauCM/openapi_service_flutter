@@ -1,0 +1,366 @@
+---
+description: Common usage patterns and integration examples
+---
+# Usage Examples and Integration Patterns
+
+This document provides practical examples for using the generated OpenAPI services in Flutter applications.
+
+## Basic Service Setup
+
+### Simple Client Setup
+```dart
+import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+
+class ApiClient {
+  late final MyApiService _apiService;
+  late final Dio _dio;
+
+  ApiClient({String? baseUrl}) {
+    // Use DefaultDio for sensible defaults
+    _dio = DefaultDio.create(
+      baseUrl: baseUrl ?? 'https://api.yourbackend.com',
+      connectTimeout: Duration(seconds: 30),
+      receiveTimeout: Duration(seconds: 30),
+    );
+    
+    // Generated service with default error handler
+    _apiService = MyApiService(_dio);
+  }
+
+  MyApiService get api => _apiService;
+}
+```
+
+### Development Setup with Logging
+```dart
+// Automatically adds request/response logging in debug mode
+final dio = DefaultDio.createWithLogging(
+  baseUrl: 'https://api.yourbackend.com',
+);
+
+final service = MyApiService(dio);
+```
+
+## Authentication Patterns
+
+### Bearer Token Authentication
+```dart
+class AuthenticatedApiClient {
+  late final MyApiService _apiService;
+  String? _token;
+
+  AuthenticatedApiClient({String? baseUrl}) {
+    final dio = DefaultDio.create(
+      baseUrl: baseUrl ?? 'https://api.yourbackend.com',
+      interceptors: [
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            if (_token != null) {
+              options.headers['Authorization'] = 'Bearer $_token';
+            }
+            handler.next(options);
+          },
+          onError: (error, handler) {
+            if (error.response?.statusCode == 401) {
+              _token = null;
+            }
+            handler.next(error);
+          },
+        ),
+      ],
+    );
+    
+    _apiService = MyApiService(dio);
+  }
+
+  Future<void> login(String email, String password) async {
+    final result = await _apiService.login(LoginRequestDto(
+      email: email,
+      password: password,
+    ));
+    
+    result.fold(
+      (error) => throw Exception('Login failed: ${error.message}'),
+      (response) => _token = response.accessToken,
+    );
+  }
+
+  MyApiService get api => _apiService;
+}
+```
+
+### API Key Authentication
+```dart
+final dio = DefaultDio.create(
+  baseUrl: 'https://api.yourbackend.com',
+  headers: {
+    'X-API-Key': 'your-api-key-here',
+  },
+);
+
+final service = MyApiService(dio);
+```
+
+## Error Handling Patterns
+
+### Basic Error Handling
+```dart
+final result = await apiService.getUser(123);
+
+result.fold(
+  (error) {
+    print('Error: ${error.message}');
+    print('Status: ${error.statusCode}');
+    print('Type: ${error.type}');
+  },
+  (user) => print('User: ${user.name}'),
+);
+```
+
+### Pattern Matching with Either
+```dart
+switch (result) {
+  case Left(value: final error):
+    if (error.isNetworkError) {
+      showNetworkError();
+    } else if (error.isAuthenticationError) {
+      redirectToLogin();
+    } else if (error.isServerError) {
+      showServerError();
+    }
+    break;
+  case Right(value: final user):
+    displayUser(user);
+    break;
+}
+```
+
+### UI Error Display
+```dart
+result.fold(
+  (error) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(error.message),
+        backgroundColor: error.isNetworkError ? Colors.orange : Colors.red,
+        action: error.isNetworkError
+          ? SnackBarAction(
+              label: 'Retry',
+              onPressed: () => _retryRequest(),
+            )
+          : null,
+      ),
+    );
+  },
+  (data) => _handleSuccess(data),
+);
+```
+
+## Custom Error Handler
+
+### Logging Error Handler
+```dart
+class LoggingErrorHandler extends DefaultErrorHandler {
+  @override
+  ApiError handleError(dynamic error, StackTrace stackTrace, RequestContext requestContext) {
+    final apiError = super.handleError(error, stackTrace, requestContext);
+    
+    // Log error details
+    if (kDebugMode) {
+      print('API Error: ${apiError.message}');
+      print('Endpoint: ${requestContext.method} ${requestContext.endpoint}');
+      print('Status: ${apiError.statusCode}');
+    }
+    
+    // Send to crash reporting
+    FirebaseCrashlytics.instance.recordError(
+      error,
+      stackTrace,
+      reason: 'API Error at ${requestContext.endpoint}',
+    );
+    
+    return apiError;
+  }
+}
+
+// Use custom error handler
+final service = MyApiService(
+  dio,
+  errorHandler: LoggingErrorHandler(),
+);
+```
+
+### API-Specific Error Handler
+```dart
+class CustomApiErrorHandler extends DefaultErrorHandler {
+  @override
+  String? extractErrorMessage(dynamic data) {
+    // Handle your API's specific error format
+    if (data is Map<String, dynamic>) {
+      if (data['user_message'] != null) {
+        return data['user_message'];
+      }
+      if (data['display_message'] != null) {
+        return data['display_message'];
+      }
+    }
+    
+    // Fall back to default extraction
+    return super.extractErrorMessage(data);
+  }
+  
+  @override
+  ApiError handleError(dynamic error, StackTrace stackTrace, RequestContext requestContext) {
+    // Handle specific error codes
+    if (error is DioException && error.response?.data is Map) {
+      final data = error.response!.data as Map<String, dynamic>;
+      
+      if (data['error_code'] == 'MAINTENANCE_MODE') {
+        return ApiError(
+          message: 'Service is temporarily down for maintenance. Please try again later.',
+          statusCode: error.response?.statusCode,
+          type: 'maintenance_error',
+          technicalDetails: error.toString(),
+        );
+      }
+    }
+    
+    return super.handleError(error, stackTrace, requestContext);
+  }
+}
+```
+
+## State Management Integration
+
+### BLoC Pattern
+```dart
+class UserCubit extends Cubit<UserState> {
+  final MyApiService _apiService;
+  
+  UserCubit(this._apiService) : super(UserInitial());
+  
+  Future<void> loadUsers() async {
+    emit(UserLoading());
+    final result = await _apiService.getUsers();
+    result.fold(
+      (error) => emit(UserError(error.message)),
+      (users) => emit(UserLoaded(users)),
+    );
+  }
+}
+```
+
+### Riverpod Pattern
+```dart
+final apiServiceProvider = Provider<MyApiService>((ref) {
+  final dio = DefaultDio.create(
+    baseUrl: 'https://api.yourbackend.com',
+  );
+  return MyApiService(dio);
+});
+
+final usersProvider = FutureProvider<List<UserDto>>((ref) async {
+  final service = ref.watch(apiServiceProvider);
+  final result = await service.getUsers();
+  
+  return result.fold(
+    (error) => throw Exception(error.message),
+    (users) => users,
+  );
+});
+```
+
+## File Upload Patterns
+
+### Binary File Upload
+```dart
+Future<Either<ApiError, UploadResponseDto>> uploadFile(File file) async {
+  final result = await apiService.uploadFile(
+    file,
+    onProgress: (sent, total) {
+      final progress = (sent / total * 100).toStringAsFixed(1);
+      print('Upload progress: $progress%');
+    },
+  );
+  
+  return result;
+}
+```
+
+### Multipart Form Upload
+```dart
+Future<Either<ApiError, UploadResponseDto>> uploadWithMetadata(
+  File file,
+  String description,
+) async {
+  final result = await apiService.uploadFileWithMetadata(
+    file: file,
+    description: description,
+    onProgress: (sent, total) {
+      setState(() {
+        uploadProgress = sent / total;
+      });
+    },
+  );
+  
+  return result;
+}
+```
+
+## Getting OpenAPI Specifications
+
+### Common Endpoints to Check
+```dart
+// Try these endpoints to find your API's OpenAPI spec:
+final commonEndpoints = [
+  '/openapi.json',
+  '/swagger.json',
+  '/api/openapi.json',
+  '/docs/openapi.json',
+  '/api-docs',
+];
+```
+
+### From Swagger UI
+1. Open your API's Swagger documentation
+2. Look for "Download" or export button
+3. Save as `.openapi.json` or `.openapi.yaml`
+
+### From Backend Frameworks
+- **FastAPI**: Available at `/openapi.json`
+- **Spring Boot**: Use Springdoc OpenAPI
+- **Express.js**: Use swagger-jsdoc
+- **Django**: Use drf-spectacular
+
+## Development Debug Information
+
+### Accessing Debug Info
+```dart
+if (kDebugMode && error.debugInfo != null) {
+  final requestContext = error.debugInfo!.requestContext;
+  print('Method: ${requestContext.method}');
+  print('Endpoint: ${requestContext.endpoint}');
+  print('Request Body: ${requestContext.requestBody}');
+  print('Query Parameters: ${requestContext.queryParameters}');
+  print('Response Body: ${error.debugInfo!.responseBody}');
+  print('Stack Trace: ${error.stackTrace}');
+}
+```
+
+## Project Setup Checklist
+
+1. ✅ Add dependencies to `pubspec.yaml`
+2. ✅ Place OpenAPI spec in `lib/services/`
+3. ✅ Configure `build.yaml` (optional)
+4. ✅ Run `dart run build_runner build --delete-conflicting-outputs`
+5. ✅ Create Dio instance with `DefaultDio.create()`
+6. ✅ Initialize generated service with Dio
+7. ✅ Handle Either results with `.fold()`
+8. ✅ Display user-friendly error messages
+
+## File References
+
+- DefaultDio: [default_dio.dart](mdc:lib/src/runtime/dio/default_dio.dart)
+- Error handling: [api_error.dart](mdc:lib/src/runtime/error/api_error.dart)
+- Example usage: [example/usage/example_client.dart](mdc:example/usage/example_client.dart)
+- README examples: [README.md](mdc:README.md)
