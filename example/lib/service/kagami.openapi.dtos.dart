@@ -671,6 +671,24 @@ sealed class MedicineFormDto with _$MedicineFormDto {
 }
 
 @freezed
+sealed class MedicineFormDtoDto with _$MedicineFormDtoDto {
+  factory MedicineFormDtoDto({
+    @JsonKey(name: 'medicineFormId') int? medicineFormId,
+    @JsonKey(name: 'studentId') required String studentId,
+    @JsonKey(name: 'classId') required String classId,
+    @JsonKey(name: 'schoolId') required String schoolId,
+    @JsonKey(name: 'administrationTime') required String administrationTime,
+    @JsonKey(name: 'startDate') required DateTime startDate,
+    @JsonKey(name: 'endDate') DateTime? endDate,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'medicineDetails') List<MedicineDetailsDto>? medicineDetails,
+  }) = _MedicineFormDtoDto;
+
+  factory MedicineFormDtoDto.fromJson(Map<String, dynamic> json) =>
+      _$MedicineFormDtoDtoFromJson(json);
+}
+
+@freezed
 sealed class MedicineFormFullVODto with _$MedicineFormFullVODto {
   factory MedicineFormFullVODto({
     @JsonKey(name: 'medicineFormId') int? medicineFormId,

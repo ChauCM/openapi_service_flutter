@@ -26,11 +26,13 @@ sealed class AcademicYearApiDto with _$AcademicYearApiDto {
 @freezed
 sealed class AccountApiDto with _$AccountApiDto {
   factory AccountApiDto({
+    @JsonKey(name: 'accountType') int? accountType,
     @JsonKey(name: 'accountId') int? accountId,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'identifier') String? identifier,
     @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
     @JsonKey(name: 'identifierType') int? identifierType,
+    @JsonKey(name: 'accountImage') ImageUrlResultDto? accountImage,
     @JsonKey(name: 'isDeleted') bool? isDeleted,
     @JsonKey(name: 'createdByUserId') String? createdByUserId,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -252,6 +254,7 @@ sealed class ClassAttendanceDTODto with _$ClassAttendanceDTODto {
   factory ClassAttendanceDTODto({
     @JsonKey(name: 'classId') int? classId,
     @JsonKey(name: 'className') String? className,
+    @JsonKey(name: 'level') String? level,
     @JsonKey(name: 'students') List<StudentAttendanceDTODto>? students,
     @JsonKey(name: 'sumPresent') int? sumPresent,
     @JsonKey(name: 'sumSchoolDays') int? sumSchoolDays,
@@ -340,7 +343,8 @@ sealed class ContentApiDto with _$ContentApiDto {
     @JsonKey(name: 'students') List<int>? students,
     @JsonKey(name: 'classes') List<int>? classes,
     @JsonKey(name: 'levels') List<int>? levels,
-    @JsonKey(name: 'learningDomains') List<int>? learningDomains,
+    @JsonKey(name: 'learningDomains')
+    List<LearningDomainApiDto>? learningDomains,
     @JsonKey(name: 'contentTitle') String? contentTitle,
     @JsonKey(name: 'contentBody') String? contentBody,
     @JsonKey(name: 'activityDateTime') DateTime? activityDateTime,
@@ -351,6 +355,7 @@ sealed class ContentApiDto with _$ContentApiDto {
     @JsonKey(name: 'attachmentFolder') String? attachmentFolder,
     @JsonKey(name: 'defaultUrl') String? defaultUrl,
     @JsonKey(name: 'branchId') int? branchId,
+    @JsonKey(name: 'attachments') List<ContentAttachmentApiDto>? attachments,
     @JsonKey(name: 'isDeleted') bool? isDeleted,
     @JsonKey(name: 'createdByUserId') String? createdByUserId,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -363,6 +368,17 @@ sealed class ContentApiDto with _$ContentApiDto {
 }
 
 @freezed
+sealed class ContentAttachmentApiDto with _$ContentAttachmentApiDto {
+  factory ContentAttachmentApiDto({
+    @JsonKey(name: 'fileUrl') String? fileUrl,
+    @JsonKey(name: 'description') String? description,
+  }) = _ContentAttachmentApiDto;
+
+  factory ContentAttachmentApiDto.fromJson(Map<String, dynamic> json) =>
+      _$ContentAttachmentApiDtoFromJson(json);
+}
+
+@freezed
 sealed class ConversationApiDto with _$ConversationApiDto {
   factory ConversationApiDto({
     @JsonKey(name: 'conversationId') int? conversationId,
@@ -370,7 +386,9 @@ sealed class ConversationApiDto with _$ConversationApiDto {
     @JsonKey(name: 'isClosed') bool? isClosed,
     @JsonKey(name: 'dateClosed') DateTime? dateClosed,
     @JsonKey(name: 'initiatorAccountId') int? initiatorAccountId,
+    @JsonKey(name: 'initiatorAccountName') String? initiatorAccountName,
     @JsonKey(name: 'recipientAccountId') int? recipientAccountId,
+    @JsonKey(name: 'recipientAccountName') String? recipientAccountName,
     @JsonKey(name: 'isDeleted') bool? isDeleted,
     @JsonKey(name: 'createdByUserId') String? createdByUserId,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -398,6 +416,7 @@ sealed class ConversationMessageApiDto with _$ConversationMessageApiDto {
     @JsonKey(name: 'conversationMessageId') int? conversationMessageId,
     @JsonKey(name: 'message') required String message,
     @JsonKey(name: 'senderAccountId') int? senderAccountId,
+    @JsonKey(name: 'senderAccountName') String? senderAccountName,
     @JsonKey(name: 'isRead') bool? isRead,
     @JsonKey(name: 'conversationId') int? conversationId,
     @JsonKey(name: 'isDeleted') bool? isDeleted,
@@ -472,6 +491,61 @@ sealed class CountryApiDto with _$CountryApiDto {
 }
 
 @freezed
+sealed class CreditNoteApiDto with _$CreditNoteApiDto {
+  factory CreditNoteApiDto({
+    @JsonKey(name: 'creditNoteId') int? creditNoteId,
+    @JsonKey(name: 'entityNumber') String? entityNumber,
+    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'accountId') int? accountId,
+    @JsonKey(name: 'branchId') int? branchId,
+    @JsonKey(name: 'currency') String? currency,
+    @JsonKey(name: 'creditNoteDate') DateTime? creditNoteDate,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'cancellationRemarks') String? cancellationRemarks,
+    @JsonKey(name: 'totalAmountBeforeTax') num? totalAmountBeforeTax,
+    @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+    @JsonKey(name: 'totalAmountAfterTax') num? totalAmountAfterTax,
+    @JsonKey(name: 'printUrl') String? printUrl,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _CreditNoteApiDto;
+
+  factory CreditNoteApiDto.fromJson(Map<String, dynamic> json) =>
+      _$CreditNoteApiDtoFromJson(json);
+}
+
+@freezed
+sealed class CreditNoteItemApiDto with _$CreditNoteItemApiDto {
+  factory CreditNoteItemApiDto({
+    @JsonKey(name: 'creditNoteItemId') int? creditNoteItemId,
+    @JsonKey(name: 'creditNoteId') int? creditNoteId,
+    @JsonKey(name: 'creditNote') CreditNoteApiDto? creditNote,
+    @JsonKey(name: 'invoiceId') int? invoiceId,
+    @JsonKey(name: 'feeItemId') int? feeItemId,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'quantity') num? quantity,
+    @JsonKey(name: 'unitPrice') num? unitPrice,
+    @JsonKey(name: 'taxRate') num? taxRate,
+    @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+    @JsonKey(name: 'taxAmount') num? taxAmount,
+    @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+    @JsonKey(name: 'creditNoteStatus') int? creditNoteStatus,
+    @JsonKey(name: 'printUrl') String? printUrl,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _CreditNoteItemApiDto;
+
+  factory CreditNoteItemApiDto.fromJson(Map<String, dynamic> json) =>
+      _$CreditNoteItemApiDtoFromJson(json);
+}
+
+@freezed
 sealed class CurrentUserInfoDto with _$CurrentUserInfoDto {
   factory CurrentUserInfoDto({
     @JsonKey(name: 'accountId') int? accountId,
@@ -481,11 +555,45 @@ sealed class CurrentUserInfoDto with _$CurrentUserInfoDto {
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'emailConfirmed') bool? emailConfirmed,
     @JsonKey(name: 'lastActiveBranchId') int? lastActiveBranchId,
+    @JsonKey(name: 'deleteRequestDate') DateTime? deleteRequestDate,
     @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles,
   }) = _CurrentUserInfoDto;
 
   factory CurrentUserInfoDto.fromJson(Map<String, dynamic> json) =>
       _$CurrentUserInfoDtoFromJson(json);
+}
+
+@freezed
+sealed class DailyLogApiDto with _$DailyLogApiDto {
+  factory DailyLogApiDto({
+    @JsonKey(name: 'dayLogs') List<DayLogApiDto>? dayLogs,
+    @JsonKey(name: 'student') StudentApiDto? student,
+  }) = _DailyLogApiDto;
+
+  factory DailyLogApiDto.fromJson(Map<String, dynamic> json) =>
+      _$DailyLogApiDtoFromJson(json);
+}
+
+@freezed
+sealed class DayLogApiDto with _$DayLogApiDto {
+  factory DayLogApiDto({
+    @JsonKey(name: 'date') String? date,
+    @JsonKey(name: 'attendanceList')
+    required List<StudentAttendanceApiDto> attendanceList,
+    @JsonKey(name: 'temperatureList')
+    required List<StudentTemperatureApiDto> temperatureList,
+    @JsonKey(name: 'checkInOutList')
+    required List<StudentCheckInOutApiDto> checkInOutList,
+    @JsonKey(name: 'infantWellnessActivityList')
+    required List<InfantWellnessActivityDTODto> infantWellnessActivityList,
+    @JsonKey(name: 'infantCareActivityList')
+    required List<InfantCareActivityApiDto> infantCareActivityList,
+    @JsonKey(name: 'infantCareActivityLogList')
+    required List<InfantCareActivityLogApiDto> infantCareActivityLogList,
+  }) = _DayLogApiDto;
+
+  factory DayLogApiDto.fromJson(Map<String, dynamic> json) =>
+      _$DayLogApiDtoFromJson(json);
 }
 
 @freezed
@@ -519,6 +627,93 @@ sealed class EnrolmentApiDto with _$EnrolmentApiDto {
 
   factory EnrolmentApiDto.fromJson(Map<String, dynamic> json) =>
       _$EnrolmentApiDtoFromJson(json);
+}
+
+@freezed
+sealed class FeedActivityDto with _$FeedActivityDto {
+  factory FeedActivityDto({
+    @JsonKey(name: 'feedType') int? feedType,
+    @JsonKey(name: 'bottleSource') String? bottleSource,
+    @JsonKey(name: 'bottleVolume') String? bottleVolume,
+    @JsonKey(name: 'latchOnSide') String? latchOnSide,
+    @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'activityType') int? activityType,
+    @JsonKey(name: 'activityDate') String? activityDate,
+    @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+    @JsonKey(name: 'activityTime') String? activityTime,
+    @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+    @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+    @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+    @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+    @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+    @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'integrationRefId') String? integrationRefId,
+  }) = _FeedActivityDto;
+
+  factory FeedActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$FeedActivityDtoFromJson(json);
+}
+
+@freezed
+sealed class FileUploadParamDto with _$FileUploadParamDto {
+  factory FileUploadParamDto({
+    @JsonKey(name: 'base64') required String base64,
+    @JsonKey(name: 'fileName') required String fileName,
+    @JsonKey(name: 'contentType') int? contentType,
+    @JsonKey(name: 'entityId') String? entityId,
+    @JsonKey(name: 'subFolders') List<String>? subFolders,
+  }) = _FileUploadParamDto;
+
+  factory FileUploadParamDto.fromJson(Map<String, dynamic> json) =>
+      _$FileUploadParamDtoFromJson(json);
+}
+
+@freezed
+sealed class FileUploadResultDto with _$FileUploadResultDto {
+  factory FileUploadResultDto({
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'fileName') String? fileName,
+  }) = _FileUploadResultDto;
+
+  factory FileUploadResultDto.fromJson(Map<String, dynamic> json) =>
+      _$FileUploadResultDtoFromJson(json);
+}
+
+@freezed
+sealed class HygieneActivityDto with _$HygieneActivityDto {
+  factory HygieneActivityDto({
+    @JsonKey(name: 'hygieneType') int? hygieneType,
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'activityType') int? activityType,
+    @JsonKey(name: 'activityDate') String? activityDate,
+    @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+    @JsonKey(name: 'activityTime') String? activityTime,
+    @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+    @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+    @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+    @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+    @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+    @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'integrationRefId') String? integrationRefId,
+  }) = _HygieneActivityDto;
+
+  factory HygieneActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$HygieneActivityDtoFromJson(json);
 }
 
 @freezed
@@ -661,6 +856,197 @@ sealed class InfantCareActivitySaveDto with _$InfantCareActivitySaveDto {
 }
 
 @freezed
+sealed class InfantWellnessActivityDto with _$InfantWellnessActivityDto {
+  factory InfantWellnessActivityDto({
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'activityType') int? activityType,
+    @JsonKey(name: 'activityDate') String? activityDate,
+    @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+    @JsonKey(name: 'activityTime') String? activityTime,
+    @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+    @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+    @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+    @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+    @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+    @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'integrationRefId') String? integrationRefId,
+  }) = _InfantWellnessActivityDto;
+
+  factory InfantWellnessActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$InfantWellnessActivityDtoFromJson(json);
+}
+
+@freezed
+sealed class InfantWellnessActivityDtoDto with _$InfantWellnessActivityDtoDto {
+  factory InfantWellnessActivityDtoDto({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'activityType') int? activityType,
+    @JsonKey(name: 'feedType') int? feedType,
+    @JsonKey(name: 'bottleSource') String? bottleSource,
+    @JsonKey(name: 'bottleVolume') String? bottleVolume,
+    @JsonKey(name: 'latchOnSide') String? latchOnSide,
+    @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+    @JsonKey(name: 'poopTexture') int? poopTexture,
+    @JsonKey(name: 'poopColour') int? poopColour,
+    @JsonKey(name: 'hygieneType') int? hygieneType,
+    @JsonKey(name: 'restEndTime') String? restEndTime,
+    @JsonKey(name: 'activityDate') String? activityDate,
+    @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+    @JsonKey(name: 'activityTime') String? activityTime,
+    @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+    @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+    @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+    @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+    @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+    @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+    @JsonKey(name: 'remarks') String? remarks,
+  }) = _InfantWellnessActivityDtoDto;
+
+  factory InfantWellnessActivityDtoDto.fromJson(Map<String, dynamic> json) =>
+      _$InfantWellnessActivityDtoDtoFromJson(json);
+}
+
+@freezed
+sealed class InfantWellnessActivityDTODto with _$InfantWellnessActivityDTODto {
+  factory InfantWellnessActivityDTODto({
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'activities') List<InfantWellnessActivityDto>? activities,
+    @JsonKey(name: 'lastFeed') FeedActivityDto? lastFeed,
+    @JsonKey(name: 'lasRest') RestActivityDto? lasRest,
+    @JsonKey(name: 'lastPoop') PoopActivityDto? lastPoop,
+    @JsonKey(name: 'lastHygiene') HygieneActivityDto? lastHygiene,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'integrationRefId') String? integrationRefId,
+  }) = _InfantWellnessActivityDTODto;
+
+  factory InfantWellnessActivityDTODto.fromJson(Map<String, dynamic> json) =>
+      _$InfantWellnessActivityDTODtoFromJson(json);
+}
+
+@freezed
+sealed class InvoiceApiDto with _$InvoiceApiDto {
+  factory InvoiceApiDto({
+    @JsonKey(name: 'invoiceId') int? invoiceId,
+    @JsonKey(name: 'entityNumber') String? entityNumber,
+    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'accountId') int? accountId,
+    @JsonKey(name: 'account') AccountApiDto? account,
+    @JsonKey(name: 'branchId') int? branchId,
+    @JsonKey(name: 'branch') BranchApiDto? branch,
+    @JsonKey(name: 'currency') String? currency,
+    @JsonKey(name: 'billingYear') int? billingYear,
+    @JsonKey(name: 'billingMonth') int? billingMonth,
+    @JsonKey(name: 'invoiceDate') DateTime? invoiceDate,
+    @JsonKey(name: 'dueDate') String? dueDate,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'invoiceTitle') String? invoiceTitle,
+    @JsonKey(name: 'voidRemarks') String? voidRemarks,
+    @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+    @JsonKey(name: 'totalChargeableAmountBeforeTax')
+    num? totalChargeableAmountBeforeTax,
+    @JsonKey(name: 'totalChargeableAmountAfterTax')
+    num? totalChargeableAmountAfterTax,
+    @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+    num? totalDeductibleAmountBeforeTax,
+    @JsonKey(name: 'totalDeductibleAmountAfterTax')
+    num? totalDeductibleAmountAfterTax,
+    @JsonKey(name: 'totalInvoiceAmount') num? totalInvoiceAmount,
+    @JsonKey(name: 'totalPaidAmount') num? totalPaidAmount,
+    @JsonKey(name: 'totalOutstandingAmount') num? totalOutstandingAmount,
+    @JsonKey(name: 'items') List<InvoiceItemApiDto>? items,
+    @JsonKey(name: 'receiptItems') List<ReceiptItemApiDto>? receiptItems,
+    @JsonKey(name: 'creditNoteItems')
+    List<CreditNoteItemApiDto>? creditNoteItems,
+    @JsonKey(name: 'printUrl') String? printUrl,
+    @JsonKey(name: 'payNowQrString') String? payNowQrString,
+    @JsonKey(name: 'payNowQrImageBase64') String? payNowQrImageBase64,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _InvoiceApiDto;
+
+  factory InvoiceApiDto.fromJson(Map<String, dynamic> json) =>
+      _$InvoiceApiDtoFromJson(json);
+}
+
+@freezed
+sealed class InvoiceItemApiDto with _$InvoiceItemApiDto {
+  factory InvoiceItemApiDto({
+    @JsonKey(name: 'invoiceItemId') int? invoiceItemId,
+    @JsonKey(name: 'invoiceId') int? invoiceId,
+    @JsonKey(name: 'feeItemId') int? feeItemId,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'quantity') num? quantity,
+    @JsonKey(name: 'unitPrice') num? unitPrice,
+    @JsonKey(name: 'taxRate') num? taxRate,
+    @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+    @JsonKey(name: 'taxAmount') num? taxAmount,
+    @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+    @JsonKey(name: 'isDeductible') bool? isDeductible,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _InvoiceItemApiDto;
+
+  factory InvoiceItemApiDto.fromJson(Map<String, dynamic> json) =>
+      _$InvoiceItemApiDtoFromJson(json);
+}
+
+@freezed
+sealed class LearningDomainApiDto with _$LearningDomainApiDto {
+  factory LearningDomainApiDto({
+    @JsonKey(name: 'learningDomainId') int? learningDomainId,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'startDate') String? startDate,
+    @JsonKey(name: 'endDate') String? endDate,
+    @JsonKey(name: 'learningObjectives')
+    List<LearningObjectiveApiDto>? learningObjectives,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _LearningDomainApiDto;
+
+  factory LearningDomainApiDto.fromJson(Map<String, dynamic> json) =>
+      _$LearningDomainApiDtoFromJson(json);
+}
+
+@freezed
+sealed class LearningObjectiveApiDto with _$LearningObjectiveApiDto {
+  factory LearningObjectiveApiDto({
+    @JsonKey(name: 'learningObjectiveId') int? learningObjectiveId,
+    @JsonKey(name: 'learningDomainId') int? learningDomainId,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _LearningObjectiveApiDto;
+
+  factory LearningObjectiveApiDto.fromJson(Map<String, dynamic> json) =>
+      _$LearningObjectiveApiDtoFromJson(json);
+}
+
+@freezed
 sealed class LevelApiDto with _$LevelApiDto {
   factory LevelApiDto({
     @JsonKey(name: 'levelId') int? levelId,
@@ -680,6 +1066,24 @@ sealed class LevelApiDto with _$LevelApiDto {
 
   factory LevelApiDto.fromJson(Map<String, dynamic> json) =>
       _$LevelApiDtoFromJson(json);
+}
+
+@freezed
+sealed class LookUpDto with _$LookUpDto {
+  factory LookUpDto({
+    @JsonKey(name: 'lookUpType') int? lookUpType,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'integrationRefId') String? integrationRefId,
+  }) = _LookUpDto;
+
+  factory LookUpDto.fromJson(Map<String, dynamic> json) =>
+      _$LookUpDtoFromJson(json);
 }
 
 @freezed
@@ -850,6 +1254,22 @@ sealed class PagedResultOfConversationMessageApiDto
 }
 
 @freezed
+sealed class PagedResultOfDailyLogApiDto with _$PagedResultOfDailyLogApiDto {
+  factory PagedResultOfDailyLogApiDto({
+    @JsonKey(name: 'items') List<DailyLogApiDto>? items,
+    @JsonKey(name: 'page') int? page,
+    @JsonKey(name: 'pageSize') int? pageSize,
+    @JsonKey(name: 'totalCount') int? totalCount,
+    @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+    @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+    @JsonKey(name: 'totalPages') int? totalPages,
+  }) = _PagedResultOfDailyLogApiDto;
+
+  factory PagedResultOfDailyLogApiDto.fromJson(Map<String, dynamic> json) =>
+      _$PagedResultOfDailyLogApiDtoFromJson(json);
+}
+
+@freezed
 sealed class PagedResultOfInfantCareActivityApiDto
     with _$PagedResultOfInfantCareActivityApiDto {
   factory PagedResultOfInfantCareActivityApiDto({
@@ -883,6 +1303,40 @@ sealed class PagedResultOfInfantCareActivityLogApiDto
   factory PagedResultOfInfantCareActivityLogApiDto.fromJson(
           Map<String, dynamic> json) =>
       _$PagedResultOfInfantCareActivityLogApiDtoFromJson(json);
+}
+
+@freezed
+sealed class PagedResultOfInvoiceApiDto with _$PagedResultOfInvoiceApiDto {
+  factory PagedResultOfInvoiceApiDto({
+    @JsonKey(name: 'items') List<InvoiceApiDto>? items,
+    @JsonKey(name: 'page') int? page,
+    @JsonKey(name: 'pageSize') int? pageSize,
+    @JsonKey(name: 'totalCount') int? totalCount,
+    @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+    @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+    @JsonKey(name: 'totalPages') int? totalPages,
+  }) = _PagedResultOfInvoiceApiDto;
+
+  factory PagedResultOfInvoiceApiDto.fromJson(Map<String, dynamic> json) =>
+      _$PagedResultOfInvoiceApiDtoFromJson(json);
+}
+
+@freezed
+sealed class PagedResultOfLearningDomainApiDto
+    with _$PagedResultOfLearningDomainApiDto {
+  factory PagedResultOfLearningDomainApiDto({
+    @JsonKey(name: 'items') List<LearningDomainApiDto>? items,
+    @JsonKey(name: 'page') int? page,
+    @JsonKey(name: 'pageSize') int? pageSize,
+    @JsonKey(name: 'totalCount') int? totalCount,
+    @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+    @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+    @JsonKey(name: 'totalPages') int? totalPages,
+  }) = _PagedResultOfLearningDomainApiDto;
+
+  factory PagedResultOfLearningDomainApiDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$PagedResultOfLearningDomainApiDtoFromJson(json);
 }
 
 @freezed
@@ -1025,6 +1479,132 @@ sealed class PagedResultOfUserBranchRoleViewDto
 }
 
 @freezed
+sealed class PoopActivityDto with _$PoopActivityDto {
+  factory PoopActivityDto({
+    @JsonKey(name: 'poopTexture') int? poopTexture,
+    @JsonKey(name: 'poopColour') int? poopColour,
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'activityType') int? activityType,
+    @JsonKey(name: 'activityDate') String? activityDate,
+    @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+    @JsonKey(name: 'activityTime') String? activityTime,
+    @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+    @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+    @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+    @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+    @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+    @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'integrationRefId') String? integrationRefId,
+  }) = _PoopActivityDto;
+
+  factory PoopActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$PoopActivityDtoFromJson(json);
+}
+
+@freezed
+sealed class ProblemDetailsDto with _$ProblemDetailsDto {
+  factory ProblemDetailsDto({
+    @JsonKey(name: 'type') String? type,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'detail') String? detail,
+    @JsonKey(name: 'instance') String? instance,
+  }) = _ProblemDetailsDto;
+
+  factory ProblemDetailsDto.fromJson(Map<String, dynamic> json) =>
+      _$ProblemDetailsDtoFromJson(json);
+}
+
+@freezed
+sealed class ReceiptApiDto with _$ReceiptApiDto {
+  factory ReceiptApiDto({
+    @JsonKey(name: 'receiptId') int? receiptId,
+    @JsonKey(name: 'entityNumber') String? entityNumber,
+    @JsonKey(name: 'status') int? status,
+    @JsonKey(name: 'accountId') int? accountId,
+    @JsonKey(name: 'branchId') int? branchId,
+    @JsonKey(name: 'currency') String? currency,
+    @JsonKey(name: 'paymentReference') String? paymentReference,
+    @JsonKey(name: 'paymentMethod') int? paymentMethod,
+    @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+    @JsonKey(name: 'receiptDate') DateTime? receiptDate,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'voidRemarks') String? voidRemarks,
+    @JsonKey(name: 'totalReceiptAmount') num? totalReceiptAmount,
+    @JsonKey(name: 'printUrl') String? printUrl,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _ReceiptApiDto;
+
+  factory ReceiptApiDto.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptApiDtoFromJson(json);
+}
+
+@freezed
+sealed class ReceiptItemApiDto with _$ReceiptItemApiDto {
+  factory ReceiptItemApiDto({
+    @JsonKey(name: 'receiptItemId') int? receiptItemId,
+    @JsonKey(name: 'receiptId') int? receiptId,
+    @JsonKey(name: 'receipt') ReceiptApiDto? receipt,
+    @JsonKey(name: 'invoiceId') int? invoiceId,
+    @JsonKey(name: 'appliedAmount') num? appliedAmount,
+    @JsonKey(name: 'receiptStatus') int? receiptStatus,
+    @JsonKey(name: 'paymentMethod') int? paymentMethod,
+    @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+    @JsonKey(name: 'printUrl') String? printUrl,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+  }) = _ReceiptItemApiDto;
+
+  factory ReceiptItemApiDto.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptItemApiDtoFromJson(json);
+}
+
+@freezed
+sealed class RestActivityDto with _$RestActivityDto {
+  factory RestActivityDto({
+    @JsonKey(name: 'restDuration') int? restDuration,
+    @JsonKey(name: 'restEndTime') String? restEndTime,
+    @JsonKey(name: 'restEndTimeBridge') String? restEndTimeBridge,
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'activityType') int? activityType,
+    @JsonKey(name: 'activityDate') String? activityDate,
+    @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+    @JsonKey(name: 'activityTime') String? activityTime,
+    @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+    @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+    @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+    @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+    @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+    @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+    @JsonKey(name: 'remarks') String? remarks,
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'isDeleted') bool? isDeleted,
+    @JsonKey(name: 'createdByUserId') String? createdByUserId,
+    @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+    @JsonKey(name: 'integrationRefId') String? integrationRefId,
+  }) = _RestActivityDto;
+
+  factory RestActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$RestActivityDtoFromJson(json);
+}
+
+@freezed
 sealed class StudentApiDto with _$StudentApiDto {
   factory StudentApiDto({
     @JsonKey(name: 'studentId') int? studentId,
@@ -1078,16 +1658,25 @@ sealed class StudentAttendanceApiDto with _$StudentAttendanceApiDto {
 @freezed
 sealed class StudentAttendanceDTODto with _$StudentAttendanceDTODto {
   factory StudentAttendanceDTODto({
+    @JsonKey(name: 'branchCode') String? branchCode,
+    @JsonKey(name: 'branchName') String? branchName,
     @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'accountId') int? accountId,
     @JsonKey(name: 'identifier') String? identifier,
     @JsonKey(name: 'studentName') String? studentName,
+    @JsonKey(name: 'start') String? start,
+    @JsonKey(name: 'end') String? end,
     @JsonKey(name: 'enrolmentDate') String? enrolmentDate,
+    @JsonKey(name: 'admissionDate') String? admissionDate,
+    @JsonKey(name: 'withdrawalDate') String? withdrawalDate,
     @JsonKey(name: 'dob') String? dob,
     @JsonKey(name: 'gender') String? gender,
     @JsonKey(name: 'countSchoolDays') int? countSchoolDays,
     @JsonKey(name: 'countPresent') int? countPresent,
     @JsonKey(name: 'countAbsent') int? countAbsent,
     @JsonKey(name: 'rate') int? rate,
+    @JsonKey(name: 'totalSchoolDays') int? totalSchoolDays,
+    @JsonKey(name: 'rateV2') int? rateV2,
     @JsonKey(name: 'attendanceRecords')
     List<AttendanceRecordDTODto>? attendanceRecords,
   }) = _StudentAttendanceDTODto;
@@ -1105,11 +1694,15 @@ sealed class StudentAuthorisedPersonApiDto
     @JsonKey(name: 'identifier') String? identifier,
     @JsonKey(name: 'contactNumber') String? contactNumber,
     @JsonKey(name: 'relationToChild') LookUpApiDto? relationToChild,
+    @JsonKey(name: 'relationToChildId') int? relationToChildId,
     @JsonKey(name: 'studentId') int? studentId,
     @JsonKey(name: 'branchId') int? branchId,
+    @JsonKey(name: 'accountId') int? accountId,
     @JsonKey(name: 'isActive') bool? isActive,
     @JsonKey(name: 'statusReasons')
     List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
+    @JsonKey(name: 'authorisedPersonImage')
+    ImageUrlResultDto? authorisedPersonImage,
     @JsonKey(name: 'isDeleted') bool? isDeleted,
     @JsonKey(name: 'createdByUserId') String? createdByUserId,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -1119,32 +1712,6 @@ sealed class StudentAuthorisedPersonApiDto
 
   factory StudentAuthorisedPersonApiDto.fromJson(Map<String, dynamic> json) =>
       _$StudentAuthorisedPersonApiDtoFromJson(json);
-}
-
-@freezed
-sealed class StudentAuthorisedPersonApiDto2Dto
-    with _$StudentAuthorisedPersonApiDto2Dto {
-  factory StudentAuthorisedPersonApiDto2Dto({
-    @JsonKey(name: 'studentAuthorisedPersonId') int? studentAuthorisedPersonId,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'identifier') String? identifier,
-    @JsonKey(name: 'contactNumber') String? contactNumber,
-    @JsonKey(name: 'relationToChild') dynamic relationToChild,
-    @JsonKey(name: 'studentId') int? studentId,
-    @JsonKey(name: 'branchId') int? branchId,
-    @JsonKey(name: 'isActive') bool? isActive,
-    @JsonKey(name: 'statusReasons')
-    List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
-    @JsonKey(name: 'isDeleted') bool? isDeleted,
-    @JsonKey(name: 'createdByUserId') String? createdByUserId,
-    @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-    @JsonKey(name: 'updatedDate') DateTime? updatedDate,
-  }) = _StudentAuthorisedPersonApiDto2Dto;
-
-  factory StudentAuthorisedPersonApiDto2Dto.fromJson(
-          Map<String, dynamic> json) =>
-      _$StudentAuthorisedPersonApiDto2DtoFromJson(json);
 }
 
 @freezed
@@ -1161,8 +1728,10 @@ sealed class StudentCheckInOutApiDto with _$StudentCheckInOutApiDto {
     @JsonKey(name: 'checkInAuthorisedPerson')
     StudentAuthorisedPersonApiDto? checkInAuthorisedPerson,
     @JsonKey(name: 'checkOutAuthorisedPerson')
-    StudentAuthorisedPersonApiDto2Dto? checkOutAuthorisedPerson,
-    @JsonKey(name: 'temperatures') List<StudentTemperatureApiDto>? temperatures,
+    StudentAuthorisedPersonApiDto? checkOutAuthorisedPerson,
+    @JsonKey(name: 'temperatures') List<dynamic>? temperatures,
+    @JsonKey(name: 'checkInImage') ImageUrlResultDto? checkInImage,
+    @JsonKey(name: 'checkOutImage') ImageUrlResultDto? checkOutImage,
     @JsonKey(name: 'isDeleted') bool? isDeleted,
     @JsonKey(name: 'createdByUserId') String? createdByUserId,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -1172,6 +1741,44 @@ sealed class StudentCheckInOutApiDto with _$StudentCheckInOutApiDto {
 
   factory StudentCheckInOutApiDto.fromJson(Map<String, dynamic> json) =>
       _$StudentCheckInOutApiDtoFromJson(json);
+}
+
+@freezed
+sealed class StudentCheckInOutCreateRequestDto
+    with _$StudentCheckInOutCreateRequestDto {
+  factory StudentCheckInOutCreateRequestDto({
+    @JsonKey(name: 'accountId') int? accountId,
+    @JsonKey(name: 'checkInTime') DateTime? checkInTime,
+    @JsonKey(name: 'checkInRemarks') String? checkInRemarks,
+    @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+    @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+    @JsonKey(name: 'checkInAuthorisedPersonId') int? checkInAuthorisedPersonId,
+    @JsonKey(name: 'checkOutAuthorisedPersonId')
+    int? checkOutAuthorisedPersonId,
+    @JsonKey(name: 'checkInImageBase64') String? checkInImageBase64,
+    @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64,
+  }) = _StudentCheckInOutCreateRequestDto;
+
+  factory StudentCheckInOutCreateRequestDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudentCheckInOutCreateRequestDtoFromJson(json);
+}
+
+@freezed
+sealed class StudentCheckInOutUpdateRequestDto
+    with _$StudentCheckInOutUpdateRequestDto {
+  factory StudentCheckInOutUpdateRequestDto({
+    @JsonKey(name: 'studentCheckInOutId') int? studentCheckInOutId,
+    @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+    @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+    @JsonKey(name: 'checkOutAuthorisedPersonId')
+    int? checkOutAuthorisedPersonId,
+    @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64,
+  }) = _StudentCheckInOutUpdateRequestDto;
+
+  factory StudentCheckInOutUpdateRequestDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudentCheckInOutUpdateRequestDtoFromJson(json);
 }
 
 @freezed
@@ -1213,6 +1820,20 @@ sealed class SubjectApiDto with _$SubjectApiDto {
 
   factory SubjectApiDto.fromJson(Map<String, dynamic> json) =>
       _$SubjectApiDtoFromJson(json);
+}
+
+@freezed
+sealed class SurveyApiDto with _$SurveyApiDto {
+  factory SurveyApiDto({
+    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'studentId') int? studentId,
+    @JsonKey(name: 'parentAccountId') int? parentAccountId,
+    @JsonKey(name: 'url') String? url,
+  }) = _SurveyApiDto;
+
+  factory SurveyApiDto.fromJson(Map<String, dynamic> json) =>
+      _$SurveyApiDtoFromJson(json);
 }
 
 @freezed

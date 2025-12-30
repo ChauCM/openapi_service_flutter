@@ -108,6 +108,10 @@ class OpenApiLibraryGenerator {
   // Maps for duplicate detection and merging
   final schemaSignatures = <String, String>{}; // signature -> canonical name
   final schemaReferences = <String, String>{}; // duplicate name -> canonical name
+  
+  // Set of schema names that should NOT get 'Dto' suffix due to collision
+  // e.g., if both 'Foo' and 'FooDto' exist, 'Foo' goes here
+  final schemaNameCollisions = <String>{};
 
   final lb = LibraryBuilder();
   final securitySchemesClass = ClassBuilder()..name = 'SecuritySchemes';
@@ -281,6 +285,57 @@ class OpenApiLibraryGenerator {
     return Map<String, String>.from(schemaReferences);
   }
 
+  /// Detects schemas where adding 'Dto' suffix would create a collision
+  /// For example, if both 'Foo' and 'FooDto' exist as schemas, we need to
+  /// add an extra 'Dto' to 'FooDto' to avoid generating the same class name twice
+  /// Result: 'Foo' -> 'FooDto', 'FooDto' -> 'FooDtoDto'
+  void _detectDtoSuffixCollisions() {
+    final components = api.components;
+    if (components?.schemas == null) return;
+
+    // Build a set of all schema names normalized to PascalCase
+    final allSchemaNames = <String, String>{}; // PascalCase -> original name
+    for (final schemaName in components!.schemas!.keys) {
+      // Skip null entries and already-mapped duplicates
+      if (components.schemas![schemaName] == null ||
+          schemaReferences.containsKey(schemaName)) {
+        continue;
+      }
+      
+      // Handle NullableOf* pattern
+      final baseName = _extractBaseNameFromNullableEnum(schemaName);
+      final nameToUse = baseName ?? schemaName;
+      allSchemaNames[nameToUse.pascalCase] = schemaName;
+    }
+
+    // Check for each schema if adding 'Dto' would collide with an existing schema
+    for (final schemaName in components.schemas!.keys) {
+      // Skip null entries and already-mapped duplicates
+      if (components.schemas![schemaName] == null ||
+          schemaReferences.containsKey(schemaName)) {
+        continue;
+      }
+      
+      final baseName = _extractBaseNameFromNullableEnum(schemaName);
+      final nameToUse = baseName ?? schemaName;
+      final pascalCaseName = nameToUse.pascalCase;
+      
+      // If this schema doesn't already end with 'Dto'
+      if (!pascalCaseName.endsWith('Dto')) {
+        // Check if adding 'Dto' would collide with an existing schema
+        final wouldBeName = '${pascalCaseName}Dto';
+        if (allSchemaNames.containsKey(wouldBeName)) {
+          // Mark the schema that ALREADY has Dto suffix for double-suffixing
+          final collidingSchemaName = allSchemaNames[wouldBeName]!;
+          schemaNameCollisions.add(collidingSchemaName);
+          _logger.fine(
+              'Detected Dto suffix collision: $schemaName + Dto = $wouldBeName (collides with $collidingSchemaName). '
+              'Will generate: $schemaName -> ${pascalCaseName}Dto, $collidingSchemaName -> ${wouldBeName}Dto');
+        }
+      }
+    }
+  }
+
   /// Computes a signature for a schema based on its structure
   String _computeSchemaSignature(APISchemaObject schema) {
     final parts = <String>[];
@@ -386,6 +441,9 @@ class OpenApiLibraryGenerator {
 
     // Detect and map duplicate schemas
     _detectAndMapDuplicateSchemas();
+    
+    // Detect schemas where adding 'Dto' suffix would cause collisions
+    _detectDtoSuffixCollisions();
 
     // Track which schemas are actually used by endpoints
     final usedSchemas = <String>{};
@@ -747,6 +805,9 @@ class OpenApiLibraryGenerator {
     if (duplicateMappings != null) {
       schemaReferences.addAll(duplicateMappings);
     }
+    
+    // Detect DTO suffix collisions for consistent class naming
+    _detectDtoSuffixCollisions();
 
     // Add import for DTOs first
     final dtosFileName = '$inputIdBasename.openapi.dtos.dart';
@@ -1443,10 +1504,21 @@ class OpenApiLibraryGenerator {
     final nameToUse = baseName ?? componentName;
 
     final pascalCaseName = nameToUse.pascalCase;
-    // Avoid double "Dto" suffix
+    
+    // Check if this schema is involved in a collision
+    // If so, add an extra 'Dto' suffix even if it already has one
+    // Example: 'FooDto' (colliding) -> 'FooDtoDto'
+    if (schemaNameCollisions.contains(componentName)) {
+      // This schema already ends with 'Dto' and collides with 'Foo'
+      // Add another 'Dto' to make it unique: 'FooDtoDto'
+      return '${pascalCaseName}Dto';
+    }
+    
+    // Normal case: avoid double "Dto" suffix
     if (pascalCaseName.endsWith('Dto')) {
       return pascalCaseName;
     }
+    
     return '${pascalCaseName}Dto';
   }
 

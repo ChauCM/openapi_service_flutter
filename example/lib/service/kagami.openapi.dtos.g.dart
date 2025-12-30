@@ -1016,6 +1016,36 @@ Map<String, dynamic> _$MedicineFormDtoToJson(_MedicineFormDto instance) =>
       'previousUpdatedDate': instance.previousUpdatedDate?.toIso8601String(),
     };
 
+_MedicineFormDtoDto _$MedicineFormDtoDtoFromJson(Map<String, dynamic> json) =>
+    _MedicineFormDtoDto(
+      medicineFormId: (json['medicineFormId'] as num?)?.toInt(),
+      studentId: json['studentId'] as String,
+      classId: json['classId'] as String,
+      schoolId: json['schoolId'] as String,
+      administrationTime: json['administrationTime'] as String,
+      startDate: DateTime.parse(json['startDate'] as String),
+      endDate: json['endDate'] == null
+          ? null
+          : DateTime.parse(json['endDate'] as String),
+      remarks: json['remarks'] as String?,
+      medicineDetails: (json['medicineDetails'] as List<dynamic>?)
+          ?.map((e) => MedicineDetailsDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$MedicineFormDtoDtoToJson(_MedicineFormDtoDto instance) =>
+    <String, dynamic>{
+      'medicineFormId': instance.medicineFormId,
+      'studentId': instance.studentId,
+      'classId': instance.classId,
+      'schoolId': instance.schoolId,
+      'administrationTime': instance.administrationTime,
+      'startDate': instance.startDate.toIso8601String(),
+      'endDate': instance.endDate?.toIso8601String(),
+      'remarks': instance.remarks,
+      'medicineDetails': instance.medicineDetails,
+    };
+
 _MedicineFormFullVODto _$MedicineFormFullVODtoFromJson(
         Map<String, dynamic> json) =>
     _MedicineFormFullVODto(

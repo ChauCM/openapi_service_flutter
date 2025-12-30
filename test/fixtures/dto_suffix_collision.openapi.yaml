@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: DTO Suffix Collision Test API
+  version: 1.0.0
+  description: Test API to verify handling of schemas that would create naming collisions when adding Dto suffix
+
+paths:
+  /wellness-activity:
+    get:
+      summary: Get wellness activity (returns the simpler schema)
+      operationId: getWellnessActivity
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfantWellnessActivity"
+
+    put:
+      summary: Update wellness activity (uses the detailed schema)
+      operationId: updateWellnessActivity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InfantWellnessActivityDto"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InfantWellnessActivityDto"
+
+components:
+  schemas:
+    # Simple schema without Dto suffix - should become InfantWellnessActivity (no suffix)
+    InfantWellnessActivity:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          format: int32
+        activityType:
+          type: integer
+        activityDate:
+          type: string
+          format: date
+        carriedOutBy:
+          type: string
+
+    # Detailed schema with Dto suffix - should stay InfantWellnessActivityDto
+    InfantWellnessActivityDto:
+      type: object
+      properties:
+        studentId:
+          type: integer
+          format: int32
+        activityType:
+          type: integer
+        feedType:
+          type: integer
+        bottleSource:
+          type: string
+          nullable: true
+        bottleVolume:
+          type: string
+          nullable: true
+        activityDate:
+          type: string
+          format: date
+        activityDateBridge:
+          type: string
+          format: date-time
+          nullable: true
+        activityTime:
+          type: string
+          format: time
+        carriedOutBy:
+          type: string
+        remarks:
+          type: string
+          nullable: true

@@ -19085,6 +19085,571 @@ class __$MedicineFormDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$MedicineFormDtoDto {
+  @JsonKey(name: 'medicineFormId')
+  int? get medicineFormId;
+  @JsonKey(name: 'studentId')
+  String get studentId;
+  @JsonKey(name: 'classId')
+  String get classId;
+  @JsonKey(name: 'schoolId')
+  String get schoolId;
+  @JsonKey(name: 'administrationTime')
+  String get administrationTime;
+  @JsonKey(name: 'startDate')
+  DateTime get startDate;
+  @JsonKey(name: 'endDate')
+  DateTime? get endDate;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'medicineDetails')
+  List<MedicineDetailsDto>? get medicineDetails;
+
+  /// Create a copy of MedicineFormDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MedicineFormDtoDtoCopyWith<MedicineFormDtoDto> get copyWith =>
+      _$MedicineFormDtoDtoCopyWithImpl<MedicineFormDtoDto>(
+          this as MedicineFormDtoDto, _$identity);
+
+  /// Serializes this MedicineFormDtoDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MedicineFormDtoDto &&
+            (identical(other.medicineFormId, medicineFormId) ||
+                other.medicineFormId == medicineFormId) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.classId, classId) || other.classId == classId) &&
+            (identical(other.schoolId, schoolId) ||
+                other.schoolId == schoolId) &&
+            (identical(other.administrationTime, administrationTime) ||
+                other.administrationTime == administrationTime) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            const DeepCollectionEquality()
+                .equals(other.medicineDetails, medicineDetails));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      medicineFormId,
+      studentId,
+      classId,
+      schoolId,
+      administrationTime,
+      startDate,
+      endDate,
+      remarks,
+      const DeepCollectionEquality().hash(medicineDetails));
+
+  @override
+  String toString() {
+    return 'MedicineFormDtoDto(medicineFormId: $medicineFormId, studentId: $studentId, classId: $classId, schoolId: $schoolId, administrationTime: $administrationTime, startDate: $startDate, endDate: $endDate, remarks: $remarks, medicineDetails: $medicineDetails)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $MedicineFormDtoDtoCopyWith<$Res> {
+  factory $MedicineFormDtoDtoCopyWith(
+          MedicineFormDtoDto value, $Res Function(MedicineFormDtoDto) _then) =
+      _$MedicineFormDtoDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'medicineFormId') int? medicineFormId,
+      @JsonKey(name: 'studentId') String studentId,
+      @JsonKey(name: 'classId') String classId,
+      @JsonKey(name: 'schoolId') String schoolId,
+      @JsonKey(name: 'administrationTime') String administrationTime,
+      @JsonKey(name: 'startDate') DateTime startDate,
+      @JsonKey(name: 'endDate') DateTime? endDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'medicineDetails')
+      List<MedicineDetailsDto>? medicineDetails});
+}
+
+/// @nodoc
+class _$MedicineFormDtoDtoCopyWithImpl<$Res>
+    implements $MedicineFormDtoDtoCopyWith<$Res> {
+  _$MedicineFormDtoDtoCopyWithImpl(this._self, this._then);
+
+  final MedicineFormDtoDto _self;
+  final $Res Function(MedicineFormDtoDto) _then;
+
+  /// Create a copy of MedicineFormDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? medicineFormId = freezed,
+    Object? studentId = null,
+    Object? classId = null,
+    Object? schoolId = null,
+    Object? administrationTime = null,
+    Object? startDate = null,
+    Object? endDate = freezed,
+    Object? remarks = freezed,
+    Object? medicineDetails = freezed,
+  }) {
+    return _then(_self.copyWith(
+      medicineFormId: freezed == medicineFormId
+          ? _self.medicineFormId
+          : medicineFormId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: null == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      classId: null == classId
+          ? _self.classId
+          : classId // ignore: cast_nullable_to_non_nullable
+              as String,
+      schoolId: null == schoolId
+          ? _self.schoolId
+          : schoolId // ignore: cast_nullable_to_non_nullable
+              as String,
+      administrationTime: null == administrationTime
+          ? _self.administrationTime
+          : administrationTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      startDate: null == startDate
+          ? _self.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: freezed == endDate
+          ? _self.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      medicineDetails: freezed == medicineDetails
+          ? _self.medicineDetails
+          : medicineDetails // ignore: cast_nullable_to_non_nullable
+              as List<MedicineDetailsDto>?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [MedicineFormDtoDto].
+extension MedicineFormDtoDtoPatterns on MedicineFormDtoDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MedicineFormDtoDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MedicineFormDtoDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MedicineFormDtoDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MedicineFormDtoDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MedicineFormDtoDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MedicineFormDtoDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'medicineFormId') int? medicineFormId,
+            @JsonKey(name: 'studentId') String studentId,
+            @JsonKey(name: 'classId') String classId,
+            @JsonKey(name: 'schoolId') String schoolId,
+            @JsonKey(name: 'administrationTime') String administrationTime,
+            @JsonKey(name: 'startDate') DateTime startDate,
+            @JsonKey(name: 'endDate') DateTime? endDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'medicineDetails')
+            List<MedicineDetailsDto>? medicineDetails)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MedicineFormDtoDto() when $default != null:
+        return $default(
+            _that.medicineFormId,
+            _that.studentId,
+            _that.classId,
+            _that.schoolId,
+            _that.administrationTime,
+            _that.startDate,
+            _that.endDate,
+            _that.remarks,
+            _that.medicineDetails);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'medicineFormId') int? medicineFormId,
+            @JsonKey(name: 'studentId') String studentId,
+            @JsonKey(name: 'classId') String classId,
+            @JsonKey(name: 'schoolId') String schoolId,
+            @JsonKey(name: 'administrationTime') String administrationTime,
+            @JsonKey(name: 'startDate') DateTime startDate,
+            @JsonKey(name: 'endDate') DateTime? endDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'medicineDetails')
+            List<MedicineDetailsDto>? medicineDetails)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MedicineFormDtoDto():
+        return $default(
+            _that.medicineFormId,
+            _that.studentId,
+            _that.classId,
+            _that.schoolId,
+            _that.administrationTime,
+            _that.startDate,
+            _that.endDate,
+            _that.remarks,
+            _that.medicineDetails);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'medicineFormId') int? medicineFormId,
+            @JsonKey(name: 'studentId') String studentId,
+            @JsonKey(name: 'classId') String classId,
+            @JsonKey(name: 'schoolId') String schoolId,
+            @JsonKey(name: 'administrationTime') String administrationTime,
+            @JsonKey(name: 'startDate') DateTime startDate,
+            @JsonKey(name: 'endDate') DateTime? endDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'medicineDetails')
+            List<MedicineDetailsDto>? medicineDetails)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MedicineFormDtoDto() when $default != null:
+        return $default(
+            _that.medicineFormId,
+            _that.studentId,
+            _that.classId,
+            _that.schoolId,
+            _that.administrationTime,
+            _that.startDate,
+            _that.endDate,
+            _that.remarks,
+            _that.medicineDetails);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _MedicineFormDtoDto implements MedicineFormDtoDto {
+  _MedicineFormDtoDto(
+      {@JsonKey(name: 'medicineFormId') this.medicineFormId,
+      @JsonKey(name: 'studentId') required this.studentId,
+      @JsonKey(name: 'classId') required this.classId,
+      @JsonKey(name: 'schoolId') required this.schoolId,
+      @JsonKey(name: 'administrationTime') required this.administrationTime,
+      @JsonKey(name: 'startDate') required this.startDate,
+      @JsonKey(name: 'endDate') this.endDate,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'medicineDetails')
+      final List<MedicineDetailsDto>? medicineDetails})
+      : _medicineDetails = medicineDetails;
+  factory _MedicineFormDtoDto.fromJson(Map<String, dynamic> json) =>
+      _$MedicineFormDtoDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'medicineFormId')
+  final int? medicineFormId;
+  @override
+  @JsonKey(name: 'studentId')
+  final String studentId;
+  @override
+  @JsonKey(name: 'classId')
+  final String classId;
+  @override
+  @JsonKey(name: 'schoolId')
+  final String schoolId;
+  @override
+  @JsonKey(name: 'administrationTime')
+  final String administrationTime;
+  @override
+  @JsonKey(name: 'startDate')
+  final DateTime startDate;
+  @override
+  @JsonKey(name: 'endDate')
+  final DateTime? endDate;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  final List<MedicineDetailsDto>? _medicineDetails;
+  @override
+  @JsonKey(name: 'medicineDetails')
+  List<MedicineDetailsDto>? get medicineDetails {
+    final value = _medicineDetails;
+    if (value == null) return null;
+    if (_medicineDetails is EqualUnmodifiableListView) return _medicineDetails;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of MedicineFormDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MedicineFormDtoDtoCopyWith<_MedicineFormDtoDto> get copyWith =>
+      __$MedicineFormDtoDtoCopyWithImpl<_MedicineFormDtoDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MedicineFormDtoDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _MedicineFormDtoDto &&
+            (identical(other.medicineFormId, medicineFormId) ||
+                other.medicineFormId == medicineFormId) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.classId, classId) || other.classId == classId) &&
+            (identical(other.schoolId, schoolId) ||
+                other.schoolId == schoolId) &&
+            (identical(other.administrationTime, administrationTime) ||
+                other.administrationTime == administrationTime) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            const DeepCollectionEquality()
+                .equals(other._medicineDetails, _medicineDetails));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      medicineFormId,
+      studentId,
+      classId,
+      schoolId,
+      administrationTime,
+      startDate,
+      endDate,
+      remarks,
+      const DeepCollectionEquality().hash(_medicineDetails));
+
+  @override
+  String toString() {
+    return 'MedicineFormDtoDto(medicineFormId: $medicineFormId, studentId: $studentId, classId: $classId, schoolId: $schoolId, administrationTime: $administrationTime, startDate: $startDate, endDate: $endDate, remarks: $remarks, medicineDetails: $medicineDetails)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MedicineFormDtoDtoCopyWith<$Res>
+    implements $MedicineFormDtoDtoCopyWith<$Res> {
+  factory _$MedicineFormDtoDtoCopyWith(
+          _MedicineFormDtoDto value, $Res Function(_MedicineFormDtoDto) _then) =
+      __$MedicineFormDtoDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'medicineFormId') int? medicineFormId,
+      @JsonKey(name: 'studentId') String studentId,
+      @JsonKey(name: 'classId') String classId,
+      @JsonKey(name: 'schoolId') String schoolId,
+      @JsonKey(name: 'administrationTime') String administrationTime,
+      @JsonKey(name: 'startDate') DateTime startDate,
+      @JsonKey(name: 'endDate') DateTime? endDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'medicineDetails')
+      List<MedicineDetailsDto>? medicineDetails});
+}
+
+/// @nodoc
+class __$MedicineFormDtoDtoCopyWithImpl<$Res>
+    implements _$MedicineFormDtoDtoCopyWith<$Res> {
+  __$MedicineFormDtoDtoCopyWithImpl(this._self, this._then);
+
+  final _MedicineFormDtoDto _self;
+  final $Res Function(_MedicineFormDtoDto) _then;
+
+  /// Create a copy of MedicineFormDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? medicineFormId = freezed,
+    Object? studentId = null,
+    Object? classId = null,
+    Object? schoolId = null,
+    Object? administrationTime = null,
+    Object? startDate = null,
+    Object? endDate = freezed,
+    Object? remarks = freezed,
+    Object? medicineDetails = freezed,
+  }) {
+    return _then(_MedicineFormDtoDto(
+      medicineFormId: freezed == medicineFormId
+          ? _self.medicineFormId
+          : medicineFormId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: null == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as String,
+      classId: null == classId
+          ? _self.classId
+          : classId // ignore: cast_nullable_to_non_nullable
+              as String,
+      schoolId: null == schoolId
+          ? _self.schoolId
+          : schoolId // ignore: cast_nullable_to_non_nullable
+              as String,
+      administrationTime: null == administrationTime
+          ? _self.administrationTime
+          : administrationTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      startDate: null == startDate
+          ? _self.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: freezed == endDate
+          ? _self.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      medicineDetails: freezed == medicineDetails
+          ? _self._medicineDetails
+          : medicineDetails // ignore: cast_nullable_to_non_nullable
+              as List<MedicineDetailsDto>?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$MedicineFormFullVODto {
   @JsonKey(name: 'medicineFormId')
   int? get medicineFormId;

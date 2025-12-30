@@ -26,6 +26,7 @@ Map<String, dynamic> _$AcademicYearApiDtoToJson(_AcademicYearApiDto instance) =>
 
 _AccountApiDto _$AccountApiDtoFromJson(Map<String, dynamic> json) =>
     _AccountApiDto(
+      accountType: (json['accountType'] as num?)?.toInt(),
       accountId: (json['accountId'] as num?)?.toInt(),
       name: json['name'] as String?,
       identifier: json['identifier'] as String?,
@@ -33,6 +34,10 @@ _AccountApiDto _$AccountApiDtoFromJson(Map<String, dynamic> json) =>
           ?.map((e) => ContactApiDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       identifierType: (json['identifierType'] as num?)?.toInt(),
+      accountImage: json['accountImage'] == null
+          ? null
+          : ImageUrlResultDto.fromJson(
+              json['accountImage'] as Map<String, dynamic>),
       isDeleted: json['isDeleted'] as bool?,
       createdByUserId: json['createdByUserId'] as String?,
       createdDate: json['createdDate'] == null
@@ -46,11 +51,13 @@ _AccountApiDto _$AccountApiDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$AccountApiDtoToJson(_AccountApiDto instance) =>
     <String, dynamic>{
+      'accountType': instance.accountType,
       'accountId': instance.accountId,
       'name': instance.name,
       'identifier': instance.identifier,
       'contacts': instance.contacts,
       'identifierType': instance.identifierType,
+      'accountImage': instance.accountImage,
       'isDeleted': instance.isDeleted,
       'createdByUserId': instance.createdByUserId,
       'createdDate': instance.createdDate?.toIso8601String(),
@@ -422,6 +429,7 @@ _ClassAttendanceDTODto _$ClassAttendanceDTODtoFromJson(
     _ClassAttendanceDTODto(
       classId: (json['classId'] as num?)?.toInt(),
       className: json['className'] as String?,
+      level: json['level'] as String?,
       students: (json['students'] as List<dynamic>?)
           ?.map((e) =>
               StudentAttendanceDTODto.fromJson(e as Map<String, dynamic>))
@@ -436,6 +444,7 @@ Map<String, dynamic> _$ClassAttendanceDTODtoToJson(
     <String, dynamic>{
       'classId': instance.classId,
       'className': instance.className,
+      'level': instance.level,
       'students': instance.students,
       'sumPresent': instance.sumPresent,
       'sumSchoolDays': instance.sumSchoolDays,
@@ -579,7 +588,7 @@ _ContentApiDto _$ContentApiDtoFromJson(Map<String, dynamic> json) =>
           ?.map((e) => (e as num).toInt())
           .toList(),
       learningDomains: (json['learningDomains'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
+          ?.map((e) => LearningDomainApiDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       contentTitle: json['contentTitle'] as String?,
       contentBody: json['contentBody'] as String?,
@@ -596,6 +605,10 @@ _ContentApiDto _$ContentApiDtoFromJson(Map<String, dynamic> json) =>
       attachmentFolder: json['attachmentFolder'] as String?,
       defaultUrl: json['defaultUrl'] as String?,
       branchId: (json['branchId'] as num?)?.toInt(),
+      attachments: (json['attachments'] as List<dynamic>?)
+          ?.map((e) =>
+              ContentAttachmentApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
       isDeleted: json['isDeleted'] as bool?,
       createdByUserId: json['createdByUserId'] as String?,
       createdDate: json['createdDate'] == null
@@ -624,11 +637,26 @@ Map<String, dynamic> _$ContentApiDtoToJson(_ContentApiDto instance) =>
       'attachmentFolder': instance.attachmentFolder,
       'defaultUrl': instance.defaultUrl,
       'branchId': instance.branchId,
+      'attachments': instance.attachments,
       'isDeleted': instance.isDeleted,
       'createdByUserId': instance.createdByUserId,
       'createdDate': instance.createdDate?.toIso8601String(),
       'lastUpdatedByUserId': instance.lastUpdatedByUserId,
       'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_ContentAttachmentApiDto _$ContentAttachmentApiDtoFromJson(
+        Map<String, dynamic> json) =>
+    _ContentAttachmentApiDto(
+      fileUrl: json['fileUrl'] as String?,
+      description: json['description'] as String?,
+    );
+
+Map<String, dynamic> _$ContentAttachmentApiDtoToJson(
+        _ContentAttachmentApiDto instance) =>
+    <String, dynamic>{
+      'fileUrl': instance.fileUrl,
+      'description': instance.description,
     };
 
 _ConversationApiDto _$ConversationApiDtoFromJson(Map<String, dynamic> json) =>
@@ -640,7 +668,9 @@ _ConversationApiDto _$ConversationApiDtoFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['dateClosed'] as String),
       initiatorAccountId: (json['initiatorAccountId'] as num?)?.toInt(),
+      initiatorAccountName: json['initiatorAccountName'] as String?,
       recipientAccountId: (json['recipientAccountId'] as num?)?.toInt(),
+      recipientAccountName: json['recipientAccountName'] as String?,
       isDeleted: json['isDeleted'] as bool?,
       createdByUserId: json['createdByUserId'] as String?,
       createdDate: json['createdDate'] == null
@@ -659,7 +689,9 @@ Map<String, dynamic> _$ConversationApiDtoToJson(_ConversationApiDto instance) =>
       'isClosed': instance.isClosed,
       'dateClosed': instance.dateClosed?.toIso8601String(),
       'initiatorAccountId': instance.initiatorAccountId,
+      'initiatorAccountName': instance.initiatorAccountName,
       'recipientAccountId': instance.recipientAccountId,
+      'recipientAccountName': instance.recipientAccountName,
       'isDeleted': instance.isDeleted,
       'createdByUserId': instance.createdByUserId,
       'createdDate': instance.createdDate?.toIso8601String(),
@@ -687,6 +719,7 @@ _ConversationMessageApiDto _$ConversationMessageApiDtoFromJson(
       conversationMessageId: (json['conversationMessageId'] as num?)?.toInt(),
       message: json['message'] as String,
       senderAccountId: (json['senderAccountId'] as num?)?.toInt(),
+      senderAccountName: json['senderAccountName'] as String?,
       isRead: json['isRead'] as bool?,
       conversationId: (json['conversationId'] as num?)?.toInt(),
       isDeleted: json['isDeleted'] as bool?,
@@ -706,6 +739,7 @@ Map<String, dynamic> _$ConversationMessageApiDtoToJson(
       'conversationMessageId': instance.conversationMessageId,
       'message': instance.message,
       'senderAccountId': instance.senderAccountId,
+      'senderAccountName': instance.senderAccountName,
       'isRead': instance.isRead,
       'conversationId': instance.conversationId,
       'isDeleted': instance.isDeleted,
@@ -801,6 +835,111 @@ Map<String, dynamic> _$CountryApiDtoToJson(_CountryApiDto instance) =>
       'updatedDate': instance.updatedDate?.toIso8601String(),
     };
 
+_CreditNoteApiDto _$CreditNoteApiDtoFromJson(Map<String, dynamic> json) =>
+    _CreditNoteApiDto(
+      creditNoteId: (json['creditNoteId'] as num?)?.toInt(),
+      entityNumber: json['entityNumber'] as String?,
+      status: (json['status'] as num?)?.toInt(),
+      accountId: (json['accountId'] as num?)?.toInt(),
+      branchId: (json['branchId'] as num?)?.toInt(),
+      currency: json['currency'] as String?,
+      creditNoteDate: json['creditNoteDate'] == null
+          ? null
+          : DateTime.parse(json['creditNoteDate'] as String),
+      remarks: json['remarks'] as String?,
+      cancellationRemarks: json['cancellationRemarks'] as String?,
+      totalAmountBeforeTax: json['totalAmountBeforeTax'] as num?,
+      totalTaxAmount: json['totalTaxAmount'] as num?,
+      totalAmountAfterTax: json['totalAmountAfterTax'] as num?,
+      printUrl: json['printUrl'] as String?,
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$CreditNoteApiDtoToJson(_CreditNoteApiDto instance) =>
+    <String, dynamic>{
+      'creditNoteId': instance.creditNoteId,
+      'entityNumber': instance.entityNumber,
+      'status': instance.status,
+      'accountId': instance.accountId,
+      'branchId': instance.branchId,
+      'currency': instance.currency,
+      'creditNoteDate': instance.creditNoteDate?.toIso8601String(),
+      'remarks': instance.remarks,
+      'cancellationRemarks': instance.cancellationRemarks,
+      'totalAmountBeforeTax': instance.totalAmountBeforeTax,
+      'totalTaxAmount': instance.totalTaxAmount,
+      'totalAmountAfterTax': instance.totalAmountAfterTax,
+      'printUrl': instance.printUrl,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_CreditNoteItemApiDto _$CreditNoteItemApiDtoFromJson(
+        Map<String, dynamic> json) =>
+    _CreditNoteItemApiDto(
+      creditNoteItemId: (json['creditNoteItemId'] as num?)?.toInt(),
+      creditNoteId: (json['creditNoteId'] as num?)?.toInt(),
+      creditNote: json['creditNote'] == null
+          ? null
+          : CreditNoteApiDto.fromJson(
+              json['creditNote'] as Map<String, dynamic>),
+      invoiceId: (json['invoiceId'] as num?)?.toInt(),
+      feeItemId: (json['feeItemId'] as num?)?.toInt(),
+      description: json['description'] as String?,
+      quantity: json['quantity'] as num?,
+      unitPrice: json['unitPrice'] as num?,
+      taxRate: json['taxRate'] as num?,
+      amountBeforeTax: json['amountBeforeTax'] as num?,
+      taxAmount: json['taxAmount'] as num?,
+      amountAfterTax: json['amountAfterTax'] as num?,
+      creditNoteStatus: (json['creditNoteStatus'] as num?)?.toInt(),
+      printUrl: json['printUrl'] as String?,
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$CreditNoteItemApiDtoToJson(
+        _CreditNoteItemApiDto instance) =>
+    <String, dynamic>{
+      'creditNoteItemId': instance.creditNoteItemId,
+      'creditNoteId': instance.creditNoteId,
+      'creditNote': instance.creditNote,
+      'invoiceId': instance.invoiceId,
+      'feeItemId': instance.feeItemId,
+      'description': instance.description,
+      'quantity': instance.quantity,
+      'unitPrice': instance.unitPrice,
+      'taxRate': instance.taxRate,
+      'amountBeforeTax': instance.amountBeforeTax,
+      'taxAmount': instance.taxAmount,
+      'amountAfterTax': instance.amountAfterTax,
+      'creditNoteStatus': instance.creditNoteStatus,
+      'printUrl': instance.printUrl,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
 _CurrentUserInfoDto _$CurrentUserInfoDtoFromJson(Map<String, dynamic> json) =>
     _CurrentUserInfoDto(
       accountId: (json['accountId'] as num?)?.toInt(),
@@ -812,6 +951,9 @@ _CurrentUserInfoDto _$CurrentUserInfoDtoFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String?,
       emailConfirmed: json['emailConfirmed'] as bool?,
       lastActiveBranchId: (json['lastActiveBranchId'] as num?)?.toInt(),
+      deleteRequestDate: json['deleteRequestDate'] == null
+          ? null
+          : DateTime.parse(json['deleteRequestDate'] as String),
       branchRoles: (json['branchRoles'] as List<dynamic>?)
           ?.map((e) => UserBranchRoleDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -826,7 +968,66 @@ Map<String, dynamic> _$CurrentUserInfoDtoToJson(_CurrentUserInfoDto instance) =>
       'email': instance.email,
       'emailConfirmed': instance.emailConfirmed,
       'lastActiveBranchId': instance.lastActiveBranchId,
+      'deleteRequestDate': instance.deleteRequestDate?.toIso8601String(),
       'branchRoles': instance.branchRoles,
+    };
+
+_DailyLogApiDto _$DailyLogApiDtoFromJson(Map<String, dynamic> json) =>
+    _DailyLogApiDto(
+      dayLogs: (json['dayLogs'] as List<dynamic>?)
+          ?.map((e) => DayLogApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      student: json['student'] == null
+          ? null
+          : StudentApiDto.fromJson(json['student'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$DailyLogApiDtoToJson(_DailyLogApiDto instance) =>
+    <String, dynamic>{
+      'dayLogs': instance.dayLogs,
+      'student': instance.student,
+    };
+
+_DayLogApiDto _$DayLogApiDtoFromJson(Map<String, dynamic> json) =>
+    _DayLogApiDto(
+      date: json['date'] as String?,
+      attendanceList: (json['attendanceList'] as List<dynamic>)
+          .map((e) =>
+              StudentAttendanceApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      temperatureList: (json['temperatureList'] as List<dynamic>)
+          .map((e) =>
+              StudentTemperatureApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      checkInOutList: (json['checkInOutList'] as List<dynamic>)
+          .map((e) =>
+              StudentCheckInOutApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      infantWellnessActivityList: (json['infantWellnessActivityList']
+              as List<dynamic>)
+          .map((e) =>
+              InfantWellnessActivityDTODto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      infantCareActivityList: (json['infantCareActivityList'] as List<dynamic>)
+          .map((e) =>
+              InfantCareActivityApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      infantCareActivityLogList: (json['infantCareActivityLogList']
+              as List<dynamic>)
+          .map((e) =>
+              InfantCareActivityLogApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$DayLogApiDtoToJson(_DayLogApiDto instance) =>
+    <String, dynamic>{
+      'date': instance.date,
+      'attendanceList': instance.attendanceList,
+      'temperatureList': instance.temperatureList,
+      'checkInOutList': instance.checkInOutList,
+      'infantWellnessActivityList': instance.infantWellnessActivityList,
+      'infantCareActivityList': instance.infantCareActivityList,
+      'infantCareActivityLogList': instance.infantCareActivityLogList,
     };
 
 _EmployeeApiDto _$EmployeeApiDtoFromJson(Map<String, dynamic> json) =>
@@ -880,6 +1081,161 @@ Map<String, dynamic> _$EnrolmentApiDtoToJson(_EnrolmentApiDto instance) =>
       'startDate': instance.startDate,
       'endDate': instance.endDate,
       'status': instance.status,
+    };
+
+_FeedActivityDto _$FeedActivityDtoFromJson(Map<String, dynamic> json) =>
+    _FeedActivityDto(
+      feedType: (json['feedType'] as num?)?.toInt(),
+      bottleSource: json['bottleSource'] as String?,
+      bottleVolume: json['bottleVolume'] as String?,
+      latchOnSide: json['latchOnSide'] as String?,
+      solidServingAmount: json['solidServingAmount'] as String?,
+      studentId: (json['studentId'] as num?)?.toInt(),
+      activityType: (json['activityType'] as num?)?.toInt(),
+      activityDate: json['activityDate'] as String?,
+      activityDateBridge: json['activityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['activityDateBridge'] as String),
+      activityTime: json['activityTime'] as String?,
+      activityTimeBridge: json['activityTimeBridge'] as String?,
+      carriedOutBy: json['carriedOutBy'] as String?,
+      nextActivityDate: json['nextActivityDate'] as String?,
+      nextActivityDateBridge: json['nextActivityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['nextActivityDateBridge'] as String),
+      nextActivityTime: json['nextActivityTime'] as String?,
+      nextActivityTimeBridge: json['nextActivityTimeBridge'] as String?,
+      remarks: json['remarks'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+      integrationRefId: json['integrationRefId'] as String?,
+    );
+
+Map<String, dynamic> _$FeedActivityDtoToJson(_FeedActivityDto instance) =>
+    <String, dynamic>{
+      'feedType': instance.feedType,
+      'bottleSource': instance.bottleSource,
+      'bottleVolume': instance.bottleVolume,
+      'latchOnSide': instance.latchOnSide,
+      'solidServingAmount': instance.solidServingAmount,
+      'studentId': instance.studentId,
+      'activityType': instance.activityType,
+      'activityDate': instance.activityDate,
+      'activityDateBridge': instance.activityDateBridge?.toIso8601String(),
+      'activityTime': instance.activityTime,
+      'activityTimeBridge': instance.activityTimeBridge,
+      'carriedOutBy': instance.carriedOutBy,
+      'nextActivityDate': instance.nextActivityDate,
+      'nextActivityDateBridge':
+          instance.nextActivityDateBridge?.toIso8601String(),
+      'nextActivityTime': instance.nextActivityTime,
+      'nextActivityTimeBridge': instance.nextActivityTimeBridge,
+      'remarks': instance.remarks,
+      'id': instance.id,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+      'integrationRefId': instance.integrationRefId,
+    };
+
+_FileUploadParamDto _$FileUploadParamDtoFromJson(Map<String, dynamic> json) =>
+    _FileUploadParamDto(
+      base64: json['base64'] as String,
+      fileName: json['fileName'] as String,
+      contentType: (json['contentType'] as num?)?.toInt(),
+      entityId: json['entityId'] as String?,
+      subFolders: (json['subFolders'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+    );
+
+Map<String, dynamic> _$FileUploadParamDtoToJson(_FileUploadParamDto instance) =>
+    <String, dynamic>{
+      'base64': instance.base64,
+      'fileName': instance.fileName,
+      'contentType': instance.contentType,
+      'entityId': instance.entityId,
+      'subFolders': instance.subFolders,
+    };
+
+_FileUploadResultDto _$FileUploadResultDtoFromJson(Map<String, dynamic> json) =>
+    _FileUploadResultDto(
+      url: json['url'] as String?,
+      fileName: json['fileName'] as String?,
+    );
+
+Map<String, dynamic> _$FileUploadResultDtoToJson(
+        _FileUploadResultDto instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'fileName': instance.fileName,
+    };
+
+_HygieneActivityDto _$HygieneActivityDtoFromJson(Map<String, dynamic> json) =>
+    _HygieneActivityDto(
+      hygieneType: (json['hygieneType'] as num?)?.toInt(),
+      studentId: (json['studentId'] as num?)?.toInt(),
+      activityType: (json['activityType'] as num?)?.toInt(),
+      activityDate: json['activityDate'] as String?,
+      activityDateBridge: json['activityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['activityDateBridge'] as String),
+      activityTime: json['activityTime'] as String?,
+      activityTimeBridge: json['activityTimeBridge'] as String?,
+      carriedOutBy: json['carriedOutBy'] as String?,
+      nextActivityDate: json['nextActivityDate'] as String?,
+      nextActivityDateBridge: json['nextActivityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['nextActivityDateBridge'] as String),
+      nextActivityTime: json['nextActivityTime'] as String?,
+      nextActivityTimeBridge: json['nextActivityTimeBridge'] as String?,
+      remarks: json['remarks'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+      integrationRefId: json['integrationRefId'] as String?,
+    );
+
+Map<String, dynamic> _$HygieneActivityDtoToJson(_HygieneActivityDto instance) =>
+    <String, dynamic>{
+      'hygieneType': instance.hygieneType,
+      'studentId': instance.studentId,
+      'activityType': instance.activityType,
+      'activityDate': instance.activityDate,
+      'activityDateBridge': instance.activityDateBridge?.toIso8601String(),
+      'activityTime': instance.activityTime,
+      'activityTimeBridge': instance.activityTimeBridge,
+      'carriedOutBy': instance.carriedOutBy,
+      'nextActivityDate': instance.nextActivityDate,
+      'nextActivityDateBridge':
+          instance.nextActivityDateBridge?.toIso8601String(),
+      'nextActivityTime': instance.nextActivityTime,
+      'nextActivityTimeBridge': instance.nextActivityTimeBridge,
+      'remarks': instance.remarks,
+      'id': instance.id,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+      'integrationRefId': instance.integrationRefId,
     };
 
 _ImageUrlResultDto _$ImageUrlResultDtoFromJson(Map<String, dynamic> json) =>
@@ -1147,6 +1503,381 @@ Map<String, dynamic> _$InfantCareActivitySaveDtoToJson(
       'isDeleted': instance.isDeleted,
     };
 
+_InfantWellnessActivityDto _$InfantWellnessActivityDtoFromJson(
+        Map<String, dynamic> json) =>
+    _InfantWellnessActivityDto(
+      studentId: (json['studentId'] as num?)?.toInt(),
+      activityType: (json['activityType'] as num?)?.toInt(),
+      activityDate: json['activityDate'] as String?,
+      activityDateBridge: json['activityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['activityDateBridge'] as String),
+      activityTime: json['activityTime'] as String?,
+      activityTimeBridge: json['activityTimeBridge'] as String?,
+      carriedOutBy: json['carriedOutBy'] as String?,
+      nextActivityDate: json['nextActivityDate'] as String?,
+      nextActivityDateBridge: json['nextActivityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['nextActivityDateBridge'] as String),
+      nextActivityTime: json['nextActivityTime'] as String?,
+      nextActivityTimeBridge: json['nextActivityTimeBridge'] as String?,
+      remarks: json['remarks'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+      integrationRefId: json['integrationRefId'] as String?,
+    );
+
+Map<String, dynamic> _$InfantWellnessActivityDtoToJson(
+        _InfantWellnessActivityDto instance) =>
+    <String, dynamic>{
+      'studentId': instance.studentId,
+      'activityType': instance.activityType,
+      'activityDate': instance.activityDate,
+      'activityDateBridge': instance.activityDateBridge?.toIso8601String(),
+      'activityTime': instance.activityTime,
+      'activityTimeBridge': instance.activityTimeBridge,
+      'carriedOutBy': instance.carriedOutBy,
+      'nextActivityDate': instance.nextActivityDate,
+      'nextActivityDateBridge':
+          instance.nextActivityDateBridge?.toIso8601String(),
+      'nextActivityTime': instance.nextActivityTime,
+      'nextActivityTimeBridge': instance.nextActivityTimeBridge,
+      'remarks': instance.remarks,
+      'id': instance.id,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+      'integrationRefId': instance.integrationRefId,
+    };
+
+_InfantWellnessActivityDtoDto _$InfantWellnessActivityDtoDtoFromJson(
+        Map<String, dynamic> json) =>
+    _InfantWellnessActivityDtoDto(
+      id: (json['id'] as num?)?.toInt(),
+      studentId: (json['studentId'] as num?)?.toInt(),
+      activityType: (json['activityType'] as num?)?.toInt(),
+      feedType: (json['feedType'] as num?)?.toInt(),
+      bottleSource: json['bottleSource'] as String?,
+      bottleVolume: json['bottleVolume'] as String?,
+      latchOnSide: json['latchOnSide'] as String?,
+      solidServingAmount: json['solidServingAmount'] as String?,
+      poopTexture: (json['poopTexture'] as num?)?.toInt(),
+      poopColour: (json['poopColour'] as num?)?.toInt(),
+      hygieneType: (json['hygieneType'] as num?)?.toInt(),
+      restEndTime: json['restEndTime'] as String?,
+      activityDate: json['activityDate'] as String?,
+      activityDateBridge: json['activityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['activityDateBridge'] as String),
+      activityTime: json['activityTime'] as String?,
+      activityTimeBridge: json['activityTimeBridge'] as String?,
+      carriedOutBy: json['carriedOutBy'] as String?,
+      nextActivityDate: json['nextActivityDate'] as String?,
+      nextActivityDateBridge: json['nextActivityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['nextActivityDateBridge'] as String),
+      nextActivityTime: json['nextActivityTime'] as String?,
+      nextActivityTimeBridge: json['nextActivityTimeBridge'] as String?,
+      remarks: json['remarks'] as String?,
+    );
+
+Map<String, dynamic> _$InfantWellnessActivityDtoDtoToJson(
+        _InfantWellnessActivityDtoDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'studentId': instance.studentId,
+      'activityType': instance.activityType,
+      'feedType': instance.feedType,
+      'bottleSource': instance.bottleSource,
+      'bottleVolume': instance.bottleVolume,
+      'latchOnSide': instance.latchOnSide,
+      'solidServingAmount': instance.solidServingAmount,
+      'poopTexture': instance.poopTexture,
+      'poopColour': instance.poopColour,
+      'hygieneType': instance.hygieneType,
+      'restEndTime': instance.restEndTime,
+      'activityDate': instance.activityDate,
+      'activityDateBridge': instance.activityDateBridge?.toIso8601String(),
+      'activityTime': instance.activityTime,
+      'activityTimeBridge': instance.activityTimeBridge,
+      'carriedOutBy': instance.carriedOutBy,
+      'nextActivityDate': instance.nextActivityDate,
+      'nextActivityDateBridge':
+          instance.nextActivityDateBridge?.toIso8601String(),
+      'nextActivityTime': instance.nextActivityTime,
+      'nextActivityTimeBridge': instance.nextActivityTimeBridge,
+      'remarks': instance.remarks,
+    };
+
+_InfantWellnessActivityDTODto _$InfantWellnessActivityDTODtoFromJson(
+        Map<String, dynamic> json) =>
+    _InfantWellnessActivityDTODto(
+      studentId: (json['studentId'] as num?)?.toInt(),
+      activities: (json['activities'] as List<dynamic>?)
+          ?.map((e) =>
+              InfantWellnessActivityDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lastFeed: json['lastFeed'] == null
+          ? null
+          : FeedActivityDto.fromJson(json['lastFeed'] as Map<String, dynamic>),
+      lasRest: json['lasRest'] == null
+          ? null
+          : RestActivityDto.fromJson(json['lasRest'] as Map<String, dynamic>),
+      lastPoop: json['lastPoop'] == null
+          ? null
+          : PoopActivityDto.fromJson(json['lastPoop'] as Map<String, dynamic>),
+      lastHygiene: json['lastHygiene'] == null
+          ? null
+          : HygieneActivityDto.fromJson(
+              json['lastHygiene'] as Map<String, dynamic>),
+      id: (json['id'] as num?)?.toInt(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+      integrationRefId: json['integrationRefId'] as String?,
+    );
+
+Map<String, dynamic> _$InfantWellnessActivityDTODtoToJson(
+        _InfantWellnessActivityDTODto instance) =>
+    <String, dynamic>{
+      'studentId': instance.studentId,
+      'activities': instance.activities,
+      'lastFeed': instance.lastFeed,
+      'lasRest': instance.lasRest,
+      'lastPoop': instance.lastPoop,
+      'lastHygiene': instance.lastHygiene,
+      'id': instance.id,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+      'integrationRefId': instance.integrationRefId,
+    };
+
+_InvoiceApiDto _$InvoiceApiDtoFromJson(Map<String, dynamic> json) =>
+    _InvoiceApiDto(
+      invoiceId: (json['invoiceId'] as num?)?.toInt(),
+      entityNumber: json['entityNumber'] as String?,
+      status: (json['status'] as num?)?.toInt(),
+      accountId: (json['accountId'] as num?)?.toInt(),
+      account: json['account'] == null
+          ? null
+          : AccountApiDto.fromJson(json['account'] as Map<String, dynamic>),
+      branchId: (json['branchId'] as num?)?.toInt(),
+      branch: json['branch'] == null
+          ? null
+          : BranchApiDto.fromJson(json['branch'] as Map<String, dynamic>),
+      currency: json['currency'] as String?,
+      billingYear: (json['billingYear'] as num?)?.toInt(),
+      billingMonth: (json['billingMonth'] as num?)?.toInt(),
+      invoiceDate: json['invoiceDate'] == null
+          ? null
+          : DateTime.parse(json['invoiceDate'] as String),
+      dueDate: json['dueDate'] as String?,
+      remarks: json['remarks'] as String?,
+      invoiceTitle: json['invoiceTitle'] as String?,
+      voidRemarks: json['voidRemarks'] as String?,
+      totalTaxAmount: json['totalTaxAmount'] as num?,
+      totalChargeableAmountBeforeTax:
+          json['totalChargeableAmountBeforeTax'] as num?,
+      totalChargeableAmountAfterTax:
+          json['totalChargeableAmountAfterTax'] as num?,
+      totalDeductibleAmountBeforeTax:
+          json['totalDeductibleAmountBeforeTax'] as num?,
+      totalDeductibleAmountAfterTax:
+          json['totalDeductibleAmountAfterTax'] as num?,
+      totalInvoiceAmount: json['totalInvoiceAmount'] as num?,
+      totalPaidAmount: json['totalPaidAmount'] as num?,
+      totalOutstandingAmount: json['totalOutstandingAmount'] as num?,
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => InvoiceItemApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      receiptItems: (json['receiptItems'] as List<dynamic>?)
+          ?.map((e) => ReceiptItemApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      creditNoteItems: (json['creditNoteItems'] as List<dynamic>?)
+          ?.map((e) => CreditNoteItemApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      printUrl: json['printUrl'] as String?,
+      payNowQrString: json['payNowQrString'] as String?,
+      payNowQrImageBase64: json['payNowQrImageBase64'] as String?,
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$InvoiceApiDtoToJson(_InvoiceApiDto instance) =>
+    <String, dynamic>{
+      'invoiceId': instance.invoiceId,
+      'entityNumber': instance.entityNumber,
+      'status': instance.status,
+      'accountId': instance.accountId,
+      'account': instance.account,
+      'branchId': instance.branchId,
+      'branch': instance.branch,
+      'currency': instance.currency,
+      'billingYear': instance.billingYear,
+      'billingMonth': instance.billingMonth,
+      'invoiceDate': instance.invoiceDate?.toIso8601String(),
+      'dueDate': instance.dueDate,
+      'remarks': instance.remarks,
+      'invoiceTitle': instance.invoiceTitle,
+      'voidRemarks': instance.voidRemarks,
+      'totalTaxAmount': instance.totalTaxAmount,
+      'totalChargeableAmountBeforeTax': instance.totalChargeableAmountBeforeTax,
+      'totalChargeableAmountAfterTax': instance.totalChargeableAmountAfterTax,
+      'totalDeductibleAmountBeforeTax': instance.totalDeductibleAmountBeforeTax,
+      'totalDeductibleAmountAfterTax': instance.totalDeductibleAmountAfterTax,
+      'totalInvoiceAmount': instance.totalInvoiceAmount,
+      'totalPaidAmount': instance.totalPaidAmount,
+      'totalOutstandingAmount': instance.totalOutstandingAmount,
+      'items': instance.items,
+      'receiptItems': instance.receiptItems,
+      'creditNoteItems': instance.creditNoteItems,
+      'printUrl': instance.printUrl,
+      'payNowQrString': instance.payNowQrString,
+      'payNowQrImageBase64': instance.payNowQrImageBase64,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_InvoiceItemApiDto _$InvoiceItemApiDtoFromJson(Map<String, dynamic> json) =>
+    _InvoiceItemApiDto(
+      invoiceItemId: (json['invoiceItemId'] as num?)?.toInt(),
+      invoiceId: (json['invoiceId'] as num?)?.toInt(),
+      feeItemId: (json['feeItemId'] as num?)?.toInt(),
+      description: json['description'] as String?,
+      quantity: json['quantity'] as num?,
+      unitPrice: json['unitPrice'] as num?,
+      taxRate: json['taxRate'] as num?,
+      amountBeforeTax: json['amountBeforeTax'] as num?,
+      taxAmount: json['taxAmount'] as num?,
+      amountAfterTax: json['amountAfterTax'] as num?,
+      isDeductible: json['isDeductible'] as bool?,
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$InvoiceItemApiDtoToJson(_InvoiceItemApiDto instance) =>
+    <String, dynamic>{
+      'invoiceItemId': instance.invoiceItemId,
+      'invoiceId': instance.invoiceId,
+      'feeItemId': instance.feeItemId,
+      'description': instance.description,
+      'quantity': instance.quantity,
+      'unitPrice': instance.unitPrice,
+      'taxRate': instance.taxRate,
+      'amountBeforeTax': instance.amountBeforeTax,
+      'taxAmount': instance.taxAmount,
+      'amountAfterTax': instance.amountAfterTax,
+      'isDeductible': instance.isDeductible,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_LearningDomainApiDto _$LearningDomainApiDtoFromJson(
+        Map<String, dynamic> json) =>
+    _LearningDomainApiDto(
+      learningDomainId: (json['learningDomainId'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      startDate: json['startDate'] as String?,
+      endDate: json['endDate'] as String?,
+      learningObjectives: (json['learningObjectives'] as List<dynamic>?)
+          ?.map((e) =>
+              LearningObjectiveApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$LearningDomainApiDtoToJson(
+        _LearningDomainApiDto instance) =>
+    <String, dynamic>{
+      'learningDomainId': instance.learningDomainId,
+      'name': instance.name,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
+      'learningObjectives': instance.learningObjectives,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_LearningObjectiveApiDto _$LearningObjectiveApiDtoFromJson(
+        Map<String, dynamic> json) =>
+    _LearningObjectiveApiDto(
+      learningObjectiveId: (json['learningObjectiveId'] as num?)?.toInt(),
+      learningDomainId: (json['learningDomainId'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$LearningObjectiveApiDtoToJson(
+        _LearningObjectiveApiDto instance) =>
+    <String, dynamic>{
+      'learningObjectiveId': instance.learningObjectiveId,
+      'learningDomainId': instance.learningDomainId,
+      'name': instance.name,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
 _LevelApiDto _$LevelApiDtoFromJson(Map<String, dynamic> json) => _LevelApiDto(
       levelId: (json['levelId'] as num?)?.toInt(),
       branchId: (json['branchId'] as num?)?.toInt(),
@@ -1182,6 +1913,35 @@ Map<String, dynamic> _$LevelApiDtoToJson(_LevelApiDto instance) =>
       'createdDate': instance.createdDate?.toIso8601String(),
       'lastUpdatedByUserId': instance.lastUpdatedByUserId,
       'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_LookUpDto _$LookUpDtoFromJson(Map<String, dynamic> json) => _LookUpDto(
+      lookUpType: (json['lookUpType'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+      integrationRefId: json['integrationRefId'] as String?,
+    );
+
+Map<String, dynamic> _$LookUpDtoToJson(_LookUpDto instance) =>
+    <String, dynamic>{
+      'lookUpType': instance.lookUpType,
+      'name': instance.name,
+      'id': instance.id,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+      'integrationRefId': instance.integrationRefId,
     };
 
 _LookUpApiDto _$LookUpApiDtoFromJson(Map<String, dynamic> json) =>
@@ -1449,6 +2209,32 @@ Map<String, dynamic> _$PagedResultOfConversationMessageApiDtoToJson(
       'totalPages': instance.totalPages,
     };
 
+_PagedResultOfDailyLogApiDto _$PagedResultOfDailyLogApiDtoFromJson(
+        Map<String, dynamic> json) =>
+    _PagedResultOfDailyLogApiDto(
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => DailyLogApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
+      totalCount: (json['totalCount'] as num?)?.toInt(),
+      hasNextPage: json['hasNextPage'] as bool?,
+      hasPreviousPage: json['hasPreviousPage'] as bool?,
+      totalPages: (json['totalPages'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$PagedResultOfDailyLogApiDtoToJson(
+        _PagedResultOfDailyLogApiDto instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+      'page': instance.page,
+      'pageSize': instance.pageSize,
+      'totalCount': instance.totalCount,
+      'hasNextPage': instance.hasNextPage,
+      'hasPreviousPage': instance.hasPreviousPage,
+      'totalPages': instance.totalPages,
+    };
+
 _PagedResultOfInfantCareActivityApiDto
     _$PagedResultOfInfantCareActivityApiDtoFromJson(
             Map<String, dynamic> json) =>
@@ -1495,6 +2281,58 @@ _PagedResultOfInfantCareActivityLogApiDto
 
 Map<String, dynamic> _$PagedResultOfInfantCareActivityLogApiDtoToJson(
         _PagedResultOfInfantCareActivityLogApiDto instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+      'page': instance.page,
+      'pageSize': instance.pageSize,
+      'totalCount': instance.totalCount,
+      'hasNextPage': instance.hasNextPage,
+      'hasPreviousPage': instance.hasPreviousPage,
+      'totalPages': instance.totalPages,
+    };
+
+_PagedResultOfInvoiceApiDto _$PagedResultOfInvoiceApiDtoFromJson(
+        Map<String, dynamic> json) =>
+    _PagedResultOfInvoiceApiDto(
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => InvoiceApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
+      totalCount: (json['totalCount'] as num?)?.toInt(),
+      hasNextPage: json['hasNextPage'] as bool?,
+      hasPreviousPage: json['hasPreviousPage'] as bool?,
+      totalPages: (json['totalPages'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$PagedResultOfInvoiceApiDtoToJson(
+        _PagedResultOfInvoiceApiDto instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+      'page': instance.page,
+      'pageSize': instance.pageSize,
+      'totalCount': instance.totalCount,
+      'hasNextPage': instance.hasNextPage,
+      'hasPreviousPage': instance.hasPreviousPage,
+      'totalPages': instance.totalPages,
+    };
+
+_PagedResultOfLearningDomainApiDto _$PagedResultOfLearningDomainApiDtoFromJson(
+        Map<String, dynamic> json) =>
+    _PagedResultOfLearningDomainApiDto(
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => LearningDomainApiDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      page: (json['page'] as num?)?.toInt(),
+      pageSize: (json['pageSize'] as num?)?.toInt(),
+      totalCount: (json['totalCount'] as num?)?.toInt(),
+      hasNextPage: json['hasNextPage'] as bool?,
+      hasPreviousPage: json['hasPreviousPage'] as bool?,
+      totalPages: (json['totalPages'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$PagedResultOfLearningDomainApiDtoToJson(
+        _PagedResultOfLearningDomainApiDto instance) =>
     <String, dynamic>{
       'items': instance.items,
       'page': instance.page,
@@ -1720,6 +2558,242 @@ Map<String, dynamic> _$PagedResultOfUserBranchRoleViewDtoToJson(
       'totalPages': instance.totalPages,
     };
 
+_PoopActivityDto _$PoopActivityDtoFromJson(Map<String, dynamic> json) =>
+    _PoopActivityDto(
+      poopTexture: (json['poopTexture'] as num?)?.toInt(),
+      poopColour: (json['poopColour'] as num?)?.toInt(),
+      studentId: (json['studentId'] as num?)?.toInt(),
+      activityType: (json['activityType'] as num?)?.toInt(),
+      activityDate: json['activityDate'] as String?,
+      activityDateBridge: json['activityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['activityDateBridge'] as String),
+      activityTime: json['activityTime'] as String?,
+      activityTimeBridge: json['activityTimeBridge'] as String?,
+      carriedOutBy: json['carriedOutBy'] as String?,
+      nextActivityDate: json['nextActivityDate'] as String?,
+      nextActivityDateBridge: json['nextActivityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['nextActivityDateBridge'] as String),
+      nextActivityTime: json['nextActivityTime'] as String?,
+      nextActivityTimeBridge: json['nextActivityTimeBridge'] as String?,
+      remarks: json['remarks'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+      integrationRefId: json['integrationRefId'] as String?,
+    );
+
+Map<String, dynamic> _$PoopActivityDtoToJson(_PoopActivityDto instance) =>
+    <String, dynamic>{
+      'poopTexture': instance.poopTexture,
+      'poopColour': instance.poopColour,
+      'studentId': instance.studentId,
+      'activityType': instance.activityType,
+      'activityDate': instance.activityDate,
+      'activityDateBridge': instance.activityDateBridge?.toIso8601String(),
+      'activityTime': instance.activityTime,
+      'activityTimeBridge': instance.activityTimeBridge,
+      'carriedOutBy': instance.carriedOutBy,
+      'nextActivityDate': instance.nextActivityDate,
+      'nextActivityDateBridge':
+          instance.nextActivityDateBridge?.toIso8601String(),
+      'nextActivityTime': instance.nextActivityTime,
+      'nextActivityTimeBridge': instance.nextActivityTimeBridge,
+      'remarks': instance.remarks,
+      'id': instance.id,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+      'integrationRefId': instance.integrationRefId,
+    };
+
+_ProblemDetailsDto _$ProblemDetailsDtoFromJson(Map<String, dynamic> json) =>
+    _ProblemDetailsDto(
+      type: json['type'] as String?,
+      title: json['title'] as String?,
+      status: (json['status'] as num?)?.toInt(),
+      detail: json['detail'] as String?,
+      instance: json['instance'] as String?,
+    );
+
+Map<String, dynamic> _$ProblemDetailsDtoToJson(_ProblemDetailsDto instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'title': instance.title,
+      'status': instance.status,
+      'detail': instance.detail,
+      'instance': instance.instance,
+    };
+
+_ReceiptApiDto _$ReceiptApiDtoFromJson(Map<String, dynamic> json) =>
+    _ReceiptApiDto(
+      receiptId: (json['receiptId'] as num?)?.toInt(),
+      entityNumber: json['entityNumber'] as String?,
+      status: (json['status'] as num?)?.toInt(),
+      accountId: (json['accountId'] as num?)?.toInt(),
+      branchId: (json['branchId'] as num?)?.toInt(),
+      currency: json['currency'] as String?,
+      paymentReference: json['paymentReference'] as String?,
+      paymentMethod: (json['paymentMethod'] as num?)?.toInt(),
+      paymentDate: json['paymentDate'] == null
+          ? null
+          : DateTime.parse(json['paymentDate'] as String),
+      receiptDate: json['receiptDate'] == null
+          ? null
+          : DateTime.parse(json['receiptDate'] as String),
+      remarks: json['remarks'] as String?,
+      voidRemarks: json['voidRemarks'] as String?,
+      totalReceiptAmount: json['totalReceiptAmount'] as num?,
+      printUrl: json['printUrl'] as String?,
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$ReceiptApiDtoToJson(_ReceiptApiDto instance) =>
+    <String, dynamic>{
+      'receiptId': instance.receiptId,
+      'entityNumber': instance.entityNumber,
+      'status': instance.status,
+      'accountId': instance.accountId,
+      'branchId': instance.branchId,
+      'currency': instance.currency,
+      'paymentReference': instance.paymentReference,
+      'paymentMethod': instance.paymentMethod,
+      'paymentDate': instance.paymentDate?.toIso8601String(),
+      'receiptDate': instance.receiptDate?.toIso8601String(),
+      'remarks': instance.remarks,
+      'voidRemarks': instance.voidRemarks,
+      'totalReceiptAmount': instance.totalReceiptAmount,
+      'printUrl': instance.printUrl,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_ReceiptItemApiDto _$ReceiptItemApiDtoFromJson(Map<String, dynamic> json) =>
+    _ReceiptItemApiDto(
+      receiptItemId: (json['receiptItemId'] as num?)?.toInt(),
+      receiptId: (json['receiptId'] as num?)?.toInt(),
+      receipt: json['receipt'] == null
+          ? null
+          : ReceiptApiDto.fromJson(json['receipt'] as Map<String, dynamic>),
+      invoiceId: (json['invoiceId'] as num?)?.toInt(),
+      appliedAmount: json['appliedAmount'] as num?,
+      receiptStatus: (json['receiptStatus'] as num?)?.toInt(),
+      paymentMethod: (json['paymentMethod'] as num?)?.toInt(),
+      paymentDate: json['paymentDate'] == null
+          ? null
+          : DateTime.parse(json['paymentDate'] as String),
+      printUrl: json['printUrl'] as String?,
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+    );
+
+Map<String, dynamic> _$ReceiptItemApiDtoToJson(_ReceiptItemApiDto instance) =>
+    <String, dynamic>{
+      'receiptItemId': instance.receiptItemId,
+      'receiptId': instance.receiptId,
+      'receipt': instance.receipt,
+      'invoiceId': instance.invoiceId,
+      'appliedAmount': instance.appliedAmount,
+      'receiptStatus': instance.receiptStatus,
+      'paymentMethod': instance.paymentMethod,
+      'paymentDate': instance.paymentDate?.toIso8601String(),
+      'printUrl': instance.printUrl,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_RestActivityDto _$RestActivityDtoFromJson(Map<String, dynamic> json) =>
+    _RestActivityDto(
+      restDuration: (json['restDuration'] as num?)?.toInt(),
+      restEndTime: json['restEndTime'] as String?,
+      restEndTimeBridge: json['restEndTimeBridge'] as String?,
+      studentId: (json['studentId'] as num?)?.toInt(),
+      activityType: (json['activityType'] as num?)?.toInt(),
+      activityDate: json['activityDate'] as String?,
+      activityDateBridge: json['activityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['activityDateBridge'] as String),
+      activityTime: json['activityTime'] as String?,
+      activityTimeBridge: json['activityTimeBridge'] as String?,
+      carriedOutBy: json['carriedOutBy'] as String?,
+      nextActivityDate: json['nextActivityDate'] as String?,
+      nextActivityDateBridge: json['nextActivityDateBridge'] == null
+          ? null
+          : DateTime.parse(json['nextActivityDateBridge'] as String),
+      nextActivityTime: json['nextActivityTime'] as String?,
+      nextActivityTimeBridge: json['nextActivityTimeBridge'] as String?,
+      remarks: json['remarks'] as String?,
+      id: (json['id'] as num?)?.toInt(),
+      isDeleted: json['isDeleted'] as bool?,
+      createdByUserId: json['createdByUserId'] as String?,
+      createdDate: json['createdDate'] == null
+          ? null
+          : DateTime.parse(json['createdDate'] as String),
+      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
+      updatedDate: json['updatedDate'] == null
+          ? null
+          : DateTime.parse(json['updatedDate'] as String),
+      integrationRefId: json['integrationRefId'] as String?,
+    );
+
+Map<String, dynamic> _$RestActivityDtoToJson(_RestActivityDto instance) =>
+    <String, dynamic>{
+      'restDuration': instance.restDuration,
+      'restEndTime': instance.restEndTime,
+      'restEndTimeBridge': instance.restEndTimeBridge,
+      'studentId': instance.studentId,
+      'activityType': instance.activityType,
+      'activityDate': instance.activityDate,
+      'activityDateBridge': instance.activityDateBridge?.toIso8601String(),
+      'activityTime': instance.activityTime,
+      'activityTimeBridge': instance.activityTimeBridge,
+      'carriedOutBy': instance.carriedOutBy,
+      'nextActivityDate': instance.nextActivityDate,
+      'nextActivityDateBridge':
+          instance.nextActivityDateBridge?.toIso8601String(),
+      'nextActivityTime': instance.nextActivityTime,
+      'nextActivityTimeBridge': instance.nextActivityTimeBridge,
+      'remarks': instance.remarks,
+      'id': instance.id,
+      'isDeleted': instance.isDeleted,
+      'createdByUserId': instance.createdByUserId,
+      'createdDate': instance.createdDate?.toIso8601String(),
+      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
+      'updatedDate': instance.updatedDate?.toIso8601String(),
+      'integrationRefId': instance.integrationRefId,
+    };
+
 _StudentApiDto _$StudentApiDtoFromJson(Map<String, dynamic> json) =>
     _StudentApiDto(
       studentId: (json['studentId'] as num?)?.toInt(),
@@ -1819,16 +2893,25 @@ Map<String, dynamic> _$StudentAttendanceApiDtoToJson(
 _StudentAttendanceDTODto _$StudentAttendanceDTODtoFromJson(
         Map<String, dynamic> json) =>
     _StudentAttendanceDTODto(
+      branchCode: json['branchCode'] as String?,
+      branchName: json['branchName'] as String?,
       studentId: (json['studentId'] as num?)?.toInt(),
+      accountId: (json['accountId'] as num?)?.toInt(),
       identifier: json['identifier'] as String?,
       studentName: json['studentName'] as String?,
+      start: json['start'] as String?,
+      end: json['end'] as String?,
       enrolmentDate: json['enrolmentDate'] as String?,
+      admissionDate: json['admissionDate'] as String?,
+      withdrawalDate: json['withdrawalDate'] as String?,
       dob: json['dob'] as String?,
       gender: json['gender'] as String?,
       countSchoolDays: (json['countSchoolDays'] as num?)?.toInt(),
       countPresent: (json['countPresent'] as num?)?.toInt(),
       countAbsent: (json['countAbsent'] as num?)?.toInt(),
       rate: (json['rate'] as num?)?.toInt(),
+      totalSchoolDays: (json['totalSchoolDays'] as num?)?.toInt(),
+      rateV2: (json['rateV2'] as num?)?.toInt(),
       attendanceRecords: (json['attendanceRecords'] as List<dynamic>?)
           ?.map(
               (e) => AttendanceRecordDTODto.fromJson(e as Map<String, dynamic>))
@@ -1838,16 +2921,25 @@ _StudentAttendanceDTODto _$StudentAttendanceDTODtoFromJson(
 Map<String, dynamic> _$StudentAttendanceDTODtoToJson(
         _StudentAttendanceDTODto instance) =>
     <String, dynamic>{
+      'branchCode': instance.branchCode,
+      'branchName': instance.branchName,
       'studentId': instance.studentId,
+      'accountId': instance.accountId,
       'identifier': instance.identifier,
       'studentName': instance.studentName,
+      'start': instance.start,
+      'end': instance.end,
       'enrolmentDate': instance.enrolmentDate,
+      'admissionDate': instance.admissionDate,
+      'withdrawalDate': instance.withdrawalDate,
       'dob': instance.dob,
       'gender': instance.gender,
       'countSchoolDays': instance.countSchoolDays,
       'countPresent': instance.countPresent,
       'countAbsent': instance.countAbsent,
       'rate': instance.rate,
+      'totalSchoolDays': instance.totalSchoolDays,
+      'rateV2': instance.rateV2,
       'attendanceRecords': instance.attendanceRecords,
     };
 
@@ -1863,13 +2955,19 @@ _StudentAuthorisedPersonApiDto _$StudentAuthorisedPersonApiDtoFromJson(
           ? null
           : LookUpApiDto.fromJson(
               json['relationToChild'] as Map<String, dynamic>),
+      relationToChildId: (json['relationToChildId'] as num?)?.toInt(),
       studentId: (json['studentId'] as num?)?.toInt(),
       branchId: (json['branchId'] as num?)?.toInt(),
+      accountId: (json['accountId'] as num?)?.toInt(),
       isActive: json['isActive'] as bool?,
       statusReasons: (json['statusReasons'] as List<dynamic>?)
           ?.map((e) => AuthorisedPersonDeactivationReasonApiDto.fromJson(
               e as Map<String, dynamic>))
           .toList(),
+      authorisedPersonImage: json['authorisedPersonImage'] == null
+          ? null
+          : ImageUrlResultDto.fromJson(
+              json['authorisedPersonImage'] as Map<String, dynamic>),
       isDeleted: json['isDeleted'] as bool?,
       createdByUserId: json['createdByUserId'] as String?,
       createdDate: json['createdDate'] == null
@@ -1889,56 +2987,13 @@ Map<String, dynamic> _$StudentAuthorisedPersonApiDtoToJson(
       'identifier': instance.identifier,
       'contactNumber': instance.contactNumber,
       'relationToChild': instance.relationToChild,
+      'relationToChildId': instance.relationToChildId,
       'studentId': instance.studentId,
       'branchId': instance.branchId,
+      'accountId': instance.accountId,
       'isActive': instance.isActive,
       'statusReasons': instance.statusReasons,
-      'isDeleted': instance.isDeleted,
-      'createdByUserId': instance.createdByUserId,
-      'createdDate': instance.createdDate?.toIso8601String(),
-      'lastUpdatedByUserId': instance.lastUpdatedByUserId,
-      'updatedDate': instance.updatedDate?.toIso8601String(),
-    };
-
-_StudentAuthorisedPersonApiDto2Dto _$StudentAuthorisedPersonApiDto2DtoFromJson(
-        Map<String, dynamic> json) =>
-    _StudentAuthorisedPersonApiDto2Dto(
-      studentAuthorisedPersonId:
-          (json['studentAuthorisedPersonId'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      identifier: json['identifier'] as String?,
-      contactNumber: json['contactNumber'] as String?,
-      relationToChild: json['relationToChild'],
-      studentId: (json['studentId'] as num?)?.toInt(),
-      branchId: (json['branchId'] as num?)?.toInt(),
-      isActive: json['isActive'] as bool?,
-      statusReasons: (json['statusReasons'] as List<dynamic>?)
-          ?.map((e) => AuthorisedPersonDeactivationReasonApiDto.fromJson(
-              e as Map<String, dynamic>))
-          .toList(),
-      isDeleted: json['isDeleted'] as bool?,
-      createdByUserId: json['createdByUserId'] as String?,
-      createdDate: json['createdDate'] == null
-          ? null
-          : DateTime.parse(json['createdDate'] as String),
-      lastUpdatedByUserId: json['lastUpdatedByUserId'] as String?,
-      updatedDate: json['updatedDate'] == null
-          ? null
-          : DateTime.parse(json['updatedDate'] as String),
-    );
-
-Map<String, dynamic> _$StudentAuthorisedPersonApiDto2DtoToJson(
-        _StudentAuthorisedPersonApiDto2Dto instance) =>
-    <String, dynamic>{
-      'studentAuthorisedPersonId': instance.studentAuthorisedPersonId,
-      'name': instance.name,
-      'identifier': instance.identifier,
-      'contactNumber': instance.contactNumber,
-      'relationToChild': instance.relationToChild,
-      'studentId': instance.studentId,
-      'branchId': instance.branchId,
-      'isActive': instance.isActive,
-      'statusReasons': instance.statusReasons,
+      'authorisedPersonImage': instance.authorisedPersonImage,
       'isDeleted': instance.isDeleted,
       'createdByUserId': instance.createdByUserId,
       'createdDate': instance.createdDate?.toIso8601String(),
@@ -1967,12 +3022,17 @@ _StudentCheckInOutApiDto _$StudentCheckInOutApiDtoFromJson(
               json['checkInAuthorisedPerson'] as Map<String, dynamic>),
       checkOutAuthorisedPerson: json['checkOutAuthorisedPerson'] == null
           ? null
-          : StudentAuthorisedPersonApiDto2Dto.fromJson(
+          : StudentAuthorisedPersonApiDto.fromJson(
               json['checkOutAuthorisedPerson'] as Map<String, dynamic>),
-      temperatures: (json['temperatures'] as List<dynamic>?)
-          ?.map((e) =>
-              StudentTemperatureApiDto.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      temperatures: json['temperatures'] as List<dynamic>?,
+      checkInImage: json['checkInImage'] == null
+          ? null
+          : ImageUrlResultDto.fromJson(
+              json['checkInImage'] as Map<String, dynamic>),
+      checkOutImage: json['checkOutImage'] == null
+          ? null
+          : ImageUrlResultDto.fromJson(
+              json['checkOutImage'] as Map<String, dynamic>),
       isDeleted: json['isDeleted'] as bool?,
       createdByUserId: json['createdByUserId'] as String?,
       createdDate: json['createdDate'] == null
@@ -1998,11 +3058,70 @@ Map<String, dynamic> _$StudentCheckInOutApiDtoToJson(
       'checkInAuthorisedPerson': instance.checkInAuthorisedPerson,
       'checkOutAuthorisedPerson': instance.checkOutAuthorisedPerson,
       'temperatures': instance.temperatures,
+      'checkInImage': instance.checkInImage,
+      'checkOutImage': instance.checkOutImage,
       'isDeleted': instance.isDeleted,
       'createdByUserId': instance.createdByUserId,
       'createdDate': instance.createdDate?.toIso8601String(),
       'lastUpdatedByUserId': instance.lastUpdatedByUserId,
       'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_StudentCheckInOutCreateRequestDto _$StudentCheckInOutCreateRequestDtoFromJson(
+        Map<String, dynamic> json) =>
+    _StudentCheckInOutCreateRequestDto(
+      accountId: (json['accountId'] as num?)?.toInt(),
+      checkInTime: json['checkInTime'] == null
+          ? null
+          : DateTime.parse(json['checkInTime'] as String),
+      checkInRemarks: json['checkInRemarks'] as String?,
+      checkOutTime: json['checkOutTime'] == null
+          ? null
+          : DateTime.parse(json['checkOutTime'] as String),
+      checkOutRemarks: json['checkOutRemarks'] as String?,
+      checkInAuthorisedPersonId:
+          (json['checkInAuthorisedPersonId'] as num?)?.toInt(),
+      checkOutAuthorisedPersonId:
+          (json['checkOutAuthorisedPersonId'] as num?)?.toInt(),
+      checkInImageBase64: json['checkInImageBase64'] as String?,
+      checkOutImageBase64: json['checkOutImageBase64'] as String?,
+    );
+
+Map<String, dynamic> _$StudentCheckInOutCreateRequestDtoToJson(
+        _StudentCheckInOutCreateRequestDto instance) =>
+    <String, dynamic>{
+      'accountId': instance.accountId,
+      'checkInTime': instance.checkInTime?.toIso8601String(),
+      'checkInRemarks': instance.checkInRemarks,
+      'checkOutTime': instance.checkOutTime?.toIso8601String(),
+      'checkOutRemarks': instance.checkOutRemarks,
+      'checkInAuthorisedPersonId': instance.checkInAuthorisedPersonId,
+      'checkOutAuthorisedPersonId': instance.checkOutAuthorisedPersonId,
+      'checkInImageBase64': instance.checkInImageBase64,
+      'checkOutImageBase64': instance.checkOutImageBase64,
+    };
+
+_StudentCheckInOutUpdateRequestDto _$StudentCheckInOutUpdateRequestDtoFromJson(
+        Map<String, dynamic> json) =>
+    _StudentCheckInOutUpdateRequestDto(
+      studentCheckInOutId: (json['studentCheckInOutId'] as num?)?.toInt(),
+      checkOutTime: json['checkOutTime'] == null
+          ? null
+          : DateTime.parse(json['checkOutTime'] as String),
+      checkOutRemarks: json['checkOutRemarks'] as String?,
+      checkOutAuthorisedPersonId:
+          (json['checkOutAuthorisedPersonId'] as num?)?.toInt(),
+      checkOutImageBase64: json['checkOutImageBase64'] as String?,
+    );
+
+Map<String, dynamic> _$StudentCheckInOutUpdateRequestDtoToJson(
+        _StudentCheckInOutUpdateRequestDto instance) =>
+    <String, dynamic>{
+      'studentCheckInOutId': instance.studentCheckInOutId,
+      'checkOutTime': instance.checkOutTime?.toIso8601String(),
+      'checkOutRemarks': instance.checkOutRemarks,
+      'checkOutAuthorisedPersonId': instance.checkOutAuthorisedPersonId,
+      'checkOutImageBase64': instance.checkOutImageBase64,
     };
 
 _StudentTemperatureApiDto _$StudentTemperatureApiDtoFromJson(
@@ -2078,6 +3197,24 @@ Map<String, dynamic> _$SubjectApiDtoToJson(_SubjectApiDto instance) =>
       'createdDate': instance.createdDate?.toIso8601String(),
       'lastUpdatedByUserId': instance.lastUpdatedByUserId,
       'updatedDate': instance.updatedDate?.toIso8601String(),
+    };
+
+_SurveyApiDto _$SurveyApiDtoFromJson(Map<String, dynamic> json) =>
+    _SurveyApiDto(
+      id: (json['id'] as num?)?.toInt(),
+      title: json['title'] as String?,
+      studentId: (json['studentId'] as num?)?.toInt(),
+      parentAccountId: (json['parentAccountId'] as num?)?.toInt(),
+      url: json['url'] as String?,
+    );
+
+Map<String, dynamic> _$SurveyApiDtoToJson(_SurveyApiDto instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'studentId': instance.studentId,
+      'parentAccountId': instance.parentAccountId,
+      'url': instance.url,
     };
 
 _TeacherApiDto _$TeacherApiDtoFromJson(Map<String, dynamic> json) =>

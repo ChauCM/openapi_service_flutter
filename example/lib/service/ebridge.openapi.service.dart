@@ -197,25 +197,6 @@ class EbridgeService {
     }
   }
 
-  /// get: /api/v1/ClassAttendance/TriggerCheck
-  Future<Either<ApiError, void>> apiV1ClassAttendanceTriggerCheckGet() async {
-    final endpoint = '/api/v1/ClassAttendance/TriggerCheck';
-    try {
-      final _ = await _dio.get(endpoint);
-      return const Right(null);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'GET',
-        endpoint: endpoint,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
   /// get: /api/v1/Class
   Future<Either<ApiError, PagedResultOfClassApiDto>> apiV1ClassGet({
     int? page,
@@ -257,7 +238,7 @@ class EbridgeService {
     int? accountId,
     int? levelId,
     String? studentNameSearch,
-    String? contentType,
+    List<int>? contentTypes,
     String? contentSearch,
     int? learningDomainId,
     int? page,
@@ -275,7 +256,7 @@ class EbridgeService {
       if (levelId != null) queryParams['LevelId'] = levelId;
       if (studentNameSearch != null)
         queryParams['StudentNameSearch'] = studentNameSearch;
-      if (contentType != null) queryParams['ContentType'] = contentType;
+      if (contentTypes != null) queryParams['ContentTypes'] = contentTypes;
       if (contentSearch != null) queryParams['ContentSearch'] = contentSearch;
       if (learningDomainId != null)
         queryParams['LearningDomainId'] = learningDomainId;
@@ -314,65 +295,6 @@ class EbridgeService {
       final requestContext = RequestContext(
         method: 'GET',
         endpoint: endpoint,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// post: /api/v1/Content/seed-auto
-  Future<Either<ApiError, void>> apiV1ContentSeedAutoPost({
-    int? yearsBack,
-    int? perDay,
-    int? branchId,
-  }) async {
-    final endpoint = '/api/v1/Content/seed-auto';
-    final queryParams = <String, dynamic>{};
-    try {
-      if (yearsBack != null) queryParams['yearsBack'] = yearsBack;
-      if (perDay != null) queryParams['perDay'] = perDay;
-      if (branchId != null) queryParams['branchId'] = branchId;
-
-      final _ = await _dio.post(
-        endpoint,
-        queryParameters: queryParams,
-      );
-      return const Right(null);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'POST',
-        endpoint: endpoint,
-        queryParameters: queryParams,
-      );
-      return Left(_errorHandler.handleError(
-        e,
-        stackTrace,
-        requestContext,
-      ));
-    }
-  }
-
-  /// delete: /api/v1/Content/cleanup-auto
-  Future<Either<ApiError, void>> apiV1ContentCleanupAutoDelete(
-      {int? branchId}) async {
-    final endpoint = '/api/v1/Content/cleanup-auto';
-    final queryParams = <String, dynamic>{};
-    try {
-      if (branchId != null) queryParams['branchId'] = branchId;
-
-      final _ = await _dio.delete(
-        endpoint,
-        queryParameters: queryParams,
-      );
-      return const Right(null);
-    } catch (e, stackTrace) {
-      final requestContext = RequestContext(
-        method: 'DELETE',
-        endpoint: endpoint,
-        queryParameters: queryParams,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -623,12 +545,140 @@ class EbridgeService {
     }
   }
 
-  /// get: /api/v1/Holiday/sync
-  Future<Either<ApiError, void>> apiV1HolidaySyncGet() async {
-    final endpoint = '/api/v1/Holiday/sync';
+  /// get: /api/v1/DailyLog
+  Future<Either<ApiError, PagedResultOfDailyLogApiDto>> apiV1DailyLogGet({
+    required String startDate,
+    required String endDate,
+    String? parentEmail,
+    int? teacherId,
+    int? branchId,
+    int? classId,
+    int? studentId,
+    int? accountId,
+    int? levelId,
+    String? studentNameSearch,
+    int? page,
+    int? pageSize,
+  }) async {
+    final endpoint = '/api/v1/DailyLog';
+    final queryParams = <String, dynamic>{};
     try {
-      final _ = await _dio.get(endpoint);
-      return const Right(null);
+      queryParams['StartDate'] = startDate;
+      queryParams['EndDate'] = endDate;
+      if (parentEmail != null) queryParams['ParentEmail'] = parentEmail;
+      if (teacherId != null) queryParams['TeacherId'] = teacherId;
+      if (branchId != null) queryParams['BranchId'] = branchId;
+      if (classId != null) queryParams['ClassId'] = classId;
+      if (studentId != null) queryParams['StudentId'] = studentId;
+      if (accountId != null) queryParams['AccountId'] = accountId;
+      if (levelId != null) queryParams['LevelId'] = levelId;
+      if (studentNameSearch != null)
+        queryParams['StudentNameSearch'] = studentNameSearch;
+      if (page != null) queryParams['Page'] = page;
+      if (pageSize != null) queryParams['PageSize'] = pageSize;
+
+      final response = await _dio.get(
+        endpoint,
+        queryParameters: queryParams,
+      );
+      final result = PagedResultOfDailyLogApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// get: /api/v1/DailyLog/by-date
+  Future<Either<ApiError, PagedResultOfDailyLogApiDto>> apiV1DailyLogByDateGet({
+    required String date,
+    String? parentEmail,
+    int? teacherId,
+    int? branchId,
+    int? classId,
+    int? studentId,
+    int? accountId,
+    int? levelId,
+    String? studentNameSearch,
+    int? page,
+    int? pageSize,
+  }) async {
+    final endpoint = '/api/v1/DailyLog/by-date';
+    final queryParams = <String, dynamic>{};
+    try {
+      queryParams['date'] = date;
+      if (parentEmail != null) queryParams['ParentEmail'] = parentEmail;
+      if (teacherId != null) queryParams['TeacherId'] = teacherId;
+      if (branchId != null) queryParams['BranchId'] = branchId;
+      if (classId != null) queryParams['ClassId'] = classId;
+      if (studentId != null) queryParams['StudentId'] = studentId;
+      if (accountId != null) queryParams['AccountId'] = accountId;
+      if (levelId != null) queryParams['LevelId'] = levelId;
+      if (studentNameSearch != null)
+        queryParams['StudentNameSearch'] = studentNameSearch;
+      if (page != null) queryParams['Page'] = page;
+      if (pageSize != null) queryParams['PageSize'] = pageSize;
+
+      final response = await _dio.get(
+        endpoint,
+        queryParameters: queryParams,
+      );
+      final result = PagedResultOfDailyLogApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// post: /api/v1/File
+  Future<Either<ApiError, FileUploadResultDto>> apiV1FilePost(
+      FileUploadParamDto body) async {
+    final endpoint = '/api/v1/File';
+    try {
+      final response = await _dio.post(
+        endpoint,
+        data: body.toJson(),
+      );
+      final result = FileUploadResultDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: endpoint,
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// get: /api/v1/Health
+  Future<Either<ApiError, String>> apiV1HealthGet() async {
+    final endpoint = '/api/v1/Health';
+    try {
+      final response = await _dio.get(endpoint);
+      final result = (response.data as String);
+      return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -842,6 +892,208 @@ class EbridgeService {
         method: 'POST',
         endpoint: endpoint,
         requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// get: /api/v1/InfantWellnessActivity
+  Future<Either<ApiError, List<InfantWellnessActivityDTODto>>>
+      apiV1InfantWellnessActivityGet({
+    String? startDate,
+    String? endDate,
+    int? classId,
+    int? studentId,
+    int? branchId,
+    String? activityType,
+  }) async {
+    final endpoint = '/api/v1/InfantWellnessActivity';
+    final queryParams = <String, dynamic>{};
+    try {
+      if (startDate != null) queryParams['startDate'] = startDate;
+      if (endDate != null) queryParams['endDate'] = endDate;
+      if (classId != null) queryParams['classId'] = classId;
+      if (studentId != null) queryParams['studentId'] = studentId;
+      if (branchId != null) queryParams['branchId'] = branchId;
+      if (activityType != null) queryParams['activityType'] = activityType;
+
+      final response = await _dio.get(
+        endpoint,
+        queryParameters: queryParams,
+      );
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => InfantWellnessActivityDTODto.fromJson(
+              (item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// put: /api/v1/InfantWellnessActivity
+  Future<Either<ApiError, InfantWellnessActivityDtoDto>>
+      apiV1InfantWellnessActivityPut(
+    InfantWellnessActivityDtoDto body, {
+    int? id,
+  }) async {
+    final endpoint = '/api/v1/InfantWellnessActivity';
+    final queryParams = <String, dynamic>{};
+    try {
+      if (id != null) queryParams['id'] = id;
+
+      final response = await _dio.put(
+        endpoint,
+        queryParameters: queryParams,
+        data: body.toJson(),
+      );
+      final result = InfantWellnessActivityDtoDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: endpoint,
+        requestBody: body,
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// get: /api/v1/Invoice
+  Future<Either<ApiError, PagedResultOfInvoiceApiDto>> apiV1InvoiceGet({
+    String? parentEmail,
+    int? teacherId,
+    int? branchId,
+    int? classId,
+    int? studentId,
+    int? accountId,
+    int? levelId,
+    String? studentNameSearch,
+    int? page,
+    int? pageSize,
+  }) async {
+    final endpoint = '/api/v1/Invoice';
+    final queryParams = <String, dynamic>{};
+    try {
+      if (parentEmail != null) queryParams['ParentEmail'] = parentEmail;
+      if (teacherId != null) queryParams['TeacherId'] = teacherId;
+      if (branchId != null) queryParams['BranchId'] = branchId;
+      if (classId != null) queryParams['ClassId'] = classId;
+      if (studentId != null) queryParams['StudentId'] = studentId;
+      if (accountId != null) queryParams['AccountId'] = accountId;
+      if (levelId != null) queryParams['LevelId'] = levelId;
+      if (studentNameSearch != null)
+        queryParams['StudentNameSearch'] = studentNameSearch;
+      if (page != null) queryParams['Page'] = page;
+      if (pageSize != null) queryParams['PageSize'] = pageSize;
+
+      final response = await _dio.get(
+        endpoint,
+        queryParameters: queryParams,
+      );
+      final result = PagedResultOfInvoiceApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// get: /api/v1/Invoice/{invoiceId}
+  Future<Either<ApiError, InvoiceApiDto>> apiV1InvoiceInvoiceIdGet(
+      {required int invoiceId}) async {
+    final endpoint = '/api/v1/Invoice/$invoiceId';
+    try {
+      final response = await _dio.get(endpoint);
+      final result = InvoiceApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// get: /api/v1/LearningDomain
+  Future<Either<ApiError, PagedResultOfLearningDomainApiDto>>
+      apiV1LearningDomainGet({
+    int? page,
+    int? pageSize,
+  }) async {
+    final endpoint = '/api/v1/LearningDomain';
+    final queryParams = <String, dynamic>{};
+    try {
+      if (page != null) queryParams['Page'] = page;
+      if (pageSize != null) queryParams['PageSize'] = pageSize;
+
+      final response = await _dio.get(
+        endpoint,
+        queryParameters: queryParams,
+      );
+      final result = PagedResultOfLearningDomainApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+        queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// get: /api/v1/LookUp/{lookUpTypeEnum}
+  Future<Either<ApiError, List<LookUpDto>>> apiV1LookUpLookUpTypeEnumGet(
+      {required int lookUpTypeEnum}) async {
+    final endpoint = '/api/v1/LookUp/$lookUpTypeEnum';
+    try {
+      final response = await _dio.get(endpoint);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => LookUpDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1089,21 +1341,21 @@ class EbridgeService {
     }
   }
 
-  /// patch: /api/v1/StudentAuthorisedPerson/{id}/deactivate
-  Future<Either<ApiError, void>> apiV1StudentAuthorisedPersonIdDeactivatePatch(
+  /// post: /api/v1/StudentAuthorisedPerson/{id}/deactivate
+  Future<Either<ApiError, void>> apiV1StudentAuthorisedPersonIdDeactivatePost(
     AuthorisedPersonReasonApiDtoRequestDto body, {
     required int id,
   }) async {
     final endpoint = '/api/v1/StudentAuthorisedPerson/$id/deactivate';
     try {
-      final _ = await _dio.patch(
+      final _ = await _dio.post(
         endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
-        method: 'PATCH',
+        method: 'POST',
         endpoint: endpoint,
         requestBody: body,
       );
@@ -1115,21 +1367,49 @@ class EbridgeService {
     }
   }
 
-  /// put: /api/v1/StudentAuthorisedPerson/{id}/activate
-  Future<Either<ApiError, void>> apiV1StudentAuthorisedPersonIdActivatePut(
+  /// post: /api/v1/StudentAuthorisedPerson/{id}/activate
+  Future<Either<ApiError, void>> apiV1StudentAuthorisedPersonIdActivatePost(
     AuthorisedPersonReasonApiDtoRequestDto body, {
     required int id,
   }) async {
     final endpoint = '/api/v1/StudentAuthorisedPerson/$id/activate';
     try {
-      final _ = await _dio.put(
+      final _ = await _dio.post(
         endpoint,
         data: body.toJson(),
       );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
-        method: 'PUT',
+        method: 'POST',
+        endpoint: endpoint,
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// post: /api/v1/StudentAuthorisedPerson/{id}
+  Future<Either<ApiError, StudentAuthorisedPersonApiDto>>
+      apiV1StudentAuthorisedPersonIdPost(
+    StudentAuthorisedPersonApiDto body, {
+    required int id,
+  }) async {
+    final endpoint = '/api/v1/StudentAuthorisedPerson/$id';
+    try {
+      final response = await _dio.post(
+        endpoint,
+        data: body.toJson(),
+      );
+      final result = StudentAuthorisedPersonApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'POST',
         endpoint: endpoint,
         requestBody: body,
       );
@@ -1186,6 +1466,58 @@ class EbridgeService {
         method: 'GET',
         endpoint: endpoint,
         queryParameters: queryParams,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// post: /api/v1/StudentCheckInOut
+  Future<Either<ApiError, StudentCheckInOutApiDto>> apiV1StudentCheckInOutPost(
+      StudentCheckInOutCreateRequestDto body) async {
+    final endpoint = '/api/v1/StudentCheckInOut';
+    try {
+      final response = await _dio.post(
+        endpoint,
+        data: body.toJson(),
+      );
+      final result = StudentCheckInOutApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'POST',
+        endpoint: endpoint,
+        requestBody: body,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
+  /// put: /api/v1/StudentCheckInOut/{id}
+  Future<Either<ApiError, StudentCheckInOutApiDto>> apiV1StudentCheckInOutIdPut(
+    StudentCheckInOutUpdateRequestDto body, {
+    required int id,
+  }) async {
+    final endpoint = '/api/v1/StudentCheckInOut/$id';
+    try {
+      final response = await _dio.put(
+        endpoint,
+        data: body.toJson(),
+      );
+      final result = StudentCheckInOutApiDto.fromJson(response.data);
+      return Right(result);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'PUT',
+        endpoint: endpoint,
+        requestBody: body,
       );
       return Left(_errorHandler.handleError(
         e,
@@ -1371,6 +1703,29 @@ class EbridgeService {
     }
   }
 
+  /// get: /api/v1/Survey
+  Future<Either<ApiError, List<SurveyApiDto>>> apiV1SurveyGet() async {
+    final endpoint = '/api/v1/Survey';
+    try {
+      final response = await _dio.get(endpoint);
+      final result = (response.data as List<dynamic>);
+      final mappedResult = result
+          .map((item) => SurveyApiDto.fromJson((item as Map<String, dynamic>)))
+          .toList();
+      return Right(mappedResult);
+    } catch (e, stackTrace) {
+      final requestContext = RequestContext(
+        method: 'GET',
+        endpoint: endpoint,
+      );
+      return Left(_errorHandler.handleError(
+        e,
+        stackTrace,
+        requestContext,
+      ));
+    }
+  }
+
   /// get: /api/v1/Teacher
   Future<Either<ApiError, PagedResultOfTeacherApiDto>> apiV1TeacherGet({
     int? teacherId,
@@ -1507,15 +1862,16 @@ class EbridgeService {
     }
   }
 
-  /// get: /api/v1/User/initializeUsers
-  Future<Either<ApiError, void>> apiV1UserInitializeUsersGet() async {
-    final endpoint = '/api/v1/User/initializeUsers';
+  /// post: /api/v1/User/delete
+  Future<Either<ApiError, bool>> apiV1UserDeletePost() async {
+    final endpoint = '/api/v1/User/delete';
     try {
-      final _ = await _dio.get(endpoint);
-      return const Right(null);
+      final response = await _dio.post(endpoint);
+      final result = (response.data as bool);
+      return Right(result);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
-        method: 'GET',
+        method: 'POST',
         endpoint: endpoint,
       );
       return Left(_errorHandler.handleError(

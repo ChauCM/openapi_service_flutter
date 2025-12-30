@@ -425,6 +425,8 @@ class __$AcademicYearApiDtoCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$AccountApiDto {
+  @JsonKey(name: 'accountType')
+  int? get accountType;
   @JsonKey(name: 'accountId')
   int? get accountId;
   @JsonKey(name: 'name')
@@ -435,6 +437,8 @@ mixin _$AccountApiDto {
   List<ContactApiDto>? get contacts;
   @JsonKey(name: 'identifierType')
   int? get identifierType;
+  @JsonKey(name: 'accountImage')
+  ImageUrlResultDto? get accountImage;
   @JsonKey(name: 'isDeleted')
   bool? get isDeleted;
   @JsonKey(name: 'createdByUserId')
@@ -462,6 +466,8 @@ mixin _$AccountApiDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AccountApiDto &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType) &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
             (identical(other.name, name) || other.name == name) &&
@@ -470,6 +476,8 @@ mixin _$AccountApiDto {
             const DeepCollectionEquality().equals(other.contacts, contacts) &&
             (identical(other.identifierType, identifierType) ||
                 other.identifierType == identifierType) &&
+            (identical(other.accountImage, accountImage) ||
+                other.accountImage == accountImage) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -486,11 +494,13 @@ mixin _$AccountApiDto {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      accountType,
       accountId,
       name,
       identifier,
       const DeepCollectionEquality().hash(contacts),
       identifierType,
+      accountImage,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -499,7 +509,7 @@ mixin _$AccountApiDto {
 
   @override
   String toString() {
-    return 'AccountApiDto(accountId: $accountId, name: $name, identifier: $identifier, contacts: $contacts, identifierType: $identifierType, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'AccountApiDto(accountType: $accountType, accountId: $accountId, name: $name, identifier: $identifier, contacts: $contacts, identifierType: $identifierType, accountImage: $accountImage, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -510,16 +520,20 @@ abstract mixin class $AccountApiDtoCopyWith<$Res> {
       _$AccountApiDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'accountId') int? accountId,
+      {@JsonKey(name: 'accountType') int? accountType,
+      @JsonKey(name: 'accountId') int? accountId,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'identifier') String? identifier,
       @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
       @JsonKey(name: 'identifierType') int? identifierType,
+      @JsonKey(name: 'accountImage') ImageUrlResultDto? accountImage,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  $ImageUrlResultDtoCopyWith<$Res>? get accountImage;
 }
 
 /// @nodoc
@@ -535,11 +549,13 @@ class _$AccountApiDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? accountType = freezed,
     Object? accountId = freezed,
     Object? name = freezed,
     Object? identifier = freezed,
     Object? contacts = freezed,
     Object? identifierType = freezed,
+    Object? accountImage = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -547,6 +563,10 @@ class _$AccountApiDtoCopyWithImpl<$Res>
     Object? updatedDate = freezed,
   }) {
     return _then(_self.copyWith(
+      accountType: freezed == accountType
+          ? _self.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as int?,
       accountId: freezed == accountId
           ? _self.accountId
           : accountId // ignore: cast_nullable_to_non_nullable
@@ -567,6 +587,10 @@ class _$AccountApiDtoCopyWithImpl<$Res>
           ? _self.identifierType
           : identifierType // ignore: cast_nullable_to_non_nullable
               as int?,
+      accountImage: freezed == accountImage
+          ? _self.accountImage
+          : accountImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -588,6 +612,20 @@ class _$AccountApiDtoCopyWithImpl<$Res>
           : updatedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
+  }
+
+  /// Create a copy of AccountApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageUrlResultDtoCopyWith<$Res>? get accountImage {
+    if (_self.accountImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.accountImage!, (value) {
+      return _then(_self.copyWith(accountImage: value));
+    });
   }
 }
 
@@ -683,11 +721,13 @@ extension AccountApiDtoPatterns on AccountApiDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'accountType') int? accountType,
             @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
             @JsonKey(name: 'identifierType') int? identifierType,
+            @JsonKey(name: 'accountImage') ImageUrlResultDto? accountImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -700,11 +740,13 @@ extension AccountApiDtoPatterns on AccountApiDto {
     switch (_that) {
       case _AccountApiDto() when $default != null:
         return $default(
+            _that.accountType,
             _that.accountId,
             _that.name,
             _that.identifier,
             _that.contacts,
             _that.identifierType,
+            _that.accountImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -731,11 +773,13 @@ extension AccountApiDtoPatterns on AccountApiDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'accountType') int? accountType,
             @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
             @JsonKey(name: 'identifierType') int? identifierType,
+            @JsonKey(name: 'accountImage') ImageUrlResultDto? accountImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -747,11 +791,13 @@ extension AccountApiDtoPatterns on AccountApiDto {
     switch (_that) {
       case _AccountApiDto():
         return $default(
+            _that.accountType,
             _that.accountId,
             _that.name,
             _that.identifier,
             _that.contacts,
             _that.identifierType,
+            _that.accountImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -775,11 +821,13 @@ extension AccountApiDtoPatterns on AccountApiDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'accountType') int? accountType,
             @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
             @JsonKey(name: 'identifierType') int? identifierType,
+            @JsonKey(name: 'accountImage') ImageUrlResultDto? accountImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -791,11 +839,13 @@ extension AccountApiDtoPatterns on AccountApiDto {
     switch (_that) {
       case _AccountApiDto() when $default != null:
         return $default(
+            _that.accountType,
             _that.accountId,
             _that.name,
             _that.identifier,
             _that.contacts,
             _that.identifierType,
+            _that.accountImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -811,11 +861,13 @@ extension AccountApiDtoPatterns on AccountApiDto {
 @JsonSerializable()
 class _AccountApiDto implements AccountApiDto {
   _AccountApiDto(
-      {@JsonKey(name: 'accountId') this.accountId,
+      {@JsonKey(name: 'accountType') this.accountType,
+      @JsonKey(name: 'accountId') this.accountId,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'identifier') this.identifier,
       @JsonKey(name: 'contacts') final List<ContactApiDto>? contacts,
       @JsonKey(name: 'identifierType') this.identifierType,
+      @JsonKey(name: 'accountImage') this.accountImage,
       @JsonKey(name: 'isDeleted') this.isDeleted,
       @JsonKey(name: 'createdByUserId') this.createdByUserId,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -825,6 +877,9 @@ class _AccountApiDto implements AccountApiDto {
   factory _AccountApiDto.fromJson(Map<String, dynamic> json) =>
       _$AccountApiDtoFromJson(json);
 
+  @override
+  @JsonKey(name: 'accountType')
+  final int? accountType;
   @override
   @JsonKey(name: 'accountId')
   final int? accountId;
@@ -848,6 +903,9 @@ class _AccountApiDto implements AccountApiDto {
   @override
   @JsonKey(name: 'identifierType')
   final int? identifierType;
+  @override
+  @JsonKey(name: 'accountImage')
+  final ImageUrlResultDto? accountImage;
   @override
   @JsonKey(name: 'isDeleted')
   final bool? isDeleted;
@@ -884,6 +942,8 @@ class _AccountApiDto implements AccountApiDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AccountApiDto &&
+            (identical(other.accountType, accountType) ||
+                other.accountType == accountType) &&
             (identical(other.accountId, accountId) ||
                 other.accountId == accountId) &&
             (identical(other.name, name) || other.name == name) &&
@@ -892,6 +952,8 @@ class _AccountApiDto implements AccountApiDto {
             const DeepCollectionEquality().equals(other._contacts, _contacts) &&
             (identical(other.identifierType, identifierType) ||
                 other.identifierType == identifierType) &&
+            (identical(other.accountImage, accountImage) ||
+                other.accountImage == accountImage) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -908,11 +970,13 @@ class _AccountApiDto implements AccountApiDto {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      accountType,
       accountId,
       name,
       identifier,
       const DeepCollectionEquality().hash(_contacts),
       identifierType,
+      accountImage,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -921,7 +985,7 @@ class _AccountApiDto implements AccountApiDto {
 
   @override
   String toString() {
-    return 'AccountApiDto(accountId: $accountId, name: $name, identifier: $identifier, contacts: $contacts, identifierType: $identifierType, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'AccountApiDto(accountType: $accountType, accountId: $accountId, name: $name, identifier: $identifier, contacts: $contacts, identifierType: $identifierType, accountImage: $accountImage, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -934,16 +998,21 @@ abstract mixin class _$AccountApiDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'accountId') int? accountId,
+      {@JsonKey(name: 'accountType') int? accountType,
+      @JsonKey(name: 'accountId') int? accountId,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'identifier') String? identifier,
       @JsonKey(name: 'contacts') List<ContactApiDto>? contacts,
       @JsonKey(name: 'identifierType') int? identifierType,
+      @JsonKey(name: 'accountImage') ImageUrlResultDto? accountImage,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
       @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  @override
+  $ImageUrlResultDtoCopyWith<$Res>? get accountImage;
 }
 
 /// @nodoc
@@ -959,11 +1028,13 @@ class __$AccountApiDtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
+    Object? accountType = freezed,
     Object? accountId = freezed,
     Object? name = freezed,
     Object? identifier = freezed,
     Object? contacts = freezed,
     Object? identifierType = freezed,
+    Object? accountImage = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -971,6 +1042,10 @@ class __$AccountApiDtoCopyWithImpl<$Res>
     Object? updatedDate = freezed,
   }) {
     return _then(_AccountApiDto(
+      accountType: freezed == accountType
+          ? _self.accountType
+          : accountType // ignore: cast_nullable_to_non_nullable
+              as int?,
       accountId: freezed == accountId
           ? _self.accountId
           : accountId // ignore: cast_nullable_to_non_nullable
@@ -991,6 +1066,10 @@ class __$AccountApiDtoCopyWithImpl<$Res>
           ? _self.identifierType
           : identifierType // ignore: cast_nullable_to_non_nullable
               as int?,
+      accountImage: freezed == accountImage
+          ? _self.accountImage
+          : accountImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -1012,6 +1091,20 @@ class __$AccountApiDtoCopyWithImpl<$Res>
           : updatedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
+  }
+
+  /// Create a copy of AccountApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageUrlResultDtoCopyWith<$Res>? get accountImage {
+    if (_self.accountImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.accountImage!, (value) {
+      return _then(_self.copyWith(accountImage: value));
+    });
   }
 }
 
@@ -7309,6 +7402,8 @@ mixin _$ClassAttendanceDTODto {
   int? get classId;
   @JsonKey(name: 'className')
   String? get className;
+  @JsonKey(name: 'level')
+  String? get level;
   @JsonKey(name: 'students')
   List<StudentAttendanceDTODto>? get students;
   @JsonKey(name: 'sumPresent')
@@ -7337,6 +7432,7 @@ mixin _$ClassAttendanceDTODto {
             (identical(other.classId, classId) || other.classId == classId) &&
             (identical(other.className, className) ||
                 other.className == className) &&
+            (identical(other.level, level) || other.level == level) &&
             const DeepCollectionEquality().equals(other.students, students) &&
             (identical(other.sumPresent, sumPresent) ||
                 other.sumPresent == sumPresent) &&
@@ -7352,6 +7448,7 @@ mixin _$ClassAttendanceDTODto {
       runtimeType,
       classId,
       className,
+      level,
       const DeepCollectionEquality().hash(students),
       sumPresent,
       sumSchoolDays,
@@ -7359,7 +7456,7 @@ mixin _$ClassAttendanceDTODto {
 
   @override
   String toString() {
-    return 'ClassAttendanceDTODto(classId: $classId, className: $className, students: $students, sumPresent: $sumPresent, sumSchoolDays: $sumSchoolDays, classAttendanceRate: $classAttendanceRate)';
+    return 'ClassAttendanceDTODto(classId: $classId, className: $className, level: $level, students: $students, sumPresent: $sumPresent, sumSchoolDays: $sumSchoolDays, classAttendanceRate: $classAttendanceRate)';
   }
 }
 
@@ -7372,6 +7469,7 @@ abstract mixin class $ClassAttendanceDTODtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'classId') int? classId,
       @JsonKey(name: 'className') String? className,
+      @JsonKey(name: 'level') String? level,
       @JsonKey(name: 'students') List<StudentAttendanceDTODto>? students,
       @JsonKey(name: 'sumPresent') int? sumPresent,
       @JsonKey(name: 'sumSchoolDays') int? sumSchoolDays,
@@ -7393,6 +7491,7 @@ class _$ClassAttendanceDTODtoCopyWithImpl<$Res>
   $Res call({
     Object? classId = freezed,
     Object? className = freezed,
+    Object? level = freezed,
     Object? students = freezed,
     Object? sumPresent = freezed,
     Object? sumSchoolDays = freezed,
@@ -7406,6 +7505,10 @@ class _$ClassAttendanceDTODtoCopyWithImpl<$Res>
       className: freezed == className
           ? _self.className
           : className // ignore: cast_nullable_to_non_nullable
+              as String?,
+      level: freezed == level
+          ? _self.level
+          : level // ignore: cast_nullable_to_non_nullable
               as String?,
       students: freezed == students
           ? _self.students
@@ -7521,6 +7624,7 @@ extension ClassAttendanceDTODtoPatterns on ClassAttendanceDTODto {
     TResult Function(
             @JsonKey(name: 'classId') int? classId,
             @JsonKey(name: 'className') String? className,
+            @JsonKey(name: 'level') String? level,
             @JsonKey(name: 'students') List<StudentAttendanceDTODto>? students,
             @JsonKey(name: 'sumPresent') int? sumPresent,
             @JsonKey(name: 'sumSchoolDays') int? sumSchoolDays,
@@ -7531,8 +7635,14 @@ extension ClassAttendanceDTODtoPatterns on ClassAttendanceDTODto {
     final _that = this;
     switch (_that) {
       case _ClassAttendanceDTODto() when $default != null:
-        return $default(_that.classId, _that.className, _that.students,
-            _that.sumPresent, _that.sumSchoolDays, _that.classAttendanceRate);
+        return $default(
+            _that.classId,
+            _that.className,
+            _that.level,
+            _that.students,
+            _that.sumPresent,
+            _that.sumSchoolDays,
+            _that.classAttendanceRate);
       case _:
         return orElse();
     }
@@ -7556,6 +7666,7 @@ extension ClassAttendanceDTODtoPatterns on ClassAttendanceDTODto {
     TResult Function(
             @JsonKey(name: 'classId') int? classId,
             @JsonKey(name: 'className') String? className,
+            @JsonKey(name: 'level') String? level,
             @JsonKey(name: 'students') List<StudentAttendanceDTODto>? students,
             @JsonKey(name: 'sumPresent') int? sumPresent,
             @JsonKey(name: 'sumSchoolDays') int? sumSchoolDays,
@@ -7565,8 +7676,14 @@ extension ClassAttendanceDTODtoPatterns on ClassAttendanceDTODto {
     final _that = this;
     switch (_that) {
       case _ClassAttendanceDTODto():
-        return $default(_that.classId, _that.className, _that.students,
-            _that.sumPresent, _that.sumSchoolDays, _that.classAttendanceRate);
+        return $default(
+            _that.classId,
+            _that.className,
+            _that.level,
+            _that.students,
+            _that.sumPresent,
+            _that.sumSchoolDays,
+            _that.classAttendanceRate);
     }
   }
 
@@ -7587,6 +7704,7 @@ extension ClassAttendanceDTODtoPatterns on ClassAttendanceDTODto {
     TResult? Function(
             @JsonKey(name: 'classId') int? classId,
             @JsonKey(name: 'className') String? className,
+            @JsonKey(name: 'level') String? level,
             @JsonKey(name: 'students') List<StudentAttendanceDTODto>? students,
             @JsonKey(name: 'sumPresent') int? sumPresent,
             @JsonKey(name: 'sumSchoolDays') int? sumSchoolDays,
@@ -7596,8 +7714,14 @@ extension ClassAttendanceDTODtoPatterns on ClassAttendanceDTODto {
     final _that = this;
     switch (_that) {
       case _ClassAttendanceDTODto() when $default != null:
-        return $default(_that.classId, _that.className, _that.students,
-            _that.sumPresent, _that.sumSchoolDays, _that.classAttendanceRate);
+        return $default(
+            _that.classId,
+            _that.className,
+            _that.level,
+            _that.students,
+            _that.sumPresent,
+            _that.sumSchoolDays,
+            _that.classAttendanceRate);
       case _:
         return null;
     }
@@ -7610,6 +7734,7 @@ class _ClassAttendanceDTODto implements ClassAttendanceDTODto {
   _ClassAttendanceDTODto(
       {@JsonKey(name: 'classId') this.classId,
       @JsonKey(name: 'className') this.className,
+      @JsonKey(name: 'level') this.level,
       @JsonKey(name: 'students') final List<StudentAttendanceDTODto>? students,
       @JsonKey(name: 'sumPresent') this.sumPresent,
       @JsonKey(name: 'sumSchoolDays') this.sumSchoolDays,
@@ -7624,6 +7749,9 @@ class _ClassAttendanceDTODto implements ClassAttendanceDTODto {
   @override
   @JsonKey(name: 'className')
   final String? className;
+  @override
+  @JsonKey(name: 'level')
+  final String? level;
   final List<StudentAttendanceDTODto>? _students;
   @override
   @JsonKey(name: 'students')
@@ -7669,6 +7797,7 @@ class _ClassAttendanceDTODto implements ClassAttendanceDTODto {
             (identical(other.classId, classId) || other.classId == classId) &&
             (identical(other.className, className) ||
                 other.className == className) &&
+            (identical(other.level, level) || other.level == level) &&
             const DeepCollectionEquality().equals(other._students, _students) &&
             (identical(other.sumPresent, sumPresent) ||
                 other.sumPresent == sumPresent) &&
@@ -7684,6 +7813,7 @@ class _ClassAttendanceDTODto implements ClassAttendanceDTODto {
       runtimeType,
       classId,
       className,
+      level,
       const DeepCollectionEquality().hash(_students),
       sumPresent,
       sumSchoolDays,
@@ -7691,7 +7821,7 @@ class _ClassAttendanceDTODto implements ClassAttendanceDTODto {
 
   @override
   String toString() {
-    return 'ClassAttendanceDTODto(classId: $classId, className: $className, students: $students, sumPresent: $sumPresent, sumSchoolDays: $sumSchoolDays, classAttendanceRate: $classAttendanceRate)';
+    return 'ClassAttendanceDTODto(classId: $classId, className: $className, level: $level, students: $students, sumPresent: $sumPresent, sumSchoolDays: $sumSchoolDays, classAttendanceRate: $classAttendanceRate)';
   }
 }
 
@@ -7706,6 +7836,7 @@ abstract mixin class _$ClassAttendanceDTODtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'classId') int? classId,
       @JsonKey(name: 'className') String? className,
+      @JsonKey(name: 'level') String? level,
       @JsonKey(name: 'students') List<StudentAttendanceDTODto>? students,
       @JsonKey(name: 'sumPresent') int? sumPresent,
       @JsonKey(name: 'sumSchoolDays') int? sumSchoolDays,
@@ -7727,6 +7858,7 @@ class __$ClassAttendanceDTODtoCopyWithImpl<$Res>
   $Res call({
     Object? classId = freezed,
     Object? className = freezed,
+    Object? level = freezed,
     Object? students = freezed,
     Object? sumPresent = freezed,
     Object? sumSchoolDays = freezed,
@@ -7740,6 +7872,10 @@ class __$ClassAttendanceDTODtoCopyWithImpl<$Res>
       className: freezed == className
           ? _self.className
           : className // ignore: cast_nullable_to_non_nullable
+              as String?,
+      level: freezed == level
+          ? _self.level
+          : level // ignore: cast_nullable_to_non_nullable
               as String?,
       students: freezed == students
           ? _self._students
@@ -10096,7 +10232,7 @@ mixin _$ContentApiDto {
   @JsonKey(name: 'levels')
   List<int>? get levels;
   @JsonKey(name: 'learningDomains')
-  List<int>? get learningDomains;
+  List<LearningDomainApiDto>? get learningDomains;
   @JsonKey(name: 'contentTitle')
   String? get contentTitle;
   @JsonKey(name: 'contentBody')
@@ -10117,6 +10253,8 @@ mixin _$ContentApiDto {
   String? get defaultUrl;
   @JsonKey(name: 'branchId')
   int? get branchId;
+  @JsonKey(name: 'attachments')
+  List<ContentAttachmentApiDto>? get attachments;
   @JsonKey(name: 'isDeleted')
   bool? get isDeleted;
   @JsonKey(name: 'createdByUserId')
@@ -10172,6 +10310,8 @@ mixin _$ContentApiDto {
                 other.defaultUrl == defaultUrl) &&
             (identical(other.branchId, branchId) ||
                 other.branchId == branchId) &&
+            const DeepCollectionEquality()
+                .equals(other.attachments, attachments) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -10203,6 +10343,7 @@ mixin _$ContentApiDto {
         attachmentFolder,
         defaultUrl,
         branchId,
+        const DeepCollectionEquality().hash(attachments),
         isDeleted,
         createdByUserId,
         createdDate,
@@ -10212,7 +10353,7 @@ mixin _$ContentApiDto {
 
   @override
   String toString() {
-    return 'ContentApiDto(studentContentId: $studentContentId, students: $students, classes: $classes, levels: $levels, learningDomains: $learningDomains, contentTitle: $contentTitle, contentBody: $contentBody, activityDateTime: $activityDateTime, contentType: $contentType, publishDate: $publishDate, includeFutureEnrolment: $includeFutureEnrolment, attachmentFolderClassId: $attachmentFolderClassId, attachmentFolder: $attachmentFolder, defaultUrl: $defaultUrl, branchId: $branchId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'ContentApiDto(studentContentId: $studentContentId, students: $students, classes: $classes, levels: $levels, learningDomains: $learningDomains, contentTitle: $contentTitle, contentBody: $contentBody, activityDateTime: $activityDateTime, contentType: $contentType, publishDate: $publishDate, includeFutureEnrolment: $includeFutureEnrolment, attachmentFolderClassId: $attachmentFolderClassId, attachmentFolder: $attachmentFolder, defaultUrl: $defaultUrl, branchId: $branchId, attachments: $attachments, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -10227,7 +10368,8 @@ abstract mixin class $ContentApiDtoCopyWith<$Res> {
       @JsonKey(name: 'students') List<int>? students,
       @JsonKey(name: 'classes') List<int>? classes,
       @JsonKey(name: 'levels') List<int>? levels,
-      @JsonKey(name: 'learningDomains') List<int>? learningDomains,
+      @JsonKey(name: 'learningDomains')
+      List<LearningDomainApiDto>? learningDomains,
       @JsonKey(name: 'contentTitle') String? contentTitle,
       @JsonKey(name: 'contentBody') String? contentBody,
       @JsonKey(name: 'activityDateTime') DateTime? activityDateTime,
@@ -10238,6 +10380,7 @@ abstract mixin class $ContentApiDtoCopyWith<$Res> {
       @JsonKey(name: 'attachmentFolder') String? attachmentFolder,
       @JsonKey(name: 'defaultUrl') String? defaultUrl,
       @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'attachments') List<ContentAttachmentApiDto>? attachments,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -10273,6 +10416,7 @@ class _$ContentApiDtoCopyWithImpl<$Res>
     Object? attachmentFolder = freezed,
     Object? defaultUrl = freezed,
     Object? branchId = freezed,
+    Object? attachments = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -10299,7 +10443,7 @@ class _$ContentApiDtoCopyWithImpl<$Res>
       learningDomains: freezed == learningDomains
           ? _self.learningDomains
           : learningDomains // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<LearningDomainApiDto>?,
       contentTitle: freezed == contentTitle
           ? _self.contentTitle
           : contentTitle // ignore: cast_nullable_to_non_nullable
@@ -10340,6 +10484,10 @@ class _$ContentApiDtoCopyWithImpl<$Res>
           ? _self.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
               as int?,
+      attachments: freezed == attachments
+          ? _self.attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as List<ContentAttachmentApiDto>?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -10460,7 +10608,8 @@ extension ContentApiDtoPatterns on ContentApiDto {
             @JsonKey(name: 'students') List<int>? students,
             @JsonKey(name: 'classes') List<int>? classes,
             @JsonKey(name: 'levels') List<int>? levels,
-            @JsonKey(name: 'learningDomains') List<int>? learningDomains,
+            @JsonKey(name: 'learningDomains')
+            List<LearningDomainApiDto>? learningDomains,
             @JsonKey(name: 'contentTitle') String? contentTitle,
             @JsonKey(name: 'contentBody') String? contentBody,
             @JsonKey(name: 'activityDateTime') DateTime? activityDateTime,
@@ -10473,6 +10622,8 @@ extension ContentApiDtoPatterns on ContentApiDto {
             @JsonKey(name: 'attachmentFolder') String? attachmentFolder,
             @JsonKey(name: 'defaultUrl') String? defaultUrl,
             @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'attachments')
+            List<ContentAttachmentApiDto>? attachments,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -10500,6 +10651,7 @@ extension ContentApiDtoPatterns on ContentApiDto {
             _that.attachmentFolder,
             _that.defaultUrl,
             _that.branchId,
+            _that.attachments,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -10530,7 +10682,8 @@ extension ContentApiDtoPatterns on ContentApiDto {
             @JsonKey(name: 'students') List<int>? students,
             @JsonKey(name: 'classes') List<int>? classes,
             @JsonKey(name: 'levels') List<int>? levels,
-            @JsonKey(name: 'learningDomains') List<int>? learningDomains,
+            @JsonKey(name: 'learningDomains')
+            List<LearningDomainApiDto>? learningDomains,
             @JsonKey(name: 'contentTitle') String? contentTitle,
             @JsonKey(name: 'contentBody') String? contentBody,
             @JsonKey(name: 'activityDateTime') DateTime? activityDateTime,
@@ -10543,6 +10696,8 @@ extension ContentApiDtoPatterns on ContentApiDto {
             @JsonKey(name: 'attachmentFolder') String? attachmentFolder,
             @JsonKey(name: 'defaultUrl') String? defaultUrl,
             @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'attachments')
+            List<ContentAttachmentApiDto>? attachments,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -10569,6 +10724,7 @@ extension ContentApiDtoPatterns on ContentApiDto {
             _that.attachmentFolder,
             _that.defaultUrl,
             _that.branchId,
+            _that.attachments,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -10596,7 +10752,8 @@ extension ContentApiDtoPatterns on ContentApiDto {
             @JsonKey(name: 'students') List<int>? students,
             @JsonKey(name: 'classes') List<int>? classes,
             @JsonKey(name: 'levels') List<int>? levels,
-            @JsonKey(name: 'learningDomains') List<int>? learningDomains,
+            @JsonKey(name: 'learningDomains')
+            List<LearningDomainApiDto>? learningDomains,
             @JsonKey(name: 'contentTitle') String? contentTitle,
             @JsonKey(name: 'contentBody') String? contentBody,
             @JsonKey(name: 'activityDateTime') DateTime? activityDateTime,
@@ -10609,6 +10766,8 @@ extension ContentApiDtoPatterns on ContentApiDto {
             @JsonKey(name: 'attachmentFolder') String? attachmentFolder,
             @JsonKey(name: 'defaultUrl') String? defaultUrl,
             @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'attachments')
+            List<ContentAttachmentApiDto>? attachments,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -10635,6 +10794,7 @@ extension ContentApiDtoPatterns on ContentApiDto {
             _that.attachmentFolder,
             _that.defaultUrl,
             _that.branchId,
+            _that.attachments,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -10654,7 +10814,8 @@ class _ContentApiDto implements ContentApiDto {
       @JsonKey(name: 'students') final List<int>? students,
       @JsonKey(name: 'classes') final List<int>? classes,
       @JsonKey(name: 'levels') final List<int>? levels,
-      @JsonKey(name: 'learningDomains') final List<int>? learningDomains,
+      @JsonKey(name: 'learningDomains')
+      final List<LearningDomainApiDto>? learningDomains,
       @JsonKey(name: 'contentTitle') this.contentTitle,
       @JsonKey(name: 'contentBody') this.contentBody,
       @JsonKey(name: 'activityDateTime') this.activityDateTime,
@@ -10665,6 +10826,8 @@ class _ContentApiDto implements ContentApiDto {
       @JsonKey(name: 'attachmentFolder') this.attachmentFolder,
       @JsonKey(name: 'defaultUrl') this.defaultUrl,
       @JsonKey(name: 'branchId') this.branchId,
+      @JsonKey(name: 'attachments')
+      final List<ContentAttachmentApiDto>? attachments,
       @JsonKey(name: 'isDeleted') this.isDeleted,
       @JsonKey(name: 'createdByUserId') this.createdByUserId,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -10673,7 +10836,8 @@ class _ContentApiDto implements ContentApiDto {
       : _students = students,
         _classes = classes,
         _levels = levels,
-        _learningDomains = learningDomains;
+        _learningDomains = learningDomains,
+        _attachments = attachments;
   factory _ContentApiDto.fromJson(Map<String, dynamic> json) =>
       _$ContentApiDtoFromJson(json);
 
@@ -10713,10 +10877,10 @@ class _ContentApiDto implements ContentApiDto {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<int>? _learningDomains;
+  final List<LearningDomainApiDto>? _learningDomains;
   @override
   @JsonKey(name: 'learningDomains')
-  List<int>? get learningDomains {
+  List<LearningDomainApiDto>? get learningDomains {
     final value = _learningDomains;
     if (value == null) return null;
     if (_learningDomains is EqualUnmodifiableListView) return _learningDomains;
@@ -10754,6 +10918,17 @@ class _ContentApiDto implements ContentApiDto {
   @override
   @JsonKey(name: 'branchId')
   final int? branchId;
+  final List<ContentAttachmentApiDto>? _attachments;
+  @override
+  @JsonKey(name: 'attachments')
+  List<ContentAttachmentApiDto>? get attachments {
+    final value = _attachments;
+    if (value == null) return null;
+    if (_attachments is EqualUnmodifiableListView) return _attachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'isDeleted')
   final bool? isDeleted;
@@ -10818,6 +10993,8 @@ class _ContentApiDto implements ContentApiDto {
                 other.defaultUrl == defaultUrl) &&
             (identical(other.branchId, branchId) ||
                 other.branchId == branchId) &&
+            const DeepCollectionEquality()
+                .equals(other._attachments, _attachments) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -10849,6 +11026,7 @@ class _ContentApiDto implements ContentApiDto {
         attachmentFolder,
         defaultUrl,
         branchId,
+        const DeepCollectionEquality().hash(_attachments),
         isDeleted,
         createdByUserId,
         createdDate,
@@ -10858,7 +11036,7 @@ class _ContentApiDto implements ContentApiDto {
 
   @override
   String toString() {
-    return 'ContentApiDto(studentContentId: $studentContentId, students: $students, classes: $classes, levels: $levels, learningDomains: $learningDomains, contentTitle: $contentTitle, contentBody: $contentBody, activityDateTime: $activityDateTime, contentType: $contentType, publishDate: $publishDate, includeFutureEnrolment: $includeFutureEnrolment, attachmentFolderClassId: $attachmentFolderClassId, attachmentFolder: $attachmentFolder, defaultUrl: $defaultUrl, branchId: $branchId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'ContentApiDto(studentContentId: $studentContentId, students: $students, classes: $classes, levels: $levels, learningDomains: $learningDomains, contentTitle: $contentTitle, contentBody: $contentBody, activityDateTime: $activityDateTime, contentType: $contentType, publishDate: $publishDate, includeFutureEnrolment: $includeFutureEnrolment, attachmentFolderClassId: $attachmentFolderClassId, attachmentFolder: $attachmentFolder, defaultUrl: $defaultUrl, branchId: $branchId, attachments: $attachments, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -10875,7 +11053,8 @@ abstract mixin class _$ContentApiDtoCopyWith<$Res>
       @JsonKey(name: 'students') List<int>? students,
       @JsonKey(name: 'classes') List<int>? classes,
       @JsonKey(name: 'levels') List<int>? levels,
-      @JsonKey(name: 'learningDomains') List<int>? learningDomains,
+      @JsonKey(name: 'learningDomains')
+      List<LearningDomainApiDto>? learningDomains,
       @JsonKey(name: 'contentTitle') String? contentTitle,
       @JsonKey(name: 'contentBody') String? contentBody,
       @JsonKey(name: 'activityDateTime') DateTime? activityDateTime,
@@ -10886,6 +11065,7 @@ abstract mixin class _$ContentApiDtoCopyWith<$Res>
       @JsonKey(name: 'attachmentFolder') String? attachmentFolder,
       @JsonKey(name: 'defaultUrl') String? defaultUrl,
       @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'attachments') List<ContentAttachmentApiDto>? attachments,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -10921,6 +11101,7 @@ class __$ContentApiDtoCopyWithImpl<$Res>
     Object? attachmentFolder = freezed,
     Object? defaultUrl = freezed,
     Object? branchId = freezed,
+    Object? attachments = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -10947,7 +11128,7 @@ class __$ContentApiDtoCopyWithImpl<$Res>
       learningDomains: freezed == learningDomains
           ? _self._learningDomains
           : learningDomains // ignore: cast_nullable_to_non_nullable
-              as List<int>?,
+              as List<LearningDomainApiDto>?,
       contentTitle: freezed == contentTitle
           ? _self.contentTitle
           : contentTitle // ignore: cast_nullable_to_non_nullable
@@ -10988,6 +11169,10 @@ class __$ContentApiDtoCopyWithImpl<$Res>
           ? _self.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
               as int?,
+      attachments: freezed == attachments
+          ? _self._attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as List<ContentAttachmentApiDto>?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -11013,6 +11198,337 @@ class __$ContentApiDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$ContentAttachmentApiDto {
+  @JsonKey(name: 'fileUrl')
+  String? get fileUrl;
+  @JsonKey(name: 'description')
+  String? get description;
+
+  /// Create a copy of ContentAttachmentApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ContentAttachmentApiDtoCopyWith<ContentAttachmentApiDto> get copyWith =>
+      _$ContentAttachmentApiDtoCopyWithImpl<ContentAttachmentApiDto>(
+          this as ContentAttachmentApiDto, _$identity);
+
+  /// Serializes this ContentAttachmentApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ContentAttachmentApiDto &&
+            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, fileUrl, description);
+
+  @override
+  String toString() {
+    return 'ContentAttachmentApiDto(fileUrl: $fileUrl, description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ContentAttachmentApiDtoCopyWith<$Res> {
+  factory $ContentAttachmentApiDtoCopyWith(ContentAttachmentApiDto value,
+          $Res Function(ContentAttachmentApiDto) _then) =
+      _$ContentAttachmentApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'fileUrl') String? fileUrl,
+      @JsonKey(name: 'description') String? description});
+}
+
+/// @nodoc
+class _$ContentAttachmentApiDtoCopyWithImpl<$Res>
+    implements $ContentAttachmentApiDtoCopyWith<$Res> {
+  _$ContentAttachmentApiDtoCopyWithImpl(this._self, this._then);
+
+  final ContentAttachmentApiDto _self;
+  final $Res Function(ContentAttachmentApiDto) _then;
+
+  /// Create a copy of ContentAttachmentApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fileUrl = freezed,
+    Object? description = freezed,
+  }) {
+    return _then(_self.copyWith(
+      fileUrl: freezed == fileUrl
+          ? _self.fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [ContentAttachmentApiDto].
+extension ContentAttachmentApiDtoPatterns on ContentAttachmentApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ContentAttachmentApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ContentAttachmentApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ContentAttachmentApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContentAttachmentApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ContentAttachmentApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContentAttachmentApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'fileUrl') String? fileUrl,
+            @JsonKey(name: 'description') String? description)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ContentAttachmentApiDto() when $default != null:
+        return $default(_that.fileUrl, _that.description);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'fileUrl') String? fileUrl,
+            @JsonKey(name: 'description') String? description)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContentAttachmentApiDto():
+        return $default(_that.fileUrl, _that.description);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'fileUrl') String? fileUrl,
+            @JsonKey(name: 'description') String? description)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContentAttachmentApiDto() when $default != null:
+        return $default(_that.fileUrl, _that.description);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ContentAttachmentApiDto implements ContentAttachmentApiDto {
+  _ContentAttachmentApiDto(
+      {@JsonKey(name: 'fileUrl') this.fileUrl,
+      @JsonKey(name: 'description') this.description});
+  factory _ContentAttachmentApiDto.fromJson(Map<String, dynamic> json) =>
+      _$ContentAttachmentApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'fileUrl')
+  final String? fileUrl;
+  @override
+  @JsonKey(name: 'description')
+  final String? description;
+
+  /// Create a copy of ContentAttachmentApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ContentAttachmentApiDtoCopyWith<_ContentAttachmentApiDto> get copyWith =>
+      __$ContentAttachmentApiDtoCopyWithImpl<_ContentAttachmentApiDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ContentAttachmentApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ContentAttachmentApiDto &&
+            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, fileUrl, description);
+
+  @override
+  String toString() {
+    return 'ContentAttachmentApiDto(fileUrl: $fileUrl, description: $description)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ContentAttachmentApiDtoCopyWith<$Res>
+    implements $ContentAttachmentApiDtoCopyWith<$Res> {
+  factory _$ContentAttachmentApiDtoCopyWith(_ContentAttachmentApiDto value,
+          $Res Function(_ContentAttachmentApiDto) _then) =
+      __$ContentAttachmentApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'fileUrl') String? fileUrl,
+      @JsonKey(name: 'description') String? description});
+}
+
+/// @nodoc
+class __$ContentAttachmentApiDtoCopyWithImpl<$Res>
+    implements _$ContentAttachmentApiDtoCopyWith<$Res> {
+  __$ContentAttachmentApiDtoCopyWithImpl(this._self, this._then);
+
+  final _ContentAttachmentApiDto _self;
+  final $Res Function(_ContentAttachmentApiDto) _then;
+
+  /// Create a copy of ContentAttachmentApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? fileUrl = freezed,
+    Object? description = freezed,
+  }) {
+    return _then(_ContentAttachmentApiDto(
+      fileUrl: freezed == fileUrl
+          ? _self.fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$ConversationApiDto {
   @JsonKey(name: 'conversationId')
   int? get conversationId;
@@ -11024,8 +11540,12 @@ mixin _$ConversationApiDto {
   DateTime? get dateClosed;
   @JsonKey(name: 'initiatorAccountId')
   int? get initiatorAccountId;
+  @JsonKey(name: 'initiatorAccountName')
+  String? get initiatorAccountName;
   @JsonKey(name: 'recipientAccountId')
   int? get recipientAccountId;
+  @JsonKey(name: 'recipientAccountName')
+  String? get recipientAccountName;
   @JsonKey(name: 'isDeleted')
   bool? get isDeleted;
   @JsonKey(name: 'createdByUserId')
@@ -11062,8 +11582,12 @@ mixin _$ConversationApiDto {
                 other.dateClosed == dateClosed) &&
             (identical(other.initiatorAccountId, initiatorAccountId) ||
                 other.initiatorAccountId == initiatorAccountId) &&
+            (identical(other.initiatorAccountName, initiatorAccountName) ||
+                other.initiatorAccountName == initiatorAccountName) &&
             (identical(other.recipientAccountId, recipientAccountId) ||
                 other.recipientAccountId == recipientAccountId) &&
+            (identical(other.recipientAccountName, recipientAccountName) ||
+                other.recipientAccountName == recipientAccountName) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -11085,7 +11609,9 @@ mixin _$ConversationApiDto {
       isClosed,
       dateClosed,
       initiatorAccountId,
+      initiatorAccountName,
       recipientAccountId,
+      recipientAccountName,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -11094,7 +11620,7 @@ mixin _$ConversationApiDto {
 
   @override
   String toString() {
-    return 'ConversationApiDto(conversationId: $conversationId, topic: $topic, isClosed: $isClosed, dateClosed: $dateClosed, initiatorAccountId: $initiatorAccountId, recipientAccountId: $recipientAccountId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'ConversationApiDto(conversationId: $conversationId, topic: $topic, isClosed: $isClosed, dateClosed: $dateClosed, initiatorAccountId: $initiatorAccountId, initiatorAccountName: $initiatorAccountName, recipientAccountId: $recipientAccountId, recipientAccountName: $recipientAccountName, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -11110,7 +11636,9 @@ abstract mixin class $ConversationApiDtoCopyWith<$Res> {
       @JsonKey(name: 'isClosed') bool? isClosed,
       @JsonKey(name: 'dateClosed') DateTime? dateClosed,
       @JsonKey(name: 'initiatorAccountId') int? initiatorAccountId,
+      @JsonKey(name: 'initiatorAccountName') String? initiatorAccountName,
       @JsonKey(name: 'recipientAccountId') int? recipientAccountId,
+      @JsonKey(name: 'recipientAccountName') String? recipientAccountName,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -11136,7 +11664,9 @@ class _$ConversationApiDtoCopyWithImpl<$Res>
     Object? isClosed = freezed,
     Object? dateClosed = freezed,
     Object? initiatorAccountId = freezed,
+    Object? initiatorAccountName = freezed,
     Object? recipientAccountId = freezed,
+    Object? recipientAccountName = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -11164,10 +11694,18 @@ class _$ConversationApiDtoCopyWithImpl<$Res>
           ? _self.initiatorAccountId
           : initiatorAccountId // ignore: cast_nullable_to_non_nullable
               as int?,
+      initiatorAccountName: freezed == initiatorAccountName
+          ? _self.initiatorAccountName
+          : initiatorAccountName // ignore: cast_nullable_to_non_nullable
+              as String?,
       recipientAccountId: freezed == recipientAccountId
           ? _self.recipientAccountId
           : recipientAccountId // ignore: cast_nullable_to_non_nullable
               as int?,
+      recipientAccountName: freezed == recipientAccountName
+          ? _self.recipientAccountName
+          : recipientAccountName // ignore: cast_nullable_to_non_nullable
+              as String?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -11289,7 +11827,9 @@ extension ConversationApiDtoPatterns on ConversationApiDto {
             @JsonKey(name: 'isClosed') bool? isClosed,
             @JsonKey(name: 'dateClosed') DateTime? dateClosed,
             @JsonKey(name: 'initiatorAccountId') int? initiatorAccountId,
+            @JsonKey(name: 'initiatorAccountName') String? initiatorAccountName,
             @JsonKey(name: 'recipientAccountId') int? recipientAccountId,
+            @JsonKey(name: 'recipientAccountName') String? recipientAccountName,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -11307,7 +11847,9 @@ extension ConversationApiDtoPatterns on ConversationApiDto {
             _that.isClosed,
             _that.dateClosed,
             _that.initiatorAccountId,
+            _that.initiatorAccountName,
             _that.recipientAccountId,
+            _that.recipientAccountName,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -11339,7 +11881,9 @@ extension ConversationApiDtoPatterns on ConversationApiDto {
             @JsonKey(name: 'isClosed') bool? isClosed,
             @JsonKey(name: 'dateClosed') DateTime? dateClosed,
             @JsonKey(name: 'initiatorAccountId') int? initiatorAccountId,
+            @JsonKey(name: 'initiatorAccountName') String? initiatorAccountName,
             @JsonKey(name: 'recipientAccountId') int? recipientAccountId,
+            @JsonKey(name: 'recipientAccountName') String? recipientAccountName,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -11356,7 +11900,9 @@ extension ConversationApiDtoPatterns on ConversationApiDto {
             _that.isClosed,
             _that.dateClosed,
             _that.initiatorAccountId,
+            _that.initiatorAccountName,
             _that.recipientAccountId,
+            _that.recipientAccountName,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -11385,7 +11931,9 @@ extension ConversationApiDtoPatterns on ConversationApiDto {
             @JsonKey(name: 'isClosed') bool? isClosed,
             @JsonKey(name: 'dateClosed') DateTime? dateClosed,
             @JsonKey(name: 'initiatorAccountId') int? initiatorAccountId,
+            @JsonKey(name: 'initiatorAccountName') String? initiatorAccountName,
             @JsonKey(name: 'recipientAccountId') int? recipientAccountId,
+            @JsonKey(name: 'recipientAccountName') String? recipientAccountName,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -11402,7 +11950,9 @@ extension ConversationApiDtoPatterns on ConversationApiDto {
             _that.isClosed,
             _that.dateClosed,
             _that.initiatorAccountId,
+            _that.initiatorAccountName,
             _that.recipientAccountId,
+            _that.recipientAccountName,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -11423,7 +11973,9 @@ class _ConversationApiDto implements ConversationApiDto {
       @JsonKey(name: 'isClosed') this.isClosed,
       @JsonKey(name: 'dateClosed') this.dateClosed,
       @JsonKey(name: 'initiatorAccountId') this.initiatorAccountId,
+      @JsonKey(name: 'initiatorAccountName') this.initiatorAccountName,
       @JsonKey(name: 'recipientAccountId') this.recipientAccountId,
+      @JsonKey(name: 'recipientAccountName') this.recipientAccountName,
       @JsonKey(name: 'isDeleted') this.isDeleted,
       @JsonKey(name: 'createdByUserId') this.createdByUserId,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -11448,8 +12000,14 @@ class _ConversationApiDto implements ConversationApiDto {
   @JsonKey(name: 'initiatorAccountId')
   final int? initiatorAccountId;
   @override
+  @JsonKey(name: 'initiatorAccountName')
+  final String? initiatorAccountName;
+  @override
   @JsonKey(name: 'recipientAccountId')
   final int? recipientAccountId;
+  @override
+  @JsonKey(name: 'recipientAccountName')
+  final String? recipientAccountName;
   @override
   @JsonKey(name: 'isDeleted')
   final bool? isDeleted;
@@ -11495,8 +12053,12 @@ class _ConversationApiDto implements ConversationApiDto {
                 other.dateClosed == dateClosed) &&
             (identical(other.initiatorAccountId, initiatorAccountId) ||
                 other.initiatorAccountId == initiatorAccountId) &&
+            (identical(other.initiatorAccountName, initiatorAccountName) ||
+                other.initiatorAccountName == initiatorAccountName) &&
             (identical(other.recipientAccountId, recipientAccountId) ||
                 other.recipientAccountId == recipientAccountId) &&
+            (identical(other.recipientAccountName, recipientAccountName) ||
+                other.recipientAccountName == recipientAccountName) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -11518,7 +12080,9 @@ class _ConversationApiDto implements ConversationApiDto {
       isClosed,
       dateClosed,
       initiatorAccountId,
+      initiatorAccountName,
       recipientAccountId,
+      recipientAccountName,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -11527,7 +12091,7 @@ class _ConversationApiDto implements ConversationApiDto {
 
   @override
   String toString() {
-    return 'ConversationApiDto(conversationId: $conversationId, topic: $topic, isClosed: $isClosed, dateClosed: $dateClosed, initiatorAccountId: $initiatorAccountId, recipientAccountId: $recipientAccountId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'ConversationApiDto(conversationId: $conversationId, topic: $topic, isClosed: $isClosed, dateClosed: $dateClosed, initiatorAccountId: $initiatorAccountId, initiatorAccountName: $initiatorAccountName, recipientAccountId: $recipientAccountId, recipientAccountName: $recipientAccountName, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -11545,7 +12109,9 @@ abstract mixin class _$ConversationApiDtoCopyWith<$Res>
       @JsonKey(name: 'isClosed') bool? isClosed,
       @JsonKey(name: 'dateClosed') DateTime? dateClosed,
       @JsonKey(name: 'initiatorAccountId') int? initiatorAccountId,
+      @JsonKey(name: 'initiatorAccountName') String? initiatorAccountName,
       @JsonKey(name: 'recipientAccountId') int? recipientAccountId,
+      @JsonKey(name: 'recipientAccountName') String? recipientAccountName,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -11571,7 +12137,9 @@ class __$ConversationApiDtoCopyWithImpl<$Res>
     Object? isClosed = freezed,
     Object? dateClosed = freezed,
     Object? initiatorAccountId = freezed,
+    Object? initiatorAccountName = freezed,
     Object? recipientAccountId = freezed,
+    Object? recipientAccountName = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -11599,10 +12167,18 @@ class __$ConversationApiDtoCopyWithImpl<$Res>
           ? _self.initiatorAccountId
           : initiatorAccountId // ignore: cast_nullable_to_non_nullable
               as int?,
+      initiatorAccountName: freezed == initiatorAccountName
+          ? _self.initiatorAccountName
+          : initiatorAccountName // ignore: cast_nullable_to_non_nullable
+              as String?,
       recipientAccountId: freezed == recipientAccountId
           ? _self.recipientAccountId
           : recipientAccountId // ignore: cast_nullable_to_non_nullable
               as int?,
+      recipientAccountName: freezed == recipientAccountName
+          ? _self.recipientAccountName
+          : recipientAccountName // ignore: cast_nullable_to_non_nullable
+              as String?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -11940,6 +12516,8 @@ mixin _$ConversationMessageApiDto {
   String get message;
   @JsonKey(name: 'senderAccountId')
   int? get senderAccountId;
+  @JsonKey(name: 'senderAccountName')
+  String? get senderAccountName;
   @JsonKey(name: 'isRead')
   bool? get isRead;
   @JsonKey(name: 'conversationId')
@@ -11976,6 +12554,8 @@ mixin _$ConversationMessageApiDto {
             (identical(other.message, message) || other.message == message) &&
             (identical(other.senderAccountId, senderAccountId) ||
                 other.senderAccountId == senderAccountId) &&
+            (identical(other.senderAccountName, senderAccountName) ||
+                other.senderAccountName == senderAccountName) &&
             (identical(other.isRead, isRead) || other.isRead == isRead) &&
             (identical(other.conversationId, conversationId) ||
                 other.conversationId == conversationId) &&
@@ -11998,6 +12578,7 @@ mixin _$ConversationMessageApiDto {
       conversationMessageId,
       message,
       senderAccountId,
+      senderAccountName,
       isRead,
       conversationId,
       isDeleted,
@@ -12008,7 +12589,7 @@ mixin _$ConversationMessageApiDto {
 
   @override
   String toString() {
-    return 'ConversationMessageApiDto(conversationMessageId: $conversationMessageId, message: $message, senderAccountId: $senderAccountId, isRead: $isRead, conversationId: $conversationId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'ConversationMessageApiDto(conversationMessageId: $conversationMessageId, message: $message, senderAccountId: $senderAccountId, senderAccountName: $senderAccountName, isRead: $isRead, conversationId: $conversationId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -12022,6 +12603,7 @@ abstract mixin class $ConversationMessageApiDtoCopyWith<$Res> {
       {@JsonKey(name: 'conversationMessageId') int? conversationMessageId,
       @JsonKey(name: 'message') String message,
       @JsonKey(name: 'senderAccountId') int? senderAccountId,
+      @JsonKey(name: 'senderAccountName') String? senderAccountName,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'conversationId') int? conversationId,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
@@ -12047,6 +12629,7 @@ class _$ConversationMessageApiDtoCopyWithImpl<$Res>
     Object? conversationMessageId = freezed,
     Object? message = null,
     Object? senderAccountId = freezed,
+    Object? senderAccountName = freezed,
     Object? isRead = freezed,
     Object? conversationId = freezed,
     Object? isDeleted = freezed,
@@ -12068,6 +12651,10 @@ class _$ConversationMessageApiDtoCopyWithImpl<$Res>
           ? _self.senderAccountId
           : senderAccountId // ignore: cast_nullable_to_non_nullable
               as int?,
+      senderAccountName: freezed == senderAccountName
+          ? _self.senderAccountName
+          : senderAccountName // ignore: cast_nullable_to_non_nullable
+              as String?,
       isRead: freezed == isRead
           ? _self.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
@@ -12195,6 +12782,7 @@ extension ConversationMessageApiDtoPatterns on ConversationMessageApiDto {
             @JsonKey(name: 'conversationMessageId') int? conversationMessageId,
             @JsonKey(name: 'message') String message,
             @JsonKey(name: 'senderAccountId') int? senderAccountId,
+            @JsonKey(name: 'senderAccountName') String? senderAccountName,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'conversationId') int? conversationId,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
@@ -12212,6 +12800,7 @@ extension ConversationMessageApiDtoPatterns on ConversationMessageApiDto {
             _that.conversationMessageId,
             _that.message,
             _that.senderAccountId,
+            _that.senderAccountName,
             _that.isRead,
             _that.conversationId,
             _that.isDeleted,
@@ -12243,6 +12832,7 @@ extension ConversationMessageApiDtoPatterns on ConversationMessageApiDto {
             @JsonKey(name: 'conversationMessageId') int? conversationMessageId,
             @JsonKey(name: 'message') String message,
             @JsonKey(name: 'senderAccountId') int? senderAccountId,
+            @JsonKey(name: 'senderAccountName') String? senderAccountName,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'conversationId') int? conversationId,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
@@ -12259,6 +12849,7 @@ extension ConversationMessageApiDtoPatterns on ConversationMessageApiDto {
             _that.conversationMessageId,
             _that.message,
             _that.senderAccountId,
+            _that.senderAccountName,
             _that.isRead,
             _that.conversationId,
             _that.isDeleted,
@@ -12287,6 +12878,7 @@ extension ConversationMessageApiDtoPatterns on ConversationMessageApiDto {
             @JsonKey(name: 'conversationMessageId') int? conversationMessageId,
             @JsonKey(name: 'message') String message,
             @JsonKey(name: 'senderAccountId') int? senderAccountId,
+            @JsonKey(name: 'senderAccountName') String? senderAccountName,
             @JsonKey(name: 'isRead') bool? isRead,
             @JsonKey(name: 'conversationId') int? conversationId,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
@@ -12303,6 +12895,7 @@ extension ConversationMessageApiDtoPatterns on ConversationMessageApiDto {
             _that.conversationMessageId,
             _that.message,
             _that.senderAccountId,
+            _that.senderAccountName,
             _that.isRead,
             _that.conversationId,
             _that.isDeleted,
@@ -12323,6 +12916,7 @@ class _ConversationMessageApiDto implements ConversationMessageApiDto {
       {@JsonKey(name: 'conversationMessageId') this.conversationMessageId,
       @JsonKey(name: 'message') required this.message,
       @JsonKey(name: 'senderAccountId') this.senderAccountId,
+      @JsonKey(name: 'senderAccountName') this.senderAccountName,
       @JsonKey(name: 'isRead') this.isRead,
       @JsonKey(name: 'conversationId') this.conversationId,
       @JsonKey(name: 'isDeleted') this.isDeleted,
@@ -12342,6 +12936,9 @@ class _ConversationMessageApiDto implements ConversationMessageApiDto {
   @override
   @JsonKey(name: 'senderAccountId')
   final int? senderAccountId;
+  @override
+  @JsonKey(name: 'senderAccountName')
+  final String? senderAccountName;
   @override
   @JsonKey(name: 'isRead')
   final bool? isRead;
@@ -12391,6 +12988,8 @@ class _ConversationMessageApiDto implements ConversationMessageApiDto {
             (identical(other.message, message) || other.message == message) &&
             (identical(other.senderAccountId, senderAccountId) ||
                 other.senderAccountId == senderAccountId) &&
+            (identical(other.senderAccountName, senderAccountName) ||
+                other.senderAccountName == senderAccountName) &&
             (identical(other.isRead, isRead) || other.isRead == isRead) &&
             (identical(other.conversationId, conversationId) ||
                 other.conversationId == conversationId) &&
@@ -12413,6 +13012,7 @@ class _ConversationMessageApiDto implements ConversationMessageApiDto {
       conversationMessageId,
       message,
       senderAccountId,
+      senderAccountName,
       isRead,
       conversationId,
       isDeleted,
@@ -12423,7 +13023,7 @@ class _ConversationMessageApiDto implements ConversationMessageApiDto {
 
   @override
   String toString() {
-    return 'ConversationMessageApiDto(conversationMessageId: $conversationMessageId, message: $message, senderAccountId: $senderAccountId, isRead: $isRead, conversationId: $conversationId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'ConversationMessageApiDto(conversationMessageId: $conversationMessageId, message: $message, senderAccountId: $senderAccountId, senderAccountName: $senderAccountName, isRead: $isRead, conversationId: $conversationId, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -12439,6 +13039,7 @@ abstract mixin class _$ConversationMessageApiDtoCopyWith<$Res>
       {@JsonKey(name: 'conversationMessageId') int? conversationMessageId,
       @JsonKey(name: 'message') String message,
       @JsonKey(name: 'senderAccountId') int? senderAccountId,
+      @JsonKey(name: 'senderAccountName') String? senderAccountName,
       @JsonKey(name: 'isRead') bool? isRead,
       @JsonKey(name: 'conversationId') int? conversationId,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
@@ -12464,6 +13065,7 @@ class __$ConversationMessageApiDtoCopyWithImpl<$Res>
     Object? conversationMessageId = freezed,
     Object? message = null,
     Object? senderAccountId = freezed,
+    Object? senderAccountName = freezed,
     Object? isRead = freezed,
     Object? conversationId = freezed,
     Object? isDeleted = freezed,
@@ -12485,6 +13087,10 @@ class __$ConversationMessageApiDtoCopyWithImpl<$Res>
           ? _self.senderAccountId
           : senderAccountId // ignore: cast_nullable_to_non_nullable
               as int?,
+      senderAccountName: freezed == senderAccountName
+          ? _self.senderAccountName
+          : senderAccountName // ignore: cast_nullable_to_non_nullable
+              as String?,
       isRead: freezed == isRead
           ? _self.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
@@ -14253,6 +14859,1720 @@ class __$CountryApiDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$CreditNoteApiDto {
+  @JsonKey(name: 'creditNoteId')
+  int? get creditNoteId;
+  @JsonKey(name: 'entityNumber')
+  String? get entityNumber;
+  @JsonKey(name: 'status')
+  int? get status;
+  @JsonKey(name: 'accountId')
+  int? get accountId;
+  @JsonKey(name: 'branchId')
+  int? get branchId;
+  @JsonKey(name: 'currency')
+  String? get currency;
+  @JsonKey(name: 'creditNoteDate')
+  DateTime? get creditNoteDate;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'cancellationRemarks')
+  String? get cancellationRemarks;
+  @JsonKey(name: 'totalAmountBeforeTax')
+  num? get totalAmountBeforeTax;
+  @JsonKey(name: 'totalTaxAmount')
+  num? get totalTaxAmount;
+  @JsonKey(name: 'totalAmountAfterTax')
+  num? get totalAmountAfterTax;
+  @JsonKey(name: 'printUrl')
+  String? get printUrl;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of CreditNoteApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CreditNoteApiDtoCopyWith<CreditNoteApiDto> get copyWith =>
+      _$CreditNoteApiDtoCopyWithImpl<CreditNoteApiDto>(
+          this as CreditNoteApiDto, _$identity);
+
+  /// Serializes this CreditNoteApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CreditNoteApiDto &&
+            (identical(other.creditNoteId, creditNoteId) ||
+                other.creditNoteId == creditNoteId) &&
+            (identical(other.entityNumber, entityNumber) ||
+                other.entityNumber == entityNumber) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.creditNoteDate, creditNoteDate) ||
+                other.creditNoteDate == creditNoteDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.cancellationRemarks, cancellationRemarks) ||
+                other.cancellationRemarks == cancellationRemarks) &&
+            (identical(other.totalAmountBeforeTax, totalAmountBeforeTax) ||
+                other.totalAmountBeforeTax == totalAmountBeforeTax) &&
+            (identical(other.totalTaxAmount, totalTaxAmount) ||
+                other.totalTaxAmount == totalTaxAmount) &&
+            (identical(other.totalAmountAfterTax, totalAmountAfterTax) ||
+                other.totalAmountAfterTax == totalAmountAfterTax) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      creditNoteId,
+      entityNumber,
+      status,
+      accountId,
+      branchId,
+      currency,
+      creditNoteDate,
+      remarks,
+      cancellationRemarks,
+      totalAmountBeforeTax,
+      totalTaxAmount,
+      totalAmountAfterTax,
+      printUrl,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'CreditNoteApiDto(creditNoteId: $creditNoteId, entityNumber: $entityNumber, status: $status, accountId: $accountId, branchId: $branchId, currency: $currency, creditNoteDate: $creditNoteDate, remarks: $remarks, cancellationRemarks: $cancellationRemarks, totalAmountBeforeTax: $totalAmountBeforeTax, totalTaxAmount: $totalTaxAmount, totalAmountAfterTax: $totalAmountAfterTax, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CreditNoteApiDtoCopyWith<$Res> {
+  factory $CreditNoteApiDtoCopyWith(
+          CreditNoteApiDto value, $Res Function(CreditNoteApiDto) _then) =
+      _$CreditNoteApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'creditNoteId') int? creditNoteId,
+      @JsonKey(name: 'entityNumber') String? entityNumber,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'currency') String? currency,
+      @JsonKey(name: 'creditNoteDate') DateTime? creditNoteDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'cancellationRemarks') String? cancellationRemarks,
+      @JsonKey(name: 'totalAmountBeforeTax') num? totalAmountBeforeTax,
+      @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+      @JsonKey(name: 'totalAmountAfterTax') num? totalAmountAfterTax,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$CreditNoteApiDtoCopyWithImpl<$Res>
+    implements $CreditNoteApiDtoCopyWith<$Res> {
+  _$CreditNoteApiDtoCopyWithImpl(this._self, this._then);
+
+  final CreditNoteApiDto _self;
+  final $Res Function(CreditNoteApiDto) _then;
+
+  /// Create a copy of CreditNoteApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? creditNoteId = freezed,
+    Object? entityNumber = freezed,
+    Object? status = freezed,
+    Object? accountId = freezed,
+    Object? branchId = freezed,
+    Object? currency = freezed,
+    Object? creditNoteDate = freezed,
+    Object? remarks = freezed,
+    Object? cancellationRemarks = freezed,
+    Object? totalAmountBeforeTax = freezed,
+    Object? totalTaxAmount = freezed,
+    Object? totalAmountAfterTax = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      creditNoteId: freezed == creditNoteId
+          ? _self.creditNoteId
+          : creditNoteId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityNumber: freezed == entityNumber
+          ? _self.entityNumber
+          : entityNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      branchId: freezed == branchId
+          ? _self.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      currency: freezed == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      creditNoteDate: freezed == creditNoteDate
+          ? _self.creditNoteDate
+          : creditNoteDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancellationRemarks: freezed == cancellationRemarks
+          ? _self.cancellationRemarks
+          : cancellationRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalAmountBeforeTax: freezed == totalAmountBeforeTax
+          ? _self.totalAmountBeforeTax
+          : totalAmountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalTaxAmount: freezed == totalTaxAmount
+          ? _self.totalTaxAmount
+          : totalTaxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalAmountAfterTax: freezed == totalAmountAfterTax
+          ? _self.totalAmountAfterTax
+          : totalAmountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [CreditNoteApiDto].
+extension CreditNoteApiDtoPatterns on CreditNoteApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CreditNoteApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CreditNoteApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CreditNoteApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'creditNoteId') int? creditNoteId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'creditNoteDate') DateTime? creditNoteDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'cancellationRemarks') String? cancellationRemarks,
+            @JsonKey(name: 'totalAmountBeforeTax') num? totalAmountBeforeTax,
+            @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+            @JsonKey(name: 'totalAmountAfterTax') num? totalAmountAfterTax,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteApiDto() when $default != null:
+        return $default(
+            _that.creditNoteId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.branchId,
+            _that.currency,
+            _that.creditNoteDate,
+            _that.remarks,
+            _that.cancellationRemarks,
+            _that.totalAmountBeforeTax,
+            _that.totalTaxAmount,
+            _that.totalAmountAfterTax,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'creditNoteId') int? creditNoteId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'creditNoteDate') DateTime? creditNoteDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'cancellationRemarks') String? cancellationRemarks,
+            @JsonKey(name: 'totalAmountBeforeTax') num? totalAmountBeforeTax,
+            @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+            @JsonKey(name: 'totalAmountAfterTax') num? totalAmountAfterTax,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteApiDto():
+        return $default(
+            _that.creditNoteId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.branchId,
+            _that.currency,
+            _that.creditNoteDate,
+            _that.remarks,
+            _that.cancellationRemarks,
+            _that.totalAmountBeforeTax,
+            _that.totalTaxAmount,
+            _that.totalAmountAfterTax,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'creditNoteId') int? creditNoteId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'creditNoteDate') DateTime? creditNoteDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'cancellationRemarks') String? cancellationRemarks,
+            @JsonKey(name: 'totalAmountBeforeTax') num? totalAmountBeforeTax,
+            @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+            @JsonKey(name: 'totalAmountAfterTax') num? totalAmountAfterTax,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteApiDto() when $default != null:
+        return $default(
+            _that.creditNoteId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.branchId,
+            _that.currency,
+            _that.creditNoteDate,
+            _that.remarks,
+            _that.cancellationRemarks,
+            _that.totalAmountBeforeTax,
+            _that.totalTaxAmount,
+            _that.totalAmountAfterTax,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _CreditNoteApiDto implements CreditNoteApiDto {
+  _CreditNoteApiDto(
+      {@JsonKey(name: 'creditNoteId') this.creditNoteId,
+      @JsonKey(name: 'entityNumber') this.entityNumber,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'accountId') this.accountId,
+      @JsonKey(name: 'branchId') this.branchId,
+      @JsonKey(name: 'currency') this.currency,
+      @JsonKey(name: 'creditNoteDate') this.creditNoteDate,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'cancellationRemarks') this.cancellationRemarks,
+      @JsonKey(name: 'totalAmountBeforeTax') this.totalAmountBeforeTax,
+      @JsonKey(name: 'totalTaxAmount') this.totalTaxAmount,
+      @JsonKey(name: 'totalAmountAfterTax') this.totalAmountAfterTax,
+      @JsonKey(name: 'printUrl') this.printUrl,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate});
+  factory _CreditNoteApiDto.fromJson(Map<String, dynamic> json) =>
+      _$CreditNoteApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'creditNoteId')
+  final int? creditNoteId;
+  @override
+  @JsonKey(name: 'entityNumber')
+  final String? entityNumber;
+  @override
+  @JsonKey(name: 'status')
+  final int? status;
+  @override
+  @JsonKey(name: 'accountId')
+  final int? accountId;
+  @override
+  @JsonKey(name: 'branchId')
+  final int? branchId;
+  @override
+  @JsonKey(name: 'currency')
+  final String? currency;
+  @override
+  @JsonKey(name: 'creditNoteDate')
+  final DateTime? creditNoteDate;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'cancellationRemarks')
+  final String? cancellationRemarks;
+  @override
+  @JsonKey(name: 'totalAmountBeforeTax')
+  final num? totalAmountBeforeTax;
+  @override
+  @JsonKey(name: 'totalTaxAmount')
+  final num? totalTaxAmount;
+  @override
+  @JsonKey(name: 'totalAmountAfterTax')
+  final num? totalAmountAfterTax;
+  @override
+  @JsonKey(name: 'printUrl')
+  final String? printUrl;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of CreditNoteApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CreditNoteApiDtoCopyWith<_CreditNoteApiDto> get copyWith =>
+      __$CreditNoteApiDtoCopyWithImpl<_CreditNoteApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CreditNoteApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CreditNoteApiDto &&
+            (identical(other.creditNoteId, creditNoteId) ||
+                other.creditNoteId == creditNoteId) &&
+            (identical(other.entityNumber, entityNumber) ||
+                other.entityNumber == entityNumber) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.creditNoteDate, creditNoteDate) ||
+                other.creditNoteDate == creditNoteDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.cancellationRemarks, cancellationRemarks) ||
+                other.cancellationRemarks == cancellationRemarks) &&
+            (identical(other.totalAmountBeforeTax, totalAmountBeforeTax) ||
+                other.totalAmountBeforeTax == totalAmountBeforeTax) &&
+            (identical(other.totalTaxAmount, totalTaxAmount) ||
+                other.totalTaxAmount == totalTaxAmount) &&
+            (identical(other.totalAmountAfterTax, totalAmountAfterTax) ||
+                other.totalAmountAfterTax == totalAmountAfterTax) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      creditNoteId,
+      entityNumber,
+      status,
+      accountId,
+      branchId,
+      currency,
+      creditNoteDate,
+      remarks,
+      cancellationRemarks,
+      totalAmountBeforeTax,
+      totalTaxAmount,
+      totalAmountAfterTax,
+      printUrl,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'CreditNoteApiDto(creditNoteId: $creditNoteId, entityNumber: $entityNumber, status: $status, accountId: $accountId, branchId: $branchId, currency: $currency, creditNoteDate: $creditNoteDate, remarks: $remarks, cancellationRemarks: $cancellationRemarks, totalAmountBeforeTax: $totalAmountBeforeTax, totalTaxAmount: $totalTaxAmount, totalAmountAfterTax: $totalAmountAfterTax, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$CreditNoteApiDtoCopyWith<$Res>
+    implements $CreditNoteApiDtoCopyWith<$Res> {
+  factory _$CreditNoteApiDtoCopyWith(
+          _CreditNoteApiDto value, $Res Function(_CreditNoteApiDto) _then) =
+      __$CreditNoteApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'creditNoteId') int? creditNoteId,
+      @JsonKey(name: 'entityNumber') String? entityNumber,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'currency') String? currency,
+      @JsonKey(name: 'creditNoteDate') DateTime? creditNoteDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'cancellationRemarks') String? cancellationRemarks,
+      @JsonKey(name: 'totalAmountBeforeTax') num? totalAmountBeforeTax,
+      @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+      @JsonKey(name: 'totalAmountAfterTax') num? totalAmountAfterTax,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$CreditNoteApiDtoCopyWithImpl<$Res>
+    implements _$CreditNoteApiDtoCopyWith<$Res> {
+  __$CreditNoteApiDtoCopyWithImpl(this._self, this._then);
+
+  final _CreditNoteApiDto _self;
+  final $Res Function(_CreditNoteApiDto) _then;
+
+  /// Create a copy of CreditNoteApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? creditNoteId = freezed,
+    Object? entityNumber = freezed,
+    Object? status = freezed,
+    Object? accountId = freezed,
+    Object? branchId = freezed,
+    Object? currency = freezed,
+    Object? creditNoteDate = freezed,
+    Object? remarks = freezed,
+    Object? cancellationRemarks = freezed,
+    Object? totalAmountBeforeTax = freezed,
+    Object? totalTaxAmount = freezed,
+    Object? totalAmountAfterTax = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_CreditNoteApiDto(
+      creditNoteId: freezed == creditNoteId
+          ? _self.creditNoteId
+          : creditNoteId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityNumber: freezed == entityNumber
+          ? _self.entityNumber
+          : entityNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      branchId: freezed == branchId
+          ? _self.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      currency: freezed == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      creditNoteDate: freezed == creditNoteDate
+          ? _self.creditNoteDate
+          : creditNoteDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancellationRemarks: freezed == cancellationRemarks
+          ? _self.cancellationRemarks
+          : cancellationRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalAmountBeforeTax: freezed == totalAmountBeforeTax
+          ? _self.totalAmountBeforeTax
+          : totalAmountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalTaxAmount: freezed == totalTaxAmount
+          ? _self.totalTaxAmount
+          : totalTaxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalAmountAfterTax: freezed == totalAmountAfterTax
+          ? _self.totalAmountAfterTax
+          : totalAmountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$CreditNoteItemApiDto {
+  @JsonKey(name: 'creditNoteItemId')
+  int? get creditNoteItemId;
+  @JsonKey(name: 'creditNoteId')
+  int? get creditNoteId;
+  @JsonKey(name: 'creditNote')
+  CreditNoteApiDto? get creditNote;
+  @JsonKey(name: 'invoiceId')
+  int? get invoiceId;
+  @JsonKey(name: 'feeItemId')
+  int? get feeItemId;
+  @JsonKey(name: 'description')
+  String? get description;
+  @JsonKey(name: 'quantity')
+  num? get quantity;
+  @JsonKey(name: 'unitPrice')
+  num? get unitPrice;
+  @JsonKey(name: 'taxRate')
+  num? get taxRate;
+  @JsonKey(name: 'amountBeforeTax')
+  num? get amountBeforeTax;
+  @JsonKey(name: 'taxAmount')
+  num? get taxAmount;
+  @JsonKey(name: 'amountAfterTax')
+  num? get amountAfterTax;
+  @JsonKey(name: 'creditNoteStatus')
+  int? get creditNoteStatus;
+  @JsonKey(name: 'printUrl')
+  String? get printUrl;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of CreditNoteItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CreditNoteItemApiDtoCopyWith<CreditNoteItemApiDto> get copyWith =>
+      _$CreditNoteItemApiDtoCopyWithImpl<CreditNoteItemApiDto>(
+          this as CreditNoteItemApiDto, _$identity);
+
+  /// Serializes this CreditNoteItemApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CreditNoteItemApiDto &&
+            (identical(other.creditNoteItemId, creditNoteItemId) ||
+                other.creditNoteItemId == creditNoteItemId) &&
+            (identical(other.creditNoteId, creditNoteId) ||
+                other.creditNoteId == creditNoteId) &&
+            (identical(other.creditNote, creditNote) ||
+                other.creditNote == creditNote) &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.feeItemId, feeItemId) ||
+                other.feeItemId == feeItemId) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.unitPrice, unitPrice) ||
+                other.unitPrice == unitPrice) &&
+            (identical(other.taxRate, taxRate) || other.taxRate == taxRate) &&
+            (identical(other.amountBeforeTax, amountBeforeTax) ||
+                other.amountBeforeTax == amountBeforeTax) &&
+            (identical(other.taxAmount, taxAmount) ||
+                other.taxAmount == taxAmount) &&
+            (identical(other.amountAfterTax, amountAfterTax) ||
+                other.amountAfterTax == amountAfterTax) &&
+            (identical(other.creditNoteStatus, creditNoteStatus) ||
+                other.creditNoteStatus == creditNoteStatus) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        creditNoteItemId,
+        creditNoteId,
+        creditNote,
+        invoiceId,
+        feeItemId,
+        description,
+        quantity,
+        unitPrice,
+        taxRate,
+        amountBeforeTax,
+        taxAmount,
+        amountAfterTax,
+        creditNoteStatus,
+        printUrl,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate
+      ]);
+
+  @override
+  String toString() {
+    return 'CreditNoteItemApiDto(creditNoteItemId: $creditNoteItemId, creditNoteId: $creditNoteId, creditNote: $creditNote, invoiceId: $invoiceId, feeItemId: $feeItemId, description: $description, quantity: $quantity, unitPrice: $unitPrice, taxRate: $taxRate, amountBeforeTax: $amountBeforeTax, taxAmount: $taxAmount, amountAfterTax: $amountAfterTax, creditNoteStatus: $creditNoteStatus, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CreditNoteItemApiDtoCopyWith<$Res> {
+  factory $CreditNoteItemApiDtoCopyWith(CreditNoteItemApiDto value,
+          $Res Function(CreditNoteItemApiDto) _then) =
+      _$CreditNoteItemApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'creditNoteItemId') int? creditNoteItemId,
+      @JsonKey(name: 'creditNoteId') int? creditNoteId,
+      @JsonKey(name: 'creditNote') CreditNoteApiDto? creditNote,
+      @JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'feeItemId') int? feeItemId,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'quantity') num? quantity,
+      @JsonKey(name: 'unitPrice') num? unitPrice,
+      @JsonKey(name: 'taxRate') num? taxRate,
+      @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+      @JsonKey(name: 'taxAmount') num? taxAmount,
+      @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+      @JsonKey(name: 'creditNoteStatus') int? creditNoteStatus,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  $CreditNoteApiDtoCopyWith<$Res>? get creditNote;
+}
+
+/// @nodoc
+class _$CreditNoteItemApiDtoCopyWithImpl<$Res>
+    implements $CreditNoteItemApiDtoCopyWith<$Res> {
+  _$CreditNoteItemApiDtoCopyWithImpl(this._self, this._then);
+
+  final CreditNoteItemApiDto _self;
+  final $Res Function(CreditNoteItemApiDto) _then;
+
+  /// Create a copy of CreditNoteItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? creditNoteItemId = freezed,
+    Object? creditNoteId = freezed,
+    Object? creditNote = freezed,
+    Object? invoiceId = freezed,
+    Object? feeItemId = freezed,
+    Object? description = freezed,
+    Object? quantity = freezed,
+    Object? unitPrice = freezed,
+    Object? taxRate = freezed,
+    Object? amountBeforeTax = freezed,
+    Object? taxAmount = freezed,
+    Object? amountAfterTax = freezed,
+    Object? creditNoteStatus = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      creditNoteItemId: freezed == creditNoteItemId
+          ? _self.creditNoteItemId
+          : creditNoteItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      creditNoteId: freezed == creditNoteId
+          ? _self.creditNoteId
+          : creditNoteId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      creditNote: freezed == creditNote
+          ? _self.creditNote
+          : creditNote // ignore: cast_nullable_to_non_nullable
+              as CreditNoteApiDto?,
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      feeItemId: freezed == feeItemId
+          ? _self.feeItemId
+          : feeItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as num?,
+      unitPrice: freezed == unitPrice
+          ? _self.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxRate: freezed == taxRate
+          ? _self.taxRate
+          : taxRate // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountBeforeTax: freezed == amountBeforeTax
+          ? _self.amountBeforeTax
+          : amountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxAmount: freezed == taxAmount
+          ? _self.taxAmount
+          : taxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountAfterTax: freezed == amountAfterTax
+          ? _self.amountAfterTax
+          : amountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      creditNoteStatus: freezed == creditNoteStatus
+          ? _self.creditNoteStatus
+          : creditNoteStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of CreditNoteItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CreditNoteApiDtoCopyWith<$Res>? get creditNote {
+    if (_self.creditNote == null) {
+      return null;
+    }
+
+    return $CreditNoteApiDtoCopyWith<$Res>(_self.creditNote!, (value) {
+      return _then(_self.copyWith(creditNote: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [CreditNoteItemApiDto].
+extension CreditNoteItemApiDtoPatterns on CreditNoteItemApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_CreditNoteItemApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteItemApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_CreditNoteItemApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteItemApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_CreditNoteItemApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteItemApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'creditNoteItemId') int? creditNoteItemId,
+            @JsonKey(name: 'creditNoteId') int? creditNoteId,
+            @JsonKey(name: 'creditNote') CreditNoteApiDto? creditNote,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'feeItemId') int? feeItemId,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'quantity') num? quantity,
+            @JsonKey(name: 'unitPrice') num? unitPrice,
+            @JsonKey(name: 'taxRate') num? taxRate,
+            @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+            @JsonKey(name: 'taxAmount') num? taxAmount,
+            @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+            @JsonKey(name: 'creditNoteStatus') int? creditNoteStatus,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteItemApiDto() when $default != null:
+        return $default(
+            _that.creditNoteItemId,
+            _that.creditNoteId,
+            _that.creditNote,
+            _that.invoiceId,
+            _that.feeItemId,
+            _that.description,
+            _that.quantity,
+            _that.unitPrice,
+            _that.taxRate,
+            _that.amountBeforeTax,
+            _that.taxAmount,
+            _that.amountAfterTax,
+            _that.creditNoteStatus,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'creditNoteItemId') int? creditNoteItemId,
+            @JsonKey(name: 'creditNoteId') int? creditNoteId,
+            @JsonKey(name: 'creditNote') CreditNoteApiDto? creditNote,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'feeItemId') int? feeItemId,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'quantity') num? quantity,
+            @JsonKey(name: 'unitPrice') num? unitPrice,
+            @JsonKey(name: 'taxRate') num? taxRate,
+            @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+            @JsonKey(name: 'taxAmount') num? taxAmount,
+            @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+            @JsonKey(name: 'creditNoteStatus') int? creditNoteStatus,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteItemApiDto():
+        return $default(
+            _that.creditNoteItemId,
+            _that.creditNoteId,
+            _that.creditNote,
+            _that.invoiceId,
+            _that.feeItemId,
+            _that.description,
+            _that.quantity,
+            _that.unitPrice,
+            _that.taxRate,
+            _that.amountBeforeTax,
+            _that.taxAmount,
+            _that.amountAfterTax,
+            _that.creditNoteStatus,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'creditNoteItemId') int? creditNoteItemId,
+            @JsonKey(name: 'creditNoteId') int? creditNoteId,
+            @JsonKey(name: 'creditNote') CreditNoteApiDto? creditNote,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'feeItemId') int? feeItemId,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'quantity') num? quantity,
+            @JsonKey(name: 'unitPrice') num? unitPrice,
+            @JsonKey(name: 'taxRate') num? taxRate,
+            @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+            @JsonKey(name: 'taxAmount') num? taxAmount,
+            @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+            @JsonKey(name: 'creditNoteStatus') int? creditNoteStatus,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _CreditNoteItemApiDto() when $default != null:
+        return $default(
+            _that.creditNoteItemId,
+            _that.creditNoteId,
+            _that.creditNote,
+            _that.invoiceId,
+            _that.feeItemId,
+            _that.description,
+            _that.quantity,
+            _that.unitPrice,
+            _that.taxRate,
+            _that.amountBeforeTax,
+            _that.taxAmount,
+            _that.amountAfterTax,
+            _that.creditNoteStatus,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _CreditNoteItemApiDto implements CreditNoteItemApiDto {
+  _CreditNoteItemApiDto(
+      {@JsonKey(name: 'creditNoteItemId') this.creditNoteItemId,
+      @JsonKey(name: 'creditNoteId') this.creditNoteId,
+      @JsonKey(name: 'creditNote') this.creditNote,
+      @JsonKey(name: 'invoiceId') this.invoiceId,
+      @JsonKey(name: 'feeItemId') this.feeItemId,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'quantity') this.quantity,
+      @JsonKey(name: 'unitPrice') this.unitPrice,
+      @JsonKey(name: 'taxRate') this.taxRate,
+      @JsonKey(name: 'amountBeforeTax') this.amountBeforeTax,
+      @JsonKey(name: 'taxAmount') this.taxAmount,
+      @JsonKey(name: 'amountAfterTax') this.amountAfterTax,
+      @JsonKey(name: 'creditNoteStatus') this.creditNoteStatus,
+      @JsonKey(name: 'printUrl') this.printUrl,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate});
+  factory _CreditNoteItemApiDto.fromJson(Map<String, dynamic> json) =>
+      _$CreditNoteItemApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'creditNoteItemId')
+  final int? creditNoteItemId;
+  @override
+  @JsonKey(name: 'creditNoteId')
+  final int? creditNoteId;
+  @override
+  @JsonKey(name: 'creditNote')
+  final CreditNoteApiDto? creditNote;
+  @override
+  @JsonKey(name: 'invoiceId')
+  final int? invoiceId;
+  @override
+  @JsonKey(name: 'feeItemId')
+  final int? feeItemId;
+  @override
+  @JsonKey(name: 'description')
+  final String? description;
+  @override
+  @JsonKey(name: 'quantity')
+  final num? quantity;
+  @override
+  @JsonKey(name: 'unitPrice')
+  final num? unitPrice;
+  @override
+  @JsonKey(name: 'taxRate')
+  final num? taxRate;
+  @override
+  @JsonKey(name: 'amountBeforeTax')
+  final num? amountBeforeTax;
+  @override
+  @JsonKey(name: 'taxAmount')
+  final num? taxAmount;
+  @override
+  @JsonKey(name: 'amountAfterTax')
+  final num? amountAfterTax;
+  @override
+  @JsonKey(name: 'creditNoteStatus')
+  final int? creditNoteStatus;
+  @override
+  @JsonKey(name: 'printUrl')
+  final String? printUrl;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of CreditNoteItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$CreditNoteItemApiDtoCopyWith<_CreditNoteItemApiDto> get copyWith =>
+      __$CreditNoteItemApiDtoCopyWithImpl<_CreditNoteItemApiDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CreditNoteItemApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CreditNoteItemApiDto &&
+            (identical(other.creditNoteItemId, creditNoteItemId) ||
+                other.creditNoteItemId == creditNoteItemId) &&
+            (identical(other.creditNoteId, creditNoteId) ||
+                other.creditNoteId == creditNoteId) &&
+            (identical(other.creditNote, creditNote) ||
+                other.creditNote == creditNote) &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.feeItemId, feeItemId) ||
+                other.feeItemId == feeItemId) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.unitPrice, unitPrice) ||
+                other.unitPrice == unitPrice) &&
+            (identical(other.taxRate, taxRate) || other.taxRate == taxRate) &&
+            (identical(other.amountBeforeTax, amountBeforeTax) ||
+                other.amountBeforeTax == amountBeforeTax) &&
+            (identical(other.taxAmount, taxAmount) ||
+                other.taxAmount == taxAmount) &&
+            (identical(other.amountAfterTax, amountAfterTax) ||
+                other.amountAfterTax == amountAfterTax) &&
+            (identical(other.creditNoteStatus, creditNoteStatus) ||
+                other.creditNoteStatus == creditNoteStatus) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        creditNoteItemId,
+        creditNoteId,
+        creditNote,
+        invoiceId,
+        feeItemId,
+        description,
+        quantity,
+        unitPrice,
+        taxRate,
+        amountBeforeTax,
+        taxAmount,
+        amountAfterTax,
+        creditNoteStatus,
+        printUrl,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate
+      ]);
+
+  @override
+  String toString() {
+    return 'CreditNoteItemApiDto(creditNoteItemId: $creditNoteItemId, creditNoteId: $creditNoteId, creditNote: $creditNote, invoiceId: $invoiceId, feeItemId: $feeItemId, description: $description, quantity: $quantity, unitPrice: $unitPrice, taxRate: $taxRate, amountBeforeTax: $amountBeforeTax, taxAmount: $taxAmount, amountAfterTax: $amountAfterTax, creditNoteStatus: $creditNoteStatus, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$CreditNoteItemApiDtoCopyWith<$Res>
+    implements $CreditNoteItemApiDtoCopyWith<$Res> {
+  factory _$CreditNoteItemApiDtoCopyWith(_CreditNoteItemApiDto value,
+          $Res Function(_CreditNoteItemApiDto) _then) =
+      __$CreditNoteItemApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'creditNoteItemId') int? creditNoteItemId,
+      @JsonKey(name: 'creditNoteId') int? creditNoteId,
+      @JsonKey(name: 'creditNote') CreditNoteApiDto? creditNote,
+      @JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'feeItemId') int? feeItemId,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'quantity') num? quantity,
+      @JsonKey(name: 'unitPrice') num? unitPrice,
+      @JsonKey(name: 'taxRate') num? taxRate,
+      @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+      @JsonKey(name: 'taxAmount') num? taxAmount,
+      @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+      @JsonKey(name: 'creditNoteStatus') int? creditNoteStatus,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  @override
+  $CreditNoteApiDtoCopyWith<$Res>? get creditNote;
+}
+
+/// @nodoc
+class __$CreditNoteItemApiDtoCopyWithImpl<$Res>
+    implements _$CreditNoteItemApiDtoCopyWith<$Res> {
+  __$CreditNoteItemApiDtoCopyWithImpl(this._self, this._then);
+
+  final _CreditNoteItemApiDto _self;
+  final $Res Function(_CreditNoteItemApiDto) _then;
+
+  /// Create a copy of CreditNoteItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? creditNoteItemId = freezed,
+    Object? creditNoteId = freezed,
+    Object? creditNote = freezed,
+    Object? invoiceId = freezed,
+    Object? feeItemId = freezed,
+    Object? description = freezed,
+    Object? quantity = freezed,
+    Object? unitPrice = freezed,
+    Object? taxRate = freezed,
+    Object? amountBeforeTax = freezed,
+    Object? taxAmount = freezed,
+    Object? amountAfterTax = freezed,
+    Object? creditNoteStatus = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_CreditNoteItemApiDto(
+      creditNoteItemId: freezed == creditNoteItemId
+          ? _self.creditNoteItemId
+          : creditNoteItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      creditNoteId: freezed == creditNoteId
+          ? _self.creditNoteId
+          : creditNoteId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      creditNote: freezed == creditNote
+          ? _self.creditNote
+          : creditNote // ignore: cast_nullable_to_non_nullable
+              as CreditNoteApiDto?,
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      feeItemId: freezed == feeItemId
+          ? _self.feeItemId
+          : feeItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as num?,
+      unitPrice: freezed == unitPrice
+          ? _self.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxRate: freezed == taxRate
+          ? _self.taxRate
+          : taxRate // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountBeforeTax: freezed == amountBeforeTax
+          ? _self.amountBeforeTax
+          : amountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxAmount: freezed == taxAmount
+          ? _self.taxAmount
+          : taxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountAfterTax: freezed == amountAfterTax
+          ? _self.amountAfterTax
+          : amountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      creditNoteStatus: freezed == creditNoteStatus
+          ? _self.creditNoteStatus
+          : creditNoteStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of CreditNoteItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CreditNoteApiDtoCopyWith<$Res>? get creditNote {
+    if (_self.creditNote == null) {
+      return null;
+    }
+
+    return $CreditNoteApiDtoCopyWith<$Res>(_self.creditNote!, (value) {
+      return _then(_self.copyWith(creditNote: value));
+    });
+  }
+}
+
+/// @nodoc
 mixin _$CurrentUserInfoDto {
   @JsonKey(name: 'accountId')
   int? get accountId;
@@ -14268,6 +16588,8 @@ mixin _$CurrentUserInfoDto {
   bool? get emailConfirmed;
   @JsonKey(name: 'lastActiveBranchId')
   int? get lastActiveBranchId;
+  @JsonKey(name: 'deleteRequestDate')
+  DateTime? get deleteRequestDate;
   @JsonKey(name: 'branchRoles')
   List<UserBranchRoleDto>? get branchRoles;
 
@@ -14298,6 +16620,8 @@ mixin _$CurrentUserInfoDto {
                 other.emailConfirmed == emailConfirmed) &&
             (identical(other.lastActiveBranchId, lastActiveBranchId) ||
                 other.lastActiveBranchId == lastActiveBranchId) &&
+            (identical(other.deleteRequestDate, deleteRequestDate) ||
+                other.deleteRequestDate == deleteRequestDate) &&
             const DeepCollectionEquality()
                 .equals(other.branchRoles, branchRoles));
   }
@@ -14313,11 +16637,12 @@ mixin _$CurrentUserInfoDto {
       email,
       emailConfirmed,
       lastActiveBranchId,
+      deleteRequestDate,
       const DeepCollectionEquality().hash(branchRoles));
 
   @override
   String toString() {
-    return 'CurrentUserInfoDto(accountId: $accountId, account: $account, userId: $userId, fullName: $fullName, email: $email, emailConfirmed: $emailConfirmed, lastActiveBranchId: $lastActiveBranchId, branchRoles: $branchRoles)';
+    return 'CurrentUserInfoDto(accountId: $accountId, account: $account, userId: $userId, fullName: $fullName, email: $email, emailConfirmed: $emailConfirmed, lastActiveBranchId: $lastActiveBranchId, deleteRequestDate: $deleteRequestDate, branchRoles: $branchRoles)';
   }
 }
 
@@ -14335,6 +16660,7 @@ abstract mixin class $CurrentUserInfoDtoCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'emailConfirmed') bool? emailConfirmed,
       @JsonKey(name: 'lastActiveBranchId') int? lastActiveBranchId,
+      @JsonKey(name: 'deleteRequestDate') DateTime? deleteRequestDate,
       @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles});
 
   $AccountApiDtoCopyWith<$Res>? get account;
@@ -14360,6 +16686,7 @@ class _$CurrentUserInfoDtoCopyWithImpl<$Res>
     Object? email = freezed,
     Object? emailConfirmed = freezed,
     Object? lastActiveBranchId = freezed,
+    Object? deleteRequestDate = freezed,
     Object? branchRoles = freezed,
   }) {
     return _then(_self.copyWith(
@@ -14391,6 +16718,10 @@ class _$CurrentUserInfoDtoCopyWithImpl<$Res>
           ? _self.lastActiveBranchId
           : lastActiveBranchId // ignore: cast_nullable_to_non_nullable
               as int?,
+      deleteRequestDate: freezed == deleteRequestDate
+          ? _self.deleteRequestDate
+          : deleteRequestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       branchRoles: freezed == branchRoles
           ? _self.branchRoles
           : branchRoles // ignore: cast_nullable_to_non_nullable
@@ -14512,6 +16843,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'emailConfirmed') bool? emailConfirmed,
             @JsonKey(name: 'lastActiveBranchId') int? lastActiveBranchId,
+            @JsonKey(name: 'deleteRequestDate') DateTime? deleteRequestDate,
             @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles)?
         $default, {
     required TResult orElse(),
@@ -14527,6 +16859,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
             _that.email,
             _that.emailConfirmed,
             _that.lastActiveBranchId,
+            _that.deleteRequestDate,
             _that.branchRoles);
       case _:
         return orElse();
@@ -14556,6 +16889,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'emailConfirmed') bool? emailConfirmed,
             @JsonKey(name: 'lastActiveBranchId') int? lastActiveBranchId,
+            @JsonKey(name: 'deleteRequestDate') DateTime? deleteRequestDate,
             @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles)
         $default,
   ) {
@@ -14570,6 +16904,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
             _that.email,
             _that.emailConfirmed,
             _that.lastActiveBranchId,
+            _that.deleteRequestDate,
             _that.branchRoles);
     }
   }
@@ -14596,6 +16931,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
             @JsonKey(name: 'email') String? email,
             @JsonKey(name: 'emailConfirmed') bool? emailConfirmed,
             @JsonKey(name: 'lastActiveBranchId') int? lastActiveBranchId,
+            @JsonKey(name: 'deleteRequestDate') DateTime? deleteRequestDate,
             @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles)?
         $default,
   ) {
@@ -14610,6 +16946,7 @@ extension CurrentUserInfoDtoPatterns on CurrentUserInfoDto {
             _that.email,
             _that.emailConfirmed,
             _that.lastActiveBranchId,
+            _that.deleteRequestDate,
             _that.branchRoles);
       case _:
         return null;
@@ -14628,6 +16965,7 @@ class _CurrentUserInfoDto implements CurrentUserInfoDto {
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'emailConfirmed') this.emailConfirmed,
       @JsonKey(name: 'lastActiveBranchId') this.lastActiveBranchId,
+      @JsonKey(name: 'deleteRequestDate') this.deleteRequestDate,
       @JsonKey(name: 'branchRoles') final List<UserBranchRoleDto>? branchRoles})
       : _branchRoles = branchRoles;
   factory _CurrentUserInfoDto.fromJson(Map<String, dynamic> json) =>
@@ -14654,6 +16992,9 @@ class _CurrentUserInfoDto implements CurrentUserInfoDto {
   @override
   @JsonKey(name: 'lastActiveBranchId')
   final int? lastActiveBranchId;
+  @override
+  @JsonKey(name: 'deleteRequestDate')
+  final DateTime? deleteRequestDate;
   final List<UserBranchRoleDto>? _branchRoles;
   @override
   @JsonKey(name: 'branchRoles')
@@ -14696,6 +17037,8 @@ class _CurrentUserInfoDto implements CurrentUserInfoDto {
                 other.emailConfirmed == emailConfirmed) &&
             (identical(other.lastActiveBranchId, lastActiveBranchId) ||
                 other.lastActiveBranchId == lastActiveBranchId) &&
+            (identical(other.deleteRequestDate, deleteRequestDate) ||
+                other.deleteRequestDate == deleteRequestDate) &&
             const DeepCollectionEquality()
                 .equals(other._branchRoles, _branchRoles));
   }
@@ -14711,11 +17054,12 @@ class _CurrentUserInfoDto implements CurrentUserInfoDto {
       email,
       emailConfirmed,
       lastActiveBranchId,
+      deleteRequestDate,
       const DeepCollectionEquality().hash(_branchRoles));
 
   @override
   String toString() {
-    return 'CurrentUserInfoDto(accountId: $accountId, account: $account, userId: $userId, fullName: $fullName, email: $email, emailConfirmed: $emailConfirmed, lastActiveBranchId: $lastActiveBranchId, branchRoles: $branchRoles)';
+    return 'CurrentUserInfoDto(accountId: $accountId, account: $account, userId: $userId, fullName: $fullName, email: $email, emailConfirmed: $emailConfirmed, lastActiveBranchId: $lastActiveBranchId, deleteRequestDate: $deleteRequestDate, branchRoles: $branchRoles)';
   }
 }
 
@@ -14735,6 +17079,7 @@ abstract mixin class _$CurrentUserInfoDtoCopyWith<$Res>
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'emailConfirmed') bool? emailConfirmed,
       @JsonKey(name: 'lastActiveBranchId') int? lastActiveBranchId,
+      @JsonKey(name: 'deleteRequestDate') DateTime? deleteRequestDate,
       @JsonKey(name: 'branchRoles') List<UserBranchRoleDto>? branchRoles});
 
   @override
@@ -14761,6 +17106,7 @@ class __$CurrentUserInfoDtoCopyWithImpl<$Res>
     Object? email = freezed,
     Object? emailConfirmed = freezed,
     Object? lastActiveBranchId = freezed,
+    Object? deleteRequestDate = freezed,
     Object? branchRoles = freezed,
   }) {
     return _then(_CurrentUserInfoDto(
@@ -14792,6 +17138,10 @@ class __$CurrentUserInfoDtoCopyWithImpl<$Res>
           ? _self.lastActiveBranchId
           : lastActiveBranchId // ignore: cast_nullable_to_non_nullable
               as int?,
+      deleteRequestDate: freezed == deleteRequestDate
+          ? _self.deleteRequestDate
+          : deleteRequestDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       branchRoles: freezed == branchRoles
           ? _self._branchRoles
           : branchRoles // ignore: cast_nullable_to_non_nullable
@@ -14811,6 +17161,955 @@ class __$CurrentUserInfoDtoCopyWithImpl<$Res>
     return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
       return _then(_self.copyWith(account: value));
     });
+  }
+}
+
+/// @nodoc
+mixin _$DailyLogApiDto {
+  @JsonKey(name: 'dayLogs')
+  List<DayLogApiDto>? get dayLogs;
+  @JsonKey(name: 'student')
+  StudentApiDto? get student;
+
+  /// Create a copy of DailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DailyLogApiDtoCopyWith<DailyLogApiDto> get copyWith =>
+      _$DailyLogApiDtoCopyWithImpl<DailyLogApiDto>(
+          this as DailyLogApiDto, _$identity);
+
+  /// Serializes this DailyLogApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DailyLogApiDto &&
+            const DeepCollectionEquality().equals(other.dayLogs, dayLogs) &&
+            (identical(other.student, student) || other.student == student));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(dayLogs), student);
+
+  @override
+  String toString() {
+    return 'DailyLogApiDto(dayLogs: $dayLogs, student: $student)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DailyLogApiDtoCopyWith<$Res> {
+  factory $DailyLogApiDtoCopyWith(
+          DailyLogApiDto value, $Res Function(DailyLogApiDto) _then) =
+      _$DailyLogApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'dayLogs') List<DayLogApiDto>? dayLogs,
+      @JsonKey(name: 'student') StudentApiDto? student});
+
+  $StudentApiDtoCopyWith<$Res>? get student;
+}
+
+/// @nodoc
+class _$DailyLogApiDtoCopyWithImpl<$Res>
+    implements $DailyLogApiDtoCopyWith<$Res> {
+  _$DailyLogApiDtoCopyWithImpl(this._self, this._then);
+
+  final DailyLogApiDto _self;
+  final $Res Function(DailyLogApiDto) _then;
+
+  /// Create a copy of DailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dayLogs = freezed,
+    Object? student = freezed,
+  }) {
+    return _then(_self.copyWith(
+      dayLogs: freezed == dayLogs
+          ? _self.dayLogs
+          : dayLogs // ignore: cast_nullable_to_non_nullable
+              as List<DayLogApiDto>?,
+      student: freezed == student
+          ? _self.student
+          : student // ignore: cast_nullable_to_non_nullable
+              as StudentApiDto?,
+    ));
+  }
+
+  /// Create a copy of DailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StudentApiDtoCopyWith<$Res>? get student {
+    if (_self.student == null) {
+      return null;
+    }
+
+    return $StudentApiDtoCopyWith<$Res>(_self.student!, (value) {
+      return _then(_self.copyWith(student: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [DailyLogApiDto].
+extension DailyLogApiDtoPatterns on DailyLogApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DailyLogApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _DailyLogApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DailyLogApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DailyLogApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_DailyLogApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DailyLogApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'dayLogs') List<DayLogApiDto>? dayLogs,
+            @JsonKey(name: 'student') StudentApiDto? student)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _DailyLogApiDto() when $default != null:
+        return $default(_that.dayLogs, _that.student);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'dayLogs') List<DayLogApiDto>? dayLogs,
+            @JsonKey(name: 'student') StudentApiDto? student)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DailyLogApiDto():
+        return $default(_that.dayLogs, _that.student);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'dayLogs') List<DayLogApiDto>? dayLogs,
+            @JsonKey(name: 'student') StudentApiDto? student)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DailyLogApiDto() when $default != null:
+        return $default(_that.dayLogs, _that.student);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _DailyLogApiDto implements DailyLogApiDto {
+  _DailyLogApiDto(
+      {@JsonKey(name: 'dayLogs') final List<DayLogApiDto>? dayLogs,
+      @JsonKey(name: 'student') this.student})
+      : _dayLogs = dayLogs;
+  factory _DailyLogApiDto.fromJson(Map<String, dynamic> json) =>
+      _$DailyLogApiDtoFromJson(json);
+
+  final List<DayLogApiDto>? _dayLogs;
+  @override
+  @JsonKey(name: 'dayLogs')
+  List<DayLogApiDto>? get dayLogs {
+    final value = _dayLogs;
+    if (value == null) return null;
+    if (_dayLogs is EqualUnmodifiableListView) return _dayLogs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'student')
+  final StudentApiDto? student;
+
+  /// Create a copy of DailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DailyLogApiDtoCopyWith<_DailyLogApiDto> get copyWith =>
+      __$DailyLogApiDtoCopyWithImpl<_DailyLogApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$DailyLogApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DailyLogApiDto &&
+            const DeepCollectionEquality().equals(other._dayLogs, _dayLogs) &&
+            (identical(other.student, student) || other.student == student));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_dayLogs), student);
+
+  @override
+  String toString() {
+    return 'DailyLogApiDto(dayLogs: $dayLogs, student: $student)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$DailyLogApiDtoCopyWith<$Res>
+    implements $DailyLogApiDtoCopyWith<$Res> {
+  factory _$DailyLogApiDtoCopyWith(
+          _DailyLogApiDto value, $Res Function(_DailyLogApiDto) _then) =
+      __$DailyLogApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'dayLogs') List<DayLogApiDto>? dayLogs,
+      @JsonKey(name: 'student') StudentApiDto? student});
+
+  @override
+  $StudentApiDtoCopyWith<$Res>? get student;
+}
+
+/// @nodoc
+class __$DailyLogApiDtoCopyWithImpl<$Res>
+    implements _$DailyLogApiDtoCopyWith<$Res> {
+  __$DailyLogApiDtoCopyWithImpl(this._self, this._then);
+
+  final _DailyLogApiDto _self;
+  final $Res Function(_DailyLogApiDto) _then;
+
+  /// Create a copy of DailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? dayLogs = freezed,
+    Object? student = freezed,
+  }) {
+    return _then(_DailyLogApiDto(
+      dayLogs: freezed == dayLogs
+          ? _self._dayLogs
+          : dayLogs // ignore: cast_nullable_to_non_nullable
+              as List<DayLogApiDto>?,
+      student: freezed == student
+          ? _self.student
+          : student // ignore: cast_nullable_to_non_nullable
+              as StudentApiDto?,
+    ));
+  }
+
+  /// Create a copy of DailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StudentApiDtoCopyWith<$Res>? get student {
+    if (_self.student == null) {
+      return null;
+    }
+
+    return $StudentApiDtoCopyWith<$Res>(_self.student!, (value) {
+      return _then(_self.copyWith(student: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$DayLogApiDto {
+  @JsonKey(name: 'date')
+  String? get date;
+  @JsonKey(name: 'attendanceList')
+  List<StudentAttendanceApiDto> get attendanceList;
+  @JsonKey(name: 'temperatureList')
+  List<StudentTemperatureApiDto> get temperatureList;
+  @JsonKey(name: 'checkInOutList')
+  List<StudentCheckInOutApiDto> get checkInOutList;
+  @JsonKey(name: 'infantWellnessActivityList')
+  List<InfantWellnessActivityDTODto> get infantWellnessActivityList;
+  @JsonKey(name: 'infantCareActivityList')
+  List<InfantCareActivityApiDto> get infantCareActivityList;
+  @JsonKey(name: 'infantCareActivityLogList')
+  List<InfantCareActivityLogApiDto> get infantCareActivityLogList;
+
+  /// Create a copy of DayLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DayLogApiDtoCopyWith<DayLogApiDto> get copyWith =>
+      _$DayLogApiDtoCopyWithImpl<DayLogApiDto>(
+          this as DayLogApiDto, _$identity);
+
+  /// Serializes this DayLogApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DayLogApiDto &&
+            (identical(other.date, date) || other.date == date) &&
+            const DeepCollectionEquality()
+                .equals(other.attendanceList, attendanceList) &&
+            const DeepCollectionEquality()
+                .equals(other.temperatureList, temperatureList) &&
+            const DeepCollectionEquality()
+                .equals(other.checkInOutList, checkInOutList) &&
+            const DeepCollectionEquality().equals(
+                other.infantWellnessActivityList, infantWellnessActivityList) &&
+            const DeepCollectionEquality()
+                .equals(other.infantCareActivityList, infantCareActivityList) &&
+            const DeepCollectionEquality().equals(
+                other.infantCareActivityLogList, infantCareActivityLogList));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      date,
+      const DeepCollectionEquality().hash(attendanceList),
+      const DeepCollectionEquality().hash(temperatureList),
+      const DeepCollectionEquality().hash(checkInOutList),
+      const DeepCollectionEquality().hash(infantWellnessActivityList),
+      const DeepCollectionEquality().hash(infantCareActivityList),
+      const DeepCollectionEquality().hash(infantCareActivityLogList));
+
+  @override
+  String toString() {
+    return 'DayLogApiDto(date: $date, attendanceList: $attendanceList, temperatureList: $temperatureList, checkInOutList: $checkInOutList, infantWellnessActivityList: $infantWellnessActivityList, infantCareActivityList: $infantCareActivityList, infantCareActivityLogList: $infantCareActivityLogList)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DayLogApiDtoCopyWith<$Res> {
+  factory $DayLogApiDtoCopyWith(
+          DayLogApiDto value, $Res Function(DayLogApiDto) _then) =
+      _$DayLogApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'date') String? date,
+      @JsonKey(name: 'attendanceList')
+      List<StudentAttendanceApiDto> attendanceList,
+      @JsonKey(name: 'temperatureList')
+      List<StudentTemperatureApiDto> temperatureList,
+      @JsonKey(name: 'checkInOutList')
+      List<StudentCheckInOutApiDto> checkInOutList,
+      @JsonKey(name: 'infantWellnessActivityList')
+      List<InfantWellnessActivityDTODto> infantWellnessActivityList,
+      @JsonKey(name: 'infantCareActivityList')
+      List<InfantCareActivityApiDto> infantCareActivityList,
+      @JsonKey(name: 'infantCareActivityLogList')
+      List<InfantCareActivityLogApiDto> infantCareActivityLogList});
+}
+
+/// @nodoc
+class _$DayLogApiDtoCopyWithImpl<$Res> implements $DayLogApiDtoCopyWith<$Res> {
+  _$DayLogApiDtoCopyWithImpl(this._self, this._then);
+
+  final DayLogApiDto _self;
+  final $Res Function(DayLogApiDto) _then;
+
+  /// Create a copy of DayLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = freezed,
+    Object? attendanceList = null,
+    Object? temperatureList = null,
+    Object? checkInOutList = null,
+    Object? infantWellnessActivityList = null,
+    Object? infantCareActivityList = null,
+    Object? infantCareActivityLogList = null,
+  }) {
+    return _then(_self.copyWith(
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      attendanceList: null == attendanceList
+          ? _self.attendanceList
+          : attendanceList // ignore: cast_nullable_to_non_nullable
+              as List<StudentAttendanceApiDto>,
+      temperatureList: null == temperatureList
+          ? _self.temperatureList
+          : temperatureList // ignore: cast_nullable_to_non_nullable
+              as List<StudentTemperatureApiDto>,
+      checkInOutList: null == checkInOutList
+          ? _self.checkInOutList
+          : checkInOutList // ignore: cast_nullable_to_non_nullable
+              as List<StudentCheckInOutApiDto>,
+      infantWellnessActivityList: null == infantWellnessActivityList
+          ? _self.infantWellnessActivityList
+          : infantWellnessActivityList // ignore: cast_nullable_to_non_nullable
+              as List<InfantWellnessActivityDTODto>,
+      infantCareActivityList: null == infantCareActivityList
+          ? _self.infantCareActivityList
+          : infantCareActivityList // ignore: cast_nullable_to_non_nullable
+              as List<InfantCareActivityApiDto>,
+      infantCareActivityLogList: null == infantCareActivityLogList
+          ? _self.infantCareActivityLogList
+          : infantCareActivityLogList // ignore: cast_nullable_to_non_nullable
+              as List<InfantCareActivityLogApiDto>,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [DayLogApiDto].
+extension DayLogApiDtoPatterns on DayLogApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_DayLogApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _DayLogApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_DayLogApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DayLogApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_DayLogApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DayLogApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'date') String? date,
+            @JsonKey(name: 'attendanceList')
+            List<StudentAttendanceApiDto> attendanceList,
+            @JsonKey(name: 'temperatureList')
+            List<StudentTemperatureApiDto> temperatureList,
+            @JsonKey(name: 'checkInOutList')
+            List<StudentCheckInOutApiDto> checkInOutList,
+            @JsonKey(name: 'infantWellnessActivityList')
+            List<InfantWellnessActivityDTODto> infantWellnessActivityList,
+            @JsonKey(name: 'infantCareActivityList')
+            List<InfantCareActivityApiDto> infantCareActivityList,
+            @JsonKey(name: 'infantCareActivityLogList')
+            List<InfantCareActivityLogApiDto> infantCareActivityLogList)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _DayLogApiDto() when $default != null:
+        return $default(
+            _that.date,
+            _that.attendanceList,
+            _that.temperatureList,
+            _that.checkInOutList,
+            _that.infantWellnessActivityList,
+            _that.infantCareActivityList,
+            _that.infantCareActivityLogList);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'date') String? date,
+            @JsonKey(name: 'attendanceList')
+            List<StudentAttendanceApiDto> attendanceList,
+            @JsonKey(name: 'temperatureList')
+            List<StudentTemperatureApiDto> temperatureList,
+            @JsonKey(name: 'checkInOutList')
+            List<StudentCheckInOutApiDto> checkInOutList,
+            @JsonKey(name: 'infantWellnessActivityList')
+            List<InfantWellnessActivityDTODto> infantWellnessActivityList,
+            @JsonKey(name: 'infantCareActivityList')
+            List<InfantCareActivityApiDto> infantCareActivityList,
+            @JsonKey(name: 'infantCareActivityLogList')
+            List<InfantCareActivityLogApiDto> infantCareActivityLogList)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DayLogApiDto():
+        return $default(
+            _that.date,
+            _that.attendanceList,
+            _that.temperatureList,
+            _that.checkInOutList,
+            _that.infantWellnessActivityList,
+            _that.infantCareActivityList,
+            _that.infantCareActivityLogList);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'date') String? date,
+            @JsonKey(name: 'attendanceList')
+            List<StudentAttendanceApiDto> attendanceList,
+            @JsonKey(name: 'temperatureList')
+            List<StudentTemperatureApiDto> temperatureList,
+            @JsonKey(name: 'checkInOutList')
+            List<StudentCheckInOutApiDto> checkInOutList,
+            @JsonKey(name: 'infantWellnessActivityList')
+            List<InfantWellnessActivityDTODto> infantWellnessActivityList,
+            @JsonKey(name: 'infantCareActivityList')
+            List<InfantCareActivityApiDto> infantCareActivityList,
+            @JsonKey(name: 'infantCareActivityLogList')
+            List<InfantCareActivityLogApiDto> infantCareActivityLogList)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _DayLogApiDto() when $default != null:
+        return $default(
+            _that.date,
+            _that.attendanceList,
+            _that.temperatureList,
+            _that.checkInOutList,
+            _that.infantWellnessActivityList,
+            _that.infantCareActivityList,
+            _that.infantCareActivityLogList);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _DayLogApiDto implements DayLogApiDto {
+  _DayLogApiDto(
+      {@JsonKey(name: 'date') this.date,
+      @JsonKey(name: 'attendanceList')
+      required final List<StudentAttendanceApiDto> attendanceList,
+      @JsonKey(name: 'temperatureList')
+      required final List<StudentTemperatureApiDto> temperatureList,
+      @JsonKey(name: 'checkInOutList')
+      required final List<StudentCheckInOutApiDto> checkInOutList,
+      @JsonKey(name: 'infantWellnessActivityList')
+      required final List<InfantWellnessActivityDTODto>
+          infantWellnessActivityList,
+      @JsonKey(name: 'infantCareActivityList')
+      required final List<InfantCareActivityApiDto> infantCareActivityList,
+      @JsonKey(name: 'infantCareActivityLogList')
+      required final List<InfantCareActivityLogApiDto>
+          infantCareActivityLogList})
+      : _attendanceList = attendanceList,
+        _temperatureList = temperatureList,
+        _checkInOutList = checkInOutList,
+        _infantWellnessActivityList = infantWellnessActivityList,
+        _infantCareActivityList = infantCareActivityList,
+        _infantCareActivityLogList = infantCareActivityLogList;
+  factory _DayLogApiDto.fromJson(Map<String, dynamic> json) =>
+      _$DayLogApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'date')
+  final String? date;
+  final List<StudentAttendanceApiDto> _attendanceList;
+  @override
+  @JsonKey(name: 'attendanceList')
+  List<StudentAttendanceApiDto> get attendanceList {
+    if (_attendanceList is EqualUnmodifiableListView) return _attendanceList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_attendanceList);
+  }
+
+  final List<StudentTemperatureApiDto> _temperatureList;
+  @override
+  @JsonKey(name: 'temperatureList')
+  List<StudentTemperatureApiDto> get temperatureList {
+    if (_temperatureList is EqualUnmodifiableListView) return _temperatureList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_temperatureList);
+  }
+
+  final List<StudentCheckInOutApiDto> _checkInOutList;
+  @override
+  @JsonKey(name: 'checkInOutList')
+  List<StudentCheckInOutApiDto> get checkInOutList {
+    if (_checkInOutList is EqualUnmodifiableListView) return _checkInOutList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_checkInOutList);
+  }
+
+  final List<InfantWellnessActivityDTODto> _infantWellnessActivityList;
+  @override
+  @JsonKey(name: 'infantWellnessActivityList')
+  List<InfantWellnessActivityDTODto> get infantWellnessActivityList {
+    if (_infantWellnessActivityList is EqualUnmodifiableListView)
+      return _infantWellnessActivityList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_infantWellnessActivityList);
+  }
+
+  final List<InfantCareActivityApiDto> _infantCareActivityList;
+  @override
+  @JsonKey(name: 'infantCareActivityList')
+  List<InfantCareActivityApiDto> get infantCareActivityList {
+    if (_infantCareActivityList is EqualUnmodifiableListView)
+      return _infantCareActivityList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_infantCareActivityList);
+  }
+
+  final List<InfantCareActivityLogApiDto> _infantCareActivityLogList;
+  @override
+  @JsonKey(name: 'infantCareActivityLogList')
+  List<InfantCareActivityLogApiDto> get infantCareActivityLogList {
+    if (_infantCareActivityLogList is EqualUnmodifiableListView)
+      return _infantCareActivityLogList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_infantCareActivityLogList);
+  }
+
+  /// Create a copy of DayLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DayLogApiDtoCopyWith<_DayLogApiDto> get copyWith =>
+      __$DayLogApiDtoCopyWithImpl<_DayLogApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$DayLogApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DayLogApiDto &&
+            (identical(other.date, date) || other.date == date) &&
+            const DeepCollectionEquality()
+                .equals(other._attendanceList, _attendanceList) &&
+            const DeepCollectionEquality()
+                .equals(other._temperatureList, _temperatureList) &&
+            const DeepCollectionEquality()
+                .equals(other._checkInOutList, _checkInOutList) &&
+            const DeepCollectionEquality().equals(
+                other._infantWellnessActivityList,
+                _infantWellnessActivityList) &&
+            const DeepCollectionEquality().equals(
+                other._infantCareActivityList, _infantCareActivityList) &&
+            const DeepCollectionEquality().equals(
+                other._infantCareActivityLogList, _infantCareActivityLogList));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      date,
+      const DeepCollectionEquality().hash(_attendanceList),
+      const DeepCollectionEquality().hash(_temperatureList),
+      const DeepCollectionEquality().hash(_checkInOutList),
+      const DeepCollectionEquality().hash(_infantWellnessActivityList),
+      const DeepCollectionEquality().hash(_infantCareActivityList),
+      const DeepCollectionEquality().hash(_infantCareActivityLogList));
+
+  @override
+  String toString() {
+    return 'DayLogApiDto(date: $date, attendanceList: $attendanceList, temperatureList: $temperatureList, checkInOutList: $checkInOutList, infantWellnessActivityList: $infantWellnessActivityList, infantCareActivityList: $infantCareActivityList, infantCareActivityLogList: $infantCareActivityLogList)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$DayLogApiDtoCopyWith<$Res>
+    implements $DayLogApiDtoCopyWith<$Res> {
+  factory _$DayLogApiDtoCopyWith(
+          _DayLogApiDto value, $Res Function(_DayLogApiDto) _then) =
+      __$DayLogApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'date') String? date,
+      @JsonKey(name: 'attendanceList')
+      List<StudentAttendanceApiDto> attendanceList,
+      @JsonKey(name: 'temperatureList')
+      List<StudentTemperatureApiDto> temperatureList,
+      @JsonKey(name: 'checkInOutList')
+      List<StudentCheckInOutApiDto> checkInOutList,
+      @JsonKey(name: 'infantWellnessActivityList')
+      List<InfantWellnessActivityDTODto> infantWellnessActivityList,
+      @JsonKey(name: 'infantCareActivityList')
+      List<InfantCareActivityApiDto> infantCareActivityList,
+      @JsonKey(name: 'infantCareActivityLogList')
+      List<InfantCareActivityLogApiDto> infantCareActivityLogList});
+}
+
+/// @nodoc
+class __$DayLogApiDtoCopyWithImpl<$Res>
+    implements _$DayLogApiDtoCopyWith<$Res> {
+  __$DayLogApiDtoCopyWithImpl(this._self, this._then);
+
+  final _DayLogApiDto _self;
+  final $Res Function(_DayLogApiDto) _then;
+
+  /// Create a copy of DayLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? date = freezed,
+    Object? attendanceList = null,
+    Object? temperatureList = null,
+    Object? checkInOutList = null,
+    Object? infantWellnessActivityList = null,
+    Object? infantCareActivityList = null,
+    Object? infantCareActivityLogList = null,
+  }) {
+    return _then(_DayLogApiDto(
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      attendanceList: null == attendanceList
+          ? _self._attendanceList
+          : attendanceList // ignore: cast_nullable_to_non_nullable
+              as List<StudentAttendanceApiDto>,
+      temperatureList: null == temperatureList
+          ? _self._temperatureList
+          : temperatureList // ignore: cast_nullable_to_non_nullable
+              as List<StudentTemperatureApiDto>,
+      checkInOutList: null == checkInOutList
+          ? _self._checkInOutList
+          : checkInOutList // ignore: cast_nullable_to_non_nullable
+              as List<StudentCheckInOutApiDto>,
+      infantWellnessActivityList: null == infantWellnessActivityList
+          ? _self._infantWellnessActivityList
+          : infantWellnessActivityList // ignore: cast_nullable_to_non_nullable
+              as List<InfantWellnessActivityDTODto>,
+      infantCareActivityList: null == infantCareActivityList
+          ? _self._infantCareActivityList
+          : infantCareActivityList // ignore: cast_nullable_to_non_nullable
+              as List<InfantCareActivityApiDto>,
+      infantCareActivityLogList: null == infantCareActivityLogList
+          ? _self._infantCareActivityLogList
+          : infantCareActivityLogList // ignore: cast_nullable_to_non_nullable
+              as List<InfantCareActivityLogApiDto>,
+    ));
   }
 }
 
@@ -15905,6 +19204,2660 @@ class __$EnrolmentApiDtoCopyWithImpl<$Res>
     return $AcademicYearApiDtoCopyWith<$Res>(_self.academicYear!, (value) {
       return _then(_self.copyWith(academicYear: value));
     });
+  }
+}
+
+/// @nodoc
+mixin _$FeedActivityDto {
+  @JsonKey(name: 'feedType')
+  int? get feedType;
+  @JsonKey(name: 'bottleSource')
+  String? get bottleSource;
+  @JsonKey(name: 'bottleVolume')
+  String? get bottleVolume;
+  @JsonKey(name: 'latchOnSide')
+  String? get latchOnSide;
+  @JsonKey(name: 'solidServingAmount')
+  String? get solidServingAmount;
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'activityType')
+  int? get activityType;
+  @JsonKey(name: 'activityDate')
+  String? get activityDate;
+  @JsonKey(name: 'activityDateBridge')
+  DateTime? get activityDateBridge;
+  @JsonKey(name: 'activityTime')
+  String? get activityTime;
+  @JsonKey(name: 'activityTimeBridge')
+  String? get activityTimeBridge;
+  @JsonKey(name: 'carriedOutBy')
+  String? get carriedOutBy;
+  @JsonKey(name: 'nextActivityDate')
+  String? get nextActivityDate;
+  @JsonKey(name: 'nextActivityDateBridge')
+  DateTime? get nextActivityDateBridge;
+  @JsonKey(name: 'nextActivityTime')
+  String? get nextActivityTime;
+  @JsonKey(name: 'nextActivityTimeBridge')
+  String? get nextActivityTimeBridge;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+  @JsonKey(name: 'integrationRefId')
+  String? get integrationRefId;
+
+  /// Create a copy of FeedActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FeedActivityDtoCopyWith<FeedActivityDto> get copyWith =>
+      _$FeedActivityDtoCopyWithImpl<FeedActivityDto>(
+          this as FeedActivityDto, _$identity);
+
+  /// Serializes this FeedActivityDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FeedActivityDto &&
+            (identical(other.feedType, feedType) ||
+                other.feedType == feedType) &&
+            (identical(other.bottleSource, bottleSource) ||
+                other.bottleSource == bottleSource) &&
+            (identical(other.bottleVolume, bottleVolume) ||
+                other.bottleVolume == bottleVolume) &&
+            (identical(other.latchOnSide, latchOnSide) ||
+                other.latchOnSide == latchOnSide) &&
+            (identical(other.solidServingAmount, solidServingAmount) ||
+                other.solidServingAmount == solidServingAmount) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        feedType,
+        bottleSource,
+        bottleVolume,
+        latchOnSide,
+        solidServingAmount,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'FeedActivityDto(feedType: $feedType, bottleSource: $bottleSource, bottleVolume: $bottleVolume, latchOnSide: $latchOnSide, solidServingAmount: $solidServingAmount, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FeedActivityDtoCopyWith<$Res> {
+  factory $FeedActivityDtoCopyWith(
+          FeedActivityDto value, $Res Function(FeedActivityDto) _then) =
+      _$FeedActivityDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'feedType') int? feedType,
+      @JsonKey(name: 'bottleSource') String? bottleSource,
+      @JsonKey(name: 'bottleVolume') String? bottleVolume,
+      @JsonKey(name: 'latchOnSide') String? latchOnSide,
+      @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class _$FeedActivityDtoCopyWithImpl<$Res>
+    implements $FeedActivityDtoCopyWith<$Res> {
+  _$FeedActivityDtoCopyWithImpl(this._self, this._then);
+
+  final FeedActivityDto _self;
+  final $Res Function(FeedActivityDto) _then;
+
+  /// Create a copy of FeedActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? feedType = freezed,
+    Object? bottleSource = freezed,
+    Object? bottleVolume = freezed,
+    Object? latchOnSide = freezed,
+    Object? solidServingAmount = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      feedType: freezed == feedType
+          ? _self.feedType
+          : feedType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bottleSource: freezed == bottleSource
+          ? _self.bottleSource
+          : bottleSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bottleVolume: freezed == bottleVolume
+          ? _self.bottleVolume
+          : bottleVolume // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latchOnSide: freezed == latchOnSide
+          ? _self.latchOnSide
+          : latchOnSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+      solidServingAmount: freezed == solidServingAmount
+          ? _self.solidServingAmount
+          : solidServingAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [FeedActivityDto].
+extension FeedActivityDtoPatterns on FeedActivityDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FeedActivityDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FeedActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FeedActivityDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedActivityDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FeedActivityDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'feedType') int? feedType,
+            @JsonKey(name: 'bottleSource') String? bottleSource,
+            @JsonKey(name: 'bottleVolume') String? bottleVolume,
+            @JsonKey(name: 'latchOnSide') String? latchOnSide,
+            @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FeedActivityDto() when $default != null:
+        return $default(
+            _that.feedType,
+            _that.bottleSource,
+            _that.bottleVolume,
+            _that.latchOnSide,
+            _that.solidServingAmount,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'feedType') int? feedType,
+            @JsonKey(name: 'bottleSource') String? bottleSource,
+            @JsonKey(name: 'bottleVolume') String? bottleVolume,
+            @JsonKey(name: 'latchOnSide') String? latchOnSide,
+            @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedActivityDto():
+        return $default(
+            _that.feedType,
+            _that.bottleSource,
+            _that.bottleVolume,
+            _that.latchOnSide,
+            _that.solidServingAmount,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'feedType') int? feedType,
+            @JsonKey(name: 'bottleSource') String? bottleSource,
+            @JsonKey(name: 'bottleVolume') String? bottleVolume,
+            @JsonKey(name: 'latchOnSide') String? latchOnSide,
+            @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedActivityDto() when $default != null:
+        return $default(
+            _that.feedType,
+            _that.bottleSource,
+            _that.bottleVolume,
+            _that.latchOnSide,
+            _that.solidServingAmount,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FeedActivityDto implements FeedActivityDto {
+  _FeedActivityDto(
+      {@JsonKey(name: 'feedType') this.feedType,
+      @JsonKey(name: 'bottleSource') this.bottleSource,
+      @JsonKey(name: 'bottleVolume') this.bottleVolume,
+      @JsonKey(name: 'latchOnSide') this.latchOnSide,
+      @JsonKey(name: 'solidServingAmount') this.solidServingAmount,
+      @JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'activityType') this.activityType,
+      @JsonKey(name: 'activityDate') this.activityDate,
+      @JsonKey(name: 'activityDateBridge') this.activityDateBridge,
+      @JsonKey(name: 'activityTime') this.activityTime,
+      @JsonKey(name: 'activityTimeBridge') this.activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') this.carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') this.nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') this.nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') this.nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') this.nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate,
+      @JsonKey(name: 'integrationRefId') this.integrationRefId});
+  factory _FeedActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$FeedActivityDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'feedType')
+  final int? feedType;
+  @override
+  @JsonKey(name: 'bottleSource')
+  final String? bottleSource;
+  @override
+  @JsonKey(name: 'bottleVolume')
+  final String? bottleVolume;
+  @override
+  @JsonKey(name: 'latchOnSide')
+  final String? latchOnSide;
+  @override
+  @JsonKey(name: 'solidServingAmount')
+  final String? solidServingAmount;
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  @override
+  @JsonKey(name: 'activityType')
+  final int? activityType;
+  @override
+  @JsonKey(name: 'activityDate')
+  final String? activityDate;
+  @override
+  @JsonKey(name: 'activityDateBridge')
+  final DateTime? activityDateBridge;
+  @override
+  @JsonKey(name: 'activityTime')
+  final String? activityTime;
+  @override
+  @JsonKey(name: 'activityTimeBridge')
+  final String? activityTimeBridge;
+  @override
+  @JsonKey(name: 'carriedOutBy')
+  final String? carriedOutBy;
+  @override
+  @JsonKey(name: 'nextActivityDate')
+  final String? nextActivityDate;
+  @override
+  @JsonKey(name: 'nextActivityDateBridge')
+  final DateTime? nextActivityDateBridge;
+  @override
+  @JsonKey(name: 'nextActivityTime')
+  final String? nextActivityTime;
+  @override
+  @JsonKey(name: 'nextActivityTimeBridge')
+  final String? nextActivityTimeBridge;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'integrationRefId')
+  final String? integrationRefId;
+
+  /// Create a copy of FeedActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FeedActivityDtoCopyWith<_FeedActivityDto> get copyWith =>
+      __$FeedActivityDtoCopyWithImpl<_FeedActivityDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FeedActivityDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FeedActivityDto &&
+            (identical(other.feedType, feedType) ||
+                other.feedType == feedType) &&
+            (identical(other.bottleSource, bottleSource) ||
+                other.bottleSource == bottleSource) &&
+            (identical(other.bottleVolume, bottleVolume) ||
+                other.bottleVolume == bottleVolume) &&
+            (identical(other.latchOnSide, latchOnSide) ||
+                other.latchOnSide == latchOnSide) &&
+            (identical(other.solidServingAmount, solidServingAmount) ||
+                other.solidServingAmount == solidServingAmount) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        feedType,
+        bottleSource,
+        bottleVolume,
+        latchOnSide,
+        solidServingAmount,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'FeedActivityDto(feedType: $feedType, bottleSource: $bottleSource, bottleVolume: $bottleVolume, latchOnSide: $latchOnSide, solidServingAmount: $solidServingAmount, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FeedActivityDtoCopyWith<$Res>
+    implements $FeedActivityDtoCopyWith<$Res> {
+  factory _$FeedActivityDtoCopyWith(
+          _FeedActivityDto value, $Res Function(_FeedActivityDto) _then) =
+      __$FeedActivityDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'feedType') int? feedType,
+      @JsonKey(name: 'bottleSource') String? bottleSource,
+      @JsonKey(name: 'bottleVolume') String? bottleVolume,
+      @JsonKey(name: 'latchOnSide') String? latchOnSide,
+      @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class __$FeedActivityDtoCopyWithImpl<$Res>
+    implements _$FeedActivityDtoCopyWith<$Res> {
+  __$FeedActivityDtoCopyWithImpl(this._self, this._then);
+
+  final _FeedActivityDto _self;
+  final $Res Function(_FeedActivityDto) _then;
+
+  /// Create a copy of FeedActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? feedType = freezed,
+    Object? bottleSource = freezed,
+    Object? bottleVolume = freezed,
+    Object? latchOnSide = freezed,
+    Object? solidServingAmount = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_FeedActivityDto(
+      feedType: freezed == feedType
+          ? _self.feedType
+          : feedType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bottleSource: freezed == bottleSource
+          ? _self.bottleSource
+          : bottleSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bottleVolume: freezed == bottleVolume
+          ? _self.bottleVolume
+          : bottleVolume // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latchOnSide: freezed == latchOnSide
+          ? _self.latchOnSide
+          : latchOnSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+      solidServingAmount: freezed == solidServingAmount
+          ? _self.solidServingAmount
+          : solidServingAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$FileUploadParamDto {
+  @JsonKey(name: 'base64')
+  String get base64;
+  @JsonKey(name: 'fileName')
+  String get fileName;
+  @JsonKey(name: 'contentType')
+  int? get contentType;
+  @JsonKey(name: 'entityId')
+  String? get entityId;
+  @JsonKey(name: 'subFolders')
+  List<String>? get subFolders;
+
+  /// Create a copy of FileUploadParamDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FileUploadParamDtoCopyWith<FileUploadParamDto> get copyWith =>
+      _$FileUploadParamDtoCopyWithImpl<FileUploadParamDto>(
+          this as FileUploadParamDto, _$identity);
+
+  /// Serializes this FileUploadParamDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FileUploadParamDto &&
+            (identical(other.base64, base64) || other.base64 == base64) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.contentType, contentType) ||
+                other.contentType == contentType) &&
+            (identical(other.entityId, entityId) ||
+                other.entityId == entityId) &&
+            const DeepCollectionEquality()
+                .equals(other.subFolders, subFolders));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, base64, fileName, contentType,
+      entityId, const DeepCollectionEquality().hash(subFolders));
+
+  @override
+  String toString() {
+    return 'FileUploadParamDto(base64: $base64, fileName: $fileName, contentType: $contentType, entityId: $entityId, subFolders: $subFolders)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FileUploadParamDtoCopyWith<$Res> {
+  factory $FileUploadParamDtoCopyWith(
+          FileUploadParamDto value, $Res Function(FileUploadParamDto) _then) =
+      _$FileUploadParamDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'base64') String base64,
+      @JsonKey(name: 'fileName') String fileName,
+      @JsonKey(name: 'contentType') int? contentType,
+      @JsonKey(name: 'entityId') String? entityId,
+      @JsonKey(name: 'subFolders') List<String>? subFolders});
+}
+
+/// @nodoc
+class _$FileUploadParamDtoCopyWithImpl<$Res>
+    implements $FileUploadParamDtoCopyWith<$Res> {
+  _$FileUploadParamDtoCopyWithImpl(this._self, this._then);
+
+  final FileUploadParamDto _self;
+  final $Res Function(FileUploadParamDto) _then;
+
+  /// Create a copy of FileUploadParamDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? base64 = null,
+    Object? fileName = null,
+    Object? contentType = freezed,
+    Object? entityId = freezed,
+    Object? subFolders = freezed,
+  }) {
+    return _then(_self.copyWith(
+      base64: null == base64
+          ? _self.base64
+          : base64 // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileName: null == fileName
+          ? _self.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      contentType: freezed == contentType
+          ? _self.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityId: freezed == entityId
+          ? _self.entityId
+          : entityId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subFolders: freezed == subFolders
+          ? _self.subFolders
+          : subFolders // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [FileUploadParamDto].
+extension FileUploadParamDtoPatterns on FileUploadParamDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FileUploadParamDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadParamDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FileUploadParamDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadParamDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FileUploadParamDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadParamDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'base64') String base64,
+            @JsonKey(name: 'fileName') String fileName,
+            @JsonKey(name: 'contentType') int? contentType,
+            @JsonKey(name: 'entityId') String? entityId,
+            @JsonKey(name: 'subFolders') List<String>? subFolders)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadParamDto() when $default != null:
+        return $default(_that.base64, _that.fileName, _that.contentType,
+            _that.entityId, _that.subFolders);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'base64') String base64,
+            @JsonKey(name: 'fileName') String fileName,
+            @JsonKey(name: 'contentType') int? contentType,
+            @JsonKey(name: 'entityId') String? entityId,
+            @JsonKey(name: 'subFolders') List<String>? subFolders)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadParamDto():
+        return $default(_that.base64, _that.fileName, _that.contentType,
+            _that.entityId, _that.subFolders);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'base64') String base64,
+            @JsonKey(name: 'fileName') String fileName,
+            @JsonKey(name: 'contentType') int? contentType,
+            @JsonKey(name: 'entityId') String? entityId,
+            @JsonKey(name: 'subFolders') List<String>? subFolders)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadParamDto() when $default != null:
+        return $default(_that.base64, _that.fileName, _that.contentType,
+            _that.entityId, _that.subFolders);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FileUploadParamDto implements FileUploadParamDto {
+  _FileUploadParamDto(
+      {@JsonKey(name: 'base64') required this.base64,
+      @JsonKey(name: 'fileName') required this.fileName,
+      @JsonKey(name: 'contentType') this.contentType,
+      @JsonKey(name: 'entityId') this.entityId,
+      @JsonKey(name: 'subFolders') final List<String>? subFolders})
+      : _subFolders = subFolders;
+  factory _FileUploadParamDto.fromJson(Map<String, dynamic> json) =>
+      _$FileUploadParamDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'base64')
+  final String base64;
+  @override
+  @JsonKey(name: 'fileName')
+  final String fileName;
+  @override
+  @JsonKey(name: 'contentType')
+  final int? contentType;
+  @override
+  @JsonKey(name: 'entityId')
+  final String? entityId;
+  final List<String>? _subFolders;
+  @override
+  @JsonKey(name: 'subFolders')
+  List<String>? get subFolders {
+    final value = _subFolders;
+    if (value == null) return null;
+    if (_subFolders is EqualUnmodifiableListView) return _subFolders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Create a copy of FileUploadParamDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FileUploadParamDtoCopyWith<_FileUploadParamDto> get copyWith =>
+      __$FileUploadParamDtoCopyWithImpl<_FileUploadParamDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FileUploadParamDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FileUploadParamDto &&
+            (identical(other.base64, base64) || other.base64 == base64) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName) &&
+            (identical(other.contentType, contentType) ||
+                other.contentType == contentType) &&
+            (identical(other.entityId, entityId) ||
+                other.entityId == entityId) &&
+            const DeepCollectionEquality()
+                .equals(other._subFolders, _subFolders));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, base64, fileName, contentType,
+      entityId, const DeepCollectionEquality().hash(_subFolders));
+
+  @override
+  String toString() {
+    return 'FileUploadParamDto(base64: $base64, fileName: $fileName, contentType: $contentType, entityId: $entityId, subFolders: $subFolders)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FileUploadParamDtoCopyWith<$Res>
+    implements $FileUploadParamDtoCopyWith<$Res> {
+  factory _$FileUploadParamDtoCopyWith(
+          _FileUploadParamDto value, $Res Function(_FileUploadParamDto) _then) =
+      __$FileUploadParamDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'base64') String base64,
+      @JsonKey(name: 'fileName') String fileName,
+      @JsonKey(name: 'contentType') int? contentType,
+      @JsonKey(name: 'entityId') String? entityId,
+      @JsonKey(name: 'subFolders') List<String>? subFolders});
+}
+
+/// @nodoc
+class __$FileUploadParamDtoCopyWithImpl<$Res>
+    implements _$FileUploadParamDtoCopyWith<$Res> {
+  __$FileUploadParamDtoCopyWithImpl(this._self, this._then);
+
+  final _FileUploadParamDto _self;
+  final $Res Function(_FileUploadParamDto) _then;
+
+  /// Create a copy of FileUploadParamDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? base64 = null,
+    Object? fileName = null,
+    Object? contentType = freezed,
+    Object? entityId = freezed,
+    Object? subFolders = freezed,
+  }) {
+    return _then(_FileUploadParamDto(
+      base64: null == base64
+          ? _self.base64
+          : base64 // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileName: null == fileName
+          ? _self.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String,
+      contentType: freezed == contentType
+          ? _self.contentType
+          : contentType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityId: freezed == entityId
+          ? _self.entityId
+          : entityId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subFolders: freezed == subFolders
+          ? _self._subFolders
+          : subFolders // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$FileUploadResultDto {
+  @JsonKey(name: 'url')
+  String? get url;
+  @JsonKey(name: 'fileName')
+  String? get fileName;
+
+  /// Create a copy of FileUploadResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FileUploadResultDtoCopyWith<FileUploadResultDto> get copyWith =>
+      _$FileUploadResultDtoCopyWithImpl<FileUploadResultDto>(
+          this as FileUploadResultDto, _$identity);
+
+  /// Serializes this FileUploadResultDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FileUploadResultDto &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, url, fileName);
+
+  @override
+  String toString() {
+    return 'FileUploadResultDto(url: $url, fileName: $fileName)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FileUploadResultDtoCopyWith<$Res> {
+  factory $FileUploadResultDtoCopyWith(
+          FileUploadResultDto value, $Res Function(FileUploadResultDto) _then) =
+      _$FileUploadResultDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'fileName') String? fileName});
+}
+
+/// @nodoc
+class _$FileUploadResultDtoCopyWithImpl<$Res>
+    implements $FileUploadResultDtoCopyWith<$Res> {
+  _$FileUploadResultDtoCopyWithImpl(this._self, this._then);
+
+  final FileUploadResultDto _self;
+  final $Res Function(FileUploadResultDto) _then;
+
+  /// Create a copy of FileUploadResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = freezed,
+    Object? fileName = freezed,
+  }) {
+    return _then(_self.copyWith(
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: freezed == fileName
+          ? _self.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [FileUploadResultDto].
+extension FileUploadResultDtoPatterns on FileUploadResultDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FileUploadResultDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FileUploadResultDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadResultDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FileUploadResultDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadResultDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'url') String? url,
+            @JsonKey(name: 'fileName') String? fileName)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadResultDto() when $default != null:
+        return $default(_that.url, _that.fileName);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'url') String? url,
+            @JsonKey(name: 'fileName') String? fileName)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadResultDto():
+        return $default(_that.url, _that.fileName);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'url') String? url,
+            @JsonKey(name: 'fileName') String? fileName)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FileUploadResultDto() when $default != null:
+        return $default(_that.url, _that.fileName);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FileUploadResultDto implements FileUploadResultDto {
+  _FileUploadResultDto(
+      {@JsonKey(name: 'url') this.url,
+      @JsonKey(name: 'fileName') this.fileName});
+  factory _FileUploadResultDto.fromJson(Map<String, dynamic> json) =>
+      _$FileUploadResultDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'url')
+  final String? url;
+  @override
+  @JsonKey(name: 'fileName')
+  final String? fileName;
+
+  /// Create a copy of FileUploadResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FileUploadResultDtoCopyWith<_FileUploadResultDto> get copyWith =>
+      __$FileUploadResultDtoCopyWithImpl<_FileUploadResultDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FileUploadResultDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FileUploadResultDto &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.fileName, fileName) ||
+                other.fileName == fileName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, url, fileName);
+
+  @override
+  String toString() {
+    return 'FileUploadResultDto(url: $url, fileName: $fileName)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FileUploadResultDtoCopyWith<$Res>
+    implements $FileUploadResultDtoCopyWith<$Res> {
+  factory _$FileUploadResultDtoCopyWith(_FileUploadResultDto value,
+          $Res Function(_FileUploadResultDto) _then) =
+      __$FileUploadResultDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'url') String? url,
+      @JsonKey(name: 'fileName') String? fileName});
+}
+
+/// @nodoc
+class __$FileUploadResultDtoCopyWithImpl<$Res>
+    implements _$FileUploadResultDtoCopyWith<$Res> {
+  __$FileUploadResultDtoCopyWithImpl(this._self, this._then);
+
+  final _FileUploadResultDto _self;
+  final $Res Function(_FileUploadResultDto) _then;
+
+  /// Create a copy of FileUploadResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? url = freezed,
+    Object? fileName = freezed,
+  }) {
+    return _then(_FileUploadResultDto(
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fileName: freezed == fileName
+          ? _self.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$HygieneActivityDto {
+  @JsonKey(name: 'hygieneType')
+  int? get hygieneType;
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'activityType')
+  int? get activityType;
+  @JsonKey(name: 'activityDate')
+  String? get activityDate;
+  @JsonKey(name: 'activityDateBridge')
+  DateTime? get activityDateBridge;
+  @JsonKey(name: 'activityTime')
+  String? get activityTime;
+  @JsonKey(name: 'activityTimeBridge')
+  String? get activityTimeBridge;
+  @JsonKey(name: 'carriedOutBy')
+  String? get carriedOutBy;
+  @JsonKey(name: 'nextActivityDate')
+  String? get nextActivityDate;
+  @JsonKey(name: 'nextActivityDateBridge')
+  DateTime? get nextActivityDateBridge;
+  @JsonKey(name: 'nextActivityTime')
+  String? get nextActivityTime;
+  @JsonKey(name: 'nextActivityTimeBridge')
+  String? get nextActivityTimeBridge;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+  @JsonKey(name: 'integrationRefId')
+  String? get integrationRefId;
+
+  /// Create a copy of HygieneActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $HygieneActivityDtoCopyWith<HygieneActivityDto> get copyWith =>
+      _$HygieneActivityDtoCopyWithImpl<HygieneActivityDto>(
+          this as HygieneActivityDto, _$identity);
+
+  /// Serializes this HygieneActivityDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is HygieneActivityDto &&
+            (identical(other.hygieneType, hygieneType) ||
+                other.hygieneType == hygieneType) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        hygieneType,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'HygieneActivityDto(hygieneType: $hygieneType, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $HygieneActivityDtoCopyWith<$Res> {
+  factory $HygieneActivityDtoCopyWith(
+          HygieneActivityDto value, $Res Function(HygieneActivityDto) _then) =
+      _$HygieneActivityDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'hygieneType') int? hygieneType,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class _$HygieneActivityDtoCopyWithImpl<$Res>
+    implements $HygieneActivityDtoCopyWith<$Res> {
+  _$HygieneActivityDtoCopyWithImpl(this._self, this._then);
+
+  final HygieneActivityDto _self;
+  final $Res Function(HygieneActivityDto) _then;
+
+  /// Create a copy of HygieneActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? hygieneType = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      hygieneType: freezed == hygieneType
+          ? _self.hygieneType
+          : hygieneType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [HygieneActivityDto].
+extension HygieneActivityDtoPatterns on HygieneActivityDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_HygieneActivityDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _HygieneActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_HygieneActivityDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _HygieneActivityDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_HygieneActivityDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _HygieneActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'hygieneType') int? hygieneType,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _HygieneActivityDto() when $default != null:
+        return $default(
+            _that.hygieneType,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'hygieneType') int? hygieneType,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _HygieneActivityDto():
+        return $default(
+            _that.hygieneType,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'hygieneType') int? hygieneType,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _HygieneActivityDto() when $default != null:
+        return $default(
+            _that.hygieneType,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _HygieneActivityDto implements HygieneActivityDto {
+  _HygieneActivityDto(
+      {@JsonKey(name: 'hygieneType') this.hygieneType,
+      @JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'activityType') this.activityType,
+      @JsonKey(name: 'activityDate') this.activityDate,
+      @JsonKey(name: 'activityDateBridge') this.activityDateBridge,
+      @JsonKey(name: 'activityTime') this.activityTime,
+      @JsonKey(name: 'activityTimeBridge') this.activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') this.carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') this.nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') this.nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') this.nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') this.nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate,
+      @JsonKey(name: 'integrationRefId') this.integrationRefId});
+  factory _HygieneActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$HygieneActivityDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'hygieneType')
+  final int? hygieneType;
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  @override
+  @JsonKey(name: 'activityType')
+  final int? activityType;
+  @override
+  @JsonKey(name: 'activityDate')
+  final String? activityDate;
+  @override
+  @JsonKey(name: 'activityDateBridge')
+  final DateTime? activityDateBridge;
+  @override
+  @JsonKey(name: 'activityTime')
+  final String? activityTime;
+  @override
+  @JsonKey(name: 'activityTimeBridge')
+  final String? activityTimeBridge;
+  @override
+  @JsonKey(name: 'carriedOutBy')
+  final String? carriedOutBy;
+  @override
+  @JsonKey(name: 'nextActivityDate')
+  final String? nextActivityDate;
+  @override
+  @JsonKey(name: 'nextActivityDateBridge')
+  final DateTime? nextActivityDateBridge;
+  @override
+  @JsonKey(name: 'nextActivityTime')
+  final String? nextActivityTime;
+  @override
+  @JsonKey(name: 'nextActivityTimeBridge')
+  final String? nextActivityTimeBridge;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'integrationRefId')
+  final String? integrationRefId;
+
+  /// Create a copy of HygieneActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$HygieneActivityDtoCopyWith<_HygieneActivityDto> get copyWith =>
+      __$HygieneActivityDtoCopyWithImpl<_HygieneActivityDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$HygieneActivityDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _HygieneActivityDto &&
+            (identical(other.hygieneType, hygieneType) ||
+                other.hygieneType == hygieneType) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        hygieneType,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'HygieneActivityDto(hygieneType: $hygieneType, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$HygieneActivityDtoCopyWith<$Res>
+    implements $HygieneActivityDtoCopyWith<$Res> {
+  factory _$HygieneActivityDtoCopyWith(
+          _HygieneActivityDto value, $Res Function(_HygieneActivityDto) _then) =
+      __$HygieneActivityDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'hygieneType') int? hygieneType,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class __$HygieneActivityDtoCopyWithImpl<$Res>
+    implements _$HygieneActivityDtoCopyWith<$Res> {
+  __$HygieneActivityDtoCopyWithImpl(this._self, this._then);
+
+  final _HygieneActivityDto _self;
+  final $Res Function(_HygieneActivityDto) _then;
+
+  /// Create a copy of HygieneActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? hygieneType = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_HygieneActivityDto(
+      hygieneType: freezed == hygieneType
+          ? _self.hygieneType
+          : hygieneType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
@@ -20094,6 +26047,5964 @@ class __$InfantCareActivitySaveDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$InfantWellnessActivityDto {
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'activityType')
+  int? get activityType;
+  @JsonKey(name: 'activityDate')
+  String? get activityDate;
+  @JsonKey(name: 'activityDateBridge')
+  DateTime? get activityDateBridge;
+  @JsonKey(name: 'activityTime')
+  String? get activityTime;
+  @JsonKey(name: 'activityTimeBridge')
+  String? get activityTimeBridge;
+  @JsonKey(name: 'carriedOutBy')
+  String? get carriedOutBy;
+  @JsonKey(name: 'nextActivityDate')
+  String? get nextActivityDate;
+  @JsonKey(name: 'nextActivityDateBridge')
+  DateTime? get nextActivityDateBridge;
+  @JsonKey(name: 'nextActivityTime')
+  String? get nextActivityTime;
+  @JsonKey(name: 'nextActivityTimeBridge')
+  String? get nextActivityTimeBridge;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+  @JsonKey(name: 'integrationRefId')
+  String? get integrationRefId;
+
+  /// Create a copy of InfantWellnessActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $InfantWellnessActivityDtoCopyWith<InfantWellnessActivityDto> get copyWith =>
+      _$InfantWellnessActivityDtoCopyWithImpl<InfantWellnessActivityDto>(
+          this as InfantWellnessActivityDto, _$identity);
+
+  /// Serializes this InfantWellnessActivityDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is InfantWellnessActivityDto &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'InfantWellnessActivityDto(studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $InfantWellnessActivityDtoCopyWith<$Res> {
+  factory $InfantWellnessActivityDtoCopyWith(InfantWellnessActivityDto value,
+          $Res Function(InfantWellnessActivityDto) _then) =
+      _$InfantWellnessActivityDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class _$InfantWellnessActivityDtoCopyWithImpl<$Res>
+    implements $InfantWellnessActivityDtoCopyWith<$Res> {
+  _$InfantWellnessActivityDtoCopyWithImpl(this._self, this._then);
+
+  final InfantWellnessActivityDto _self;
+  final $Res Function(InfantWellnessActivityDto) _then;
+
+  /// Create a copy of InfantWellnessActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [InfantWellnessActivityDto].
+extension InfantWellnessActivityDtoPatterns on InfantWellnessActivityDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InfantWellnessActivityDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InfantWellnessActivityDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InfantWellnessActivityDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDto() when $default != null:
+        return $default(
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDto():
+        return $default(
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDto() when $default != null:
+        return $default(
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _InfantWellnessActivityDto implements InfantWellnessActivityDto {
+  _InfantWellnessActivityDto(
+      {@JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'activityType') this.activityType,
+      @JsonKey(name: 'activityDate') this.activityDate,
+      @JsonKey(name: 'activityDateBridge') this.activityDateBridge,
+      @JsonKey(name: 'activityTime') this.activityTime,
+      @JsonKey(name: 'activityTimeBridge') this.activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') this.carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') this.nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') this.nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') this.nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') this.nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate,
+      @JsonKey(name: 'integrationRefId') this.integrationRefId});
+  factory _InfantWellnessActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$InfantWellnessActivityDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  @override
+  @JsonKey(name: 'activityType')
+  final int? activityType;
+  @override
+  @JsonKey(name: 'activityDate')
+  final String? activityDate;
+  @override
+  @JsonKey(name: 'activityDateBridge')
+  final DateTime? activityDateBridge;
+  @override
+  @JsonKey(name: 'activityTime')
+  final String? activityTime;
+  @override
+  @JsonKey(name: 'activityTimeBridge')
+  final String? activityTimeBridge;
+  @override
+  @JsonKey(name: 'carriedOutBy')
+  final String? carriedOutBy;
+  @override
+  @JsonKey(name: 'nextActivityDate')
+  final String? nextActivityDate;
+  @override
+  @JsonKey(name: 'nextActivityDateBridge')
+  final DateTime? nextActivityDateBridge;
+  @override
+  @JsonKey(name: 'nextActivityTime')
+  final String? nextActivityTime;
+  @override
+  @JsonKey(name: 'nextActivityTimeBridge')
+  final String? nextActivityTimeBridge;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'integrationRefId')
+  final String? integrationRefId;
+
+  /// Create a copy of InfantWellnessActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InfantWellnessActivityDtoCopyWith<_InfantWellnessActivityDto>
+      get copyWith =>
+          __$InfantWellnessActivityDtoCopyWithImpl<_InfantWellnessActivityDto>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InfantWellnessActivityDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InfantWellnessActivityDto &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'InfantWellnessActivityDto(studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InfantWellnessActivityDtoCopyWith<$Res>
+    implements $InfantWellnessActivityDtoCopyWith<$Res> {
+  factory _$InfantWellnessActivityDtoCopyWith(_InfantWellnessActivityDto value,
+          $Res Function(_InfantWellnessActivityDto) _then) =
+      __$InfantWellnessActivityDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class __$InfantWellnessActivityDtoCopyWithImpl<$Res>
+    implements _$InfantWellnessActivityDtoCopyWith<$Res> {
+  __$InfantWellnessActivityDtoCopyWithImpl(this._self, this._then);
+
+  final _InfantWellnessActivityDto _self;
+  final $Res Function(_InfantWellnessActivityDto) _then;
+
+  /// Create a copy of InfantWellnessActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_InfantWellnessActivityDto(
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$InfantWellnessActivityDtoDto {
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'activityType')
+  int? get activityType;
+  @JsonKey(name: 'feedType')
+  int? get feedType;
+  @JsonKey(name: 'bottleSource')
+  String? get bottleSource;
+  @JsonKey(name: 'bottleVolume')
+  String? get bottleVolume;
+  @JsonKey(name: 'latchOnSide')
+  String? get latchOnSide;
+  @JsonKey(name: 'solidServingAmount')
+  String? get solidServingAmount;
+  @JsonKey(name: 'poopTexture')
+  int? get poopTexture;
+  @JsonKey(name: 'poopColour')
+  int? get poopColour;
+  @JsonKey(name: 'hygieneType')
+  int? get hygieneType;
+  @JsonKey(name: 'restEndTime')
+  String? get restEndTime;
+  @JsonKey(name: 'activityDate')
+  String? get activityDate;
+  @JsonKey(name: 'activityDateBridge')
+  DateTime? get activityDateBridge;
+  @JsonKey(name: 'activityTime')
+  String? get activityTime;
+  @JsonKey(name: 'activityTimeBridge')
+  String? get activityTimeBridge;
+  @JsonKey(name: 'carriedOutBy')
+  String? get carriedOutBy;
+  @JsonKey(name: 'nextActivityDate')
+  String? get nextActivityDate;
+  @JsonKey(name: 'nextActivityDateBridge')
+  DateTime? get nextActivityDateBridge;
+  @JsonKey(name: 'nextActivityTime')
+  String? get nextActivityTime;
+  @JsonKey(name: 'nextActivityTimeBridge')
+  String? get nextActivityTimeBridge;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+
+  /// Create a copy of InfantWellnessActivityDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $InfantWellnessActivityDtoDtoCopyWith<InfantWellnessActivityDtoDto>
+      get copyWith => _$InfantWellnessActivityDtoDtoCopyWithImpl<
+              InfantWellnessActivityDtoDto>(
+          this as InfantWellnessActivityDtoDto, _$identity);
+
+  /// Serializes this InfantWellnessActivityDtoDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is InfantWellnessActivityDtoDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.feedType, feedType) ||
+                other.feedType == feedType) &&
+            (identical(other.bottleSource, bottleSource) ||
+                other.bottleSource == bottleSource) &&
+            (identical(other.bottleVolume, bottleVolume) ||
+                other.bottleVolume == bottleVolume) &&
+            (identical(other.latchOnSide, latchOnSide) ||
+                other.latchOnSide == latchOnSide) &&
+            (identical(other.solidServingAmount, solidServingAmount) ||
+                other.solidServingAmount == solidServingAmount) &&
+            (identical(other.poopTexture, poopTexture) ||
+                other.poopTexture == poopTexture) &&
+            (identical(other.poopColour, poopColour) ||
+                other.poopColour == poopColour) &&
+            (identical(other.hygieneType, hygieneType) ||
+                other.hygieneType == hygieneType) &&
+            (identical(other.restEndTime, restEndTime) ||
+                other.restEndTime == restEndTime) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        studentId,
+        activityType,
+        feedType,
+        bottleSource,
+        bottleVolume,
+        latchOnSide,
+        solidServingAmount,
+        poopTexture,
+        poopColour,
+        hygieneType,
+        restEndTime,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks
+      ]);
+
+  @override
+  String toString() {
+    return 'InfantWellnessActivityDtoDto(id: $id, studentId: $studentId, activityType: $activityType, feedType: $feedType, bottleSource: $bottleSource, bottleVolume: $bottleVolume, latchOnSide: $latchOnSide, solidServingAmount: $solidServingAmount, poopTexture: $poopTexture, poopColour: $poopColour, hygieneType: $hygieneType, restEndTime: $restEndTime, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $InfantWellnessActivityDtoDtoCopyWith<$Res> {
+  factory $InfantWellnessActivityDtoDtoCopyWith(
+          InfantWellnessActivityDtoDto value,
+          $Res Function(InfantWellnessActivityDtoDto) _then) =
+      _$InfantWellnessActivityDtoDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'feedType') int? feedType,
+      @JsonKey(name: 'bottleSource') String? bottleSource,
+      @JsonKey(name: 'bottleVolume') String? bottleVolume,
+      @JsonKey(name: 'latchOnSide') String? latchOnSide,
+      @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+      @JsonKey(name: 'poopTexture') int? poopTexture,
+      @JsonKey(name: 'poopColour') int? poopColour,
+      @JsonKey(name: 'hygieneType') int? hygieneType,
+      @JsonKey(name: 'restEndTime') String? restEndTime,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks});
+}
+
+/// @nodoc
+class _$InfantWellnessActivityDtoDtoCopyWithImpl<$Res>
+    implements $InfantWellnessActivityDtoDtoCopyWith<$Res> {
+  _$InfantWellnessActivityDtoDtoCopyWithImpl(this._self, this._then);
+
+  final InfantWellnessActivityDtoDto _self;
+  final $Res Function(InfantWellnessActivityDtoDto) _then;
+
+  /// Create a copy of InfantWellnessActivityDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? feedType = freezed,
+    Object? bottleSource = freezed,
+    Object? bottleVolume = freezed,
+    Object? latchOnSide = freezed,
+    Object? solidServingAmount = freezed,
+    Object? poopTexture = freezed,
+    Object? poopColour = freezed,
+    Object? hygieneType = freezed,
+    Object? restEndTime = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      feedType: freezed == feedType
+          ? _self.feedType
+          : feedType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bottleSource: freezed == bottleSource
+          ? _self.bottleSource
+          : bottleSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bottleVolume: freezed == bottleVolume
+          ? _self.bottleVolume
+          : bottleVolume // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latchOnSide: freezed == latchOnSide
+          ? _self.latchOnSide
+          : latchOnSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+      solidServingAmount: freezed == solidServingAmount
+          ? _self.solidServingAmount
+          : solidServingAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poopTexture: freezed == poopTexture
+          ? _self.poopTexture
+          : poopTexture // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poopColour: freezed == poopColour
+          ? _self.poopColour
+          : poopColour // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hygieneType: freezed == hygieneType
+          ? _self.hygieneType
+          : hygieneType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      restEndTime: freezed == restEndTime
+          ? _self.restEndTime
+          : restEndTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [InfantWellnessActivityDtoDto].
+extension InfantWellnessActivityDtoDtoPatterns on InfantWellnessActivityDtoDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InfantWellnessActivityDtoDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDtoDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InfantWellnessActivityDtoDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDtoDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InfantWellnessActivityDtoDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDtoDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'feedType') int? feedType,
+            @JsonKey(name: 'bottleSource') String? bottleSource,
+            @JsonKey(name: 'bottleVolume') String? bottleVolume,
+            @JsonKey(name: 'latchOnSide') String? latchOnSide,
+            @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+            @JsonKey(name: 'poopTexture') int? poopTexture,
+            @JsonKey(name: 'poopColour') int? poopColour,
+            @JsonKey(name: 'hygieneType') int? hygieneType,
+            @JsonKey(name: 'restEndTime') String? restEndTime,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDtoDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.studentId,
+            _that.activityType,
+            _that.feedType,
+            _that.bottleSource,
+            _that.bottleVolume,
+            _that.latchOnSide,
+            _that.solidServingAmount,
+            _that.poopTexture,
+            _that.poopColour,
+            _that.hygieneType,
+            _that.restEndTime,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'feedType') int? feedType,
+            @JsonKey(name: 'bottleSource') String? bottleSource,
+            @JsonKey(name: 'bottleVolume') String? bottleVolume,
+            @JsonKey(name: 'latchOnSide') String? latchOnSide,
+            @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+            @JsonKey(name: 'poopTexture') int? poopTexture,
+            @JsonKey(name: 'poopColour') int? poopColour,
+            @JsonKey(name: 'hygieneType') int? hygieneType,
+            @JsonKey(name: 'restEndTime') String? restEndTime,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDtoDto():
+        return $default(
+            _that.id,
+            _that.studentId,
+            _that.activityType,
+            _that.feedType,
+            _that.bottleSource,
+            _that.bottleVolume,
+            _that.latchOnSide,
+            _that.solidServingAmount,
+            _that.poopTexture,
+            _that.poopColour,
+            _that.hygieneType,
+            _that.restEndTime,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'feedType') int? feedType,
+            @JsonKey(name: 'bottleSource') String? bottleSource,
+            @JsonKey(name: 'bottleVolume') String? bottleVolume,
+            @JsonKey(name: 'latchOnSide') String? latchOnSide,
+            @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+            @JsonKey(name: 'poopTexture') int? poopTexture,
+            @JsonKey(name: 'poopColour') int? poopColour,
+            @JsonKey(name: 'hygieneType') int? hygieneType,
+            @JsonKey(name: 'restEndTime') String? restEndTime,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDtoDto() when $default != null:
+        return $default(
+            _that.id,
+            _that.studentId,
+            _that.activityType,
+            _that.feedType,
+            _that.bottleSource,
+            _that.bottleVolume,
+            _that.latchOnSide,
+            _that.solidServingAmount,
+            _that.poopTexture,
+            _that.poopColour,
+            _that.hygieneType,
+            _that.restEndTime,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _InfantWellnessActivityDtoDto implements InfantWellnessActivityDtoDto {
+  _InfantWellnessActivityDtoDto(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'activityType') this.activityType,
+      @JsonKey(name: 'feedType') this.feedType,
+      @JsonKey(name: 'bottleSource') this.bottleSource,
+      @JsonKey(name: 'bottleVolume') this.bottleVolume,
+      @JsonKey(name: 'latchOnSide') this.latchOnSide,
+      @JsonKey(name: 'solidServingAmount') this.solidServingAmount,
+      @JsonKey(name: 'poopTexture') this.poopTexture,
+      @JsonKey(name: 'poopColour') this.poopColour,
+      @JsonKey(name: 'hygieneType') this.hygieneType,
+      @JsonKey(name: 'restEndTime') this.restEndTime,
+      @JsonKey(name: 'activityDate') this.activityDate,
+      @JsonKey(name: 'activityDateBridge') this.activityDateBridge,
+      @JsonKey(name: 'activityTime') this.activityTime,
+      @JsonKey(name: 'activityTimeBridge') this.activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') this.carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') this.nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') this.nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') this.nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') this.nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') this.remarks});
+  factory _InfantWellnessActivityDtoDto.fromJson(Map<String, dynamic> json) =>
+      _$InfantWellnessActivityDtoDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  @override
+  @JsonKey(name: 'activityType')
+  final int? activityType;
+  @override
+  @JsonKey(name: 'feedType')
+  final int? feedType;
+  @override
+  @JsonKey(name: 'bottleSource')
+  final String? bottleSource;
+  @override
+  @JsonKey(name: 'bottleVolume')
+  final String? bottleVolume;
+  @override
+  @JsonKey(name: 'latchOnSide')
+  final String? latchOnSide;
+  @override
+  @JsonKey(name: 'solidServingAmount')
+  final String? solidServingAmount;
+  @override
+  @JsonKey(name: 'poopTexture')
+  final int? poopTexture;
+  @override
+  @JsonKey(name: 'poopColour')
+  final int? poopColour;
+  @override
+  @JsonKey(name: 'hygieneType')
+  final int? hygieneType;
+  @override
+  @JsonKey(name: 'restEndTime')
+  final String? restEndTime;
+  @override
+  @JsonKey(name: 'activityDate')
+  final String? activityDate;
+  @override
+  @JsonKey(name: 'activityDateBridge')
+  final DateTime? activityDateBridge;
+  @override
+  @JsonKey(name: 'activityTime')
+  final String? activityTime;
+  @override
+  @JsonKey(name: 'activityTimeBridge')
+  final String? activityTimeBridge;
+  @override
+  @JsonKey(name: 'carriedOutBy')
+  final String? carriedOutBy;
+  @override
+  @JsonKey(name: 'nextActivityDate')
+  final String? nextActivityDate;
+  @override
+  @JsonKey(name: 'nextActivityDateBridge')
+  final DateTime? nextActivityDateBridge;
+  @override
+  @JsonKey(name: 'nextActivityTime')
+  final String? nextActivityTime;
+  @override
+  @JsonKey(name: 'nextActivityTimeBridge')
+  final String? nextActivityTimeBridge;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+
+  /// Create a copy of InfantWellnessActivityDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InfantWellnessActivityDtoDtoCopyWith<_InfantWellnessActivityDtoDto>
+      get copyWith => __$InfantWellnessActivityDtoDtoCopyWithImpl<
+          _InfantWellnessActivityDtoDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InfantWellnessActivityDtoDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InfantWellnessActivityDtoDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.feedType, feedType) ||
+                other.feedType == feedType) &&
+            (identical(other.bottleSource, bottleSource) ||
+                other.bottleSource == bottleSource) &&
+            (identical(other.bottleVolume, bottleVolume) ||
+                other.bottleVolume == bottleVolume) &&
+            (identical(other.latchOnSide, latchOnSide) ||
+                other.latchOnSide == latchOnSide) &&
+            (identical(other.solidServingAmount, solidServingAmount) ||
+                other.solidServingAmount == solidServingAmount) &&
+            (identical(other.poopTexture, poopTexture) ||
+                other.poopTexture == poopTexture) &&
+            (identical(other.poopColour, poopColour) ||
+                other.poopColour == poopColour) &&
+            (identical(other.hygieneType, hygieneType) ||
+                other.hygieneType == hygieneType) &&
+            (identical(other.restEndTime, restEndTime) ||
+                other.restEndTime == restEndTime) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        studentId,
+        activityType,
+        feedType,
+        bottleSource,
+        bottleVolume,
+        latchOnSide,
+        solidServingAmount,
+        poopTexture,
+        poopColour,
+        hygieneType,
+        restEndTime,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks
+      ]);
+
+  @override
+  String toString() {
+    return 'InfantWellnessActivityDtoDto(id: $id, studentId: $studentId, activityType: $activityType, feedType: $feedType, bottleSource: $bottleSource, bottleVolume: $bottleVolume, latchOnSide: $latchOnSide, solidServingAmount: $solidServingAmount, poopTexture: $poopTexture, poopColour: $poopColour, hygieneType: $hygieneType, restEndTime: $restEndTime, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InfantWellnessActivityDtoDtoCopyWith<$Res>
+    implements $InfantWellnessActivityDtoDtoCopyWith<$Res> {
+  factory _$InfantWellnessActivityDtoDtoCopyWith(
+          _InfantWellnessActivityDtoDto value,
+          $Res Function(_InfantWellnessActivityDtoDto) _then) =
+      __$InfantWellnessActivityDtoDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'feedType') int? feedType,
+      @JsonKey(name: 'bottleSource') String? bottleSource,
+      @JsonKey(name: 'bottleVolume') String? bottleVolume,
+      @JsonKey(name: 'latchOnSide') String? latchOnSide,
+      @JsonKey(name: 'solidServingAmount') String? solidServingAmount,
+      @JsonKey(name: 'poopTexture') int? poopTexture,
+      @JsonKey(name: 'poopColour') int? poopColour,
+      @JsonKey(name: 'hygieneType') int? hygieneType,
+      @JsonKey(name: 'restEndTime') String? restEndTime,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks});
+}
+
+/// @nodoc
+class __$InfantWellnessActivityDtoDtoCopyWithImpl<$Res>
+    implements _$InfantWellnessActivityDtoDtoCopyWith<$Res> {
+  __$InfantWellnessActivityDtoDtoCopyWithImpl(this._self, this._then);
+
+  final _InfantWellnessActivityDtoDto _self;
+  final $Res Function(_InfantWellnessActivityDtoDto) _then;
+
+  /// Create a copy of InfantWellnessActivityDtoDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? feedType = freezed,
+    Object? bottleSource = freezed,
+    Object? bottleVolume = freezed,
+    Object? latchOnSide = freezed,
+    Object? solidServingAmount = freezed,
+    Object? poopTexture = freezed,
+    Object? poopColour = freezed,
+    Object? hygieneType = freezed,
+    Object? restEndTime = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+  }) {
+    return _then(_InfantWellnessActivityDtoDto(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      feedType: freezed == feedType
+          ? _self.feedType
+          : feedType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      bottleSource: freezed == bottleSource
+          ? _self.bottleSource
+          : bottleSource // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bottleVolume: freezed == bottleVolume
+          ? _self.bottleVolume
+          : bottleVolume // ignore: cast_nullable_to_non_nullable
+              as String?,
+      latchOnSide: freezed == latchOnSide
+          ? _self.latchOnSide
+          : latchOnSide // ignore: cast_nullable_to_non_nullable
+              as String?,
+      solidServingAmount: freezed == solidServingAmount
+          ? _self.solidServingAmount
+          : solidServingAmount // ignore: cast_nullable_to_non_nullable
+              as String?,
+      poopTexture: freezed == poopTexture
+          ? _self.poopTexture
+          : poopTexture // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poopColour: freezed == poopColour
+          ? _self.poopColour
+          : poopColour // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hygieneType: freezed == hygieneType
+          ? _self.hygieneType
+          : hygieneType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      restEndTime: freezed == restEndTime
+          ? _self.restEndTime
+          : restEndTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$InfantWellnessActivityDTODto {
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'activities')
+  List<InfantWellnessActivityDto>? get activities;
+  @JsonKey(name: 'lastFeed')
+  FeedActivityDto? get lastFeed;
+  @JsonKey(name: 'lasRest')
+  RestActivityDto? get lasRest;
+  @JsonKey(name: 'lastPoop')
+  PoopActivityDto? get lastPoop;
+  @JsonKey(name: 'lastHygiene')
+  HygieneActivityDto? get lastHygiene;
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+  @JsonKey(name: 'integrationRefId')
+  String? get integrationRefId;
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $InfantWellnessActivityDTODtoCopyWith<InfantWellnessActivityDTODto>
+      get copyWith => _$InfantWellnessActivityDTODtoCopyWithImpl<
+              InfantWellnessActivityDTODto>(
+          this as InfantWellnessActivityDTODto, _$identity);
+
+  /// Serializes this InfantWellnessActivityDTODto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is InfantWellnessActivityDTODto &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            const DeepCollectionEquality()
+                .equals(other.activities, activities) &&
+            (identical(other.lastFeed, lastFeed) ||
+                other.lastFeed == lastFeed) &&
+            (identical(other.lasRest, lasRest) || other.lasRest == lasRest) &&
+            (identical(other.lastPoop, lastPoop) ||
+                other.lastPoop == lastPoop) &&
+            (identical(other.lastHygiene, lastHygiene) ||
+                other.lastHygiene == lastHygiene) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      studentId,
+      const DeepCollectionEquality().hash(activities),
+      lastFeed,
+      lasRest,
+      lastPoop,
+      lastHygiene,
+      id,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate,
+      integrationRefId);
+
+  @override
+  String toString() {
+    return 'InfantWellnessActivityDTODto(studentId: $studentId, activities: $activities, lastFeed: $lastFeed, lasRest: $lasRest, lastPoop: $lastPoop, lastHygiene: $lastHygiene, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $InfantWellnessActivityDTODtoCopyWith<$Res> {
+  factory $InfantWellnessActivityDTODtoCopyWith(
+          InfantWellnessActivityDTODto value,
+          $Res Function(InfantWellnessActivityDTODto) _then) =
+      _$InfantWellnessActivityDTODtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activities') List<InfantWellnessActivityDto>? activities,
+      @JsonKey(name: 'lastFeed') FeedActivityDto? lastFeed,
+      @JsonKey(name: 'lasRest') RestActivityDto? lasRest,
+      @JsonKey(name: 'lastPoop') PoopActivityDto? lastPoop,
+      @JsonKey(name: 'lastHygiene') HygieneActivityDto? lastHygiene,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+
+  $FeedActivityDtoCopyWith<$Res>? get lastFeed;
+  $RestActivityDtoCopyWith<$Res>? get lasRest;
+  $PoopActivityDtoCopyWith<$Res>? get lastPoop;
+  $HygieneActivityDtoCopyWith<$Res>? get lastHygiene;
+}
+
+/// @nodoc
+class _$InfantWellnessActivityDTODtoCopyWithImpl<$Res>
+    implements $InfantWellnessActivityDTODtoCopyWith<$Res> {
+  _$InfantWellnessActivityDTODtoCopyWithImpl(this._self, this._then);
+
+  final InfantWellnessActivityDTODto _self;
+  final $Res Function(InfantWellnessActivityDTODto) _then;
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? studentId = freezed,
+    Object? activities = freezed,
+    Object? lastFeed = freezed,
+    Object? lasRest = freezed,
+    Object? lastPoop = freezed,
+    Object? lastHygiene = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activities: freezed == activities
+          ? _self.activities
+          : activities // ignore: cast_nullable_to_non_nullable
+              as List<InfantWellnessActivityDto>?,
+      lastFeed: freezed == lastFeed
+          ? _self.lastFeed
+          : lastFeed // ignore: cast_nullable_to_non_nullable
+              as FeedActivityDto?,
+      lasRest: freezed == lasRest
+          ? _self.lasRest
+          : lasRest // ignore: cast_nullable_to_non_nullable
+              as RestActivityDto?,
+      lastPoop: freezed == lastPoop
+          ? _self.lastPoop
+          : lastPoop // ignore: cast_nullable_to_non_nullable
+              as PoopActivityDto?,
+      lastHygiene: freezed == lastHygiene
+          ? _self.lastHygiene
+          : lastHygiene // ignore: cast_nullable_to_non_nullable
+              as HygieneActivityDto?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FeedActivityDtoCopyWith<$Res>? get lastFeed {
+    if (_self.lastFeed == null) {
+      return null;
+    }
+
+    return $FeedActivityDtoCopyWith<$Res>(_self.lastFeed!, (value) {
+      return _then(_self.copyWith(lastFeed: value));
+    });
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RestActivityDtoCopyWith<$Res>? get lasRest {
+    if (_self.lasRest == null) {
+      return null;
+    }
+
+    return $RestActivityDtoCopyWith<$Res>(_self.lasRest!, (value) {
+      return _then(_self.copyWith(lasRest: value));
+    });
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PoopActivityDtoCopyWith<$Res>? get lastPoop {
+    if (_self.lastPoop == null) {
+      return null;
+    }
+
+    return $PoopActivityDtoCopyWith<$Res>(_self.lastPoop!, (value) {
+      return _then(_self.copyWith(lastPoop: value));
+    });
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $HygieneActivityDtoCopyWith<$Res>? get lastHygiene {
+    if (_self.lastHygiene == null) {
+      return null;
+    }
+
+    return $HygieneActivityDtoCopyWith<$Res>(_self.lastHygiene!, (value) {
+      return _then(_self.copyWith(lastHygiene: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InfantWellnessActivityDTODto].
+extension InfantWellnessActivityDTODtoPatterns on InfantWellnessActivityDTODto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InfantWellnessActivityDTODto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDTODto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InfantWellnessActivityDTODto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDTODto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InfantWellnessActivityDTODto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDTODto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activities')
+            List<InfantWellnessActivityDto>? activities,
+            @JsonKey(name: 'lastFeed') FeedActivityDto? lastFeed,
+            @JsonKey(name: 'lasRest') RestActivityDto? lasRest,
+            @JsonKey(name: 'lastPoop') PoopActivityDto? lastPoop,
+            @JsonKey(name: 'lastHygiene') HygieneActivityDto? lastHygiene,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDTODto() when $default != null:
+        return $default(
+            _that.studentId,
+            _that.activities,
+            _that.lastFeed,
+            _that.lasRest,
+            _that.lastPoop,
+            _that.lastHygiene,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activities')
+            List<InfantWellnessActivityDto>? activities,
+            @JsonKey(name: 'lastFeed') FeedActivityDto? lastFeed,
+            @JsonKey(name: 'lasRest') RestActivityDto? lasRest,
+            @JsonKey(name: 'lastPoop') PoopActivityDto? lastPoop,
+            @JsonKey(name: 'lastHygiene') HygieneActivityDto? lastHygiene,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDTODto():
+        return $default(
+            _that.studentId,
+            _that.activities,
+            _that.lastFeed,
+            _that.lasRest,
+            _that.lastPoop,
+            _that.lastHygiene,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activities')
+            List<InfantWellnessActivityDto>? activities,
+            @JsonKey(name: 'lastFeed') FeedActivityDto? lastFeed,
+            @JsonKey(name: 'lasRest') RestActivityDto? lasRest,
+            @JsonKey(name: 'lastPoop') PoopActivityDto? lastPoop,
+            @JsonKey(name: 'lastHygiene') HygieneActivityDto? lastHygiene,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InfantWellnessActivityDTODto() when $default != null:
+        return $default(
+            _that.studentId,
+            _that.activities,
+            _that.lastFeed,
+            _that.lasRest,
+            _that.lastPoop,
+            _that.lastHygiene,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _InfantWellnessActivityDTODto implements InfantWellnessActivityDTODto {
+  _InfantWellnessActivityDTODto(
+      {@JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'activities')
+      final List<InfantWellnessActivityDto>? activities,
+      @JsonKey(name: 'lastFeed') this.lastFeed,
+      @JsonKey(name: 'lasRest') this.lasRest,
+      @JsonKey(name: 'lastPoop') this.lastPoop,
+      @JsonKey(name: 'lastHygiene') this.lastHygiene,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate,
+      @JsonKey(name: 'integrationRefId') this.integrationRefId})
+      : _activities = activities;
+  factory _InfantWellnessActivityDTODto.fromJson(Map<String, dynamic> json) =>
+      _$InfantWellnessActivityDTODtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  final List<InfantWellnessActivityDto>? _activities;
+  @override
+  @JsonKey(name: 'activities')
+  List<InfantWellnessActivityDto>? get activities {
+    final value = _activities;
+    if (value == null) return null;
+    if (_activities is EqualUnmodifiableListView) return _activities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'lastFeed')
+  final FeedActivityDto? lastFeed;
+  @override
+  @JsonKey(name: 'lasRest')
+  final RestActivityDto? lasRest;
+  @override
+  @JsonKey(name: 'lastPoop')
+  final PoopActivityDto? lastPoop;
+  @override
+  @JsonKey(name: 'lastHygiene')
+  final HygieneActivityDto? lastHygiene;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'integrationRefId')
+  final String? integrationRefId;
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InfantWellnessActivityDTODtoCopyWith<_InfantWellnessActivityDTODto>
+      get copyWith => __$InfantWellnessActivityDTODtoCopyWithImpl<
+          _InfantWellnessActivityDTODto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InfantWellnessActivityDTODtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InfantWellnessActivityDTODto &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            const DeepCollectionEquality()
+                .equals(other._activities, _activities) &&
+            (identical(other.lastFeed, lastFeed) ||
+                other.lastFeed == lastFeed) &&
+            (identical(other.lasRest, lasRest) || other.lasRest == lasRest) &&
+            (identical(other.lastPoop, lastPoop) ||
+                other.lastPoop == lastPoop) &&
+            (identical(other.lastHygiene, lastHygiene) ||
+                other.lastHygiene == lastHygiene) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      studentId,
+      const DeepCollectionEquality().hash(_activities),
+      lastFeed,
+      lasRest,
+      lastPoop,
+      lastHygiene,
+      id,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate,
+      integrationRefId);
+
+  @override
+  String toString() {
+    return 'InfantWellnessActivityDTODto(studentId: $studentId, activities: $activities, lastFeed: $lastFeed, lasRest: $lasRest, lastPoop: $lastPoop, lastHygiene: $lastHygiene, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InfantWellnessActivityDTODtoCopyWith<$Res>
+    implements $InfantWellnessActivityDTODtoCopyWith<$Res> {
+  factory _$InfantWellnessActivityDTODtoCopyWith(
+          _InfantWellnessActivityDTODto value,
+          $Res Function(_InfantWellnessActivityDTODto) _then) =
+      __$InfantWellnessActivityDTODtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activities') List<InfantWellnessActivityDto>? activities,
+      @JsonKey(name: 'lastFeed') FeedActivityDto? lastFeed,
+      @JsonKey(name: 'lasRest') RestActivityDto? lasRest,
+      @JsonKey(name: 'lastPoop') PoopActivityDto? lastPoop,
+      @JsonKey(name: 'lastHygiene') HygieneActivityDto? lastHygiene,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+
+  @override
+  $FeedActivityDtoCopyWith<$Res>? get lastFeed;
+  @override
+  $RestActivityDtoCopyWith<$Res>? get lasRest;
+  @override
+  $PoopActivityDtoCopyWith<$Res>? get lastPoop;
+  @override
+  $HygieneActivityDtoCopyWith<$Res>? get lastHygiene;
+}
+
+/// @nodoc
+class __$InfantWellnessActivityDTODtoCopyWithImpl<$Res>
+    implements _$InfantWellnessActivityDTODtoCopyWith<$Res> {
+  __$InfantWellnessActivityDTODtoCopyWithImpl(this._self, this._then);
+
+  final _InfantWellnessActivityDTODto _self;
+  final $Res Function(_InfantWellnessActivityDTODto) _then;
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? studentId = freezed,
+    Object? activities = freezed,
+    Object? lastFeed = freezed,
+    Object? lasRest = freezed,
+    Object? lastPoop = freezed,
+    Object? lastHygiene = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_InfantWellnessActivityDTODto(
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activities: freezed == activities
+          ? _self._activities
+          : activities // ignore: cast_nullable_to_non_nullable
+              as List<InfantWellnessActivityDto>?,
+      lastFeed: freezed == lastFeed
+          ? _self.lastFeed
+          : lastFeed // ignore: cast_nullable_to_non_nullable
+              as FeedActivityDto?,
+      lasRest: freezed == lasRest
+          ? _self.lasRest
+          : lasRest // ignore: cast_nullable_to_non_nullable
+              as RestActivityDto?,
+      lastPoop: freezed == lastPoop
+          ? _self.lastPoop
+          : lastPoop // ignore: cast_nullable_to_non_nullable
+              as PoopActivityDto?,
+      lastHygiene: freezed == lastHygiene
+          ? _self.lastHygiene
+          : lastHygiene // ignore: cast_nullable_to_non_nullable
+              as HygieneActivityDto?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FeedActivityDtoCopyWith<$Res>? get lastFeed {
+    if (_self.lastFeed == null) {
+      return null;
+    }
+
+    return $FeedActivityDtoCopyWith<$Res>(_self.lastFeed!, (value) {
+      return _then(_self.copyWith(lastFeed: value));
+    });
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RestActivityDtoCopyWith<$Res>? get lasRest {
+    if (_self.lasRest == null) {
+      return null;
+    }
+
+    return $RestActivityDtoCopyWith<$Res>(_self.lasRest!, (value) {
+      return _then(_self.copyWith(lasRest: value));
+    });
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PoopActivityDtoCopyWith<$Res>? get lastPoop {
+    if (_self.lastPoop == null) {
+      return null;
+    }
+
+    return $PoopActivityDtoCopyWith<$Res>(_self.lastPoop!, (value) {
+      return _then(_self.copyWith(lastPoop: value));
+    });
+  }
+
+  /// Create a copy of InfantWellnessActivityDTODto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $HygieneActivityDtoCopyWith<$Res>? get lastHygiene {
+    if (_self.lastHygiene == null) {
+      return null;
+    }
+
+    return $HygieneActivityDtoCopyWith<$Res>(_self.lastHygiene!, (value) {
+      return _then(_self.copyWith(lastHygiene: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$InvoiceApiDto {
+  @JsonKey(name: 'invoiceId')
+  int? get invoiceId;
+  @JsonKey(name: 'entityNumber')
+  String? get entityNumber;
+  @JsonKey(name: 'status')
+  int? get status;
+  @JsonKey(name: 'accountId')
+  int? get accountId;
+  @JsonKey(name: 'account')
+  AccountApiDto? get account;
+  @JsonKey(name: 'branchId')
+  int? get branchId;
+  @JsonKey(name: 'branch')
+  BranchApiDto? get branch;
+  @JsonKey(name: 'currency')
+  String? get currency;
+  @JsonKey(name: 'billingYear')
+  int? get billingYear;
+  @JsonKey(name: 'billingMonth')
+  int? get billingMonth;
+  @JsonKey(name: 'invoiceDate')
+  DateTime? get invoiceDate;
+  @JsonKey(name: 'dueDate')
+  String? get dueDate;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'invoiceTitle')
+  String? get invoiceTitle;
+  @JsonKey(name: 'voidRemarks')
+  String? get voidRemarks;
+  @JsonKey(name: 'totalTaxAmount')
+  num? get totalTaxAmount;
+  @JsonKey(name: 'totalChargeableAmountBeforeTax')
+  num? get totalChargeableAmountBeforeTax;
+  @JsonKey(name: 'totalChargeableAmountAfterTax')
+  num? get totalChargeableAmountAfterTax;
+  @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+  num? get totalDeductibleAmountBeforeTax;
+  @JsonKey(name: 'totalDeductibleAmountAfterTax')
+  num? get totalDeductibleAmountAfterTax;
+  @JsonKey(name: 'totalInvoiceAmount')
+  num? get totalInvoiceAmount;
+  @JsonKey(name: 'totalPaidAmount')
+  num? get totalPaidAmount;
+  @JsonKey(name: 'totalOutstandingAmount')
+  num? get totalOutstandingAmount;
+  @JsonKey(name: 'items')
+  List<InvoiceItemApiDto>? get items;
+  @JsonKey(name: 'receiptItems')
+  List<ReceiptItemApiDto>? get receiptItems;
+  @JsonKey(name: 'creditNoteItems')
+  List<CreditNoteItemApiDto>? get creditNoteItems;
+  @JsonKey(name: 'printUrl')
+  String? get printUrl;
+  @JsonKey(name: 'payNowQrString')
+  String? get payNowQrString;
+  @JsonKey(name: 'payNowQrImageBase64')
+  String? get payNowQrImageBase64;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $InvoiceApiDtoCopyWith<InvoiceApiDto> get copyWith =>
+      _$InvoiceApiDtoCopyWithImpl<InvoiceApiDto>(
+          this as InvoiceApiDto, _$identity);
+
+  /// Serializes this InvoiceApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is InvoiceApiDto &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.entityNumber, entityNumber) ||
+                other.entityNumber == entityNumber) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.account, account) || other.account == account) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.branch, branch) || other.branch == branch) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.billingYear, billingYear) ||
+                other.billingYear == billingYear) &&
+            (identical(other.billingMonth, billingMonth) ||
+                other.billingMonth == billingMonth) &&
+            (identical(other.invoiceDate, invoiceDate) ||
+                other.invoiceDate == invoiceDate) &&
+            (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.invoiceTitle, invoiceTitle) ||
+                other.invoiceTitle == invoiceTitle) &&
+            (identical(other.voidRemarks, voidRemarks) ||
+                other.voidRemarks == voidRemarks) &&
+            (identical(other.totalTaxAmount, totalTaxAmount) ||
+                other.totalTaxAmount == totalTaxAmount) &&
+            (identical(other.totalChargeableAmountBeforeTax, totalChargeableAmountBeforeTax) ||
+                other.totalChargeableAmountBeforeTax ==
+                    totalChargeableAmountBeforeTax) &&
+            (identical(other.totalChargeableAmountAfterTax, totalChargeableAmountAfterTax) ||
+                other.totalChargeableAmountAfterTax ==
+                    totalChargeableAmountAfterTax) &&
+            (identical(other.totalDeductibleAmountBeforeTax, totalDeductibleAmountBeforeTax) ||
+                other.totalDeductibleAmountBeforeTax ==
+                    totalDeductibleAmountBeforeTax) &&
+            (identical(other.totalDeductibleAmountAfterTax, totalDeductibleAmountAfterTax) ||
+                other.totalDeductibleAmountAfterTax ==
+                    totalDeductibleAmountAfterTax) &&
+            (identical(other.totalInvoiceAmount, totalInvoiceAmount) ||
+                other.totalInvoiceAmount == totalInvoiceAmount) &&
+            (identical(other.totalPaidAmount, totalPaidAmount) ||
+                other.totalPaidAmount == totalPaidAmount) &&
+            (identical(other.totalOutstandingAmount, totalOutstandingAmount) ||
+                other.totalOutstandingAmount == totalOutstandingAmount) &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            const DeepCollectionEquality()
+                .equals(other.receiptItems, receiptItems) &&
+            const DeepCollectionEquality()
+                .equals(other.creditNoteItems, creditNoteItems) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.payNowQrString, payNowQrString) ||
+                other.payNowQrString == payNowQrString) &&
+            (identical(other.payNowQrImageBase64, payNowQrImageBase64) ||
+                other.payNowQrImageBase64 == payNowQrImageBase64) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        invoiceId,
+        entityNumber,
+        status,
+        accountId,
+        account,
+        branchId,
+        branch,
+        currency,
+        billingYear,
+        billingMonth,
+        invoiceDate,
+        dueDate,
+        remarks,
+        invoiceTitle,
+        voidRemarks,
+        totalTaxAmount,
+        totalChargeableAmountBeforeTax,
+        totalChargeableAmountAfterTax,
+        totalDeductibleAmountBeforeTax,
+        totalDeductibleAmountAfterTax,
+        totalInvoiceAmount,
+        totalPaidAmount,
+        totalOutstandingAmount,
+        const DeepCollectionEquality().hash(items),
+        const DeepCollectionEquality().hash(receiptItems),
+        const DeepCollectionEquality().hash(creditNoteItems),
+        printUrl,
+        payNowQrString,
+        payNowQrImageBase64,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate
+      ]);
+
+  @override
+  String toString() {
+    return 'InvoiceApiDto(invoiceId: $invoiceId, entityNumber: $entityNumber, status: $status, accountId: $accountId, account: $account, branchId: $branchId, branch: $branch, currency: $currency, billingYear: $billingYear, billingMonth: $billingMonth, invoiceDate: $invoiceDate, dueDate: $dueDate, remarks: $remarks, invoiceTitle: $invoiceTitle, voidRemarks: $voidRemarks, totalTaxAmount: $totalTaxAmount, totalChargeableAmountBeforeTax: $totalChargeableAmountBeforeTax, totalChargeableAmountAfterTax: $totalChargeableAmountAfterTax, totalDeductibleAmountBeforeTax: $totalDeductibleAmountBeforeTax, totalDeductibleAmountAfterTax: $totalDeductibleAmountAfterTax, totalInvoiceAmount: $totalInvoiceAmount, totalPaidAmount: $totalPaidAmount, totalOutstandingAmount: $totalOutstandingAmount, items: $items, receiptItems: $receiptItems, creditNoteItems: $creditNoteItems, printUrl: $printUrl, payNowQrString: $payNowQrString, payNowQrImageBase64: $payNowQrImageBase64, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $InvoiceApiDtoCopyWith<$Res> {
+  factory $InvoiceApiDtoCopyWith(
+          InvoiceApiDto value, $Res Function(InvoiceApiDto) _then) =
+      _$InvoiceApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'entityNumber') String? entityNumber,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'account') AccountApiDto? account,
+      @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'branch') BranchApiDto? branch,
+      @JsonKey(name: 'currency') String? currency,
+      @JsonKey(name: 'billingYear') int? billingYear,
+      @JsonKey(name: 'billingMonth') int? billingMonth,
+      @JsonKey(name: 'invoiceDate') DateTime? invoiceDate,
+      @JsonKey(name: 'dueDate') String? dueDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'invoiceTitle') String? invoiceTitle,
+      @JsonKey(name: 'voidRemarks') String? voidRemarks,
+      @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+      @JsonKey(name: 'totalChargeableAmountBeforeTax')
+      num? totalChargeableAmountBeforeTax,
+      @JsonKey(name: 'totalChargeableAmountAfterTax')
+      num? totalChargeableAmountAfterTax,
+      @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+      num? totalDeductibleAmountBeforeTax,
+      @JsonKey(name: 'totalDeductibleAmountAfterTax')
+      num? totalDeductibleAmountAfterTax,
+      @JsonKey(name: 'totalInvoiceAmount') num? totalInvoiceAmount,
+      @JsonKey(name: 'totalPaidAmount') num? totalPaidAmount,
+      @JsonKey(name: 'totalOutstandingAmount') num? totalOutstandingAmount,
+      @JsonKey(name: 'items') List<InvoiceItemApiDto>? items,
+      @JsonKey(name: 'receiptItems') List<ReceiptItemApiDto>? receiptItems,
+      @JsonKey(name: 'creditNoteItems')
+      List<CreditNoteItemApiDto>? creditNoteItems,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'payNowQrString') String? payNowQrString,
+      @JsonKey(name: 'payNowQrImageBase64') String? payNowQrImageBase64,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  $AccountApiDtoCopyWith<$Res>? get account;
+  $BranchApiDtoCopyWith<$Res>? get branch;
+}
+
+/// @nodoc
+class _$InvoiceApiDtoCopyWithImpl<$Res>
+    implements $InvoiceApiDtoCopyWith<$Res> {
+  _$InvoiceApiDtoCopyWithImpl(this._self, this._then);
+
+  final InvoiceApiDto _self;
+  final $Res Function(InvoiceApiDto) _then;
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? invoiceId = freezed,
+    Object? entityNumber = freezed,
+    Object? status = freezed,
+    Object? accountId = freezed,
+    Object? account = freezed,
+    Object? branchId = freezed,
+    Object? branch = freezed,
+    Object? currency = freezed,
+    Object? billingYear = freezed,
+    Object? billingMonth = freezed,
+    Object? invoiceDate = freezed,
+    Object? dueDate = freezed,
+    Object? remarks = freezed,
+    Object? invoiceTitle = freezed,
+    Object? voidRemarks = freezed,
+    Object? totalTaxAmount = freezed,
+    Object? totalChargeableAmountBeforeTax = freezed,
+    Object? totalChargeableAmountAfterTax = freezed,
+    Object? totalDeductibleAmountBeforeTax = freezed,
+    Object? totalDeductibleAmountAfterTax = freezed,
+    Object? totalInvoiceAmount = freezed,
+    Object? totalPaidAmount = freezed,
+    Object? totalOutstandingAmount = freezed,
+    Object? items = freezed,
+    Object? receiptItems = freezed,
+    Object? creditNoteItems = freezed,
+    Object? printUrl = freezed,
+    Object? payNowQrString = freezed,
+    Object? payNowQrImageBase64 = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityNumber: freezed == entityNumber
+          ? _self.entityNumber
+          : entityNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      account: freezed == account
+          ? _self.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as AccountApiDto?,
+      branchId: freezed == branchId
+          ? _self.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      branch: freezed == branch
+          ? _self.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as BranchApiDto?,
+      currency: freezed == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      billingYear: freezed == billingYear
+          ? _self.billingYear
+          : billingYear // ignore: cast_nullable_to_non_nullable
+              as int?,
+      billingMonth: freezed == billingMonth
+          ? _self.billingMonth
+          : billingMonth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invoiceDate: freezed == invoiceDate
+          ? _self.invoiceDate
+          : invoiceDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dueDate: freezed == dueDate
+          ? _self.dueDate
+          : dueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      invoiceTitle: freezed == invoiceTitle
+          ? _self.invoiceTitle
+          : invoiceTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      voidRemarks: freezed == voidRemarks
+          ? _self.voidRemarks
+          : voidRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTaxAmount: freezed == totalTaxAmount
+          ? _self.totalTaxAmount
+          : totalTaxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalChargeableAmountBeforeTax: freezed == totalChargeableAmountBeforeTax
+          ? _self.totalChargeableAmountBeforeTax
+          : totalChargeableAmountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalChargeableAmountAfterTax: freezed == totalChargeableAmountAfterTax
+          ? _self.totalChargeableAmountAfterTax
+          : totalChargeableAmountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalDeductibleAmountBeforeTax: freezed == totalDeductibleAmountBeforeTax
+          ? _self.totalDeductibleAmountBeforeTax
+          : totalDeductibleAmountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalDeductibleAmountAfterTax: freezed == totalDeductibleAmountAfterTax
+          ? _self.totalDeductibleAmountAfterTax
+          : totalDeductibleAmountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalInvoiceAmount: freezed == totalInvoiceAmount
+          ? _self.totalInvoiceAmount
+          : totalInvoiceAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalPaidAmount: freezed == totalPaidAmount
+          ? _self.totalPaidAmount
+          : totalPaidAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalOutstandingAmount: freezed == totalOutstandingAmount
+          ? _self.totalOutstandingAmount
+          : totalOutstandingAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      items: freezed == items
+          ? _self.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<InvoiceItemApiDto>?,
+      receiptItems: freezed == receiptItems
+          ? _self.receiptItems
+          : receiptItems // ignore: cast_nullable_to_non_nullable
+              as List<ReceiptItemApiDto>?,
+      creditNoteItems: freezed == creditNoteItems
+          ? _self.creditNoteItems
+          : creditNoteItems // ignore: cast_nullable_to_non_nullable
+              as List<CreditNoteItemApiDto>?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      payNowQrString: freezed == payNowQrString
+          ? _self.payNowQrString
+          : payNowQrString // ignore: cast_nullable_to_non_nullable
+              as String?,
+      payNowQrImageBase64: freezed == payNowQrImageBase64
+          ? _self.payNowQrImageBase64
+          : payNowQrImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AccountApiDtoCopyWith<$Res>? get account {
+    if (_self.account == null) {
+      return null;
+    }
+
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
+      return _then(_self.copyWith(account: value));
+    });
+  }
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BranchApiDtoCopyWith<$Res>? get branch {
+    if (_self.branch == null) {
+      return null;
+    }
+
+    return $BranchApiDtoCopyWith<$Res>(_self.branch!, (value) {
+      return _then(_self.copyWith(branch: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [InvoiceApiDto].
+extension InvoiceApiDtoPatterns on InvoiceApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InvoiceApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InvoiceApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InvoiceApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'account') AccountApiDto? account,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'branch') BranchApiDto? branch,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'billingYear') int? billingYear,
+            @JsonKey(name: 'billingMonth') int? billingMonth,
+            @JsonKey(name: 'invoiceDate') DateTime? invoiceDate,
+            @JsonKey(name: 'dueDate') String? dueDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'invoiceTitle') String? invoiceTitle,
+            @JsonKey(name: 'voidRemarks') String? voidRemarks,
+            @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+            @JsonKey(name: 'totalChargeableAmountBeforeTax')
+            num? totalChargeableAmountBeforeTax,
+            @JsonKey(name: 'totalChargeableAmountAfterTax')
+            num? totalChargeableAmountAfterTax,
+            @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+            num? totalDeductibleAmountBeforeTax,
+            @JsonKey(name: 'totalDeductibleAmountAfterTax')
+            num? totalDeductibleAmountAfterTax,
+            @JsonKey(name: 'totalInvoiceAmount') num? totalInvoiceAmount,
+            @JsonKey(name: 'totalPaidAmount') num? totalPaidAmount,
+            @JsonKey(name: 'totalOutstandingAmount')
+            num? totalOutstandingAmount,
+            @JsonKey(name: 'items') List<InvoiceItemApiDto>? items,
+            @JsonKey(name: 'receiptItems')
+            List<ReceiptItemApiDto>? receiptItems,
+            @JsonKey(name: 'creditNoteItems')
+            List<CreditNoteItemApiDto>? creditNoteItems,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'payNowQrString') String? payNowQrString,
+            @JsonKey(name: 'payNowQrImageBase64') String? payNowQrImageBase64,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceApiDto() when $default != null:
+        return $default(
+            _that.invoiceId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.account,
+            _that.branchId,
+            _that.branch,
+            _that.currency,
+            _that.billingYear,
+            _that.billingMonth,
+            _that.invoiceDate,
+            _that.dueDate,
+            _that.remarks,
+            _that.invoiceTitle,
+            _that.voidRemarks,
+            _that.totalTaxAmount,
+            _that.totalChargeableAmountBeforeTax,
+            _that.totalChargeableAmountAfterTax,
+            _that.totalDeductibleAmountBeforeTax,
+            _that.totalDeductibleAmountAfterTax,
+            _that.totalInvoiceAmount,
+            _that.totalPaidAmount,
+            _that.totalOutstandingAmount,
+            _that.items,
+            _that.receiptItems,
+            _that.creditNoteItems,
+            _that.printUrl,
+            _that.payNowQrString,
+            _that.payNowQrImageBase64,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'account') AccountApiDto? account,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'branch') BranchApiDto? branch,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'billingYear') int? billingYear,
+            @JsonKey(name: 'billingMonth') int? billingMonth,
+            @JsonKey(name: 'invoiceDate') DateTime? invoiceDate,
+            @JsonKey(name: 'dueDate') String? dueDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'invoiceTitle') String? invoiceTitle,
+            @JsonKey(name: 'voidRemarks') String? voidRemarks,
+            @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+            @JsonKey(name: 'totalChargeableAmountBeforeTax')
+            num? totalChargeableAmountBeforeTax,
+            @JsonKey(name: 'totalChargeableAmountAfterTax')
+            num? totalChargeableAmountAfterTax,
+            @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+            num? totalDeductibleAmountBeforeTax,
+            @JsonKey(name: 'totalDeductibleAmountAfterTax')
+            num? totalDeductibleAmountAfterTax,
+            @JsonKey(name: 'totalInvoiceAmount') num? totalInvoiceAmount,
+            @JsonKey(name: 'totalPaidAmount') num? totalPaidAmount,
+            @JsonKey(name: 'totalOutstandingAmount')
+            num? totalOutstandingAmount,
+            @JsonKey(name: 'items') List<InvoiceItemApiDto>? items,
+            @JsonKey(name: 'receiptItems')
+            List<ReceiptItemApiDto>? receiptItems,
+            @JsonKey(name: 'creditNoteItems')
+            List<CreditNoteItemApiDto>? creditNoteItems,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'payNowQrString') String? payNowQrString,
+            @JsonKey(name: 'payNowQrImageBase64') String? payNowQrImageBase64,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceApiDto():
+        return $default(
+            _that.invoiceId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.account,
+            _that.branchId,
+            _that.branch,
+            _that.currency,
+            _that.billingYear,
+            _that.billingMonth,
+            _that.invoiceDate,
+            _that.dueDate,
+            _that.remarks,
+            _that.invoiceTitle,
+            _that.voidRemarks,
+            _that.totalTaxAmount,
+            _that.totalChargeableAmountBeforeTax,
+            _that.totalChargeableAmountAfterTax,
+            _that.totalDeductibleAmountBeforeTax,
+            _that.totalDeductibleAmountAfterTax,
+            _that.totalInvoiceAmount,
+            _that.totalPaidAmount,
+            _that.totalOutstandingAmount,
+            _that.items,
+            _that.receiptItems,
+            _that.creditNoteItems,
+            _that.printUrl,
+            _that.payNowQrString,
+            _that.payNowQrImageBase64,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'account') AccountApiDto? account,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'branch') BranchApiDto? branch,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'billingYear') int? billingYear,
+            @JsonKey(name: 'billingMonth') int? billingMonth,
+            @JsonKey(name: 'invoiceDate') DateTime? invoiceDate,
+            @JsonKey(name: 'dueDate') String? dueDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'invoiceTitle') String? invoiceTitle,
+            @JsonKey(name: 'voidRemarks') String? voidRemarks,
+            @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+            @JsonKey(name: 'totalChargeableAmountBeforeTax')
+            num? totalChargeableAmountBeforeTax,
+            @JsonKey(name: 'totalChargeableAmountAfterTax')
+            num? totalChargeableAmountAfterTax,
+            @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+            num? totalDeductibleAmountBeforeTax,
+            @JsonKey(name: 'totalDeductibleAmountAfterTax')
+            num? totalDeductibleAmountAfterTax,
+            @JsonKey(name: 'totalInvoiceAmount') num? totalInvoiceAmount,
+            @JsonKey(name: 'totalPaidAmount') num? totalPaidAmount,
+            @JsonKey(name: 'totalOutstandingAmount')
+            num? totalOutstandingAmount,
+            @JsonKey(name: 'items') List<InvoiceItemApiDto>? items,
+            @JsonKey(name: 'receiptItems')
+            List<ReceiptItemApiDto>? receiptItems,
+            @JsonKey(name: 'creditNoteItems')
+            List<CreditNoteItemApiDto>? creditNoteItems,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'payNowQrString') String? payNowQrString,
+            @JsonKey(name: 'payNowQrImageBase64') String? payNowQrImageBase64,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceApiDto() when $default != null:
+        return $default(
+            _that.invoiceId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.account,
+            _that.branchId,
+            _that.branch,
+            _that.currency,
+            _that.billingYear,
+            _that.billingMonth,
+            _that.invoiceDate,
+            _that.dueDate,
+            _that.remarks,
+            _that.invoiceTitle,
+            _that.voidRemarks,
+            _that.totalTaxAmount,
+            _that.totalChargeableAmountBeforeTax,
+            _that.totalChargeableAmountAfterTax,
+            _that.totalDeductibleAmountBeforeTax,
+            _that.totalDeductibleAmountAfterTax,
+            _that.totalInvoiceAmount,
+            _that.totalPaidAmount,
+            _that.totalOutstandingAmount,
+            _that.items,
+            _that.receiptItems,
+            _that.creditNoteItems,
+            _that.printUrl,
+            _that.payNowQrString,
+            _that.payNowQrImageBase64,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _InvoiceApiDto implements InvoiceApiDto {
+  _InvoiceApiDto(
+      {@JsonKey(name: 'invoiceId') this.invoiceId,
+      @JsonKey(name: 'entityNumber') this.entityNumber,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'accountId') this.accountId,
+      @JsonKey(name: 'account') this.account,
+      @JsonKey(name: 'branchId') this.branchId,
+      @JsonKey(name: 'branch') this.branch,
+      @JsonKey(name: 'currency') this.currency,
+      @JsonKey(name: 'billingYear') this.billingYear,
+      @JsonKey(name: 'billingMonth') this.billingMonth,
+      @JsonKey(name: 'invoiceDate') this.invoiceDate,
+      @JsonKey(name: 'dueDate') this.dueDate,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'invoiceTitle') this.invoiceTitle,
+      @JsonKey(name: 'voidRemarks') this.voidRemarks,
+      @JsonKey(name: 'totalTaxAmount') this.totalTaxAmount,
+      @JsonKey(name: 'totalChargeableAmountBeforeTax')
+      this.totalChargeableAmountBeforeTax,
+      @JsonKey(name: 'totalChargeableAmountAfterTax')
+      this.totalChargeableAmountAfterTax,
+      @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+      this.totalDeductibleAmountBeforeTax,
+      @JsonKey(name: 'totalDeductibleAmountAfterTax')
+      this.totalDeductibleAmountAfterTax,
+      @JsonKey(name: 'totalInvoiceAmount') this.totalInvoiceAmount,
+      @JsonKey(name: 'totalPaidAmount') this.totalPaidAmount,
+      @JsonKey(name: 'totalOutstandingAmount') this.totalOutstandingAmount,
+      @JsonKey(name: 'items') final List<InvoiceItemApiDto>? items,
+      @JsonKey(name: 'receiptItems')
+      final List<ReceiptItemApiDto>? receiptItems,
+      @JsonKey(name: 'creditNoteItems')
+      final List<CreditNoteItemApiDto>? creditNoteItems,
+      @JsonKey(name: 'printUrl') this.printUrl,
+      @JsonKey(name: 'payNowQrString') this.payNowQrString,
+      @JsonKey(name: 'payNowQrImageBase64') this.payNowQrImageBase64,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate})
+      : _items = items,
+        _receiptItems = receiptItems,
+        _creditNoteItems = creditNoteItems;
+  factory _InvoiceApiDto.fromJson(Map<String, dynamic> json) =>
+      _$InvoiceApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'invoiceId')
+  final int? invoiceId;
+  @override
+  @JsonKey(name: 'entityNumber')
+  final String? entityNumber;
+  @override
+  @JsonKey(name: 'status')
+  final int? status;
+  @override
+  @JsonKey(name: 'accountId')
+  final int? accountId;
+  @override
+  @JsonKey(name: 'account')
+  final AccountApiDto? account;
+  @override
+  @JsonKey(name: 'branchId')
+  final int? branchId;
+  @override
+  @JsonKey(name: 'branch')
+  final BranchApiDto? branch;
+  @override
+  @JsonKey(name: 'currency')
+  final String? currency;
+  @override
+  @JsonKey(name: 'billingYear')
+  final int? billingYear;
+  @override
+  @JsonKey(name: 'billingMonth')
+  final int? billingMonth;
+  @override
+  @JsonKey(name: 'invoiceDate')
+  final DateTime? invoiceDate;
+  @override
+  @JsonKey(name: 'dueDate')
+  final String? dueDate;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'invoiceTitle')
+  final String? invoiceTitle;
+  @override
+  @JsonKey(name: 'voidRemarks')
+  final String? voidRemarks;
+  @override
+  @JsonKey(name: 'totalTaxAmount')
+  final num? totalTaxAmount;
+  @override
+  @JsonKey(name: 'totalChargeableAmountBeforeTax')
+  final num? totalChargeableAmountBeforeTax;
+  @override
+  @JsonKey(name: 'totalChargeableAmountAfterTax')
+  final num? totalChargeableAmountAfterTax;
+  @override
+  @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+  final num? totalDeductibleAmountBeforeTax;
+  @override
+  @JsonKey(name: 'totalDeductibleAmountAfterTax')
+  final num? totalDeductibleAmountAfterTax;
+  @override
+  @JsonKey(name: 'totalInvoiceAmount')
+  final num? totalInvoiceAmount;
+  @override
+  @JsonKey(name: 'totalPaidAmount')
+  final num? totalPaidAmount;
+  @override
+  @JsonKey(name: 'totalOutstandingAmount')
+  final num? totalOutstandingAmount;
+  final List<InvoiceItemApiDto>? _items;
+  @override
+  @JsonKey(name: 'items')
+  List<InvoiceItemApiDto>? get items {
+    final value = _items;
+    if (value == null) return null;
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<ReceiptItemApiDto>? _receiptItems;
+  @override
+  @JsonKey(name: 'receiptItems')
+  List<ReceiptItemApiDto>? get receiptItems {
+    final value = _receiptItems;
+    if (value == null) return null;
+    if (_receiptItems is EqualUnmodifiableListView) return _receiptItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<CreditNoteItemApiDto>? _creditNoteItems;
+  @override
+  @JsonKey(name: 'creditNoteItems')
+  List<CreditNoteItemApiDto>? get creditNoteItems {
+    final value = _creditNoteItems;
+    if (value == null) return null;
+    if (_creditNoteItems is EqualUnmodifiableListView) return _creditNoteItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'printUrl')
+  final String? printUrl;
+  @override
+  @JsonKey(name: 'payNowQrString')
+  final String? payNowQrString;
+  @override
+  @JsonKey(name: 'payNowQrImageBase64')
+  final String? payNowQrImageBase64;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InvoiceApiDtoCopyWith<_InvoiceApiDto> get copyWith =>
+      __$InvoiceApiDtoCopyWithImpl<_InvoiceApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InvoiceApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InvoiceApiDto &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.entityNumber, entityNumber) ||
+                other.entityNumber == entityNumber) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.account, account) || other.account == account) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.branch, branch) || other.branch == branch) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.billingYear, billingYear) ||
+                other.billingYear == billingYear) &&
+            (identical(other.billingMonth, billingMonth) ||
+                other.billingMonth == billingMonth) &&
+            (identical(other.invoiceDate, invoiceDate) ||
+                other.invoiceDate == invoiceDate) &&
+            (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.invoiceTitle, invoiceTitle) ||
+                other.invoiceTitle == invoiceTitle) &&
+            (identical(other.voidRemarks, voidRemarks) ||
+                other.voidRemarks == voidRemarks) &&
+            (identical(other.totalTaxAmount, totalTaxAmount) ||
+                other.totalTaxAmount == totalTaxAmount) &&
+            (identical(other.totalChargeableAmountBeforeTax, totalChargeableAmountBeforeTax) ||
+                other.totalChargeableAmountBeforeTax ==
+                    totalChargeableAmountBeforeTax) &&
+            (identical(other.totalChargeableAmountAfterTax, totalChargeableAmountAfterTax) ||
+                other.totalChargeableAmountAfterTax ==
+                    totalChargeableAmountAfterTax) &&
+            (identical(other.totalDeductibleAmountBeforeTax, totalDeductibleAmountBeforeTax) ||
+                other.totalDeductibleAmountBeforeTax ==
+                    totalDeductibleAmountBeforeTax) &&
+            (identical(other.totalDeductibleAmountAfterTax, totalDeductibleAmountAfterTax) ||
+                other.totalDeductibleAmountAfterTax ==
+                    totalDeductibleAmountAfterTax) &&
+            (identical(other.totalInvoiceAmount, totalInvoiceAmount) ||
+                other.totalInvoiceAmount == totalInvoiceAmount) &&
+            (identical(other.totalPaidAmount, totalPaidAmount) ||
+                other.totalPaidAmount == totalPaidAmount) &&
+            (identical(other.totalOutstandingAmount, totalOutstandingAmount) ||
+                other.totalOutstandingAmount == totalOutstandingAmount) &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            const DeepCollectionEquality()
+                .equals(other._receiptItems, _receiptItems) &&
+            const DeepCollectionEquality()
+                .equals(other._creditNoteItems, _creditNoteItems) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.payNowQrString, payNowQrString) ||
+                other.payNowQrString == payNowQrString) &&
+            (identical(other.payNowQrImageBase64, payNowQrImageBase64) ||
+                other.payNowQrImageBase64 == payNowQrImageBase64) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        invoiceId,
+        entityNumber,
+        status,
+        accountId,
+        account,
+        branchId,
+        branch,
+        currency,
+        billingYear,
+        billingMonth,
+        invoiceDate,
+        dueDate,
+        remarks,
+        invoiceTitle,
+        voidRemarks,
+        totalTaxAmount,
+        totalChargeableAmountBeforeTax,
+        totalChargeableAmountAfterTax,
+        totalDeductibleAmountBeforeTax,
+        totalDeductibleAmountAfterTax,
+        totalInvoiceAmount,
+        totalPaidAmount,
+        totalOutstandingAmount,
+        const DeepCollectionEquality().hash(_items),
+        const DeepCollectionEquality().hash(_receiptItems),
+        const DeepCollectionEquality().hash(_creditNoteItems),
+        printUrl,
+        payNowQrString,
+        payNowQrImageBase64,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate
+      ]);
+
+  @override
+  String toString() {
+    return 'InvoiceApiDto(invoiceId: $invoiceId, entityNumber: $entityNumber, status: $status, accountId: $accountId, account: $account, branchId: $branchId, branch: $branch, currency: $currency, billingYear: $billingYear, billingMonth: $billingMonth, invoiceDate: $invoiceDate, dueDate: $dueDate, remarks: $remarks, invoiceTitle: $invoiceTitle, voidRemarks: $voidRemarks, totalTaxAmount: $totalTaxAmount, totalChargeableAmountBeforeTax: $totalChargeableAmountBeforeTax, totalChargeableAmountAfterTax: $totalChargeableAmountAfterTax, totalDeductibleAmountBeforeTax: $totalDeductibleAmountBeforeTax, totalDeductibleAmountAfterTax: $totalDeductibleAmountAfterTax, totalInvoiceAmount: $totalInvoiceAmount, totalPaidAmount: $totalPaidAmount, totalOutstandingAmount: $totalOutstandingAmount, items: $items, receiptItems: $receiptItems, creditNoteItems: $creditNoteItems, printUrl: $printUrl, payNowQrString: $payNowQrString, payNowQrImageBase64: $payNowQrImageBase64, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InvoiceApiDtoCopyWith<$Res>
+    implements $InvoiceApiDtoCopyWith<$Res> {
+  factory _$InvoiceApiDtoCopyWith(
+          _InvoiceApiDto value, $Res Function(_InvoiceApiDto) _then) =
+      __$InvoiceApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'entityNumber') String? entityNumber,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'account') AccountApiDto? account,
+      @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'branch') BranchApiDto? branch,
+      @JsonKey(name: 'currency') String? currency,
+      @JsonKey(name: 'billingYear') int? billingYear,
+      @JsonKey(name: 'billingMonth') int? billingMonth,
+      @JsonKey(name: 'invoiceDate') DateTime? invoiceDate,
+      @JsonKey(name: 'dueDate') String? dueDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'invoiceTitle') String? invoiceTitle,
+      @JsonKey(name: 'voidRemarks') String? voidRemarks,
+      @JsonKey(name: 'totalTaxAmount') num? totalTaxAmount,
+      @JsonKey(name: 'totalChargeableAmountBeforeTax')
+      num? totalChargeableAmountBeforeTax,
+      @JsonKey(name: 'totalChargeableAmountAfterTax')
+      num? totalChargeableAmountAfterTax,
+      @JsonKey(name: 'totalDeductibleAmountBeforeTax')
+      num? totalDeductibleAmountBeforeTax,
+      @JsonKey(name: 'totalDeductibleAmountAfterTax')
+      num? totalDeductibleAmountAfterTax,
+      @JsonKey(name: 'totalInvoiceAmount') num? totalInvoiceAmount,
+      @JsonKey(name: 'totalPaidAmount') num? totalPaidAmount,
+      @JsonKey(name: 'totalOutstandingAmount') num? totalOutstandingAmount,
+      @JsonKey(name: 'items') List<InvoiceItemApiDto>? items,
+      @JsonKey(name: 'receiptItems') List<ReceiptItemApiDto>? receiptItems,
+      @JsonKey(name: 'creditNoteItems')
+      List<CreditNoteItemApiDto>? creditNoteItems,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'payNowQrString') String? payNowQrString,
+      @JsonKey(name: 'payNowQrImageBase64') String? payNowQrImageBase64,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  @override
+  $AccountApiDtoCopyWith<$Res>? get account;
+  @override
+  $BranchApiDtoCopyWith<$Res>? get branch;
+}
+
+/// @nodoc
+class __$InvoiceApiDtoCopyWithImpl<$Res>
+    implements _$InvoiceApiDtoCopyWith<$Res> {
+  __$InvoiceApiDtoCopyWithImpl(this._self, this._then);
+
+  final _InvoiceApiDto _self;
+  final $Res Function(_InvoiceApiDto) _then;
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? invoiceId = freezed,
+    Object? entityNumber = freezed,
+    Object? status = freezed,
+    Object? accountId = freezed,
+    Object? account = freezed,
+    Object? branchId = freezed,
+    Object? branch = freezed,
+    Object? currency = freezed,
+    Object? billingYear = freezed,
+    Object? billingMonth = freezed,
+    Object? invoiceDate = freezed,
+    Object? dueDate = freezed,
+    Object? remarks = freezed,
+    Object? invoiceTitle = freezed,
+    Object? voidRemarks = freezed,
+    Object? totalTaxAmount = freezed,
+    Object? totalChargeableAmountBeforeTax = freezed,
+    Object? totalChargeableAmountAfterTax = freezed,
+    Object? totalDeductibleAmountBeforeTax = freezed,
+    Object? totalDeductibleAmountAfterTax = freezed,
+    Object? totalInvoiceAmount = freezed,
+    Object? totalPaidAmount = freezed,
+    Object? totalOutstandingAmount = freezed,
+    Object? items = freezed,
+    Object? receiptItems = freezed,
+    Object? creditNoteItems = freezed,
+    Object? printUrl = freezed,
+    Object? payNowQrString = freezed,
+    Object? payNowQrImageBase64 = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_InvoiceApiDto(
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityNumber: freezed == entityNumber
+          ? _self.entityNumber
+          : entityNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      account: freezed == account
+          ? _self.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as AccountApiDto?,
+      branchId: freezed == branchId
+          ? _self.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      branch: freezed == branch
+          ? _self.branch
+          : branch // ignore: cast_nullable_to_non_nullable
+              as BranchApiDto?,
+      currency: freezed == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      billingYear: freezed == billingYear
+          ? _self.billingYear
+          : billingYear // ignore: cast_nullable_to_non_nullable
+              as int?,
+      billingMonth: freezed == billingMonth
+          ? _self.billingMonth
+          : billingMonth // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invoiceDate: freezed == invoiceDate
+          ? _self.invoiceDate
+          : invoiceDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      dueDate: freezed == dueDate
+          ? _self.dueDate
+          : dueDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      invoiceTitle: freezed == invoiceTitle
+          ? _self.invoiceTitle
+          : invoiceTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      voidRemarks: freezed == voidRemarks
+          ? _self.voidRemarks
+          : voidRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTaxAmount: freezed == totalTaxAmount
+          ? _self.totalTaxAmount
+          : totalTaxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalChargeableAmountBeforeTax: freezed == totalChargeableAmountBeforeTax
+          ? _self.totalChargeableAmountBeforeTax
+          : totalChargeableAmountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalChargeableAmountAfterTax: freezed == totalChargeableAmountAfterTax
+          ? _self.totalChargeableAmountAfterTax
+          : totalChargeableAmountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalDeductibleAmountBeforeTax: freezed == totalDeductibleAmountBeforeTax
+          ? _self.totalDeductibleAmountBeforeTax
+          : totalDeductibleAmountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalDeductibleAmountAfterTax: freezed == totalDeductibleAmountAfterTax
+          ? _self.totalDeductibleAmountAfterTax
+          : totalDeductibleAmountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalInvoiceAmount: freezed == totalInvoiceAmount
+          ? _self.totalInvoiceAmount
+          : totalInvoiceAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalPaidAmount: freezed == totalPaidAmount
+          ? _self.totalPaidAmount
+          : totalPaidAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      totalOutstandingAmount: freezed == totalOutstandingAmount
+          ? _self.totalOutstandingAmount
+          : totalOutstandingAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      items: freezed == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<InvoiceItemApiDto>?,
+      receiptItems: freezed == receiptItems
+          ? _self._receiptItems
+          : receiptItems // ignore: cast_nullable_to_non_nullable
+              as List<ReceiptItemApiDto>?,
+      creditNoteItems: freezed == creditNoteItems
+          ? _self._creditNoteItems
+          : creditNoteItems // ignore: cast_nullable_to_non_nullable
+              as List<CreditNoteItemApiDto>?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      payNowQrString: freezed == payNowQrString
+          ? _self.payNowQrString
+          : payNowQrString // ignore: cast_nullable_to_non_nullable
+              as String?,
+      payNowQrImageBase64: freezed == payNowQrImageBase64
+          ? _self.payNowQrImageBase64
+          : payNowQrImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AccountApiDtoCopyWith<$Res>? get account {
+    if (_self.account == null) {
+      return null;
+    }
+
+    return $AccountApiDtoCopyWith<$Res>(_self.account!, (value) {
+      return _then(_self.copyWith(account: value));
+    });
+  }
+
+  /// Create a copy of InvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BranchApiDtoCopyWith<$Res>? get branch {
+    if (_self.branch == null) {
+      return null;
+    }
+
+    return $BranchApiDtoCopyWith<$Res>(_self.branch!, (value) {
+      return _then(_self.copyWith(branch: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$InvoiceItemApiDto {
+  @JsonKey(name: 'invoiceItemId')
+  int? get invoiceItemId;
+  @JsonKey(name: 'invoiceId')
+  int? get invoiceId;
+  @JsonKey(name: 'feeItemId')
+  int? get feeItemId;
+  @JsonKey(name: 'description')
+  String? get description;
+  @JsonKey(name: 'quantity')
+  num? get quantity;
+  @JsonKey(name: 'unitPrice')
+  num? get unitPrice;
+  @JsonKey(name: 'taxRate')
+  num? get taxRate;
+  @JsonKey(name: 'amountBeforeTax')
+  num? get amountBeforeTax;
+  @JsonKey(name: 'taxAmount')
+  num? get taxAmount;
+  @JsonKey(name: 'amountAfterTax')
+  num? get amountAfterTax;
+  @JsonKey(name: 'isDeductible')
+  bool? get isDeductible;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of InvoiceItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $InvoiceItemApiDtoCopyWith<InvoiceItemApiDto> get copyWith =>
+      _$InvoiceItemApiDtoCopyWithImpl<InvoiceItemApiDto>(
+          this as InvoiceItemApiDto, _$identity);
+
+  /// Serializes this InvoiceItemApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is InvoiceItemApiDto &&
+            (identical(other.invoiceItemId, invoiceItemId) ||
+                other.invoiceItemId == invoiceItemId) &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.feeItemId, feeItemId) ||
+                other.feeItemId == feeItemId) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.unitPrice, unitPrice) ||
+                other.unitPrice == unitPrice) &&
+            (identical(other.taxRate, taxRate) || other.taxRate == taxRate) &&
+            (identical(other.amountBeforeTax, amountBeforeTax) ||
+                other.amountBeforeTax == amountBeforeTax) &&
+            (identical(other.taxAmount, taxAmount) ||
+                other.taxAmount == taxAmount) &&
+            (identical(other.amountAfterTax, amountAfterTax) ||
+                other.amountAfterTax == amountAfterTax) &&
+            (identical(other.isDeductible, isDeductible) ||
+                other.isDeductible == isDeductible) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      invoiceItemId,
+      invoiceId,
+      feeItemId,
+      description,
+      quantity,
+      unitPrice,
+      taxRate,
+      amountBeforeTax,
+      taxAmount,
+      amountAfterTax,
+      isDeductible,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'InvoiceItemApiDto(invoiceItemId: $invoiceItemId, invoiceId: $invoiceId, feeItemId: $feeItemId, description: $description, quantity: $quantity, unitPrice: $unitPrice, taxRate: $taxRate, amountBeforeTax: $amountBeforeTax, taxAmount: $taxAmount, amountAfterTax: $amountAfterTax, isDeductible: $isDeductible, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $InvoiceItemApiDtoCopyWith<$Res> {
+  factory $InvoiceItemApiDtoCopyWith(
+          InvoiceItemApiDto value, $Res Function(InvoiceItemApiDto) _then) =
+      _$InvoiceItemApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'invoiceItemId') int? invoiceItemId,
+      @JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'feeItemId') int? feeItemId,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'quantity') num? quantity,
+      @JsonKey(name: 'unitPrice') num? unitPrice,
+      @JsonKey(name: 'taxRate') num? taxRate,
+      @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+      @JsonKey(name: 'taxAmount') num? taxAmount,
+      @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+      @JsonKey(name: 'isDeductible') bool? isDeductible,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$InvoiceItemApiDtoCopyWithImpl<$Res>
+    implements $InvoiceItemApiDtoCopyWith<$Res> {
+  _$InvoiceItemApiDtoCopyWithImpl(this._self, this._then);
+
+  final InvoiceItemApiDto _self;
+  final $Res Function(InvoiceItemApiDto) _then;
+
+  /// Create a copy of InvoiceItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? invoiceItemId = freezed,
+    Object? invoiceId = freezed,
+    Object? feeItemId = freezed,
+    Object? description = freezed,
+    Object? quantity = freezed,
+    Object? unitPrice = freezed,
+    Object? taxRate = freezed,
+    Object? amountBeforeTax = freezed,
+    Object? taxAmount = freezed,
+    Object? amountAfterTax = freezed,
+    Object? isDeductible = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      invoiceItemId: freezed == invoiceItemId
+          ? _self.invoiceItemId
+          : invoiceItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      feeItemId: freezed == feeItemId
+          ? _self.feeItemId
+          : feeItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as num?,
+      unitPrice: freezed == unitPrice
+          ? _self.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxRate: freezed == taxRate
+          ? _self.taxRate
+          : taxRate // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountBeforeTax: freezed == amountBeforeTax
+          ? _self.amountBeforeTax
+          : amountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxAmount: freezed == taxAmount
+          ? _self.taxAmount
+          : taxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountAfterTax: freezed == amountAfterTax
+          ? _self.amountAfterTax
+          : amountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      isDeductible: freezed == isDeductible
+          ? _self.isDeductible
+          : isDeductible // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [InvoiceItemApiDto].
+extension InvoiceItemApiDtoPatterns on InvoiceItemApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_InvoiceItemApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceItemApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_InvoiceItemApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceItemApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_InvoiceItemApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceItemApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'invoiceItemId') int? invoiceItemId,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'feeItemId') int? feeItemId,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'quantity') num? quantity,
+            @JsonKey(name: 'unitPrice') num? unitPrice,
+            @JsonKey(name: 'taxRate') num? taxRate,
+            @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+            @JsonKey(name: 'taxAmount') num? taxAmount,
+            @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+            @JsonKey(name: 'isDeductible') bool? isDeductible,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceItemApiDto() when $default != null:
+        return $default(
+            _that.invoiceItemId,
+            _that.invoiceId,
+            _that.feeItemId,
+            _that.description,
+            _that.quantity,
+            _that.unitPrice,
+            _that.taxRate,
+            _that.amountBeforeTax,
+            _that.taxAmount,
+            _that.amountAfterTax,
+            _that.isDeductible,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'invoiceItemId') int? invoiceItemId,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'feeItemId') int? feeItemId,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'quantity') num? quantity,
+            @JsonKey(name: 'unitPrice') num? unitPrice,
+            @JsonKey(name: 'taxRate') num? taxRate,
+            @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+            @JsonKey(name: 'taxAmount') num? taxAmount,
+            @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+            @JsonKey(name: 'isDeductible') bool? isDeductible,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceItemApiDto():
+        return $default(
+            _that.invoiceItemId,
+            _that.invoiceId,
+            _that.feeItemId,
+            _that.description,
+            _that.quantity,
+            _that.unitPrice,
+            _that.taxRate,
+            _that.amountBeforeTax,
+            _that.taxAmount,
+            _that.amountAfterTax,
+            _that.isDeductible,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'invoiceItemId') int? invoiceItemId,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'feeItemId') int? feeItemId,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'quantity') num? quantity,
+            @JsonKey(name: 'unitPrice') num? unitPrice,
+            @JsonKey(name: 'taxRate') num? taxRate,
+            @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+            @JsonKey(name: 'taxAmount') num? taxAmount,
+            @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+            @JsonKey(name: 'isDeductible') bool? isDeductible,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _InvoiceItemApiDto() when $default != null:
+        return $default(
+            _that.invoiceItemId,
+            _that.invoiceId,
+            _that.feeItemId,
+            _that.description,
+            _that.quantity,
+            _that.unitPrice,
+            _that.taxRate,
+            _that.amountBeforeTax,
+            _that.taxAmount,
+            _that.amountAfterTax,
+            _that.isDeductible,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _InvoiceItemApiDto implements InvoiceItemApiDto {
+  _InvoiceItemApiDto(
+      {@JsonKey(name: 'invoiceItemId') this.invoiceItemId,
+      @JsonKey(name: 'invoiceId') this.invoiceId,
+      @JsonKey(name: 'feeItemId') this.feeItemId,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'quantity') this.quantity,
+      @JsonKey(name: 'unitPrice') this.unitPrice,
+      @JsonKey(name: 'taxRate') this.taxRate,
+      @JsonKey(name: 'amountBeforeTax') this.amountBeforeTax,
+      @JsonKey(name: 'taxAmount') this.taxAmount,
+      @JsonKey(name: 'amountAfterTax') this.amountAfterTax,
+      @JsonKey(name: 'isDeductible') this.isDeductible,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate});
+  factory _InvoiceItemApiDto.fromJson(Map<String, dynamic> json) =>
+      _$InvoiceItemApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'invoiceItemId')
+  final int? invoiceItemId;
+  @override
+  @JsonKey(name: 'invoiceId')
+  final int? invoiceId;
+  @override
+  @JsonKey(name: 'feeItemId')
+  final int? feeItemId;
+  @override
+  @JsonKey(name: 'description')
+  final String? description;
+  @override
+  @JsonKey(name: 'quantity')
+  final num? quantity;
+  @override
+  @JsonKey(name: 'unitPrice')
+  final num? unitPrice;
+  @override
+  @JsonKey(name: 'taxRate')
+  final num? taxRate;
+  @override
+  @JsonKey(name: 'amountBeforeTax')
+  final num? amountBeforeTax;
+  @override
+  @JsonKey(name: 'taxAmount')
+  final num? taxAmount;
+  @override
+  @JsonKey(name: 'amountAfterTax')
+  final num? amountAfterTax;
+  @override
+  @JsonKey(name: 'isDeductible')
+  final bool? isDeductible;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of InvoiceItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$InvoiceItemApiDtoCopyWith<_InvoiceItemApiDto> get copyWith =>
+      __$InvoiceItemApiDtoCopyWithImpl<_InvoiceItemApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$InvoiceItemApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _InvoiceItemApiDto &&
+            (identical(other.invoiceItemId, invoiceItemId) ||
+                other.invoiceItemId == invoiceItemId) &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.feeItemId, feeItemId) ||
+                other.feeItemId == feeItemId) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.unitPrice, unitPrice) ||
+                other.unitPrice == unitPrice) &&
+            (identical(other.taxRate, taxRate) || other.taxRate == taxRate) &&
+            (identical(other.amountBeforeTax, amountBeforeTax) ||
+                other.amountBeforeTax == amountBeforeTax) &&
+            (identical(other.taxAmount, taxAmount) ||
+                other.taxAmount == taxAmount) &&
+            (identical(other.amountAfterTax, amountAfterTax) ||
+                other.amountAfterTax == amountAfterTax) &&
+            (identical(other.isDeductible, isDeductible) ||
+                other.isDeductible == isDeductible) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      invoiceItemId,
+      invoiceId,
+      feeItemId,
+      description,
+      quantity,
+      unitPrice,
+      taxRate,
+      amountBeforeTax,
+      taxAmount,
+      amountAfterTax,
+      isDeductible,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'InvoiceItemApiDto(invoiceItemId: $invoiceItemId, invoiceId: $invoiceId, feeItemId: $feeItemId, description: $description, quantity: $quantity, unitPrice: $unitPrice, taxRate: $taxRate, amountBeforeTax: $amountBeforeTax, taxAmount: $taxAmount, amountAfterTax: $amountAfterTax, isDeductible: $isDeductible, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$InvoiceItemApiDtoCopyWith<$Res>
+    implements $InvoiceItemApiDtoCopyWith<$Res> {
+  factory _$InvoiceItemApiDtoCopyWith(
+          _InvoiceItemApiDto value, $Res Function(_InvoiceItemApiDto) _then) =
+      __$InvoiceItemApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'invoiceItemId') int? invoiceItemId,
+      @JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'feeItemId') int? feeItemId,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'quantity') num? quantity,
+      @JsonKey(name: 'unitPrice') num? unitPrice,
+      @JsonKey(name: 'taxRate') num? taxRate,
+      @JsonKey(name: 'amountBeforeTax') num? amountBeforeTax,
+      @JsonKey(name: 'taxAmount') num? taxAmount,
+      @JsonKey(name: 'amountAfterTax') num? amountAfterTax,
+      @JsonKey(name: 'isDeductible') bool? isDeductible,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$InvoiceItemApiDtoCopyWithImpl<$Res>
+    implements _$InvoiceItemApiDtoCopyWith<$Res> {
+  __$InvoiceItemApiDtoCopyWithImpl(this._self, this._then);
+
+  final _InvoiceItemApiDto _self;
+  final $Res Function(_InvoiceItemApiDto) _then;
+
+  /// Create a copy of InvoiceItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? invoiceItemId = freezed,
+    Object? invoiceId = freezed,
+    Object? feeItemId = freezed,
+    Object? description = freezed,
+    Object? quantity = freezed,
+    Object? unitPrice = freezed,
+    Object? taxRate = freezed,
+    Object? amountBeforeTax = freezed,
+    Object? taxAmount = freezed,
+    Object? amountAfterTax = freezed,
+    Object? isDeductible = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_InvoiceItemApiDto(
+      invoiceItemId: freezed == invoiceItemId
+          ? _self.invoiceItemId
+          : invoiceItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      feeItemId: freezed == feeItemId
+          ? _self.feeItemId
+          : feeItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: freezed == quantity
+          ? _self.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as num?,
+      unitPrice: freezed == unitPrice
+          ? _self.unitPrice
+          : unitPrice // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxRate: freezed == taxRate
+          ? _self.taxRate
+          : taxRate // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountBeforeTax: freezed == amountBeforeTax
+          ? _self.amountBeforeTax
+          : amountBeforeTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      taxAmount: freezed == taxAmount
+          ? _self.taxAmount
+          : taxAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      amountAfterTax: freezed == amountAfterTax
+          ? _self.amountAfterTax
+          : amountAfterTax // ignore: cast_nullable_to_non_nullable
+              as num?,
+      isDeductible: freezed == isDeductible
+          ? _self.isDeductible
+          : isDeductible // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$LearningDomainApiDto {
+  @JsonKey(name: 'learningDomainId')
+  int? get learningDomainId;
+  @JsonKey(name: 'name')
+  String? get name;
+  @JsonKey(name: 'startDate')
+  String? get startDate;
+  @JsonKey(name: 'endDate')
+  String? get endDate;
+  @JsonKey(name: 'learningObjectives')
+  List<LearningObjectiveApiDto>? get learningObjectives;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of LearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $LearningDomainApiDtoCopyWith<LearningDomainApiDto> get copyWith =>
+      _$LearningDomainApiDtoCopyWithImpl<LearningDomainApiDto>(
+          this as LearningDomainApiDto, _$identity);
+
+  /// Serializes this LearningDomainApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LearningDomainApiDto &&
+            (identical(other.learningDomainId, learningDomainId) ||
+                other.learningDomainId == learningDomainId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            const DeepCollectionEquality()
+                .equals(other.learningObjectives, learningObjectives) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      learningDomainId,
+      name,
+      startDate,
+      endDate,
+      const DeepCollectionEquality().hash(learningObjectives),
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'LearningDomainApiDto(learningDomainId: $learningDomainId, name: $name, startDate: $startDate, endDate: $endDate, learningObjectives: $learningObjectives, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $LearningDomainApiDtoCopyWith<$Res> {
+  factory $LearningDomainApiDtoCopyWith(LearningDomainApiDto value,
+          $Res Function(LearningDomainApiDto) _then) =
+      _$LearningDomainApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'learningDomainId') int? learningDomainId,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'startDate') String? startDate,
+      @JsonKey(name: 'endDate') String? endDate,
+      @JsonKey(name: 'learningObjectives')
+      List<LearningObjectiveApiDto>? learningObjectives,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$LearningDomainApiDtoCopyWithImpl<$Res>
+    implements $LearningDomainApiDtoCopyWith<$Res> {
+  _$LearningDomainApiDtoCopyWithImpl(this._self, this._then);
+
+  final LearningDomainApiDto _self;
+  final $Res Function(LearningDomainApiDto) _then;
+
+  /// Create a copy of LearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? learningDomainId = freezed,
+    Object? name = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? learningObjectives = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      learningDomainId: freezed == learningDomainId
+          ? _self.learningDomainId
+          : learningDomainId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _self.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endDate: freezed == endDate
+          ? _self.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      learningObjectives: freezed == learningObjectives
+          ? _self.learningObjectives
+          : learningObjectives // ignore: cast_nullable_to_non_nullable
+              as List<LearningObjectiveApiDto>?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [LearningDomainApiDto].
+extension LearningDomainApiDtoPatterns on LearningDomainApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LearningDomainApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LearningDomainApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LearningDomainApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningDomainApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LearningDomainApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningDomainApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'learningDomainId') int? learningDomainId,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'startDate') String? startDate,
+            @JsonKey(name: 'endDate') String? endDate,
+            @JsonKey(name: 'learningObjectives')
+            List<LearningObjectiveApiDto>? learningObjectives,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LearningDomainApiDto() when $default != null:
+        return $default(
+            _that.learningDomainId,
+            _that.name,
+            _that.startDate,
+            _that.endDate,
+            _that.learningObjectives,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'learningDomainId') int? learningDomainId,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'startDate') String? startDate,
+            @JsonKey(name: 'endDate') String? endDate,
+            @JsonKey(name: 'learningObjectives')
+            List<LearningObjectiveApiDto>? learningObjectives,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningDomainApiDto():
+        return $default(
+            _that.learningDomainId,
+            _that.name,
+            _that.startDate,
+            _that.endDate,
+            _that.learningObjectives,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'learningDomainId') int? learningDomainId,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'startDate') String? startDate,
+            @JsonKey(name: 'endDate') String? endDate,
+            @JsonKey(name: 'learningObjectives')
+            List<LearningObjectiveApiDto>? learningObjectives,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningDomainApiDto() when $default != null:
+        return $default(
+            _that.learningDomainId,
+            _that.name,
+            _that.startDate,
+            _that.endDate,
+            _that.learningObjectives,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _LearningDomainApiDto implements LearningDomainApiDto {
+  _LearningDomainApiDto(
+      {@JsonKey(name: 'learningDomainId') this.learningDomainId,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'startDate') this.startDate,
+      @JsonKey(name: 'endDate') this.endDate,
+      @JsonKey(name: 'learningObjectives')
+      final List<LearningObjectiveApiDto>? learningObjectives,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate})
+      : _learningObjectives = learningObjectives;
+  factory _LearningDomainApiDto.fromJson(Map<String, dynamic> json) =>
+      _$LearningDomainApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'learningDomainId')
+  final int? learningDomainId;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+  @override
+  @JsonKey(name: 'startDate')
+  final String? startDate;
+  @override
+  @JsonKey(name: 'endDate')
+  final String? endDate;
+  final List<LearningObjectiveApiDto>? _learningObjectives;
+  @override
+  @JsonKey(name: 'learningObjectives')
+  List<LearningObjectiveApiDto>? get learningObjectives {
+    final value = _learningObjectives;
+    if (value == null) return null;
+    if (_learningObjectives is EqualUnmodifiableListView)
+      return _learningObjectives;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of LearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LearningDomainApiDtoCopyWith<_LearningDomainApiDto> get copyWith =>
+      __$LearningDomainApiDtoCopyWithImpl<_LearningDomainApiDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LearningDomainApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _LearningDomainApiDto &&
+            (identical(other.learningDomainId, learningDomainId) ||
+                other.learningDomainId == learningDomainId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            const DeepCollectionEquality()
+                .equals(other._learningObjectives, _learningObjectives) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      learningDomainId,
+      name,
+      startDate,
+      endDate,
+      const DeepCollectionEquality().hash(_learningObjectives),
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'LearningDomainApiDto(learningDomainId: $learningDomainId, name: $name, startDate: $startDate, endDate: $endDate, learningObjectives: $learningObjectives, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$LearningDomainApiDtoCopyWith<$Res>
+    implements $LearningDomainApiDtoCopyWith<$Res> {
+  factory _$LearningDomainApiDtoCopyWith(_LearningDomainApiDto value,
+          $Res Function(_LearningDomainApiDto) _then) =
+      __$LearningDomainApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'learningDomainId') int? learningDomainId,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'startDate') String? startDate,
+      @JsonKey(name: 'endDate') String? endDate,
+      @JsonKey(name: 'learningObjectives')
+      List<LearningObjectiveApiDto>? learningObjectives,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$LearningDomainApiDtoCopyWithImpl<$Res>
+    implements _$LearningDomainApiDtoCopyWith<$Res> {
+  __$LearningDomainApiDtoCopyWithImpl(this._self, this._then);
+
+  final _LearningDomainApiDto _self;
+  final $Res Function(_LearningDomainApiDto) _then;
+
+  /// Create a copy of LearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? learningDomainId = freezed,
+    Object? name = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+    Object? learningObjectives = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_LearningDomainApiDto(
+      learningDomainId: freezed == learningDomainId
+          ? _self.learningDomainId
+          : learningDomainId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _self.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endDate: freezed == endDate
+          ? _self.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      learningObjectives: freezed == learningObjectives
+          ? _self._learningObjectives
+          : learningObjectives // ignore: cast_nullable_to_non_nullable
+              as List<LearningObjectiveApiDto>?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$LearningObjectiveApiDto {
+  @JsonKey(name: 'learningObjectiveId')
+  int? get learningObjectiveId;
+  @JsonKey(name: 'learningDomainId')
+  int? get learningDomainId;
+  @JsonKey(name: 'name')
+  String? get name;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of LearningObjectiveApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $LearningObjectiveApiDtoCopyWith<LearningObjectiveApiDto> get copyWith =>
+      _$LearningObjectiveApiDtoCopyWithImpl<LearningObjectiveApiDto>(
+          this as LearningObjectiveApiDto, _$identity);
+
+  /// Serializes this LearningObjectiveApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LearningObjectiveApiDto &&
+            (identical(other.learningObjectiveId, learningObjectiveId) ||
+                other.learningObjectiveId == learningObjectiveId) &&
+            (identical(other.learningDomainId, learningDomainId) ||
+                other.learningDomainId == learningDomainId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      learningObjectiveId,
+      learningDomainId,
+      name,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'LearningObjectiveApiDto(learningObjectiveId: $learningObjectiveId, learningDomainId: $learningDomainId, name: $name, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $LearningObjectiveApiDtoCopyWith<$Res> {
+  factory $LearningObjectiveApiDtoCopyWith(LearningObjectiveApiDto value,
+          $Res Function(LearningObjectiveApiDto) _then) =
+      _$LearningObjectiveApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'learningObjectiveId') int? learningObjectiveId,
+      @JsonKey(name: 'learningDomainId') int? learningDomainId,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$LearningObjectiveApiDtoCopyWithImpl<$Res>
+    implements $LearningObjectiveApiDtoCopyWith<$Res> {
+  _$LearningObjectiveApiDtoCopyWithImpl(this._self, this._then);
+
+  final LearningObjectiveApiDto _self;
+  final $Res Function(LearningObjectiveApiDto) _then;
+
+  /// Create a copy of LearningObjectiveApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? learningObjectiveId = freezed,
+    Object? learningDomainId = freezed,
+    Object? name = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      learningObjectiveId: freezed == learningObjectiveId
+          ? _self.learningObjectiveId
+          : learningObjectiveId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      learningDomainId: freezed == learningDomainId
+          ? _self.learningDomainId
+          : learningDomainId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [LearningObjectiveApiDto].
+extension LearningObjectiveApiDtoPatterns on LearningObjectiveApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LearningObjectiveApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LearningObjectiveApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LearningObjectiveApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningObjectiveApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LearningObjectiveApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningObjectiveApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'learningObjectiveId') int? learningObjectiveId,
+            @JsonKey(name: 'learningDomainId') int? learningDomainId,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LearningObjectiveApiDto() when $default != null:
+        return $default(
+            _that.learningObjectiveId,
+            _that.learningDomainId,
+            _that.name,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'learningObjectiveId') int? learningObjectiveId,
+            @JsonKey(name: 'learningDomainId') int? learningDomainId,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningObjectiveApiDto():
+        return $default(
+            _that.learningObjectiveId,
+            _that.learningDomainId,
+            _that.name,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'learningObjectiveId') int? learningObjectiveId,
+            @JsonKey(name: 'learningDomainId') int? learningDomainId,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LearningObjectiveApiDto() when $default != null:
+        return $default(
+            _that.learningObjectiveId,
+            _that.learningDomainId,
+            _that.name,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _LearningObjectiveApiDto implements LearningObjectiveApiDto {
+  _LearningObjectiveApiDto(
+      {@JsonKey(name: 'learningObjectiveId') this.learningObjectiveId,
+      @JsonKey(name: 'learningDomainId') this.learningDomainId,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate});
+  factory _LearningObjectiveApiDto.fromJson(Map<String, dynamic> json) =>
+      _$LearningObjectiveApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'learningObjectiveId')
+  final int? learningObjectiveId;
+  @override
+  @JsonKey(name: 'learningDomainId')
+  final int? learningDomainId;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of LearningObjectiveApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LearningObjectiveApiDtoCopyWith<_LearningObjectiveApiDto> get copyWith =>
+      __$LearningObjectiveApiDtoCopyWithImpl<_LearningObjectiveApiDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LearningObjectiveApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _LearningObjectiveApiDto &&
+            (identical(other.learningObjectiveId, learningObjectiveId) ||
+                other.learningObjectiveId == learningObjectiveId) &&
+            (identical(other.learningDomainId, learningDomainId) ||
+                other.learningDomainId == learningDomainId) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      learningObjectiveId,
+      learningDomainId,
+      name,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'LearningObjectiveApiDto(learningObjectiveId: $learningObjectiveId, learningDomainId: $learningDomainId, name: $name, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$LearningObjectiveApiDtoCopyWith<$Res>
+    implements $LearningObjectiveApiDtoCopyWith<$Res> {
+  factory _$LearningObjectiveApiDtoCopyWith(_LearningObjectiveApiDto value,
+          $Res Function(_LearningObjectiveApiDto) _then) =
+      __$LearningObjectiveApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'learningObjectiveId') int? learningObjectiveId,
+      @JsonKey(name: 'learningDomainId') int? learningDomainId,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$LearningObjectiveApiDtoCopyWithImpl<$Res>
+    implements _$LearningObjectiveApiDtoCopyWith<$Res> {
+  __$LearningObjectiveApiDtoCopyWithImpl(this._self, this._then);
+
+  final _LearningObjectiveApiDto _self;
+  final $Res Function(_LearningObjectiveApiDto) _then;
+
+  /// Create a copy of LearningObjectiveApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? learningObjectiveId = freezed,
+    Object? learningDomainId = freezed,
+    Object? name = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_LearningObjectiveApiDto(
+      learningObjectiveId: freezed == learningObjectiveId
+          ? _self.learningObjectiveId
+          : learningObjectiveId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      learningDomainId: freezed == learningDomainId
+          ? _self.learningDomainId
+          : learningDomainId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$LevelApiDto {
   @JsonKey(name: 'levelId')
   int? get levelId;
@@ -20755,6 +32666,555 @@ class __$LevelApiDtoCopyWithImpl<$Res> implements _$LevelApiDtoCopyWith<$Res> {
           ? _self.updatedDate
           : updatedDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$LookUpDto {
+  @JsonKey(name: 'lookUpType')
+  int? get lookUpType;
+  @JsonKey(name: 'name')
+  String? get name;
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+  @JsonKey(name: 'integrationRefId')
+  String? get integrationRefId;
+
+  /// Create a copy of LookUpDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $LookUpDtoCopyWith<LookUpDto> get copyWith =>
+      _$LookUpDtoCopyWithImpl<LookUpDto>(this as LookUpDto, _$identity);
+
+  /// Serializes this LookUpDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LookUpDto &&
+            (identical(other.lookUpType, lookUpType) ||
+                other.lookUpType == lookUpType) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      lookUpType,
+      name,
+      id,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate,
+      integrationRefId);
+
+  @override
+  String toString() {
+    return 'LookUpDto(lookUpType: $lookUpType, name: $name, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $LookUpDtoCopyWith<$Res> {
+  factory $LookUpDtoCopyWith(LookUpDto value, $Res Function(LookUpDto) _then) =
+      _$LookUpDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'lookUpType') int? lookUpType,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class _$LookUpDtoCopyWithImpl<$Res> implements $LookUpDtoCopyWith<$Res> {
+  _$LookUpDtoCopyWithImpl(this._self, this._then);
+
+  final LookUpDto _self;
+  final $Res Function(LookUpDto) _then;
+
+  /// Create a copy of LookUpDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? lookUpType = freezed,
+    Object? name = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      lookUpType: freezed == lookUpType
+          ? _self.lookUpType
+          : lookUpType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [LookUpDto].
+extension LookUpDtoPatterns on LookUpDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_LookUpDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LookUpDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_LookUpDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LookUpDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_LookUpDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LookUpDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'lookUpType') int? lookUpType,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LookUpDto() when $default != null:
+        return $default(
+            _that.lookUpType,
+            _that.name,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'lookUpType') int? lookUpType,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LookUpDto():
+        return $default(
+            _that.lookUpType,
+            _that.name,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'lookUpType') int? lookUpType,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _LookUpDto() when $default != null:
+        return $default(
+            _that.lookUpType,
+            _that.name,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _LookUpDto implements LookUpDto {
+  _LookUpDto(
+      {@JsonKey(name: 'lookUpType') this.lookUpType,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate,
+      @JsonKey(name: 'integrationRefId') this.integrationRefId});
+  factory _LookUpDto.fromJson(Map<String, dynamic> json) =>
+      _$LookUpDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'lookUpType')
+  final int? lookUpType;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'integrationRefId')
+  final String? integrationRefId;
+
+  /// Create a copy of LookUpDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LookUpDtoCopyWith<_LookUpDto> get copyWith =>
+      __$LookUpDtoCopyWithImpl<_LookUpDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LookUpDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _LookUpDto &&
+            (identical(other.lookUpType, lookUpType) ||
+                other.lookUpType == lookUpType) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      lookUpType,
+      name,
+      id,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate,
+      integrationRefId);
+
+  @override
+  String toString() {
+    return 'LookUpDto(lookUpType: $lookUpType, name: $name, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$LookUpDtoCopyWith<$Res>
+    implements $LookUpDtoCopyWith<$Res> {
+  factory _$LookUpDtoCopyWith(
+          _LookUpDto value, $Res Function(_LookUpDto) _then) =
+      __$LookUpDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'lookUpType') int? lookUpType,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class __$LookUpDtoCopyWithImpl<$Res> implements _$LookUpDtoCopyWith<$Res> {
+  __$LookUpDtoCopyWithImpl(this._self, this._then);
+
+  final _LookUpDto _self;
+  final $Res Function(_LookUpDto) _then;
+
+  /// Create a copy of LookUpDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? lookUpType = freezed,
+    Object? name = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_LookUpDto(
+      lookUpType: freezed == lookUpType
+          ? _self.lookUpType
+          : lookUpType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -25793,6 +38253,512 @@ class __$PagedResultOfConversationMessageApiDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$PagedResultOfDailyLogApiDto {
+  @JsonKey(name: 'items')
+  List<DailyLogApiDto>? get items;
+  @JsonKey(name: 'page')
+  int? get page;
+  @JsonKey(name: 'pageSize')
+  int? get pageSize;
+  @JsonKey(name: 'totalCount')
+  int? get totalCount;
+  @JsonKey(name: 'hasNextPage')
+  bool? get hasNextPage;
+  @JsonKey(name: 'hasPreviousPage')
+  bool? get hasPreviousPage;
+  @JsonKey(name: 'totalPages')
+  int? get totalPages;
+
+  /// Create a copy of PagedResultOfDailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PagedResultOfDailyLogApiDtoCopyWith<PagedResultOfDailyLogApiDto>
+      get copyWith => _$PagedResultOfDailyLogApiDtoCopyWithImpl<
+              PagedResultOfDailyLogApiDto>(
+          this as PagedResultOfDailyLogApiDto, _$identity);
+
+  /// Serializes this PagedResultOfDailyLogApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PagedResultOfDailyLogApiDto &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(items),
+      page,
+      pageSize,
+      totalCount,
+      hasNextPage,
+      hasPreviousPage,
+      totalPages);
+
+  @override
+  String toString() {
+    return 'PagedResultOfDailyLogApiDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage, totalPages: $totalPages)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PagedResultOfDailyLogApiDtoCopyWith<$Res> {
+  factory $PagedResultOfDailyLogApiDtoCopyWith(
+          PagedResultOfDailyLogApiDto value,
+          $Res Function(PagedResultOfDailyLogApiDto) _then) =
+      _$PagedResultOfDailyLogApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<DailyLogApiDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+      @JsonKey(name: 'totalPages') int? totalPages});
+}
+
+/// @nodoc
+class _$PagedResultOfDailyLogApiDtoCopyWithImpl<$Res>
+    implements $PagedResultOfDailyLogApiDtoCopyWith<$Res> {
+  _$PagedResultOfDailyLogApiDtoCopyWithImpl(this._self, this._then);
+
+  final PagedResultOfDailyLogApiDto _self;
+  final $Res Function(PagedResultOfDailyLogApiDto) _then;
+
+  /// Create a copy of PagedResultOfDailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? totalPages = freezed,
+  }) {
+    return _then(_self.copyWith(
+      items: freezed == items
+          ? _self.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<DailyLogApiDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [PagedResultOfDailyLogApiDto].
+extension PagedResultOfDailyLogApiDtoPatterns on PagedResultOfDailyLogApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PagedResultOfDailyLogApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfDailyLogApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PagedResultOfDailyLogApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfDailyLogApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PagedResultOfDailyLogApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfDailyLogApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<DailyLogApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfDailyLogApiDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<DailyLogApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfDailyLogApiDto():
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'items') List<DailyLogApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfDailyLogApiDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PagedResultOfDailyLogApiDto implements PagedResultOfDailyLogApiDto {
+  _PagedResultOfDailyLogApiDto(
+      {@JsonKey(name: 'items') final List<DailyLogApiDto>? items,
+      @JsonKey(name: 'page') this.page,
+      @JsonKey(name: 'pageSize') this.pageSize,
+      @JsonKey(name: 'totalCount') this.totalCount,
+      @JsonKey(name: 'hasNextPage') this.hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') this.hasPreviousPage,
+      @JsonKey(name: 'totalPages') this.totalPages})
+      : _items = items;
+  factory _PagedResultOfDailyLogApiDto.fromJson(Map<String, dynamic> json) =>
+      _$PagedResultOfDailyLogApiDtoFromJson(json);
+
+  final List<DailyLogApiDto>? _items;
+  @override
+  @JsonKey(name: 'items')
+  List<DailyLogApiDto>? get items {
+    final value = _items;
+    if (value == null) return null;
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'page')
+  final int? page;
+  @override
+  @JsonKey(name: 'pageSize')
+  final int? pageSize;
+  @override
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @override
+  @JsonKey(name: 'hasNextPage')
+  final bool? hasNextPage;
+  @override
+  @JsonKey(name: 'hasPreviousPage')
+  final bool? hasPreviousPage;
+  @override
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+
+  /// Create a copy of PagedResultOfDailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PagedResultOfDailyLogApiDtoCopyWith<_PagedResultOfDailyLogApiDto>
+      get copyWith => __$PagedResultOfDailyLogApiDtoCopyWithImpl<
+          _PagedResultOfDailyLogApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PagedResultOfDailyLogApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PagedResultOfDailyLogApiDto &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      page,
+      pageSize,
+      totalCount,
+      hasNextPage,
+      hasPreviousPage,
+      totalPages);
+
+  @override
+  String toString() {
+    return 'PagedResultOfDailyLogApiDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage, totalPages: $totalPages)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PagedResultOfDailyLogApiDtoCopyWith<$Res>
+    implements $PagedResultOfDailyLogApiDtoCopyWith<$Res> {
+  factory _$PagedResultOfDailyLogApiDtoCopyWith(
+          _PagedResultOfDailyLogApiDto value,
+          $Res Function(_PagedResultOfDailyLogApiDto) _then) =
+      __$PagedResultOfDailyLogApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<DailyLogApiDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+      @JsonKey(name: 'totalPages') int? totalPages});
+}
+
+/// @nodoc
+class __$PagedResultOfDailyLogApiDtoCopyWithImpl<$Res>
+    implements _$PagedResultOfDailyLogApiDtoCopyWith<$Res> {
+  __$PagedResultOfDailyLogApiDtoCopyWithImpl(this._self, this._then);
+
+  final _PagedResultOfDailyLogApiDto _self;
+  final $Res Function(_PagedResultOfDailyLogApiDto) _then;
+
+  /// Create a copy of PagedResultOfDailyLogApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? totalPages = freezed,
+  }) {
+    return _then(_PagedResultOfDailyLogApiDto(
+      items: freezed == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<DailyLogApiDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$PagedResultOfInfantCareActivityApiDto {
   @JsonKey(name: 'items')
   List<InfantCareActivityApiDto>? get items;
@@ -26790,6 +39756,1021 @@ class __$PagedResultOfInfantCareActivityLogApiDtoCopyWithImpl<$Res>
           ? _self._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<InfantCareActivityLogApiDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$PagedResultOfInvoiceApiDto {
+  @JsonKey(name: 'items')
+  List<InvoiceApiDto>? get items;
+  @JsonKey(name: 'page')
+  int? get page;
+  @JsonKey(name: 'pageSize')
+  int? get pageSize;
+  @JsonKey(name: 'totalCount')
+  int? get totalCount;
+  @JsonKey(name: 'hasNextPage')
+  bool? get hasNextPage;
+  @JsonKey(name: 'hasPreviousPage')
+  bool? get hasPreviousPage;
+  @JsonKey(name: 'totalPages')
+  int? get totalPages;
+
+  /// Create a copy of PagedResultOfInvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PagedResultOfInvoiceApiDtoCopyWith<PagedResultOfInvoiceApiDto>
+      get copyWith =>
+          _$PagedResultOfInvoiceApiDtoCopyWithImpl<PagedResultOfInvoiceApiDto>(
+              this as PagedResultOfInvoiceApiDto, _$identity);
+
+  /// Serializes this PagedResultOfInvoiceApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PagedResultOfInvoiceApiDto &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(items),
+      page,
+      pageSize,
+      totalCount,
+      hasNextPage,
+      hasPreviousPage,
+      totalPages);
+
+  @override
+  String toString() {
+    return 'PagedResultOfInvoiceApiDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage, totalPages: $totalPages)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PagedResultOfInvoiceApiDtoCopyWith<$Res> {
+  factory $PagedResultOfInvoiceApiDtoCopyWith(PagedResultOfInvoiceApiDto value,
+          $Res Function(PagedResultOfInvoiceApiDto) _then) =
+      _$PagedResultOfInvoiceApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<InvoiceApiDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+      @JsonKey(name: 'totalPages') int? totalPages});
+}
+
+/// @nodoc
+class _$PagedResultOfInvoiceApiDtoCopyWithImpl<$Res>
+    implements $PagedResultOfInvoiceApiDtoCopyWith<$Res> {
+  _$PagedResultOfInvoiceApiDtoCopyWithImpl(this._self, this._then);
+
+  final PagedResultOfInvoiceApiDto _self;
+  final $Res Function(PagedResultOfInvoiceApiDto) _then;
+
+  /// Create a copy of PagedResultOfInvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? totalPages = freezed,
+  }) {
+    return _then(_self.copyWith(
+      items: freezed == items
+          ? _self.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<InvoiceApiDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [PagedResultOfInvoiceApiDto].
+extension PagedResultOfInvoiceApiDtoPatterns on PagedResultOfInvoiceApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PagedResultOfInvoiceApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfInvoiceApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PagedResultOfInvoiceApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfInvoiceApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PagedResultOfInvoiceApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfInvoiceApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<InvoiceApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfInvoiceApiDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<InvoiceApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfInvoiceApiDto():
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'items') List<InvoiceApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfInvoiceApiDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PagedResultOfInvoiceApiDto implements PagedResultOfInvoiceApiDto {
+  _PagedResultOfInvoiceApiDto(
+      {@JsonKey(name: 'items') final List<InvoiceApiDto>? items,
+      @JsonKey(name: 'page') this.page,
+      @JsonKey(name: 'pageSize') this.pageSize,
+      @JsonKey(name: 'totalCount') this.totalCount,
+      @JsonKey(name: 'hasNextPage') this.hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') this.hasPreviousPage,
+      @JsonKey(name: 'totalPages') this.totalPages})
+      : _items = items;
+  factory _PagedResultOfInvoiceApiDto.fromJson(Map<String, dynamic> json) =>
+      _$PagedResultOfInvoiceApiDtoFromJson(json);
+
+  final List<InvoiceApiDto>? _items;
+  @override
+  @JsonKey(name: 'items')
+  List<InvoiceApiDto>? get items {
+    final value = _items;
+    if (value == null) return null;
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'page')
+  final int? page;
+  @override
+  @JsonKey(name: 'pageSize')
+  final int? pageSize;
+  @override
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @override
+  @JsonKey(name: 'hasNextPage')
+  final bool? hasNextPage;
+  @override
+  @JsonKey(name: 'hasPreviousPage')
+  final bool? hasPreviousPage;
+  @override
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+
+  /// Create a copy of PagedResultOfInvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PagedResultOfInvoiceApiDtoCopyWith<_PagedResultOfInvoiceApiDto>
+      get copyWith => __$PagedResultOfInvoiceApiDtoCopyWithImpl<
+          _PagedResultOfInvoiceApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PagedResultOfInvoiceApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PagedResultOfInvoiceApiDto &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      page,
+      pageSize,
+      totalCount,
+      hasNextPage,
+      hasPreviousPage,
+      totalPages);
+
+  @override
+  String toString() {
+    return 'PagedResultOfInvoiceApiDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage, totalPages: $totalPages)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PagedResultOfInvoiceApiDtoCopyWith<$Res>
+    implements $PagedResultOfInvoiceApiDtoCopyWith<$Res> {
+  factory _$PagedResultOfInvoiceApiDtoCopyWith(
+          _PagedResultOfInvoiceApiDto value,
+          $Res Function(_PagedResultOfInvoiceApiDto) _then) =
+      __$PagedResultOfInvoiceApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<InvoiceApiDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+      @JsonKey(name: 'totalPages') int? totalPages});
+}
+
+/// @nodoc
+class __$PagedResultOfInvoiceApiDtoCopyWithImpl<$Res>
+    implements _$PagedResultOfInvoiceApiDtoCopyWith<$Res> {
+  __$PagedResultOfInvoiceApiDtoCopyWithImpl(this._self, this._then);
+
+  final _PagedResultOfInvoiceApiDto _self;
+  final $Res Function(_PagedResultOfInvoiceApiDto) _then;
+
+  /// Create a copy of PagedResultOfInvoiceApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? totalPages = freezed,
+  }) {
+    return _then(_PagedResultOfInvoiceApiDto(
+      items: freezed == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<InvoiceApiDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$PagedResultOfLearningDomainApiDto {
+  @JsonKey(name: 'items')
+  List<LearningDomainApiDto>? get items;
+  @JsonKey(name: 'page')
+  int? get page;
+  @JsonKey(name: 'pageSize')
+  int? get pageSize;
+  @JsonKey(name: 'totalCount')
+  int? get totalCount;
+  @JsonKey(name: 'hasNextPage')
+  bool? get hasNextPage;
+  @JsonKey(name: 'hasPreviousPage')
+  bool? get hasPreviousPage;
+  @JsonKey(name: 'totalPages')
+  int? get totalPages;
+
+  /// Create a copy of PagedResultOfLearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PagedResultOfLearningDomainApiDtoCopyWith<PagedResultOfLearningDomainApiDto>
+      get copyWith => _$PagedResultOfLearningDomainApiDtoCopyWithImpl<
+              PagedResultOfLearningDomainApiDto>(
+          this as PagedResultOfLearningDomainApiDto, _$identity);
+
+  /// Serializes this PagedResultOfLearningDomainApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PagedResultOfLearningDomainApiDto &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(items),
+      page,
+      pageSize,
+      totalCount,
+      hasNextPage,
+      hasPreviousPage,
+      totalPages);
+
+  @override
+  String toString() {
+    return 'PagedResultOfLearningDomainApiDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage, totalPages: $totalPages)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PagedResultOfLearningDomainApiDtoCopyWith<$Res> {
+  factory $PagedResultOfLearningDomainApiDtoCopyWith(
+          PagedResultOfLearningDomainApiDto value,
+          $Res Function(PagedResultOfLearningDomainApiDto) _then) =
+      _$PagedResultOfLearningDomainApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<LearningDomainApiDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+      @JsonKey(name: 'totalPages') int? totalPages});
+}
+
+/// @nodoc
+class _$PagedResultOfLearningDomainApiDtoCopyWithImpl<$Res>
+    implements $PagedResultOfLearningDomainApiDtoCopyWith<$Res> {
+  _$PagedResultOfLearningDomainApiDtoCopyWithImpl(this._self, this._then);
+
+  final PagedResultOfLearningDomainApiDto _self;
+  final $Res Function(PagedResultOfLearningDomainApiDto) _then;
+
+  /// Create a copy of PagedResultOfLearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? totalPages = freezed,
+  }) {
+    return _then(_self.copyWith(
+      items: freezed == items
+          ? _self.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<LearningDomainApiDto>?,
+      page: freezed == page
+          ? _self.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int?,
+      pageSize: freezed == pageSize
+          ? _self.pageSize
+          : pageSize // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalCount: freezed == totalCount
+          ? _self.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _self.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _self.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      totalPages: freezed == totalPages
+          ? _self.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [PagedResultOfLearningDomainApiDto].
+extension PagedResultOfLearningDomainApiDtoPatterns
+    on PagedResultOfLearningDomainApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PagedResultOfLearningDomainApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfLearningDomainApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PagedResultOfLearningDomainApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfLearningDomainApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PagedResultOfLearningDomainApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfLearningDomainApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<LearningDomainApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfLearningDomainApiDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'items') List<LearningDomainApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfLearningDomainApiDto():
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'items') List<LearningDomainApiDto>? items,
+            @JsonKey(name: 'page') int? page,
+            @JsonKey(name: 'pageSize') int? pageSize,
+            @JsonKey(name: 'totalCount') int? totalCount,
+            @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+            @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+            @JsonKey(name: 'totalPages') int? totalPages)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PagedResultOfLearningDomainApiDto() when $default != null:
+        return $default(
+            _that.items,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.hasNextPage,
+            _that.hasPreviousPage,
+            _that.totalPages);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PagedResultOfLearningDomainApiDto
+    implements PagedResultOfLearningDomainApiDto {
+  _PagedResultOfLearningDomainApiDto(
+      {@JsonKey(name: 'items') final List<LearningDomainApiDto>? items,
+      @JsonKey(name: 'page') this.page,
+      @JsonKey(name: 'pageSize') this.pageSize,
+      @JsonKey(name: 'totalCount') this.totalCount,
+      @JsonKey(name: 'hasNextPage') this.hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') this.hasPreviousPage,
+      @JsonKey(name: 'totalPages') this.totalPages})
+      : _items = items;
+  factory _PagedResultOfLearningDomainApiDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$PagedResultOfLearningDomainApiDtoFromJson(json);
+
+  final List<LearningDomainApiDto>? _items;
+  @override
+  @JsonKey(name: 'items')
+  List<LearningDomainApiDto>? get items {
+    final value = _items;
+    if (value == null) return null;
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'page')
+  final int? page;
+  @override
+  @JsonKey(name: 'pageSize')
+  final int? pageSize;
+  @override
+  @JsonKey(name: 'totalCount')
+  final int? totalCount;
+  @override
+  @JsonKey(name: 'hasNextPage')
+  final bool? hasNextPage;
+  @override
+  @JsonKey(name: 'hasPreviousPage')
+  final bool? hasPreviousPage;
+  @override
+  @JsonKey(name: 'totalPages')
+  final int? totalPages;
+
+  /// Create a copy of PagedResultOfLearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PagedResultOfLearningDomainApiDtoCopyWith<
+          _PagedResultOfLearningDomainApiDto>
+      get copyWith => __$PagedResultOfLearningDomainApiDtoCopyWithImpl<
+          _PagedResultOfLearningDomainApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PagedResultOfLearningDomainApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PagedResultOfLearningDomainApiDto &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      page,
+      pageSize,
+      totalCount,
+      hasNextPage,
+      hasPreviousPage,
+      totalPages);
+
+  @override
+  String toString() {
+    return 'PagedResultOfLearningDomainApiDto(items: $items, page: $page, pageSize: $pageSize, totalCount: $totalCount, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage, totalPages: $totalPages)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PagedResultOfLearningDomainApiDtoCopyWith<$Res>
+    implements $PagedResultOfLearningDomainApiDtoCopyWith<$Res> {
+  factory _$PagedResultOfLearningDomainApiDtoCopyWith(
+          _PagedResultOfLearningDomainApiDto value,
+          $Res Function(_PagedResultOfLearningDomainApiDto) _then) =
+      __$PagedResultOfLearningDomainApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<LearningDomainApiDto>? items,
+      @JsonKey(name: 'page') int? page,
+      @JsonKey(name: 'pageSize') int? pageSize,
+      @JsonKey(name: 'totalCount') int? totalCount,
+      @JsonKey(name: 'hasNextPage') bool? hasNextPage,
+      @JsonKey(name: 'hasPreviousPage') bool? hasPreviousPage,
+      @JsonKey(name: 'totalPages') int? totalPages});
+}
+
+/// @nodoc
+class __$PagedResultOfLearningDomainApiDtoCopyWithImpl<$Res>
+    implements _$PagedResultOfLearningDomainApiDtoCopyWith<$Res> {
+  __$PagedResultOfLearningDomainApiDtoCopyWithImpl(this._self, this._then);
+
+  final _PagedResultOfLearningDomainApiDto _self;
+  final $Res Function(_PagedResultOfLearningDomainApiDto) _then;
+
+  /// Create a copy of PagedResultOfLearningDomainApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = freezed,
+    Object? page = freezed,
+    Object? pageSize = freezed,
+    Object? totalCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? totalPages = freezed,
+  }) {
+    return _then(_PagedResultOfLearningDomainApiDto(
+      items: freezed == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<LearningDomainApiDto>?,
       page: freezed == page
           ? _self.page
           : page // ignore: cast_nullable_to_non_nullable
@@ -30898,6 +44879,3878 @@ class __$PagedResultOfUserBranchRoleViewDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$PoopActivityDto {
+  @JsonKey(name: 'poopTexture')
+  int? get poopTexture;
+  @JsonKey(name: 'poopColour')
+  int? get poopColour;
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'activityType')
+  int? get activityType;
+  @JsonKey(name: 'activityDate')
+  String? get activityDate;
+  @JsonKey(name: 'activityDateBridge')
+  DateTime? get activityDateBridge;
+  @JsonKey(name: 'activityTime')
+  String? get activityTime;
+  @JsonKey(name: 'activityTimeBridge')
+  String? get activityTimeBridge;
+  @JsonKey(name: 'carriedOutBy')
+  String? get carriedOutBy;
+  @JsonKey(name: 'nextActivityDate')
+  String? get nextActivityDate;
+  @JsonKey(name: 'nextActivityDateBridge')
+  DateTime? get nextActivityDateBridge;
+  @JsonKey(name: 'nextActivityTime')
+  String? get nextActivityTime;
+  @JsonKey(name: 'nextActivityTimeBridge')
+  String? get nextActivityTimeBridge;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+  @JsonKey(name: 'integrationRefId')
+  String? get integrationRefId;
+
+  /// Create a copy of PoopActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $PoopActivityDtoCopyWith<PoopActivityDto> get copyWith =>
+      _$PoopActivityDtoCopyWithImpl<PoopActivityDto>(
+          this as PoopActivityDto, _$identity);
+
+  /// Serializes this PoopActivityDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is PoopActivityDto &&
+            (identical(other.poopTexture, poopTexture) ||
+                other.poopTexture == poopTexture) &&
+            (identical(other.poopColour, poopColour) ||
+                other.poopColour == poopColour) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        poopTexture,
+        poopColour,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'PoopActivityDto(poopTexture: $poopTexture, poopColour: $poopColour, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $PoopActivityDtoCopyWith<$Res> {
+  factory $PoopActivityDtoCopyWith(
+          PoopActivityDto value, $Res Function(PoopActivityDto) _then) =
+      _$PoopActivityDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'poopTexture') int? poopTexture,
+      @JsonKey(name: 'poopColour') int? poopColour,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class _$PoopActivityDtoCopyWithImpl<$Res>
+    implements $PoopActivityDtoCopyWith<$Res> {
+  _$PoopActivityDtoCopyWithImpl(this._self, this._then);
+
+  final PoopActivityDto _self;
+  final $Res Function(PoopActivityDto) _then;
+
+  /// Create a copy of PoopActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? poopTexture = freezed,
+    Object? poopColour = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      poopTexture: freezed == poopTexture
+          ? _self.poopTexture
+          : poopTexture // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poopColour: freezed == poopColour
+          ? _self.poopColour
+          : poopColour // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [PoopActivityDto].
+extension PoopActivityDtoPatterns on PoopActivityDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_PoopActivityDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PoopActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_PoopActivityDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PoopActivityDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_PoopActivityDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PoopActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'poopTexture') int? poopTexture,
+            @JsonKey(name: 'poopColour') int? poopColour,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _PoopActivityDto() when $default != null:
+        return $default(
+            _that.poopTexture,
+            _that.poopColour,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'poopTexture') int? poopTexture,
+            @JsonKey(name: 'poopColour') int? poopColour,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PoopActivityDto():
+        return $default(
+            _that.poopTexture,
+            _that.poopColour,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'poopTexture') int? poopTexture,
+            @JsonKey(name: 'poopColour') int? poopColour,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _PoopActivityDto() when $default != null:
+        return $default(
+            _that.poopTexture,
+            _that.poopColour,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _PoopActivityDto implements PoopActivityDto {
+  _PoopActivityDto(
+      {@JsonKey(name: 'poopTexture') this.poopTexture,
+      @JsonKey(name: 'poopColour') this.poopColour,
+      @JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'activityType') this.activityType,
+      @JsonKey(name: 'activityDate') this.activityDate,
+      @JsonKey(name: 'activityDateBridge') this.activityDateBridge,
+      @JsonKey(name: 'activityTime') this.activityTime,
+      @JsonKey(name: 'activityTimeBridge') this.activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') this.carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') this.nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') this.nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') this.nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') this.nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate,
+      @JsonKey(name: 'integrationRefId') this.integrationRefId});
+  factory _PoopActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$PoopActivityDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'poopTexture')
+  final int? poopTexture;
+  @override
+  @JsonKey(name: 'poopColour')
+  final int? poopColour;
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  @override
+  @JsonKey(name: 'activityType')
+  final int? activityType;
+  @override
+  @JsonKey(name: 'activityDate')
+  final String? activityDate;
+  @override
+  @JsonKey(name: 'activityDateBridge')
+  final DateTime? activityDateBridge;
+  @override
+  @JsonKey(name: 'activityTime')
+  final String? activityTime;
+  @override
+  @JsonKey(name: 'activityTimeBridge')
+  final String? activityTimeBridge;
+  @override
+  @JsonKey(name: 'carriedOutBy')
+  final String? carriedOutBy;
+  @override
+  @JsonKey(name: 'nextActivityDate')
+  final String? nextActivityDate;
+  @override
+  @JsonKey(name: 'nextActivityDateBridge')
+  final DateTime? nextActivityDateBridge;
+  @override
+  @JsonKey(name: 'nextActivityTime')
+  final String? nextActivityTime;
+  @override
+  @JsonKey(name: 'nextActivityTimeBridge')
+  final String? nextActivityTimeBridge;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'integrationRefId')
+  final String? integrationRefId;
+
+  /// Create a copy of PoopActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PoopActivityDtoCopyWith<_PoopActivityDto> get copyWith =>
+      __$PoopActivityDtoCopyWithImpl<_PoopActivityDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PoopActivityDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _PoopActivityDto &&
+            (identical(other.poopTexture, poopTexture) ||
+                other.poopTexture == poopTexture) &&
+            (identical(other.poopColour, poopColour) ||
+                other.poopColour == poopColour) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        poopTexture,
+        poopColour,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'PoopActivityDto(poopTexture: $poopTexture, poopColour: $poopColour, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$PoopActivityDtoCopyWith<$Res>
+    implements $PoopActivityDtoCopyWith<$Res> {
+  factory _$PoopActivityDtoCopyWith(
+          _PoopActivityDto value, $Res Function(_PoopActivityDto) _then) =
+      __$PoopActivityDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'poopTexture') int? poopTexture,
+      @JsonKey(name: 'poopColour') int? poopColour,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class __$PoopActivityDtoCopyWithImpl<$Res>
+    implements _$PoopActivityDtoCopyWith<$Res> {
+  __$PoopActivityDtoCopyWithImpl(this._self, this._then);
+
+  final _PoopActivityDto _self;
+  final $Res Function(_PoopActivityDto) _then;
+
+  /// Create a copy of PoopActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? poopTexture = freezed,
+    Object? poopColour = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_PoopActivityDto(
+      poopTexture: freezed == poopTexture
+          ? _self.poopTexture
+          : poopTexture // ignore: cast_nullable_to_non_nullable
+              as int?,
+      poopColour: freezed == poopColour
+          ? _self.poopColour
+          : poopColour // ignore: cast_nullable_to_non_nullable
+              as int?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$ProblemDetailsDto {
+  @JsonKey(name: 'type')
+  String? get type;
+  @JsonKey(name: 'title')
+  String? get title;
+  @JsonKey(name: 'status')
+  int? get status;
+  @JsonKey(name: 'detail')
+  String? get detail;
+  @JsonKey(name: 'instance')
+  String? get instance;
+
+  /// Create a copy of ProblemDetailsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProblemDetailsDtoCopyWith<ProblemDetailsDto> get copyWith =>
+      _$ProblemDetailsDtoCopyWithImpl<ProblemDetailsDto>(
+          this as ProblemDetailsDto, _$identity);
+
+  /// Serializes this ProblemDetailsDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProblemDetailsDto &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            (identical(other.instance, instance) ||
+                other.instance == instance));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, type, title, status, detail, instance);
+
+  @override
+  String toString() {
+    return 'ProblemDetailsDto(type: $type, title: $title, status: $status, detail: $detail, instance: $instance)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ProblemDetailsDtoCopyWith<$Res> {
+  factory $ProblemDetailsDtoCopyWith(
+          ProblemDetailsDto value, $Res Function(ProblemDetailsDto) _then) =
+      _$ProblemDetailsDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'detail') String? detail,
+      @JsonKey(name: 'instance') String? instance});
+}
+
+/// @nodoc
+class _$ProblemDetailsDtoCopyWithImpl<$Res>
+    implements $ProblemDetailsDtoCopyWith<$Res> {
+  _$ProblemDetailsDtoCopyWithImpl(this._self, this._then);
+
+  final ProblemDetailsDto _self;
+  final $Res Function(ProblemDetailsDto) _then;
+
+  /// Create a copy of ProblemDetailsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = freezed,
+    Object? title = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? instance = freezed,
+  }) {
+    return _then(_self.copyWith(
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detail: freezed == detail
+          ? _self.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instance: freezed == instance
+          ? _self.instance
+          : instance // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [ProblemDetailsDto].
+extension ProblemDetailsDtoPatterns on ProblemDetailsDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ProblemDetailsDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ProblemDetailsDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ProblemDetailsDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ProblemDetailsDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ProblemDetailsDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ProblemDetailsDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'type') String? type,
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'detail') String? detail,
+            @JsonKey(name: 'instance') String? instance)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ProblemDetailsDto() when $default != null:
+        return $default(_that.type, _that.title, _that.status, _that.detail,
+            _that.instance);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'type') String? type,
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'detail') String? detail,
+            @JsonKey(name: 'instance') String? instance)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ProblemDetailsDto():
+        return $default(_that.type, _that.title, _that.status, _that.detail,
+            _that.instance);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'type') String? type,
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'detail') String? detail,
+            @JsonKey(name: 'instance') String? instance)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ProblemDetailsDto() when $default != null:
+        return $default(_that.type, _that.title, _that.status, _that.detail,
+            _that.instance);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ProblemDetailsDto implements ProblemDetailsDto {
+  _ProblemDetailsDto(
+      {@JsonKey(name: 'type') this.type,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'detail') this.detail,
+      @JsonKey(name: 'instance') this.instance});
+  factory _ProblemDetailsDto.fromJson(Map<String, dynamic> json) =>
+      _$ProblemDetailsDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'type')
+  final String? type;
+  @override
+  @JsonKey(name: 'title')
+  final String? title;
+  @override
+  @JsonKey(name: 'status')
+  final int? status;
+  @override
+  @JsonKey(name: 'detail')
+  final String? detail;
+  @override
+  @JsonKey(name: 'instance')
+  final String? instance;
+
+  /// Create a copy of ProblemDetailsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProblemDetailsDtoCopyWith<_ProblemDetailsDto> get copyWith =>
+      __$ProblemDetailsDtoCopyWithImpl<_ProblemDetailsDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProblemDetailsDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ProblemDetailsDto &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            (identical(other.instance, instance) ||
+                other.instance == instance));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, type, title, status, detail, instance);
+
+  @override
+  String toString() {
+    return 'ProblemDetailsDto(type: $type, title: $title, status: $status, detail: $detail, instance: $instance)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ProblemDetailsDtoCopyWith<$Res>
+    implements $ProblemDetailsDtoCopyWith<$Res> {
+  factory _$ProblemDetailsDtoCopyWith(
+          _ProblemDetailsDto value, $Res Function(_ProblemDetailsDto) _then) =
+      __$ProblemDetailsDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'detail') String? detail,
+      @JsonKey(name: 'instance') String? instance});
+}
+
+/// @nodoc
+class __$ProblemDetailsDtoCopyWithImpl<$Res>
+    implements _$ProblemDetailsDtoCopyWith<$Res> {
+  __$ProblemDetailsDtoCopyWithImpl(this._self, this._then);
+
+  final _ProblemDetailsDto _self;
+  final $Res Function(_ProblemDetailsDto) _then;
+
+  /// Create a copy of ProblemDetailsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? type = freezed,
+    Object? title = freezed,
+    Object? status = freezed,
+    Object? detail = freezed,
+    Object? instance = freezed,
+  }) {
+    return _then(_ProblemDetailsDto(
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      detail: freezed == detail
+          ? _self.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      instance: freezed == instance
+          ? _self.instance
+          : instance // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$ReceiptApiDto {
+  @JsonKey(name: 'receiptId')
+  int? get receiptId;
+  @JsonKey(name: 'entityNumber')
+  String? get entityNumber;
+  @JsonKey(name: 'status')
+  int? get status;
+  @JsonKey(name: 'accountId')
+  int? get accountId;
+  @JsonKey(name: 'branchId')
+  int? get branchId;
+  @JsonKey(name: 'currency')
+  String? get currency;
+  @JsonKey(name: 'paymentReference')
+  String? get paymentReference;
+  @JsonKey(name: 'paymentMethod')
+  int? get paymentMethod;
+  @JsonKey(name: 'paymentDate')
+  DateTime? get paymentDate;
+  @JsonKey(name: 'receiptDate')
+  DateTime? get receiptDate;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'voidRemarks')
+  String? get voidRemarks;
+  @JsonKey(name: 'totalReceiptAmount')
+  num? get totalReceiptAmount;
+  @JsonKey(name: 'printUrl')
+  String? get printUrl;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of ReceiptApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ReceiptApiDtoCopyWith<ReceiptApiDto> get copyWith =>
+      _$ReceiptApiDtoCopyWithImpl<ReceiptApiDto>(
+          this as ReceiptApiDto, _$identity);
+
+  /// Serializes this ReceiptApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ReceiptApiDto &&
+            (identical(other.receiptId, receiptId) ||
+                other.receiptId == receiptId) &&
+            (identical(other.entityNumber, entityNumber) ||
+                other.entityNumber == entityNumber) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.paymentReference, paymentReference) ||
+                other.paymentReference == paymentReference) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.paymentDate, paymentDate) ||
+                other.paymentDate == paymentDate) &&
+            (identical(other.receiptDate, receiptDate) ||
+                other.receiptDate == receiptDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.voidRemarks, voidRemarks) ||
+                other.voidRemarks == voidRemarks) &&
+            (identical(other.totalReceiptAmount, totalReceiptAmount) ||
+                other.totalReceiptAmount == totalReceiptAmount) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        receiptId,
+        entityNumber,
+        status,
+        accountId,
+        branchId,
+        currency,
+        paymentReference,
+        paymentMethod,
+        paymentDate,
+        receiptDate,
+        remarks,
+        voidRemarks,
+        totalReceiptAmount,
+        printUrl,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate
+      ]);
+
+  @override
+  String toString() {
+    return 'ReceiptApiDto(receiptId: $receiptId, entityNumber: $entityNumber, status: $status, accountId: $accountId, branchId: $branchId, currency: $currency, paymentReference: $paymentReference, paymentMethod: $paymentMethod, paymentDate: $paymentDate, receiptDate: $receiptDate, remarks: $remarks, voidRemarks: $voidRemarks, totalReceiptAmount: $totalReceiptAmount, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ReceiptApiDtoCopyWith<$Res> {
+  factory $ReceiptApiDtoCopyWith(
+          ReceiptApiDto value, $Res Function(ReceiptApiDto) _then) =
+      _$ReceiptApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'receiptId') int? receiptId,
+      @JsonKey(name: 'entityNumber') String? entityNumber,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'currency') String? currency,
+      @JsonKey(name: 'paymentReference') String? paymentReference,
+      @JsonKey(name: 'paymentMethod') int? paymentMethod,
+      @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+      @JsonKey(name: 'receiptDate') DateTime? receiptDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'voidRemarks') String? voidRemarks,
+      @JsonKey(name: 'totalReceiptAmount') num? totalReceiptAmount,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class _$ReceiptApiDtoCopyWithImpl<$Res>
+    implements $ReceiptApiDtoCopyWith<$Res> {
+  _$ReceiptApiDtoCopyWithImpl(this._self, this._then);
+
+  final ReceiptApiDto _self;
+  final $Res Function(ReceiptApiDto) _then;
+
+  /// Create a copy of ReceiptApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? receiptId = freezed,
+    Object? entityNumber = freezed,
+    Object? status = freezed,
+    Object? accountId = freezed,
+    Object? branchId = freezed,
+    Object? currency = freezed,
+    Object? paymentReference = freezed,
+    Object? paymentMethod = freezed,
+    Object? paymentDate = freezed,
+    Object? receiptDate = freezed,
+    Object? remarks = freezed,
+    Object? voidRemarks = freezed,
+    Object? totalReceiptAmount = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      receiptId: freezed == receiptId
+          ? _self.receiptId
+          : receiptId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityNumber: freezed == entityNumber
+          ? _self.entityNumber
+          : entityNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      branchId: freezed == branchId
+          ? _self.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      currency: freezed == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentReference: freezed == paymentReference
+          ? _self.paymentReference
+          : paymentReference // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentMethod: freezed == paymentMethod
+          ? _self.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentDate: freezed == paymentDate
+          ? _self.paymentDate
+          : paymentDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      receiptDate: freezed == receiptDate
+          ? _self.receiptDate
+          : receiptDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      voidRemarks: freezed == voidRemarks
+          ? _self.voidRemarks
+          : voidRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalReceiptAmount: freezed == totalReceiptAmount
+          ? _self.totalReceiptAmount
+          : totalReceiptAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [ReceiptApiDto].
+extension ReceiptApiDtoPatterns on ReceiptApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ReceiptApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ReceiptApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ReceiptApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'receiptId') int? receiptId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'paymentReference') String? paymentReference,
+            @JsonKey(name: 'paymentMethod') int? paymentMethod,
+            @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+            @JsonKey(name: 'receiptDate') DateTime? receiptDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'voidRemarks') String? voidRemarks,
+            @JsonKey(name: 'totalReceiptAmount') num? totalReceiptAmount,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptApiDto() when $default != null:
+        return $default(
+            _that.receiptId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.branchId,
+            _that.currency,
+            _that.paymentReference,
+            _that.paymentMethod,
+            _that.paymentDate,
+            _that.receiptDate,
+            _that.remarks,
+            _that.voidRemarks,
+            _that.totalReceiptAmount,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'receiptId') int? receiptId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'paymentReference') String? paymentReference,
+            @JsonKey(name: 'paymentMethod') int? paymentMethod,
+            @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+            @JsonKey(name: 'receiptDate') DateTime? receiptDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'voidRemarks') String? voidRemarks,
+            @JsonKey(name: 'totalReceiptAmount') num? totalReceiptAmount,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptApiDto():
+        return $default(
+            _that.receiptId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.branchId,
+            _that.currency,
+            _that.paymentReference,
+            _that.paymentMethod,
+            _that.paymentDate,
+            _that.receiptDate,
+            _that.remarks,
+            _that.voidRemarks,
+            _that.totalReceiptAmount,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'receiptId') int? receiptId,
+            @JsonKey(name: 'entityNumber') String? entityNumber,
+            @JsonKey(name: 'status') int? status,
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'currency') String? currency,
+            @JsonKey(name: 'paymentReference') String? paymentReference,
+            @JsonKey(name: 'paymentMethod') int? paymentMethod,
+            @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+            @JsonKey(name: 'receiptDate') DateTime? receiptDate,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'voidRemarks') String? voidRemarks,
+            @JsonKey(name: 'totalReceiptAmount') num? totalReceiptAmount,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptApiDto() when $default != null:
+        return $default(
+            _that.receiptId,
+            _that.entityNumber,
+            _that.status,
+            _that.accountId,
+            _that.branchId,
+            _that.currency,
+            _that.paymentReference,
+            _that.paymentMethod,
+            _that.paymentDate,
+            _that.receiptDate,
+            _that.remarks,
+            _that.voidRemarks,
+            _that.totalReceiptAmount,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ReceiptApiDto implements ReceiptApiDto {
+  _ReceiptApiDto(
+      {@JsonKey(name: 'receiptId') this.receiptId,
+      @JsonKey(name: 'entityNumber') this.entityNumber,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'accountId') this.accountId,
+      @JsonKey(name: 'branchId') this.branchId,
+      @JsonKey(name: 'currency') this.currency,
+      @JsonKey(name: 'paymentReference') this.paymentReference,
+      @JsonKey(name: 'paymentMethod') this.paymentMethod,
+      @JsonKey(name: 'paymentDate') this.paymentDate,
+      @JsonKey(name: 'receiptDate') this.receiptDate,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'voidRemarks') this.voidRemarks,
+      @JsonKey(name: 'totalReceiptAmount') this.totalReceiptAmount,
+      @JsonKey(name: 'printUrl') this.printUrl,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate});
+  factory _ReceiptApiDto.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'receiptId')
+  final int? receiptId;
+  @override
+  @JsonKey(name: 'entityNumber')
+  final String? entityNumber;
+  @override
+  @JsonKey(name: 'status')
+  final int? status;
+  @override
+  @JsonKey(name: 'accountId')
+  final int? accountId;
+  @override
+  @JsonKey(name: 'branchId')
+  final int? branchId;
+  @override
+  @JsonKey(name: 'currency')
+  final String? currency;
+  @override
+  @JsonKey(name: 'paymentReference')
+  final String? paymentReference;
+  @override
+  @JsonKey(name: 'paymentMethod')
+  final int? paymentMethod;
+  @override
+  @JsonKey(name: 'paymentDate')
+  final DateTime? paymentDate;
+  @override
+  @JsonKey(name: 'receiptDate')
+  final DateTime? receiptDate;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'voidRemarks')
+  final String? voidRemarks;
+  @override
+  @JsonKey(name: 'totalReceiptAmount')
+  final num? totalReceiptAmount;
+  @override
+  @JsonKey(name: 'printUrl')
+  final String? printUrl;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of ReceiptApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ReceiptApiDtoCopyWith<_ReceiptApiDto> get copyWith =>
+      __$ReceiptApiDtoCopyWithImpl<_ReceiptApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ReceiptApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ReceiptApiDto &&
+            (identical(other.receiptId, receiptId) ||
+                other.receiptId == receiptId) &&
+            (identical(other.entityNumber, entityNumber) ||
+                other.entityNumber == entityNumber) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.branchId, branchId) ||
+                other.branchId == branchId) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.paymentReference, paymentReference) ||
+                other.paymentReference == paymentReference) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.paymentDate, paymentDate) ||
+                other.paymentDate == paymentDate) &&
+            (identical(other.receiptDate, receiptDate) ||
+                other.receiptDate == receiptDate) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.voidRemarks, voidRemarks) ||
+                other.voidRemarks == voidRemarks) &&
+            (identical(other.totalReceiptAmount, totalReceiptAmount) ||
+                other.totalReceiptAmount == totalReceiptAmount) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        receiptId,
+        entityNumber,
+        status,
+        accountId,
+        branchId,
+        currency,
+        paymentReference,
+        paymentMethod,
+        paymentDate,
+        receiptDate,
+        remarks,
+        voidRemarks,
+        totalReceiptAmount,
+        printUrl,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate
+      ]);
+
+  @override
+  String toString() {
+    return 'ReceiptApiDto(receiptId: $receiptId, entityNumber: $entityNumber, status: $status, accountId: $accountId, branchId: $branchId, currency: $currency, paymentReference: $paymentReference, paymentMethod: $paymentMethod, paymentDate: $paymentDate, receiptDate: $receiptDate, remarks: $remarks, voidRemarks: $voidRemarks, totalReceiptAmount: $totalReceiptAmount, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ReceiptApiDtoCopyWith<$Res>
+    implements $ReceiptApiDtoCopyWith<$Res> {
+  factory _$ReceiptApiDtoCopyWith(
+          _ReceiptApiDto value, $Res Function(_ReceiptApiDto) _then) =
+      __$ReceiptApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'receiptId') int? receiptId,
+      @JsonKey(name: 'entityNumber') String? entityNumber,
+      @JsonKey(name: 'status') int? status,
+      @JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'currency') String? currency,
+      @JsonKey(name: 'paymentReference') String? paymentReference,
+      @JsonKey(name: 'paymentMethod') int? paymentMethod,
+      @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+      @JsonKey(name: 'receiptDate') DateTime? receiptDate,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'voidRemarks') String? voidRemarks,
+      @JsonKey(name: 'totalReceiptAmount') num? totalReceiptAmount,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+}
+
+/// @nodoc
+class __$ReceiptApiDtoCopyWithImpl<$Res>
+    implements _$ReceiptApiDtoCopyWith<$Res> {
+  __$ReceiptApiDtoCopyWithImpl(this._self, this._then);
+
+  final _ReceiptApiDto _self;
+  final $Res Function(_ReceiptApiDto) _then;
+
+  /// Create a copy of ReceiptApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? receiptId = freezed,
+    Object? entityNumber = freezed,
+    Object? status = freezed,
+    Object? accountId = freezed,
+    Object? branchId = freezed,
+    Object? currency = freezed,
+    Object? paymentReference = freezed,
+    Object? paymentMethod = freezed,
+    Object? paymentDate = freezed,
+    Object? receiptDate = freezed,
+    Object? remarks = freezed,
+    Object? voidRemarks = freezed,
+    Object? totalReceiptAmount = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_ReceiptApiDto(
+      receiptId: freezed == receiptId
+          ? _self.receiptId
+          : receiptId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      entityNumber: freezed == entityNumber
+          ? _self.entityNumber
+          : entityNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      branchId: freezed == branchId
+          ? _self.branchId
+          : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      currency: freezed == currency
+          ? _self.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentReference: freezed == paymentReference
+          ? _self.paymentReference
+          : paymentReference // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentMethod: freezed == paymentMethod
+          ? _self.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentDate: freezed == paymentDate
+          ? _self.paymentDate
+          : paymentDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      receiptDate: freezed == receiptDate
+          ? _self.receiptDate
+          : receiptDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      voidRemarks: freezed == voidRemarks
+          ? _self.voidRemarks
+          : voidRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalReceiptAmount: freezed == totalReceiptAmount
+          ? _self.totalReceiptAmount
+          : totalReceiptAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$ReceiptItemApiDto {
+  @JsonKey(name: 'receiptItemId')
+  int? get receiptItemId;
+  @JsonKey(name: 'receiptId')
+  int? get receiptId;
+  @JsonKey(name: 'receipt')
+  ReceiptApiDto? get receipt;
+  @JsonKey(name: 'invoiceId')
+  int? get invoiceId;
+  @JsonKey(name: 'appliedAmount')
+  num? get appliedAmount;
+  @JsonKey(name: 'receiptStatus')
+  int? get receiptStatus;
+  @JsonKey(name: 'paymentMethod')
+  int? get paymentMethod;
+  @JsonKey(name: 'paymentDate')
+  DateTime? get paymentDate;
+  @JsonKey(name: 'printUrl')
+  String? get printUrl;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+
+  /// Create a copy of ReceiptItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ReceiptItemApiDtoCopyWith<ReceiptItemApiDto> get copyWith =>
+      _$ReceiptItemApiDtoCopyWithImpl<ReceiptItemApiDto>(
+          this as ReceiptItemApiDto, _$identity);
+
+  /// Serializes this ReceiptItemApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ReceiptItemApiDto &&
+            (identical(other.receiptItemId, receiptItemId) ||
+                other.receiptItemId == receiptItemId) &&
+            (identical(other.receiptId, receiptId) ||
+                other.receiptId == receiptId) &&
+            (identical(other.receipt, receipt) || other.receipt == receipt) &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.appliedAmount, appliedAmount) ||
+                other.appliedAmount == appliedAmount) &&
+            (identical(other.receiptStatus, receiptStatus) ||
+                other.receiptStatus == receiptStatus) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.paymentDate, paymentDate) ||
+                other.paymentDate == paymentDate) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      receiptItemId,
+      receiptId,
+      receipt,
+      invoiceId,
+      appliedAmount,
+      receiptStatus,
+      paymentMethod,
+      paymentDate,
+      printUrl,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'ReceiptItemApiDto(receiptItemId: $receiptItemId, receiptId: $receiptId, receipt: $receipt, invoiceId: $invoiceId, appliedAmount: $appliedAmount, receiptStatus: $receiptStatus, paymentMethod: $paymentMethod, paymentDate: $paymentDate, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ReceiptItemApiDtoCopyWith<$Res> {
+  factory $ReceiptItemApiDtoCopyWith(
+          ReceiptItemApiDto value, $Res Function(ReceiptItemApiDto) _then) =
+      _$ReceiptItemApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'receiptItemId') int? receiptItemId,
+      @JsonKey(name: 'receiptId') int? receiptId,
+      @JsonKey(name: 'receipt') ReceiptApiDto? receipt,
+      @JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'appliedAmount') num? appliedAmount,
+      @JsonKey(name: 'receiptStatus') int? receiptStatus,
+      @JsonKey(name: 'paymentMethod') int? paymentMethod,
+      @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  $ReceiptApiDtoCopyWith<$Res>? get receipt;
+}
+
+/// @nodoc
+class _$ReceiptItemApiDtoCopyWithImpl<$Res>
+    implements $ReceiptItemApiDtoCopyWith<$Res> {
+  _$ReceiptItemApiDtoCopyWithImpl(this._self, this._then);
+
+  final ReceiptItemApiDto _self;
+  final $Res Function(ReceiptItemApiDto) _then;
+
+  /// Create a copy of ReceiptItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? receiptItemId = freezed,
+    Object? receiptId = freezed,
+    Object? receipt = freezed,
+    Object? invoiceId = freezed,
+    Object? appliedAmount = freezed,
+    Object? receiptStatus = freezed,
+    Object? paymentMethod = freezed,
+    Object? paymentDate = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_self.copyWith(
+      receiptItemId: freezed == receiptItemId
+          ? _self.receiptItemId
+          : receiptItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      receiptId: freezed == receiptId
+          ? _self.receiptId
+          : receiptId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      receipt: freezed == receipt
+          ? _self.receipt
+          : receipt // ignore: cast_nullable_to_non_nullable
+              as ReceiptApiDto?,
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      appliedAmount: freezed == appliedAmount
+          ? _self.appliedAmount
+          : appliedAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      receiptStatus: freezed == receiptStatus
+          ? _self.receiptStatus
+          : receiptStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentMethod: freezed == paymentMethod
+          ? _self.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentDate: freezed == paymentDate
+          ? _self.paymentDate
+          : paymentDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of ReceiptItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ReceiptApiDtoCopyWith<$Res>? get receipt {
+    if (_self.receipt == null) {
+      return null;
+    }
+
+    return $ReceiptApiDtoCopyWith<$Res>(_self.receipt!, (value) {
+      return _then(_self.copyWith(receipt: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [ReceiptItemApiDto].
+extension ReceiptItemApiDtoPatterns on ReceiptItemApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ReceiptItemApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptItemApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ReceiptItemApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptItemApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ReceiptItemApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptItemApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'receiptItemId') int? receiptItemId,
+            @JsonKey(name: 'receiptId') int? receiptId,
+            @JsonKey(name: 'receipt') ReceiptApiDto? receipt,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'appliedAmount') num? appliedAmount,
+            @JsonKey(name: 'receiptStatus') int? receiptStatus,
+            @JsonKey(name: 'paymentMethod') int? paymentMethod,
+            @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptItemApiDto() when $default != null:
+        return $default(
+            _that.receiptItemId,
+            _that.receiptId,
+            _that.receipt,
+            _that.invoiceId,
+            _that.appliedAmount,
+            _that.receiptStatus,
+            _that.paymentMethod,
+            _that.paymentDate,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'receiptItemId') int? receiptItemId,
+            @JsonKey(name: 'receiptId') int? receiptId,
+            @JsonKey(name: 'receipt') ReceiptApiDto? receipt,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'appliedAmount') num? appliedAmount,
+            @JsonKey(name: 'receiptStatus') int? receiptStatus,
+            @JsonKey(name: 'paymentMethod') int? paymentMethod,
+            @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptItemApiDto():
+        return $default(
+            _that.receiptItemId,
+            _that.receiptId,
+            _that.receipt,
+            _that.invoiceId,
+            _that.appliedAmount,
+            _that.receiptStatus,
+            _that.paymentMethod,
+            _that.paymentDate,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'receiptItemId') int? receiptItemId,
+            @JsonKey(name: 'receiptId') int? receiptId,
+            @JsonKey(name: 'receipt') ReceiptApiDto? receipt,
+            @JsonKey(name: 'invoiceId') int? invoiceId,
+            @JsonKey(name: 'appliedAmount') num? appliedAmount,
+            @JsonKey(name: 'receiptStatus') int? receiptStatus,
+            @JsonKey(name: 'paymentMethod') int? paymentMethod,
+            @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+            @JsonKey(name: 'printUrl') String? printUrl,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ReceiptItemApiDto() when $default != null:
+        return $default(
+            _that.receiptItemId,
+            _that.receiptId,
+            _that.receipt,
+            _that.invoiceId,
+            _that.appliedAmount,
+            _that.receiptStatus,
+            _that.paymentMethod,
+            _that.paymentDate,
+            _that.printUrl,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ReceiptItemApiDto implements ReceiptItemApiDto {
+  _ReceiptItemApiDto(
+      {@JsonKey(name: 'receiptItemId') this.receiptItemId,
+      @JsonKey(name: 'receiptId') this.receiptId,
+      @JsonKey(name: 'receipt') this.receipt,
+      @JsonKey(name: 'invoiceId') this.invoiceId,
+      @JsonKey(name: 'appliedAmount') this.appliedAmount,
+      @JsonKey(name: 'receiptStatus') this.receiptStatus,
+      @JsonKey(name: 'paymentMethod') this.paymentMethod,
+      @JsonKey(name: 'paymentDate') this.paymentDate,
+      @JsonKey(name: 'printUrl') this.printUrl,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate});
+  factory _ReceiptItemApiDto.fromJson(Map<String, dynamic> json) =>
+      _$ReceiptItemApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'receiptItemId')
+  final int? receiptItemId;
+  @override
+  @JsonKey(name: 'receiptId')
+  final int? receiptId;
+  @override
+  @JsonKey(name: 'receipt')
+  final ReceiptApiDto? receipt;
+  @override
+  @JsonKey(name: 'invoiceId')
+  final int? invoiceId;
+  @override
+  @JsonKey(name: 'appliedAmount')
+  final num? appliedAmount;
+  @override
+  @JsonKey(name: 'receiptStatus')
+  final int? receiptStatus;
+  @override
+  @JsonKey(name: 'paymentMethod')
+  final int? paymentMethod;
+  @override
+  @JsonKey(name: 'paymentDate')
+  final DateTime? paymentDate;
+  @override
+  @JsonKey(name: 'printUrl')
+  final String? printUrl;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+
+  /// Create a copy of ReceiptItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ReceiptItemApiDtoCopyWith<_ReceiptItemApiDto> get copyWith =>
+      __$ReceiptItemApiDtoCopyWithImpl<_ReceiptItemApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ReceiptItemApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ReceiptItemApiDto &&
+            (identical(other.receiptItemId, receiptItemId) ||
+                other.receiptItemId == receiptItemId) &&
+            (identical(other.receiptId, receiptId) ||
+                other.receiptId == receiptId) &&
+            (identical(other.receipt, receipt) || other.receipt == receipt) &&
+            (identical(other.invoiceId, invoiceId) ||
+                other.invoiceId == invoiceId) &&
+            (identical(other.appliedAmount, appliedAmount) ||
+                other.appliedAmount == appliedAmount) &&
+            (identical(other.receiptStatus, receiptStatus) ||
+                other.receiptStatus == receiptStatus) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
+            (identical(other.paymentDate, paymentDate) ||
+                other.paymentDate == paymentDate) &&
+            (identical(other.printUrl, printUrl) ||
+                other.printUrl == printUrl) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      receiptItemId,
+      receiptId,
+      receipt,
+      invoiceId,
+      appliedAmount,
+      receiptStatus,
+      paymentMethod,
+      paymentDate,
+      printUrl,
+      isDeleted,
+      createdByUserId,
+      createdDate,
+      lastUpdatedByUserId,
+      updatedDate);
+
+  @override
+  String toString() {
+    return 'ReceiptItemApiDto(receiptItemId: $receiptItemId, receiptId: $receiptId, receipt: $receipt, invoiceId: $invoiceId, appliedAmount: $appliedAmount, receiptStatus: $receiptStatus, paymentMethod: $paymentMethod, paymentDate: $paymentDate, printUrl: $printUrl, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ReceiptItemApiDtoCopyWith<$Res>
+    implements $ReceiptItemApiDtoCopyWith<$Res> {
+  factory _$ReceiptItemApiDtoCopyWith(
+          _ReceiptItemApiDto value, $Res Function(_ReceiptItemApiDto) _then) =
+      __$ReceiptItemApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'receiptItemId') int? receiptItemId,
+      @JsonKey(name: 'receiptId') int? receiptId,
+      @JsonKey(name: 'receipt') ReceiptApiDto? receipt,
+      @JsonKey(name: 'invoiceId') int? invoiceId,
+      @JsonKey(name: 'appliedAmount') num? appliedAmount,
+      @JsonKey(name: 'receiptStatus') int? receiptStatus,
+      @JsonKey(name: 'paymentMethod') int? paymentMethod,
+      @JsonKey(name: 'paymentDate') DateTime? paymentDate,
+      @JsonKey(name: 'printUrl') String? printUrl,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
+
+  @override
+  $ReceiptApiDtoCopyWith<$Res>? get receipt;
+}
+
+/// @nodoc
+class __$ReceiptItemApiDtoCopyWithImpl<$Res>
+    implements _$ReceiptItemApiDtoCopyWith<$Res> {
+  __$ReceiptItemApiDtoCopyWithImpl(this._self, this._then);
+
+  final _ReceiptItemApiDto _self;
+  final $Res Function(_ReceiptItemApiDto) _then;
+
+  /// Create a copy of ReceiptItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? receiptItemId = freezed,
+    Object? receiptId = freezed,
+    Object? receipt = freezed,
+    Object? invoiceId = freezed,
+    Object? appliedAmount = freezed,
+    Object? receiptStatus = freezed,
+    Object? paymentMethod = freezed,
+    Object? paymentDate = freezed,
+    Object? printUrl = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+  }) {
+    return _then(_ReceiptItemApiDto(
+      receiptItemId: freezed == receiptItemId
+          ? _self.receiptItemId
+          : receiptItemId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      receiptId: freezed == receiptId
+          ? _self.receiptId
+          : receiptId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      receipt: freezed == receipt
+          ? _self.receipt
+          : receipt // ignore: cast_nullable_to_non_nullable
+              as ReceiptApiDto?,
+      invoiceId: freezed == invoiceId
+          ? _self.invoiceId
+          : invoiceId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      appliedAmount: freezed == appliedAmount
+          ? _self.appliedAmount
+          : appliedAmount // ignore: cast_nullable_to_non_nullable
+              as num?,
+      receiptStatus: freezed == receiptStatus
+          ? _self.receiptStatus
+          : receiptStatus // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentMethod: freezed == paymentMethod
+          ? _self.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      paymentDate: freezed == paymentDate
+          ? _self.paymentDate
+          : paymentDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      printUrl: freezed == printUrl
+          ? _self.printUrl
+          : printUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of ReceiptItemApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ReceiptApiDtoCopyWith<$Res>? get receipt {
+    if (_self.receipt == null) {
+      return null;
+    }
+
+    return $ReceiptApiDtoCopyWith<$Res>(_self.receipt!, (value) {
+      return _then(_self.copyWith(receipt: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$RestActivityDto {
+  @JsonKey(name: 'restDuration')
+  int? get restDuration;
+  @JsonKey(name: 'restEndTime')
+  String? get restEndTime;
+  @JsonKey(name: 'restEndTimeBridge')
+  String? get restEndTimeBridge;
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'activityType')
+  int? get activityType;
+  @JsonKey(name: 'activityDate')
+  String? get activityDate;
+  @JsonKey(name: 'activityDateBridge')
+  DateTime? get activityDateBridge;
+  @JsonKey(name: 'activityTime')
+  String? get activityTime;
+  @JsonKey(name: 'activityTimeBridge')
+  String? get activityTimeBridge;
+  @JsonKey(name: 'carriedOutBy')
+  String? get carriedOutBy;
+  @JsonKey(name: 'nextActivityDate')
+  String? get nextActivityDate;
+  @JsonKey(name: 'nextActivityDateBridge')
+  DateTime? get nextActivityDateBridge;
+  @JsonKey(name: 'nextActivityTime')
+  String? get nextActivityTime;
+  @JsonKey(name: 'nextActivityTimeBridge')
+  String? get nextActivityTimeBridge;
+  @JsonKey(name: 'remarks')
+  String? get remarks;
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'isDeleted')
+  bool? get isDeleted;
+  @JsonKey(name: 'createdByUserId')
+  String? get createdByUserId;
+  @JsonKey(name: 'createdDate')
+  DateTime? get createdDate;
+  @JsonKey(name: 'lastUpdatedByUserId')
+  String? get lastUpdatedByUserId;
+  @JsonKey(name: 'updatedDate')
+  DateTime? get updatedDate;
+  @JsonKey(name: 'integrationRefId')
+  String? get integrationRefId;
+
+  /// Create a copy of RestActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $RestActivityDtoCopyWith<RestActivityDto> get copyWith =>
+      _$RestActivityDtoCopyWithImpl<RestActivityDto>(
+          this as RestActivityDto, _$identity);
+
+  /// Serializes this RestActivityDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is RestActivityDto &&
+            (identical(other.restDuration, restDuration) ||
+                other.restDuration == restDuration) &&
+            (identical(other.restEndTime, restEndTime) ||
+                other.restEndTime == restEndTime) &&
+            (identical(other.restEndTimeBridge, restEndTimeBridge) ||
+                other.restEndTimeBridge == restEndTimeBridge) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        restDuration,
+        restEndTime,
+        restEndTimeBridge,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'RestActivityDto(restDuration: $restDuration, restEndTime: $restEndTime, restEndTimeBridge: $restEndTimeBridge, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $RestActivityDtoCopyWith<$Res> {
+  factory $RestActivityDtoCopyWith(
+          RestActivityDto value, $Res Function(RestActivityDto) _then) =
+      _$RestActivityDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'restDuration') int? restDuration,
+      @JsonKey(name: 'restEndTime') String? restEndTime,
+      @JsonKey(name: 'restEndTimeBridge') String? restEndTimeBridge,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class _$RestActivityDtoCopyWithImpl<$Res>
+    implements $RestActivityDtoCopyWith<$Res> {
+  _$RestActivityDtoCopyWithImpl(this._self, this._then);
+
+  final RestActivityDto _self;
+  final $Res Function(RestActivityDto) _then;
+
+  /// Create a copy of RestActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? restDuration = freezed,
+    Object? restEndTime = freezed,
+    Object? restEndTimeBridge = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_self.copyWith(
+      restDuration: freezed == restDuration
+          ? _self.restDuration
+          : restDuration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      restEndTime: freezed == restEndTime
+          ? _self.restEndTime
+          : restEndTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restEndTimeBridge: freezed == restEndTimeBridge
+          ? _self.restEndTimeBridge
+          : restEndTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [RestActivityDto].
+extension RestActivityDtoPatterns on RestActivityDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_RestActivityDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RestActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_RestActivityDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RestActivityDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_RestActivityDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RestActivityDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'restDuration') int? restDuration,
+            @JsonKey(name: 'restEndTime') String? restEndTime,
+            @JsonKey(name: 'restEndTimeBridge') String? restEndTimeBridge,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RestActivityDto() when $default != null:
+        return $default(
+            _that.restDuration,
+            _that.restEndTime,
+            _that.restEndTimeBridge,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'restDuration') int? restDuration,
+            @JsonKey(name: 'restEndTime') String? restEndTime,
+            @JsonKey(name: 'restEndTimeBridge') String? restEndTimeBridge,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RestActivityDto():
+        return $default(
+            _that.restDuration,
+            _that.restEndTime,
+            _that.restEndTimeBridge,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'restDuration') int? restDuration,
+            @JsonKey(name: 'restEndTime') String? restEndTime,
+            @JsonKey(name: 'restEndTimeBridge') String? restEndTimeBridge,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'activityType') int? activityType,
+            @JsonKey(name: 'activityDate') String? activityDate,
+            @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+            @JsonKey(name: 'activityTime') String? activityTime,
+            @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+            @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+            @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+            @JsonKey(name: 'nextActivityDateBridge')
+            DateTime? nextActivityDateBridge,
+            @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+            @JsonKey(name: 'nextActivityTimeBridge')
+            String? nextActivityTimeBridge,
+            @JsonKey(name: 'remarks') String? remarks,
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'isDeleted') bool? isDeleted,
+            @JsonKey(name: 'createdByUserId') String? createdByUserId,
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+            @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+            @JsonKey(name: 'integrationRefId') String? integrationRefId)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RestActivityDto() when $default != null:
+        return $default(
+            _that.restDuration,
+            _that.restEndTime,
+            _that.restEndTimeBridge,
+            _that.studentId,
+            _that.activityType,
+            _that.activityDate,
+            _that.activityDateBridge,
+            _that.activityTime,
+            _that.activityTimeBridge,
+            _that.carriedOutBy,
+            _that.nextActivityDate,
+            _that.nextActivityDateBridge,
+            _that.nextActivityTime,
+            _that.nextActivityTimeBridge,
+            _that.remarks,
+            _that.id,
+            _that.isDeleted,
+            _that.createdByUserId,
+            _that.createdDate,
+            _that.lastUpdatedByUserId,
+            _that.updatedDate,
+            _that.integrationRefId);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _RestActivityDto implements RestActivityDto {
+  _RestActivityDto(
+      {@JsonKey(name: 'restDuration') this.restDuration,
+      @JsonKey(name: 'restEndTime') this.restEndTime,
+      @JsonKey(name: 'restEndTimeBridge') this.restEndTimeBridge,
+      @JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'activityType') this.activityType,
+      @JsonKey(name: 'activityDate') this.activityDate,
+      @JsonKey(name: 'activityDateBridge') this.activityDateBridge,
+      @JsonKey(name: 'activityTime') this.activityTime,
+      @JsonKey(name: 'activityTimeBridge') this.activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') this.carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') this.nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') this.nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') this.nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') this.nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') this.remarks,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'isDeleted') this.isDeleted,
+      @JsonKey(name: 'createdByUserId') this.createdByUserId,
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') this.updatedDate,
+      @JsonKey(name: 'integrationRefId') this.integrationRefId});
+  factory _RestActivityDto.fromJson(Map<String, dynamic> json) =>
+      _$RestActivityDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'restDuration')
+  final int? restDuration;
+  @override
+  @JsonKey(name: 'restEndTime')
+  final String? restEndTime;
+  @override
+  @JsonKey(name: 'restEndTimeBridge')
+  final String? restEndTimeBridge;
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  @override
+  @JsonKey(name: 'activityType')
+  final int? activityType;
+  @override
+  @JsonKey(name: 'activityDate')
+  final String? activityDate;
+  @override
+  @JsonKey(name: 'activityDateBridge')
+  final DateTime? activityDateBridge;
+  @override
+  @JsonKey(name: 'activityTime')
+  final String? activityTime;
+  @override
+  @JsonKey(name: 'activityTimeBridge')
+  final String? activityTimeBridge;
+  @override
+  @JsonKey(name: 'carriedOutBy')
+  final String? carriedOutBy;
+  @override
+  @JsonKey(name: 'nextActivityDate')
+  final String? nextActivityDate;
+  @override
+  @JsonKey(name: 'nextActivityDateBridge')
+  final DateTime? nextActivityDateBridge;
+  @override
+  @JsonKey(name: 'nextActivityTime')
+  final String? nextActivityTime;
+  @override
+  @JsonKey(name: 'nextActivityTimeBridge')
+  final String? nextActivityTimeBridge;
+  @override
+  @JsonKey(name: 'remarks')
+  final String? remarks;
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'isDeleted')
+  final bool? isDeleted;
+  @override
+  @JsonKey(name: 'createdByUserId')
+  final String? createdByUserId;
+  @override
+  @JsonKey(name: 'createdDate')
+  final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'lastUpdatedByUserId')
+  final String? lastUpdatedByUserId;
+  @override
+  @JsonKey(name: 'updatedDate')
+  final DateTime? updatedDate;
+  @override
+  @JsonKey(name: 'integrationRefId')
+  final String? integrationRefId;
+
+  /// Create a copy of RestActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$RestActivityDtoCopyWith<_RestActivityDto> get copyWith =>
+      __$RestActivityDtoCopyWithImpl<_RestActivityDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$RestActivityDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _RestActivityDto &&
+            (identical(other.restDuration, restDuration) ||
+                other.restDuration == restDuration) &&
+            (identical(other.restEndTime, restEndTime) ||
+                other.restEndTime == restEndTime) &&
+            (identical(other.restEndTimeBridge, restEndTimeBridge) ||
+                other.restEndTimeBridge == restEndTimeBridge) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.activityType, activityType) ||
+                other.activityType == activityType) &&
+            (identical(other.activityDate, activityDate) ||
+                other.activityDate == activityDate) &&
+            (identical(other.activityDateBridge, activityDateBridge) ||
+                other.activityDateBridge == activityDateBridge) &&
+            (identical(other.activityTime, activityTime) ||
+                other.activityTime == activityTime) &&
+            (identical(other.activityTimeBridge, activityTimeBridge) ||
+                other.activityTimeBridge == activityTimeBridge) &&
+            (identical(other.carriedOutBy, carriedOutBy) ||
+                other.carriedOutBy == carriedOutBy) &&
+            (identical(other.nextActivityDate, nextActivityDate) ||
+                other.nextActivityDate == nextActivityDate) &&
+            (identical(other.nextActivityDateBridge, nextActivityDateBridge) ||
+                other.nextActivityDateBridge == nextActivityDateBridge) &&
+            (identical(other.nextActivityTime, nextActivityTime) ||
+                other.nextActivityTime == nextActivityTime) &&
+            (identical(other.nextActivityTimeBridge, nextActivityTimeBridge) ||
+                other.nextActivityTimeBridge == nextActivityTimeBridge) &&
+            (identical(other.remarks, remarks) || other.remarks == remarks) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isDeleted, isDeleted) ||
+                other.isDeleted == isDeleted) &&
+            (identical(other.createdByUserId, createdByUserId) ||
+                other.createdByUserId == createdByUserId) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate) &&
+            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
+                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
+            (identical(other.updatedDate, updatedDate) ||
+                other.updatedDate == updatedDate) &&
+            (identical(other.integrationRefId, integrationRefId) ||
+                other.integrationRefId == integrationRefId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        restDuration,
+        restEndTime,
+        restEndTimeBridge,
+        studentId,
+        activityType,
+        activityDate,
+        activityDateBridge,
+        activityTime,
+        activityTimeBridge,
+        carriedOutBy,
+        nextActivityDate,
+        nextActivityDateBridge,
+        nextActivityTime,
+        nextActivityTimeBridge,
+        remarks,
+        id,
+        isDeleted,
+        createdByUserId,
+        createdDate,
+        lastUpdatedByUserId,
+        updatedDate,
+        integrationRefId
+      ]);
+
+  @override
+  String toString() {
+    return 'RestActivityDto(restDuration: $restDuration, restEndTime: $restEndTime, restEndTimeBridge: $restEndTimeBridge, studentId: $studentId, activityType: $activityType, activityDate: $activityDate, activityDateBridge: $activityDateBridge, activityTime: $activityTime, activityTimeBridge: $activityTimeBridge, carriedOutBy: $carriedOutBy, nextActivityDate: $nextActivityDate, nextActivityDateBridge: $nextActivityDateBridge, nextActivityTime: $nextActivityTime, nextActivityTimeBridge: $nextActivityTimeBridge, remarks: $remarks, id: $id, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate, integrationRefId: $integrationRefId)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$RestActivityDtoCopyWith<$Res>
+    implements $RestActivityDtoCopyWith<$Res> {
+  factory _$RestActivityDtoCopyWith(
+          _RestActivityDto value, $Res Function(_RestActivityDto) _then) =
+      __$RestActivityDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'restDuration') int? restDuration,
+      @JsonKey(name: 'restEndTime') String? restEndTime,
+      @JsonKey(name: 'restEndTimeBridge') String? restEndTimeBridge,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'activityType') int? activityType,
+      @JsonKey(name: 'activityDate') String? activityDate,
+      @JsonKey(name: 'activityDateBridge') DateTime? activityDateBridge,
+      @JsonKey(name: 'activityTime') String? activityTime,
+      @JsonKey(name: 'activityTimeBridge') String? activityTimeBridge,
+      @JsonKey(name: 'carriedOutBy') String? carriedOutBy,
+      @JsonKey(name: 'nextActivityDate') String? nextActivityDate,
+      @JsonKey(name: 'nextActivityDateBridge') DateTime? nextActivityDateBridge,
+      @JsonKey(name: 'nextActivityTime') String? nextActivityTime,
+      @JsonKey(name: 'nextActivityTimeBridge') String? nextActivityTimeBridge,
+      @JsonKey(name: 'remarks') String? remarks,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'isDeleted') bool? isDeleted,
+      @JsonKey(name: 'createdByUserId') String? createdByUserId,
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
+      @JsonKey(name: 'updatedDate') DateTime? updatedDate,
+      @JsonKey(name: 'integrationRefId') String? integrationRefId});
+}
+
+/// @nodoc
+class __$RestActivityDtoCopyWithImpl<$Res>
+    implements _$RestActivityDtoCopyWith<$Res> {
+  __$RestActivityDtoCopyWithImpl(this._self, this._then);
+
+  final _RestActivityDto _self;
+  final $Res Function(_RestActivityDto) _then;
+
+  /// Create a copy of RestActivityDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? restDuration = freezed,
+    Object? restEndTime = freezed,
+    Object? restEndTimeBridge = freezed,
+    Object? studentId = freezed,
+    Object? activityType = freezed,
+    Object? activityDate = freezed,
+    Object? activityDateBridge = freezed,
+    Object? activityTime = freezed,
+    Object? activityTimeBridge = freezed,
+    Object? carriedOutBy = freezed,
+    Object? nextActivityDate = freezed,
+    Object? nextActivityDateBridge = freezed,
+    Object? nextActivityTime = freezed,
+    Object? nextActivityTimeBridge = freezed,
+    Object? remarks = freezed,
+    Object? id = freezed,
+    Object? isDeleted = freezed,
+    Object? createdByUserId = freezed,
+    Object? createdDate = freezed,
+    Object? lastUpdatedByUserId = freezed,
+    Object? updatedDate = freezed,
+    Object? integrationRefId = freezed,
+  }) {
+    return _then(_RestActivityDto(
+      restDuration: freezed == restDuration
+          ? _self.restDuration
+          : restDuration // ignore: cast_nullable_to_non_nullable
+              as int?,
+      restEndTime: freezed == restEndTime
+          ? _self.restEndTime
+          : restEndTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      restEndTimeBridge: freezed == restEndTimeBridge
+          ? _self.restEndTimeBridge
+          : restEndTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityType: freezed == activityType
+          ? _self.activityType
+          : activityType // ignore: cast_nullable_to_non_nullable
+              as int?,
+      activityDate: freezed == activityDate
+          ? _self.activityDate
+          : activityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityDateBridge: freezed == activityDateBridge
+          ? _self.activityDateBridge
+          : activityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      activityTime: freezed == activityTime
+          ? _self.activityTime
+          : activityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activityTimeBridge: freezed == activityTimeBridge
+          ? _self.activityTimeBridge
+          : activityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      carriedOutBy: freezed == carriedOutBy
+          ? _self.carriedOutBy
+          : carriedOutBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDate: freezed == nextActivityDate
+          ? _self.nextActivityDate
+          : nextActivityDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityDateBridge: freezed == nextActivityDateBridge
+          ? _self.nextActivityDateBridge
+          : nextActivityDateBridge // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextActivityTime: freezed == nextActivityTime
+          ? _self.nextActivityTime
+          : nextActivityTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nextActivityTimeBridge: freezed == nextActivityTimeBridge
+          ? _self.nextActivityTimeBridge
+          : nextActivityTimeBridge // ignore: cast_nullable_to_non_nullable
+              as String?,
+      remarks: freezed == remarks
+          ? _self.remarks
+          : remarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isDeleted: freezed == isDeleted
+          ? _self.isDeleted
+          : isDeleted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      createdByUserId: freezed == createdByUserId
+          ? _self.createdByUserId
+          : createdByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdDate: freezed == createdDate
+          ? _self.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      lastUpdatedByUserId: freezed == lastUpdatedByUserId
+          ? _self.lastUpdatedByUserId
+          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedDate: freezed == updatedDate
+          ? _self.updatedDate
+          : updatedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      integrationRefId: freezed == integrationRefId
+          ? _self.integrationRefId
+          : integrationRefId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$StudentApiDto {
   @JsonKey(name: 'studentId')
   int? get studentId;
@@ -32492,14 +50345,28 @@ class __$StudentAttendanceApiDtoCopyWithImpl<$Res>
 
 /// @nodoc
 mixin _$StudentAttendanceDTODto {
+  @JsonKey(name: 'branchCode')
+  String? get branchCode;
+  @JsonKey(name: 'branchName')
+  String? get branchName;
   @JsonKey(name: 'studentId')
   int? get studentId;
+  @JsonKey(name: 'accountId')
+  int? get accountId;
   @JsonKey(name: 'identifier')
   String? get identifier;
   @JsonKey(name: 'studentName')
   String? get studentName;
+  @JsonKey(name: 'start')
+  String? get start;
+  @JsonKey(name: 'end')
+  String? get end;
   @JsonKey(name: 'enrolmentDate')
   String? get enrolmentDate;
+  @JsonKey(name: 'admissionDate')
+  String? get admissionDate;
+  @JsonKey(name: 'withdrawalDate')
+  String? get withdrawalDate;
   @JsonKey(name: 'dob')
   String? get dob;
   @JsonKey(name: 'gender')
@@ -32512,6 +50379,10 @@ mixin _$StudentAttendanceDTODto {
   int? get countAbsent;
   @JsonKey(name: 'rate')
   int? get rate;
+  @JsonKey(name: 'totalSchoolDays')
+  int? get totalSchoolDays;
+  @JsonKey(name: 'rateV2')
+  int? get rateV2;
   @JsonKey(name: 'attendanceRecords')
   List<AttendanceRecordDTODto>? get attendanceRecords;
 
@@ -32531,14 +50402,26 @@ mixin _$StudentAttendanceDTODto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is StudentAttendanceDTODto &&
+            (identical(other.branchCode, branchCode) ||
+                other.branchCode == branchCode) &&
+            (identical(other.branchName, branchName) ||
+                other.branchName == branchName) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
             (identical(other.identifier, identifier) ||
                 other.identifier == identifier) &&
             (identical(other.studentName, studentName) ||
                 other.studentName == studentName) &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end) &&
             (identical(other.enrolmentDate, enrolmentDate) ||
                 other.enrolmentDate == enrolmentDate) &&
+            (identical(other.admissionDate, admissionDate) ||
+                other.admissionDate == admissionDate) &&
+            (identical(other.withdrawalDate, withdrawalDate) ||
+                other.withdrawalDate == withdrawalDate) &&
             (identical(other.dob, dob) || other.dob == dob) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.countSchoolDays, countSchoolDays) ||
@@ -32548,29 +50431,42 @@ mixin _$StudentAttendanceDTODto {
             (identical(other.countAbsent, countAbsent) ||
                 other.countAbsent == countAbsent) &&
             (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.totalSchoolDays, totalSchoolDays) ||
+                other.totalSchoolDays == totalSchoolDays) &&
+            (identical(other.rateV2, rateV2) || other.rateV2 == rateV2) &&
             const DeepCollectionEquality()
                 .equals(other.attendanceRecords, attendanceRecords));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      studentId,
-      identifier,
-      studentName,
-      enrolmentDate,
-      dob,
-      gender,
-      countSchoolDays,
-      countPresent,
-      countAbsent,
-      rate,
-      const DeepCollectionEquality().hash(attendanceRecords));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        branchCode,
+        branchName,
+        studentId,
+        accountId,
+        identifier,
+        studentName,
+        start,
+        end,
+        enrolmentDate,
+        admissionDate,
+        withdrawalDate,
+        dob,
+        gender,
+        countSchoolDays,
+        countPresent,
+        countAbsent,
+        rate,
+        totalSchoolDays,
+        rateV2,
+        const DeepCollectionEquality().hash(attendanceRecords)
+      ]);
 
   @override
   String toString() {
-    return 'StudentAttendanceDTODto(studentId: $studentId, identifier: $identifier, studentName: $studentName, enrolmentDate: $enrolmentDate, dob: $dob, gender: $gender, countSchoolDays: $countSchoolDays, countPresent: $countPresent, countAbsent: $countAbsent, rate: $rate, attendanceRecords: $attendanceRecords)';
+    return 'StudentAttendanceDTODto(branchCode: $branchCode, branchName: $branchName, studentId: $studentId, accountId: $accountId, identifier: $identifier, studentName: $studentName, start: $start, end: $end, enrolmentDate: $enrolmentDate, admissionDate: $admissionDate, withdrawalDate: $withdrawalDate, dob: $dob, gender: $gender, countSchoolDays: $countSchoolDays, countPresent: $countPresent, countAbsent: $countAbsent, rate: $rate, totalSchoolDays: $totalSchoolDays, rateV2: $rateV2, attendanceRecords: $attendanceRecords)';
   }
 }
 
@@ -32581,16 +50477,25 @@ abstract mixin class $StudentAttendanceDTODtoCopyWith<$Res> {
       _$StudentAttendanceDTODtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'studentId') int? studentId,
+      {@JsonKey(name: 'branchCode') String? branchCode,
+      @JsonKey(name: 'branchName') String? branchName,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'accountId') int? accountId,
       @JsonKey(name: 'identifier') String? identifier,
       @JsonKey(name: 'studentName') String? studentName,
+      @JsonKey(name: 'start') String? start,
+      @JsonKey(name: 'end') String? end,
       @JsonKey(name: 'enrolmentDate') String? enrolmentDate,
+      @JsonKey(name: 'admissionDate') String? admissionDate,
+      @JsonKey(name: 'withdrawalDate') String? withdrawalDate,
       @JsonKey(name: 'dob') String? dob,
       @JsonKey(name: 'gender') String? gender,
       @JsonKey(name: 'countSchoolDays') int? countSchoolDays,
       @JsonKey(name: 'countPresent') int? countPresent,
       @JsonKey(name: 'countAbsent') int? countAbsent,
       @JsonKey(name: 'rate') int? rate,
+      @JsonKey(name: 'totalSchoolDays') int? totalSchoolDays,
+      @JsonKey(name: 'rateV2') int? rateV2,
       @JsonKey(name: 'attendanceRecords')
       List<AttendanceRecordDTODto>? attendanceRecords});
 }
@@ -32608,22 +50513,43 @@ class _$StudentAttendanceDTODtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? branchCode = freezed,
+    Object? branchName = freezed,
     Object? studentId = freezed,
+    Object? accountId = freezed,
     Object? identifier = freezed,
     Object? studentName = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
     Object? enrolmentDate = freezed,
+    Object? admissionDate = freezed,
+    Object? withdrawalDate = freezed,
     Object? dob = freezed,
     Object? gender = freezed,
     Object? countSchoolDays = freezed,
     Object? countPresent = freezed,
     Object? countAbsent = freezed,
     Object? rate = freezed,
+    Object? totalSchoolDays = freezed,
+    Object? rateV2 = freezed,
     Object? attendanceRecords = freezed,
   }) {
     return _then(_self.copyWith(
+      branchCode: freezed == branchCode
+          ? _self.branchCode
+          : branchCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      branchName: freezed == branchName
+          ? _self.branchName
+          : branchName // ignore: cast_nullable_to_non_nullable
+              as String?,
       studentId: freezed == studentId
           ? _self.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
               as int?,
       identifier: freezed == identifier
           ? _self.identifier
@@ -32633,9 +50559,25 @@ class _$StudentAttendanceDTODtoCopyWithImpl<$Res>
           ? _self.studentName
           : studentName // ignore: cast_nullable_to_non_nullable
               as String?,
+      start: freezed == start
+          ? _self.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as String?,
+      end: freezed == end
+          ? _self.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as String?,
       enrolmentDate: freezed == enrolmentDate
           ? _self.enrolmentDate
           : enrolmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      admissionDate: freezed == admissionDate
+          ? _self.admissionDate
+          : admissionDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      withdrawalDate: freezed == withdrawalDate
+          ? _self.withdrawalDate
+          : withdrawalDate // ignore: cast_nullable_to_non_nullable
               as String?,
       dob: freezed == dob
           ? _self.dob
@@ -32660,6 +50602,14 @@ class _$StudentAttendanceDTODtoCopyWithImpl<$Res>
       rate: freezed == rate
           ? _self.rate
           : rate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      totalSchoolDays: freezed == totalSchoolDays
+          ? _self.totalSchoolDays
+          : totalSchoolDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rateV2: freezed == rateV2
+          ? _self.rateV2
+          : rateV2 // ignore: cast_nullable_to_non_nullable
               as int?,
       attendanceRecords: freezed == attendanceRecords
           ? _self.attendanceRecords
@@ -32761,16 +50711,25 @@ extension StudentAttendanceDTODtoPatterns on StudentAttendanceDTODto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'branchCode') String? branchCode,
+            @JsonKey(name: 'branchName') String? branchName,
             @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'studentName') String? studentName,
+            @JsonKey(name: 'start') String? start,
+            @JsonKey(name: 'end') String? end,
             @JsonKey(name: 'enrolmentDate') String? enrolmentDate,
+            @JsonKey(name: 'admissionDate') String? admissionDate,
+            @JsonKey(name: 'withdrawalDate') String? withdrawalDate,
             @JsonKey(name: 'dob') String? dob,
             @JsonKey(name: 'gender') String? gender,
             @JsonKey(name: 'countSchoolDays') int? countSchoolDays,
             @JsonKey(name: 'countPresent') int? countPresent,
             @JsonKey(name: 'countAbsent') int? countAbsent,
             @JsonKey(name: 'rate') int? rate,
+            @JsonKey(name: 'totalSchoolDays') int? totalSchoolDays,
+            @JsonKey(name: 'rateV2') int? rateV2,
             @JsonKey(name: 'attendanceRecords')
             List<AttendanceRecordDTODto>? attendanceRecords)?
         $default, {
@@ -32780,16 +50739,25 @@ extension StudentAttendanceDTODtoPatterns on StudentAttendanceDTODto {
     switch (_that) {
       case _StudentAttendanceDTODto() when $default != null:
         return $default(
+            _that.branchCode,
+            _that.branchName,
             _that.studentId,
+            _that.accountId,
             _that.identifier,
             _that.studentName,
+            _that.start,
+            _that.end,
             _that.enrolmentDate,
+            _that.admissionDate,
+            _that.withdrawalDate,
             _that.dob,
             _that.gender,
             _that.countSchoolDays,
             _that.countPresent,
             _that.countAbsent,
             _that.rate,
+            _that.totalSchoolDays,
+            _that.rateV2,
             _that.attendanceRecords);
       case _:
         return orElse();
@@ -32812,16 +50780,25 @@ extension StudentAttendanceDTODtoPatterns on StudentAttendanceDTODto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'branchCode') String? branchCode,
+            @JsonKey(name: 'branchName') String? branchName,
             @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'studentName') String? studentName,
+            @JsonKey(name: 'start') String? start,
+            @JsonKey(name: 'end') String? end,
             @JsonKey(name: 'enrolmentDate') String? enrolmentDate,
+            @JsonKey(name: 'admissionDate') String? admissionDate,
+            @JsonKey(name: 'withdrawalDate') String? withdrawalDate,
             @JsonKey(name: 'dob') String? dob,
             @JsonKey(name: 'gender') String? gender,
             @JsonKey(name: 'countSchoolDays') int? countSchoolDays,
             @JsonKey(name: 'countPresent') int? countPresent,
             @JsonKey(name: 'countAbsent') int? countAbsent,
             @JsonKey(name: 'rate') int? rate,
+            @JsonKey(name: 'totalSchoolDays') int? totalSchoolDays,
+            @JsonKey(name: 'rateV2') int? rateV2,
             @JsonKey(name: 'attendanceRecords')
             List<AttendanceRecordDTODto>? attendanceRecords)
         $default,
@@ -32830,16 +50807,25 @@ extension StudentAttendanceDTODtoPatterns on StudentAttendanceDTODto {
     switch (_that) {
       case _StudentAttendanceDTODto():
         return $default(
+            _that.branchCode,
+            _that.branchName,
             _that.studentId,
+            _that.accountId,
             _that.identifier,
             _that.studentName,
+            _that.start,
+            _that.end,
             _that.enrolmentDate,
+            _that.admissionDate,
+            _that.withdrawalDate,
             _that.dob,
             _that.gender,
             _that.countSchoolDays,
             _that.countPresent,
             _that.countAbsent,
             _that.rate,
+            _that.totalSchoolDays,
+            _that.rateV2,
             _that.attendanceRecords);
     }
   }
@@ -32859,16 +50845,25 @@ extension StudentAttendanceDTODtoPatterns on StudentAttendanceDTODto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'branchCode') String? branchCode,
+            @JsonKey(name: 'branchName') String? branchName,
             @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'studentName') String? studentName,
+            @JsonKey(name: 'start') String? start,
+            @JsonKey(name: 'end') String? end,
             @JsonKey(name: 'enrolmentDate') String? enrolmentDate,
+            @JsonKey(name: 'admissionDate') String? admissionDate,
+            @JsonKey(name: 'withdrawalDate') String? withdrawalDate,
             @JsonKey(name: 'dob') String? dob,
             @JsonKey(name: 'gender') String? gender,
             @JsonKey(name: 'countSchoolDays') int? countSchoolDays,
             @JsonKey(name: 'countPresent') int? countPresent,
             @JsonKey(name: 'countAbsent') int? countAbsent,
             @JsonKey(name: 'rate') int? rate,
+            @JsonKey(name: 'totalSchoolDays') int? totalSchoolDays,
+            @JsonKey(name: 'rateV2') int? rateV2,
             @JsonKey(name: 'attendanceRecords')
             List<AttendanceRecordDTODto>? attendanceRecords)?
         $default,
@@ -32877,16 +50872,25 @@ extension StudentAttendanceDTODtoPatterns on StudentAttendanceDTODto {
     switch (_that) {
       case _StudentAttendanceDTODto() when $default != null:
         return $default(
+            _that.branchCode,
+            _that.branchName,
             _that.studentId,
+            _that.accountId,
             _that.identifier,
             _that.studentName,
+            _that.start,
+            _that.end,
             _that.enrolmentDate,
+            _that.admissionDate,
+            _that.withdrawalDate,
             _that.dob,
             _that.gender,
             _that.countSchoolDays,
             _that.countPresent,
             _that.countAbsent,
             _that.rate,
+            _that.totalSchoolDays,
+            _that.rateV2,
             _that.attendanceRecords);
       case _:
         return null;
@@ -32898,16 +50902,25 @@ extension StudentAttendanceDTODtoPatterns on StudentAttendanceDTODto {
 @JsonSerializable()
 class _StudentAttendanceDTODto implements StudentAttendanceDTODto {
   _StudentAttendanceDTODto(
-      {@JsonKey(name: 'studentId') this.studentId,
+      {@JsonKey(name: 'branchCode') this.branchCode,
+      @JsonKey(name: 'branchName') this.branchName,
+      @JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'accountId') this.accountId,
       @JsonKey(name: 'identifier') this.identifier,
       @JsonKey(name: 'studentName') this.studentName,
+      @JsonKey(name: 'start') this.start,
+      @JsonKey(name: 'end') this.end,
       @JsonKey(name: 'enrolmentDate') this.enrolmentDate,
+      @JsonKey(name: 'admissionDate') this.admissionDate,
+      @JsonKey(name: 'withdrawalDate') this.withdrawalDate,
       @JsonKey(name: 'dob') this.dob,
       @JsonKey(name: 'gender') this.gender,
       @JsonKey(name: 'countSchoolDays') this.countSchoolDays,
       @JsonKey(name: 'countPresent') this.countPresent,
       @JsonKey(name: 'countAbsent') this.countAbsent,
       @JsonKey(name: 'rate') this.rate,
+      @JsonKey(name: 'totalSchoolDays') this.totalSchoolDays,
+      @JsonKey(name: 'rateV2') this.rateV2,
       @JsonKey(name: 'attendanceRecords')
       final List<AttendanceRecordDTODto>? attendanceRecords})
       : _attendanceRecords = attendanceRecords;
@@ -32915,8 +50928,17 @@ class _StudentAttendanceDTODto implements StudentAttendanceDTODto {
       _$StudentAttendanceDTODtoFromJson(json);
 
   @override
+  @JsonKey(name: 'branchCode')
+  final String? branchCode;
+  @override
+  @JsonKey(name: 'branchName')
+  final String? branchName;
+  @override
   @JsonKey(name: 'studentId')
   final int? studentId;
+  @override
+  @JsonKey(name: 'accountId')
+  final int? accountId;
   @override
   @JsonKey(name: 'identifier')
   final String? identifier;
@@ -32924,8 +50946,20 @@ class _StudentAttendanceDTODto implements StudentAttendanceDTODto {
   @JsonKey(name: 'studentName')
   final String? studentName;
   @override
+  @JsonKey(name: 'start')
+  final String? start;
+  @override
+  @JsonKey(name: 'end')
+  final String? end;
+  @override
   @JsonKey(name: 'enrolmentDate')
   final String? enrolmentDate;
+  @override
+  @JsonKey(name: 'admissionDate')
+  final String? admissionDate;
+  @override
+  @JsonKey(name: 'withdrawalDate')
+  final String? withdrawalDate;
   @override
   @JsonKey(name: 'dob')
   final String? dob;
@@ -32944,6 +50978,12 @@ class _StudentAttendanceDTODto implements StudentAttendanceDTODto {
   @override
   @JsonKey(name: 'rate')
   final int? rate;
+  @override
+  @JsonKey(name: 'totalSchoolDays')
+  final int? totalSchoolDays;
+  @override
+  @JsonKey(name: 'rateV2')
+  final int? rateV2;
   final List<AttendanceRecordDTODto>? _attendanceRecords;
   @override
   @JsonKey(name: 'attendanceRecords')
@@ -32977,14 +51017,26 @@ class _StudentAttendanceDTODto implements StudentAttendanceDTODto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _StudentAttendanceDTODto &&
+            (identical(other.branchCode, branchCode) ||
+                other.branchCode == branchCode) &&
+            (identical(other.branchName, branchName) ||
+                other.branchName == branchName) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
             (identical(other.identifier, identifier) ||
                 other.identifier == identifier) &&
             (identical(other.studentName, studentName) ||
                 other.studentName == studentName) &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end) &&
             (identical(other.enrolmentDate, enrolmentDate) ||
                 other.enrolmentDate == enrolmentDate) &&
+            (identical(other.admissionDate, admissionDate) ||
+                other.admissionDate == admissionDate) &&
+            (identical(other.withdrawalDate, withdrawalDate) ||
+                other.withdrawalDate == withdrawalDate) &&
             (identical(other.dob, dob) || other.dob == dob) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.countSchoolDays, countSchoolDays) ||
@@ -32994,29 +51046,42 @@ class _StudentAttendanceDTODto implements StudentAttendanceDTODto {
             (identical(other.countAbsent, countAbsent) ||
                 other.countAbsent == countAbsent) &&
             (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.totalSchoolDays, totalSchoolDays) ||
+                other.totalSchoolDays == totalSchoolDays) &&
+            (identical(other.rateV2, rateV2) || other.rateV2 == rateV2) &&
             const DeepCollectionEquality()
                 .equals(other._attendanceRecords, _attendanceRecords));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      studentId,
-      identifier,
-      studentName,
-      enrolmentDate,
-      dob,
-      gender,
-      countSchoolDays,
-      countPresent,
-      countAbsent,
-      rate,
-      const DeepCollectionEquality().hash(_attendanceRecords));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        branchCode,
+        branchName,
+        studentId,
+        accountId,
+        identifier,
+        studentName,
+        start,
+        end,
+        enrolmentDate,
+        admissionDate,
+        withdrawalDate,
+        dob,
+        gender,
+        countSchoolDays,
+        countPresent,
+        countAbsent,
+        rate,
+        totalSchoolDays,
+        rateV2,
+        const DeepCollectionEquality().hash(_attendanceRecords)
+      ]);
 
   @override
   String toString() {
-    return 'StudentAttendanceDTODto(studentId: $studentId, identifier: $identifier, studentName: $studentName, enrolmentDate: $enrolmentDate, dob: $dob, gender: $gender, countSchoolDays: $countSchoolDays, countPresent: $countPresent, countAbsent: $countAbsent, rate: $rate, attendanceRecords: $attendanceRecords)';
+    return 'StudentAttendanceDTODto(branchCode: $branchCode, branchName: $branchName, studentId: $studentId, accountId: $accountId, identifier: $identifier, studentName: $studentName, start: $start, end: $end, enrolmentDate: $enrolmentDate, admissionDate: $admissionDate, withdrawalDate: $withdrawalDate, dob: $dob, gender: $gender, countSchoolDays: $countSchoolDays, countPresent: $countPresent, countAbsent: $countAbsent, rate: $rate, totalSchoolDays: $totalSchoolDays, rateV2: $rateV2, attendanceRecords: $attendanceRecords)';
   }
 }
 
@@ -33029,16 +51094,25 @@ abstract mixin class _$StudentAttendanceDTODtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'studentId') int? studentId,
+      {@JsonKey(name: 'branchCode') String? branchCode,
+      @JsonKey(name: 'branchName') String? branchName,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'accountId') int? accountId,
       @JsonKey(name: 'identifier') String? identifier,
       @JsonKey(name: 'studentName') String? studentName,
+      @JsonKey(name: 'start') String? start,
+      @JsonKey(name: 'end') String? end,
       @JsonKey(name: 'enrolmentDate') String? enrolmentDate,
+      @JsonKey(name: 'admissionDate') String? admissionDate,
+      @JsonKey(name: 'withdrawalDate') String? withdrawalDate,
       @JsonKey(name: 'dob') String? dob,
       @JsonKey(name: 'gender') String? gender,
       @JsonKey(name: 'countSchoolDays') int? countSchoolDays,
       @JsonKey(name: 'countPresent') int? countPresent,
       @JsonKey(name: 'countAbsent') int? countAbsent,
       @JsonKey(name: 'rate') int? rate,
+      @JsonKey(name: 'totalSchoolDays') int? totalSchoolDays,
+      @JsonKey(name: 'rateV2') int? rateV2,
       @JsonKey(name: 'attendanceRecords')
       List<AttendanceRecordDTODto>? attendanceRecords});
 }
@@ -33056,22 +51130,43 @@ class __$StudentAttendanceDTODtoCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
+    Object? branchCode = freezed,
+    Object? branchName = freezed,
     Object? studentId = freezed,
+    Object? accountId = freezed,
     Object? identifier = freezed,
     Object? studentName = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
     Object? enrolmentDate = freezed,
+    Object? admissionDate = freezed,
+    Object? withdrawalDate = freezed,
     Object? dob = freezed,
     Object? gender = freezed,
     Object? countSchoolDays = freezed,
     Object? countPresent = freezed,
     Object? countAbsent = freezed,
     Object? rate = freezed,
+    Object? totalSchoolDays = freezed,
+    Object? rateV2 = freezed,
     Object? attendanceRecords = freezed,
   }) {
     return _then(_StudentAttendanceDTODto(
+      branchCode: freezed == branchCode
+          ? _self.branchCode
+          : branchCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      branchName: freezed == branchName
+          ? _self.branchName
+          : branchName // ignore: cast_nullable_to_non_nullable
+              as String?,
       studentId: freezed == studentId
           ? _self.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
               as int?,
       identifier: freezed == identifier
           ? _self.identifier
@@ -33081,9 +51176,25 @@ class __$StudentAttendanceDTODtoCopyWithImpl<$Res>
           ? _self.studentName
           : studentName // ignore: cast_nullable_to_non_nullable
               as String?,
+      start: freezed == start
+          ? _self.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as String?,
+      end: freezed == end
+          ? _self.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as String?,
       enrolmentDate: freezed == enrolmentDate
           ? _self.enrolmentDate
           : enrolmentDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      admissionDate: freezed == admissionDate
+          ? _self.admissionDate
+          : admissionDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      withdrawalDate: freezed == withdrawalDate
+          ? _self.withdrawalDate
+          : withdrawalDate // ignore: cast_nullable_to_non_nullable
               as String?,
       dob: freezed == dob
           ? _self.dob
@@ -33109,6 +51220,14 @@ class __$StudentAttendanceDTODtoCopyWithImpl<$Res>
           ? _self.rate
           : rate // ignore: cast_nullable_to_non_nullable
               as int?,
+      totalSchoolDays: freezed == totalSchoolDays
+          ? _self.totalSchoolDays
+          : totalSchoolDays // ignore: cast_nullable_to_non_nullable
+              as int?,
+      rateV2: freezed == rateV2
+          ? _self.rateV2
+          : rateV2 // ignore: cast_nullable_to_non_nullable
+              as int?,
       attendanceRecords: freezed == attendanceRecords
           ? _self._attendanceRecords
           : attendanceRecords // ignore: cast_nullable_to_non_nullable
@@ -33129,14 +51248,20 @@ mixin _$StudentAuthorisedPersonApiDto {
   String? get contactNumber;
   @JsonKey(name: 'relationToChild')
   LookUpApiDto? get relationToChild;
+  @JsonKey(name: 'relationToChildId')
+  int? get relationToChildId;
   @JsonKey(name: 'studentId')
   int? get studentId;
   @JsonKey(name: 'branchId')
   int? get branchId;
+  @JsonKey(name: 'accountId')
+  int? get accountId;
   @JsonKey(name: 'isActive')
   bool? get isActive;
   @JsonKey(name: 'statusReasons')
   List<AuthorisedPersonDeactivationReasonApiDto>? get statusReasons;
+  @JsonKey(name: 'authorisedPersonImage')
+  ImageUrlResultDto? get authorisedPersonImage;
   @JsonKey(name: 'isDeleted')
   bool? get isDeleted;
   @JsonKey(name: 'createdByUserId')
@@ -33175,14 +51300,20 @@ mixin _$StudentAuthorisedPersonApiDto {
                 other.contactNumber == contactNumber) &&
             (identical(other.relationToChild, relationToChild) ||
                 other.relationToChild == relationToChild) &&
+            (identical(other.relationToChildId, relationToChildId) ||
+                other.relationToChildId == relationToChildId) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
             (identical(other.branchId, branchId) ||
                 other.branchId == branchId) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
             const DeepCollectionEquality()
                 .equals(other.statusReasons, statusReasons) &&
+            (identical(other.authorisedPersonImage, authorisedPersonImage) ||
+                other.authorisedPersonImage == authorisedPersonImage) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -33204,10 +51335,13 @@ mixin _$StudentAuthorisedPersonApiDto {
       identifier,
       contactNumber,
       relationToChild,
+      relationToChildId,
       studentId,
       branchId,
+      accountId,
       isActive,
       const DeepCollectionEquality().hash(statusReasons),
+      authorisedPersonImage,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -33216,7 +51350,7 @@ mixin _$StudentAuthorisedPersonApiDto {
 
   @override
   String toString() {
-    return 'StudentAuthorisedPersonApiDto(studentAuthorisedPersonId: $studentAuthorisedPersonId, name: $name, identifier: $identifier, contactNumber: $contactNumber, relationToChild: $relationToChild, studentId: $studentId, branchId: $branchId, isActive: $isActive, statusReasons: $statusReasons, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'StudentAuthorisedPersonApiDto(studentAuthorisedPersonId: $studentAuthorisedPersonId, name: $name, identifier: $identifier, contactNumber: $contactNumber, relationToChild: $relationToChild, relationToChildId: $relationToChildId, studentId: $studentId, branchId: $branchId, accountId: $accountId, isActive: $isActive, statusReasons: $statusReasons, authorisedPersonImage: $authorisedPersonImage, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -33234,11 +51368,15 @@ abstract mixin class $StudentAuthorisedPersonApiDtoCopyWith<$Res> {
       @JsonKey(name: 'identifier') String? identifier,
       @JsonKey(name: 'contactNumber') String? contactNumber,
       @JsonKey(name: 'relationToChild') LookUpApiDto? relationToChild,
+      @JsonKey(name: 'relationToChildId') int? relationToChildId,
       @JsonKey(name: 'studentId') int? studentId,
       @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'accountId') int? accountId,
       @JsonKey(name: 'isActive') bool? isActive,
       @JsonKey(name: 'statusReasons')
       List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
+      @JsonKey(name: 'authorisedPersonImage')
+      ImageUrlResultDto? authorisedPersonImage,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -33246,6 +51384,7 @@ abstract mixin class $StudentAuthorisedPersonApiDtoCopyWith<$Res> {
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
 
   $LookUpApiDtoCopyWith<$Res>? get relationToChild;
+  $ImageUrlResultDtoCopyWith<$Res>? get authorisedPersonImage;
 }
 
 /// @nodoc
@@ -33266,10 +51405,13 @@ class _$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
     Object? identifier = freezed,
     Object? contactNumber = freezed,
     Object? relationToChild = freezed,
+    Object? relationToChildId = freezed,
     Object? studentId = freezed,
     Object? branchId = freezed,
+    Object? accountId = freezed,
     Object? isActive = freezed,
     Object? statusReasons = freezed,
+    Object? authorisedPersonImage = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -33297,6 +51439,10 @@ class _$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
           ? _self.relationToChild
           : relationToChild // ignore: cast_nullable_to_non_nullable
               as LookUpApiDto?,
+      relationToChildId: freezed == relationToChildId
+          ? _self.relationToChildId
+          : relationToChildId // ignore: cast_nullable_to_non_nullable
+              as int?,
       studentId: freezed == studentId
           ? _self.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -33304,6 +51450,10 @@ class _$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
       branchId: freezed == branchId
           ? _self.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
               as int?,
       isActive: freezed == isActive
           ? _self.isActive
@@ -33313,6 +51463,10 @@ class _$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
           ? _self.statusReasons
           : statusReasons // ignore: cast_nullable_to_non_nullable
               as List<AuthorisedPersonDeactivationReasonApiDto>?,
+      authorisedPersonImage: freezed == authorisedPersonImage
+          ? _self.authorisedPersonImage
+          : authorisedPersonImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -33347,6 +51501,21 @@ class _$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
 
     return $LookUpApiDtoCopyWith<$Res>(_self.relationToChild!, (value) {
       return _then(_self.copyWith(relationToChild: value));
+    });
+  }
+
+  /// Create a copy of StudentAuthorisedPersonApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageUrlResultDtoCopyWith<$Res>? get authorisedPersonImage {
+    if (_self.authorisedPersonImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.authorisedPersonImage!,
+        (value) {
+      return _then(_self.copyWith(authorisedPersonImage: value));
     });
   }
 }
@@ -33450,11 +51619,15 @@ extension StudentAuthorisedPersonApiDtoPatterns
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'contactNumber') String? contactNumber,
             @JsonKey(name: 'relationToChild') LookUpApiDto? relationToChild,
+            @JsonKey(name: 'relationToChildId') int? relationToChildId,
             @JsonKey(name: 'studentId') int? studentId,
             @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'isActive') bool? isActive,
             @JsonKey(name: 'statusReasons')
             List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
+            @JsonKey(name: 'authorisedPersonImage')
+            ImageUrlResultDto? authorisedPersonImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -33472,10 +51645,13 @@ extension StudentAuthorisedPersonApiDtoPatterns
             _that.identifier,
             _that.contactNumber,
             _that.relationToChild,
+            _that.relationToChildId,
             _that.studentId,
             _that.branchId,
+            _that.accountId,
             _that.isActive,
             _that.statusReasons,
+            _that.authorisedPersonImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -33508,11 +51684,15 @@ extension StudentAuthorisedPersonApiDtoPatterns
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'contactNumber') String? contactNumber,
             @JsonKey(name: 'relationToChild') LookUpApiDto? relationToChild,
+            @JsonKey(name: 'relationToChildId') int? relationToChildId,
             @JsonKey(name: 'studentId') int? studentId,
             @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'isActive') bool? isActive,
             @JsonKey(name: 'statusReasons')
             List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
+            @JsonKey(name: 'authorisedPersonImage')
+            ImageUrlResultDto? authorisedPersonImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -33529,10 +51709,13 @@ extension StudentAuthorisedPersonApiDtoPatterns
             _that.identifier,
             _that.contactNumber,
             _that.relationToChild,
+            _that.relationToChildId,
             _that.studentId,
             _that.branchId,
+            _that.accountId,
             _that.isActive,
             _that.statusReasons,
+            _that.authorisedPersonImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -33562,11 +51745,15 @@ extension StudentAuthorisedPersonApiDtoPatterns
             @JsonKey(name: 'identifier') String? identifier,
             @JsonKey(name: 'contactNumber') String? contactNumber,
             @JsonKey(name: 'relationToChild') LookUpApiDto? relationToChild,
+            @JsonKey(name: 'relationToChildId') int? relationToChildId,
             @JsonKey(name: 'studentId') int? studentId,
             @JsonKey(name: 'branchId') int? branchId,
+            @JsonKey(name: 'accountId') int? accountId,
             @JsonKey(name: 'isActive') bool? isActive,
             @JsonKey(name: 'statusReasons')
             List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
+            @JsonKey(name: 'authorisedPersonImage')
+            ImageUrlResultDto? authorisedPersonImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -33583,10 +51770,13 @@ extension StudentAuthorisedPersonApiDtoPatterns
             _that.identifier,
             _that.contactNumber,
             _that.relationToChild,
+            _that.relationToChildId,
             _that.studentId,
             _that.branchId,
+            _that.accountId,
             _that.isActive,
             _that.statusReasons,
+            _that.authorisedPersonImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -33608,11 +51798,14 @@ class _StudentAuthorisedPersonApiDto implements StudentAuthorisedPersonApiDto {
       @JsonKey(name: 'identifier') this.identifier,
       @JsonKey(name: 'contactNumber') this.contactNumber,
       @JsonKey(name: 'relationToChild') this.relationToChild,
+      @JsonKey(name: 'relationToChildId') this.relationToChildId,
       @JsonKey(name: 'studentId') this.studentId,
       @JsonKey(name: 'branchId') this.branchId,
+      @JsonKey(name: 'accountId') this.accountId,
       @JsonKey(name: 'isActive') this.isActive,
       @JsonKey(name: 'statusReasons')
       final List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
+      @JsonKey(name: 'authorisedPersonImage') this.authorisedPersonImage,
       @JsonKey(name: 'isDeleted') this.isDeleted,
       @JsonKey(name: 'createdByUserId') this.createdByUserId,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -33638,11 +51831,17 @@ class _StudentAuthorisedPersonApiDto implements StudentAuthorisedPersonApiDto {
   @JsonKey(name: 'relationToChild')
   final LookUpApiDto? relationToChild;
   @override
+  @JsonKey(name: 'relationToChildId')
+  final int? relationToChildId;
+  @override
   @JsonKey(name: 'studentId')
   final int? studentId;
   @override
   @JsonKey(name: 'branchId')
   final int? branchId;
+  @override
+  @JsonKey(name: 'accountId')
+  final int? accountId;
   @override
   @JsonKey(name: 'isActive')
   final bool? isActive;
@@ -33657,6 +51856,9 @@ class _StudentAuthorisedPersonApiDto implements StudentAuthorisedPersonApiDto {
     return EqualUnmodifiableListView(value);
   }
 
+  @override
+  @JsonKey(name: 'authorisedPersonImage')
+  final ImageUrlResultDto? authorisedPersonImage;
   @override
   @JsonKey(name: 'isDeleted')
   final bool? isDeleted;
@@ -33704,14 +51906,20 @@ class _StudentAuthorisedPersonApiDto implements StudentAuthorisedPersonApiDto {
                 other.contactNumber == contactNumber) &&
             (identical(other.relationToChild, relationToChild) ||
                 other.relationToChild == relationToChild) &&
+            (identical(other.relationToChildId, relationToChildId) ||
+                other.relationToChildId == relationToChildId) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
             (identical(other.branchId, branchId) ||
                 other.branchId == branchId) &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
             const DeepCollectionEquality()
                 .equals(other._statusReasons, _statusReasons) &&
+            (identical(other.authorisedPersonImage, authorisedPersonImage) ||
+                other.authorisedPersonImage == authorisedPersonImage) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -33733,10 +51941,13 @@ class _StudentAuthorisedPersonApiDto implements StudentAuthorisedPersonApiDto {
       identifier,
       contactNumber,
       relationToChild,
+      relationToChildId,
       studentId,
       branchId,
+      accountId,
       isActive,
       const DeepCollectionEquality().hash(_statusReasons),
+      authorisedPersonImage,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -33745,7 +51956,7 @@ class _StudentAuthorisedPersonApiDto implements StudentAuthorisedPersonApiDto {
 
   @override
   String toString() {
-    return 'StudentAuthorisedPersonApiDto(studentAuthorisedPersonId: $studentAuthorisedPersonId, name: $name, identifier: $identifier, contactNumber: $contactNumber, relationToChild: $relationToChild, studentId: $studentId, branchId: $branchId, isActive: $isActive, statusReasons: $statusReasons, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'StudentAuthorisedPersonApiDto(studentAuthorisedPersonId: $studentAuthorisedPersonId, name: $name, identifier: $identifier, contactNumber: $contactNumber, relationToChild: $relationToChild, relationToChildId: $relationToChildId, studentId: $studentId, branchId: $branchId, accountId: $accountId, isActive: $isActive, statusReasons: $statusReasons, authorisedPersonImage: $authorisedPersonImage, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -33765,11 +51976,15 @@ abstract mixin class _$StudentAuthorisedPersonApiDtoCopyWith<$Res>
       @JsonKey(name: 'identifier') String? identifier,
       @JsonKey(name: 'contactNumber') String? contactNumber,
       @JsonKey(name: 'relationToChild') LookUpApiDto? relationToChild,
+      @JsonKey(name: 'relationToChildId') int? relationToChildId,
       @JsonKey(name: 'studentId') int? studentId,
       @JsonKey(name: 'branchId') int? branchId,
+      @JsonKey(name: 'accountId') int? accountId,
       @JsonKey(name: 'isActive') bool? isActive,
       @JsonKey(name: 'statusReasons')
       List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
+      @JsonKey(name: 'authorisedPersonImage')
+      ImageUrlResultDto? authorisedPersonImage,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -33778,6 +51993,8 @@ abstract mixin class _$StudentAuthorisedPersonApiDtoCopyWith<$Res>
 
   @override
   $LookUpApiDtoCopyWith<$Res>? get relationToChild;
+  @override
+  $ImageUrlResultDtoCopyWith<$Res>? get authorisedPersonImage;
 }
 
 /// @nodoc
@@ -33798,10 +52015,13 @@ class __$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
     Object? identifier = freezed,
     Object? contactNumber = freezed,
     Object? relationToChild = freezed,
+    Object? relationToChildId = freezed,
     Object? studentId = freezed,
     Object? branchId = freezed,
+    Object? accountId = freezed,
     Object? isActive = freezed,
     Object? statusReasons = freezed,
+    Object? authorisedPersonImage = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -33829,6 +52049,10 @@ class __$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
           ? _self.relationToChild
           : relationToChild // ignore: cast_nullable_to_non_nullable
               as LookUpApiDto?,
+      relationToChildId: freezed == relationToChildId
+          ? _self.relationToChildId
+          : relationToChildId // ignore: cast_nullable_to_non_nullable
+              as int?,
       studentId: freezed == studentId
           ? _self.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -33836,6 +52060,10 @@ class __$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
       branchId: freezed == branchId
           ? _self.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
               as int?,
       isActive: freezed == isActive
           ? _self.isActive
@@ -33845,6 +52073,10 @@ class __$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
           ? _self._statusReasons
           : statusReasons // ignore: cast_nullable_to_non_nullable
               as List<AuthorisedPersonDeactivationReasonApiDto>?,
+      authorisedPersonImage: freezed == authorisedPersonImage
+          ? _self.authorisedPersonImage
+          : authorisedPersonImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -33881,741 +52113,20 @@ class __$StudentAuthorisedPersonApiDtoCopyWithImpl<$Res>
       return _then(_self.copyWith(relationToChild: value));
     });
   }
-}
 
-/// @nodoc
-mixin _$StudentAuthorisedPersonApiDto2Dto {
-  @JsonKey(name: 'studentAuthorisedPersonId')
-  int? get studentAuthorisedPersonId;
-  @JsonKey(name: 'name')
-  String? get name;
-  @JsonKey(name: 'identifier')
-  String? get identifier;
-  @JsonKey(name: 'contactNumber')
-  String? get contactNumber;
-  @JsonKey(name: 'relationToChild')
-  dynamic get relationToChild;
-  @JsonKey(name: 'studentId')
-  int? get studentId;
-  @JsonKey(name: 'branchId')
-  int? get branchId;
-  @JsonKey(name: 'isActive')
-  bool? get isActive;
-  @JsonKey(name: 'statusReasons')
-  List<AuthorisedPersonDeactivationReasonApiDto>? get statusReasons;
-  @JsonKey(name: 'isDeleted')
-  bool? get isDeleted;
-  @JsonKey(name: 'createdByUserId')
-  String? get createdByUserId;
-  @JsonKey(name: 'createdDate')
-  DateTime? get createdDate;
-  @JsonKey(name: 'lastUpdatedByUserId')
-  String? get lastUpdatedByUserId;
-  @JsonKey(name: 'updatedDate')
-  DateTime? get updatedDate;
-
-  /// Create a copy of StudentAuthorisedPersonApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $StudentAuthorisedPersonApiDto2DtoCopyWith<StudentAuthorisedPersonApiDto2Dto>
-      get copyWith => _$StudentAuthorisedPersonApiDto2DtoCopyWithImpl<
-              StudentAuthorisedPersonApiDto2Dto>(
-          this as StudentAuthorisedPersonApiDto2Dto, _$identity);
-
-  /// Serializes this StudentAuthorisedPersonApiDto2Dto to a JSON map.
-  Map<String, dynamic> toJson();
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is StudentAuthorisedPersonApiDto2Dto &&
-            (identical(other.studentAuthorisedPersonId,
-                    studentAuthorisedPersonId) ||
-                other.studentAuthorisedPersonId == studentAuthorisedPersonId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier) &&
-            (identical(other.contactNumber, contactNumber) ||
-                other.contactNumber == contactNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.relationToChild, relationToChild) &&
-            (identical(other.studentId, studentId) ||
-                other.studentId == studentId) &&
-            (identical(other.branchId, branchId) ||
-                other.branchId == branchId) &&
-            (identical(other.isActive, isActive) ||
-                other.isActive == isActive) &&
-            const DeepCollectionEquality()
-                .equals(other.statusReasons, statusReasons) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
-            (identical(other.createdByUserId, createdByUserId) ||
-                other.createdByUserId == createdByUserId) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
-                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      studentAuthorisedPersonId,
-      name,
-      identifier,
-      contactNumber,
-      const DeepCollectionEquality().hash(relationToChild),
-      studentId,
-      branchId,
-      isActive,
-      const DeepCollectionEquality().hash(statusReasons),
-      isDeleted,
-      createdByUserId,
-      createdDate,
-      lastUpdatedByUserId,
-      updatedDate);
-
-  @override
-  String toString() {
-    return 'StudentAuthorisedPersonApiDto2Dto(studentAuthorisedPersonId: $studentAuthorisedPersonId, name: $name, identifier: $identifier, contactNumber: $contactNumber, relationToChild: $relationToChild, studentId: $studentId, branchId: $branchId, isActive: $isActive, statusReasons: $statusReasons, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res> {
-  factory $StudentAuthorisedPersonApiDto2DtoCopyWith(
-          StudentAuthorisedPersonApiDto2Dto value,
-          $Res Function(StudentAuthorisedPersonApiDto2Dto) _then) =
-      _$StudentAuthorisedPersonApiDto2DtoCopyWithImpl;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'studentAuthorisedPersonId')
-      int? studentAuthorisedPersonId,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'identifier') String? identifier,
-      @JsonKey(name: 'contactNumber') String? contactNumber,
-      @JsonKey(name: 'relationToChild') dynamic relationToChild,
-      @JsonKey(name: 'studentId') int? studentId,
-      @JsonKey(name: 'branchId') int? branchId,
-      @JsonKey(name: 'isActive') bool? isActive,
-      @JsonKey(name: 'statusReasons')
-      List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
-      @JsonKey(name: 'isDeleted') bool? isDeleted,
-      @JsonKey(name: 'createdByUserId') String? createdByUserId,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
-}
-
-/// @nodoc
-class _$StudentAuthorisedPersonApiDto2DtoCopyWithImpl<$Res>
-    implements $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res> {
-  _$StudentAuthorisedPersonApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final StudentAuthorisedPersonApiDto2Dto _self;
-  final $Res Function(StudentAuthorisedPersonApiDto2Dto) _then;
-
-  /// Create a copy of StudentAuthorisedPersonApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? studentAuthorisedPersonId = freezed,
-    Object? name = freezed,
-    Object? identifier = freezed,
-    Object? contactNumber = freezed,
-    Object? relationToChild = freezed,
-    Object? studentId = freezed,
-    Object? branchId = freezed,
-    Object? isActive = freezed,
-    Object? statusReasons = freezed,
-    Object? isDeleted = freezed,
-    Object? createdByUserId = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdatedByUserId = freezed,
-    Object? updatedDate = freezed,
-  }) {
-    return _then(_self.copyWith(
-      studentAuthorisedPersonId: freezed == studentAuthorisedPersonId
-          ? _self.studentAuthorisedPersonId
-          : studentAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      identifier: freezed == identifier
-          ? _self.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contactNumber: freezed == contactNumber
-          ? _self.contactNumber
-          : contactNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      relationToChild: freezed == relationToChild
-          ? _self.relationToChild
-          : relationToChild // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      studentId: freezed == studentId
-          ? _self.studentId
-          : studentId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      branchId: freezed == branchId
-          ? _self.branchId
-          : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isActive: freezed == isActive
-          ? _self.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      statusReasons: freezed == statusReasons
-          ? _self.statusReasons
-          : statusReasons // ignore: cast_nullable_to_non_nullable
-              as List<AuthorisedPersonDeactivationReasonApiDto>?,
-      isDeleted: freezed == isDeleted
-          ? _self.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdByUserId: freezed == createdByUserId
-          ? _self.createdByUserId
-          : createdByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdatedByUserId: freezed == lastUpdatedByUserId
-          ? _self.lastUpdatedByUserId
-          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _self.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-}
-
-/// Adds pattern-matching-related methods to [StudentAuthorisedPersonApiDto2Dto].
-extension StudentAuthorisedPersonApiDto2DtoPatterns
-    on StudentAuthorisedPersonApiDto2Dto {
-  /// A variant of `map` that fallback to returning `orElse`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_StudentAuthorisedPersonApiDto2Dto value)? $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _StudentAuthorisedPersonApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// Callbacks receives the raw object, upcasted.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case final Subclass2 value:
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_StudentAuthorisedPersonApiDto2Dto value) $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StudentAuthorisedPersonApiDto2Dto():
-        return $default(_that);
-    }
-  }
-
-  /// A variant of `map` that fallback to returning `null`.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case final Subclass value:
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_StudentAuthorisedPersonApiDto2Dto value)? $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StudentAuthorisedPersonApiDto2Dto() when $default != null:
-        return $default(_that);
-      case _:
-        return null;
-    }
-  }
-
-  /// A variant of `when` that fallback to an `orElse` callback.
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return orElse();
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'studentAuthorisedPersonId')
-            int? studentAuthorisedPersonId,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'identifier') String? identifier,
-            @JsonKey(name: 'contactNumber') String? contactNumber,
-            @JsonKey(name: 'relationToChild') dynamic relationToChild,
-            @JsonKey(name: 'studentId') int? studentId,
-            @JsonKey(name: 'branchId') int? branchId,
-            @JsonKey(name: 'isActive') bool? isActive,
-            @JsonKey(name: 'statusReasons')
-            List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
-        $default, {
-    required TResult orElse(),
-  }) {
-    final _that = this;
-    switch (_that) {
-      case _StudentAuthorisedPersonApiDto2Dto() when $default != null:
-        return $default(
-            _that.studentAuthorisedPersonId,
-            _that.name,
-            _that.identifier,
-            _that.contactNumber,
-            _that.relationToChild,
-            _that.studentId,
-            _that.branchId,
-            _that.isActive,
-            _that.statusReasons,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-      case _:
-        return orElse();
-    }
-  }
-
-  /// A `switch`-like method, using callbacks.
-  ///
-  /// As opposed to `map`, this offers destructuring.
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case Subclass2(:final field2):
-  ///     return ...;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(
-            @JsonKey(name: 'studentAuthorisedPersonId')
-            int? studentAuthorisedPersonId,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'identifier') String? identifier,
-            @JsonKey(name: 'contactNumber') String? contactNumber,
-            @JsonKey(name: 'relationToChild') dynamic relationToChild,
-            @JsonKey(name: 'studentId') int? studentId,
-            @JsonKey(name: 'branchId') int? branchId,
-            @JsonKey(name: 'isActive') bool? isActive,
-            @JsonKey(name: 'statusReasons')
-            List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StudentAuthorisedPersonApiDto2Dto():
-        return $default(
-            _that.studentAuthorisedPersonId,
-            _that.name,
-            _that.identifier,
-            _that.contactNumber,
-            _that.relationToChild,
-            _that.studentId,
-            _that.branchId,
-            _that.isActive,
-            _that.statusReasons,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-    }
-  }
-
-  /// A variant of `when` that fallback to returning `null`
-  ///
-  /// It is equivalent to doing:
-  /// ```dart
-  /// switch (sealedClass) {
-  ///   case Subclass(:final field):
-  ///     return ...;
-  ///   case _:
-  ///     return null;
-  /// }
-  /// ```
-
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            @JsonKey(name: 'studentAuthorisedPersonId')
-            int? studentAuthorisedPersonId,
-            @JsonKey(name: 'name') String? name,
-            @JsonKey(name: 'identifier') String? identifier,
-            @JsonKey(name: 'contactNumber') String? contactNumber,
-            @JsonKey(name: 'relationToChild') dynamic relationToChild,
-            @JsonKey(name: 'studentId') int? studentId,
-            @JsonKey(name: 'branchId') int? branchId,
-            @JsonKey(name: 'isActive') bool? isActive,
-            @JsonKey(name: 'statusReasons')
-            List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
-            @JsonKey(name: 'isDeleted') bool? isDeleted,
-            @JsonKey(name: 'createdByUserId') String? createdByUserId,
-            @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-            @JsonKey(name: 'updatedDate') DateTime? updatedDate)?
-        $default,
-  ) {
-    final _that = this;
-    switch (_that) {
-      case _StudentAuthorisedPersonApiDto2Dto() when $default != null:
-        return $default(
-            _that.studentAuthorisedPersonId,
-            _that.name,
-            _that.identifier,
-            _that.contactNumber,
-            _that.relationToChild,
-            _that.studentId,
-            _that.branchId,
-            _that.isActive,
-            _that.statusReasons,
-            _that.isDeleted,
-            _that.createdByUserId,
-            _that.createdDate,
-            _that.lastUpdatedByUserId,
-            _that.updatedDate);
-      case _:
-        return null;
-    }
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _StudentAuthorisedPersonApiDto2Dto
-    implements StudentAuthorisedPersonApiDto2Dto {
-  _StudentAuthorisedPersonApiDto2Dto(
-      {@JsonKey(name: 'studentAuthorisedPersonId')
-      this.studentAuthorisedPersonId,
-      @JsonKey(name: 'name') this.name,
-      @JsonKey(name: 'identifier') this.identifier,
-      @JsonKey(name: 'contactNumber') this.contactNumber,
-      @JsonKey(name: 'relationToChild') this.relationToChild,
-      @JsonKey(name: 'studentId') this.studentId,
-      @JsonKey(name: 'branchId') this.branchId,
-      @JsonKey(name: 'isActive') this.isActive,
-      @JsonKey(name: 'statusReasons')
-      final List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
-      @JsonKey(name: 'isDeleted') this.isDeleted,
-      @JsonKey(name: 'createdByUserId') this.createdByUserId,
-      @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') this.lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') this.updatedDate})
-      : _statusReasons = statusReasons;
-  factory _StudentAuthorisedPersonApiDto2Dto.fromJson(
-          Map<String, dynamic> json) =>
-      _$StudentAuthorisedPersonApiDto2DtoFromJson(json);
-
-  @override
-  @JsonKey(name: 'studentAuthorisedPersonId')
-  final int? studentAuthorisedPersonId;
-  @override
-  @JsonKey(name: 'name')
-  final String? name;
-  @override
-  @JsonKey(name: 'identifier')
-  final String? identifier;
-  @override
-  @JsonKey(name: 'contactNumber')
-  final String? contactNumber;
-  @override
-  @JsonKey(name: 'relationToChild')
-  final dynamic relationToChild;
-  @override
-  @JsonKey(name: 'studentId')
-  final int? studentId;
-  @override
-  @JsonKey(name: 'branchId')
-  final int? branchId;
-  @override
-  @JsonKey(name: 'isActive')
-  final bool? isActive;
-  final List<AuthorisedPersonDeactivationReasonApiDto>? _statusReasons;
-  @override
-  @JsonKey(name: 'statusReasons')
-  List<AuthorisedPersonDeactivationReasonApiDto>? get statusReasons {
-    final value = _statusReasons;
-    if (value == null) return null;
-    if (_statusReasons is EqualUnmodifiableListView) return _statusReasons;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  @JsonKey(name: 'isDeleted')
-  final bool? isDeleted;
-  @override
-  @JsonKey(name: 'createdByUserId')
-  final String? createdByUserId;
-  @override
-  @JsonKey(name: 'createdDate')
-  final DateTime? createdDate;
-  @override
-  @JsonKey(name: 'lastUpdatedByUserId')
-  final String? lastUpdatedByUserId;
-  @override
-  @JsonKey(name: 'updatedDate')
-  final DateTime? updatedDate;
-
-  /// Create a copy of StudentAuthorisedPersonApiDto2Dto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$StudentAuthorisedPersonApiDto2DtoCopyWith<
-          _StudentAuthorisedPersonApiDto2Dto>
-      get copyWith => __$StudentAuthorisedPersonApiDto2DtoCopyWithImpl<
-          _StudentAuthorisedPersonApiDto2Dto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$StudentAuthorisedPersonApiDto2DtoToJson(
-      this,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _StudentAuthorisedPersonApiDto2Dto &&
-            (identical(other.studentAuthorisedPersonId,
-                    studentAuthorisedPersonId) ||
-                other.studentAuthorisedPersonId == studentAuthorisedPersonId) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.identifier, identifier) ||
-                other.identifier == identifier) &&
-            (identical(other.contactNumber, contactNumber) ||
-                other.contactNumber == contactNumber) &&
-            const DeepCollectionEquality()
-                .equals(other.relationToChild, relationToChild) &&
-            (identical(other.studentId, studentId) ||
-                other.studentId == studentId) &&
-            (identical(other.branchId, branchId) ||
-                other.branchId == branchId) &&
-            (identical(other.isActive, isActive) ||
-                other.isActive == isActive) &&
-            const DeepCollectionEquality()
-                .equals(other._statusReasons, _statusReasons) &&
-            (identical(other.isDeleted, isDeleted) ||
-                other.isDeleted == isDeleted) &&
-            (identical(other.createdByUserId, createdByUserId) ||
-                other.createdByUserId == createdByUserId) &&
-            (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate) &&
-            (identical(other.lastUpdatedByUserId, lastUpdatedByUserId) ||
-                other.lastUpdatedByUserId == lastUpdatedByUserId) &&
-            (identical(other.updatedDate, updatedDate) ||
-                other.updatedDate == updatedDate));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      studentAuthorisedPersonId,
-      name,
-      identifier,
-      contactNumber,
-      const DeepCollectionEquality().hash(relationToChild),
-      studentId,
-      branchId,
-      isActive,
-      const DeepCollectionEquality().hash(_statusReasons),
-      isDeleted,
-      createdByUserId,
-      createdDate,
-      lastUpdatedByUserId,
-      updatedDate);
-
-  @override
-  String toString() {
-    return 'StudentAuthorisedPersonApiDto2Dto(studentAuthorisedPersonId: $studentAuthorisedPersonId, name: $name, identifier: $identifier, contactNumber: $contactNumber, relationToChild: $relationToChild, studentId: $studentId, branchId: $branchId, isActive: $isActive, statusReasons: $statusReasons, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
-  }
-}
-
-/// @nodoc
-abstract mixin class _$StudentAuthorisedPersonApiDto2DtoCopyWith<$Res>
-    implements $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res> {
-  factory _$StudentAuthorisedPersonApiDto2DtoCopyWith(
-          _StudentAuthorisedPersonApiDto2Dto value,
-          $Res Function(_StudentAuthorisedPersonApiDto2Dto) _then) =
-      __$StudentAuthorisedPersonApiDto2DtoCopyWithImpl;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'studentAuthorisedPersonId')
-      int? studentAuthorisedPersonId,
-      @JsonKey(name: 'name') String? name,
-      @JsonKey(name: 'identifier') String? identifier,
-      @JsonKey(name: 'contactNumber') String? contactNumber,
-      @JsonKey(name: 'relationToChild') dynamic relationToChild,
-      @JsonKey(name: 'studentId') int? studentId,
-      @JsonKey(name: 'branchId') int? branchId,
-      @JsonKey(name: 'isActive') bool? isActive,
-      @JsonKey(name: 'statusReasons')
-      List<AuthorisedPersonDeactivationReasonApiDto>? statusReasons,
-      @JsonKey(name: 'isDeleted') bool? isDeleted,
-      @JsonKey(name: 'createdByUserId') String? createdByUserId,
-      @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'lastUpdatedByUserId') String? lastUpdatedByUserId,
-      @JsonKey(name: 'updatedDate') DateTime? updatedDate});
-}
-
-/// @nodoc
-class __$StudentAuthorisedPersonApiDto2DtoCopyWithImpl<$Res>
-    implements _$StudentAuthorisedPersonApiDto2DtoCopyWith<$Res> {
-  __$StudentAuthorisedPersonApiDto2DtoCopyWithImpl(this._self, this._then);
-
-  final _StudentAuthorisedPersonApiDto2Dto _self;
-  final $Res Function(_StudentAuthorisedPersonApiDto2Dto) _then;
-
-  /// Create a copy of StudentAuthorisedPersonApiDto2Dto
+  /// Create a copy of StudentAuthorisedPersonApiDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $Res call({
-    Object? studentAuthorisedPersonId = freezed,
-    Object? name = freezed,
-    Object? identifier = freezed,
-    Object? contactNumber = freezed,
-    Object? relationToChild = freezed,
-    Object? studentId = freezed,
-    Object? branchId = freezed,
-    Object? isActive = freezed,
-    Object? statusReasons = freezed,
-    Object? isDeleted = freezed,
-    Object? createdByUserId = freezed,
-    Object? createdDate = freezed,
-    Object? lastUpdatedByUserId = freezed,
-    Object? updatedDate = freezed,
-  }) {
-    return _then(_StudentAuthorisedPersonApiDto2Dto(
-      studentAuthorisedPersonId: freezed == studentAuthorisedPersonId
-          ? _self.studentAuthorisedPersonId
-          : studentAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _self.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      identifier: freezed == identifier
-          ? _self.identifier
-          : identifier // ignore: cast_nullable_to_non_nullable
-              as String?,
-      contactNumber: freezed == contactNumber
-          ? _self.contactNumber
-          : contactNumber // ignore: cast_nullable_to_non_nullable
-              as String?,
-      relationToChild: freezed == relationToChild
-          ? _self.relationToChild
-          : relationToChild // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      studentId: freezed == studentId
-          ? _self.studentId
-          : studentId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      branchId: freezed == branchId
-          ? _self.branchId
-          : branchId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isActive: freezed == isActive
-          ? _self.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      statusReasons: freezed == statusReasons
-          ? _self._statusReasons
-          : statusReasons // ignore: cast_nullable_to_non_nullable
-              as List<AuthorisedPersonDeactivationReasonApiDto>?,
-      isDeleted: freezed == isDeleted
-          ? _self.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      createdByUserId: freezed == createdByUserId
-          ? _self.createdByUserId
-          : createdByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      createdDate: freezed == createdDate
-          ? _self.createdDate
-          : createdDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      lastUpdatedByUserId: freezed == lastUpdatedByUserId
-          ? _self.lastUpdatedByUserId
-          : lastUpdatedByUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      updatedDate: freezed == updatedDate
-          ? _self.updatedDate
-          : updatedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
+  $ImageUrlResultDtoCopyWith<$Res>? get authorisedPersonImage {
+    if (_self.authorisedPersonImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.authorisedPersonImage!,
+        (value) {
+      return _then(_self.copyWith(authorisedPersonImage: value));
+    });
   }
 }
 
@@ -34640,9 +52151,13 @@ mixin _$StudentCheckInOutApiDto {
   @JsonKey(name: 'checkInAuthorisedPerson')
   StudentAuthorisedPersonApiDto? get checkInAuthorisedPerson;
   @JsonKey(name: 'checkOutAuthorisedPerson')
-  StudentAuthorisedPersonApiDto2Dto? get checkOutAuthorisedPerson;
+  StudentAuthorisedPersonApiDto? get checkOutAuthorisedPerson;
   @JsonKey(name: 'temperatures')
-  List<StudentTemperatureApiDto>? get temperatures;
+  List<dynamic>? get temperatures;
+  @JsonKey(name: 'checkInImage')
+  ImageUrlResultDto? get checkInImage;
+  @JsonKey(name: 'checkOutImage')
+  ImageUrlResultDto? get checkOutImage;
   @JsonKey(name: 'isDeleted')
   bool? get isDeleted;
   @JsonKey(name: 'createdByUserId')
@@ -34694,6 +52209,10 @@ mixin _$StudentCheckInOutApiDto {
                 other.checkOutAuthorisedPerson == checkOutAuthorisedPerson) &&
             const DeepCollectionEquality()
                 .equals(other.temperatures, temperatures) &&
+            (identical(other.checkInImage, checkInImage) ||
+                other.checkInImage == checkInImage) &&
+            (identical(other.checkOutImage, checkOutImage) ||
+                other.checkOutImage == checkOutImage) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -34721,6 +52240,8 @@ mixin _$StudentCheckInOutApiDto {
       checkInAuthorisedPerson,
       checkOutAuthorisedPerson,
       const DeepCollectionEquality().hash(temperatures),
+      checkInImage,
+      checkOutImage,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -34729,7 +52250,7 @@ mixin _$StudentCheckInOutApiDto {
 
   @override
   String toString() {
-    return 'StudentCheckInOutApiDto(studentCheckInOutId: $studentCheckInOutId, studentId: $studentId, accountId: $accountId, checkInTime: $checkInTime, checkInRemarks: $checkInRemarks, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, branchId: $branchId, checkInAuthorisedPerson: $checkInAuthorisedPerson, checkOutAuthorisedPerson: $checkOutAuthorisedPerson, temperatures: $temperatures, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'StudentCheckInOutApiDto(studentCheckInOutId: $studentCheckInOutId, studentId: $studentId, accountId: $accountId, checkInTime: $checkInTime, checkInRemarks: $checkInRemarks, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, branchId: $branchId, checkInAuthorisedPerson: $checkInAuthorisedPerson, checkOutAuthorisedPerson: $checkOutAuthorisedPerson, temperatures: $temperatures, checkInImage: $checkInImage, checkOutImage: $checkOutImage, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -34751,9 +52272,10 @@ abstract mixin class $StudentCheckInOutApiDtoCopyWith<$Res> {
       @JsonKey(name: 'checkInAuthorisedPerson')
       StudentAuthorisedPersonApiDto? checkInAuthorisedPerson,
       @JsonKey(name: 'checkOutAuthorisedPerson')
-      StudentAuthorisedPersonApiDto2Dto? checkOutAuthorisedPerson,
-      @JsonKey(name: 'temperatures')
-      List<StudentTemperatureApiDto>? temperatures,
+      StudentAuthorisedPersonApiDto? checkOutAuthorisedPerson,
+      @JsonKey(name: 'temperatures') List<dynamic>? temperatures,
+      @JsonKey(name: 'checkInImage') ImageUrlResultDto? checkInImage,
+      @JsonKey(name: 'checkOutImage') ImageUrlResultDto? checkOutImage,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -34761,8 +52283,9 @@ abstract mixin class $StudentCheckInOutApiDtoCopyWith<$Res> {
       @JsonKey(name: 'updatedDate') DateTime? updatedDate});
 
   $StudentAuthorisedPersonApiDtoCopyWith<$Res>? get checkInAuthorisedPerson;
-  $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res>?
-      get checkOutAuthorisedPerson;
+  $StudentAuthorisedPersonApiDtoCopyWith<$Res>? get checkOutAuthorisedPerson;
+  $ImageUrlResultDtoCopyWith<$Res>? get checkInImage;
+  $ImageUrlResultDtoCopyWith<$Res>? get checkOutImage;
 }
 
 /// @nodoc
@@ -34789,6 +52312,8 @@ class _$StudentCheckInOutApiDtoCopyWithImpl<$Res>
     Object? checkInAuthorisedPerson = freezed,
     Object? checkOutAuthorisedPerson = freezed,
     Object? temperatures = freezed,
+    Object? checkInImage = freezed,
+    Object? checkOutImage = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -34835,11 +52360,19 @@ class _$StudentCheckInOutApiDtoCopyWithImpl<$Res>
       checkOutAuthorisedPerson: freezed == checkOutAuthorisedPerson
           ? _self.checkOutAuthorisedPerson
           : checkOutAuthorisedPerson // ignore: cast_nullable_to_non_nullable
-              as StudentAuthorisedPersonApiDto2Dto?,
+              as StudentAuthorisedPersonApiDto?,
       temperatures: freezed == temperatures
           ? _self.temperatures
           : temperatures // ignore: cast_nullable_to_non_nullable
-              as List<StudentTemperatureApiDto>?,
+              as List<dynamic>?,
+      checkInImage: freezed == checkInImage
+          ? _self.checkInImage
+          : checkInImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
+      checkOutImage: freezed == checkOutImage
+          ? _self.checkOutImage
+          : checkOutImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -34882,15 +52415,42 @@ class _$StudentCheckInOutApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res>?
-      get checkOutAuthorisedPerson {
+  $StudentAuthorisedPersonApiDtoCopyWith<$Res>? get checkOutAuthorisedPerson {
     if (_self.checkOutAuthorisedPerson == null) {
       return null;
     }
 
-    return $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res>(
+    return $StudentAuthorisedPersonApiDtoCopyWith<$Res>(
         _self.checkOutAuthorisedPerson!, (value) {
       return _then(_self.copyWith(checkOutAuthorisedPerson: value));
+    });
+  }
+
+  /// Create a copy of StudentCheckInOutApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageUrlResultDtoCopyWith<$Res>? get checkInImage {
+    if (_self.checkInImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.checkInImage!, (value) {
+      return _then(_self.copyWith(checkInImage: value));
+    });
+  }
+
+  /// Create a copy of StudentCheckInOutApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageUrlResultDtoCopyWith<$Res>? get checkOutImage {
+    if (_self.checkOutImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.checkOutImage!, (value) {
+      return _then(_self.copyWith(checkOutImage: value));
     });
   }
 }
@@ -34998,9 +52558,10 @@ extension StudentCheckInOutApiDtoPatterns on StudentCheckInOutApiDto {
             @JsonKey(name: 'checkInAuthorisedPerson')
             StudentAuthorisedPersonApiDto? checkInAuthorisedPerson,
             @JsonKey(name: 'checkOutAuthorisedPerson')
-            StudentAuthorisedPersonApiDto2Dto? checkOutAuthorisedPerson,
-            @JsonKey(name: 'temperatures')
-            List<StudentTemperatureApiDto>? temperatures,
+            StudentAuthorisedPersonApiDto? checkOutAuthorisedPerson,
+            @JsonKey(name: 'temperatures') List<dynamic>? temperatures,
+            @JsonKey(name: 'checkInImage') ImageUrlResultDto? checkInImage,
+            @JsonKey(name: 'checkOutImage') ImageUrlResultDto? checkOutImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -35024,6 +52585,8 @@ extension StudentCheckInOutApiDtoPatterns on StudentCheckInOutApiDto {
             _that.checkInAuthorisedPerson,
             _that.checkOutAuthorisedPerson,
             _that.temperatures,
+            _that.checkInImage,
+            _that.checkOutImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -35061,9 +52624,10 @@ extension StudentCheckInOutApiDtoPatterns on StudentCheckInOutApiDto {
             @JsonKey(name: 'checkInAuthorisedPerson')
             StudentAuthorisedPersonApiDto? checkInAuthorisedPerson,
             @JsonKey(name: 'checkOutAuthorisedPerson')
-            StudentAuthorisedPersonApiDto2Dto? checkOutAuthorisedPerson,
-            @JsonKey(name: 'temperatures')
-            List<StudentTemperatureApiDto>? temperatures,
+            StudentAuthorisedPersonApiDto? checkOutAuthorisedPerson,
+            @JsonKey(name: 'temperatures') List<dynamic>? temperatures,
+            @JsonKey(name: 'checkInImage') ImageUrlResultDto? checkInImage,
+            @JsonKey(name: 'checkOutImage') ImageUrlResultDto? checkOutImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -35086,6 +52650,8 @@ extension StudentCheckInOutApiDtoPatterns on StudentCheckInOutApiDto {
             _that.checkInAuthorisedPerson,
             _that.checkOutAuthorisedPerson,
             _that.temperatures,
+            _that.checkInImage,
+            _that.checkOutImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -35120,9 +52686,10 @@ extension StudentCheckInOutApiDtoPatterns on StudentCheckInOutApiDto {
             @JsonKey(name: 'checkInAuthorisedPerson')
             StudentAuthorisedPersonApiDto? checkInAuthorisedPerson,
             @JsonKey(name: 'checkOutAuthorisedPerson')
-            StudentAuthorisedPersonApiDto2Dto? checkOutAuthorisedPerson,
-            @JsonKey(name: 'temperatures')
-            List<StudentTemperatureApiDto>? temperatures,
+            StudentAuthorisedPersonApiDto? checkOutAuthorisedPerson,
+            @JsonKey(name: 'temperatures') List<dynamic>? temperatures,
+            @JsonKey(name: 'checkInImage') ImageUrlResultDto? checkInImage,
+            @JsonKey(name: 'checkOutImage') ImageUrlResultDto? checkOutImage,
             @JsonKey(name: 'isDeleted') bool? isDeleted,
             @JsonKey(name: 'createdByUserId') String? createdByUserId,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -35145,6 +52712,8 @@ extension StudentCheckInOutApiDtoPatterns on StudentCheckInOutApiDto {
             _that.checkInAuthorisedPerson,
             _that.checkOutAuthorisedPerson,
             _that.temperatures,
+            _that.checkInImage,
+            _that.checkOutImage,
             _that.isDeleted,
             _that.createdByUserId,
             _that.createdDate,
@@ -35170,8 +52739,9 @@ class _StudentCheckInOutApiDto implements StudentCheckInOutApiDto {
       @JsonKey(name: 'branchId') this.branchId,
       @JsonKey(name: 'checkInAuthorisedPerson') this.checkInAuthorisedPerson,
       @JsonKey(name: 'checkOutAuthorisedPerson') this.checkOutAuthorisedPerson,
-      @JsonKey(name: 'temperatures')
-      final List<StudentTemperatureApiDto>? temperatures,
+      @JsonKey(name: 'temperatures') final List<dynamic>? temperatures,
+      @JsonKey(name: 'checkInImage') this.checkInImage,
+      @JsonKey(name: 'checkOutImage') this.checkOutImage,
       @JsonKey(name: 'isDeleted') this.isDeleted,
       @JsonKey(name: 'createdByUserId') this.createdByUserId,
       @JsonKey(name: 'createdDate') this.createdDate,
@@ -35210,11 +52780,11 @@ class _StudentCheckInOutApiDto implements StudentCheckInOutApiDto {
   final StudentAuthorisedPersonApiDto? checkInAuthorisedPerson;
   @override
   @JsonKey(name: 'checkOutAuthorisedPerson')
-  final StudentAuthorisedPersonApiDto2Dto? checkOutAuthorisedPerson;
-  final List<StudentTemperatureApiDto>? _temperatures;
+  final StudentAuthorisedPersonApiDto? checkOutAuthorisedPerson;
+  final List<dynamic>? _temperatures;
   @override
   @JsonKey(name: 'temperatures')
-  List<StudentTemperatureApiDto>? get temperatures {
+  List<dynamic>? get temperatures {
     final value = _temperatures;
     if (value == null) return null;
     if (_temperatures is EqualUnmodifiableListView) return _temperatures;
@@ -35222,6 +52792,12 @@ class _StudentCheckInOutApiDto implements StudentCheckInOutApiDto {
     return EqualUnmodifiableListView(value);
   }
 
+  @override
+  @JsonKey(name: 'checkInImage')
+  final ImageUrlResultDto? checkInImage;
+  @override
+  @JsonKey(name: 'checkOutImage')
+  final ImageUrlResultDto? checkOutImage;
   @override
   @JsonKey(name: 'isDeleted')
   final bool? isDeleted;
@@ -35283,6 +52859,10 @@ class _StudentCheckInOutApiDto implements StudentCheckInOutApiDto {
                 other.checkOutAuthorisedPerson == checkOutAuthorisedPerson) &&
             const DeepCollectionEquality()
                 .equals(other._temperatures, _temperatures) &&
+            (identical(other.checkInImage, checkInImage) ||
+                other.checkInImage == checkInImage) &&
+            (identical(other.checkOutImage, checkOutImage) ||
+                other.checkOutImage == checkOutImage) &&
             (identical(other.isDeleted, isDeleted) ||
                 other.isDeleted == isDeleted) &&
             (identical(other.createdByUserId, createdByUserId) ||
@@ -35310,6 +52890,8 @@ class _StudentCheckInOutApiDto implements StudentCheckInOutApiDto {
       checkInAuthorisedPerson,
       checkOutAuthorisedPerson,
       const DeepCollectionEquality().hash(_temperatures),
+      checkInImage,
+      checkOutImage,
       isDeleted,
       createdByUserId,
       createdDate,
@@ -35318,7 +52900,7 @@ class _StudentCheckInOutApiDto implements StudentCheckInOutApiDto {
 
   @override
   String toString() {
-    return 'StudentCheckInOutApiDto(studentCheckInOutId: $studentCheckInOutId, studentId: $studentId, accountId: $accountId, checkInTime: $checkInTime, checkInRemarks: $checkInRemarks, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, branchId: $branchId, checkInAuthorisedPerson: $checkInAuthorisedPerson, checkOutAuthorisedPerson: $checkOutAuthorisedPerson, temperatures: $temperatures, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
+    return 'StudentCheckInOutApiDto(studentCheckInOutId: $studentCheckInOutId, studentId: $studentId, accountId: $accountId, checkInTime: $checkInTime, checkInRemarks: $checkInRemarks, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, branchId: $branchId, checkInAuthorisedPerson: $checkInAuthorisedPerson, checkOutAuthorisedPerson: $checkOutAuthorisedPerson, temperatures: $temperatures, checkInImage: $checkInImage, checkOutImage: $checkOutImage, isDeleted: $isDeleted, createdByUserId: $createdByUserId, createdDate: $createdDate, lastUpdatedByUserId: $lastUpdatedByUserId, updatedDate: $updatedDate)';
   }
 }
 
@@ -35342,9 +52924,10 @@ abstract mixin class _$StudentCheckInOutApiDtoCopyWith<$Res>
       @JsonKey(name: 'checkInAuthorisedPerson')
       StudentAuthorisedPersonApiDto? checkInAuthorisedPerson,
       @JsonKey(name: 'checkOutAuthorisedPerson')
-      StudentAuthorisedPersonApiDto2Dto? checkOutAuthorisedPerson,
-      @JsonKey(name: 'temperatures')
-      List<StudentTemperatureApiDto>? temperatures,
+      StudentAuthorisedPersonApiDto? checkOutAuthorisedPerson,
+      @JsonKey(name: 'temperatures') List<dynamic>? temperatures,
+      @JsonKey(name: 'checkInImage') ImageUrlResultDto? checkInImage,
+      @JsonKey(name: 'checkOutImage') ImageUrlResultDto? checkOutImage,
       @JsonKey(name: 'isDeleted') bool? isDeleted,
       @JsonKey(name: 'createdByUserId') String? createdByUserId,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
@@ -35354,8 +52937,11 @@ abstract mixin class _$StudentCheckInOutApiDtoCopyWith<$Res>
   @override
   $StudentAuthorisedPersonApiDtoCopyWith<$Res>? get checkInAuthorisedPerson;
   @override
-  $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res>?
-      get checkOutAuthorisedPerson;
+  $StudentAuthorisedPersonApiDtoCopyWith<$Res>? get checkOutAuthorisedPerson;
+  @override
+  $ImageUrlResultDtoCopyWith<$Res>? get checkInImage;
+  @override
+  $ImageUrlResultDtoCopyWith<$Res>? get checkOutImage;
 }
 
 /// @nodoc
@@ -35382,6 +52968,8 @@ class __$StudentCheckInOutApiDtoCopyWithImpl<$Res>
     Object? checkInAuthorisedPerson = freezed,
     Object? checkOutAuthorisedPerson = freezed,
     Object? temperatures = freezed,
+    Object? checkInImage = freezed,
+    Object? checkOutImage = freezed,
     Object? isDeleted = freezed,
     Object? createdByUserId = freezed,
     Object? createdDate = freezed,
@@ -35428,11 +53016,19 @@ class __$StudentCheckInOutApiDtoCopyWithImpl<$Res>
       checkOutAuthorisedPerson: freezed == checkOutAuthorisedPerson
           ? _self.checkOutAuthorisedPerson
           : checkOutAuthorisedPerson // ignore: cast_nullable_to_non_nullable
-              as StudentAuthorisedPersonApiDto2Dto?,
+              as StudentAuthorisedPersonApiDto?,
       temperatures: freezed == temperatures
           ? _self._temperatures
           : temperatures // ignore: cast_nullable_to_non_nullable
-              as List<StudentTemperatureApiDto>?,
+              as List<dynamic>?,
+      checkInImage: freezed == checkInImage
+          ? _self.checkInImage
+          : checkInImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
+      checkOutImage: freezed == checkOutImage
+          ? _self.checkOutImage
+          : checkOutImage // ignore: cast_nullable_to_non_nullable
+              as ImageUrlResultDto?,
       isDeleted: freezed == isDeleted
           ? _self.isDeleted
           : isDeleted // ignore: cast_nullable_to_non_nullable
@@ -35475,16 +53071,1081 @@ class __$StudentCheckInOutApiDtoCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res>?
-      get checkOutAuthorisedPerson {
+  $StudentAuthorisedPersonApiDtoCopyWith<$Res>? get checkOutAuthorisedPerson {
     if (_self.checkOutAuthorisedPerson == null) {
       return null;
     }
 
-    return $StudentAuthorisedPersonApiDto2DtoCopyWith<$Res>(
+    return $StudentAuthorisedPersonApiDtoCopyWith<$Res>(
         _self.checkOutAuthorisedPerson!, (value) {
       return _then(_self.copyWith(checkOutAuthorisedPerson: value));
     });
+  }
+
+  /// Create a copy of StudentCheckInOutApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageUrlResultDtoCopyWith<$Res>? get checkInImage {
+    if (_self.checkInImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.checkInImage!, (value) {
+      return _then(_self.copyWith(checkInImage: value));
+    });
+  }
+
+  /// Create a copy of StudentCheckInOutApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageUrlResultDtoCopyWith<$Res>? get checkOutImage {
+    if (_self.checkOutImage == null) {
+      return null;
+    }
+
+    return $ImageUrlResultDtoCopyWith<$Res>(_self.checkOutImage!, (value) {
+      return _then(_self.copyWith(checkOutImage: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$StudentCheckInOutCreateRequestDto {
+  @JsonKey(name: 'accountId')
+  int? get accountId;
+  @JsonKey(name: 'checkInTime')
+  DateTime? get checkInTime;
+  @JsonKey(name: 'checkInRemarks')
+  String? get checkInRemarks;
+  @JsonKey(name: 'checkOutTime')
+  DateTime? get checkOutTime;
+  @JsonKey(name: 'checkOutRemarks')
+  String? get checkOutRemarks;
+  @JsonKey(name: 'checkInAuthorisedPersonId')
+  int? get checkInAuthorisedPersonId;
+  @JsonKey(name: 'checkOutAuthorisedPersonId')
+  int? get checkOutAuthorisedPersonId;
+  @JsonKey(name: 'checkInImageBase64')
+  String? get checkInImageBase64;
+  @JsonKey(name: 'checkOutImageBase64')
+  String? get checkOutImageBase64;
+
+  /// Create a copy of StudentCheckInOutCreateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $StudentCheckInOutCreateRequestDtoCopyWith<StudentCheckInOutCreateRequestDto>
+      get copyWith => _$StudentCheckInOutCreateRequestDtoCopyWithImpl<
+              StudentCheckInOutCreateRequestDto>(
+          this as StudentCheckInOutCreateRequestDto, _$identity);
+
+  /// Serializes this StudentCheckInOutCreateRequestDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is StudentCheckInOutCreateRequestDto &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.checkInTime, checkInTime) ||
+                other.checkInTime == checkInTime) &&
+            (identical(other.checkInRemarks, checkInRemarks) ||
+                other.checkInRemarks == checkInRemarks) &&
+            (identical(other.checkOutTime, checkOutTime) ||
+                other.checkOutTime == checkOutTime) &&
+            (identical(other.checkOutRemarks, checkOutRemarks) ||
+                other.checkOutRemarks == checkOutRemarks) &&
+            (identical(other.checkInAuthorisedPersonId,
+                    checkInAuthorisedPersonId) ||
+                other.checkInAuthorisedPersonId == checkInAuthorisedPersonId) &&
+            (identical(other.checkOutAuthorisedPersonId,
+                    checkOutAuthorisedPersonId) ||
+                other.checkOutAuthorisedPersonId ==
+                    checkOutAuthorisedPersonId) &&
+            (identical(other.checkInImageBase64, checkInImageBase64) ||
+                other.checkInImageBase64 == checkInImageBase64) &&
+            (identical(other.checkOutImageBase64, checkOutImageBase64) ||
+                other.checkOutImageBase64 == checkOutImageBase64));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      accountId,
+      checkInTime,
+      checkInRemarks,
+      checkOutTime,
+      checkOutRemarks,
+      checkInAuthorisedPersonId,
+      checkOutAuthorisedPersonId,
+      checkInImageBase64,
+      checkOutImageBase64);
+
+  @override
+  String toString() {
+    return 'StudentCheckInOutCreateRequestDto(accountId: $accountId, checkInTime: $checkInTime, checkInRemarks: $checkInRemarks, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, checkInAuthorisedPersonId: $checkInAuthorisedPersonId, checkOutAuthorisedPersonId: $checkOutAuthorisedPersonId, checkInImageBase64: $checkInImageBase64, checkOutImageBase64: $checkOutImageBase64)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $StudentCheckInOutCreateRequestDtoCopyWith<$Res> {
+  factory $StudentCheckInOutCreateRequestDtoCopyWith(
+          StudentCheckInOutCreateRequestDto value,
+          $Res Function(StudentCheckInOutCreateRequestDto) _then) =
+      _$StudentCheckInOutCreateRequestDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'checkInTime') DateTime? checkInTime,
+      @JsonKey(name: 'checkInRemarks') String? checkInRemarks,
+      @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+      @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+      @JsonKey(name: 'checkInAuthorisedPersonId')
+      int? checkInAuthorisedPersonId,
+      @JsonKey(name: 'checkOutAuthorisedPersonId')
+      int? checkOutAuthorisedPersonId,
+      @JsonKey(name: 'checkInImageBase64') String? checkInImageBase64,
+      @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64});
+}
+
+/// @nodoc
+class _$StudentCheckInOutCreateRequestDtoCopyWithImpl<$Res>
+    implements $StudentCheckInOutCreateRequestDtoCopyWith<$Res> {
+  _$StudentCheckInOutCreateRequestDtoCopyWithImpl(this._self, this._then);
+
+  final StudentCheckInOutCreateRequestDto _self;
+  final $Res Function(StudentCheckInOutCreateRequestDto) _then;
+
+  /// Create a copy of StudentCheckInOutCreateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accountId = freezed,
+    Object? checkInTime = freezed,
+    Object? checkInRemarks = freezed,
+    Object? checkOutTime = freezed,
+    Object? checkOutRemarks = freezed,
+    Object? checkInAuthorisedPersonId = freezed,
+    Object? checkOutAuthorisedPersonId = freezed,
+    Object? checkInImageBase64 = freezed,
+    Object? checkOutImageBase64 = freezed,
+  }) {
+    return _then(_self.copyWith(
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkInTime: freezed == checkInTime
+          ? _self.checkInTime
+          : checkInTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkInRemarks: freezed == checkInRemarks
+          ? _self.checkInRemarks
+          : checkInRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOutTime: freezed == checkOutTime
+          ? _self.checkOutTime
+          : checkOutTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkOutRemarks: freezed == checkOutRemarks
+          ? _self.checkOutRemarks
+          : checkOutRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkInAuthorisedPersonId: freezed == checkInAuthorisedPersonId
+          ? _self.checkInAuthorisedPersonId
+          : checkInAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkOutAuthorisedPersonId: freezed == checkOutAuthorisedPersonId
+          ? _self.checkOutAuthorisedPersonId
+          : checkOutAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkInImageBase64: freezed == checkInImageBase64
+          ? _self.checkInImageBase64
+          : checkInImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOutImageBase64: freezed == checkOutImageBase64
+          ? _self.checkOutImageBase64
+          : checkOutImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [StudentCheckInOutCreateRequestDto].
+extension StudentCheckInOutCreateRequestDtoPatterns
+    on StudentCheckInOutCreateRequestDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_StudentCheckInOutCreateRequestDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutCreateRequestDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_StudentCheckInOutCreateRequestDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutCreateRequestDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_StudentCheckInOutCreateRequestDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutCreateRequestDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'checkInTime') DateTime? checkInTime,
+            @JsonKey(name: 'checkInRemarks') String? checkInRemarks,
+            @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+            @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+            @JsonKey(name: 'checkInAuthorisedPersonId')
+            int? checkInAuthorisedPersonId,
+            @JsonKey(name: 'checkOutAuthorisedPersonId')
+            int? checkOutAuthorisedPersonId,
+            @JsonKey(name: 'checkInImageBase64') String? checkInImageBase64,
+            @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutCreateRequestDto() when $default != null:
+        return $default(
+            _that.accountId,
+            _that.checkInTime,
+            _that.checkInRemarks,
+            _that.checkOutTime,
+            _that.checkOutRemarks,
+            _that.checkInAuthorisedPersonId,
+            _that.checkOutAuthorisedPersonId,
+            _that.checkInImageBase64,
+            _that.checkOutImageBase64);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'checkInTime') DateTime? checkInTime,
+            @JsonKey(name: 'checkInRemarks') String? checkInRemarks,
+            @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+            @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+            @JsonKey(name: 'checkInAuthorisedPersonId')
+            int? checkInAuthorisedPersonId,
+            @JsonKey(name: 'checkOutAuthorisedPersonId')
+            int? checkOutAuthorisedPersonId,
+            @JsonKey(name: 'checkInImageBase64') String? checkInImageBase64,
+            @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutCreateRequestDto():
+        return $default(
+            _that.accountId,
+            _that.checkInTime,
+            _that.checkInRemarks,
+            _that.checkOutTime,
+            _that.checkOutRemarks,
+            _that.checkInAuthorisedPersonId,
+            _that.checkOutAuthorisedPersonId,
+            _that.checkInImageBase64,
+            _that.checkOutImageBase64);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'accountId') int? accountId,
+            @JsonKey(name: 'checkInTime') DateTime? checkInTime,
+            @JsonKey(name: 'checkInRemarks') String? checkInRemarks,
+            @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+            @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+            @JsonKey(name: 'checkInAuthorisedPersonId')
+            int? checkInAuthorisedPersonId,
+            @JsonKey(name: 'checkOutAuthorisedPersonId')
+            int? checkOutAuthorisedPersonId,
+            @JsonKey(name: 'checkInImageBase64') String? checkInImageBase64,
+            @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutCreateRequestDto() when $default != null:
+        return $default(
+            _that.accountId,
+            _that.checkInTime,
+            _that.checkInRemarks,
+            _that.checkOutTime,
+            _that.checkOutRemarks,
+            _that.checkInAuthorisedPersonId,
+            _that.checkOutAuthorisedPersonId,
+            _that.checkInImageBase64,
+            _that.checkOutImageBase64);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _StudentCheckInOutCreateRequestDto
+    implements StudentCheckInOutCreateRequestDto {
+  _StudentCheckInOutCreateRequestDto(
+      {@JsonKey(name: 'accountId') this.accountId,
+      @JsonKey(name: 'checkInTime') this.checkInTime,
+      @JsonKey(name: 'checkInRemarks') this.checkInRemarks,
+      @JsonKey(name: 'checkOutTime') this.checkOutTime,
+      @JsonKey(name: 'checkOutRemarks') this.checkOutRemarks,
+      @JsonKey(name: 'checkInAuthorisedPersonId')
+      this.checkInAuthorisedPersonId,
+      @JsonKey(name: 'checkOutAuthorisedPersonId')
+      this.checkOutAuthorisedPersonId,
+      @JsonKey(name: 'checkInImageBase64') this.checkInImageBase64,
+      @JsonKey(name: 'checkOutImageBase64') this.checkOutImageBase64});
+  factory _StudentCheckInOutCreateRequestDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudentCheckInOutCreateRequestDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'accountId')
+  final int? accountId;
+  @override
+  @JsonKey(name: 'checkInTime')
+  final DateTime? checkInTime;
+  @override
+  @JsonKey(name: 'checkInRemarks')
+  final String? checkInRemarks;
+  @override
+  @JsonKey(name: 'checkOutTime')
+  final DateTime? checkOutTime;
+  @override
+  @JsonKey(name: 'checkOutRemarks')
+  final String? checkOutRemarks;
+  @override
+  @JsonKey(name: 'checkInAuthorisedPersonId')
+  final int? checkInAuthorisedPersonId;
+  @override
+  @JsonKey(name: 'checkOutAuthorisedPersonId')
+  final int? checkOutAuthorisedPersonId;
+  @override
+  @JsonKey(name: 'checkInImageBase64')
+  final String? checkInImageBase64;
+  @override
+  @JsonKey(name: 'checkOutImageBase64')
+  final String? checkOutImageBase64;
+
+  /// Create a copy of StudentCheckInOutCreateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$StudentCheckInOutCreateRequestDtoCopyWith<
+          _StudentCheckInOutCreateRequestDto>
+      get copyWith => __$StudentCheckInOutCreateRequestDtoCopyWithImpl<
+          _StudentCheckInOutCreateRequestDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$StudentCheckInOutCreateRequestDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _StudentCheckInOutCreateRequestDto &&
+            (identical(other.accountId, accountId) ||
+                other.accountId == accountId) &&
+            (identical(other.checkInTime, checkInTime) ||
+                other.checkInTime == checkInTime) &&
+            (identical(other.checkInRemarks, checkInRemarks) ||
+                other.checkInRemarks == checkInRemarks) &&
+            (identical(other.checkOutTime, checkOutTime) ||
+                other.checkOutTime == checkOutTime) &&
+            (identical(other.checkOutRemarks, checkOutRemarks) ||
+                other.checkOutRemarks == checkOutRemarks) &&
+            (identical(other.checkInAuthorisedPersonId,
+                    checkInAuthorisedPersonId) ||
+                other.checkInAuthorisedPersonId == checkInAuthorisedPersonId) &&
+            (identical(other.checkOutAuthorisedPersonId,
+                    checkOutAuthorisedPersonId) ||
+                other.checkOutAuthorisedPersonId ==
+                    checkOutAuthorisedPersonId) &&
+            (identical(other.checkInImageBase64, checkInImageBase64) ||
+                other.checkInImageBase64 == checkInImageBase64) &&
+            (identical(other.checkOutImageBase64, checkOutImageBase64) ||
+                other.checkOutImageBase64 == checkOutImageBase64));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      accountId,
+      checkInTime,
+      checkInRemarks,
+      checkOutTime,
+      checkOutRemarks,
+      checkInAuthorisedPersonId,
+      checkOutAuthorisedPersonId,
+      checkInImageBase64,
+      checkOutImageBase64);
+
+  @override
+  String toString() {
+    return 'StudentCheckInOutCreateRequestDto(accountId: $accountId, checkInTime: $checkInTime, checkInRemarks: $checkInRemarks, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, checkInAuthorisedPersonId: $checkInAuthorisedPersonId, checkOutAuthorisedPersonId: $checkOutAuthorisedPersonId, checkInImageBase64: $checkInImageBase64, checkOutImageBase64: $checkOutImageBase64)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$StudentCheckInOutCreateRequestDtoCopyWith<$Res>
+    implements $StudentCheckInOutCreateRequestDtoCopyWith<$Res> {
+  factory _$StudentCheckInOutCreateRequestDtoCopyWith(
+          _StudentCheckInOutCreateRequestDto value,
+          $Res Function(_StudentCheckInOutCreateRequestDto) _then) =
+      __$StudentCheckInOutCreateRequestDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'accountId') int? accountId,
+      @JsonKey(name: 'checkInTime') DateTime? checkInTime,
+      @JsonKey(name: 'checkInRemarks') String? checkInRemarks,
+      @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+      @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+      @JsonKey(name: 'checkInAuthorisedPersonId')
+      int? checkInAuthorisedPersonId,
+      @JsonKey(name: 'checkOutAuthorisedPersonId')
+      int? checkOutAuthorisedPersonId,
+      @JsonKey(name: 'checkInImageBase64') String? checkInImageBase64,
+      @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64});
+}
+
+/// @nodoc
+class __$StudentCheckInOutCreateRequestDtoCopyWithImpl<$Res>
+    implements _$StudentCheckInOutCreateRequestDtoCopyWith<$Res> {
+  __$StudentCheckInOutCreateRequestDtoCopyWithImpl(this._self, this._then);
+
+  final _StudentCheckInOutCreateRequestDto _self;
+  final $Res Function(_StudentCheckInOutCreateRequestDto) _then;
+
+  /// Create a copy of StudentCheckInOutCreateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? accountId = freezed,
+    Object? checkInTime = freezed,
+    Object? checkInRemarks = freezed,
+    Object? checkOutTime = freezed,
+    Object? checkOutRemarks = freezed,
+    Object? checkInAuthorisedPersonId = freezed,
+    Object? checkOutAuthorisedPersonId = freezed,
+    Object? checkInImageBase64 = freezed,
+    Object? checkOutImageBase64 = freezed,
+  }) {
+    return _then(_StudentCheckInOutCreateRequestDto(
+      accountId: freezed == accountId
+          ? _self.accountId
+          : accountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkInTime: freezed == checkInTime
+          ? _self.checkInTime
+          : checkInTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkInRemarks: freezed == checkInRemarks
+          ? _self.checkInRemarks
+          : checkInRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOutTime: freezed == checkOutTime
+          ? _self.checkOutTime
+          : checkOutTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkOutRemarks: freezed == checkOutRemarks
+          ? _self.checkOutRemarks
+          : checkOutRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkInAuthorisedPersonId: freezed == checkInAuthorisedPersonId
+          ? _self.checkInAuthorisedPersonId
+          : checkInAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkOutAuthorisedPersonId: freezed == checkOutAuthorisedPersonId
+          ? _self.checkOutAuthorisedPersonId
+          : checkOutAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkInImageBase64: freezed == checkInImageBase64
+          ? _self.checkInImageBase64
+          : checkInImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOutImageBase64: freezed == checkOutImageBase64
+          ? _self.checkOutImageBase64
+          : checkOutImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$StudentCheckInOutUpdateRequestDto {
+  @JsonKey(name: 'studentCheckInOutId')
+  int? get studentCheckInOutId;
+  @JsonKey(name: 'checkOutTime')
+  DateTime? get checkOutTime;
+  @JsonKey(name: 'checkOutRemarks')
+  String? get checkOutRemarks;
+  @JsonKey(name: 'checkOutAuthorisedPersonId')
+  int? get checkOutAuthorisedPersonId;
+  @JsonKey(name: 'checkOutImageBase64')
+  String? get checkOutImageBase64;
+
+  /// Create a copy of StudentCheckInOutUpdateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $StudentCheckInOutUpdateRequestDtoCopyWith<StudentCheckInOutUpdateRequestDto>
+      get copyWith => _$StudentCheckInOutUpdateRequestDtoCopyWithImpl<
+              StudentCheckInOutUpdateRequestDto>(
+          this as StudentCheckInOutUpdateRequestDto, _$identity);
+
+  /// Serializes this StudentCheckInOutUpdateRequestDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is StudentCheckInOutUpdateRequestDto &&
+            (identical(other.studentCheckInOutId, studentCheckInOutId) ||
+                other.studentCheckInOutId == studentCheckInOutId) &&
+            (identical(other.checkOutTime, checkOutTime) ||
+                other.checkOutTime == checkOutTime) &&
+            (identical(other.checkOutRemarks, checkOutRemarks) ||
+                other.checkOutRemarks == checkOutRemarks) &&
+            (identical(other.checkOutAuthorisedPersonId,
+                    checkOutAuthorisedPersonId) ||
+                other.checkOutAuthorisedPersonId ==
+                    checkOutAuthorisedPersonId) &&
+            (identical(other.checkOutImageBase64, checkOutImageBase64) ||
+                other.checkOutImageBase64 == checkOutImageBase64));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      studentCheckInOutId,
+      checkOutTime,
+      checkOutRemarks,
+      checkOutAuthorisedPersonId,
+      checkOutImageBase64);
+
+  @override
+  String toString() {
+    return 'StudentCheckInOutUpdateRequestDto(studentCheckInOutId: $studentCheckInOutId, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, checkOutAuthorisedPersonId: $checkOutAuthorisedPersonId, checkOutImageBase64: $checkOutImageBase64)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $StudentCheckInOutUpdateRequestDtoCopyWith<$Res> {
+  factory $StudentCheckInOutUpdateRequestDtoCopyWith(
+          StudentCheckInOutUpdateRequestDto value,
+          $Res Function(StudentCheckInOutUpdateRequestDto) _then) =
+      _$StudentCheckInOutUpdateRequestDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'studentCheckInOutId') int? studentCheckInOutId,
+      @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+      @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+      @JsonKey(name: 'checkOutAuthorisedPersonId')
+      int? checkOutAuthorisedPersonId,
+      @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64});
+}
+
+/// @nodoc
+class _$StudentCheckInOutUpdateRequestDtoCopyWithImpl<$Res>
+    implements $StudentCheckInOutUpdateRequestDtoCopyWith<$Res> {
+  _$StudentCheckInOutUpdateRequestDtoCopyWithImpl(this._self, this._then);
+
+  final StudentCheckInOutUpdateRequestDto _self;
+  final $Res Function(StudentCheckInOutUpdateRequestDto) _then;
+
+  /// Create a copy of StudentCheckInOutUpdateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? studentCheckInOutId = freezed,
+    Object? checkOutTime = freezed,
+    Object? checkOutRemarks = freezed,
+    Object? checkOutAuthorisedPersonId = freezed,
+    Object? checkOutImageBase64 = freezed,
+  }) {
+    return _then(_self.copyWith(
+      studentCheckInOutId: freezed == studentCheckInOutId
+          ? _self.studentCheckInOutId
+          : studentCheckInOutId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkOutTime: freezed == checkOutTime
+          ? _self.checkOutTime
+          : checkOutTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkOutRemarks: freezed == checkOutRemarks
+          ? _self.checkOutRemarks
+          : checkOutRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOutAuthorisedPersonId: freezed == checkOutAuthorisedPersonId
+          ? _self.checkOutAuthorisedPersonId
+          : checkOutAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkOutImageBase64: freezed == checkOutImageBase64
+          ? _self.checkOutImageBase64
+          : checkOutImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [StudentCheckInOutUpdateRequestDto].
+extension StudentCheckInOutUpdateRequestDtoPatterns
+    on StudentCheckInOutUpdateRequestDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_StudentCheckInOutUpdateRequestDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutUpdateRequestDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_StudentCheckInOutUpdateRequestDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutUpdateRequestDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_StudentCheckInOutUpdateRequestDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutUpdateRequestDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'studentCheckInOutId') int? studentCheckInOutId,
+            @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+            @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+            @JsonKey(name: 'checkOutAuthorisedPersonId')
+            int? checkOutAuthorisedPersonId,
+            @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutUpdateRequestDto() when $default != null:
+        return $default(
+            _that.studentCheckInOutId,
+            _that.checkOutTime,
+            _that.checkOutRemarks,
+            _that.checkOutAuthorisedPersonId,
+            _that.checkOutImageBase64);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'studentCheckInOutId') int? studentCheckInOutId,
+            @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+            @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+            @JsonKey(name: 'checkOutAuthorisedPersonId')
+            int? checkOutAuthorisedPersonId,
+            @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutUpdateRequestDto():
+        return $default(
+            _that.studentCheckInOutId,
+            _that.checkOutTime,
+            _that.checkOutRemarks,
+            _that.checkOutAuthorisedPersonId,
+            _that.checkOutImageBase64);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'studentCheckInOutId') int? studentCheckInOutId,
+            @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+            @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+            @JsonKey(name: 'checkOutAuthorisedPersonId')
+            int? checkOutAuthorisedPersonId,
+            @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _StudentCheckInOutUpdateRequestDto() when $default != null:
+        return $default(
+            _that.studentCheckInOutId,
+            _that.checkOutTime,
+            _that.checkOutRemarks,
+            _that.checkOutAuthorisedPersonId,
+            _that.checkOutImageBase64);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _StudentCheckInOutUpdateRequestDto
+    implements StudentCheckInOutUpdateRequestDto {
+  _StudentCheckInOutUpdateRequestDto(
+      {@JsonKey(name: 'studentCheckInOutId') this.studentCheckInOutId,
+      @JsonKey(name: 'checkOutTime') this.checkOutTime,
+      @JsonKey(name: 'checkOutRemarks') this.checkOutRemarks,
+      @JsonKey(name: 'checkOutAuthorisedPersonId')
+      this.checkOutAuthorisedPersonId,
+      @JsonKey(name: 'checkOutImageBase64') this.checkOutImageBase64});
+  factory _StudentCheckInOutUpdateRequestDto.fromJson(
+          Map<String, dynamic> json) =>
+      _$StudentCheckInOutUpdateRequestDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'studentCheckInOutId')
+  final int? studentCheckInOutId;
+  @override
+  @JsonKey(name: 'checkOutTime')
+  final DateTime? checkOutTime;
+  @override
+  @JsonKey(name: 'checkOutRemarks')
+  final String? checkOutRemarks;
+  @override
+  @JsonKey(name: 'checkOutAuthorisedPersonId')
+  final int? checkOutAuthorisedPersonId;
+  @override
+  @JsonKey(name: 'checkOutImageBase64')
+  final String? checkOutImageBase64;
+
+  /// Create a copy of StudentCheckInOutUpdateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$StudentCheckInOutUpdateRequestDtoCopyWith<
+          _StudentCheckInOutUpdateRequestDto>
+      get copyWith => __$StudentCheckInOutUpdateRequestDtoCopyWithImpl<
+          _StudentCheckInOutUpdateRequestDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$StudentCheckInOutUpdateRequestDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _StudentCheckInOutUpdateRequestDto &&
+            (identical(other.studentCheckInOutId, studentCheckInOutId) ||
+                other.studentCheckInOutId == studentCheckInOutId) &&
+            (identical(other.checkOutTime, checkOutTime) ||
+                other.checkOutTime == checkOutTime) &&
+            (identical(other.checkOutRemarks, checkOutRemarks) ||
+                other.checkOutRemarks == checkOutRemarks) &&
+            (identical(other.checkOutAuthorisedPersonId,
+                    checkOutAuthorisedPersonId) ||
+                other.checkOutAuthorisedPersonId ==
+                    checkOutAuthorisedPersonId) &&
+            (identical(other.checkOutImageBase64, checkOutImageBase64) ||
+                other.checkOutImageBase64 == checkOutImageBase64));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      studentCheckInOutId,
+      checkOutTime,
+      checkOutRemarks,
+      checkOutAuthorisedPersonId,
+      checkOutImageBase64);
+
+  @override
+  String toString() {
+    return 'StudentCheckInOutUpdateRequestDto(studentCheckInOutId: $studentCheckInOutId, checkOutTime: $checkOutTime, checkOutRemarks: $checkOutRemarks, checkOutAuthorisedPersonId: $checkOutAuthorisedPersonId, checkOutImageBase64: $checkOutImageBase64)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$StudentCheckInOutUpdateRequestDtoCopyWith<$Res>
+    implements $StudentCheckInOutUpdateRequestDtoCopyWith<$Res> {
+  factory _$StudentCheckInOutUpdateRequestDtoCopyWith(
+          _StudentCheckInOutUpdateRequestDto value,
+          $Res Function(_StudentCheckInOutUpdateRequestDto) _then) =
+      __$StudentCheckInOutUpdateRequestDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'studentCheckInOutId') int? studentCheckInOutId,
+      @JsonKey(name: 'checkOutTime') DateTime? checkOutTime,
+      @JsonKey(name: 'checkOutRemarks') String? checkOutRemarks,
+      @JsonKey(name: 'checkOutAuthorisedPersonId')
+      int? checkOutAuthorisedPersonId,
+      @JsonKey(name: 'checkOutImageBase64') String? checkOutImageBase64});
+}
+
+/// @nodoc
+class __$StudentCheckInOutUpdateRequestDtoCopyWithImpl<$Res>
+    implements _$StudentCheckInOutUpdateRequestDtoCopyWith<$Res> {
+  __$StudentCheckInOutUpdateRequestDtoCopyWithImpl(this._self, this._then);
+
+  final _StudentCheckInOutUpdateRequestDto _self;
+  final $Res Function(_StudentCheckInOutUpdateRequestDto) _then;
+
+  /// Create a copy of StudentCheckInOutUpdateRequestDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? studentCheckInOutId = freezed,
+    Object? checkOutTime = freezed,
+    Object? checkOutRemarks = freezed,
+    Object? checkOutAuthorisedPersonId = freezed,
+    Object? checkOutImageBase64 = freezed,
+  }) {
+    return _then(_StudentCheckInOutUpdateRequestDto(
+      studentCheckInOutId: freezed == studentCheckInOutId
+          ? _self.studentCheckInOutId
+          : studentCheckInOutId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkOutTime: freezed == checkOutTime
+          ? _self.checkOutTime
+          : checkOutTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      checkOutRemarks: freezed == checkOutRemarks
+          ? _self.checkOutRemarks
+          : checkOutRemarks // ignore: cast_nullable_to_non_nullable
+              as String?,
+      checkOutAuthorisedPersonId: freezed == checkOutAuthorisedPersonId
+          ? _self.checkOutAuthorisedPersonId
+          : checkOutAuthorisedPersonId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      checkOutImageBase64: freezed == checkOutImageBase64
+          ? _self.checkOutImageBase64
+          : checkOutImageBase64 // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
@@ -36773,6 +55434,414 @@ class __$SubjectApiDtoCopyWithImpl<$Res>
     return $LevelApiDtoCopyWith<$Res>(_self.level!, (value) {
       return _then(_self.copyWith(level: value));
     });
+  }
+}
+
+/// @nodoc
+mixin _$SurveyApiDto {
+  @JsonKey(name: 'id')
+  int? get id;
+  @JsonKey(name: 'title')
+  String? get title;
+  @JsonKey(name: 'studentId')
+  int? get studentId;
+  @JsonKey(name: 'parentAccountId')
+  int? get parentAccountId;
+  @JsonKey(name: 'url')
+  String? get url;
+
+  /// Create a copy of SurveyApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SurveyApiDtoCopyWith<SurveyApiDto> get copyWith =>
+      _$SurveyApiDtoCopyWithImpl<SurveyApiDto>(
+          this as SurveyApiDto, _$identity);
+
+  /// Serializes this SurveyApiDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SurveyApiDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.parentAccountId, parentAccountId) ||
+                other.parentAccountId == parentAccountId) &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, studentId, parentAccountId, url);
+
+  @override
+  String toString() {
+    return 'SurveyApiDto(id: $id, title: $title, studentId: $studentId, parentAccountId: $parentAccountId, url: $url)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SurveyApiDtoCopyWith<$Res> {
+  factory $SurveyApiDtoCopyWith(
+          SurveyApiDto value, $Res Function(SurveyApiDto) _then) =
+      _$SurveyApiDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'parentAccountId') int? parentAccountId,
+      @JsonKey(name: 'url') String? url});
+}
+
+/// @nodoc
+class _$SurveyApiDtoCopyWithImpl<$Res> implements $SurveyApiDtoCopyWith<$Res> {
+  _$SurveyApiDtoCopyWithImpl(this._self, this._then);
+
+  final SurveyApiDto _self;
+  final $Res Function(SurveyApiDto) _then;
+
+  /// Create a copy of SurveyApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? studentId = freezed,
+    Object? parentAccountId = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(_self.copyWith(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parentAccountId: freezed == parentAccountId
+          ? _self.parentAccountId
+          : parentAccountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [SurveyApiDto].
+extension SurveyApiDtoPatterns on SurveyApiDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SurveyApiDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SurveyApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SurveyApiDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SurveyApiDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SurveyApiDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SurveyApiDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'parentAccountId') int? parentAccountId,
+            @JsonKey(name: 'url') String? url)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SurveyApiDto() when $default != null:
+        return $default(_that.id, _that.title, _that.studentId,
+            _that.parentAccountId, _that.url);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'parentAccountId') int? parentAccountId,
+            @JsonKey(name: 'url') String? url)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SurveyApiDto():
+        return $default(_that.id, _that.title, _that.studentId,
+            _that.parentAccountId, _that.url);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') int? id,
+            @JsonKey(name: 'title') String? title,
+            @JsonKey(name: 'studentId') int? studentId,
+            @JsonKey(name: 'parentAccountId') int? parentAccountId,
+            @JsonKey(name: 'url') String? url)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SurveyApiDto() when $default != null:
+        return $default(_that.id, _that.title, _that.studentId,
+            _that.parentAccountId, _that.url);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _SurveyApiDto implements SurveyApiDto {
+  _SurveyApiDto(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'studentId') this.studentId,
+      @JsonKey(name: 'parentAccountId') this.parentAccountId,
+      @JsonKey(name: 'url') this.url});
+  factory _SurveyApiDto.fromJson(Map<String, dynamic> json) =>
+      _$SurveyApiDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final int? id;
+  @override
+  @JsonKey(name: 'title')
+  final String? title;
+  @override
+  @JsonKey(name: 'studentId')
+  final int? studentId;
+  @override
+  @JsonKey(name: 'parentAccountId')
+  final int? parentAccountId;
+  @override
+  @JsonKey(name: 'url')
+  final String? url;
+
+  /// Create a copy of SurveyApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SurveyApiDtoCopyWith<_SurveyApiDto> get copyWith =>
+      __$SurveyApiDtoCopyWithImpl<_SurveyApiDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SurveyApiDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SurveyApiDto &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
+            (identical(other.parentAccountId, parentAccountId) ||
+                other.parentAccountId == parentAccountId) &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, studentId, parentAccountId, url);
+
+  @override
+  String toString() {
+    return 'SurveyApiDto(id: $id, title: $title, studentId: $studentId, parentAccountId: $parentAccountId, url: $url)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SurveyApiDtoCopyWith<$Res>
+    implements $SurveyApiDtoCopyWith<$Res> {
+  factory _$SurveyApiDtoCopyWith(
+          _SurveyApiDto value, $Res Function(_SurveyApiDto) _then) =
+      __$SurveyApiDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'studentId') int? studentId,
+      @JsonKey(name: 'parentAccountId') int? parentAccountId,
+      @JsonKey(name: 'url') String? url});
+}
+
+/// @nodoc
+class __$SurveyApiDtoCopyWithImpl<$Res>
+    implements _$SurveyApiDtoCopyWith<$Res> {
+  __$SurveyApiDtoCopyWithImpl(this._self, this._then);
+
+  final _SurveyApiDto _self;
+  final $Res Function(_SurveyApiDto) _then;
+
+  /// Create a copy of SurveyApiDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? studentId = freezed,
+    Object? parentAccountId = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(_SurveyApiDto(
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentId: freezed == studentId
+          ? _self.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parentAccountId: freezed == parentAccountId
+          ? _self.parentAccountId
+          : parentAccountId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      url: freezed == url
+          ? _self.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 

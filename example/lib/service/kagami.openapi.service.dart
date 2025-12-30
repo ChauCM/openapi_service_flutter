@@ -2164,7 +2164,7 @@ class KagamiService {
 
   /// post: /MedicineForm
   Future<Either<ApiError, void>> saveMedicineForm274(
-      MedicineFormDto body) async {
+      MedicineFormDtoDto body) async {
     final endpoint = '/MedicineForm';
     try {
       final _ = await _dio.post(
