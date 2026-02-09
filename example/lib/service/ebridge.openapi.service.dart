@@ -7,7 +7,7 @@ import 'package:either_dart/either.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'ebridge.openapi.dtos.dart';
-import 'package:openapi_service_flutter/runtime.dart';
+import 'package:openapi_service_runtime/openapi_service_runtime.dart';
 
 class EbridgeService {
   EbridgeService(

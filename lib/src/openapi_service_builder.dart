@@ -821,8 +821,8 @@ class OpenApiLibraryGenerator {
     serviceLb.body.add(Directive.import(dtosFileName));
 
     // Add import for runtime error handling
-    serviceLb.body
-        .add(Directive.import('package:openapi_service_flutter/runtime.dart'));
+    serviceLb.body.add(Directive.import(
+        'package:openapi_service_runtime/openapi_service_runtime.dart'));
 
     // Add import for mime package if there are binary endpoints
     if (_hasBinaryEndpoints()) {

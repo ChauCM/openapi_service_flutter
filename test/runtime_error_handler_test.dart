@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 import 'package:dio/dio.dart';
-import 'package:openapi_service_flutter/runtime.dart';
+import 'package:openapi_service_runtime/openapi_service_runtime.dart';
 
 void main() {
   group('Runtime Error Handler', () {

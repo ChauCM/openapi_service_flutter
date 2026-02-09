@@ -14,10 +14,12 @@ dependencies:
   dio: ^5.3.2
   either_dart: ^1.0.0
   mime: ^2.0.0
-  openapi_service_flutter:
-    path: ../
+  openapi_service_runtime:
+    path: ../openapi_service_runtime
 
 dev_dependencies:
+  openapi_service_flutter:
+    path: ../
   json_serializable: ^6.11.4
   freezed: ^3.1.0
   build_runner: ^2.4.13

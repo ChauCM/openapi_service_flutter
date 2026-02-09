@@ -63,7 +63,7 @@ components:
 
         expect(
             formatted, contains('// GENERATED CODE - DO NOT MODIFY BY HAND'));
-        expect(formatted, contains('import \'package:openapi_service_flutter/runtime.dart\';'));
+        expect(formatted, contains('import \'package:openapi_service_runtime/openapi_service_runtime.dart\';'));
         expect(formatted, contains('class TestApiService'));
         expect(formatted, contains('Dio'));
         expect(formatted, contains('Either<ApiError,'));
@@ -80,7 +80,7 @@ components:
         );
 
         // DTOs library should NOT import runtime (only service library does)
-        expect(formatted, isNot(contains('import \'package:openapi_service_flutter/runtime.dart\';')));
+        expect(formatted, isNot(contains('import \'package:openapi_service_runtime/openapi_service_runtime.dart\';')));
         expect(formatted, contains('part \'test_api.openapi.freezed.dart\''));
         expect(formatted, contains('part \'test_api.openapi.g.dart\''));
         expect(formatted, contains('HelloGetResponseDto'));
@@ -351,7 +351,7 @@ paths:
         );
 
         expect(formatted, contains('class EmptyApiService'));
-        expect(formatted, contains('import \'package:openapi_service_flutter/runtime.dart\';'));
+        expect(formatted, contains('import \'package:openapi_service_runtime/openapi_service_runtime.dart\';'));
       });
     });
   });

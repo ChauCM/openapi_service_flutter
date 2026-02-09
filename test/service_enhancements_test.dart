@@ -57,7 +57,7 @@ paths:
         final result = generateServiceLibrary(yamlContent);
 
         // Check runtime imports
-        expect(result, contains('import \'package:openapi_service_flutter/runtime.dart\';'));
+        expect(result, contains('import \'package:openapi_service_runtime/openapi_service_runtime.dart\';'));
         expect(result, contains('import \'package:either_dart/either.dart\';'));
         expect(result, contains('import \'package:dio/dio.dart\';'));
         

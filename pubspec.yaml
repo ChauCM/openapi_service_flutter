@@ -26,13 +26,12 @@ dependencies:
   built_collection: ">=5.1.0 <6.0.0"
   collection: ">=1.15.0 <2.0.0"
 
-  # Runtime dependencies (needed by generated code)
-  dio: ">=5.0.0 <6.0.0"
-  either_dart: ">=1.0.0 <2.0.0"
-
 dev_dependencies:
   build_test: ^3.2.1
   lints: ^6.0.0
   test: ^1.26.2
-  # For generating runtime models
   build_runner: ^2.10.5
+  # Needed by runtime_error_handler_test.dart
+  dio: ">=5.0.0 <6.0.0"
+  openapi_service_runtime:
+    path: openapi_service_runtime

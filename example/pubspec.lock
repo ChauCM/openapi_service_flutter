@@ -329,12 +329,19 @@ packages:
     source: path
     version: "3.1.2"
   openapi_service_flutter:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       path: ".."
       relative: true
     source: path
     version: "2.1.1+8"
+  openapi_service_runtime:
+    dependency: "direct main"
+    description:
+      path: "../openapi_service_runtime"
+      relative: true
+    source: path
+    version: "1.0.1"
   package_config:
     dependency: transitive
     description:

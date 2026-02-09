@@ -81,7 +81,7 @@ paths:
         );
 
         // Verify service uses runtime ApiError instead of generating it
-        expect(serviceOutput, contains('import \'package:openapi_service_flutter/runtime.dart\';'));
+        expect(serviceOutput, contains('import \'package:openapi_service_runtime/openapi_service_runtime.dart\';'));
         expect(serviceOutput, contains('Future<Either<ApiError,'));
         expect(serviceOutput, contains('ErrorHandler'));
         expect(serviceOutput, contains('_errorHandler.handleError'));

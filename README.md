@@ -4,42 +4,61 @@ A Dart code generator that creates type-safe client libraries from OpenAPI speci
 
 ## Features
 
-- 🚀 **Type-safe code generation** from OpenAPI 3.0+ specifications
-- 📦 **Separate DTO and Service files** for better organization
-- 🔒 **Freezed integration** for immutable data classes
-- 🌐 **Dio HTTP client** with DefaultDio opinionated setup
-- ⚡ **Either-based error handling** using either_dart
-- 🛡️ **Robust error handling** with user-friendly messages and extensible ErrorHandler
-- 🎯 **Enum support** with JSON value annotations
-- 📁 **Binary file upload** support with progress callbacks
-- 🔧 **Build runner integration** for seamless development
-- 🔍 **Debug-friendly** with comprehensive error context and logging
+- **Type-safe code generation** from OpenAPI 3.0+ specifications
+- **Separate DTO and Service files** for better organization
+- **Freezed integration** for immutable data classes
+- **Dio HTTP client** with DefaultDio opinionated setup
+- **Either-based error handling** using either_dart
+- **Robust error handling** with user-friendly messages and extensible ErrorHandler
+- **Enum support** with JSON value annotations
+- **Binary file upload** support with progress callbacks
+- **Build runner integration** for seamless development
+- **Debug-friendly** with comprehensive error context and logging
+
+## Package Architecture
+
+As of v1.0.1, this repository contains **two packages**:
+
+| Package | Purpose | Dependencies |
+|---------|---------|-------------|
+| `openapi_service_flutter` | **Builder** -- code generation via `build_runner` | Heavy build-time deps (build, source_gen, recase, etc.) |
+| `openapi_service_runtime` | **Runtime** -- used by generated code at runtime | Lightweight (dio, either_dart only) |
+
+**Why the split?** In a Dart workspace, `build_runner` resolves the entire package graph. If the builder package (with `auto_apply: dependents` in `build.yaml`) is a regular dependency, running `build_runner` from *any* workspace package forces loading all builder dependencies -- even when you're not generating code. The split ensures that only the lightweight runtime package is a regular dependency, while the builder is confined to `dev_dependencies` where it belongs.
 
 ## Quick Start
 
-### 1. Install Required Dependencies
+### 1. Install Dependencies
 
-Add all necessary packages to your `pubspec.yaml`:
+Add the packages to your `pubspec.yaml`. Install via **Git URL** pinned to tag `v1.0.1`:
 
 ```yaml
 dependencies:
-  # HTTP client and functional programming
-  dio: ^5.3.2
-  either_dart: ^1.0.0
-  
-  # Runtime error handling (now a runtime dependency)
-  openapi_service_flutter: ^3.0.0
-  
+  # Runtime library -- lightweight, no build.yaml, no heavy deps
+  openapi_service_runtime:
+    git:
+      url: https://github.com/ChauCM/openapi_service_flutter
+      path: openapi_service_runtime
+      ref: v1.0.1
+
   # Code generation annotations
-  freezed_annotation: ^2.4.1
-  json_annotation: ^4.8.1
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
 
 dev_dependencies:
+  # Builder -- only loaded when running build_runner
+  openapi_service_flutter:
+    git:
+      url: https://github.com/ChauCM/openapi_service_flutter
+      ref: v1.0.1
+
   # Code generation tools
   build_runner: ^2.4.7
-  freezed: ^2.4.6
+  freezed: ^3.1.0
   json_serializable: ^6.7.1
 ```
+
+> **Key point:** `openapi_service_runtime` goes in `dependencies` (your app needs it at runtime). `openapi_service_flutter` goes in `dev_dependencies` (only needed for code generation).
 
 ### 2. Get Your OpenAPI Specification
 
@@ -117,7 +136,7 @@ This creates two files for each `.openapi.json/.yaml` file:
 ### 6. Use Your Generated Client
 
 ```dart
-import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+import 'package:openapi_service_runtime/openapi_service_runtime.dart';
 
 class ApiClient {
   late final MyApiService _apiService;
@@ -155,7 +174,7 @@ void main() async {
 ## Authentication Setup
 
 ```dart
-import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+import 'package:openapi_service_runtime/openapi_service_runtime.dart';
 
 class AuthenticatedApiClient {
   late final MyApiService _apiService;
@@ -451,7 +470,7 @@ OpenAPI Service Flutter provides `DefaultDio` for opinionated, production-ready 
 ### Basic Usage
 
 ```dart
-import 'package:openapi_service_flutter/openapi_service_flutter.dart';
+import 'package:openapi_service_runtime/openapi_service_runtime.dart';
 
 // Simple setup with sensible defaults
 final dio = DefaultDio.create(
@@ -554,14 +573,37 @@ targets:
           includeFilterPrefix: true
 ```
 
+## Migrating from pre-v1.0.1 (single package)
+
+If you were using the old single-package setup where `openapi_service_flutter` was in `dependencies`:
+
+1. Move `openapi_service_flutter` from `dependencies` to `dev_dependencies`
+2. Add `openapi_service_runtime` to `dependencies`
+3. Update imports in your code:
+
+```dart
+// Before
+import 'package:openapi_service_flutter/runtime.dart';
+
+// After
+import 'package:openapi_service_runtime/openapi_service_runtime.dart';
+```
+
+4. Re-run code generation to update generated service files:
+
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
+
 ## Troubleshooting
 
 ### Common Issues
 
 1. **Build fails**: Run `dart run build_runner clean` then rebuild
-2. **Import errors**: Ensure all dependencies are in `pubspec.yaml`
+2. **Import errors**: Ensure `openapi_service_runtime` is in `dependencies` and `openapi_service_flutter` is in `dev_dependencies`
 3. **Type errors**: Check your OpenAPI spec for missing required fields
 4. **Network errors**: Verify base URL and network connectivity
+5. **Codemagic/CI build failures**: Make sure the builder package is only in `dev_dependencies` -- this prevents `build_runner` from loading it when running from other workspace packages
 
 ### Getting OpenAPI Specs
 
@@ -586,7 +628,7 @@ dart run build_runner build --delete-conflicting-outputs
 
 # Watch for changes (auto-regenerate)
 dart run build_runner watch
-
+```
 
 ## Examples
 
