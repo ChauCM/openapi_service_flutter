@@ -512,6 +512,85 @@ components:
         expect(
             serviceOutput, isNot(contains('(mappedResult as List<ItemDto>)')));
       });
+
+      test('correctly casts primitive array responses (List<String>)', () async {
+        final primitiveArrayYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Primitive Array API
+  x-dart-name: PrimitiveArrayApi
+
+paths:
+  /names:
+    get:
+      summary: Get names
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /scores:
+    get:
+      summary: Get scores
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+  /flags:
+    get:
+      summary: Get flags
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: boolean
+''';
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(primitiveArrayYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'PrimitiveArrayApi',
+          partFileName: 'primitive_array_api.openapi.dtos.g.dart',
+        );
+
+        final serviceLibrary =
+            generator.generateServiceLibrary('primitive_array_api');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+        );
+
+        // Should generate service methods that return List<String>, List<int>, List<bool>
+        expect(serviceOutput,
+            contains('Future<Either<ApiError, List<String>>>'));
+        expect(
+            serviceOutput, contains('Future<Either<ApiError, List<int>>>'));
+        expect(
+            serviceOutput, contains('Future<Either<ApiError, List<bool>>>'));
+
+        // Should cast each item to the correct type (item as String, item as int, etc.)
+        expect(serviceOutput, contains('item as String'));
+        expect(serviceOutput, contains('item as int'));
+        expect(serviceOutput, contains('item as bool'));
+
+        // Should NOT contain the incorrect identity map pattern
+        expect(serviceOutput,
+            isNot(contains('result.map((item) => item).toList()')));
+      });
     });
 
     group('Schema reference handling', () {

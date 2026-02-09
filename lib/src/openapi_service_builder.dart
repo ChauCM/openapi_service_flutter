@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'package:build/build.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:code_builder/src/visitors.dart'; // ignore: implementation_imports
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:dart_style/dart_style.dart';
 import 'package:logging/logging.dart';
@@ -104,11 +103,12 @@ class OpenApiLibraryGenerator {
   final createdSchema = <APISchemaObject, Reference>{};
   final createdEnums = <String, Reference>{};
   final securitySchemes = <String, Expression>{};
-  
+
   // Maps for duplicate detection and merging
   final schemaSignatures = <String, String>{}; // signature -> canonical name
-  final schemaReferences = <String, String>{}; // duplicate name -> canonical name
-  
+  final schemaReferences =
+      <String, String>{}; // duplicate name -> canonical name
+
   // Set of schema names that should NOT get 'Dto' suffix due to collision
   // e.g., if both 'Foo' and 'FooDto' exist, 'Foo' goes here
   final schemaNameCollisions = <String>{};
@@ -224,64 +224,69 @@ class OpenApiLibraryGenerator {
       if (entry.value == null) continue; // Skip null schemas
       final name = entry.key;
       String baseName = name;
-      
+
       // Check if this schema has a number suffix
       final match = numberSuffixPattern.firstMatch(name);
       if (match != null) {
         baseName = match.group(1)!;
       }
-      
-      schemaGroups.putIfAbsent(baseName, () => []).add(MapEntry(name, entry.value!));
+
+      schemaGroups
+          .putIfAbsent(baseName, () => [])
+          .add(MapEntry(name, entry.value!));
     }
 
     // Process each group to find actual duplicates
     for (final group in schemaGroups.entries) {
       if (group.value.length <= 1) continue;
-      
+
       // Sort by name to ensure consistent canonical selection
       final sortedSchemas = group.value..sort((a, b) => a.key.compareTo(b.key));
-      
+
       // Compare schemas in the group
       final signatureMap = <String, List<String>>{};
-      
+
       for (final schemaEntry in sortedSchemas) {
         final signature = _computeSchemaSignature(schemaEntry.value);
         signatureMap.putIfAbsent(signature, () => []).add(schemaEntry.key);
       }
-      
+
       // Map duplicates to canonical names
       for (final duplicates in signatureMap.values) {
         if (duplicates.length > 1) {
           // Use the first name (without number suffix if possible) as canonical
           final canonicalName = duplicates.first;
-          
+
           // Only merge if they are truly numbered variants of the same schema
           // (e.g., AccountApiDto and AccountApiDto2)
           bool shouldMerge = true;
-          final baseNameMatch = numberSuffixPattern.firstMatch(duplicates.first);
+          final baseNameMatch =
+              numberSuffixPattern.firstMatch(duplicates.first);
           final expectedBaseName = baseNameMatch?.group(1) ?? duplicates.first;
-          
+
           for (final dupName in duplicates.skip(1)) {
             final match = numberSuffixPattern.firstMatch(dupName);
             final dupBaseName = match?.group(1) ?? dupName;
-            
+
             // Only merge if base names match or if one is the base of the other
-            if (dupBaseName != expectedBaseName && dupName != expectedBaseName) {
+            if (dupBaseName != expectedBaseName &&
+                dupName != expectedBaseName) {
               shouldMerge = false;
               break;
             }
           }
-          
+
           if (shouldMerge) {
             for (final dupName in duplicates.skip(1)) {
               schemaReferences[dupName] = canonicalName;
-              _logger.fine('Mapping duplicate schema $dupName to canonical $canonicalName');
+              _logger.fine(
+                  'Mapping duplicate schema $dupName to canonical $canonicalName');
             }
           }
         }
       }
     }
-    
+
     return Map<String, String>.from(schemaReferences);
   }
 
@@ -301,7 +306,7 @@ class OpenApiLibraryGenerator {
           schemaReferences.containsKey(schemaName)) {
         continue;
       }
-      
+
       // Handle NullableOf* pattern
       final baseName = _extractBaseNameFromNullableEnum(schemaName);
       final nameToUse = baseName ?? schemaName;
@@ -315,11 +320,11 @@ class OpenApiLibraryGenerator {
           schemaReferences.containsKey(schemaName)) {
         continue;
       }
-      
+
       final baseName = _extractBaseNameFromNullableEnum(schemaName);
       final nameToUse = baseName ?? schemaName;
       final pascalCaseName = nameToUse.pascalCase;
-      
+
       // If this schema doesn't already end with 'Dto'
       if (!pascalCaseName.endsWith('Dto')) {
         // Check if adding 'Dto' would collide with an existing schema
@@ -339,18 +344,19 @@ class OpenApiLibraryGenerator {
   /// Computes a signature for a schema based on its structure
   String _computeSchemaSignature(APISchemaObject schema) {
     final parts = <String>[];
-    
+
     // Handle enums
     if (schema.enumerated?.isNotEmpty == true) {
       parts.add('enum');
-      final values = schema.enumerated!.map((e) => e.toString()).toList()..sort();
+      final values = schema.enumerated!.map((e) => e.toString()).toList()
+        ..sort();
       parts.add(values.join(','));
       return parts.join(':');
     }
-    
+
     // Handle objects
     parts.add('object');
-    
+
     // Add properties
     if (schema.properties != null) {
       final props = <String>[];
@@ -362,13 +368,13 @@ class OpenApiLibraryGenerator {
       props.sort();
       parts.add('props:[${props.join(',')}]');
     }
-    
+
     // Add required fields
     if (schema.required?.isNotEmpty == true) {
       final required = schema.required!.toList()..sort();
       parts.add('required:[${required.join(',')}]');
     }
-    
+
     return parts.join('|');
   }
 
@@ -381,38 +387,39 @@ class OpenApiLibraryGenerator {
         return 'ref:${segments.last}';
       }
     }
-    
+
     // Handle basic types
     final effectiveType = schema.primaryType ?? schema.type;
-    
+
     if (effectiveType == APIType.array) {
-      final itemType = schema.items != null ? _getSchemaTypeSignature(schema.items!) : 'any';
+      final itemType =
+          schema.items != null ? _getSchemaTypeSignature(schema.items!) : 'any';
       return 'array<$itemType>';
     }
-    
+
     if (effectiveType == APIType.string) {
       if (schema.format != null) {
         return 'string:${schema.format}';
       }
       return 'string';
     }
-    
+
     if (effectiveType == APIType.integer) {
       return 'int:${schema.format ?? 'int32'}';
     }
-    
+
     if (effectiveType == APIType.number) {
       return 'number';
     }
-    
+
     if (effectiveType == APIType.boolean) {
       return 'bool';
     }
-    
+
     if (effectiveType == APIType.object) {
       return 'object';
     }
-    
+
     return 'any';
   }
 
@@ -441,7 +448,7 @@ class OpenApiLibraryGenerator {
 
     // Detect and map duplicate schemas
     _detectAndMapDuplicateSchemas();
-    
+
     // Detect schemas where adding 'Dto' suffix would cause collisions
     _detectDtoSuffixCollisions();
 
@@ -500,13 +507,13 @@ class OpenApiLibraryGenerator {
     if (components?.schemas != null) {
       for (final schemaEntry in components!.schemas!.entries) {
         final schema = schemaEntry.value!;
-        
+
         // Skip if this is a duplicate that maps to another schema
         if (schemaReferences.containsKey(schemaEntry.key)) {
           _logger.fine('Skipping duplicate schema ${schemaEntry.key}');
           continue;
         }
-        
+
         final isUsed = usedSchemas.contains(schemaEntry.key);
         final isEnum = schema.enumerated?.isNotEmpty == true;
         final shouldGenerate = shouldGenerateDto(schema);
@@ -805,7 +812,7 @@ class OpenApiLibraryGenerator {
     if (duplicateMappings != null) {
       schemaReferences.addAll(duplicateMappings);
     }
-    
+
     // Detect DTO suffix collisions for consistent class naming
     _detectDtoSuffixCollisions();
 
@@ -1142,7 +1149,7 @@ class OpenApiLibraryGenerator {
     final methodBody = <Code>[
       // Declare the full endpoint at the start
       declareFinal('endpoint').assign(literalString(actualPath)).statement,
-      
+
       // Declare queryParams outside try block if needed
       ...() {
         if (hasQueryParams) {
@@ -1333,6 +1340,11 @@ class OpenApiLibraryGenerator {
                                           ])
                                           .code;
                                     }
+                                    // For non-dynamic primitives, cast each item to the correct type
+                                    // e.g., `item as String` to convert List<dynamic> to List<String>
+                                    if (innerTypeName != 'dynamic') {
+                                      return refer('item').asA(innerType).code;
+                                    }
                                   }
                                 }
                                 return refer('item').code;
@@ -1504,7 +1516,7 @@ class OpenApiLibraryGenerator {
     final nameToUse = baseName ?? componentName;
 
     final pascalCaseName = nameToUse.pascalCase;
-    
+
     // Check if this schema is involved in a collision
     // If so, add an extra 'Dto' suffix even if it already has one
     // Example: 'FooDto' (colliding) -> 'FooDtoDto'
@@ -1513,12 +1525,12 @@ class OpenApiLibraryGenerator {
       // Add another 'Dto' to make it unique: 'FooDtoDto'
       return '${pascalCaseName}Dto';
     }
-    
+
     // Normal case: avoid double "Dto" suffix
     if (pascalCaseName.endsWith('Dto')) {
       return pascalCaseName;
     }
-    
+
     return '${pascalCaseName}Dto';
   }
 
@@ -1624,14 +1636,14 @@ class OpenApiLibraryGenerator {
 
   Reference _schemaReference(String key, APISchemaObject schemaObject) {
     _logger.finer('Looking up ${schemaObject.referenceURI}');
-    
+
     // Check if this key is a duplicate that should map to another schema
     var actualKey = key;
     if (schemaReferences.containsKey(key)) {
       actualKey = schemaReferences[key]!;
       _logger.finer('Remapping duplicate $key to canonical $actualKey');
     }
-    
+
     final uri = schemaObject.referenceURI;
     final componentName =
         _componentNameFromReferenceUri(uri) ?? classNameForComponent(actualKey);
