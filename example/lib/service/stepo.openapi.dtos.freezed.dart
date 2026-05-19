@@ -4454,6 +4454,342 @@ class __$EditUserDtoCopyWithImpl<$Res> implements _$EditUserDtoCopyWith<$Res> {
 }
 
 /// @nodoc
+mixin _$FeedPageDto {
+  @JsonKey(name: 'items')
+  List<StepDetailDto> get items;
+  @JsonKey(name: 'nextCursor')
+  String? get nextCursor;
+
+  /// Create a copy of FeedPageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FeedPageDtoCopyWith<FeedPageDto> get copyWith =>
+      _$FeedPageDtoCopyWithImpl<FeedPageDto>(this as FeedPageDto, _$identity);
+
+  /// Serializes this FeedPageDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FeedPageDto &&
+            const DeepCollectionEquality().equals(other.items, items) &&
+            (identical(other.nextCursor, nextCursor) ||
+                other.nextCursor == nextCursor));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(items), nextCursor);
+
+  @override
+  String toString() {
+    return 'FeedPageDto(items: $items, nextCursor: $nextCursor)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FeedPageDtoCopyWith<$Res> {
+  factory $FeedPageDtoCopyWith(
+          FeedPageDto value, $Res Function(FeedPageDto) _then) =
+      _$FeedPageDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<StepDetailDto> items,
+      @JsonKey(name: 'nextCursor') String? nextCursor});
+}
+
+/// @nodoc
+class _$FeedPageDtoCopyWithImpl<$Res> implements $FeedPageDtoCopyWith<$Res> {
+  _$FeedPageDtoCopyWithImpl(this._self, this._then);
+
+  final FeedPageDto _self;
+  final $Res Function(FeedPageDto) _then;
+
+  /// Create a copy of FeedPageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? items = null,
+    Object? nextCursor = freezed,
+  }) {
+    return _then(_self.copyWith(
+      items: null == items
+          ? _self.items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<StepDetailDto>,
+      nextCursor: freezed == nextCursor
+          ? _self.nextCursor
+          : nextCursor // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [FeedPageDto].
+extension FeedPageDtoPatterns on FeedPageDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_FeedPageDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FeedPageDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_FeedPageDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedPageDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_FeedPageDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedPageDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'items') List<StepDetailDto> items,
+            @JsonKey(name: 'nextCursor') String? nextCursor)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _FeedPageDto() when $default != null:
+        return $default(_that.items, _that.nextCursor);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'items') List<StepDetailDto> items,
+            @JsonKey(name: 'nextCursor') String? nextCursor)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedPageDto():
+        return $default(_that.items, _that.nextCursor);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'items') List<StepDetailDto> items,
+            @JsonKey(name: 'nextCursor') String? nextCursor)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _FeedPageDto() when $default != null:
+        return $default(_that.items, _that.nextCursor);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _FeedPageDto implements FeedPageDto {
+  _FeedPageDto(
+      {@JsonKey(name: 'items') required final List<StepDetailDto> items,
+      @JsonKey(name: 'nextCursor') this.nextCursor})
+      : _items = items;
+  factory _FeedPageDto.fromJson(Map<String, dynamic> json) =>
+      _$FeedPageDtoFromJson(json);
+
+  final List<StepDetailDto> _items;
+  @override
+  @JsonKey(name: 'items')
+  List<StepDetailDto> get items {
+    if (_items is EqualUnmodifiableListView) return _items;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
+
+  @override
+  @JsonKey(name: 'nextCursor')
+  final String? nextCursor;
+
+  /// Create a copy of FeedPageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FeedPageDtoCopyWith<_FeedPageDto> get copyWith =>
+      __$FeedPageDtoCopyWithImpl<_FeedPageDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FeedPageDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FeedPageDto &&
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.nextCursor, nextCursor) ||
+                other.nextCursor == nextCursor));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_items), nextCursor);
+
+  @override
+  String toString() {
+    return 'FeedPageDto(items: $items, nextCursor: $nextCursor)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$FeedPageDtoCopyWith<$Res>
+    implements $FeedPageDtoCopyWith<$Res> {
+  factory _$FeedPageDtoCopyWith(
+          _FeedPageDto value, $Res Function(_FeedPageDto) _then) =
+      __$FeedPageDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'items') List<StepDetailDto> items,
+      @JsonKey(name: 'nextCursor') String? nextCursor});
+}
+
+/// @nodoc
+class __$FeedPageDtoCopyWithImpl<$Res> implements _$FeedPageDtoCopyWith<$Res> {
+  __$FeedPageDtoCopyWithImpl(this._self, this._then);
+
+  final _FeedPageDto _self;
+  final $Res Function(_FeedPageDto) _then;
+
+  /// Create a copy of FeedPageDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? items = null,
+    Object? nextCursor = freezed,
+  }) {
+    return _then(_FeedPageDto(
+      items: null == items
+          ? _self._items
+          : items // ignore: cast_nullable_to_non_nullable
+              as List<StepDetailDto>,
+      nextCursor: freezed == nextCursor
+          ? _self.nextCursor
+          : nextCursor // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$FollowingStatusDto {
   @JsonKey(name: 'status')
   FollowingStatusEnumDto get status;
@@ -6260,7 +6596,7 @@ mixin _$JourneyDto {
   @JsonKey(name: 'lastUpdated')
   DateTime get lastUpdated;
   @JsonKey(name: 'status')
-  String get status;
+  JourneyStatusDto get status;
   @JsonKey(name: 'completedDate')
   DateTime? get completedDate;
   @JsonKey(name: 'userId')
@@ -6274,7 +6610,7 @@ mixin _$JourneyDto {
   @JsonKey(name: 'isUnavailable')
   bool get isUnavailable;
   @JsonKey(name: 'unavailableReason')
-  String get unavailableReason;
+  String? get unavailableReason;
 
   /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
@@ -6351,14 +6687,14 @@ abstract mixin class $JourneyDtoCopyWith<$Res> {
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'createdDate') DateTime createdDate,
       @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
-      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'status') JourneyStatusDto status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'firstStepId') String? firstStepId,
       @JsonKey(name: 'finalStepId') String? finalStepId,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 }
 
 /// @nodoc
@@ -6385,7 +6721,7 @@ class _$JourneyDtoCopyWithImpl<$Res> implements $JourneyDtoCopyWith<$Res> {
     Object? finalStepId = freezed,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -6411,7 +6747,7 @@ class _$JourneyDtoCopyWithImpl<$Res> implements $JourneyDtoCopyWith<$Res> {
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as JourneyStatusDto,
       completedDate: freezed == completedDate
           ? _self.completedDate
           : completedDate // ignore: cast_nullable_to_non_nullable
@@ -6436,10 +6772,10 @@ class _$JourneyDtoCopyWithImpl<$Res> implements $JourneyDtoCopyWith<$Res> {
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -6541,14 +6877,14 @@ extension JourneyDtoPatterns on JourneyDto {
             @JsonKey(name: 'description') String description,
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
-            @JsonKey(name: 'status') String status,
+            @JsonKey(name: 'status') JourneyStatusDto status,
             @JsonKey(name: 'completedDate') DateTime? completedDate,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
             @JsonKey(name: 'finalStepId') String? finalStepId,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
@@ -6595,14 +6931,14 @@ extension JourneyDtoPatterns on JourneyDto {
             @JsonKey(name: 'description') String description,
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
-            @JsonKey(name: 'status') String status,
+            @JsonKey(name: 'status') JourneyStatusDto status,
             @JsonKey(name: 'completedDate') DateTime? completedDate,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
             @JsonKey(name: 'finalStepId') String? finalStepId,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)
         $default,
   ) {
     final _that = this;
@@ -6645,14 +6981,14 @@ extension JourneyDtoPatterns on JourneyDto {
             @JsonKey(name: 'description') String description,
             @JsonKey(name: 'createdDate') DateTime createdDate,
             @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
-            @JsonKey(name: 'status') String status,
+            @JsonKey(name: 'status') JourneyStatusDto status,
             @JsonKey(name: 'completedDate') DateTime? completedDate,
             @JsonKey(name: 'userId') String userId,
             @JsonKey(name: 'firstStepId') String? firstStepId,
             @JsonKey(name: 'finalStepId') String? finalStepId,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default,
   ) {
     final _that = this;
@@ -6687,7 +7023,7 @@ class _JourneyDto implements JourneyDto {
       @JsonKey(name: 'description') this.description = '',
       @JsonKey(name: 'createdDate') required this.createdDate,
       @JsonKey(name: 'lastUpdated') required this.lastUpdated,
-      @JsonKey(name: 'status') this.status = 'Open',
+      @JsonKey(name: 'status') this.status = JourneyStatusDto.open,
       @JsonKey(name: 'completedDate') this.completedDate,
       @JsonKey(name: 'userId') this.userId = '',
       @JsonKey(name: 'firstStepId') this.firstStepId,
@@ -6715,7 +7051,7 @@ class _JourneyDto implements JourneyDto {
   final DateTime lastUpdated;
   @override
   @JsonKey(name: 'status')
-  final String status;
+  final JourneyStatusDto status;
   @override
   @JsonKey(name: 'completedDate')
   final DateTime? completedDate;
@@ -6736,7 +7072,7 @@ class _JourneyDto implements JourneyDto {
   final bool isUnavailable;
   @override
   @JsonKey(name: 'unavailableReason')
-  final String unavailableReason;
+  final String? unavailableReason;
 
   /// Create a copy of JourneyDto
   /// with the given fields replaced by the non-null parameter values.
@@ -6820,14 +7156,14 @@ abstract mixin class _$JourneyDtoCopyWith<$Res>
       @JsonKey(name: 'description') String description,
       @JsonKey(name: 'createdDate') DateTime createdDate,
       @JsonKey(name: 'lastUpdated') DateTime lastUpdated,
-      @JsonKey(name: 'status') String status,
+      @JsonKey(name: 'status') JourneyStatusDto status,
       @JsonKey(name: 'completedDate') DateTime? completedDate,
       @JsonKey(name: 'userId') String userId,
       @JsonKey(name: 'firstStepId') String? firstStepId,
       @JsonKey(name: 'finalStepId') String? finalStepId,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 }
 
 /// @nodoc
@@ -6854,7 +7190,7 @@ class __$JourneyDtoCopyWithImpl<$Res> implements _$JourneyDtoCopyWith<$Res> {
     Object? finalStepId = freezed,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_JourneyDto(
       id: null == id
@@ -6880,7 +7216,7 @@ class __$JourneyDtoCopyWithImpl<$Res> implements _$JourneyDtoCopyWith<$Res> {
       status: null == status
           ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as JourneyStatusDto,
       completedDate: freezed == completedDate
           ? _self.completedDate
           : completedDate // ignore: cast_nullable_to_non_nullable
@@ -6905,10 +7241,10 @@ class __$JourneyDtoCopyWithImpl<$Res> implements _$JourneyDtoCopyWith<$Res> {
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -7663,7 +7999,7 @@ class __$JourneyInDetailDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-mixin _$JourneyInProfileDto {
+mixin _$JourneyWithPreviewDto {
   @JsonKey(name: 'journey')
   JourneyDto get journey;
   @JsonKey(name: 'stepsCount')
@@ -7671,22 +8007,22 @@ mixin _$JourneyInProfileDto {
   @JsonKey(name: 'thumbnailSteps')
   List<StepMediaDto> get thumbnailSteps;
 
-  /// Create a copy of JourneyInProfileDto
+  /// Create a copy of JourneyWithPreviewDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $JourneyInProfileDtoCopyWith<JourneyInProfileDto> get copyWith =>
-      _$JourneyInProfileDtoCopyWithImpl<JourneyInProfileDto>(
-          this as JourneyInProfileDto, _$identity);
+  $JourneyWithPreviewDtoCopyWith<JourneyWithPreviewDto> get copyWith =>
+      _$JourneyWithPreviewDtoCopyWithImpl<JourneyWithPreviewDto>(
+          this as JourneyWithPreviewDto, _$identity);
 
-  /// Serializes this JourneyInProfileDto to a JSON map.
+  /// Serializes this JourneyWithPreviewDto to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is JourneyInProfileDto &&
+            other is JourneyWithPreviewDto &&
             (identical(other.journey, journey) || other.journey == journey) &&
             (identical(other.stepsCount, stepsCount) ||
                 other.stepsCount == stepsCount) &&
@@ -7701,15 +8037,15 @@ mixin _$JourneyInProfileDto {
 
   @override
   String toString() {
-    return 'JourneyInProfileDto(journey: $journey, stepsCount: $stepsCount, thumbnailSteps: $thumbnailSteps)';
+    return 'JourneyWithPreviewDto(journey: $journey, stepsCount: $stepsCount, thumbnailSteps: $thumbnailSteps)';
   }
 }
 
 /// @nodoc
-abstract mixin class $JourneyInProfileDtoCopyWith<$Res> {
-  factory $JourneyInProfileDtoCopyWith(
-          JourneyInProfileDto value, $Res Function(JourneyInProfileDto) _then) =
-      _$JourneyInProfileDtoCopyWithImpl;
+abstract mixin class $JourneyWithPreviewDtoCopyWith<$Res> {
+  factory $JourneyWithPreviewDtoCopyWith(JourneyWithPreviewDto value,
+          $Res Function(JourneyWithPreviewDto) _then) =
+      _$JourneyWithPreviewDtoCopyWithImpl;
   @useResult
   $Res call(
       {@JsonKey(name: 'journey') JourneyDto journey,
@@ -7720,14 +8056,14 @@ abstract mixin class $JourneyInProfileDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$JourneyInProfileDtoCopyWithImpl<$Res>
-    implements $JourneyInProfileDtoCopyWith<$Res> {
-  _$JourneyInProfileDtoCopyWithImpl(this._self, this._then);
+class _$JourneyWithPreviewDtoCopyWithImpl<$Res>
+    implements $JourneyWithPreviewDtoCopyWith<$Res> {
+  _$JourneyWithPreviewDtoCopyWithImpl(this._self, this._then);
 
-  final JourneyInProfileDto _self;
-  final $Res Function(JourneyInProfileDto) _then;
+  final JourneyWithPreviewDto _self;
+  final $Res Function(JourneyWithPreviewDto) _then;
 
-  /// Create a copy of JourneyInProfileDto
+  /// Create a copy of JourneyWithPreviewDto
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -7752,7 +8088,7 @@ class _$JourneyInProfileDtoCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of JourneyInProfileDto
+  /// Create a copy of JourneyWithPreviewDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -7763,8 +8099,8 @@ class _$JourneyInProfileDtoCopyWithImpl<$Res>
   }
 }
 
-/// Adds pattern-matching-related methods to [JourneyInProfileDto].
-extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
+/// Adds pattern-matching-related methods to [JourneyWithPreviewDto].
+extension JourneyWithPreviewDtoPatterns on JourneyWithPreviewDto {
   /// A variant of `map` that fallback to returning `orElse`.
   ///
   /// It is equivalent to doing:
@@ -7779,12 +8115,12 @@ extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(_JourneyInProfileDto value)? $default, {
+    TResult Function(_JourneyWithPreviewDto value)? $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
-      case _JourneyInProfileDto() when $default != null:
+      case _JourneyWithPreviewDto() when $default != null:
         return $default(_that);
       case _:
         return orElse();
@@ -7806,11 +8142,11 @@ extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
 
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(_JourneyInProfileDto value) $default,
+    TResult Function(_JourneyWithPreviewDto value) $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _JourneyInProfileDto():
+      case _JourneyWithPreviewDto():
         return $default(_that);
     }
   }
@@ -7829,11 +8165,11 @@ extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
 
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_JourneyInProfileDto value)? $default,
+    TResult? Function(_JourneyWithPreviewDto value)? $default,
   ) {
     final _that = this;
     switch (_that) {
-      case _JourneyInProfileDto() when $default != null:
+      case _JourneyWithPreviewDto() when $default != null:
         return $default(_that);
       case _:
         return null;
@@ -7863,7 +8199,7 @@ extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
   }) {
     final _that = this;
     switch (_that) {
-      case _JourneyInProfileDto() when $default != null:
+      case _JourneyWithPreviewDto() when $default != null:
         return $default(_that.journey, _that.stepsCount, _that.thumbnailSteps);
       case _:
         return orElse();
@@ -7893,7 +8229,7 @@ extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
   ) {
     final _that = this;
     switch (_that) {
-      case _JourneyInProfileDto():
+      case _JourneyWithPreviewDto():
         return $default(_that.journey, _that.stepsCount, _that.thumbnailSteps);
     }
   }
@@ -7920,7 +8256,7 @@ extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
   ) {
     final _that = this;
     switch (_that) {
-      case _JourneyInProfileDto() when $default != null:
+      case _JourneyWithPreviewDto() when $default != null:
         return $default(_that.journey, _that.stepsCount, _that.thumbnailSteps);
       case _:
         return null;
@@ -7930,15 +8266,15 @@ extension JourneyInProfileDtoPatterns on JourneyInProfileDto {
 
 /// @nodoc
 @JsonSerializable()
-class _JourneyInProfileDto implements JourneyInProfileDto {
-  _JourneyInProfileDto(
+class _JourneyWithPreviewDto implements JourneyWithPreviewDto {
+  _JourneyWithPreviewDto(
       {@JsonKey(name: 'journey') required this.journey,
       @JsonKey(name: 'stepsCount') required this.stepsCount,
       @JsonKey(name: 'thumbnailSteps')
       required final List<StepMediaDto> thumbnailSteps})
       : _thumbnailSteps = thumbnailSteps;
-  factory _JourneyInProfileDto.fromJson(Map<String, dynamic> json) =>
-      _$JourneyInProfileDtoFromJson(json);
+  factory _JourneyWithPreviewDto.fromJson(Map<String, dynamic> json) =>
+      _$JourneyWithPreviewDtoFromJson(json);
 
   @override
   @JsonKey(name: 'journey')
@@ -7955,18 +8291,18 @@ class _JourneyInProfileDto implements JourneyInProfileDto {
     return EqualUnmodifiableListView(_thumbnailSteps);
   }
 
-  /// Create a copy of JourneyInProfileDto
+  /// Create a copy of JourneyWithPreviewDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$JourneyInProfileDtoCopyWith<_JourneyInProfileDto> get copyWith =>
-      __$JourneyInProfileDtoCopyWithImpl<_JourneyInProfileDto>(
+  _$JourneyWithPreviewDtoCopyWith<_JourneyWithPreviewDto> get copyWith =>
+      __$JourneyWithPreviewDtoCopyWithImpl<_JourneyWithPreviewDto>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$JourneyInProfileDtoToJson(
+    return _$JourneyWithPreviewDtoToJson(
       this,
     );
   }
@@ -7975,7 +8311,7 @@ class _JourneyInProfileDto implements JourneyInProfileDto {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _JourneyInProfileDto &&
+            other is _JourneyWithPreviewDto &&
             (identical(other.journey, journey) || other.journey == journey) &&
             (identical(other.stepsCount, stepsCount) ||
                 other.stepsCount == stepsCount) &&
@@ -7990,16 +8326,16 @@ class _JourneyInProfileDto implements JourneyInProfileDto {
 
   @override
   String toString() {
-    return 'JourneyInProfileDto(journey: $journey, stepsCount: $stepsCount, thumbnailSteps: $thumbnailSteps)';
+    return 'JourneyWithPreviewDto(journey: $journey, stepsCount: $stepsCount, thumbnailSteps: $thumbnailSteps)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$JourneyInProfileDtoCopyWith<$Res>
-    implements $JourneyInProfileDtoCopyWith<$Res> {
-  factory _$JourneyInProfileDtoCopyWith(_JourneyInProfileDto value,
-          $Res Function(_JourneyInProfileDto) _then) =
-      __$JourneyInProfileDtoCopyWithImpl;
+abstract mixin class _$JourneyWithPreviewDtoCopyWith<$Res>
+    implements $JourneyWithPreviewDtoCopyWith<$Res> {
+  factory _$JourneyWithPreviewDtoCopyWith(_JourneyWithPreviewDto value,
+          $Res Function(_JourneyWithPreviewDto) _then) =
+      __$JourneyWithPreviewDtoCopyWithImpl;
   @override
   @useResult
   $Res call(
@@ -8012,14 +8348,14 @@ abstract mixin class _$JourneyInProfileDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$JourneyInProfileDtoCopyWithImpl<$Res>
-    implements _$JourneyInProfileDtoCopyWith<$Res> {
-  __$JourneyInProfileDtoCopyWithImpl(this._self, this._then);
+class __$JourneyWithPreviewDtoCopyWithImpl<$Res>
+    implements _$JourneyWithPreviewDtoCopyWith<$Res> {
+  __$JourneyWithPreviewDtoCopyWithImpl(this._self, this._then);
 
-  final _JourneyInProfileDto _self;
-  final $Res Function(_JourneyInProfileDto) _then;
+  final _JourneyWithPreviewDto _self;
+  final $Res Function(_JourneyWithPreviewDto) _then;
 
-  /// Create a copy of JourneyInProfileDto
+  /// Create a copy of JourneyWithPreviewDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -8028,7 +8364,7 @@ class __$JourneyInProfileDtoCopyWithImpl<$Res>
     Object? stepsCount = null,
     Object? thumbnailSteps = null,
   }) {
-    return _then(_JourneyInProfileDto(
+    return _then(_JourneyWithPreviewDto(
       journey: null == journey
           ? _self.journey
           : journey // ignore: cast_nullable_to_non_nullable
@@ -8044,7 +8380,7 @@ class __$JourneyInProfileDtoCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of JourneyInProfileDto
+  /// Create a copy of JourneyWithPreviewDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -8707,6 +9043,339 @@ class __$LoginResponseDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$NotificationCountsDto {
+  @JsonKey(name: 'unreadCount')
+  int? get unreadCount;
+  @JsonKey(name: 'unseenCount')
+  int? get unseenCount;
+
+  /// Create a copy of NotificationCountsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $NotificationCountsDtoCopyWith<NotificationCountsDto> get copyWith =>
+      _$NotificationCountsDtoCopyWithImpl<NotificationCountsDto>(
+          this as NotificationCountsDto, _$identity);
+
+  /// Serializes this NotificationCountsDto to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NotificationCountsDto &&
+            (identical(other.unreadCount, unreadCount) ||
+                other.unreadCount == unreadCount) &&
+            (identical(other.unseenCount, unseenCount) ||
+                other.unseenCount == unseenCount));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, unreadCount, unseenCount);
+
+  @override
+  String toString() {
+    return 'NotificationCountsDto(unreadCount: $unreadCount, unseenCount: $unseenCount)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $NotificationCountsDtoCopyWith<$Res> {
+  factory $NotificationCountsDtoCopyWith(NotificationCountsDto value,
+          $Res Function(NotificationCountsDto) _then) =
+      _$NotificationCountsDtoCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'unreadCount') int? unreadCount,
+      @JsonKey(name: 'unseenCount') int? unseenCount});
+}
+
+/// @nodoc
+class _$NotificationCountsDtoCopyWithImpl<$Res>
+    implements $NotificationCountsDtoCopyWith<$Res> {
+  _$NotificationCountsDtoCopyWithImpl(this._self, this._then);
+
+  final NotificationCountsDto _self;
+  final $Res Function(NotificationCountsDto) _then;
+
+  /// Create a copy of NotificationCountsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? unreadCount = freezed,
+    Object? unseenCount = freezed,
+  }) {
+    return _then(_self.copyWith(
+      unreadCount: freezed == unreadCount
+          ? _self.unreadCount
+          : unreadCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unseenCount: freezed == unseenCount
+          ? _self.unseenCount
+          : unseenCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [NotificationCountsDto].
+extension NotificationCountsDtoPatterns on NotificationCountsDto {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_NotificationCountsDto value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationCountsDto() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_NotificationCountsDto value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationCountsDto():
+        return $default(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_NotificationCountsDto value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationCountsDto() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'unreadCount') int? unreadCount,
+            @JsonKey(name: 'unseenCount') int? unseenCount)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationCountsDto() when $default != null:
+        return $default(_that.unreadCount, _that.unseenCount);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'unreadCount') int? unreadCount,
+            @JsonKey(name: 'unseenCount') int? unseenCount)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationCountsDto():
+        return $default(_that.unreadCount, _that.unseenCount);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'unreadCount') int? unreadCount,
+            @JsonKey(name: 'unseenCount') int? unseenCount)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _NotificationCountsDto() when $default != null:
+        return $default(_that.unreadCount, _that.unseenCount);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _NotificationCountsDto implements NotificationCountsDto {
+  _NotificationCountsDto(
+      {@JsonKey(name: 'unreadCount') this.unreadCount,
+      @JsonKey(name: 'unseenCount') this.unseenCount});
+  factory _NotificationCountsDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationCountsDtoFromJson(json);
+
+  @override
+  @JsonKey(name: 'unreadCount')
+  final int? unreadCount;
+  @override
+  @JsonKey(name: 'unseenCount')
+  final int? unseenCount;
+
+  /// Create a copy of NotificationCountsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$NotificationCountsDtoCopyWith<_NotificationCountsDto> get copyWith =>
+      __$NotificationCountsDtoCopyWithImpl<_NotificationCountsDto>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$NotificationCountsDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NotificationCountsDto &&
+            (identical(other.unreadCount, unreadCount) ||
+                other.unreadCount == unreadCount) &&
+            (identical(other.unseenCount, unseenCount) ||
+                other.unseenCount == unseenCount));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, unreadCount, unseenCount);
+
+  @override
+  String toString() {
+    return 'NotificationCountsDto(unreadCount: $unreadCount, unseenCount: $unseenCount)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$NotificationCountsDtoCopyWith<$Res>
+    implements $NotificationCountsDtoCopyWith<$Res> {
+  factory _$NotificationCountsDtoCopyWith(_NotificationCountsDto value,
+          $Res Function(_NotificationCountsDto) _then) =
+      __$NotificationCountsDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'unreadCount') int? unreadCount,
+      @JsonKey(name: 'unseenCount') int? unseenCount});
+}
+
+/// @nodoc
+class __$NotificationCountsDtoCopyWithImpl<$Res>
+    implements _$NotificationCountsDtoCopyWith<$Res> {
+  __$NotificationCountsDtoCopyWithImpl(this._self, this._then);
+
+  final _NotificationCountsDto _self;
+  final $Res Function(_NotificationCountsDto) _then;
+
+  /// Create a copy of NotificationCountsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? unreadCount = freezed,
+    Object? unseenCount = freezed,
+  }) {
+    return _then(_NotificationCountsDto(
+      unreadCount: freezed == unreadCount
+          ? _self.unreadCount
+          : unreadCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unseenCount: freezed == unseenCount
+          ? _self.unseenCount
+          : unseenCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
 mixin _$NotificationDto {
   @JsonKey(name: 'id')
   String? get id;
@@ -8714,20 +9383,36 @@ mixin _$NotificationDto {
   String get title;
   @JsonKey(name: 'body')
   String get body;
-  @JsonKey(name: 'notificationType')
-  NotificationTypeDto? get notificationType;
-  @JsonKey(name: 'isRead')
-  bool? get isRead;
+  @JsonKey(name: 'type')
+  NotificationTypeDto get type;
+  @JsonKey(name: 'readAt')
+  DateTime? get readAt;
   @JsonKey(name: 'createdDate')
   DateTime? get createdDate;
-  @JsonKey(name: 'data')
-  Map<String, String>? get data;
   @JsonKey(name: 'priority')
   int? get priority;
-  @JsonKey(name: 'relatedEntityId')
-  String? get relatedEntityId;
-  @JsonKey(name: 'sourceUser')
-  UserDetailDto? get sourceUser;
+  @JsonKey(name: 'isRead')
+  bool? get isRead;
+  @JsonKey(name: 'stepId')
+  String? get stepId;
+  @JsonKey(name: 'journeyId')
+  String? get journeyId;
+  @JsonKey(name: 'commentId')
+  String? get commentId;
+  @JsonKey(name: 'sourceUserId')
+  String? get sourceUserId;
+  @JsonKey(name: 'sourceUserName')
+  String? get sourceUserName;
+  @JsonKey(name: 'sourceUserDisplayName')
+  String? get sourceUserDisplayName;
+  @JsonKey(name: 'sourceUserProfilePictureUrl')
+  String? get sourceUserProfilePictureUrl;
+  @JsonKey(name: 'contentPreview')
+  String? get contentPreview;
+  @JsonKey(name: 'contentImageUrl')
+  String? get contentImageUrl;
+  @JsonKey(name: 'interactionCount')
+  int? get interactionCount;
 
   /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -8748,18 +9433,34 @@ mixin _$NotificationDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
-            (identical(other.notificationType, notificationType) ||
-                other.notificationType == notificationType) &&
-            (identical(other.isRead, isRead) || other.isRead == isRead) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.readAt, readAt) || other.readAt == readAt) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
-            const DeepCollectionEquality().equals(other.data, data) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
-            (identical(other.relatedEntityId, relatedEntityId) ||
-                other.relatedEntityId == relatedEntityId) &&
-            (identical(other.sourceUser, sourceUser) ||
-                other.sourceUser == sourceUser));
+            (identical(other.isRead, isRead) || other.isRead == isRead) &&
+            (identical(other.stepId, stepId) || other.stepId == stepId) &&
+            (identical(other.journeyId, journeyId) ||
+                other.journeyId == journeyId) &&
+            (identical(other.commentId, commentId) ||
+                other.commentId == commentId) &&
+            (identical(other.sourceUserId, sourceUserId) ||
+                other.sourceUserId == sourceUserId) &&
+            (identical(other.sourceUserName, sourceUserName) ||
+                other.sourceUserName == sourceUserName) &&
+            (identical(other.sourceUserDisplayName, sourceUserDisplayName) ||
+                other.sourceUserDisplayName == sourceUserDisplayName) &&
+            (identical(other.sourceUserProfilePictureUrl,
+                    sourceUserProfilePictureUrl) ||
+                other.sourceUserProfilePictureUrl ==
+                    sourceUserProfilePictureUrl) &&
+            (identical(other.contentPreview, contentPreview) ||
+                other.contentPreview == contentPreview) &&
+            (identical(other.contentImageUrl, contentImageUrl) ||
+                other.contentImageUrl == contentImageUrl) &&
+            (identical(other.interactionCount, interactionCount) ||
+                other.interactionCount == interactionCount));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -8769,17 +9470,25 @@ mixin _$NotificationDto {
       id,
       title,
       body,
-      notificationType,
-      isRead,
+      type,
+      readAt,
       createdDate,
-      const DeepCollectionEquality().hash(data),
       priority,
-      relatedEntityId,
-      sourceUser);
+      isRead,
+      stepId,
+      journeyId,
+      commentId,
+      sourceUserId,
+      sourceUserName,
+      sourceUserDisplayName,
+      sourceUserProfilePictureUrl,
+      contentPreview,
+      contentImageUrl,
+      interactionCount);
 
   @override
   String toString() {
-    return 'NotificationDto(id: $id, title: $title, body: $body, notificationType: $notificationType, isRead: $isRead, createdDate: $createdDate, data: $data, priority: $priority, relatedEntityId: $relatedEntityId, sourceUser: $sourceUser)';
+    return 'NotificationDto(id: $id, title: $title, body: $body, type: $type, readAt: $readAt, createdDate: $createdDate, priority: $priority, isRead: $isRead, stepId: $stepId, journeyId: $journeyId, commentId: $commentId, sourceUserId: $sourceUserId, sourceUserName: $sourceUserName, sourceUserDisplayName: $sourceUserDisplayName, sourceUserProfilePictureUrl: $sourceUserProfilePictureUrl, contentPreview: $contentPreview, contentImageUrl: $contentImageUrl, interactionCount: $interactionCount)';
   }
 }
 
@@ -8793,15 +9502,22 @@ abstract mixin class $NotificationDtoCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
-      @JsonKey(name: 'isRead') bool? isRead,
+      @JsonKey(name: 'type') NotificationTypeDto type,
+      @JsonKey(name: 'readAt') DateTime? readAt,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
-      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser});
-
-  $UserDetailDtoCopyWith<$Res>? get sourceUser;
+      @JsonKey(name: 'isRead') bool? isRead,
+      @JsonKey(name: 'stepId') String? stepId,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'commentId') String? commentId,
+      @JsonKey(name: 'sourceUserId') String? sourceUserId,
+      @JsonKey(name: 'sourceUserName') String? sourceUserName,
+      @JsonKey(name: 'sourceUserDisplayName') String? sourceUserDisplayName,
+      @JsonKey(name: 'sourceUserProfilePictureUrl')
+      String? sourceUserProfilePictureUrl,
+      @JsonKey(name: 'contentPreview') String? contentPreview,
+      @JsonKey(name: 'contentImageUrl') String? contentImageUrl,
+      @JsonKey(name: 'interactionCount') int? interactionCount});
 }
 
 /// @nodoc
@@ -8820,13 +9536,21 @@ class _$NotificationDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = null,
     Object? body = null,
-    Object? notificationType = freezed,
-    Object? isRead = freezed,
+    Object? type = null,
+    Object? readAt = freezed,
     Object? createdDate = freezed,
-    Object? data = freezed,
     Object? priority = freezed,
-    Object? relatedEntityId = freezed,
-    Object? sourceUser = freezed,
+    Object? isRead = freezed,
+    Object? stepId = freezed,
+    Object? journeyId = freezed,
+    Object? commentId = freezed,
+    Object? sourceUserId = freezed,
+    Object? sourceUserName = freezed,
+    Object? sourceUserDisplayName = freezed,
+    Object? sourceUserProfilePictureUrl = freezed,
+    Object? contentPreview = freezed,
+    Object? contentImageUrl = freezed,
+    Object? interactionCount = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -8841,49 +9565,67 @@ class _$NotificationDtoCopyWithImpl<$Res>
           ? _self.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      notificationType: freezed == notificationType
-          ? _self.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationTypeDto?,
-      isRead: freezed == isRead
-          ? _self.isRead
-          : isRead // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as NotificationTypeDto,
+      readAt: freezed == readAt
+          ? _self.readAt
+          : readAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdDate: freezed == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      data: freezed == data
-          ? _self.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
       priority: freezed == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as int?,
-      relatedEntityId: freezed == relatedEntityId
-          ? _self.relatedEntityId
-          : relatedEntityId // ignore: cast_nullable_to_non_nullable
+      isRead: freezed == isRead
+          ? _self.isRead
+          : isRead // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      stepId: freezed == stepId
+          ? _self.stepId
+          : stepId // ignore: cast_nullable_to_non_nullable
               as String?,
-      sourceUser: freezed == sourceUser
-          ? _self.sourceUser
-          : sourceUser // ignore: cast_nullable_to_non_nullable
-              as UserDetailDto?,
+      journeyId: freezed == journeyId
+          ? _self.journeyId
+          : journeyId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      commentId: freezed == commentId
+          ? _self.commentId
+          : commentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserId: freezed == sourceUserId
+          ? _self.sourceUserId
+          : sourceUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserName: freezed == sourceUserName
+          ? _self.sourceUserName
+          : sourceUserName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserDisplayName: freezed == sourceUserDisplayName
+          ? _self.sourceUserDisplayName
+          : sourceUserDisplayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserProfilePictureUrl: freezed == sourceUserProfilePictureUrl
+          ? _self.sourceUserProfilePictureUrl
+          : sourceUserProfilePictureUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contentPreview: freezed == contentPreview
+          ? _self.contentPreview
+          : contentPreview // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contentImageUrl: freezed == contentImageUrl
+          ? _self.contentImageUrl
+          : contentImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      interactionCount: freezed == interactionCount
+          ? _self.interactionCount
+          : interactionCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
-  }
-
-  /// Create a copy of NotificationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserDetailDtoCopyWith<$Res>? get sourceUser {
-    if (_self.sourceUser == null) {
-      return null;
-    }
-
-    return $UserDetailDtoCopyWith<$Res>(_self.sourceUser!, (value) {
-      return _then(_self.copyWith(sourceUser: value));
-    });
   }
 }
 
@@ -8982,14 +9724,23 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto? notificationType,
-            @JsonKey(name: 'isRead') bool? isRead,
+            @JsonKey(name: 'type') NotificationTypeDto type,
+            @JsonKey(name: 'readAt') DateTime? readAt,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser)?
+            @JsonKey(name: 'isRead') bool? isRead,
+            @JsonKey(name: 'stepId') String? stepId,
+            @JsonKey(name: 'journeyId') String? journeyId,
+            @JsonKey(name: 'commentId') String? commentId,
+            @JsonKey(name: 'sourceUserId') String? sourceUserId,
+            @JsonKey(name: 'sourceUserName') String? sourceUserName,
+            @JsonKey(name: 'sourceUserDisplayName')
+            String? sourceUserDisplayName,
+            @JsonKey(name: 'sourceUserProfilePictureUrl')
+            String? sourceUserProfilePictureUrl,
+            @JsonKey(name: 'contentPreview') String? contentPreview,
+            @JsonKey(name: 'contentImageUrl') String? contentImageUrl,
+            @JsonKey(name: 'interactionCount') int? interactionCount)?
         $default, {
     required TResult orElse(),
   }) {
@@ -9000,13 +9751,21 @@ extension NotificationDtoPatterns on NotificationDto {
             _that.id,
             _that.title,
             _that.body,
-            _that.notificationType,
-            _that.isRead,
+            _that.type,
+            _that.readAt,
             _that.createdDate,
-            _that.data,
             _that.priority,
-            _that.relatedEntityId,
-            _that.sourceUser);
+            _that.isRead,
+            _that.stepId,
+            _that.journeyId,
+            _that.commentId,
+            _that.sourceUserId,
+            _that.sourceUserName,
+            _that.sourceUserDisplayName,
+            _that.sourceUserProfilePictureUrl,
+            _that.contentPreview,
+            _that.contentImageUrl,
+            _that.interactionCount);
       case _:
         return orElse();
     }
@@ -9031,14 +9790,23 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto? notificationType,
-            @JsonKey(name: 'isRead') bool? isRead,
+            @JsonKey(name: 'type') NotificationTypeDto type,
+            @JsonKey(name: 'readAt') DateTime? readAt,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser)
+            @JsonKey(name: 'isRead') bool? isRead,
+            @JsonKey(name: 'stepId') String? stepId,
+            @JsonKey(name: 'journeyId') String? journeyId,
+            @JsonKey(name: 'commentId') String? commentId,
+            @JsonKey(name: 'sourceUserId') String? sourceUserId,
+            @JsonKey(name: 'sourceUserName') String? sourceUserName,
+            @JsonKey(name: 'sourceUserDisplayName')
+            String? sourceUserDisplayName,
+            @JsonKey(name: 'sourceUserProfilePictureUrl')
+            String? sourceUserProfilePictureUrl,
+            @JsonKey(name: 'contentPreview') String? contentPreview,
+            @JsonKey(name: 'contentImageUrl') String? contentImageUrl,
+            @JsonKey(name: 'interactionCount') int? interactionCount)
         $default,
   ) {
     final _that = this;
@@ -9048,13 +9816,21 @@ extension NotificationDtoPatterns on NotificationDto {
             _that.id,
             _that.title,
             _that.body,
-            _that.notificationType,
-            _that.isRead,
+            _that.type,
+            _that.readAt,
             _that.createdDate,
-            _that.data,
             _that.priority,
-            _that.relatedEntityId,
-            _that.sourceUser);
+            _that.isRead,
+            _that.stepId,
+            _that.journeyId,
+            _that.commentId,
+            _that.sourceUserId,
+            _that.sourceUserName,
+            _that.sourceUserDisplayName,
+            _that.sourceUserProfilePictureUrl,
+            _that.contentPreview,
+            _that.contentImageUrl,
+            _that.interactionCount);
     }
   }
 
@@ -9076,14 +9852,23 @@ extension NotificationDtoPatterns on NotificationDto {
             @JsonKey(name: 'id') String? id,
             @JsonKey(name: 'title') String title,
             @JsonKey(name: 'body') String body,
-            @JsonKey(name: 'notificationType')
-            NotificationTypeDto? notificationType,
-            @JsonKey(name: 'isRead') bool? isRead,
+            @JsonKey(name: 'type') NotificationTypeDto type,
+            @JsonKey(name: 'readAt') DateTime? readAt,
             @JsonKey(name: 'createdDate') DateTime? createdDate,
-            @JsonKey(name: 'data') Map<String, String>? data,
             @JsonKey(name: 'priority') int? priority,
-            @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-            @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser)?
+            @JsonKey(name: 'isRead') bool? isRead,
+            @JsonKey(name: 'stepId') String? stepId,
+            @JsonKey(name: 'journeyId') String? journeyId,
+            @JsonKey(name: 'commentId') String? commentId,
+            @JsonKey(name: 'sourceUserId') String? sourceUserId,
+            @JsonKey(name: 'sourceUserName') String? sourceUserName,
+            @JsonKey(name: 'sourceUserDisplayName')
+            String? sourceUserDisplayName,
+            @JsonKey(name: 'sourceUserProfilePictureUrl')
+            String? sourceUserProfilePictureUrl,
+            @JsonKey(name: 'contentPreview') String? contentPreview,
+            @JsonKey(name: 'contentImageUrl') String? contentImageUrl,
+            @JsonKey(name: 'interactionCount') int? interactionCount)?
         $default,
   ) {
     final _that = this;
@@ -9093,13 +9878,21 @@ extension NotificationDtoPatterns on NotificationDto {
             _that.id,
             _that.title,
             _that.body,
-            _that.notificationType,
-            _that.isRead,
+            _that.type,
+            _that.readAt,
             _that.createdDate,
-            _that.data,
             _that.priority,
-            _that.relatedEntityId,
-            _that.sourceUser);
+            _that.isRead,
+            _that.stepId,
+            _that.journeyId,
+            _that.commentId,
+            _that.sourceUserId,
+            _that.sourceUserName,
+            _that.sourceUserDisplayName,
+            _that.sourceUserProfilePictureUrl,
+            _that.contentPreview,
+            _that.contentImageUrl,
+            _that.interactionCount);
       case _:
         return null;
     }
@@ -9113,14 +9906,22 @@ class _NotificationDto implements NotificationDto {
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title = '',
       @JsonKey(name: 'body') this.body = '',
-      @JsonKey(name: 'notificationType') this.notificationType,
-      @JsonKey(name: 'isRead') this.isRead,
+      @JsonKey(name: 'type') this.type = NotificationTypeDto.systemAnnouncement,
+      @JsonKey(name: 'readAt') this.readAt,
       @JsonKey(name: 'createdDate') this.createdDate,
-      @JsonKey(name: 'data') final Map<String, String>? data,
       @JsonKey(name: 'priority') this.priority,
-      @JsonKey(name: 'relatedEntityId') this.relatedEntityId,
-      @JsonKey(name: 'sourceUser') this.sourceUser})
-      : _data = data;
+      @JsonKey(name: 'isRead') this.isRead,
+      @JsonKey(name: 'stepId') this.stepId,
+      @JsonKey(name: 'journeyId') this.journeyId,
+      @JsonKey(name: 'commentId') this.commentId,
+      @JsonKey(name: 'sourceUserId') this.sourceUserId,
+      @JsonKey(name: 'sourceUserName') this.sourceUserName,
+      @JsonKey(name: 'sourceUserDisplayName') this.sourceUserDisplayName,
+      @JsonKey(name: 'sourceUserProfilePictureUrl')
+      this.sourceUserProfilePictureUrl,
+      @JsonKey(name: 'contentPreview') this.contentPreview,
+      @JsonKey(name: 'contentImageUrl') this.contentImageUrl,
+      @JsonKey(name: 'interactionCount') this.interactionCount});
   factory _NotificationDto.fromJson(Map<String, dynamic> json) =>
       _$NotificationDtoFromJson(json);
 
@@ -9134,34 +9935,50 @@ class _NotificationDto implements NotificationDto {
   @JsonKey(name: 'body')
   final String body;
   @override
-  @JsonKey(name: 'notificationType')
-  final NotificationTypeDto? notificationType;
+  @JsonKey(name: 'type')
+  final NotificationTypeDto type;
   @override
-  @JsonKey(name: 'isRead')
-  final bool? isRead;
+  @JsonKey(name: 'readAt')
+  final DateTime? readAt;
   @override
   @JsonKey(name: 'createdDate')
   final DateTime? createdDate;
-  final Map<String, String>? _data;
-  @override
-  @JsonKey(name: 'data')
-  Map<String, String>? get data {
-    final value = _data;
-    if (value == null) return null;
-    if (_data is EqualUnmodifiableMapView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
   @override
   @JsonKey(name: 'priority')
   final int? priority;
   @override
-  @JsonKey(name: 'relatedEntityId')
-  final String? relatedEntityId;
+  @JsonKey(name: 'isRead')
+  final bool? isRead;
   @override
-  @JsonKey(name: 'sourceUser')
-  final UserDetailDto? sourceUser;
+  @JsonKey(name: 'stepId')
+  final String? stepId;
+  @override
+  @JsonKey(name: 'journeyId')
+  final String? journeyId;
+  @override
+  @JsonKey(name: 'commentId')
+  final String? commentId;
+  @override
+  @JsonKey(name: 'sourceUserId')
+  final String? sourceUserId;
+  @override
+  @JsonKey(name: 'sourceUserName')
+  final String? sourceUserName;
+  @override
+  @JsonKey(name: 'sourceUserDisplayName')
+  final String? sourceUserDisplayName;
+  @override
+  @JsonKey(name: 'sourceUserProfilePictureUrl')
+  final String? sourceUserProfilePictureUrl;
+  @override
+  @JsonKey(name: 'contentPreview')
+  final String? contentPreview;
+  @override
+  @JsonKey(name: 'contentImageUrl')
+  final String? contentImageUrl;
+  @override
+  @JsonKey(name: 'interactionCount')
+  final int? interactionCount;
 
   /// Create a copy of NotificationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -9186,18 +10003,34 @@ class _NotificationDto implements NotificationDto {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.body, body) || other.body == body) &&
-            (identical(other.notificationType, notificationType) ||
-                other.notificationType == notificationType) &&
-            (identical(other.isRead, isRead) || other.isRead == isRead) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.readAt, readAt) || other.readAt == readAt) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate) &&
-            const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.priority, priority) ||
                 other.priority == priority) &&
-            (identical(other.relatedEntityId, relatedEntityId) ||
-                other.relatedEntityId == relatedEntityId) &&
-            (identical(other.sourceUser, sourceUser) ||
-                other.sourceUser == sourceUser));
+            (identical(other.isRead, isRead) || other.isRead == isRead) &&
+            (identical(other.stepId, stepId) || other.stepId == stepId) &&
+            (identical(other.journeyId, journeyId) ||
+                other.journeyId == journeyId) &&
+            (identical(other.commentId, commentId) ||
+                other.commentId == commentId) &&
+            (identical(other.sourceUserId, sourceUserId) ||
+                other.sourceUserId == sourceUserId) &&
+            (identical(other.sourceUserName, sourceUserName) ||
+                other.sourceUserName == sourceUserName) &&
+            (identical(other.sourceUserDisplayName, sourceUserDisplayName) ||
+                other.sourceUserDisplayName == sourceUserDisplayName) &&
+            (identical(other.sourceUserProfilePictureUrl,
+                    sourceUserProfilePictureUrl) ||
+                other.sourceUserProfilePictureUrl ==
+                    sourceUserProfilePictureUrl) &&
+            (identical(other.contentPreview, contentPreview) ||
+                other.contentPreview == contentPreview) &&
+            (identical(other.contentImageUrl, contentImageUrl) ||
+                other.contentImageUrl == contentImageUrl) &&
+            (identical(other.interactionCount, interactionCount) ||
+                other.interactionCount == interactionCount));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -9207,17 +10040,25 @@ class _NotificationDto implements NotificationDto {
       id,
       title,
       body,
-      notificationType,
-      isRead,
+      type,
+      readAt,
       createdDate,
-      const DeepCollectionEquality().hash(_data),
       priority,
-      relatedEntityId,
-      sourceUser);
+      isRead,
+      stepId,
+      journeyId,
+      commentId,
+      sourceUserId,
+      sourceUserName,
+      sourceUserDisplayName,
+      sourceUserProfilePictureUrl,
+      contentPreview,
+      contentImageUrl,
+      interactionCount);
 
   @override
   String toString() {
-    return 'NotificationDto(id: $id, title: $title, body: $body, notificationType: $notificationType, isRead: $isRead, createdDate: $createdDate, data: $data, priority: $priority, relatedEntityId: $relatedEntityId, sourceUser: $sourceUser)';
+    return 'NotificationDto(id: $id, title: $title, body: $body, type: $type, readAt: $readAt, createdDate: $createdDate, priority: $priority, isRead: $isRead, stepId: $stepId, journeyId: $journeyId, commentId: $commentId, sourceUserId: $sourceUserId, sourceUserName: $sourceUserName, sourceUserDisplayName: $sourceUserDisplayName, sourceUserProfilePictureUrl: $sourceUserProfilePictureUrl, contentPreview: $contentPreview, contentImageUrl: $contentImageUrl, interactionCount: $interactionCount)';
   }
 }
 
@@ -9233,16 +10074,22 @@ abstract mixin class _$NotificationDtoCopyWith<$Res>
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'body') String body,
-      @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
-      @JsonKey(name: 'isRead') bool? isRead,
+      @JsonKey(name: 'type') NotificationTypeDto type,
+      @JsonKey(name: 'readAt') DateTime? readAt,
       @JsonKey(name: 'createdDate') DateTime? createdDate,
-      @JsonKey(name: 'data') Map<String, String>? data,
       @JsonKey(name: 'priority') int? priority,
-      @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-      @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser});
-
-  @override
-  $UserDetailDtoCopyWith<$Res>? get sourceUser;
+      @JsonKey(name: 'isRead') bool? isRead,
+      @JsonKey(name: 'stepId') String? stepId,
+      @JsonKey(name: 'journeyId') String? journeyId,
+      @JsonKey(name: 'commentId') String? commentId,
+      @JsonKey(name: 'sourceUserId') String? sourceUserId,
+      @JsonKey(name: 'sourceUserName') String? sourceUserName,
+      @JsonKey(name: 'sourceUserDisplayName') String? sourceUserDisplayName,
+      @JsonKey(name: 'sourceUserProfilePictureUrl')
+      String? sourceUserProfilePictureUrl,
+      @JsonKey(name: 'contentPreview') String? contentPreview,
+      @JsonKey(name: 'contentImageUrl') String? contentImageUrl,
+      @JsonKey(name: 'interactionCount') int? interactionCount});
 }
 
 /// @nodoc
@@ -9261,13 +10108,21 @@ class __$NotificationDtoCopyWithImpl<$Res>
     Object? id = freezed,
     Object? title = null,
     Object? body = null,
-    Object? notificationType = freezed,
-    Object? isRead = freezed,
+    Object? type = null,
+    Object? readAt = freezed,
     Object? createdDate = freezed,
-    Object? data = freezed,
     Object? priority = freezed,
-    Object? relatedEntityId = freezed,
-    Object? sourceUser = freezed,
+    Object? isRead = freezed,
+    Object? stepId = freezed,
+    Object? journeyId = freezed,
+    Object? commentId = freezed,
+    Object? sourceUserId = freezed,
+    Object? sourceUserName = freezed,
+    Object? sourceUserDisplayName = freezed,
+    Object? sourceUserProfilePictureUrl = freezed,
+    Object? contentPreview = freezed,
+    Object? contentImageUrl = freezed,
+    Object? interactionCount = freezed,
   }) {
     return _then(_NotificationDto(
       id: freezed == id
@@ -9282,49 +10137,67 @@ class __$NotificationDtoCopyWithImpl<$Res>
           ? _self.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      notificationType: freezed == notificationType
-          ? _self.notificationType
-          : notificationType // ignore: cast_nullable_to_non_nullable
-              as NotificationTypeDto?,
-      isRead: freezed == isRead
-          ? _self.isRead
-          : isRead // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as NotificationTypeDto,
+      readAt: freezed == readAt
+          ? _self.readAt
+          : readAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdDate: freezed == createdDate
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      data: freezed == data
-          ? _self._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
       priority: freezed == priority
           ? _self.priority
           : priority // ignore: cast_nullable_to_non_nullable
               as int?,
-      relatedEntityId: freezed == relatedEntityId
-          ? _self.relatedEntityId
-          : relatedEntityId // ignore: cast_nullable_to_non_nullable
+      isRead: freezed == isRead
+          ? _self.isRead
+          : isRead // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      stepId: freezed == stepId
+          ? _self.stepId
+          : stepId // ignore: cast_nullable_to_non_nullable
               as String?,
-      sourceUser: freezed == sourceUser
-          ? _self.sourceUser
-          : sourceUser // ignore: cast_nullable_to_non_nullable
-              as UserDetailDto?,
+      journeyId: freezed == journeyId
+          ? _self.journeyId
+          : journeyId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      commentId: freezed == commentId
+          ? _self.commentId
+          : commentId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserId: freezed == sourceUserId
+          ? _self.sourceUserId
+          : sourceUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserName: freezed == sourceUserName
+          ? _self.sourceUserName
+          : sourceUserName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserDisplayName: freezed == sourceUserDisplayName
+          ? _self.sourceUserDisplayName
+          : sourceUserDisplayName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sourceUserProfilePictureUrl: freezed == sourceUserProfilePictureUrl
+          ? _self.sourceUserProfilePictureUrl
+          : sourceUserProfilePictureUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contentPreview: freezed == contentPreview
+          ? _self.contentPreview
+          : contentPreview // ignore: cast_nullable_to_non_nullable
+              as String?,
+      contentImageUrl: freezed == contentImageUrl
+          ? _self.contentImageUrl
+          : contentImageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      interactionCount: freezed == interactionCount
+          ? _self.interactionCount
+          : interactionCount // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
-  }
-
-  /// Create a copy of NotificationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserDetailDtoCopyWith<$Res>? get sourceUser {
-    if (_self.sourceUser == null) {
-      return null;
-    }
-
-    return $UserDetailDtoCopyWith<$Res>(_self.sourceUser!, (value) {
-      return _then(_self.copyWith(sourceUser: value));
-    });
   }
 }
 
@@ -9340,6 +10213,8 @@ mixin _$NotificationPagedDto {
   int? get totalCount;
   @JsonKey(name: 'unreadCount')
   int? get unreadCount;
+  @JsonKey(name: 'unseenCount')
+  int? get unseenCount;
   @JsonKey(name: 'hasMore')
   bool? get hasMore;
 
@@ -9368,6 +10243,8 @@ mixin _$NotificationPagedDto {
                 other.totalCount == totalCount) &&
             (identical(other.unreadCount, unreadCount) ||
                 other.unreadCount == unreadCount) &&
+            (identical(other.unseenCount, unseenCount) ||
+                other.unseenCount == unseenCount) &&
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
   }
 
@@ -9380,11 +10257,12 @@ mixin _$NotificationPagedDto {
       pageSize,
       totalCount,
       unreadCount,
+      unseenCount,
       hasMore);
 
   @override
   String toString() {
-    return 'NotificationPagedDto(notifications: $notifications, page: $page, pageSize: $pageSize, totalCount: $totalCount, unreadCount: $unreadCount, hasMore: $hasMore)';
+    return 'NotificationPagedDto(notifications: $notifications, page: $page, pageSize: $pageSize, totalCount: $totalCount, unreadCount: $unreadCount, unseenCount: $unseenCount, hasMore: $hasMore)';
   }
 }
 
@@ -9400,6 +10278,7 @@ abstract mixin class $NotificationPagedDtoCopyWith<$Res> {
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
       @JsonKey(name: 'unreadCount') int? unreadCount,
+      @JsonKey(name: 'unseenCount') int? unseenCount,
       @JsonKey(name: 'hasMore') bool? hasMore});
 }
 
@@ -9421,6 +10300,7 @@ class _$NotificationPagedDtoCopyWithImpl<$Res>
     Object? pageSize = freezed,
     Object? totalCount = freezed,
     Object? unreadCount = freezed,
+    Object? unseenCount = freezed,
     Object? hasMore = freezed,
   }) {
     return _then(_self.copyWith(
@@ -9443,6 +10323,10 @@ class _$NotificationPagedDtoCopyWithImpl<$Res>
       unreadCount: freezed == unreadCount
           ? _self.unreadCount
           : unreadCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      unseenCount: freezed == unseenCount
+          ? _self.unseenCount
+          : unseenCount // ignore: cast_nullable_to_non_nullable
               as int?,
       hasMore: freezed == hasMore
           ? _self.hasMore
@@ -9550,6 +10434,7 @@ extension NotificationPagedDtoPatterns on NotificationPagedDto {
             @JsonKey(name: 'pageSize') int? pageSize,
             @JsonKey(name: 'totalCount') int? totalCount,
             @JsonKey(name: 'unreadCount') int? unreadCount,
+            @JsonKey(name: 'unseenCount') int? unseenCount,
             @JsonKey(name: 'hasMore') bool? hasMore)?
         $default, {
     required TResult orElse(),
@@ -9557,8 +10442,14 @@ extension NotificationPagedDtoPatterns on NotificationPagedDto {
     final _that = this;
     switch (_that) {
       case _NotificationPagedDto() when $default != null:
-        return $default(_that.notifications, _that.page, _that.pageSize,
-            _that.totalCount, _that.unreadCount, _that.hasMore);
+        return $default(
+            _that.notifications,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.unreadCount,
+            _that.unseenCount,
+            _that.hasMore);
       case _:
         return orElse();
     }
@@ -9586,14 +10477,21 @@ extension NotificationPagedDtoPatterns on NotificationPagedDto {
             @JsonKey(name: 'pageSize') int? pageSize,
             @JsonKey(name: 'totalCount') int? totalCount,
             @JsonKey(name: 'unreadCount') int? unreadCount,
+            @JsonKey(name: 'unseenCount') int? unseenCount,
             @JsonKey(name: 'hasMore') bool? hasMore)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _NotificationPagedDto():
-        return $default(_that.notifications, _that.page, _that.pageSize,
-            _that.totalCount, _that.unreadCount, _that.hasMore);
+        return $default(
+            _that.notifications,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.unreadCount,
+            _that.unseenCount,
+            _that.hasMore);
     }
   }
 
@@ -9618,14 +10516,21 @@ extension NotificationPagedDtoPatterns on NotificationPagedDto {
             @JsonKey(name: 'pageSize') int? pageSize,
             @JsonKey(name: 'totalCount') int? totalCount,
             @JsonKey(name: 'unreadCount') int? unreadCount,
+            @JsonKey(name: 'unseenCount') int? unseenCount,
             @JsonKey(name: 'hasMore') bool? hasMore)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _NotificationPagedDto() when $default != null:
-        return $default(_that.notifications, _that.page, _that.pageSize,
-            _that.totalCount, _that.unreadCount, _that.hasMore);
+        return $default(
+            _that.notifications,
+            _that.page,
+            _that.pageSize,
+            _that.totalCount,
+            _that.unreadCount,
+            _that.unseenCount,
+            _that.hasMore);
       case _:
         return null;
     }
@@ -9642,6 +10547,7 @@ class _NotificationPagedDto implements NotificationPagedDto {
       @JsonKey(name: 'pageSize') this.pageSize,
       @JsonKey(name: 'totalCount') this.totalCount,
       @JsonKey(name: 'unreadCount') this.unreadCount,
+      @JsonKey(name: 'unseenCount') this.unseenCount,
       @JsonKey(name: 'hasMore') this.hasMore})
       : _notifications = notifications;
   factory _NotificationPagedDto.fromJson(Map<String, dynamic> json) =>
@@ -9670,6 +10576,9 @@ class _NotificationPagedDto implements NotificationPagedDto {
   @override
   @JsonKey(name: 'unreadCount')
   final int? unreadCount;
+  @override
+  @JsonKey(name: 'unseenCount')
+  final int? unseenCount;
   @override
   @JsonKey(name: 'hasMore')
   final bool? hasMore;
@@ -9704,6 +10613,8 @@ class _NotificationPagedDto implements NotificationPagedDto {
                 other.totalCount == totalCount) &&
             (identical(other.unreadCount, unreadCount) ||
                 other.unreadCount == unreadCount) &&
+            (identical(other.unseenCount, unseenCount) ||
+                other.unseenCount == unseenCount) &&
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore));
   }
 
@@ -9716,11 +10627,12 @@ class _NotificationPagedDto implements NotificationPagedDto {
       pageSize,
       totalCount,
       unreadCount,
+      unseenCount,
       hasMore);
 
   @override
   String toString() {
-    return 'NotificationPagedDto(notifications: $notifications, page: $page, pageSize: $pageSize, totalCount: $totalCount, unreadCount: $unreadCount, hasMore: $hasMore)';
+    return 'NotificationPagedDto(notifications: $notifications, page: $page, pageSize: $pageSize, totalCount: $totalCount, unreadCount: $unreadCount, unseenCount: $unseenCount, hasMore: $hasMore)';
   }
 }
 
@@ -9738,6 +10650,7 @@ abstract mixin class _$NotificationPagedDtoCopyWith<$Res>
       @JsonKey(name: 'pageSize') int? pageSize,
       @JsonKey(name: 'totalCount') int? totalCount,
       @JsonKey(name: 'unreadCount') int? unreadCount,
+      @JsonKey(name: 'unseenCount') int? unseenCount,
       @JsonKey(name: 'hasMore') bool? hasMore});
 }
 
@@ -9759,6 +10672,7 @@ class __$NotificationPagedDtoCopyWithImpl<$Res>
     Object? pageSize = freezed,
     Object? totalCount = freezed,
     Object? unreadCount = freezed,
+    Object? unseenCount = freezed,
     Object? hasMore = freezed,
   }) {
     return _then(_NotificationPagedDto(
@@ -9782,6 +10696,10 @@ class __$NotificationPagedDtoCopyWithImpl<$Res>
           ? _self.unreadCount
           : unreadCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      unseenCount: freezed == unseenCount
+          ? _self.unseenCount
+          : unseenCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       hasMore: freezed == hasMore
           ? _self.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
@@ -9800,8 +10718,6 @@ mixin _$NotificationPreferencesDto {
   bool? get pushNotifications;
   @JsonKey(name: 'mentions')
   bool? get mentions;
-  @JsonKey(name: 'oldStepNotifications')
-  bool? get oldStepNotifications;
   @JsonKey(name: 'trendingStepSuggestions')
   bool? get trendingStepSuggestions;
   @JsonKey(name: 'trendingJourneySuggestions')
@@ -9832,8 +10748,6 @@ mixin _$NotificationPreferencesDto {
                 other.pushNotifications == pushNotifications) &&
             (identical(other.mentions, mentions) ||
                 other.mentions == mentions) &&
-            (identical(other.oldStepNotifications, oldStepNotifications) ||
-                other.oldStepNotifications == oldStepNotifications) &&
             (identical(
                     other.trendingStepSuggestions, trendingStepSuggestions) ||
                 other.trendingStepSuggestions == trendingStepSuggestions) &&
@@ -9853,14 +10767,13 @@ mixin _$NotificationPreferencesDto {
       userId,
       pushNotifications,
       mentions,
-      oldStepNotifications,
       trendingStepSuggestions,
       trendingJourneySuggestions,
       followSuggestions);
 
   @override
   String toString() {
-    return 'NotificationPreferencesDto(id: $id, userId: $userId, pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+    return 'NotificationPreferencesDto(id: $id, userId: $userId, pushNotifications: $pushNotifications, mentions: $mentions, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
   }
 }
 
@@ -9875,7 +10788,6 @@ abstract mixin class $NotificationPreferencesDtoCopyWith<$Res> {
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'pushNotifications') bool? pushNotifications,
       @JsonKey(name: 'mentions') bool? mentions,
-      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
       @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
       @JsonKey(name: 'trendingJourneySuggestions')
       bool? trendingJourneySuggestions,
@@ -9899,7 +10811,6 @@ class _$NotificationPreferencesDtoCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? pushNotifications = freezed,
     Object? mentions = freezed,
-    Object? oldStepNotifications = freezed,
     Object? trendingStepSuggestions = freezed,
     Object? trendingJourneySuggestions = freezed,
     Object? followSuggestions = freezed,
@@ -9920,10 +10831,6 @@ class _$NotificationPreferencesDtoCopyWithImpl<$Res>
       mentions: freezed == mentions
           ? _self.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      oldStepNotifications: freezed == oldStepNotifications
-          ? _self.oldStepNotifications
-          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
               as bool?,
       trendingStepSuggestions: freezed == trendingStepSuggestions
           ? _self.trendingStepSuggestions
@@ -10037,7 +10944,6 @@ extension NotificationPreferencesDtoPatterns on NotificationPreferencesDto {
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'pushNotifications') bool? pushNotifications,
             @JsonKey(name: 'mentions') bool? mentions,
-            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
             @JsonKey(name: 'trendingStepSuggestions')
             bool? trendingStepSuggestions,
             @JsonKey(name: 'trendingJourneySuggestions')
@@ -10054,7 +10960,6 @@ extension NotificationPreferencesDtoPatterns on NotificationPreferencesDto {
             _that.userId,
             _that.pushNotifications,
             _that.mentions,
-            _that.oldStepNotifications,
             _that.trendingStepSuggestions,
             _that.trendingJourneySuggestions,
             _that.followSuggestions);
@@ -10083,7 +10988,6 @@ extension NotificationPreferencesDtoPatterns on NotificationPreferencesDto {
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'pushNotifications') bool? pushNotifications,
             @JsonKey(name: 'mentions') bool? mentions,
-            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
             @JsonKey(name: 'trendingStepSuggestions')
             bool? trendingStepSuggestions,
             @JsonKey(name: 'trendingJourneySuggestions')
@@ -10099,7 +11003,6 @@ extension NotificationPreferencesDtoPatterns on NotificationPreferencesDto {
             _that.userId,
             _that.pushNotifications,
             _that.mentions,
-            _that.oldStepNotifications,
             _that.trendingStepSuggestions,
             _that.trendingJourneySuggestions,
             _that.followSuggestions);
@@ -10125,7 +11028,6 @@ extension NotificationPreferencesDtoPatterns on NotificationPreferencesDto {
             @JsonKey(name: 'userId') String? userId,
             @JsonKey(name: 'pushNotifications') bool? pushNotifications,
             @JsonKey(name: 'mentions') bool? mentions,
-            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
             @JsonKey(name: 'trendingStepSuggestions')
             bool? trendingStepSuggestions,
             @JsonKey(name: 'trendingJourneySuggestions')
@@ -10141,7 +11043,6 @@ extension NotificationPreferencesDtoPatterns on NotificationPreferencesDto {
             _that.userId,
             _that.pushNotifications,
             _that.mentions,
-            _that.oldStepNotifications,
             _that.trendingStepSuggestions,
             _that.trendingJourneySuggestions,
             _that.followSuggestions);
@@ -10159,7 +11060,6 @@ class _NotificationPreferencesDto implements NotificationPreferencesDto {
       @JsonKey(name: 'userId') this.userId,
       @JsonKey(name: 'pushNotifications') this.pushNotifications,
       @JsonKey(name: 'mentions') this.mentions,
-      @JsonKey(name: 'oldStepNotifications') this.oldStepNotifications,
       @JsonKey(name: 'trendingStepSuggestions') this.trendingStepSuggestions,
       @JsonKey(name: 'trendingJourneySuggestions')
       this.trendingJourneySuggestions,
@@ -10179,9 +11079,6 @@ class _NotificationPreferencesDto implements NotificationPreferencesDto {
   @override
   @JsonKey(name: 'mentions')
   final bool? mentions;
-  @override
-  @JsonKey(name: 'oldStepNotifications')
-  final bool? oldStepNotifications;
   @override
   @JsonKey(name: 'trendingStepSuggestions')
   final bool? trendingStepSuggestions;
@@ -10219,8 +11116,6 @@ class _NotificationPreferencesDto implements NotificationPreferencesDto {
                 other.pushNotifications == pushNotifications) &&
             (identical(other.mentions, mentions) ||
                 other.mentions == mentions) &&
-            (identical(other.oldStepNotifications, oldStepNotifications) ||
-                other.oldStepNotifications == oldStepNotifications) &&
             (identical(
                     other.trendingStepSuggestions, trendingStepSuggestions) ||
                 other.trendingStepSuggestions == trendingStepSuggestions) &&
@@ -10240,14 +11135,13 @@ class _NotificationPreferencesDto implements NotificationPreferencesDto {
       userId,
       pushNotifications,
       mentions,
-      oldStepNotifications,
       trendingStepSuggestions,
       trendingJourneySuggestions,
       followSuggestions);
 
   @override
   String toString() {
-    return 'NotificationPreferencesDto(id: $id, userId: $userId, pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+    return 'NotificationPreferencesDto(id: $id, userId: $userId, pushNotifications: $pushNotifications, mentions: $mentions, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
   }
 }
 
@@ -10265,7 +11159,6 @@ abstract mixin class _$NotificationPreferencesDtoCopyWith<$Res>
       @JsonKey(name: 'userId') String? userId,
       @JsonKey(name: 'pushNotifications') bool? pushNotifications,
       @JsonKey(name: 'mentions') bool? mentions,
-      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
       @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
       @JsonKey(name: 'trendingJourneySuggestions')
       bool? trendingJourneySuggestions,
@@ -10289,7 +11182,6 @@ class __$NotificationPreferencesDtoCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? pushNotifications = freezed,
     Object? mentions = freezed,
-    Object? oldStepNotifications = freezed,
     Object? trendingStepSuggestions = freezed,
     Object? trendingJourneySuggestions = freezed,
     Object? followSuggestions = freezed,
@@ -10310,10 +11202,6 @@ class __$NotificationPreferencesDtoCopyWithImpl<$Res>
       mentions: freezed == mentions
           ? _self.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      oldStepNotifications: freezed == oldStepNotifications
-          ? _self.oldStepNotifications
-          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
               as bool?,
       trendingStepSuggestions: freezed == trendingStepSuggestions
           ? _self.trendingStepSuggestions
@@ -12417,7 +13305,7 @@ class __$ReplyDtoCopyWithImpl<$Res> implements _$ReplyDtoCopyWith<$Res> {
 /// @nodoc
 mixin _$ReportCreatingDto {
   @JsonKey(name: 'entityType')
-  String get entityType;
+  EntityTypeDto get entityType;
   @JsonKey(name: 'entityId')
   String get entityId;
   @JsonKey(name: 'reason')
@@ -12463,7 +13351,7 @@ abstract mixin class $ReportCreatingDtoCopyWith<$Res> {
       _$ReportCreatingDtoCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'entityType') String entityType,
+      {@JsonKey(name: 'entityType') EntityTypeDto entityType,
       @JsonKey(name: 'entityId') String entityId,
       @JsonKey(name: 'reason') String reason});
 }
@@ -12489,7 +13377,7 @@ class _$ReportCreatingDtoCopyWithImpl<$Res>
       entityType: null == entityType
           ? _self.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as EntityTypeDto,
       entityId: null == entityId
           ? _self.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
@@ -12594,7 +13482,7 @@ extension ReportCreatingDtoPatterns on ReportCreatingDto {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'entityType') String entityType,
+            @JsonKey(name: 'entityType') EntityTypeDto entityType,
             @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reason') String reason)?
         $default, {
@@ -12625,7 +13513,7 @@ extension ReportCreatingDtoPatterns on ReportCreatingDto {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'entityType') String entityType,
+            @JsonKey(name: 'entityType') EntityTypeDto entityType,
             @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reason') String reason)
         $default,
@@ -12652,7 +13540,7 @@ extension ReportCreatingDtoPatterns on ReportCreatingDto {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'entityType') String entityType,
+            @JsonKey(name: 'entityType') EntityTypeDto entityType,
             @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reason') String reason)?
         $default,
@@ -12679,7 +13567,7 @@ class _ReportCreatingDto implements ReportCreatingDto {
 
   @override
   @JsonKey(name: 'entityType')
-  final String entityType;
+  final EntityTypeDto entityType;
   @override
   @JsonKey(name: 'entityId')
   final String entityId;
@@ -12733,7 +13621,7 @@ abstract mixin class _$ReportCreatingDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'entityType') String entityType,
+      {@JsonKey(name: 'entityType') EntityTypeDto entityType,
       @JsonKey(name: 'entityId') String entityId,
       @JsonKey(name: 'reason') String reason});
 }
@@ -12759,7 +13647,7 @@ class __$ReportCreatingDtoCopyWithImpl<$Res>
       entityType: null == entityType
           ? _self.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as EntityTypeDto,
       entityId: null == entityId
           ? _self.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
@@ -12777,7 +13665,7 @@ mixin _$ReportDto {
   @JsonKey(name: 'id')
   String? get id;
   @JsonKey(name: 'entityType')
-  String get entityType;
+  EntityTypeDto get entityType;
   @JsonKey(name: 'entityId')
   String get entityId;
   @JsonKey(name: 'reporter')
@@ -12786,6 +13674,14 @@ mixin _$ReportDto {
   String get reason;
   @JsonKey(name: 'createdDate')
   DateTime? get createdDate;
+  @JsonKey(name: 'reportedStep')
+  StepDetailDto? get reportedStep;
+  @JsonKey(name: 'reportedComment')
+  StepCommentDto? get reportedComment;
+  @JsonKey(name: 'reportedJourney')
+  JourneyWithPreviewDto? get reportedJourney;
+  @JsonKey(name: 'reportedUser')
+  UserDto? get reportedUser;
 
   /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
@@ -12811,17 +13707,35 @@ mixin _$ReportDto {
                 other.reporter == reporter) &&
             (identical(other.reason, reason) || other.reason == reason) &&
             (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
+                other.createdDate == createdDate) &&
+            (identical(other.reportedStep, reportedStep) ||
+                other.reportedStep == reportedStep) &&
+            (identical(other.reportedComment, reportedComment) ||
+                other.reportedComment == reportedComment) &&
+            (identical(other.reportedJourney, reportedJourney) ||
+                other.reportedJourney == reportedJourney) &&
+            (identical(other.reportedUser, reportedUser) ||
+                other.reportedUser == reportedUser));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, entityType, entityId, reporter, reason, createdDate);
+      runtimeType,
+      id,
+      entityType,
+      entityId,
+      reporter,
+      reason,
+      createdDate,
+      reportedStep,
+      reportedComment,
+      reportedJourney,
+      reportedUser);
 
   @override
   String toString() {
-    return 'ReportDto(id: $id, entityType: $entityType, entityId: $entityId, reporter: $reporter, reason: $reason, createdDate: $createdDate)';
+    return 'ReportDto(id: $id, entityType: $entityType, entityId: $entityId, reporter: $reporter, reason: $reason, createdDate: $createdDate, reportedStep: $reportedStep, reportedComment: $reportedComment, reportedJourney: $reportedJourney, reportedUser: $reportedUser)';
   }
 }
 
@@ -12832,13 +13746,21 @@ abstract mixin class $ReportDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'entityType') String entityType,
+      @JsonKey(name: 'entityType') EntityTypeDto entityType,
       @JsonKey(name: 'entityId') String entityId,
       @JsonKey(name: 'reporter') UserDto? reporter,
       @JsonKey(name: 'reason') String reason,
-      @JsonKey(name: 'createdDate') DateTime? createdDate});
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'reportedStep') StepDetailDto? reportedStep,
+      @JsonKey(name: 'reportedComment') StepCommentDto? reportedComment,
+      @JsonKey(name: 'reportedJourney') JourneyWithPreviewDto? reportedJourney,
+      @JsonKey(name: 'reportedUser') UserDto? reportedUser});
 
   $UserDtoCopyWith<$Res>? get reporter;
+  $StepDetailDtoCopyWith<$Res>? get reportedStep;
+  $StepCommentDtoCopyWith<$Res>? get reportedComment;
+  $JourneyWithPreviewDtoCopyWith<$Res>? get reportedJourney;
+  $UserDtoCopyWith<$Res>? get reportedUser;
 }
 
 /// @nodoc
@@ -12859,6 +13781,10 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
     Object? reporter = freezed,
     Object? reason = null,
     Object? createdDate = freezed,
+    Object? reportedStep = freezed,
+    Object? reportedComment = freezed,
+    Object? reportedJourney = freezed,
+    Object? reportedUser = freezed,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -12868,7 +13794,7 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
       entityType: null == entityType
           ? _self.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as EntityTypeDto,
       entityId: null == entityId
           ? _self.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
@@ -12885,6 +13811,22 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      reportedStep: freezed == reportedStep
+          ? _self.reportedStep
+          : reportedStep // ignore: cast_nullable_to_non_nullable
+              as StepDetailDto?,
+      reportedComment: freezed == reportedComment
+          ? _self.reportedComment
+          : reportedComment // ignore: cast_nullable_to_non_nullable
+              as StepCommentDto?,
+      reportedJourney: freezed == reportedJourney
+          ? _self.reportedJourney
+          : reportedJourney // ignore: cast_nullable_to_non_nullable
+              as JourneyWithPreviewDto?,
+      reportedUser: freezed == reportedUser
+          ? _self.reportedUser
+          : reportedUser // ignore: cast_nullable_to_non_nullable
+              as UserDto?,
     ));
   }
 
@@ -12899,6 +13841,63 @@ class _$ReportDtoCopyWithImpl<$Res> implements $ReportDtoCopyWith<$Res> {
 
     return $UserDtoCopyWith<$Res>(_self.reporter!, (value) {
       return _then(_self.copyWith(reporter: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StepDetailDtoCopyWith<$Res>? get reportedStep {
+    if (_self.reportedStep == null) {
+      return null;
+    }
+
+    return $StepDetailDtoCopyWith<$Res>(_self.reportedStep!, (value) {
+      return _then(_self.copyWith(reportedStep: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StepCommentDtoCopyWith<$Res>? get reportedComment {
+    if (_self.reportedComment == null) {
+      return null;
+    }
+
+    return $StepCommentDtoCopyWith<$Res>(_self.reportedComment!, (value) {
+      return _then(_self.copyWith(reportedComment: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $JourneyWithPreviewDtoCopyWith<$Res>? get reportedJourney {
+    if (_self.reportedJourney == null) {
+      return null;
+    }
+
+    return $JourneyWithPreviewDtoCopyWith<$Res>(_self.reportedJourney!,
+        (value) {
+      return _then(_self.copyWith(reportedJourney: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDtoCopyWith<$Res>? get reportedUser {
+    if (_self.reportedUser == null) {
+      return null;
+    }
+
+    return $UserDtoCopyWith<$Res>(_self.reportedUser!, (value) {
+      return _then(_self.copyWith(reportedUser: value));
     });
   }
 }
@@ -12996,19 +13995,33 @@ extension ReportDtoPatterns on ReportDto {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'entityType') String entityType,
+            @JsonKey(name: 'entityType') EntityTypeDto entityType,
             @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
-            @JsonKey(name: 'createdDate') DateTime? createdDate)?
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'reportedStep') StepDetailDto? reportedStep,
+            @JsonKey(name: 'reportedComment') StepCommentDto? reportedComment,
+            @JsonKey(name: 'reportedJourney')
+            JourneyWithPreviewDto? reportedJourney,
+            @JsonKey(name: 'reportedUser') UserDto? reportedUser)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _ReportDto() when $default != null:
-        return $default(_that.id, _that.entityType, _that.entityId,
-            _that.reporter, _that.reason, _that.createdDate);
+        return $default(
+            _that.id,
+            _that.entityType,
+            _that.entityId,
+            _that.reporter,
+            _that.reason,
+            _that.createdDate,
+            _that.reportedStep,
+            _that.reportedComment,
+            _that.reportedJourney,
+            _that.reportedUser);
       case _:
         return orElse();
     }
@@ -13031,18 +14044,32 @@ extension ReportDtoPatterns on ReportDto {
   TResult when<TResult extends Object?>(
     TResult Function(
             @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'entityType') String entityType,
+            @JsonKey(name: 'entityType') EntityTypeDto entityType,
             @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
-            @JsonKey(name: 'createdDate') DateTime? createdDate)
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'reportedStep') StepDetailDto? reportedStep,
+            @JsonKey(name: 'reportedComment') StepCommentDto? reportedComment,
+            @JsonKey(name: 'reportedJourney')
+            JourneyWithPreviewDto? reportedJourney,
+            @JsonKey(name: 'reportedUser') UserDto? reportedUser)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ReportDto():
-        return $default(_that.id, _that.entityType, _that.entityId,
-            _that.reporter, _that.reason, _that.createdDate);
+        return $default(
+            _that.id,
+            _that.entityType,
+            _that.entityId,
+            _that.reporter,
+            _that.reason,
+            _that.createdDate,
+            _that.reportedStep,
+            _that.reportedComment,
+            _that.reportedJourney,
+            _that.reportedUser);
     }
   }
 
@@ -13062,18 +14089,32 @@ extension ReportDtoPatterns on ReportDto {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             @JsonKey(name: 'id') String? id,
-            @JsonKey(name: 'entityType') String entityType,
+            @JsonKey(name: 'entityType') EntityTypeDto entityType,
             @JsonKey(name: 'entityId') String entityId,
             @JsonKey(name: 'reporter') UserDto? reporter,
             @JsonKey(name: 'reason') String reason,
-            @JsonKey(name: 'createdDate') DateTime? createdDate)?
+            @JsonKey(name: 'createdDate') DateTime? createdDate,
+            @JsonKey(name: 'reportedStep') StepDetailDto? reportedStep,
+            @JsonKey(name: 'reportedComment') StepCommentDto? reportedComment,
+            @JsonKey(name: 'reportedJourney')
+            JourneyWithPreviewDto? reportedJourney,
+            @JsonKey(name: 'reportedUser') UserDto? reportedUser)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _ReportDto() when $default != null:
-        return $default(_that.id, _that.entityType, _that.entityId,
-            _that.reporter, _that.reason, _that.createdDate);
+        return $default(
+            _that.id,
+            _that.entityType,
+            _that.entityId,
+            _that.reporter,
+            _that.reason,
+            _that.createdDate,
+            _that.reportedStep,
+            _that.reportedComment,
+            _that.reportedJourney,
+            _that.reportedUser);
       case _:
         return null;
     }
@@ -13089,7 +14130,11 @@ class _ReportDto implements ReportDto {
       @JsonKey(name: 'entityId') this.entityId = '',
       @JsonKey(name: 'reporter') this.reporter,
       @JsonKey(name: 'reason') required this.reason,
-      @JsonKey(name: 'createdDate') this.createdDate});
+      @JsonKey(name: 'createdDate') this.createdDate,
+      @JsonKey(name: 'reportedStep') this.reportedStep,
+      @JsonKey(name: 'reportedComment') this.reportedComment,
+      @JsonKey(name: 'reportedJourney') this.reportedJourney,
+      @JsonKey(name: 'reportedUser') this.reportedUser});
   factory _ReportDto.fromJson(Map<String, dynamic> json) =>
       _$ReportDtoFromJson(json);
 
@@ -13098,7 +14143,7 @@ class _ReportDto implements ReportDto {
   final String? id;
   @override
   @JsonKey(name: 'entityType')
-  final String entityType;
+  final EntityTypeDto entityType;
   @override
   @JsonKey(name: 'entityId')
   final String entityId;
@@ -13111,6 +14156,18 @@ class _ReportDto implements ReportDto {
   @override
   @JsonKey(name: 'createdDate')
   final DateTime? createdDate;
+  @override
+  @JsonKey(name: 'reportedStep')
+  final StepDetailDto? reportedStep;
+  @override
+  @JsonKey(name: 'reportedComment')
+  final StepCommentDto? reportedComment;
+  @override
+  @JsonKey(name: 'reportedJourney')
+  final JourneyWithPreviewDto? reportedJourney;
+  @override
+  @JsonKey(name: 'reportedUser')
+  final UserDto? reportedUser;
 
   /// Create a copy of ReportDto
   /// with the given fields replaced by the non-null parameter values.
@@ -13141,17 +14198,35 @@ class _ReportDto implements ReportDto {
                 other.reporter == reporter) &&
             (identical(other.reason, reason) || other.reason == reason) &&
             (identical(other.createdDate, createdDate) ||
-                other.createdDate == createdDate));
+                other.createdDate == createdDate) &&
+            (identical(other.reportedStep, reportedStep) ||
+                other.reportedStep == reportedStep) &&
+            (identical(other.reportedComment, reportedComment) ||
+                other.reportedComment == reportedComment) &&
+            (identical(other.reportedJourney, reportedJourney) ||
+                other.reportedJourney == reportedJourney) &&
+            (identical(other.reportedUser, reportedUser) ||
+                other.reportedUser == reportedUser));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, entityType, entityId, reporter, reason, createdDate);
+      runtimeType,
+      id,
+      entityType,
+      entityId,
+      reporter,
+      reason,
+      createdDate,
+      reportedStep,
+      reportedComment,
+      reportedJourney,
+      reportedUser);
 
   @override
   String toString() {
-    return 'ReportDto(id: $id, entityType: $entityType, entityId: $entityId, reporter: $reporter, reason: $reason, createdDate: $createdDate)';
+    return 'ReportDto(id: $id, entityType: $entityType, entityId: $entityId, reporter: $reporter, reason: $reason, createdDate: $createdDate, reportedStep: $reportedStep, reportedComment: $reportedComment, reportedJourney: $reportedJourney, reportedUser: $reportedUser)';
   }
 }
 
@@ -13165,14 +14240,26 @@ abstract mixin class _$ReportDtoCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'entityType') String entityType,
+      @JsonKey(name: 'entityType') EntityTypeDto entityType,
       @JsonKey(name: 'entityId') String entityId,
       @JsonKey(name: 'reporter') UserDto? reporter,
       @JsonKey(name: 'reason') String reason,
-      @JsonKey(name: 'createdDate') DateTime? createdDate});
+      @JsonKey(name: 'createdDate') DateTime? createdDate,
+      @JsonKey(name: 'reportedStep') StepDetailDto? reportedStep,
+      @JsonKey(name: 'reportedComment') StepCommentDto? reportedComment,
+      @JsonKey(name: 'reportedJourney') JourneyWithPreviewDto? reportedJourney,
+      @JsonKey(name: 'reportedUser') UserDto? reportedUser});
 
   @override
   $UserDtoCopyWith<$Res>? get reporter;
+  @override
+  $StepDetailDtoCopyWith<$Res>? get reportedStep;
+  @override
+  $StepCommentDtoCopyWith<$Res>? get reportedComment;
+  @override
+  $JourneyWithPreviewDtoCopyWith<$Res>? get reportedJourney;
+  @override
+  $UserDtoCopyWith<$Res>? get reportedUser;
 }
 
 /// @nodoc
@@ -13193,6 +14280,10 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
     Object? reporter = freezed,
     Object? reason = null,
     Object? createdDate = freezed,
+    Object? reportedStep = freezed,
+    Object? reportedComment = freezed,
+    Object? reportedJourney = freezed,
+    Object? reportedUser = freezed,
   }) {
     return _then(_ReportDto(
       id: freezed == id
@@ -13202,7 +14293,7 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
       entityType: null == entityType
           ? _self.entityType
           : entityType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as EntityTypeDto,
       entityId: null == entityId
           ? _self.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
@@ -13219,6 +14310,22 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
           ? _self.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      reportedStep: freezed == reportedStep
+          ? _self.reportedStep
+          : reportedStep // ignore: cast_nullable_to_non_nullable
+              as StepDetailDto?,
+      reportedComment: freezed == reportedComment
+          ? _self.reportedComment
+          : reportedComment // ignore: cast_nullable_to_non_nullable
+              as StepCommentDto?,
+      reportedJourney: freezed == reportedJourney
+          ? _self.reportedJourney
+          : reportedJourney // ignore: cast_nullable_to_non_nullable
+              as JourneyWithPreviewDto?,
+      reportedUser: freezed == reportedUser
+          ? _self.reportedUser
+          : reportedUser // ignore: cast_nullable_to_non_nullable
+              as UserDto?,
     ));
   }
 
@@ -13233,6 +14340,63 @@ class __$ReportDtoCopyWithImpl<$Res> implements _$ReportDtoCopyWith<$Res> {
 
     return $UserDtoCopyWith<$Res>(_self.reporter!, (value) {
       return _then(_self.copyWith(reporter: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StepDetailDtoCopyWith<$Res>? get reportedStep {
+    if (_self.reportedStep == null) {
+      return null;
+    }
+
+    return $StepDetailDtoCopyWith<$Res>(_self.reportedStep!, (value) {
+      return _then(_self.copyWith(reportedStep: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $StepCommentDtoCopyWith<$Res>? get reportedComment {
+    if (_self.reportedComment == null) {
+      return null;
+    }
+
+    return $StepCommentDtoCopyWith<$Res>(_self.reportedComment!, (value) {
+      return _then(_self.copyWith(reportedComment: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $JourneyWithPreviewDtoCopyWith<$Res>? get reportedJourney {
+    if (_self.reportedJourney == null) {
+      return null;
+    }
+
+    return $JourneyWithPreviewDtoCopyWith<$Res>(_self.reportedJourney!,
+        (value) {
+      return _then(_self.copyWith(reportedJourney: value));
+    });
+  }
+
+  /// Create a copy of ReportDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserDtoCopyWith<$Res>? get reportedUser {
+    if (_self.reportedUser == null) {
+      return null;
+    }
+
+    return $UserDtoCopyWith<$Res>(_self.reportedUser!, (value) {
+      return _then(_self.copyWith(reportedUser: value));
     });
   }
 }
@@ -13264,7 +14428,7 @@ mixin _$StepCommentDto {
   @JsonKey(name: 'isUnavailable')
   bool get isUnavailable;
   @JsonKey(name: 'unavailableReason')
-  String get unavailableReason;
+  String? get unavailableReason;
 
   /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
@@ -13349,7 +14513,7 @@ abstract mixin class $StepCommentDtoCopyWith<$Res> {
       @JsonKey(name: 'replyCount') int replyCount,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 
   $UserDtoCopyWith<$Res> get user;
 }
@@ -13379,7 +14543,7 @@ class _$StepCommentDtoCopyWithImpl<$Res>
     Object? replyCount = null,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -13430,10 +14594,10 @@ class _$StepCommentDtoCopyWithImpl<$Res>
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -13552,7 +14716,7 @@ extension StepCommentDtoPatterns on StepCommentDto {
             @JsonKey(name: 'replyCount') int replyCount,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
@@ -13606,7 +14770,7 @@ extension StepCommentDtoPatterns on StepCommentDto {
             @JsonKey(name: 'replyCount') int replyCount,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)
         $default,
   ) {
     final _that = this;
@@ -13656,7 +14820,7 @@ extension StepCommentDtoPatterns on StepCommentDto {
             @JsonKey(name: 'replyCount') int replyCount,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default,
   ) {
     final _that = this;
@@ -13740,7 +14904,7 @@ class _StepCommentDto implements StepCommentDto {
   final bool isUnavailable;
   @override
   @JsonKey(name: 'unavailableReason')
-  final String unavailableReason;
+  final String? unavailableReason;
 
   /// Create a copy of StepCommentDto
   /// with the given fields replaced by the non-null parameter values.
@@ -13831,7 +14995,7 @@ abstract mixin class _$StepCommentDtoCopyWith<$Res>
       @JsonKey(name: 'replyCount') int replyCount,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -13862,7 +15026,7 @@ class __$StepCommentDtoCopyWithImpl<$Res>
     Object? replyCount = null,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_StepCommentDto(
       id: null == id
@@ -13913,10 +15077,10 @@ class __$StepCommentDtoCopyWithImpl<$Res>
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -13978,7 +15142,7 @@ mixin _$StepDetailDto {
   @JsonKey(name: 'isUnavailable')
   bool get isUnavailable;
   @JsonKey(name: 'unavailableReason')
-  String get unavailableReason;
+  String? get unavailableReason;
 
   /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -14103,7 +15267,7 @@ abstract mixin class $StepDetailDtoCopyWith<$Res> {
       @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 
   $UserDtoCopyWith<$Res> get user;
   $JourneyDtoCopyWith<$Res> get journey;
@@ -14144,7 +15308,7 @@ class _$StepDetailDtoCopyWithImpl<$Res>
     Object? stepWithWindowHours = null,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_self.copyWith(
       user: null == user
@@ -14235,10 +15399,10 @@ class _$StepDetailDtoCopyWithImpl<$Res>
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -14379,7 +15543,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
             @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
@@ -14455,7 +15619,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
             @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)
         $default,
   ) {
     final _that = this;
@@ -14527,7 +15691,7 @@ extension StepDetailDtoPatterns on StepDetailDto {
             @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default,
   ) {
     final _that = this;
@@ -14682,7 +15846,7 @@ class _StepDetailDto implements StepDetailDto {
   final bool isUnavailable;
   @override
   @JsonKey(name: 'unavailableReason')
-  final String unavailableReason;
+  final String? unavailableReason;
 
   /// Create a copy of StepDetailDto
   /// with the given fields replaced by the non-null parameter values.
@@ -14813,7 +15977,7 @@ abstract mixin class _$StepDetailDtoCopyWith<$Res>
       @JsonKey(name: 'stepWithWindowHours') num stepWithWindowHours,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 
   @override
   $UserDtoCopyWith<$Res> get user;
@@ -14856,7 +16020,7 @@ class __$StepDetailDtoCopyWithImpl<$Res>
     Object? stepWithWindowHours = null,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_StepDetailDto(
       user: null == user
@@ -14947,10 +16111,10 @@ class __$StepDetailDtoCopyWithImpl<$Res>
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -14998,7 +16162,7 @@ mixin _$StepDto {
   @JsonKey(name: 'isUnavailable')
   bool get isUnavailable;
   @JsonKey(name: 'unavailableReason')
-  String get unavailableReason;
+  String? get unavailableReason;
 
   /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -15073,7 +16237,7 @@ abstract mixin class $StepDtoCopyWith<$Res> {
       @JsonKey(name: 'media') StepMediaDto? media,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 
   $StepMediaDtoCopyWith<$Res>? get media;
 }
@@ -15100,7 +16264,7 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
     Object? media = freezed,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_self.copyWith(
       id: null == id
@@ -15143,10 +16307,10 @@ class _$StepDtoCopyWithImpl<$Res> implements $StepDtoCopyWith<$Res> {
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -15267,7 +16431,7 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'media') StepMediaDto? media,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default, {
     required TResult orElse(),
   }) {
@@ -15317,7 +16481,7 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'media') StepMediaDto? media,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)
         $default,
   ) {
     final _that = this;
@@ -15363,7 +16527,7 @@ extension StepDtoPatterns on StepDto {
             @JsonKey(name: 'media') StepMediaDto? media,
             @JsonKey(name: 'isDeleted') bool isDeleted,
             @JsonKey(name: 'isUnavailable') bool isUnavailable,
-            @JsonKey(name: 'unavailableReason') String unavailableReason)?
+            @JsonKey(name: 'unavailableReason') String? unavailableReason)?
         $default,
   ) {
     final _that = this;
@@ -15437,7 +16601,7 @@ class _StepDto implements StepDto {
   final bool isUnavailable;
   @override
   @JsonKey(name: 'unavailableReason')
-  final String unavailableReason;
+  final String? unavailableReason;
 
   /// Create a copy of StepDto
   /// with the given fields replaced by the non-null parameter values.
@@ -15518,7 +16682,7 @@ abstract mixin class _$StepDtoCopyWith<$Res> implements $StepDtoCopyWith<$Res> {
       @JsonKey(name: 'media') StepMediaDto? media,
       @JsonKey(name: 'isDeleted') bool isDeleted,
       @JsonKey(name: 'isUnavailable') bool isUnavailable,
-      @JsonKey(name: 'unavailableReason') String unavailableReason});
+      @JsonKey(name: 'unavailableReason') String? unavailableReason});
 
   @override
   $StepMediaDtoCopyWith<$Res>? get media;
@@ -15546,7 +16710,7 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
     Object? media = freezed,
     Object? isDeleted = null,
     Object? isUnavailable = null,
-    Object? unavailableReason = null,
+    Object? unavailableReason = freezed,
   }) {
     return _then(_StepDto(
       id: null == id
@@ -15589,10 +16753,10 @@ class __$StepDtoCopyWithImpl<$Res> implements _$StepDtoCopyWith<$Res> {
           ? _self.isUnavailable
           : isUnavailable // ignore: cast_nullable_to_non_nullable
               as bool,
-      unavailableReason: null == unavailableReason
+      unavailableReason: freezed == unavailableReason
           ? _self.unavailableReason
           : unavailableReason // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 
@@ -18930,8 +20094,6 @@ mixin _$UpdatePreferencesDto {
   bool? get pushNotifications;
   @JsonKey(name: 'mentions')
   bool? get mentions;
-  @JsonKey(name: 'oldStepNotifications')
-  bool? get oldStepNotifications;
   @JsonKey(name: 'trendingStepSuggestions')
   bool? get trendingStepSuggestions;
   @JsonKey(name: 'trendingJourneySuggestions')
@@ -18959,8 +20121,6 @@ mixin _$UpdatePreferencesDto {
                 other.pushNotifications == pushNotifications) &&
             (identical(other.mentions, mentions) ||
                 other.mentions == mentions) &&
-            (identical(other.oldStepNotifications, oldStepNotifications) ||
-                other.oldStepNotifications == oldStepNotifications) &&
             (identical(
                     other.trendingStepSuggestions, trendingStepSuggestions) ||
                 other.trendingStepSuggestions == trendingStepSuggestions) &&
@@ -18974,18 +20134,12 @@ mixin _$UpdatePreferencesDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      pushNotifications,
-      mentions,
-      oldStepNotifications,
-      trendingStepSuggestions,
-      trendingJourneySuggestions,
-      followSuggestions);
+  int get hashCode => Object.hash(runtimeType, pushNotifications, mentions,
+      trendingStepSuggestions, trendingJourneySuggestions, followSuggestions);
 
   @override
   String toString() {
-    return 'UpdatePreferencesDto(pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+    return 'UpdatePreferencesDto(pushNotifications: $pushNotifications, mentions: $mentions, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
   }
 }
 
@@ -18998,7 +20152,6 @@ abstract mixin class $UpdatePreferencesDtoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'pushNotifications') bool? pushNotifications,
       @JsonKey(name: 'mentions') bool? mentions,
-      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
       @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
       @JsonKey(name: 'trendingJourneySuggestions')
       bool? trendingJourneySuggestions,
@@ -19020,7 +20173,6 @@ class _$UpdatePreferencesDtoCopyWithImpl<$Res>
   $Res call({
     Object? pushNotifications = freezed,
     Object? mentions = freezed,
-    Object? oldStepNotifications = freezed,
     Object? trendingStepSuggestions = freezed,
     Object? trendingJourneySuggestions = freezed,
     Object? followSuggestions = freezed,
@@ -19033,10 +20185,6 @@ class _$UpdatePreferencesDtoCopyWithImpl<$Res>
       mentions: freezed == mentions
           ? _self.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      oldStepNotifications: freezed == oldStepNotifications
-          ? _self.oldStepNotifications
-          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
               as bool?,
       trendingStepSuggestions: freezed == trendingStepSuggestions
           ? _self.trendingStepSuggestions
@@ -19148,7 +20296,6 @@ extension UpdatePreferencesDtoPatterns on UpdatePreferencesDto {
     TResult Function(
             @JsonKey(name: 'pushNotifications') bool? pushNotifications,
             @JsonKey(name: 'mentions') bool? mentions,
-            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
             @JsonKey(name: 'trendingStepSuggestions')
             bool? trendingStepSuggestions,
             @JsonKey(name: 'trendingJourneySuggestions')
@@ -19163,7 +20310,6 @@ extension UpdatePreferencesDtoPatterns on UpdatePreferencesDto {
         return $default(
             _that.pushNotifications,
             _that.mentions,
-            _that.oldStepNotifications,
             _that.trendingStepSuggestions,
             _that.trendingJourneySuggestions,
             _that.followSuggestions);
@@ -19190,7 +20336,6 @@ extension UpdatePreferencesDtoPatterns on UpdatePreferencesDto {
     TResult Function(
             @JsonKey(name: 'pushNotifications') bool? pushNotifications,
             @JsonKey(name: 'mentions') bool? mentions,
-            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
             @JsonKey(name: 'trendingStepSuggestions')
             bool? trendingStepSuggestions,
             @JsonKey(name: 'trendingJourneySuggestions')
@@ -19204,7 +20349,6 @@ extension UpdatePreferencesDtoPatterns on UpdatePreferencesDto {
         return $default(
             _that.pushNotifications,
             _that.mentions,
-            _that.oldStepNotifications,
             _that.trendingStepSuggestions,
             _that.trendingJourneySuggestions,
             _that.followSuggestions);
@@ -19228,7 +20372,6 @@ extension UpdatePreferencesDtoPatterns on UpdatePreferencesDto {
     TResult? Function(
             @JsonKey(name: 'pushNotifications') bool? pushNotifications,
             @JsonKey(name: 'mentions') bool? mentions,
-            @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
             @JsonKey(name: 'trendingStepSuggestions')
             bool? trendingStepSuggestions,
             @JsonKey(name: 'trendingJourneySuggestions')
@@ -19242,7 +20385,6 @@ extension UpdatePreferencesDtoPatterns on UpdatePreferencesDto {
         return $default(
             _that.pushNotifications,
             _that.mentions,
-            _that.oldStepNotifications,
             _that.trendingStepSuggestions,
             _that.trendingJourneySuggestions,
             _that.followSuggestions);
@@ -19258,7 +20400,6 @@ class _UpdatePreferencesDto implements UpdatePreferencesDto {
   _UpdatePreferencesDto(
       {@JsonKey(name: 'pushNotifications') this.pushNotifications,
       @JsonKey(name: 'mentions') this.mentions,
-      @JsonKey(name: 'oldStepNotifications') this.oldStepNotifications,
       @JsonKey(name: 'trendingStepSuggestions') this.trendingStepSuggestions,
       @JsonKey(name: 'trendingJourneySuggestions')
       this.trendingJourneySuggestions,
@@ -19272,9 +20413,6 @@ class _UpdatePreferencesDto implements UpdatePreferencesDto {
   @override
   @JsonKey(name: 'mentions')
   final bool? mentions;
-  @override
-  @JsonKey(name: 'oldStepNotifications')
-  final bool? oldStepNotifications;
   @override
   @JsonKey(name: 'trendingStepSuggestions')
   final bool? trendingStepSuggestions;
@@ -19310,8 +20448,6 @@ class _UpdatePreferencesDto implements UpdatePreferencesDto {
                 other.pushNotifications == pushNotifications) &&
             (identical(other.mentions, mentions) ||
                 other.mentions == mentions) &&
-            (identical(other.oldStepNotifications, oldStepNotifications) ||
-                other.oldStepNotifications == oldStepNotifications) &&
             (identical(
                     other.trendingStepSuggestions, trendingStepSuggestions) ||
                 other.trendingStepSuggestions == trendingStepSuggestions) &&
@@ -19325,18 +20461,12 @@ class _UpdatePreferencesDto implements UpdatePreferencesDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      pushNotifications,
-      mentions,
-      oldStepNotifications,
-      trendingStepSuggestions,
-      trendingJourneySuggestions,
-      followSuggestions);
+  int get hashCode => Object.hash(runtimeType, pushNotifications, mentions,
+      trendingStepSuggestions, trendingJourneySuggestions, followSuggestions);
 
   @override
   String toString() {
-    return 'UpdatePreferencesDto(pushNotifications: $pushNotifications, mentions: $mentions, oldStepNotifications: $oldStepNotifications, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
+    return 'UpdatePreferencesDto(pushNotifications: $pushNotifications, mentions: $mentions, trendingStepSuggestions: $trendingStepSuggestions, trendingJourneySuggestions: $trendingJourneySuggestions, followSuggestions: $followSuggestions)';
   }
 }
 
@@ -19351,7 +20481,6 @@ abstract mixin class _$UpdatePreferencesDtoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'pushNotifications') bool? pushNotifications,
       @JsonKey(name: 'mentions') bool? mentions,
-      @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
       @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
       @JsonKey(name: 'trendingJourneySuggestions')
       bool? trendingJourneySuggestions,
@@ -19373,7 +20502,6 @@ class __$UpdatePreferencesDtoCopyWithImpl<$Res>
   $Res call({
     Object? pushNotifications = freezed,
     Object? mentions = freezed,
-    Object? oldStepNotifications = freezed,
     Object? trendingStepSuggestions = freezed,
     Object? trendingJourneySuggestions = freezed,
     Object? followSuggestions = freezed,
@@ -19386,10 +20514,6 @@ class __$UpdatePreferencesDtoCopyWithImpl<$Res>
       mentions: freezed == mentions
           ? _self.mentions
           : mentions // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      oldStepNotifications: freezed == oldStepNotifications
-          ? _self.oldStepNotifications
-          : oldStepNotifications // ignore: cast_nullable_to_non_nullable
               as bool?,
       trendingStepSuggestions: freezed == trendingStepSuggestions
           ? _self.trendingStepSuggestions

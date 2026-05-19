@@ -1,0 +1,111 @@
+openapi: 3.1.1
+info:
+  version: 1.0.0
+  title: OAS 3.1 Nullable Patterns API
+  x-dart-name: Oas31NullableApi
+
+paths:
+  /accounts/{id}:
+    get:
+      operationId: getAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+
+components:
+  schemas:
+    # Object schema used as a nullable ref target.
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+
+    # Enum schema with a `null` value entry — the canonical OAS 3.1 pattern
+    # the backend team showed. Generator must strip the null and emit the
+    # rest as a regular Dart enum (no nullable member, no junk type).
+    UserRole:
+      enum:
+        - Moderator
+        - Admin
+        - SuperAdmin
+        - null
+
+    # Enum schema with NO null in values — used for the "default on nullable
+    # oneOf ref to an enum" case (Heart-style InteractionType).
+    InteractionType:
+      type: string
+      enum:
+        - Heart
+        - Star
+        - ThumbsUp
+
+    Account:
+      type: object
+      properties:
+        # Case 1a: nullable ref via oneOf, NOT in required: → User?
+        owner:
+          oneOf:
+            - type: "null"
+            - $ref: '#/components/schemas/User'
+
+        # Case 1b: nullable ref via oneOf to an enum schema, NOT in required: →
+        # UserRoleDto?. Crucially: must NOT synthesize an AccountRoleDto wrapper.
+        role:
+          oneOf:
+            - type: "null"
+            - $ref: '#/components/schemas/UserRole'
+
+        # Bonus: nullable oneOf ref to enum + `default:` → should emit
+        # @Default(InteractionTypeDto.heart), not @Default('Heart').
+        interactionType:
+          oneOf:
+            - type: "null"
+            - $ref: '#/components/schemas/InteractionType'
+          default: Heart
+
+        # Case 3a: scalar nullable via type-array, NOT in required: → String?
+        nickname:
+          type:
+            - "null"
+            - "string"
+
+        # Case 3b: scalar nullable via type-array, IN required: → still String?
+        # (the schema declares null as a valid value, so use-site nullability
+        # follows even when the property is required).
+        firstStepId:
+          type:
+            - "null"
+            - "string"
+
+        # Case 3c: integer with null in type-array → int?
+        score:
+          type:
+            - "null"
+            - "integer"
+
+        # Case 1c: same nullable-oneOf shape, but the property IS in required:.
+        # The schema literally declares null as valid, so the field is still
+        # nullable.
+        primaryRole:
+          oneOf:
+            - type: "null"
+            - $ref: '#/components/schemas/UserRole'
+      required:
+        - firstStepId
+        - primaryRole

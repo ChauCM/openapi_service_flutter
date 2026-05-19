@@ -578,32 +578,20 @@ paths:
     get:
       tags:
         - Notifications
-      summary: Get unread notifications count
+      summary: Get unread and unseen notification counts
       responses:
         "200":
           description: OK
           content:
             text/plain:
               schema:
-                pattern: ^-?(?:0|[1-9]\d*)$
-                type:
-                  - integer
-                  - string
-                format: int32
+                $ref: "#/components/schemas/NotificationCountsDto"
             application/json:
               schema:
-                pattern: ^-?(?:0|[1-9]\d*)$
-                type:
-                  - integer
-                  - string
-                format: int32
+                $ref: "#/components/schemas/NotificationCountsDto"
             text/json:
               schema:
-                pattern: ^-?(?:0|[1-9]\d*)$
-                type:
-                  - integer
-                  - string
-                format: int32
+                $ref: "#/components/schemas/NotificationCountsDto"
   /api/v1/notifications/{notificationId}/read:
     put:
       tags:
@@ -619,6 +607,16 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
   /api/v1/notifications/read-status:
     put:
       tags:
@@ -627,6 +625,34 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
+  /api/v1/notifications/seen:
+    put:
+      tags:
+        - Notifications
+      summary: Mark all notifications as seen (clears the badge without marking individual rows read)
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
+            text/json:
+              schema:
+                $ref: "#/components/schemas/NotificationCountsDto"
   /api/v1/notifications/{notificationId}:
     delete:
       tags:
@@ -916,6 +942,22 @@ paths:
           schema:
             type: string
             format: uuid
+        - name: width
+          in: query
+          schema:
+            pattern: ^-?(?:0|[1-9]\d*)$
+            type:
+              - integer
+              - string
+            format: int32
+        - name: height
+          in: query
+          schema:
+            pattern: ^-?(?:0|[1-9]\d*)$
+            type:
+              - integer
+              - string
+            format: int32
       requestBody:
         content:
           image/jpg:
@@ -1113,36 +1155,7 @@ paths:
       tags:
         - Journeys
       summary: Close a journey
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: finalStepId
-          in: query
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/JourneyDto"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/JourneyDto"
-            text/json:
-              schema:
-                $ref: "#/components/schemas/JourneyDto"
-  /api/v1/journeys/{id}/reopen:
-    post:
-      tags:
-        - Journeys
-      summary: Reopen a closed journey
+      description: "Closes the journey with status 'Closed' (for pausing/abandoning). "
       parameters:
         - name: id
           in: path
@@ -1427,17 +1440,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/JourneyInProfileDto"
+                  $ref: "#/components/schemas/JourneyWithPreviewDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/JourneyInProfileDto"
+                  $ref: "#/components/schemas/JourneyWithPreviewDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/JourneyInProfileDto"
+                  $ref: "#/components/schemas/JourneyWithPreviewDto"
   /api/v1/account/journeys:
     get:
       tags:
@@ -1470,17 +1483,17 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/JourneyInProfileDto"
+                  $ref: "#/components/schemas/JourneyWithPreviewDto"
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/JourneyInProfileDto"
+                  $ref: "#/components/schemas/JourneyWithPreviewDto"
             text/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/JourneyInProfileDto"
+                  $ref: "#/components/schemas/JourneyWithPreviewDto"
   /api/v1/journeys/{journeyId}/follow:
     post:
       tags:
@@ -2145,18 +2158,13 @@ paths:
     get:
       tags:
         - Feed
-      summary: Get user's personalized feed with following and discovery content
+      summary: Get the user's chronological feed (following + self) with occasional popular community posts
       parameters:
-        - name: page
+        - name: cursor
           in: query
           schema:
-            pattern: ^-?(?:0|[1-9]\d*)$
-            type:
-              - integer
-              - string
-            format: int32
-            default: 1
-        - name: pageSize
+            type: string
+        - name: limit
           in: query
           schema:
             pattern: ^-?(?:0|[1-9]\d*)$
@@ -2171,19 +2179,13 @@ paths:
           content:
             text/plain:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/StepDetailDto"
+                $ref: "#/components/schemas/FeedPageDto"
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/StepDetailDto"
+                $ref: "#/components/schemas/FeedPageDto"
             text/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/StepDetailDto"
+                $ref: "#/components/schemas/FeedPageDto"
   /api/v1/comments/{commentId}:
     delete:
       tags:
@@ -2397,11 +2399,11 @@ paths:
         - name: type
           in: query
           schema:
-            type: string
+            $ref: "#/components/schemas/FeedbackType"
         - name: status
           in: query
           schema:
-            type: string
+            $ref: "#/components/schemas/FeedbackStatus"
       responses:
         "200":
           description: OK
@@ -2606,7 +2608,9 @@ components:
         user:
           $ref: "#/components/schemas/UserDto"
         role:
-          $ref: "#/components/schemas/NullableOfUserRole"
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/UserRole"
     AppFeedbackDto:
       required:
         - id
@@ -2754,6 +2758,7 @@ components:
       type: object
       properties:
         type:
+          default: Heart
           $ref: "#/components/schemas/InteractionType"
     CreateReplyCommentDto:
       required:
@@ -2802,6 +2807,7 @@ components:
       type: object
       properties:
         type:
+          default: Heart
           $ref: "#/components/schemas/InteractionType"
     EditUserDto:
       required:
@@ -2826,6 +2832,12 @@ components:
         isPrivate:
           type: boolean
           default: false
+    EntityType:
+      enum:
+        - Step
+        - Comment
+        - User
+        - Journey
     FeedbackStatus:
       enum:
         - Open
@@ -2841,6 +2853,19 @@ components:
         - UiUxIssue
         - Performance
         - Other
+    FeedPageDto:
+      required:
+        - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/StepDetailDto"
+        nextCursor:
+          type:
+            - "null"
+            - string
     FollowingStatusDto:
       required:
         - status
@@ -2853,7 +2878,6 @@ components:
         - NotFollowing
         - Following
         - Requested
-      default: NotFollowing
     FollowRequestDto:
       required:
         - requesterId
@@ -2886,7 +2910,6 @@ components:
         - Heart
         - Share
         - Comment
-      default: Heart
     JourneyCreatingDto:
       required:
         - title
@@ -2952,8 +2975,8 @@ components:
           type: string
           format: date-time
         status:
-          type: string
           default: Open
+          $ref: "#/components/schemas/JourneyStatus"
         completedDate:
           type:
             - "null"
@@ -3053,7 +3076,12 @@ components:
           type:
             - "null"
             - string
-    JourneyInProfileDto:
+    JourneyStatus:
+      enum:
+        - Open
+        - Achievement
+        - Closed
+    JourneyWithPreviewDto:
       required:
         - journey
         - stepsCount
@@ -3099,6 +3127,21 @@ components:
         - Processing
         - Completed
         - Failed
+    NotificationCountsDto:
+      type: object
+      properties:
+        unreadCount:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+            - integer
+            - string
+          format: int32
+        unseenCount:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+            - integer
+            - string
+          format: int32
     NotificationDto:
       type: object
       properties:
@@ -3111,32 +3154,71 @@ components:
         body:
           type: string
           default: ""
-        notificationType:
+        type:
+          default: SystemAnnouncement
           $ref: "#/components/schemas/NotificationType"
-        isRead:
-          type: boolean
+        readAt:
+          type:
+            - "null"
+            - string
+          format: date-time
         createdDate:
           type: string
           format: date-time
-        data:
-          type:
-            - "null"
-            - object
-          additionalProperties:
-            type: string
         priority:
           pattern: ^-?(?:0|[1-9]\d*)$
           type:
             - integer
             - string
           format: int32
-        relatedEntityId:
+        isRead:
+          type: boolean
+        stepId:
           type:
             - "null"
             - string
           format: uuid
-        sourceUser:
-          $ref: "#/components/schemas/UserDetailDto"
+        journeyId:
+          type:
+            - "null"
+            - string
+          format: uuid
+        commentId:
+          type:
+            - "null"
+            - string
+          format: uuid
+        sourceUserId:
+          type:
+            - "null"
+            - string
+        sourceUserName:
+          type:
+            - "null"
+            - string
+        sourceUserDisplayName:
+          type:
+            - "null"
+            - string
+        sourceUserProfilePictureUrl:
+          type:
+            - "null"
+            - string
+        contentPreview:
+          type:
+            - "null"
+            - string
+        contentImageUrl:
+          type:
+            - "null"
+            - string
+        interactionCount:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+            - "null"
+            - integer
+            - string
+          format: int32
     NotificationPagedDto:
       type: object
       properties:
@@ -3168,6 +3250,12 @@ components:
             - integer
             - string
           format: int32
+        unseenCount:
+          pattern: ^-?(?:0|[1-9]\d*)$
+          type:
+            - integer
+            - string
+          format: int32
         hasMore:
           type: boolean
     NotificationPreferencesDto:
@@ -3181,8 +3269,6 @@ components:
         pushNotifications:
           type: boolean
         mentions:
-          type: boolean
-        oldStepNotifications:
           type: boolean
         trendingStepSuggestions:
           type: boolean
@@ -3211,12 +3297,6 @@ components:
         - ModerationAlert
         - AccountWarning
         - SecurityAlert
-    NullableOfUserRole:
-      enum:
-        - Moderator
-        - Admin
-        - SuperAdmin
-        - null
     PageResponseOfAppFeedbackDto:
       type: object
       properties:
@@ -3343,7 +3423,9 @@ components:
           type: string
           format: uuid
         responseToUser:
-          $ref: "#/components/schemas/UserDto"
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/UserDto"
         responseToCommentId:
           type:
             - "null"
@@ -3367,10 +3449,9 @@ components:
       type: object
       properties:
         entityType:
-          type: string
+          $ref: "#/components/schemas/EntityType"
         entityId:
           type: string
-          default: ""
         reason:
           maxLength: 500
           type: string
@@ -3384,17 +3465,35 @@ components:
           type: string
           format: uuid
         entityType:
-          type: string
+          $ref: "#/components/schemas/EntityType"
         entityId:
           type: string
           default: ""
         reporter:
-          $ref: "#/components/schemas/UserDto"
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/UserDto"
         reason:
           type: string
         createdDate:
           type: string
           format: date-time
+        reportedStep:
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/StepDetailDto"
+        reportedComment:
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/StepCommentDto"
+        reportedJourney:
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/JourneyWithPreviewDto"
+        reportedUser:
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/UserDto"
     StepCommentDto:
       required:
         - id
@@ -3592,7 +3691,9 @@ components:
             - string
           format: double
         media:
-          $ref: "#/components/schemas/StepMediaDto"
+          oneOf:
+            - type: "null"
+            - $ref: "#/components/schemas/StepMediaDto"
         isDeleted:
           type: boolean
           default: false
@@ -3852,8 +3953,6 @@ components:
           type: boolean
         mentions:
           type: boolean
-        oldStepNotifications:
-          type: boolean
         trendingStepSuggestions:
           type: boolean
         trendingJourneySuggestions:
@@ -3894,6 +3993,7 @@ components:
         user:
           $ref: "#/components/schemas/UserDto"
         followingStatus:
+          default: NotFollowing
           $ref: "#/components/schemas/FollowingStatusEnum"
         isFollowingMe:
           type: boolean
@@ -3942,17 +4042,23 @@ components:
           type: string
           format: date-time
         status:
+          default: Active
           $ref: "#/components/schemas/UserStatus"
         isRestricted:
           type: boolean
           default: false
+    UserRole:
+      enum:
+        - Moderator
+        - Admin
+        - SuperAdmin
+        - null
     UserStatus:
       enum:
         - Active
         - ShadowBanned
         - HardBanned
         - Deactivated
-      default: Active
     VideoPreSignedUrlDto:
       type: object
       properties:

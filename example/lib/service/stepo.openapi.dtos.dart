@@ -156,6 +156,35 @@ sealed class EditUserDto with _$EditUserDto {
       _$EditUserDtoFromJson(json);
 }
 
+enum EntityTypeDto {
+  @JsonValue('Step')
+  step,
+  @JsonValue('Comment')
+  comment,
+  @JsonValue('User')
+  user,
+  @JsonValue('Journey')
+  journey,
+}
+
+extension EntityTypeDtoExt on EntityTypeDto {
+  static final Map<String, EntityTypeDto> _names = {
+    'Step': EntityTypeDto.step,
+    'Comment': EntityTypeDto.comment,
+    'User': EntityTypeDto.user,
+    'Journey': EntityTypeDto.journey,
+  };
+  static EntityTypeDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for EntityTypeDto');
+  String get name => switch (this) {
+        EntityTypeDto.step => 'Step',
+        EntityTypeDto.comment => 'Comment',
+        EntityTypeDto.user => 'User',
+        EntityTypeDto.journey => 'Journey',
+      };
+}
+
 enum FeedbackStatusDto {
   @JsonValue('Open')
   open,
@@ -224,6 +253,17 @@ extension FeedbackTypeDtoExt on FeedbackTypeDto {
         FeedbackTypeDto.performance => 'Performance',
         FeedbackTypeDto.other => 'Other',
       };
+}
+
+@freezed
+sealed class FeedPageDto with _$FeedPageDto {
+  factory FeedPageDto({
+    @JsonKey(name: 'items') required List<StepDetailDto> items,
+    @JsonKey(name: 'nextCursor') String? nextCursor,
+  }) = _FeedPageDto;
+
+  factory FeedPageDto.fromJson(Map<String, dynamic> json) =>
+      _$FeedPageDtoFromJson(json);
 }
 
 @freezed
@@ -342,14 +382,16 @@ sealed class JourneyDto with _$JourneyDto {
     @JsonKey(name: 'description') @Default('') String description,
     @JsonKey(name: 'createdDate') required DateTime createdDate,
     @JsonKey(name: 'lastUpdated') required DateTime lastUpdated,
-    @JsonKey(name: 'status') @Default('Open') String status,
+    @JsonKey(name: 'status')
+    @Default(JourneyStatusDto.open)
+    JourneyStatusDto status,
     @JsonKey(name: 'completedDate') DateTime? completedDate,
     @JsonKey(name: 'userId') @Default('') String userId,
     @JsonKey(name: 'firstStepId') String? firstStepId,
     @JsonKey(name: 'finalStepId') String? finalStepId,
     @JsonKey(name: 'isDeleted') @Default(false) bool isDeleted,
     @JsonKey(name: 'isUnavailable') @Default(false) bool isUnavailable,
-    @JsonKey(name: 'unavailableReason') @Default('') String unavailableReason,
+    @JsonKey(name: 'unavailableReason') @Default('') String? unavailableReason,
   }) = _JourneyDto;
 
   factory JourneyDto.fromJson(Map<String, dynamic> json) =>
@@ -378,16 +420,41 @@ sealed class JourneyInDetailDto with _$JourneyInDetailDto {
       _$JourneyInDetailDtoFromJson(json);
 }
 
+enum JourneyStatusDto {
+  @JsonValue('Open')
+  open,
+  @JsonValue('Achievement')
+  achievement,
+  @JsonValue('Closed')
+  closed,
+}
+
+extension JourneyStatusDtoExt on JourneyStatusDto {
+  static final Map<String, JourneyStatusDto> _names = {
+    'Open': JourneyStatusDto.open,
+    'Achievement': JourneyStatusDto.achievement,
+    'Closed': JourneyStatusDto.closed,
+  };
+  static JourneyStatusDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for JourneyStatusDto');
+  String get name => switch (this) {
+        JourneyStatusDto.open => 'Open',
+        JourneyStatusDto.achievement => 'Achievement',
+        JourneyStatusDto.closed => 'Closed',
+      };
+}
+
 @freezed
-sealed class JourneyInProfileDto with _$JourneyInProfileDto {
-  factory JourneyInProfileDto({
+sealed class JourneyWithPreviewDto with _$JourneyWithPreviewDto {
+  factory JourneyWithPreviewDto({
     @JsonKey(name: 'journey') required JourneyDto journey,
     @JsonKey(name: 'stepsCount') required int stepsCount,
     @JsonKey(name: 'thumbnailSteps') required List<StepMediaDto> thumbnailSteps,
-  }) = _JourneyInProfileDto;
+  }) = _JourneyWithPreviewDto;
 
-  factory JourneyInProfileDto.fromJson(Map<String, dynamic> json) =>
-      _$JourneyInProfileDtoFromJson(json);
+  factory JourneyWithPreviewDto.fromJson(Map<String, dynamic> json) =>
+      _$JourneyWithPreviewDtoFromJson(json);
 }
 
 @freezed
@@ -442,18 +509,40 @@ extension MediaStatusDtoExt on MediaStatusDto {
 }
 
 @freezed
+sealed class NotificationCountsDto with _$NotificationCountsDto {
+  factory NotificationCountsDto({
+    @JsonKey(name: 'unreadCount') int? unreadCount,
+    @JsonKey(name: 'unseenCount') int? unseenCount,
+  }) = _NotificationCountsDto;
+
+  factory NotificationCountsDto.fromJson(Map<String, dynamic> json) =>
+      _$NotificationCountsDtoFromJson(json);
+}
+
+@freezed
 sealed class NotificationDto with _$NotificationDto {
   factory NotificationDto({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'title') @Default('') String title,
     @JsonKey(name: 'body') @Default('') String body,
-    @JsonKey(name: 'notificationType') NotificationTypeDto? notificationType,
-    @JsonKey(name: 'isRead') bool? isRead,
+    @JsonKey(name: 'type')
+    @Default(NotificationTypeDto.systemAnnouncement)
+    NotificationTypeDto type,
+    @JsonKey(name: 'readAt') DateTime? readAt,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
-    @JsonKey(name: 'data') Map<String, String>? data,
     @JsonKey(name: 'priority') int? priority,
-    @JsonKey(name: 'relatedEntityId') String? relatedEntityId,
-    @JsonKey(name: 'sourceUser') UserDetailDto? sourceUser,
+    @JsonKey(name: 'isRead') bool? isRead,
+    @JsonKey(name: 'stepId') String? stepId,
+    @JsonKey(name: 'journeyId') String? journeyId,
+    @JsonKey(name: 'commentId') String? commentId,
+    @JsonKey(name: 'sourceUserId') String? sourceUserId,
+    @JsonKey(name: 'sourceUserName') String? sourceUserName,
+    @JsonKey(name: 'sourceUserDisplayName') String? sourceUserDisplayName,
+    @JsonKey(name: 'sourceUserProfilePictureUrl')
+    String? sourceUserProfilePictureUrl,
+    @JsonKey(name: 'contentPreview') String? contentPreview,
+    @JsonKey(name: 'contentImageUrl') String? contentImageUrl,
+    @JsonKey(name: 'interactionCount') int? interactionCount,
   }) = _NotificationDto;
 
   factory NotificationDto.fromJson(Map<String, dynamic> json) =>
@@ -468,6 +557,7 @@ sealed class NotificationPagedDto with _$NotificationPagedDto {
     @JsonKey(name: 'pageSize') int? pageSize,
     @JsonKey(name: 'totalCount') int? totalCount,
     @JsonKey(name: 'unreadCount') int? unreadCount,
+    @JsonKey(name: 'unseenCount') int? unseenCount,
     @JsonKey(name: 'hasMore') bool? hasMore,
   }) = _NotificationPagedDto;
 
@@ -482,7 +572,6 @@ sealed class NotificationPreferencesDto with _$NotificationPreferencesDto {
     @JsonKey(name: 'userId') String? userId,
     @JsonKey(name: 'pushNotifications') bool? pushNotifications,
     @JsonKey(name: 'mentions') bool? mentions,
-    @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
     @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
     @JsonKey(name: 'trendingJourneySuggestions')
     bool? trendingJourneySuggestions,
@@ -582,31 +671,6 @@ extension NotificationTypeDtoExt on NotificationTypeDto {
       };
 }
 
-enum UserRoleDto {
-  @JsonValue('Moderator')
-  moderator,
-  @JsonValue('Admin')
-  admin,
-  @JsonValue('SuperAdmin')
-  superAdmin,
-}
-
-extension UserRoleDtoExt on UserRoleDto {
-  static final Map<String, UserRoleDto> _names = {
-    'Moderator': UserRoleDto.moderator,
-    'Admin': UserRoleDto.admin,
-    'SuperAdmin': UserRoleDto.superAdmin,
-  };
-  static UserRoleDto fromName(String name) =>
-      _names[name] ??
-      _throwStateError('Invalid enum name: $name for UserRoleDto');
-  String get name => switch (this) {
-        UserRoleDto.moderator => 'Moderator',
-        UserRoleDto.admin => 'Admin',
-        UserRoleDto.superAdmin => 'SuperAdmin',
-      };
-}
-
 @freezed
 sealed class PageResponseOfAppFeedbackDto with _$PageResponseOfAppFeedbackDto {
   factory PageResponseOfAppFeedbackDto({
@@ -676,7 +740,7 @@ sealed class ReplyDto with _$ReplyDto {
 @freezed
 sealed class ReportCreatingDto with _$ReportCreatingDto {
   factory ReportCreatingDto({
-    @JsonKey(name: 'entityType') required String entityType,
+    @JsonKey(name: 'entityType') required EntityTypeDto entityType,
     @JsonKey(name: 'entityId') required String entityId,
     @JsonKey(name: 'reason') required String reason,
   }) = _ReportCreatingDto;
@@ -689,11 +753,15 @@ sealed class ReportCreatingDto with _$ReportCreatingDto {
 sealed class ReportDto with _$ReportDto {
   factory ReportDto({
     @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'entityType') required String entityType,
+    @JsonKey(name: 'entityType') required EntityTypeDto entityType,
     @JsonKey(name: 'entityId') @Default('') String entityId,
     @JsonKey(name: 'reporter') UserDto? reporter,
     @JsonKey(name: 'reason') required String reason,
     @JsonKey(name: 'createdDate') DateTime? createdDate,
+    @JsonKey(name: 'reportedStep') StepDetailDto? reportedStep,
+    @JsonKey(name: 'reportedComment') StepCommentDto? reportedComment,
+    @JsonKey(name: 'reportedJourney') JourneyWithPreviewDto? reportedJourney,
+    @JsonKey(name: 'reportedUser') UserDto? reportedUser,
   }) = _ReportDto;
 
   factory ReportDto.fromJson(Map<String, dynamic> json) =>
@@ -715,7 +783,7 @@ sealed class StepCommentDto with _$StepCommentDto {
     @JsonKey(name: 'replyCount') @Default(0) int replyCount,
     @JsonKey(name: 'isDeleted') @Default(false) bool isDeleted,
     @JsonKey(name: 'isUnavailable') @Default(false) bool isUnavailable,
-    @JsonKey(name: 'unavailableReason') @Default('') String unavailableReason,
+    @JsonKey(name: 'unavailableReason') @Default('') String? unavailableReason,
   }) = _StepCommentDto;
 
   factory StepCommentDto.fromJson(Map<String, dynamic> json) =>
@@ -749,7 +817,7 @@ sealed class StepDetailDto with _$StepDetailDto {
     @JsonKey(name: 'stepWithWindowHours') required num stepWithWindowHours,
     @JsonKey(name: 'isDeleted') @Default(false) bool isDeleted,
     @JsonKey(name: 'isUnavailable') @Default(false) bool isUnavailable,
-    @JsonKey(name: 'unavailableReason') @Default('') String unavailableReason,
+    @JsonKey(name: 'unavailableReason') @Default('') String? unavailableReason,
   }) = _StepDetailDto;
 
   factory StepDetailDto.fromJson(Map<String, dynamic> json) =>
@@ -769,7 +837,7 @@ sealed class StepDto with _$StepDto {
     @JsonKey(name: 'media') StepMediaDto? media,
     @JsonKey(name: 'isDeleted') @Default(false) bool isDeleted,
     @JsonKey(name: 'isUnavailable') @Default(false) bool isUnavailable,
-    @JsonKey(name: 'unavailableReason') @Default('') String unavailableReason,
+    @JsonKey(name: 'unavailableReason') @Default('') String? unavailableReason,
   }) = _StepDto;
 
   factory StepDto.fromJson(Map<String, dynamic> json) =>
@@ -915,7 +983,6 @@ sealed class UpdatePreferencesDto with _$UpdatePreferencesDto {
   factory UpdatePreferencesDto({
     @JsonKey(name: 'pushNotifications') bool? pushNotifications,
     @JsonKey(name: 'mentions') bool? mentions,
-    @JsonKey(name: 'oldStepNotifications') bool? oldStepNotifications,
     @JsonKey(name: 'trendingStepSuggestions') bool? trendingStepSuggestions,
     @JsonKey(name: 'trendingJourneySuggestions')
     bool? trendingJourneySuggestions,
@@ -985,6 +1052,31 @@ sealed class UserDto with _$UserDto {
       _$UserDtoFromJson(json);
 }
 
+enum UserRoleDto {
+  @JsonValue('Moderator')
+  moderator,
+  @JsonValue('Admin')
+  admin,
+  @JsonValue('SuperAdmin')
+  superAdmin,
+}
+
+extension UserRoleDtoExt on UserRoleDto {
+  static final Map<String, UserRoleDto> _names = {
+    'Moderator': UserRoleDto.moderator,
+    'Admin': UserRoleDto.admin,
+    'SuperAdmin': UserRoleDto.superAdmin,
+  };
+  static UserRoleDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError('Invalid enum name: $name for UserRoleDto');
+  String get name => switch (this) {
+        UserRoleDto.moderator => 'Moderator',
+        UserRoleDto.admin => 'Admin',
+        UserRoleDto.superAdmin => 'SuperAdmin',
+      };
+}
+
 enum UserStatusDto {
   @JsonValue('Active')
   active,
@@ -1042,6 +1134,78 @@ sealed class VideoStatusDto with _$VideoStatusDto {
 
   factory VideoStatusDto.fromJson(Map<String, dynamic> json) =>
       _$VideoStatusDtoFromJson(json);
+}
+
+enum ApiV1AdminFeedbackGetTypeDto {
+  @JsonValue('BugReport')
+  bugReport,
+  @JsonValue('FeatureRequest')
+  featureRequest,
+  @JsonValue('GeneralFeedback')
+  generalFeedback,
+  @JsonValue('UiUxIssue')
+  uiUxIssue,
+  @JsonValue('Performance')
+  performance,
+  @JsonValue('Other')
+  other,
+}
+
+extension ApiV1AdminFeedbackGetTypeDtoExt on ApiV1AdminFeedbackGetTypeDto {
+  static final Map<String, ApiV1AdminFeedbackGetTypeDto> _names = {
+    'BugReport': ApiV1AdminFeedbackGetTypeDto.bugReport,
+    'FeatureRequest': ApiV1AdminFeedbackGetTypeDto.featureRequest,
+    'GeneralFeedback': ApiV1AdminFeedbackGetTypeDto.generalFeedback,
+    'UiUxIssue': ApiV1AdminFeedbackGetTypeDto.uiUxIssue,
+    'Performance': ApiV1AdminFeedbackGetTypeDto.performance,
+    'Other': ApiV1AdminFeedbackGetTypeDto.other,
+  };
+  static ApiV1AdminFeedbackGetTypeDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError(
+          'Invalid enum name: $name for ApiV1AdminFeedbackGetTypeDto');
+  String get name => switch (this) {
+        ApiV1AdminFeedbackGetTypeDto.bugReport => 'BugReport',
+        ApiV1AdminFeedbackGetTypeDto.featureRequest => 'FeatureRequest',
+        ApiV1AdminFeedbackGetTypeDto.generalFeedback => 'GeneralFeedback',
+        ApiV1AdminFeedbackGetTypeDto.uiUxIssue => 'UiUxIssue',
+        ApiV1AdminFeedbackGetTypeDto.performance => 'Performance',
+        ApiV1AdminFeedbackGetTypeDto.other => 'Other',
+      };
+}
+
+enum ApiV1AdminFeedbackGetStatusDto {
+  @JsonValue('Open')
+  open,
+  @JsonValue('InProgress')
+  inProgress,
+  @JsonValue('Resolved')
+  resolved,
+  @JsonValue('Closed')
+  closed,
+  @JsonValue('Duplicate')
+  duplicate,
+}
+
+extension ApiV1AdminFeedbackGetStatusDtoExt on ApiV1AdminFeedbackGetStatusDto {
+  static final Map<String, ApiV1AdminFeedbackGetStatusDto> _names = {
+    'Open': ApiV1AdminFeedbackGetStatusDto.open,
+    'InProgress': ApiV1AdminFeedbackGetStatusDto.inProgress,
+    'Resolved': ApiV1AdminFeedbackGetStatusDto.resolved,
+    'Closed': ApiV1AdminFeedbackGetStatusDto.closed,
+    'Duplicate': ApiV1AdminFeedbackGetStatusDto.duplicate,
+  };
+  static ApiV1AdminFeedbackGetStatusDto fromName(String name) =>
+      _names[name] ??
+      _throwStateError(
+          'Invalid enum name: $name for ApiV1AdminFeedbackGetStatusDto');
+  String get name => switch (this) {
+        ApiV1AdminFeedbackGetStatusDto.open => 'Open',
+        ApiV1AdminFeedbackGetStatusDto.inProgress => 'InProgress',
+        ApiV1AdminFeedbackGetStatusDto.resolved => 'Resolved',
+        ApiV1AdminFeedbackGetStatusDto.closed => 'Closed',
+        ApiV1AdminFeedbackGetStatusDto.duplicate => 'Duplicate',
+      };
 }
 
 T _throwStateError<T>(String message) => throw StateError(message);

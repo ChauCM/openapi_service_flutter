@@ -236,6 +236,19 @@ Map<String, dynamic> _$EditUserDtoToJson(_EditUserDto instance) =>
       'isPrivate': instance.isPrivate,
     };
 
+_FeedPageDto _$FeedPageDtoFromJson(Map<String, dynamic> json) => _FeedPageDto(
+      items: (json['items'] as List<dynamic>)
+          .map((e) => StepDetailDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      nextCursor: json['nextCursor'] as String?,
+    );
+
+Map<String, dynamic> _$FeedPageDtoToJson(_FeedPageDto instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+      'nextCursor': instance.nextCursor,
+    };
+
 _FollowingStatusDto _$FollowingStatusDtoFromJson(Map<String, dynamic> json) =>
     _FollowingStatusDto(
       status: $enumDecode(_$FollowingStatusEnumDtoEnumMap, json['status']),
@@ -319,7 +332,8 @@ _JourneyDto _$JourneyDtoFromJson(Map<String, dynamic> json) => _JourneyDto(
       description: json['description'] as String? ?? '',
       createdDate: DateTime.parse(json['createdDate'] as String),
       lastUpdated: DateTime.parse(json['lastUpdated'] as String),
-      status: json['status'] as String? ?? 'Open',
+      status: $enumDecodeNullable(_$JourneyStatusDtoEnumMap, json['status']) ??
+          JourneyStatusDto.open,
       completedDate: json['completedDate'] == null
           ? null
           : DateTime.parse(json['completedDate'] as String),
@@ -338,7 +352,7 @@ Map<String, dynamic> _$JourneyDtoToJson(_JourneyDto instance) =>
       'description': instance.description,
       'createdDate': instance.createdDate.toIso8601String(),
       'lastUpdated': instance.lastUpdated.toIso8601String(),
-      'status': instance.status,
+      'status': _$JourneyStatusDtoEnumMap[instance.status]!,
       'completedDate': instance.completedDate?.toIso8601String(),
       'userId': instance.userId,
       'firstStepId': instance.firstStepId,
@@ -347,6 +361,12 @@ Map<String, dynamic> _$JourneyDtoToJson(_JourneyDto instance) =>
       'isUnavailable': instance.isUnavailable,
       'unavailableReason': instance.unavailableReason,
     };
+
+const _$JourneyStatusDtoEnumMap = {
+  JourneyStatusDto.open: 'Open',
+  JourneyStatusDto.achievement: 'Achievement',
+  JourneyStatusDto.closed: 'Closed',
+};
 
 _JourneyInDetailDto _$JourneyInDetailDtoFromJson(Map<String, dynamic> json) =>
     _JourneyInDetailDto(
@@ -390,8 +410,9 @@ Map<String, dynamic> _$JourneyInDetailDtoToJson(_JourneyInDetailDto instance) =>
       'companionProgressMessage': instance.companionProgressMessage,
     };
 
-_JourneyInProfileDto _$JourneyInProfileDtoFromJson(Map<String, dynamic> json) =>
-    _JourneyInProfileDto(
+_JourneyWithPreviewDto _$JourneyWithPreviewDtoFromJson(
+        Map<String, dynamic> json) =>
+    _JourneyWithPreviewDto(
       journey: JourneyDto.fromJson(json['journey'] as Map<String, dynamic>),
       stepsCount: (json['stepsCount'] as num).toInt(),
       thumbnailSteps: (json['thumbnailSteps'] as List<dynamic>)
@@ -399,8 +420,8 @@ _JourneyInProfileDto _$JourneyInProfileDtoFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$JourneyInProfileDtoToJson(
-        _JourneyInProfileDto instance) =>
+Map<String, dynamic> _$JourneyWithPreviewDtoToJson(
+        _JourneyWithPreviewDto instance) =>
     <String, dynamic>{
       'journey': instance.journey,
       'stepsCount': instance.stepsCount,
@@ -429,25 +450,46 @@ Map<String, dynamic> _$LoginResponseDtoToJson(_LoginResponseDto instance) =>
       'uid': instance.uid,
     };
 
+_NotificationCountsDto _$NotificationCountsDtoFromJson(
+        Map<String, dynamic> json) =>
+    _NotificationCountsDto(
+      unreadCount: (json['unreadCount'] as num?)?.toInt(),
+      unseenCount: (json['unseenCount'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$NotificationCountsDtoToJson(
+        _NotificationCountsDto instance) =>
+    <String, dynamic>{
+      'unreadCount': instance.unreadCount,
+      'unseenCount': instance.unseenCount,
+    };
+
 _NotificationDto _$NotificationDtoFromJson(Map<String, dynamic> json) =>
     _NotificationDto(
       id: json['id'] as String?,
       title: json['title'] as String? ?? '',
       body: json['body'] as String? ?? '',
-      notificationType: $enumDecodeNullable(
-          _$NotificationTypeDtoEnumMap, json['notificationType']),
-      isRead: json['isRead'] as bool?,
+      type: $enumDecodeNullable(_$NotificationTypeDtoEnumMap, json['type']) ??
+          NotificationTypeDto.systemAnnouncement,
+      readAt: json['readAt'] == null
+          ? null
+          : DateTime.parse(json['readAt'] as String),
       createdDate: json['createdDate'] == null
           ? null
           : DateTime.parse(json['createdDate'] as String),
-      data: (json['data'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
       priority: (json['priority'] as num?)?.toInt(),
-      relatedEntityId: json['relatedEntityId'] as String?,
-      sourceUser: json['sourceUser'] == null
-          ? null
-          : UserDetailDto.fromJson(json['sourceUser'] as Map<String, dynamic>),
+      isRead: json['isRead'] as bool?,
+      stepId: json['stepId'] as String?,
+      journeyId: json['journeyId'] as String?,
+      commentId: json['commentId'] as String?,
+      sourceUserId: json['sourceUserId'] as String?,
+      sourceUserName: json['sourceUserName'] as String?,
+      sourceUserDisplayName: json['sourceUserDisplayName'] as String?,
+      sourceUserProfilePictureUrl:
+          json['sourceUserProfilePictureUrl'] as String?,
+      contentPreview: json['contentPreview'] as String?,
+      contentImageUrl: json['contentImageUrl'] as String?,
+      interactionCount: (json['interactionCount'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$NotificationDtoToJson(_NotificationDto instance) =>
@@ -455,14 +497,21 @@ Map<String, dynamic> _$NotificationDtoToJson(_NotificationDto instance) =>
       'id': instance.id,
       'title': instance.title,
       'body': instance.body,
-      'notificationType':
-          _$NotificationTypeDtoEnumMap[instance.notificationType],
-      'isRead': instance.isRead,
+      'type': _$NotificationTypeDtoEnumMap[instance.type]!,
+      'readAt': instance.readAt?.toIso8601String(),
       'createdDate': instance.createdDate?.toIso8601String(),
-      'data': instance.data,
       'priority': instance.priority,
-      'relatedEntityId': instance.relatedEntityId,
-      'sourceUser': instance.sourceUser,
+      'isRead': instance.isRead,
+      'stepId': instance.stepId,
+      'journeyId': instance.journeyId,
+      'commentId': instance.commentId,
+      'sourceUserId': instance.sourceUserId,
+      'sourceUserName': instance.sourceUserName,
+      'sourceUserDisplayName': instance.sourceUserDisplayName,
+      'sourceUserProfilePictureUrl': instance.sourceUserProfilePictureUrl,
+      'contentPreview': instance.contentPreview,
+      'contentImageUrl': instance.contentImageUrl,
+      'interactionCount': instance.interactionCount,
     };
 
 const _$NotificationTypeDtoEnumMap = {
@@ -497,6 +546,7 @@ _NotificationPagedDto _$NotificationPagedDtoFromJson(
       pageSize: (json['pageSize'] as num?)?.toInt(),
       totalCount: (json['totalCount'] as num?)?.toInt(),
       unreadCount: (json['unreadCount'] as num?)?.toInt(),
+      unseenCount: (json['unseenCount'] as num?)?.toInt(),
       hasMore: json['hasMore'] as bool?,
     );
 
@@ -508,6 +558,7 @@ Map<String, dynamic> _$NotificationPagedDtoToJson(
       'pageSize': instance.pageSize,
       'totalCount': instance.totalCount,
       'unreadCount': instance.unreadCount,
+      'unseenCount': instance.unseenCount,
       'hasMore': instance.hasMore,
     };
 
@@ -518,7 +569,6 @@ _NotificationPreferencesDto _$NotificationPreferencesDtoFromJson(
       userId: json['userId'] as String?,
       pushNotifications: json['pushNotifications'] as bool?,
       mentions: json['mentions'] as bool?,
-      oldStepNotifications: json['oldStepNotifications'] as bool?,
       trendingStepSuggestions: json['trendingStepSuggestions'] as bool?,
       trendingJourneySuggestions: json['trendingJourneySuggestions'] as bool?,
       followSuggestions: json['followSuggestions'] as bool?,
@@ -531,7 +581,6 @@ Map<String, dynamic> _$NotificationPreferencesDtoToJson(
       'userId': instance.userId,
       'pushNotifications': instance.pushNotifications,
       'mentions': instance.mentions,
-      'oldStepNotifications': instance.oldStepNotifications,
       'trendingStepSuggestions': instance.trendingStepSuggestions,
       'trendingJourneySuggestions': instance.trendingJourneySuggestions,
       'followSuggestions': instance.followSuggestions,
@@ -638,21 +687,28 @@ Map<String, dynamic> _$ReplyDtoToJson(_ReplyDto instance) => <String, dynamic>{
 
 _ReportCreatingDto _$ReportCreatingDtoFromJson(Map<String, dynamic> json) =>
     _ReportCreatingDto(
-      entityType: json['entityType'] as String,
+      entityType: $enumDecode(_$EntityTypeDtoEnumMap, json['entityType']),
       entityId: json['entityId'] as String,
       reason: json['reason'] as String,
     );
 
 Map<String, dynamic> _$ReportCreatingDtoToJson(_ReportCreatingDto instance) =>
     <String, dynamic>{
-      'entityType': instance.entityType,
+      'entityType': _$EntityTypeDtoEnumMap[instance.entityType]!,
       'entityId': instance.entityId,
       'reason': instance.reason,
     };
 
+const _$EntityTypeDtoEnumMap = {
+  EntityTypeDto.step: 'Step',
+  EntityTypeDto.comment: 'Comment',
+  EntityTypeDto.user: 'User',
+  EntityTypeDto.journey: 'Journey',
+};
+
 _ReportDto _$ReportDtoFromJson(Map<String, dynamic> json) => _ReportDto(
       id: json['id'] as String?,
-      entityType: json['entityType'] as String,
+      entityType: $enumDecode(_$EntityTypeDtoEnumMap, json['entityType']),
       entityId: json['entityId'] as String? ?? '',
       reporter: json['reporter'] == null
           ? null
@@ -661,16 +717,35 @@ _ReportDto _$ReportDtoFromJson(Map<String, dynamic> json) => _ReportDto(
       createdDate: json['createdDate'] == null
           ? null
           : DateTime.parse(json['createdDate'] as String),
+      reportedStep: json['reportedStep'] == null
+          ? null
+          : StepDetailDto.fromJson(
+              json['reportedStep'] as Map<String, dynamic>),
+      reportedComment: json['reportedComment'] == null
+          ? null
+          : StepCommentDto.fromJson(
+              json['reportedComment'] as Map<String, dynamic>),
+      reportedJourney: json['reportedJourney'] == null
+          ? null
+          : JourneyWithPreviewDto.fromJson(
+              json['reportedJourney'] as Map<String, dynamic>),
+      reportedUser: json['reportedUser'] == null
+          ? null
+          : UserDto.fromJson(json['reportedUser'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ReportDtoToJson(_ReportDto instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'entityType': instance.entityType,
+      'entityType': _$EntityTypeDtoEnumMap[instance.entityType]!,
       'entityId': instance.entityId,
       'reporter': instance.reporter,
       'reason': instance.reason,
       'createdDate': instance.createdDate?.toIso8601String(),
+      'reportedStep': instance.reportedStep,
+      'reportedComment': instance.reportedComment,
+      'reportedJourney': instance.reportedJourney,
+      'reportedUser': instance.reportedUser,
     };
 
 _StepCommentDto _$StepCommentDtoFromJson(Map<String, dynamic> json) =>
@@ -982,7 +1057,6 @@ _UpdatePreferencesDto _$UpdatePreferencesDtoFromJson(
     _UpdatePreferencesDto(
       pushNotifications: json['pushNotifications'] as bool?,
       mentions: json['mentions'] as bool?,
-      oldStepNotifications: json['oldStepNotifications'] as bool?,
       trendingStepSuggestions: json['trendingStepSuggestions'] as bool?,
       trendingJourneySuggestions: json['trendingJourneySuggestions'] as bool?,
       followSuggestions: json['followSuggestions'] as bool?,
@@ -993,7 +1067,6 @@ Map<String, dynamic> _$UpdatePreferencesDtoToJson(
     <String, dynamic>{
       'pushNotifications': instance.pushNotifications,
       'mentions': instance.mentions,
-      'oldStepNotifications': instance.oldStepNotifications,
       'trendingStepSuggestions': instance.trendingStepSuggestions,
       'trendingJourneySuggestions': instance.trendingJourneySuggestions,
       'followSuggestions': instance.followSuggestions,

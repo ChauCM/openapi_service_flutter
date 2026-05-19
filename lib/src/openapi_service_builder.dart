@@ -700,6 +700,55 @@ class OpenApiLibraryGenerator {
     }
   }
 
+  /// Detects the OAS 3.1 "nullable ref" idiom:
+  ///
+  ///   property:
+  ///     oneOf:
+  ///       - type: "null"
+  ///       - $ref: '#/components/schemas/X'
+  ///
+  /// Returns the non-null inner schema (the second entry above) if [schema]
+  /// matches this canonical 2-element shape; otherwise null. Detection is
+  /// intentionally strict — other oneOf shapes (true sum types) are left
+  /// untouched so we don't change their behavior.
+  APISchemaObject? _unwrapNullableOneOf(APISchemaObject schema) {
+    final oneOf = schema.oneOf;
+    if (oneOf == null || oneOf.length != 2) {
+      return null;
+    }
+    final a = oneOf[0];
+    final b = oneOf[1];
+    if (a == null || b == null) {
+      return null;
+    }
+    final aIsNullMarker = _isNullMarkerSchema(a);
+    final bIsNullMarker = _isNullMarkerSchema(b);
+    if (aIsNullMarker && !bIsNullMarker) {
+      return b;
+    }
+    if (bIsNullMarker && !aIsNullMarker) {
+      return a;
+    }
+    return null;
+  }
+
+  /// True iff [schema] is the bare `{type: "null"}` marker — no ref, no
+  /// properties, no enum, no composition. We treat anything else as a real
+  /// schema even if its type is null.
+  bool _isNullMarkerSchema(APISchemaObject schema) {
+    if (schema.type != null) {
+      return false;
+    }
+    return schema.referenceURI == null &&
+        (schema.properties?.isEmpty ?? true) &&
+        (schema.enumerated?.isEmpty ?? true) &&
+        (schema.allOf?.isEmpty ?? true) &&
+        (schema.oneOf?.isEmpty ?? true) &&
+        (schema.anyOf?.isEmpty ?? true) &&
+        schema.items == null &&
+        schema.additionalPropertySchema == null;
+  }
+
   bool shouldGenerateDto(APISchemaObject schema) {
     // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
     final effectiveType = schema.primaryType;
@@ -1778,8 +1827,13 @@ class OpenApiLibraryGenerator {
           }
 
           final fieldName = sanitizedFieldName;
+          // Peek through the OAS 3.1 nullable-oneOf wrapper so naming, default
+          // detection, and ref resolution see the inner schema (e.g. the
+          // `$ref` to UserRole) instead of the synthetic 2-element oneOf.
+          final unwrappedNullableOneOf = _unwrapNullableOneOf(entry.value!);
+          final effectiveSchema = unwrappedNullableOneOf ?? entry.value!;
           // Use the schema's reference name if it exists, otherwise use parent context
-          final parentContext = entry.value!.referenceURI != null
+          final parentContext = effectiveSchema.referenceURI != null
               ? entry.key.pascalCase
               : '$className${entry.key.pascalCase}';
           final fieldType = toDartType(parentContext, entry.value!);
@@ -1792,9 +1846,21 @@ class OpenApiLibraryGenerator {
                       entry.value!.referenceURI!.pathSegments.last) !=
                   null;
 
+          // OAS 3.1 nullability signals at the use-site.
+          final isNullableOneOf = unwrappedNullableOneOf != null;
+          // `type: ["null", "string"]` — the schema explicitly declares null as
+          // valid. Important: only treat an *explicit* null entry in a type
+          // array as a null signal. `APISchemaObject.allowsNull` also returns
+          // true when `type` is simply unspecified (e.g. an enum-only schema),
+          // which is not the intent here.
+          final hasNullInTypeArray = entry.value!.type is List &&
+              (entry.value!.type as List).contains(null);
+
           // Make nullable if originally was a NullableOf* enum (which contained null)
-          final shouldBeNullable =
-              !isRequired && !hasDefaultValue || referencesNullableEnum;
+          final shouldBeNullable = !isRequired && !hasDefaultValue ||
+              referencesNullableEnum ||
+              isNullableOneOf ||
+              hasNullInTypeArray;
 
           return Parameter((pb) {
             pb
@@ -1813,8 +1879,9 @@ class OpenApiLibraryGenerator {
               final defaultValue = entry.value!.defaultValue;
               Expression defaultExpression;
 
-              // Check if the field type is an enum
-              if (entry.value!.enumerated?.isNotEmpty == true) {
+              // Check if the underlying type is an enum (either directly or
+              // through the nullable-oneOf wrapper).
+              if (effectiveSchema.enumerated?.isNotEmpty == true) {
                 // For enums, use the enum value instead of string literal
                 final enumValueName =
                     _sanitizeEnumValueName(defaultValue.toString());
@@ -1881,6 +1948,14 @@ class OpenApiLibraryGenerator {
   }
 
   Reference toDartType(String parent, APISchemaObject schema) {
+    // OAS 3.1 nullable-ref idiom: unwrap and recurse on the inner schema so we
+    // emit the ref'd type directly instead of synthesizing a wrapper class.
+    // Nullability is applied by the caller via .asNullable(...).
+    final unwrapped = _unwrapNullableOneOf(schema);
+    if (unwrapped != null) {
+      return toDartType(parent, unwrapped);
+    }
+
     // Handle OpenAPI 3.1.1 array type syntax: use primaryType for processing
     final effectiveType = schema.primaryType ?? APIType.object;
 
