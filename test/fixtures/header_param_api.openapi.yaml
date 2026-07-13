@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Header Param API
+  x-dart-name: HeaderParamApi
+
+paths:
+  /ping:
+    get:
+      operationId: ping
+      parameters:
+        - name: X-Request-Id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: X-Trace
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: X-Mode
+          in: header
+          required: true
+          schema:
+            type: string
+            enum:
+              - Fast
+              - Slow
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+  /submit:
+    post:
+      operationId: submit
+      parameters:
+        - name: X-Api-Key
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+  /upload:
+    post:
+      operationId: upload
+      parameters:
+        - name: X-Checksum
+          in: header
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean

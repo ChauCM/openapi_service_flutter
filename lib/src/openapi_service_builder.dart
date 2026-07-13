@@ -1200,6 +1200,11 @@ class OpenApiLibraryGenerator {
         .where((p) => p!.location == APIParameterLocation.query)
         .isNotEmpty;
 
+    // Declare headers outside try block if the operation has header parameters
+    final hasHeaderParams = allParameters
+        .where((p) => p!.location == APIParameterLocation.header)
+        .isNotEmpty;
+
     final methodBody = <Code>[
       // Declare the full endpoint at the start
       declareFinal('endpoint').assign(literalString(actualPath)).statement,
@@ -1209,6 +1214,18 @@ class OpenApiLibraryGenerator {
         if (hasQueryParams) {
           return [
             declareFinal('queryParams')
+                .assign(literalMap({}, refer('String'), refer('dynamic')))
+                .statement,
+          ];
+        }
+        return <Code>[];
+      }(),
+
+      // Declare headers outside try block if needed
+      ...() {
+        if (hasHeaderParams) {
+          return [
+            declareFinal('headers')
                 .assign(literalMap({}, refer('String'), refer('dynamic')))
                 .statement,
           ];
@@ -1247,6 +1264,36 @@ class OpenApiLibraryGenerator {
         return <Code>[];
       }(),
 
+      // Build header parameters if any exist
+      ...() {
+        final headerParams = allParameters
+            .where((p) => p!.location == APIParameterLocation.header);
+        if (headerParams.isNotEmpty) {
+          return [
+            ...headerParams.map((p) {
+              final paramName = paramNameMap[p!.name!] ?? p.name!.camelCase;
+              final isRequired = p.isRequired;
+              // Enum header params serialize to their wire value via the
+              // generated `.name` extension, never the raw Dart enum
+              // `toString()`.
+              final isEnum = p.schema?.enumerated?.isNotEmpty == true;
+              final isEnumList = p.schema?.type == APIType.array &&
+                  (p.schema!.items?.enumerated?.isNotEmpty == true);
+              final value = isEnum
+                  ? '$paramName.name'
+                  : isEnumList
+                      ? '$paramName.map((e) => e.name).toList()'
+                      : paramName;
+              return Code(isRequired
+                  ? 'headers[\'${p.name}\'] = $value;'
+                  : 'if ($paramName != null) headers[\'${p.name}\'] = $value;');
+            }),
+            const Code(''),
+          ];
+        }
+        return <Code>[];
+      }(),
+
       // Handle binary file uploads
       ...() {
         if (_isBinaryRequestBody(operation.requestBody)) {
@@ -1258,6 +1305,12 @@ class OpenApiLibraryGenerator {
                 .assign(CodeExpression(Code(
                     "lookupMimeType(file.path) ?? 'application/octet-stream'")))
                 .statement,
+            // If the operation also declares header params, fold the upload
+            // content headers into the same `headers` map that carries them.
+            if (hasHeaderParams) ...[
+              const Code("headers['Content-Length'] = length.toString();"),
+              const Code("headers['Content-Type'] = mime;"),
+            ],
             const Code(''),
           ];
         }
@@ -1490,6 +1543,15 @@ class OpenApiLibraryGenerator {
               }
               return <String, Expression>{};
             }(),
+            ...() {
+              final headerParamsExist = allParameters
+                  .where((p) => p!.location == APIParameterLocation.header)
+                  .isNotEmpty;
+              if (headerParamsExist) {
+                return {'headers': refer('headers')};
+              }
+              return <String, Expression>{};
+            }(),
           }))
           .statement,
       _left([
@@ -1518,18 +1580,25 @@ class OpenApiLibraryGenerator {
       requestArgs['queryParameters'] = refer('queryParams');
     }
 
+    final hasHeaderParams =
+        parameters.any((p) => p!.location == APIParameterLocation.header);
+
     // Add request body
     if (operation.requestBody != null) {
       if (_isBinaryRequestBody(operation.requestBody)) {
         // For binary requests, use file stream
         requestArgs['data'] = refer('file').property('openRead')([]);
         requestArgs['onSendProgress'] = refer('onProgress');
-        requestArgs['options'] = _options.call([], {
-          'headers': literalMap({
-            'Content-Length': refer('length').property('toString')([]),
-            'Content-Type': refer('mime'),
-          }, refer('String'), refer('dynamic')),
-        });
+        // When header params are present, the upload content headers were
+        // folded into the `headers` map; otherwise build them inline here.
+        requestArgs['options'] = hasHeaderParams
+            ? _options.call([], {'headers': refer('headers')})
+            : _options.call([], {
+                'headers': literalMap({
+                  'Content-Length': refer('length').property('toString')([]),
+                  'Content-Type': refer('mime'),
+                }, refer('String'), refer('dynamic')),
+              });
       } else if (_isMultipartFormData(operation.requestBody)) {
         // For multipart requests, use formData variable
         requestArgs['data'] = refer('formData');
@@ -1548,6 +1617,12 @@ class OpenApiLibraryGenerator {
           }
         }
       }
+    }
+
+    // Attach header params via Options for non-binary requests (the binary
+    // branch already set options, folding the upload headers in).
+    if (hasHeaderParams && !requestArgs.containsKey('options')) {
+      requestArgs['options'] = _options.call([], {'headers': refer('headers')});
     }
 
     // Use '_' for void return types, 'response' for others

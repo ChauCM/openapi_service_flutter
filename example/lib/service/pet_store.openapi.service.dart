@@ -193,13 +193,20 @@ class PetStoreService {
     required int petId,
   }) async {
     final endpoint = '/pet/$petId';
+    final headers = <String, dynamic>{};
     try {
-      final _ = await _dio.delete(endpoint);
+      if (apiKey != null) headers['api_key'] = apiKey;
+
+      final _ = await _dio.delete(
+        endpoint,
+        options: Options(headers: headers),
+      );
       return const Right(null);
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
         endpoint: endpoint,
+        headers: headers,
       );
       return Left(_errorHandler.handleError(
         e,
