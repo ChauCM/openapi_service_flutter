@@ -171,7 +171,11 @@ class DefaultErrorHandler implements ErrorHandler {
           return 'server_error';
         }
         return 'response_error';
-      case DioExceptionType.unknown:
+      // DioExceptionType.unknown and any values newer dio versions add
+      // (e.g. transformTimeout in 5.10.0) fall through here. Folding them into
+      // default keeps the switch compiling across dio versions without an
+      // unreachable-default warning on older ones.
+      default:
         return 'unknown_error';
     }
   }
@@ -209,7 +213,11 @@ class DefaultErrorHandler implements ErrorHandler {
       case DioExceptionType.badResponse:
         // This case should have been handled above with status code
         return error.message ?? "Bad response from server";
-      case DioExceptionType.unknown:
+      // DioExceptionType.unknown and any values newer dio versions add
+      // (e.g. transformTimeout in 5.10.0) fall through here. Folding them into
+      // default keeps the switch compiling across dio versions without an
+      // unreachable-default warning on older ones.
+      default:
         return error.message ?? "An unexpected error occurred";
     }
   }
