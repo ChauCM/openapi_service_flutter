@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Enum Param Serialization API
+  x-dart-name: EnumParamApi
+
+paths:
+  /journeys/{id}/people:
+    get:
+      operationId: getJourneyPeople
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Everyone
+              - Following
+              - Followers
+        - name: sort
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - Newest
+              - Oldest
+        - name: tags
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - Red
+                - Green
+                - Blue
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+  /status/{state}:
+    get:
+      operationId: getByState
+      parameters:
+        - name: state
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - Open
+              - Closed
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean

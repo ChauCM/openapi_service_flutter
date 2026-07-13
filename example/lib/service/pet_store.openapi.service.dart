@@ -79,7 +79,7 @@ class PetStoreService {
     final endpoint = '/pet/findByStatus';
     final queryParams = <String, dynamic>{};
     try {
-      queryParams['status'] = status;
+      queryParams['status'] = status.map((e) => e.name).toList();
 
       final response = await _dio.get(
         endpoint,

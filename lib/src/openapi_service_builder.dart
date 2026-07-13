@@ -1187,7 +1187,12 @@ class OpenApiLibraryGenerator {
     var actualPath = path;
     for (final param in pathParams) {
       final paramName = paramNameMap[param!.name!] ?? param.name!.camelCase;
-      actualPath = actualPath.replaceAll('{${param.name}}', '\$$paramName');
+      // Enum path params serialize to their wire value via the generated
+      // `.name` extension, never the raw Dart enum `toString()`. Path params
+      // are always required, so `.name` is null-safe here.
+      final isEnum = param.schema?.enumerated?.isNotEmpty == true;
+      final replacement = isEnum ? '\${$paramName.name}' : '\$$paramName';
+      actualPath = actualPath.replaceAll('{${param.name}}', replacement);
     }
 
     // Declare queryParams outside try block if needed for error handling
@@ -1221,9 +1226,20 @@ class OpenApiLibraryGenerator {
             ...queryParams.map((p) {
               final paramName = paramNameMap[p!.name!] ?? p.name!.camelCase;
               final isRequired = p.isRequired;
+              // Enum query params must serialize to their wire value via the
+              // generated `.name` extension (the @JsonValue), never the raw
+              // Dart enum `toString()` (e.g. `Everyone`, not `Type.everyone`).
+              final isEnum = p.schema?.enumerated?.isNotEmpty == true;
+              final isEnumList = p.schema?.type == APIType.array &&
+                  (p.schema!.items?.enumerated?.isNotEmpty == true);
+              final value = isEnum
+                  ? '$paramName.name'
+                  : isEnumList
+                      ? '$paramName.map((e) => e.name).toList()'
+                      : paramName;
               return Code(isRequired
-                  ? 'queryParams[\'${p.name}\'] = $paramName;'
-                  : 'if ($paramName != null) queryParams[\'${p.name}\'] = $paramName;');
+                  ? 'queryParams[\'${p.name}\'] = $value;'
+                  : 'if ($paramName != null) queryParams[\'${p.name}\'] = $value;');
             }),
             const Code(''),
           ];

@@ -2192,8 +2192,8 @@ class StepoService {
     try {
       if (page != null) queryParams['page'] = page;
       if (pageSize != null) queryParams['pageSize'] = pageSize;
-      if (type != null) queryParams['type'] = type;
-      if (status != null) queryParams['status'] = status;
+      if (type != null) queryParams['type'] = type.name;
+      if (status != null) queryParams['status'] = status.name;
 
       final response = await _dio.get(
         endpoint,
