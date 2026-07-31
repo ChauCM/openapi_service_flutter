@@ -1096,10 +1096,15 @@ class OpenApiLibraryGenerator {
                 (propSchema.referenceURI?.pathSegments.last == 'IFormFile');
 
             if (isFileParameter) {
-              // Add File parameter - always required for files
+              // Binary parts are taken as in-memory bytes so a caller never
+              // has to spill a recording to disk just to upload it.
               method.requiredParameters.add(Parameter((pb) => pb
                 ..name = propName
-                ..type = _file));
+                ..type = _uint8List));
+              method.optionalParameters.add(Parameter((pb) => pb
+                ..name = '${propName}Filename'
+                ..type = refer('String').asNullable(true)
+                ..named = true));
             } else {
               // Add regular form field parameter
               final paramType = toDartType(
@@ -1337,11 +1342,11 @@ class OpenApiLibraryGenerator {
                   (propSchema.referenceURI?.pathSegments.last == 'IFormFile');
 
               if (isFileParameter) {
-                // Add file as MultipartFile
+                // Add bytes as MultipartFile
                 formDataCode.add(
                     Code('formData.files.add(MapEntry(\'${propEntry.key}\', '
-                        'await MultipartFile.fromFile($propName.path, '
-                        'filename: _getFileName($propName.path))));'));
+                        'MultipartFile.fromBytes($propName, '
+                        'filename: ${propName}Filename ?? \'$propName\')));'));
               } else {
                 // Add regular form field - handle optional parameters
                 final required = multipartContent.schema!.required
@@ -1617,6 +1622,17 @@ class OpenApiLibraryGenerator {
           }
         }
       }
+    }
+
+    // A binary response must be read as bytes: Dio's default transform hands
+    // back a String for non-JSON bodies and the Uint8List cast would throw.
+    if (returnType.symbol == 'Uint8List' &&
+        !requestArgs.containsKey('options')) {
+      requestArgs['options'] = _options.call([], {
+        'responseType': refer('ResponseType', 'package:dio/dio.dart')
+            .property('bytes'),
+        if (hasHeaderParams) 'headers': refer('headers'),
+      });
     }
 
     // Attach header params via Options for non-binary requests (the binary
