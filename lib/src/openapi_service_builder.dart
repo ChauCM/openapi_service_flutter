@@ -970,9 +970,6 @@ class OpenApiLibraryGenerator {
       }
     }
 
-    // Add filename extraction helper method for file uploads
-    serviceClass.methods.add(_generateGetFileNameMethod());
-
     targetLb.body.add(serviceClass.build());
   }
 
@@ -1588,6 +1585,12 @@ class OpenApiLibraryGenerator {
     final hasHeaderParams =
         parameters.any((p) => p!.location == APIParameterLocation.header);
 
+    // A binary response must be read as bytes: Dio's default transform hands
+    // back a String for non-JSON bodies and the Uint8List cast would throw.
+    final wantsBytesResponse = returnType.symbol == 'Uint8List';
+    final responseTypeBytes =
+        refer('ResponseType', 'package:dio/dio.dart').property('bytes');
+
     // Add request body
     if (operation.requestBody != null) {
       if (_isBinaryRequestBody(operation.requestBody)) {
@@ -1596,14 +1599,15 @@ class OpenApiLibraryGenerator {
         requestArgs['onSendProgress'] = refer('onProgress');
         // When header params are present, the upload content headers were
         // folded into the `headers` map; otherwise build them inline here.
-        requestArgs['options'] = hasHeaderParams
-            ? _options.call([], {'headers': refer('headers')})
-            : _options.call([], {
-                'headers': literalMap({
+        requestArgs['options'] = _options.call([], {
+          if (wantsBytesResponse) 'responseType': responseTypeBytes,
+          'headers': hasHeaderParams
+              ? refer('headers')
+              : literalMap({
                   'Content-Length': refer('length').property('toString')([]),
                   'Content-Type': refer('mime'),
                 }, refer('String'), refer('dynamic')),
-              });
+        });
       } else if (_isMultipartFormData(operation.requestBody)) {
         // For multipart requests, use formData variable
         requestArgs['data'] = refer('formData');
@@ -1624,13 +1628,9 @@ class OpenApiLibraryGenerator {
       }
     }
 
-    // A binary response must be read as bytes: Dio's default transform hands
-    // back a String for non-JSON bodies and the Uint8List cast would throw.
-    if (returnType.symbol == 'Uint8List' &&
-        !requestArgs.containsKey('options')) {
+    if (wantsBytesResponse && !requestArgs.containsKey('options')) {
       requestArgs['options'] = _options.call([], {
-        'responseType': refer('ResponseType', 'package:dio/dio.dart')
-            .property('bytes'),
+        'responseType': responseTypeBytes,
         if (hasHeaderParams) 'headers': refer('headers'),
       });
     }
@@ -1649,21 +1649,6 @@ class OpenApiLibraryGenerator {
             ([refer('endpoint')], requestArgs)
             .awaited)
         .statement;
-  }
-
-  Method _generateGetFileNameMethod() {
-    return Method((mb) => mb
-      ..name = '_getFileName'
-      ..returns = refer('String')
-      ..requiredParameters.add(Parameter((pb) => pb
-        ..name = 'filePath'
-        ..type = refer('String')))
-      ..body = Block.of([
-        const Code(
-            '// Handle both forward and backward slashes for cross-platform compatibility'),
-        const Code(r'final parts = filePath.replaceAll(r"\", "/").split("/");'),
-        const Code('return parts.isNotEmpty ? parts.last : \'file\';'),
-      ]));
   }
 
   String classNameForComponent(String componentName) {

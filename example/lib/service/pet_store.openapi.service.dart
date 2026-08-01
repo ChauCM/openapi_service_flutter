@@ -541,12 +541,6 @@ class PetStoreService {
       ));
     }
   }
-
-  String _getFileName(String filePath) {
-    // Handle both forward and backward slashes for cross-platform compatibility
-    final parts = filePath.replaceAll(r"\", "/").split("/");
-    return parts.isNotEmpty ? parts.last : 'file';
-  }
 }
 
 T _throwStateError<T>(String message) => throw StateError(message);

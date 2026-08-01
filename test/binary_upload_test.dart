@@ -346,5 +346,80 @@ paths:
         expect(serviceOutput, isNot(contains('import \'package:mime/mime.dart\'')));
       });
     });
+
+    group('Binary responses', () {
+      test('reads binary responses as bytes via ResponseType.bytes', () async {
+        final binaryDownloadYaml = '''
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Binary Download API
+  x-dart-name: BinaryDownloadApi
+
+paths:
+  /files/{fileId}/download:
+    get:
+      operationId: downloadFile
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: File bytes
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /files/convert:
+    post:
+      operationId: convertFile
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        "200":
+          description: Converted bytes
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+''';
+        final api =
+            OpenApiServiceBuilderUtils.loadApiFromYaml(binaryDownloadYaml);
+
+        final generator = OpenApiLibraryGenerator(
+          api,
+          baseName: 'BinaryDownloadApi',
+          partFileName: 'binary_download_api.openapi.dtos.g.dart',
+        );
+
+        final serviceLibrary =
+            generator.generateServiceLibrary('binary_download_api');
+        final serviceOutput = OpenApiServiceBuilderUtils.formatLibrary(
+          serviceLibrary,
+        );
+
+        // The binary response is returned as Uint8List
+        expect(serviceOutput, contains('Uint8List'));
+
+        // Both endpoints must ask Dio for raw bytes - the plain download and
+        // the binary-upload-with-binary-response combo, whose options also
+        // carry the upload content headers
+        final bytesMatches =
+            'ResponseType.bytes'.allMatches(serviceOutput);
+        expect(bytesMatches.length, equals(2),
+            reason: 'Both binary-response endpoints need ResponseType.bytes');
+        expect(serviceOutput, contains('\'Content-Type\': mime'));
+      });
+    });
   });
 }
