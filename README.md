@@ -245,6 +245,63 @@ enum UserStatus {
 }
 ```
 
+### Field nullability: what makes a Dart field non-nullable
+
+A generated field is non-nullable only when the **spec** says the value will be
+there. The generator reads two schema facts and nothing else:
+
+| In the schema | In Dart |
+|---|---|
+| listed in `required:` | `required T name` |
+| not required, has a `default:` | `@Default(<value>) T name` |
+| not required, no `default:` | `T? name` |
+| `type: ['null', T]`, or `oneOf: [null, $ref]` | `T? name` |
+
+The third row is the one that surprises people: a property declared
+non-nullable but **not** required — the OAS 3.1 shape `{"type": "array"}` with
+no `default` — comes out as `List<T>?`.
+
+That is deliberate. `type: array` says the value is never null *when the key is
+present*. It says nothing about the key being **absent**, and Dart has one value
+for absent: `null`. Emitting `List<T>` with no default there would throw on
+every payload that omits the key, turning a papercut into a runtime crash.
+
+**If the value really is always sent, say so in the spec** and the `?? const []`
+at every call site disappears:
+
+```yaml
+components:
+  schemas:
+    Character:
+      type: object
+      properties:
+        components:            # → List<String>? components
+          type: array
+          items: { type: string }
+
+        segments:              # → @Default([]) List<String> segments
+          type: array
+          items: { type: string }
+          default: []          # ← the whole fix
+
+        strokeCount:           # → required int strokeCount
+          type: integer
+      required:
+        - strokeCount
+```
+
+`default:` and `required:` are not interchangeable. `default:` is the forgiving
+one — an absent *or explicitly null* key becomes the default, so the client
+keeps parsing if the server later drops the field. `required:` is stricter: the
+generated `fromJson` **throws** when the key is absent. Prefer `default:` for
+collections and `required:` for values that genuinely cannot be defaulted.
+
+Defaults work for arrays (`default: []`), maps (`default: {}`), scalars and
+enums, and the emitted default is `const`, so the empty list is not a shared
+mutable instance. This is covered by `test/collection_defaults_test.dart` and
+proven end-to-end through freezed and json_serializable by
+`example/tool/collection_defaults_roundtrip.dart`.
+
 ### Service Files (.openapi.service.dart)
 
 ```dart

@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.0.1
+
+No behaviour change. Documents and pins the rule that decides field
+nullability, after a consumer asked whether a non-nullable collection could
+reach Dart as a non-nullable `List<T>`.
+
+It already can, and the answer is spec-side: a property that carries a
+`default:` is emitted as `@Default(<value>) T name`, for arrays (`default: []`),
+maps, scalars and enums alike. A property that is neither `required:` nor
+defaulted stays `T?` on purpose — the schema says the value is never null *when
+present* and says nothing about the key being absent, so emitting a
+non-nullable field with no default would throw on any payload that omits it.
+
+- README: a "Field nullability" section giving the full rule, and why
+  `default:` is the forgiving lever and `required:` the strict one (the
+  generated `fromJson` throws on an absent required key).
+- New `test/collection_defaults_test.dart` + fixture, covering array, `$ref`
+  array, map, scalar and non-empty defaults, the deliberately-nullable case,
+  and `required:` taking precedence over `default:`.
+- New `example/tool/collection_defaults_roundtrip.dart`, which proves through
+  real freezed + json_serializable output that an omitted key — and an
+  explicitly `null` one — actually lands on the default, and that the default
+  is `const` rather than a shared growable list. A test keeps its spec
+  byte-identical to the generator fixture.
+
 ## 3.0.0
 
 ### Breaking changes

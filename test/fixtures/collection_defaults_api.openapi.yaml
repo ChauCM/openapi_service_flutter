@@ -1,0 +1,123 @@
+openapi: 3.1.1
+info:
+  version: 1.0.0
+  title: Collection Defaults API
+  x-dart-name: CollectionDefaultsApi
+
+# Fixture for the "non-nullable collection reaches Dart as List<T>?" question.
+#
+# The generator decides nullability from two schema facts and nothing else:
+#   * membership of `required:`
+#   * the presence of a `default:`
+#
+# A property that is neither is representable as absent from the payload, and
+# Dart has one value for absent — null. So it stays nullable, deliberately.
+# A property that carries a `default:` can survive an absent key, so it is
+# emitted non-nullable with a Freezed `@Default(...)`.
+#
+# Both halves are asserted in collection_defaults_test.dart, and the
+# deserialisation half (a payload that OMITS the key) is proven end-to-end
+# through freezed + json_serializable by
+# example/tool/collection_defaults_roundtrip.dart.
+
+paths:
+  /characters/{hanzi}:
+    get:
+      operationId: getCharacter
+      parameters:
+        - name: hanzi
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+
+components:
+  schemas:
+    Piece:
+      type: object
+      properties:
+        text:
+          type: string
+      required:
+        - text
+
+    Character:
+      type: object
+      required:
+        - hanzi
+      properties:
+        hanzi:
+          type: string
+
+        # --- nullable by explicit declaration (OAS 3.1 type-array) ----------
+        radical:
+          type: ['null', 'string']
+
+        # --- optional, explicitly non-nullable, NO default ------------------
+        # The contract says "never null WHEN PRESENT" but says nothing about
+        # absence, so the generator must not invent a value. Stays nullable.
+        componentsNoDefault:
+          type: array
+          items:
+            type: string
+        canTraceNoDefault:
+          type: boolean
+
+        # --- optional, non-nullable, WITH a default -------------------------
+        # `default:` is the schema's own statement of what an absent key means,
+        # so these become non-nullable with @Default(...).
+        componentsWithDefault:
+          type: array
+          items:
+            type: string
+          default: []
+        refsWithDefault:
+          type: array
+          items:
+            $ref: '#/components/schemas/Piece'
+          default: []
+        mapWithDefault:
+          type: object
+          additionalProperties:
+            type: string
+          default: {}
+        canTraceWithDefault:
+          type: boolean
+          default: false
+        labelWithDefault:
+          type: string
+          default: ''
+        strokeCountWithDefault:
+          type: integer
+          default: 0
+
+        # --- a default that is a NON-empty collection -----------------------
+        tagsWithSeededDefault:
+          type: array
+          items:
+            type: string
+          default: ['a', 'b']
+
+        # Referenced so RequiredHolder is reachable and therefore emitted.
+        holder:
+          $ref: '#/components/schemas/RequiredHolder'
+
+    # `required` already means the key is always present, so no @Default is
+    # emitted and the parameter becomes a required named parameter.
+    RequiredHolder:
+      type: object
+      required:
+        - requiredWithDefault
+      properties:
+        requiredWithDefault:
+          type: array
+          items:
+            type: string
+          default: []
