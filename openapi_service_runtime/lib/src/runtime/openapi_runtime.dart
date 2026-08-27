@@ -11,5 +11,9 @@ export 'error/error_messages.dart';
 export 'error/request_context.dart';
 
 // Export Dio utilities
+export 'dio/api_log_interceptor.dart';
 export 'dio/default_dio.dart';
 export 'dio/smart_upload_interceptor.dart';
+
+// Export logging seams
+export 'logging.dart';

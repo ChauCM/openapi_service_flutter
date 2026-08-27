@@ -1,13 +1,46 @@
 import 'package:dio/dio.dart';
+import '../logging.dart';
 import 'error_handler.dart';
 import 'api_error.dart';
 import 'error_messages.dart';
 import 'request_context.dart';
 
+/// Decides whether a failure is worth logging.
+///
+/// [statusCode] is the response status, or `null` when the request never
+/// produced a response — a connection error, a timeout, or an interceptor that
+/// rejected the request before it left the client. That `null` is the point of
+/// the type: a status-only predicate cannot express "quiet when we refused it
+/// ourselves".
+typedef ErrorLogPredicate = bool Function(int? statusCode, Object? error);
+
 /// Default implementation of [ErrorHandler] that provides user-friendly error messages
 class DefaultErrorHandler implements ErrorHandler {
-  /// Creates a default error handler
-  const DefaultErrorHandler();
+  /// Creates a default error handler.
+  ///
+  /// With no arguments this behaves exactly as it always has: every failure
+  /// prints the error and its stack trace to `print`.
+  ///
+  /// An app whose normal flow contains expected refusals — a `404` from an
+  /// optional read, a `409` from an idempotent submit, a `402` from a metered
+  /// free tier — narrows the logging instead of replacing the handler:
+  ///
+  /// ```dart
+  /// const DefaultErrorHandler(
+  ///   shouldLog: _isUnexpected,
+  ///   log: debugPrint,
+  /// );
+  ///
+  /// bool _isUnexpected(int? status, Object? _) =>
+  ///     status != null && !const {401, 402, 404, 409}.contains(status);
+  /// ```
+  const DefaultErrorHandler({this.shouldLog, this.log});
+
+  /// Whether a given failure is worth logging. Defaults to "always".
+  final ErrorLogPredicate? shouldLog;
+
+  /// Where the log lines go. Defaults to `print`.
+  final ApiLogSink? log;
 
   @override
   ApiError handleError(
@@ -15,17 +48,30 @@ class DefaultErrorHandler implements ErrorHandler {
     StackTrace stackTrace,
     RequestContext requestContext,
   ) {
-    // Print error and stack trace for debugging (replicates regular API fail behavior)
-    print('❌ Error:');
-    print(error);
-    print('📍 Stack trace:');
-    print(stackTrace);
+    _report(error, stackTrace);
 
     if (error is DioException) {
       return _handleDioException(error, stackTrace, requestContext);
     }
 
     return _handleGenericError(error, stackTrace, requestContext);
+  }
+
+  /// Prints the error and stack trace for debugging, unless [shouldLog] says
+  /// otherwise.
+  ///
+  /// Never logs headers or bodies — see the logging rule on `ApiLogInterceptor`;
+  /// the same rule holds here.
+  void _report(dynamic error, StackTrace stackTrace) {
+    final statusCode =
+        error is DioException ? error.response?.statusCode : null;
+    if (!(shouldLog?.call(statusCode, error) ?? true)) return;
+
+    final sink = log ?? defaultLogSink;
+    sink('❌ Error:');
+    sink('$error');
+    sink('📍 Stack trace:');
+    sink('$stackTrace');
   }
 
   @override

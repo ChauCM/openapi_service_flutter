@@ -1,6 +1,6 @@
 name: openapi_service_runtime
 description: Runtime library for openapi_service_flutter generated code
-version: 1.0.1
+version: 1.1.0
 publish_to: none
 
 environment:

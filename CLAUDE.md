@@ -148,20 +148,29 @@ Key test files:
 - `openapi_library_generator_test.dart` - Library generation tests
 - `service_enhancements_test.dart` - Service configuration and error handling tests
 - `runtime_error_handler_test.dart` - Runtime error handling and DefaultErrorHandler tests
+- `runtime_logging_seams_test.dart` - Log quietening, routing, redaction, and the debug guard
 - `test_utils.dart` - Shared test utilities and helper functions
 
 ## Runtime Architecture
 
 ### Runtime Library
-The package now includes a dedicated runtime library (`lib/runtime.dart`) that provides:
-- **Error Handling**: `DefaultErrorHandler`, `ApiError`, and `RequestContext` classes
-- **Dio Utilities**: `DefaultDio` for opinionated HTTP client setup
-- **Type Safety**: Runtime components that generated code depends on
+The runtime lives in its own package, `openapi_service_runtime/`, versioned
+separately from the generator. Generated code imports
+`package:openapi_service_runtime/openapi_service_runtime.dart` — the generator
+itself does not depend on it at runtime (`dio` is a dev dependency here, for the
+runtime tests only).
 
-Runtime components are located in `lib/src/runtime/`:
-- `error/` - Error handling infrastructure
-- `dio/` - HTTP client utilities
+Components in `openapi_service_runtime/lib/src/runtime/`:
+- `error/` - `DefaultErrorHandler`, `ApiError`, `RequestContext`
+- `dio/` - `DefaultDio`, `ApiLogInterceptor`, `SmartUploadInterceptor`
+- `logging.dart` - `ApiLogSink` and the `assertsEnabled` debug guard
 - `openapi_runtime.dart` - Main runtime exports
+
+Its logging is adjustable rather than all-or-nothing: `DefaultErrorHandler`
+takes `shouldLog`/`log`, and `ApiLogInterceptor` is public so a host with its own
+`Dio` need not adopt `DefaultDio` to get logging. **Headers and bodies are never
+logged** — bodies by size only. That is a rule; changing it is a decision, not a
+gap to fill.
 
 ### Dependencies and Generated Code
 

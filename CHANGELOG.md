@@ -1,5 +1,69 @@
 # Changelog
 
+## 3.1.0
+
+Runtime logging becomes adjustable. Every default is unchanged; each item below
+is an optional argument that a host may now pass instead of forking the class
+to get at it. Prompted by a consumer that had reimplemented two of these in app
+code — `docs/ops/openapi-runtime-feedback.md` in the MaiSay repo.
+
+`openapi_service_runtime` bumps to **1.1.0**.
+
+### Added
+
+- `DefaultErrorHandler({shouldLog, log})`. `shouldLog(int? statusCode, Object?
+  error)` decides whether a failure is worth printing and defaults to "always";
+  `log` routes the lines and defaults to `print`. The status is **nullable on
+  purpose** — it is `null` when the request never produced a response, so a host
+  can stay quiet about failures its own interceptor rejected. The constructor is
+  still `const`, so the `const DefaultErrorHandler()` that every generated
+  service emits is untouched.
+- `ApiLogInterceptor` is now public. Previously the only way to reach it was
+  `DefaultDio.createWithLogging`, which meant taking the whole `Dio` — including
+  `create`'s 30-second `connectTimeout` — in order to get logging. A host that
+  has tuned its own client adds `const ApiLogInterceptor()` to it instead.
+  It is stateless (per-request timing lives in `RequestOptions.extra`), so one
+  `const` instance is safe to share.
+- `ApiLogSink` and `assertsEnabled` are exported for hosts wiring their own
+  sink or guard.
+- `createWithLogging` gains `log` and `redactUri`. `redactUri` renders the
+  request URI for the log, for a host whose query string can carry a secret.
+
+### Changed
+
+- **`createWithLogging` now honours the "(debug mode)" its doc has always
+  claimed.** There was no guard of any kind: a host that read the name and
+  shipped it printed every endpoint a real user hit into the device log. The new
+  `enableLogging` argument defaults to `assertsEnabled`, so release AOT builds
+  are silent. Pass `enableLogging: true` to keep logging in release.
+- The request log reports **elapsed milliseconds** instead of a decoded map's
+  field count, and carries a greppable `api` prefix:
+
+  ```
+  api → POST /api/v1/auth/refresh
+  api ← 200 POST /api/v1/auth/refresh (558ms)
+  ```
+
+  Bodies are still reported by size and headers still never logged — now stated
+  as a rule on `ApiLogInterceptor`, so a contributor adding "just the body, for
+  debugging" is knowingly changing it.
+
+### Removed
+
+- `lib/src/runtime/`, a second copy of the runtime left behind when it moved to
+  the `openapi_service_runtime` package. Nothing imported it — there is no
+  `lib/runtime.dart` barrel and the generator emits
+  `package:openapi_service_runtime/…` — and it had already drifted: it still
+  carried the `case DioExceptionType.unknown:` that `9a1eb80` replaced with a
+  forward-compatible `default:` in the live copy. Two copies of a file is one
+  copy that silently does not get the fix.
+
+### Tests
+
+- `test/runtime_logging_seams_test.dart`, 14 cases. The interceptor ones run
+  inside dio's real request chain against a stub adapter rather than by calling
+  the handlers directly. Each was proved red by breaking the thing it guards.
+
 ## 3.0.1
 
 No behaviour change. Documents and pins the rule that decides field

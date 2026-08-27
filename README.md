@@ -402,9 +402,38 @@ switch (result) {
 }
 ```
 
+### Quietening and routing the error log
+
+`DefaultErrorHandler` prints every failure with its stack trace. In an app whose
+normal flow contains expected refusals — a `404` from an optional read, a `409`
+from an idempotent submit, a `402` from a metered free tier — that noise buries
+the lines you were actually looking for.
+
+Narrow it instead of replacing the handler. Two optional arguments, both
+defaulting to today's behaviour:
+
+```dart
+const handler = DefaultErrorHandler(
+  shouldLog: _isUnexpected,   // defaults to "always"
+  log: debugPrint,            // defaults to print
+);
+
+// `status` is null when the request never produced a response — a connection
+// error, a timeout, or an interceptor that rejected the request before it left.
+bool _isUnexpected(int? status, Object? error) =>
+    status == null || !const {401, 402, 404, 409}.contains(status);
+
+final service = MyApiService(dio, errorHandler: handler);
+```
+
+Replacing `DefaultErrorHandler` to get the same silence costs you everything
+else it does: the `ApiError.type` classification, the friendly status-code
+fallback message, `responseHeaders` on `debugInfo`, and the `DioExceptionType`
+mapping. Prefer the two arguments.
+
 ### Custom Error Handler
 
-Create custom error handlers by extending `DefaultErrorHandler`:
+For anything beyond logging, extend `DefaultErrorHandler`:
 
 ```dart
 class LoggingErrorHandler extends DefaultErrorHandler {
@@ -550,24 +579,66 @@ final dio = DefaultDio.create(
 );
 ```
 
-### Development Setup with Logging
+### Request Logging
 
 ```dart
-// Automatically adds request/response logging in debug mode
+// Logs in debug builds only — see the guard below.
 final dio = DefaultDio.createWithLogging(
   baseUrl: 'https://api.yourbackend.com',
 );
-
-// All HTTP requests and responses will be logged to console
-final service = MyApiService(dio);
 ```
+
+One line per request and one per outcome, with the elapsed time:
+
+```
+api → POST /api/v1/auth/refresh
+api ← 200 POST /api/v1/auth/refresh (558ms)
+api → GET /api/v1/path
+api ← 404 GET /api/v1/path (147ms) · Http status error [404]
+```
+
+**The debug-only guard is real.** `enableLogging` defaults to whether asserts
+are enabled, so a release AOT build logs nothing and shipping this call by
+accident cannot print every endpoint a real user hits into the device log. Pass
+`enableLogging: true` to log in release deliberately.
+
+**Headers and bodies are never logged**, and that is a rule rather than an
+oversight — an `Authorization` header is a bearer token, a login body is a
+password. Bodies are reported as a size only. A secret carried in a query
+parameter is the one case the interceptor cannot see for itself, so pass
+`redactUri`:
+
+```dart
+final dio = DefaultDio.createWithLogging(
+  baseUrl: 'https://api.yourbackend.com',
+  log: debugPrint,
+  redactUri: (uri) => '${uri.origin}${uri.path}',
+);
+```
+
+#### Logging on a Dio you built yourself
+
+If you have tuned your own timeouts, you do not have to adopt `DefaultDio` and
+its 30-second defaults to get the logging. Add the interceptor to the client you
+already have:
+
+```dart
+final dio = Dio(BaseOptions(
+  connectTimeout: const Duration(seconds: 12),   // yours, kept
+  receiveTimeout: const Duration(seconds: 30),
+))..interceptors.add(const ApiLogInterceptor(log: debugPrint));
+```
+
+`ApiLogInterceptor` holds no mutable state — per-request timing lives in
+`RequestOptions.extra` — so one `const` instance is safe across clients and
+concurrent requests.
 
 ### DefaultDio Features
 
 - **Sensible Timeouts**: 30-second defaults for connect/receive/send operations
 - **JSON Headers**: Automatically sets `Content-Type` and `Accept` to `application/json`
 - **Redirect Handling**: Follows redirects up to 3 times automatically
-- **Debug Logging**: Easy one-line setup with `createWithLogging()`
+- **Debug Logging**: One-line setup with `createWithLogging()`, guarded to debug builds
 - **Extensible**: Add custom headers and interceptors easily
 
 ### Manual Dio Setup (Alternative)

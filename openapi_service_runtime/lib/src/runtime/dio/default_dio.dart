@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import '../logging.dart';
+import 'api_log_interceptor.dart';
 import 'smart_upload_interceptor.dart';
 
 /// Creates a default Dio client with opinionated configuration
@@ -52,7 +54,18 @@ class DefaultDio {
     return dio;
   }
 
-  /// Creates a Dio instance with logging enabled (debug mode)
+  /// Creates a Dio instance that logs one line per request and one per
+  /// outcome, with the elapsed time — see [ApiLogInterceptor].
+  ///
+  /// **Debug builds only, by default.** [enableLogging] defaults to
+  /// [assertsEnabled], so a release AOT build logs nothing and shipping this
+  /// call by accident cannot print every endpoint a real user hits into the
+  /// device log. Pass `enableLogging: true` to log in release deliberately, or
+  /// `false` to turn it off.
+  ///
+  /// A host that builds its own [Dio] — to keep timeouts it has tuned, for
+  /// instance — does not need this factory at all; it adds
+  /// `const ApiLogInterceptor()` to the client it already has.
   static Dio createWithLogging({
     String? baseUrl,
     Duration connectTimeout = const Duration(seconds: 30),
@@ -62,6 +75,9 @@ class DefaultDio {
     Map<String, dynamic>? headers,
     List<Interceptor>? interceptors,
     bool enableSmartUploadTimeout = true,
+    bool? enableLogging,
+    ApiLogSink? log,
+    String Function(Uri uri)? redactUri,
   }) {
     final dio = create(
       baseUrl: baseUrl,
@@ -74,54 +90,10 @@ class DefaultDio {
       enableSmartUploadTimeout: enableSmartUploadTimeout,
     );
 
-    // Add logging interceptor for development
-    dio.interceptors.add(_createLoggingInterceptor());
+    if (enableLogging ?? assertsEnabled) {
+      dio.interceptors.add(ApiLogInterceptor(log: log, redactUri: redactUri));
+    }
 
     return dio;
-  }
-
-  static Interceptor _createLoggingInterceptor() {
-    return InterceptorsWrapper(
-      onRequest: (options, handler) {
-        print('🔵 ${options.method} ${options.uri}');
-        if (options.data != null) {
-          final dataLength = _getDataLength(options.data);
-          print('📤 Request body: $dataLength');
-        }
-        handler.next(options);
-      },
-      onResponse: (response, handler) {
-        print('🟢 ${response.statusCode} ${response.requestOptions.uri}');
-        final responseLength = _getDataLength(response.data);
-        print('📥 Response: $responseLength');
-        handler.next(response);
-      },
-      onError: (error, handler) {
-        print(
-            '🔴 ${error.response?.statusCode ?? 'NO_STATUS'} ${error.requestOptions.uri}');
-        print('❌ ${error.message}');
-        if (error.response?.data != null) {
-          final errorLength = _getDataLength(error.response!.data);
-          print('📥 Error response: $errorLength');
-        }
-        handler.next(error);
-      },
-    );
-  }
-
-  static String _getDataLength(dynamic data) {
-    if (data == null) return 'null';
-
-    if (data is String) {
-      return '${data.length} chars';
-    } else if (data is List) {
-      return '${data.length} items';
-    } else if (data is Map) {
-      return '${data.length} fields';
-    } else if (data is Stream) {
-      return 'stream';
-    } else {
-      return data.runtimeType.toString();
-    }
   }
 }
