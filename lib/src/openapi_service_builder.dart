@@ -1369,8 +1369,16 @@ class OpenApiLibraryGenerator {
       // Make the HTTP request
       _generateHttpCall(httpMethod, operation, allParameters, returnType),
 
-      // Parse response
+      // Parse response.
+      //
+      // The parse runs in its own try so the Response survives a fromJson or
+      // cast failure. Handing the bare error to the outer catch tells the
+      // handler only that "something failed on this endpoint": a body the
+      // client read wrong then reports identically to a request that never
+      // arrived, and the one payload that identifies the offending field is
+      // gone. ResponseParseFailure carries the response through instead.
       if (returnType != _void) ...[
+        const Code('try {'),
         ...() {
           final successResponse = operation.responses!.entries
               .where((e) => e.key.startsWith('2'))
@@ -1507,6 +1515,16 @@ class OpenApiLibraryGenerator {
             _right([refer('result')]).returned.statement,
           ];
         }(),
+        const Code('} catch (parseError, parseStackTrace) {'),
+        refer('ResponseParseFailure')
+            .call([], {
+              'response': refer('response'),
+              'cause': refer('parseError'),
+              'causeStackTrace': refer('parseStackTrace'),
+            })
+            .thrown
+            .statement,
+        const Code('}'),
       ] else ...[
         const Code('return const Right(null);'),
       ],

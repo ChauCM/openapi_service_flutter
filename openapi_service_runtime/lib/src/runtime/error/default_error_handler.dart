@@ -4,6 +4,7 @@ import 'error_handler.dart';
 import 'api_error.dart';
 import 'error_messages.dart';
 import 'request_context.dart';
+import 'response_parse_failure.dart';
 
 /// Decides whether a failure is worth logging.
 ///
@@ -54,6 +55,10 @@ class DefaultErrorHandler implements ErrorHandler {
       return _handleDioException(error, stackTrace, requestContext);
     }
 
+    if (error is ResponseParseFailure) {
+      return _handleParseFailure(error, requestContext);
+    }
+
     return _handleGenericError(error, stackTrace, requestContext);
   }
 
@@ -63,8 +68,11 @@ class DefaultErrorHandler implements ErrorHandler {
   /// Never logs headers or bodies — see the logging rule on `ApiLogInterceptor`;
   /// the same rule holds here.
   void _report(dynamic error, StackTrace stackTrace) {
-    final statusCode =
-        error is DioException ? error.response?.statusCode : null;
+    final statusCode = switch (error) {
+      DioException(:final response) => response?.statusCode,
+      ResponseParseFailure(:final statusCode) => statusCode,
+      _ => null,
+    };
     if (!(shouldLog?.call(statusCode, error) ?? true)) return;
 
     final sink = log ?? defaultLogSink;
@@ -150,6 +158,40 @@ class DefaultErrorHandler implements ErrorHandler {
     );
 
     return apiError;
+  }
+
+  /// Builds the error for a success response the client could not read.
+  ///
+  /// The response is real, so the status and body are real: reporting `0` and
+  /// `null` here would say "no answer arrived" about an answer that did, and a
+  /// bare `TypeError` names the wanted type but never the field, which leaves
+  /// nothing to read without the body.
+  ApiError _handleParseFailure(
+    ResponseParseFailure error,
+    RequestContext requestContext,
+  ) {
+    // The friendly message is derived from the cause: the wrapper's own
+    // toString() matches none of the runtime-error patterns.
+    final friendlyMessage = getFriendlyRuntimeErrorMessage(error.cause);
+
+    final debugInfo = ApiErrorDebugInfo(
+      requestContext: requestContext,
+      // The cause's trace names the parse frame; the rethrow site's does not.
+      stackTrace: error.causeStackTrace,
+      responseHeaders: error.response.headers.map,
+      responseBody: error.response.data,
+      // The failure itself, so a caller can reach both the cause and the
+      // whole Response.
+      originalError: error,
+    );
+
+    return ApiError(
+      message: friendlyMessage,
+      statusCode: error.statusCode,
+      type: 'parse_error',
+      technicalDetails: error.cause.toString(),
+      debugInfo: debugInfo,
+    );
   }
 
   ApiError _handleGenericError(

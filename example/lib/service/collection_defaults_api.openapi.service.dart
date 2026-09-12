@@ -25,8 +25,16 @@ class CollectionDefaultsApiService {
     final endpoint = '/characters/$hanzi';
     try {
       final response = await _dio.get(endpoint);
-      final result = CharacterDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = CharacterDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',

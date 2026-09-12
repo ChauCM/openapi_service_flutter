@@ -51,8 +51,16 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = DailyLogAttendanceDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = DailyLogAttendanceDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -101,11 +109,20 @@ class KagamiService {
         endpoint,
         data: body.toJson(),
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => AttendanceDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                AttendanceDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -128,8 +145,16 @@ class KagamiService {
     final endpoint = '/v2/Attendances/$studentid/$logDate';
     try {
       final response = await _dio.get(endpoint);
-      final result = DailyLogAttendanceDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = DailyLogAttendanceDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -546,8 +571,16 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = CheckInOutDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = CheckInOutDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -571,8 +604,16 @@ class KagamiService {
         endpoint,
         data: body.toJson(),
       );
-      final result = CheckInOutDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = CheckInOutDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -595,8 +636,16 @@ class KagamiService {
     final endpoint = '/v2/CheckInsOuts/{studentid}/$logDate';
     try {
       final response = await _dio.get(endpoint);
-      final result = CheckInOutDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = CheckInOutDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -873,12 +922,20 @@ class KagamiService {
     final endpoint = '/v2/Classes/$schoolid/StudentSearch/$searchstring';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              StudentMiniDailyLogVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => StudentMiniDailyLogVODto.fromJson(
+                (item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -901,12 +958,20 @@ class KagamiService {
     final endpoint = '/v2/Classes/$classid/Status/$date';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              StudentMiniDailyLogVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => StudentMiniDailyLogVODto.fromJson(
+                (item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1878,8 +1943,16 @@ class KagamiService {
     final endpoint = '/MedicineAuditTrails/$id';
     try {
       final response = await _dio.get(endpoint);
-      final result = MedicineAuditWithDetailVODto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineAuditWithDetailVODto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1915,9 +1988,17 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          MedicineAuditWebViewVOPaginationDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            MedicineAuditWebViewVOPaginationDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1989,12 +2070,20 @@ class KagamiService {
     final endpoint = '/MedicineAuditTrails/ByMedicineFormId/$medicineFormId';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => MedicineAuditWithDetailVODto.fromJson(
-              (item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => MedicineAuditWithDetailVODto.fromJson(
+                (item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2142,12 +2231,20 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineFormDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                MedicineFormDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2218,8 +2315,16 @@ class KagamiService {
     final endpoint = '/MedicineForm/$id';
     try {
       final response = await _dio.get(endpoint);
-      final result = MedicineFormFullVODto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineFormFullVODto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2240,12 +2345,20 @@ class KagamiService {
     final endpoint = '/MedicineForm/parents/$parentId/students';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineDataStudentVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => MedicineDataStudentVODto.fromJson(
+                (item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2266,8 +2379,16 @@ class KagamiService {
     final endpoint = '/MedicineForm/$medicineFormId/student';
     try {
       final response = await _dio.get(endpoint);
-      final result = MedicineDataStudentVODto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineDataStudentVODto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2287,12 +2408,20 @@ class KagamiService {
     final endpoint = '/MedicineForm/classes/$classId/students';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineDataStudentVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => MedicineDataStudentVODto.fromJson(
+                (item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2321,12 +2450,20 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineDataStudentVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => MedicineDataStudentVODto.fromJson(
+                (item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2347,12 +2484,20 @@ class KagamiService {
     final endpoint = '/MedicineForm/schools/$schoolId/homePageInfo';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2381,12 +2526,20 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2418,8 +2571,16 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2458,8 +2619,16 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2503,8 +2672,16 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2547,8 +2724,16 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineFormFullVOPaginationDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2569,12 +2754,20 @@ class KagamiService {
     final endpoint = '/MedicineForm/schools/$schoolId/actionMedicine';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2605,12 +2798,20 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2642,12 +2843,20 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                MedicineFormFullVODto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2940,12 +3149,20 @@ class KagamiService {
     final endpoint = '/Parents/$id/Students';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              StudentWithConfigVODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StudentWithConfigVODto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -3753,8 +3970,16 @@ class KagamiService {
     final endpoint = '/Schools/$id/MedicineConfig';
     try {
       final response = await _dio.get(endpoint);
-      final result = MedicineFormSchoolConfigVODto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = MedicineFormSchoolConfigVODto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -4721,8 +4946,16 @@ class KagamiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = TemperatureCheckDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = TemperatureCheckDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -4746,8 +4979,16 @@ class KagamiService {
         endpoint,
         data: body.toJson(),
       );
-      final result = TemperatureCheckDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = TemperatureCheckDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -4770,8 +5011,16 @@ class KagamiService {
     final endpoint = '/v2/TemperatureChecks/{studentid}/$logDate';
     try {
       final response = await _dio.get(endpoint);
-      final result = TemperatureCheckDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = TemperatureCheckDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',

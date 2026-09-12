@@ -31,8 +31,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = AccountImageApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AccountImageApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -63,9 +71,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfAccountDeviceSessionApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfAccountDeviceSessionApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -92,8 +108,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = AccountDeviceSessionApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AccountDeviceSessionApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -123,8 +147,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfBranchApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfBranchApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -181,8 +213,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfCalendarItemApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfCalendarItemApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -212,8 +252,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfClassApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfClassApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -267,8 +315,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfContentApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfContentApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -289,8 +345,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Content/$contentId';
     try {
       final response = await _dio.get(endpoint);
-      final result = ContentApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ContentApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -341,8 +405,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfConversationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfConversationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -366,8 +438,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = ConversationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ConversationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -388,8 +468,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Conversation/$id';
     try {
       final response = await _dio.get(endpoint);
-      final result = ConversationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ConversationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -414,8 +502,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = ConversationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ConversationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -441,8 +537,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = ConversationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ConversationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PATCH',
@@ -475,9 +579,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfConversationMessageApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfConversationMessageApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -501,8 +613,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = ConversationMessageApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ConversationMessageApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -529,8 +649,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = ConversationMessageApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ConversationMessageApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PATCH',
@@ -581,8 +709,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfDailyLogApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfDailyLogApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -631,8 +767,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfDailyLogApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfDailyLogApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -656,8 +800,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = FileUploadResultDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = FileUploadResultDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -677,8 +829,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Health';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as String);
-      return Right(result);
+      try {
+        final result = (response.data as String);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -729,9 +889,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfInfantCareActivityApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfInfantCareActivityApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -755,8 +923,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = InfantCareActivityApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InfantCareActivityApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -780,8 +956,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = InfantCareActivityApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InfantCareActivityApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -833,9 +1017,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfInfantCareActivityLogApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfInfantCareActivityLogApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -859,8 +1051,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = InfantCareActivityLogApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InfantCareActivityLogApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -885,8 +1085,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = InfantCareActivityLogApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InfantCareActivityLogApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -925,12 +1133,20 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => InfantWellnessActivityDTODto.fromJson(
-              (item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => InfantWellnessActivityDTODto.fromJson(
+                (item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -961,8 +1177,16 @@ class EbridgeService {
         queryParameters: queryParams,
         data: body.toJson(),
       );
-      final result = InfantWellnessActivityDtoDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InfantWellnessActivityDtoDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -1010,8 +1234,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfInvoiceApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfInvoiceApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1032,8 +1264,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Invoice/$invoiceId';
     try {
       final response = await _dio.get(endpoint);
-      final result = InvoiceApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InvoiceApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1063,8 +1303,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfLearningDomainApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfLearningDomainApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1085,11 +1334,19 @@ class EbridgeService {
     final endpoint = '/api/v1/LookUp/$lookUpTypeEnum';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => LookUpDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => LookUpDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1108,8 +1365,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Notification/mark-all-as-read';
     try {
       final response = await _dio.post(endpoint);
-      final result = (response.data as int);
-      return Right(result);
+      try {
+        final result = (response.data as int);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1129,8 +1394,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Notification/summary';
     try {
       final response = await _dio.get(endpoint);
-      final result = NotificationSummaryDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationSummaryDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1152,8 +1425,16 @@ class EbridgeService {
         '/api/v1/Notification/toggle-read/$notificationRecipientId';
     try {
       final response = await _dio.put(endpoint);
-      final result = NotificationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -1174,8 +1455,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Notification/$notificationRecipientId';
     try {
       final response = await _dio.get(endpoint);
-      final result = NotificationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1221,8 +1510,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfNotificationApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfNotificationApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1274,9 +1571,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfStudentAttendanceApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfStudentAttendanceApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1324,9 +1629,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfStudentAuthorisedPersonApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfStudentAuthorisedPersonApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1405,8 +1718,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = StudentAuthorisedPersonApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StudentAuthorisedPersonApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1458,9 +1779,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfStudentCheckInOutApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfStudentCheckInOutApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1484,8 +1813,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = StudentCheckInOutApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StudentCheckInOutApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1511,8 +1848,16 @@ class EbridgeService {
         endpoint,
         data: body.toJson(),
       );
-      final result = StudentCheckInOutApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StudentCheckInOutApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -1560,12 +1905,20 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              ClassAttendanceDTODto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                ClassAttendanceDTODto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1612,8 +1965,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfStudentApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfStudentApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1634,8 +1995,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Student/$studentId';
     try {
       final response = await _dio.get(endpoint);
-      final result = StudentApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StudentApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1686,9 +2055,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result =
-          PagedResultOfStudentTemperatureApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfStudentTemperatureApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1708,11 +2085,20 @@ class EbridgeService {
     final endpoint = '/api/v1/Survey';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => SurveyApiDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map(
+                (item) => SurveyApiDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1754,8 +2140,16 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfTeacherApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PagedResultOfTeacherApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1776,8 +2170,16 @@ class EbridgeService {
     final endpoint = '/api/v1/Teacher/$teacherId';
     try {
       final response = await _dio.get(endpoint);
-      final result = TeacherApiDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = TeacherApiDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1826,8 +2228,17 @@ class EbridgeService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PagedResultOfUserBranchRoleViewDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            PagedResultOfUserBranchRoleViewDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1847,8 +2258,16 @@ class EbridgeService {
     final endpoint = '/api/v1/User/me';
     try {
       final response = await _dio.get(endpoint);
-      final result = CurrentUserInfoDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = CurrentUserInfoDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1867,8 +2286,16 @@ class EbridgeService {
     final endpoint = '/api/v1/User/delete';
     try {
       final response = await _dio.post(endpoint);
-      final result = (response.data as bool);
-      return Right(result);
+      try {
+        final result = (response.data as bool);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',

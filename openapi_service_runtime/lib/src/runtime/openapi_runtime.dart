@@ -9,6 +9,7 @@ export 'error/error_handler.dart';
 export 'error/default_error_handler.dart';
 export 'error/error_messages.dart';
 export 'error/request_context.dart';
+export 'error/response_parse_failure.dart';
 
 // Export Dio utilities
 export 'dio/api_log_interceptor.dart';

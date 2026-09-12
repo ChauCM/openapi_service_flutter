@@ -28,8 +28,16 @@ class StepoService {
     final endpoint = '/api/v1/account';
     try {
       final response = await _dio.get(endpoint);
-      final result = AccountDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AccountDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -51,8 +59,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = AccountDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AccountDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -105,8 +121,16 @@ class StepoService {
           'Content-Type': mime,
         }),
       );
-      final result = AccountDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AccountDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -130,8 +154,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = LoginResponseDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = LoginResponseDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -152,8 +184,16 @@ class StepoService {
     final endpoint = '/api/v1/users/$id';
     try {
       final response = await _dio.get(endpoint);
-      final result = ProfileDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ProfileDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -173,8 +213,16 @@ class StepoService {
     final endpoint = '/api/v1/users/$id/badges-earned';
     try {
       final response = await _dio.get(endpoint);
-      final result = BadgesEarnedDetailDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = BadgesEarnedDetailDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -194,8 +242,16 @@ class StepoService {
     final endpoint = '/api/v1/users/$id/support-received';
     try {
       final response = await _dio.get(endpoint);
-      final result = SupportReceivedDetailDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = SupportReceivedDetailDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -219,8 +275,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = StepDetailDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StepDetailDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -242,8 +306,16 @@ class StepoService {
     final endpoint = '/api/v1/steps/$stepId';
     try {
       final response = await _dio.get(endpoint);
-      final result = StepDetailDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StepDetailDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -269,8 +341,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = StepDetailDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StepDetailDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -323,11 +403,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StepDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -358,11 +447,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StepDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -393,11 +491,19 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => ReportDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => ReportDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -422,8 +528,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = ReportDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ReportDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -448,8 +562,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = TestNotificationResultDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = TestNotificationResultDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -471,8 +593,16 @@ class StepoService {
     final endpoint = '/api/v1/notifications/preferences';
     try {
       final response = await _dio.get(endpoint);
-      final result = NotificationPreferencesDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationPreferencesDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -496,8 +626,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = NotificationPreferencesDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationPreferencesDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -528,8 +666,16 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = NotificationPagedDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationPagedDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -551,8 +697,16 @@ class StepoService {
     final endpoint = '/api/v1/notifications/summary';
     try {
       final response = await _dio.get(endpoint);
-      final result = NotificationCountsDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationCountsDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -574,8 +728,16 @@ class StepoService {
     final endpoint = '/api/v1/notifications/$notificationId/read';
     try {
       final response = await _dio.put(endpoint);
-      final result = NotificationCountsDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationCountsDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -596,8 +758,16 @@ class StepoService {
     final endpoint = '/api/v1/notifications/read-status';
     try {
       final response = await _dio.put(endpoint);
-      final result = NotificationCountsDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationCountsDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -618,8 +788,16 @@ class StepoService {
     final endpoint = '/api/v1/notifications/seen';
     try {
       final response = await _dio.put(endpoint);
-      final result = NotificationCountsDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = NotificationCountsDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -905,8 +1083,16 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = VideoPreSignedUrlDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = VideoPreSignedUrlDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -927,8 +1113,16 @@ class StepoService {
     final endpoint = '/api/v1/media/$mediaId';
     try {
       final response = await _dio.get(endpoint);
-      final result = StepMediaDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StepMediaDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -970,8 +1164,16 @@ class StepoService {
           'Content-Type': mime,
         }),
       );
-      final result = StepMediaDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StepMediaDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -994,8 +1196,16 @@ class StepoService {
     final endpoint = '/api/v1/steps/$stepId/video';
     try {
       final response = await _dio.put(endpoint);
-      final result = VideoPreSignedUrlDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = VideoPreSignedUrlDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -1059,8 +1269,16 @@ class StepoService {
     final endpoint = '/api/v1/journeys/$id';
     try {
       final response = await _dio.get(endpoint);
-      final result = JourneyInDetailDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = JourneyInDetailDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1086,8 +1304,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = JourneyDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = JourneyDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -1133,8 +1359,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = StepDetailDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StepDetailDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1157,8 +1391,16 @@ class StepoService {
     final endpoint = '/api/v1/journeys/$id/close';
     try {
       final response = await _dio.post(endpoint);
-      final result = JourneyDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = JourneyDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1190,11 +1432,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StepDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1226,11 +1477,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StepDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1252,12 +1512,20 @@ class StepoService {
     final endpoint = '/api/v1/journeys/$journeyId/calendar';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              JourneyDayCalendarDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                JourneyDayCalendarDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1289,11 +1557,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StepDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1326,11 +1603,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => StepDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StepDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1363,12 +1649,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              JourneyWithPreviewDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                JourneyWithPreviewDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1400,12 +1694,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              JourneyWithPreviewDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                JourneyWithPreviewDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1427,8 +1729,16 @@ class StepoService {
     final endpoint = '/api/v1/journeys/$journeyId/follow';
     try {
       final response = await _dio.post(endpoint);
-      final result = (response.data as bool);
-      return Right(result);
+      try {
+        final result = (response.data as bool);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1449,8 +1759,16 @@ class StepoService {
     final endpoint = '/api/v1/journeys/$journeyId/follow';
     try {
       final response = await _dio.delete(endpoint);
-      final result = (response.data as bool);
-      return Right(result);
+      try {
+        final result = (response.data as bool);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
@@ -1475,8 +1793,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = InteractionResultDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InteractionResultDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1497,8 +1823,16 @@ class StepoService {
     final endpoint = '/api/v1/steps/$stepId/hearts';
     try {
       final response = await _dio.delete(endpoint);
-      final result = InteractionResultDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InteractionResultDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
@@ -1523,8 +1857,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = InteractionResultDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InteractionResultDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1545,8 +1887,16 @@ class StepoService {
     final endpoint = '/api/v1/steps/$stepId/interactions';
     try {
       final response = await _dio.get(endpoint);
-      final result = InteractionResultDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = InteractionResultDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1571,8 +1921,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = (response.data as bool);
-      return Right(result);
+      try {
+        final result = (response.data as bool);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -1593,8 +1951,16 @@ class StepoService {
     final endpoint = '/api/v1/steps/comments/$commentId/hearts';
     try {
       final response = await _dio.delete(endpoint);
-      final result = (response.data as bool);
-      return Right(result);
+      try {
+        final result = (response.data as bool);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'DELETE',
@@ -1624,11 +1990,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                UserDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1659,11 +2034,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                UserDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1695,12 +2079,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              FollowRequestDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                FollowRequestDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1732,12 +2124,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) =>
-              FollowRequestDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                FollowRequestDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1866,8 +2266,16 @@ class StepoService {
     final endpoint = '/api/v1/users/$userId/follow-status';
     try {
       final response = await _dio.get(endpoint);
-      final result = FollowingStatusDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = FollowingStatusDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1898,11 +2306,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                UserDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1934,11 +2351,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => UserDetailDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                UserDetailDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1960,8 +2386,16 @@ class StepoService {
     final endpoint = '/api/v1/users/$userId/followers/count';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as int);
-      return Right(result);
+      try {
+        final result = (response.data as int);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -1982,8 +2416,16 @@ class StepoService {
     final endpoint = '/api/v1/users/$userId/followings/count';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as int);
-      return Right(result);
+      try {
+        final result = (response.data as int);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2013,8 +2455,16 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = FeedPageDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = FeedPageDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2062,8 +2512,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = ReplyDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ReplyDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -2095,11 +2553,19 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => ReplyDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => ReplyDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2131,12 +2597,20 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map(
-              (item) => StepCommentDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                StepCommentDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2163,8 +2637,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = StepCommentDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = StepCommentDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -2199,8 +2681,16 @@ class StepoService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = PageResponseOfAppFeedbackDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PageResponseOfAppFeedbackDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2227,8 +2717,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = AppFeedbackDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AppFeedbackDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -2253,8 +2751,16 @@ class StepoService {
         endpoint,
         data: body.toJson(),
       );
-      final result = AppFeedbackDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AppFeedbackDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -2290,8 +2796,16 @@ class StepoService {
           'Content-Type': mime,
         }),
       );
-      final result = AppFeedbackDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AppFeedbackDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -2313,8 +2827,16 @@ class StepoService {
     final endpoint = '/api/v1/appfeedback/$id';
     try {
       final response = await _dio.get(endpoint);
-      final result = AppFeedbackDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = AppFeedbackDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -2356,12 +2878,20 @@ class StepoService {
     final endpoint = '/api/v1/appfeedback/my-feedback';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map(
-              (item) => AppFeedbackDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) =>
+                AppFeedbackDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',

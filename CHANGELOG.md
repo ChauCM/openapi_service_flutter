@@ -1,5 +1,54 @@
 # Changelog
 
+## 3.2.0
+
+A parse failure stops looking like a dead wire. Reported by the MaiSay consumer,
+where a `200` the client read wrong reached the screen as "server unreachable"
+and could not be diagnosed afterwards, because the body that would have named
+the offending field was discarded at the moment it failed.
+
+`openapi_service_runtime` bumps to **1.2.0**. Generated code from 3.2.0 requires
+runtime **>= 1.2.0**; regenerate and bump the two together.
+
+### Fixed
+
+- **The generated parse no longer destroys the response.** The request and the
+  parse used to share one `try`, so a `fromJson` or cast failure arrived at
+  `ErrorHandler.handleError` as a bare `TypeError` with no response attached.
+  `DefaultErrorHandler` then reported `statusCode: 0`, `responseBody: null`,
+  `type: 'client_error'` — the same `ApiError` a request that never left the
+  device produces. The parse now runs in its own inner `try` and rethrows a
+  `ResponseParseFailure` carrying the whole `Response`.
+- `DefaultErrorHandler` reports the **real status and the real body** for such a
+  failure, with `type: 'parse_error'` and the cause's own stack trace (the one
+  that names the parse frame). The friendly message is still derived from the
+  cause, not the wrapper.
+- `shouldLog` receives the real status for a parse failure instead of `null`, so
+  an unreadable `200` can be quietened by status like any other outcome.
+
+### Added
+
+- `ResponseParseFailure` in `openapi_service_runtime`, exposing `response`,
+  `cause`, `causeStackTrace`, `statusCode` and `responseBody`.
+- `ApiError.isParseError`.
+
+### Behavior change
+
+No API is removed and every `ErrorHandler` implementation keeps compiling, but
+two observable values change for an unreadable success response:
+
+- `error.statusCode` is now the real status (typically `200`) rather than `0`,
+  and `error.type` is `'parse_error'` rather than `'client_error'`. Code that
+  treated `statusCode == 0` as "offline" stops mistaking a parse defect for one;
+  code that branched on `isClientError` to catch parse failures should branch on
+  `isParseError` instead.
+- A custom `ErrorHandler` is handed a `ResponseParseFailure` where it previously
+  received the raw `TypeError`. Its `toString()` includes the cause, and `cause`
+  reaches the original error unchanged.
+
+Dio throws on a non-success status before the parse runs, so this path is only
+ever reached for a response the server considered successful.
+
 ## 3.1.0
 
 Runtime logging becomes adjustable. Every default is unchanged; each item below

@@ -84,6 +84,11 @@ class ApiError {
   /// Whether this is a server error
   bool get isServerError => type == 'server_error' || (statusCode != null && statusCode! >= 500);
   
+  /// Whether the server answered successfully and the client could not read
+  /// the body. [statusCode] and `debugInfo.responseBody` hold the real
+  /// response; `debugInfo.originalError` is the `ResponseParseFailure`.
+  bool get isParseError => type == 'parse_error';
+  
   /// Whether this is a client error
   bool get isClientError => type == 'client_error' || (statusCode != null && statusCode! >= 400 && statusCode! < 500);
 

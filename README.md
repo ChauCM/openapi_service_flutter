@@ -402,6 +402,40 @@ switch (result) {
 }
 ```
 
+### When the server answered and the client could not read it
+
+A `200` whose body does not match the generated DTO is a different failure from a
+request that never arrived, and it is reported as one. The generated parse runs in
+its own `try`, so the response survives a `fromJson` or cast failure and reaches the
+handler inside a `ResponseParseFailure`:
+
+```dart
+result.fold(
+  (error) {
+    if (error.isParseError) {
+      // The status and body are the real ones, not 0 and null.
+      print('Status: ${error.statusCode}');             // 200
+      print('Body:   ${error.debugInfo?.responseBody}'); // the payload that disagreed
+
+      final failure = error.debugInfo?.originalError as ResponseParseFailure;
+      print('Cause:  ${failure.cause}');                // the TypeError itself
+      print(failure.causeStackTrace);                   // names the parse frame
+    }
+  },
+  (value) => ...,
+);
+```
+
+This matters because a `TypeError` names the type it wanted and never the field: a
+`type 'Null' is not a subtype of type 'num'` on a 40-field DTO is unreadable without
+the body next to it. `error.type` is `'parse_error'` and `error.statusCode` is the
+status that actually arrived, so a client defect no longer presents to the user as
+"the server is unreachable".
+
+A custom `ErrorHandler` sees `ResponseParseFailure` where it previously saw the bare
+`TypeError`; it exposes `response`, `cause`, `causeStackTrace`, `statusCode` and
+`responseBody`.
+
 ### Quietening and routing the error log
 
 `DefaultErrorHandler` prints every failure with its stack trace. In an app whose

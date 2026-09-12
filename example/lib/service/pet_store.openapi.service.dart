@@ -85,11 +85,19 @@ class PetStoreService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => PetDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => PetDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -118,11 +126,19 @@ class PetStoreService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as List<dynamic>);
-      final mappedResult = result
-          .map((item) => PetDto.fromJson((item as Map<String, dynamic>)))
-          .toList();
-      return Right(mappedResult);
+      try {
+        final result = (response.data as List<dynamic>);
+        final mappedResult = result
+            .map((item) => PetDto.fromJson((item as Map<String, dynamic>)))
+            .toList();
+        return Right(mappedResult);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -144,8 +160,16 @@ class PetStoreService {
     final endpoint = '/pet/$petId';
     try {
       final response = await _dio.get(endpoint);
-      final result = PetDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = PetDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -237,8 +261,16 @@ class PetStoreService {
           'Content-Type': mime,
         }),
       );
-      final result = ApiResponseDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = ApiResponseDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -260,8 +292,16 @@ class PetStoreService {
     final endpoint = '/store/inventory';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as Map<String, int>);
-      return Right(result);
+      try {
+        final result = (response.data as Map<String, int>);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -284,8 +324,16 @@ class PetStoreService {
         endpoint,
         data: body.toJson(),
       );
-      final result = OrderDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = OrderDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'POST',
@@ -308,8 +356,16 @@ class PetStoreService {
     final endpoint = '/store/order/$orderId';
     try {
       final response = await _dio.get(endpoint);
-      final result = OrderDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = OrderDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -435,8 +491,16 @@ class PetStoreService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = (response.data as String);
-      return Right(result);
+      try {
+        final result = (response.data as String);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -478,8 +542,16 @@ class PetStoreService {
     final endpoint = '/user/$username';
     try {
       final response = await _dio.get(endpoint);
-      final result = UserDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = UserDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',

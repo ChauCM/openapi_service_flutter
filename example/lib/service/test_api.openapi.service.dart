@@ -50,8 +50,16 @@ class TestApiService {
     final endpoint = '/hello/{name}/html';
     try {
       final response = await _dio.get(endpoint);
-      final result = (response.data as String);
-      return Right(result);
+      try {
+        final result = (response.data as String);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -78,8 +86,16 @@ class TestApiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = HelloResponseDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = HelloResponseDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -104,8 +120,16 @@ class TestApiService {
         endpoint,
         data: body.toJson(),
       );
-      final result = HelloResponseDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = HelloResponseDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
@@ -127,8 +151,17 @@ class TestApiService {
     final endpoint = '/uuidExample/{messageId}';
     try {
       final response = await _dio.get(endpoint);
-      final result = UuidExampleMessageIdGetResponseDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result =
+            UuidExampleMessageIdGetResponseDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',

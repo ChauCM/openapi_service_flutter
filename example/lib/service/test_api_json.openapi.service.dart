@@ -57,8 +57,16 @@ class TestJsonApiService {
         endpoint,
         queryParameters: queryParams,
       );
-      final result = HelloResponseDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = HelloResponseDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'GET',
@@ -83,8 +91,16 @@ class TestJsonApiService {
         endpoint,
         data: body.toJson(),
       );
-      final result = HelloResponseDto.fromJson(response.data);
-      return Right(result);
+      try {
+        final result = HelloResponseDto.fromJson(response.data);
+        return Right(result);
+      } catch (parseError, parseStackTrace) {
+        throw ResponseParseFailure(
+          response: response,
+          cause: parseError,
+          causeStackTrace: parseStackTrace,
+        );
+      }
     } catch (e, stackTrace) {
       final requestContext = RequestContext(
         method: 'PUT',
