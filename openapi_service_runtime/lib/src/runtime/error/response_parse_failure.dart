@@ -9,8 +9,11 @@ import 'package:dio/dio.dart';
 /// payload that disagreed, and the one body that would have identified the
 /// field is the body that gets discarded.
 ///
-/// Dio throws on a non-success status before the parse runs, so reaching this
-/// means the status was a success one — the client read a good answer wrong.
+/// Under Dio's default `validateStatus` (2xx only) a non-success status throws
+/// before the parse runs, so reaching this means the client read a good answer
+/// wrong. A host that widens `validateStatus` on its own `Dio` sends error
+/// bodies into the parse as well; [statusCode] and [responseBody] are the real
+/// ones either way, so read the status rather than assuming it was a success.
 class ResponseParseFailure implements Exception {
   const ResponseParseFailure({
     required this.response,
