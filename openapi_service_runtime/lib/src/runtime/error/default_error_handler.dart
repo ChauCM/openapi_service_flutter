@@ -194,6 +194,14 @@ class DefaultErrorHandler implements ErrorHandler {
     );
   }
 
+  /// Builds the error for a failure that is neither transport nor parse.
+  ///
+  /// Since parse failures got their own branch this population is narrow: a
+  /// defect in the client's own request-building, thrown before the request
+  /// left or after it was already read. No response ever existed for it, so
+  /// `statusCode: 0` and `responseBody: null` are accurate here rather than the
+  /// placeholders they used to be when an unreadable 200 also landed on this
+  /// path.
   ApiError _handleGenericError(
     dynamic error,
     StackTrace stackTrace,
