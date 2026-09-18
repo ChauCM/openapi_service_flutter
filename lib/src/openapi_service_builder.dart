@@ -1980,9 +1980,48 @@ class OpenApiLibraryGenerator {
               ..named = true;
 
             // Add JsonKey annotation - always use the original key name for JSON
-            pb.annotations.add(jsonKey([], {
+            final jsonKeyArgs = <String, Expression>{
               'name': literalString(entry.key),
-            }));
+            };
+
+            // Point every enum field at its sentinel. Decoding runs through
+            // json_serializable's $enumDecode/$enumDecodeNullable, which throws
+            // ArgumentError on a name absent from the enum map unless the field
+            // declares unknownValue — so without this, a server that adds an
+            // enum value breaks every client build already shipped. The
+            // nullable-only escape hatch (nullForUndefinedEnumValue) cannot
+            // stand in: it is rejected on non-nullable fields, which are the
+            // majority here.
+            // A list of enums needs this as much as a scalar one does, and it is
+            // the easy one to miss: the field's own schema is the array, so its
+            // `enumerated` is empty and its Dart type is `List`. The values live
+            // on `items`, and the sentinel has to be named on the element type.
+            final itemsSchema =
+                _unwrapNullableOneOf(effectiveSchema.items ?? entry.value!) ??
+                    effectiveSchema.items;
+            final itemsEnumType = itemsSchema == null
+                ? null
+                : toDartType(
+                    itemsSchema.referenceURI != null
+                        ? entry.key.pascalCase
+                        : '$className${entry.key.pascalCase}',
+                    itemsSchema);
+            final itemsAreEnum = itemsSchema != null &&
+                (itemsSchema.enumerated?.isNotEmpty == true ||
+                    createdEnums.containsKey(itemsEnumType?.symbol));
+
+            final isEnumField = effectiveSchema.enumerated?.isNotEmpty == true ||
+                referencesNullableEnum ||
+                createdEnums.containsKey(fieldType.symbol);
+            if (isEnumField) {
+              jsonKeyArgs['unknownValue'] =
+                  fieldType.property(EnumSpec.unknownSentinel);
+            } else if (itemsAreEnum && itemsEnumType != null) {
+              jsonKeyArgs['unknownValue'] =
+                  itemsEnumType.property(EnumSpec.unknownSentinel);
+            }
+
+            pb.annotations.add(jsonKey([], jsonKeyArgs));
 
             // Add @Default annotation if needed
             if (hasDefaultValue && !isRequired) {
@@ -2120,6 +2159,20 @@ class OpenApiLibraryGenerator {
 class EnumSpec extends Spec {
   EnumSpec({this.name, this.values});
 
+  /// The sentinel every generated enum carries for a wire value this build does
+  /// not know. A server may add an enum value at any time, and a client already
+  /// in a user's hands has to render that response rather than throw on it.
+  ///
+  /// The `$` prefix is what makes the name safe rather than merely unlikely.
+  /// [OpenApiLibraryGenerator._sanitizeEnumValueName] emits `$`-prefixed names
+  /// only for wire values that camelCase onto a Dart reserved word, and
+  /// `unknown` is not one — so no spec can produce this identifier and collide
+  /// with it. A plain `unknown` would collide, and specs do use it: it is a real
+  /// domain value in at least one consumer, where it means the server knows the
+  /// answer is "unknown". That is a different fact from "this build is too old
+  /// to have heard of this value", and the two must not land on one variant.
+  static const String unknownSentinel = r'$unknown';
+
   final String? name;
   final List<EnumValueSpec>? values;
 
@@ -2132,6 +2185,12 @@ class EnumSpec extends Spec {
       visitor.visitSpec(value, context);
       ctx.write(',');
     }
+    // Deliberately carries no @JsonValue. json_serializable then uses the Dart
+    // name as its wire value, so a sentinel that is round-tripped back to the
+    // server is sent as a string no server accepts and is refused loudly. The
+    // alternative — encoding it as some plausible real value — would turn a
+    // value the client could not read into one the server acts on.
+    ctx.write('$unknownSentinel,');
     ctx.writeln('}');
     ctx.write('extension ${name}Ext on $name {');
     ctx.write('static final Map<String, $name> _names = ');
@@ -2141,11 +2200,12 @@ class EnumSpec extends Spec {
         context);
     ctx.write(';');
     ctx.write('static $name fromName(String name) => _names[name] ??'
-        ' _throwStateError(\'Invalid enum name: \$name for $name\');');
+        ' $name.$unknownSentinel;');
     ctx.write('String get name => switch (this) {');
     for (final value in values!) {
       ctx.write('$name.${value.name} => \'${value.originalValue}\',');
     }
+    ctx.write('$name.$unknownSentinel => r\'$unknownSentinel\',');
     ctx.write('};');
     ctx.writeln('}');
     return context;

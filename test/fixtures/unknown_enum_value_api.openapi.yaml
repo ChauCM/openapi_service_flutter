@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Unknown Enum Value API
+  x-dart-name: UnknownEnumValueApi
+
+paths:
+  /thing:
+    get:
+      summary: Read a thing
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thing'
+
+components:
+  schemas:
+    Thing:
+      type: object
+      required:
+        - state
+        - marks
+      properties:
+        state:
+          $ref: '#/components/schemas/ThingState'
+        owner:
+          $ref: '#/components/schemas/ThingOwner'
+        marks:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThingMark'
+        reason:
+          type: string
+          enum:
+            - noise
+            - unknown
+    ThingState:
+      type: string
+      enum:
+        - Started
+        - Finished
+    ThingOwner:
+      type: string
+      enum:
+        - Self
+        - Other
+    ThingMark:
+      type: string
+      enum:
+        - Good
+        - Bad

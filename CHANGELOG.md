@@ -1,5 +1,46 @@
 # Changelog
 
+## 4.0.0
+
+A server that adds an enum value no longer breaks every client already shipped.
+Reported by the MaiSay consumer, where seven enums gained values between a
+release and the build in users' hands, and the next response carrying one of
+them would have thrown out of the JSON decode.
+
+**Breaking for consumers, by design.** Every generated enum gains a `$unknown`
+variant, so any `switch` that was exhaustive over a generated enum stops
+compiling until it handles it. That break is the point: it moves the discovery
+from a user's device to the build, and each site is a real decision about what
+to draw when the value cannot be read. Some of those sites will be refusals
+rather than fallbacks — a screen that cannot be drawn truthfully should not be
+drawn. Read each one; a blanket `_ =>` sweep will silently disarm switches whose
+exhaustiveness was deliberate.
+
+### Fixed
+
+- **Decoding an unseen enum value no longer throws.** `$enumDecode` and
+  `$enumDecodeNullable` raise `ArgumentError` for any name absent from the
+  generated enum map unless the field declares `unknownValue`. Every enum-typed
+  field now declares it. This was invisible in the generated Dart, because the
+  enum itself looks complete and the throw happens in the `.g.dart` part.
+- **A list of enums is covered too.** It is the easy one to miss: the field's own
+  schema is the array, so its `enumerated` is empty and its Dart type is `List`.
+  The generator looks through to `items` and names the element type.
+- `fromName` returns the sentinel instead of throwing a `StateError`.
+
+### Added
+
+- `EnumSpec.unknownSentinel` — the `$unknown` variant carried by every generated
+  enum. The `$` prefix is what makes the name safe rather than merely unlikely:
+  `_sanitizeEnumValueName` emits `$`-prefixed names only for wire values that
+  camelCase onto a Dart reserved word, and `unknown` is not one, so no spec can
+  produce this identifier. A plain `unknown` would collide, and specs do use it
+  — where it means the server knows the answer is "unknown", a different fact
+  from "this build is too old to have heard of this value".
+- The sentinel carries no `@JsonValue`, so a value round-tripped back to the
+  server is sent as a string no server accepts and is refused loudly, rather
+  than being encoded as some plausible real value the server would act on.
+
 ## 3.2.0
 
 A parse failure stops looking like a dead wire. Reported by the MaiSay consumer,
