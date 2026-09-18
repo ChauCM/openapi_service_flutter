@@ -50,14 +50,14 @@ void main() {
     test('a required enum field declares the sentinel as unknownValue', () {
       expect(
         dtosOutput,
-        contains(r'unknownValue: ThingStateDto.$unknown'),
+        contains(r'unknownEnumValue: ThingStateDto.$unknown'),
       );
     });
 
     test('a nullable enum field declares it too', () {
       expect(
         dtosOutput,
-        contains(r'unknownValue: ThingOwnerDto.$unknown'),
+        contains(r'unknownEnumValue: ThingOwnerDto.$unknown'),
       );
     });
 
@@ -68,7 +68,7 @@ void main() {
     test('a list of enums names the ELEMENT type as unknownValue', () {
       expect(
         dtosOutput,
-        contains(r'unknownValue: ThingMarkDto.$unknown'),
+        contains(r'unknownEnumValue: ThingMarkDto.$unknown'),
       );
       expect(dtosOutput, contains('List<ThingMarkDto>'));
     });

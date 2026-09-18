@@ -1987,11 +1987,19 @@ class OpenApiLibraryGenerator {
             // Point every enum field at its sentinel. Decoding runs through
             // json_serializable's $enumDecode/$enumDecodeNullable, which throws
             // ArgumentError on a name absent from the enum map unless the field
-            // declares unknownValue — so without this, a server that adds an
-            // enum value breaks every client build already shipped. The
-            // nullable-only escape hatch (nullForUndefinedEnumValue) cannot
-            // stand in: it is rejected on non-nullable fields, which are the
-            // majority here.
+            // declares one — so without this, a server that adds an enum value
+            // breaks every client build already shipped. The nullable-only
+            // escape hatch (nullForUndefinedEnumValue) cannot stand in: it is
+            // rejected on non-nullable fields, which are the majority here.
+            //
+            // The parameter is `unknownEnumValue`. `unknownValue` is the name of
+            // the argument $enumDecode itself takes, and getting the two round
+            // the wrong way fails silently in both directions: JsonKey has no
+            // such parameter, json_serializable's fallbackObjRead finds nothing,
+            // and the emitted decode simply omits the argument — so the enum map
+            // still gains its sentinel entry and the output looks fixed while
+            // every decode still throws. Only a decode at runtime tells them
+            // apart, which is why the consumer owns that test.
             // A list of enums needs this as much as a scalar one does, and it is
             // the easy one to miss: the field's own schema is the array, so its
             // `enumerated` is empty and its Dart type is `List`. The values live
@@ -2014,10 +2022,10 @@ class OpenApiLibraryGenerator {
                 referencesNullableEnum ||
                 createdEnums.containsKey(fieldType.symbol);
             if (isEnumField) {
-              jsonKeyArgs['unknownValue'] =
+              jsonKeyArgs['unknownEnumValue'] =
                   fieldType.property(EnumSpec.unknownSentinel);
             } else if (itemsAreEnum && itemsEnumType != null) {
-              jsonKeyArgs['unknownValue'] =
+              jsonKeyArgs['unknownEnumValue'] =
                   itemsEnumType.property(EnumSpec.unknownSentinel);
             }
 

@@ -20,8 +20,8 @@ exhaustiveness was deliberate.
 
 - **Decoding an unseen enum value no longer throws.** `$enumDecode` and
   `$enumDecodeNullable` raise `ArgumentError` for any name absent from the
-  generated enum map unless the field declares `unknownValue`. Every enum-typed
-  field now declares it. This was invisible in the generated Dart, because the
+  generated enum map unless the field declares `JsonKey.unknownEnumValue`. Every
+  enum-typed field now declares it. This was invisible in the generated Dart, because the
   enum itself looks complete and the throw happens in the `.g.dart` part.
 - **A list of enums is covered too.** It is the easy one to miss: the field's own
   schema is the array, so its `enumerated` is empty and its Dart type is `List`.
@@ -37,6 +37,11 @@ exhaustiveness was deliberate.
   produce this identifier. A plain `unknown` would collide, and specs do use it
   — where it means the server knows the answer is "unknown", a different fact
   from "this build is too old to have heard of this value".
+- The annotated parameter is `unknownEnumValue`. `unknownValue` is what
+  `$enumDecode` itself takes, and the two the wrong way round fail silently:
+  `JsonKey` has no such parameter, json_serializable finds nothing, and the
+  emitted decode just omits the argument — so the enum map still gains its
+  sentinel and the output looks fixed while every decode still throws.
 - The sentinel carries no `@JsonValue`, so a value round-tripped back to the
   server is sent as a string no server accepts and is refused loudly, rather
   than being encoded as some plausible real value the server would act on.
